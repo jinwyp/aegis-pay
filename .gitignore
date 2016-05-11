@@ -1,0 +1,8 @@
+node_modules
+log
+
+# Ignore Mac OS desktop services store
+*.DS_Store
+
+# Ignore Windows desktop setting file
+desktop.ini
