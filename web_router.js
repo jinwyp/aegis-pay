@@ -13,7 +13,7 @@ var signController = require('./controllers/sign');
 
 var router = express.Router();
 
-router.get('/home', siteController.home);
+router.get('/', siteController.home);
 
 router.post('/signout', signController.signout);  
 router.post('/signin', signController.signin);  

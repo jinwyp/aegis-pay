@@ -5,6 +5,7 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
+import rjs from 'requirejs';
 
 const plugins = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -12,10 +13,11 @@ const reload = browserSync.reload;
 const paths = {
   "images": "app/images/**/*",
   "styles": [
-                'app/styles/**/*.scss',
-                'app/styles/**/*.css'
+                'app/styles/*.scss',
+                'app/styles/*.css'
               ],
-  "scripts":"app/scripts/**/*.js"
+  "scripts":"app/scripts/**/*.js",
+  "libs": "app/libs/*"
 }
 
 // Lint JavaScript
@@ -27,19 +29,19 @@ gulp.task('lint', () =>
 );
 
 // Optimize images
-gulp.task('images', ['clean'], () =>
+gulp.task('images', () =>
   gulp.src(paths.images)
     .pipe(plugins.imagemin({
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('assets/images'))
     .pipe(plugins.size({title: 'images'}))
 );
 
 
 // Compile and automatically prefix stylesheets
-gulp.task('styles', ['clean'], () => 
+gulp.task('styles', () => 
   gulp.src(paths.styles)
     .pipe(plugins.newer('.tmp/styles'))
     .pipe(plugins.sass({
@@ -47,30 +49,55 @@ gulp.task('styles', ['clean'], () =>
     }).on('error', plugins.sass.logError))
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(plugins.size({title: 'styles'}))
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('assets/styles'))
 );
 
-gulp.task('scripts', ['clean'], () =>
-    gulp.src(paths.scripts)
-      .pipe(plugins.babel())
-      .pipe(plugins.concat({path:'app/script/**/*'}))
-      .pipe(plugins.uglify({preserveComments: 'some'}))
-      // Output files
-      .pipe(plugins.size({title: 'scripts'}))
-      .pipe(gulp.dest('dist/scripts'))
+gulp.task('scripts', ['libs'], (cb) => {
+  rjs.optimize({
+    baseUrl: 'app/scripts',
+    paths: {
+      libs: '../libs'
+    },
+    dir: 'assets/scripts',
+    optimize: "uglify",
+    modules: [
+      {
+        name: 'common',
+        include: [
+          'libs/jquery-2.2.3.min.js',
+          'libs/html5shiv.min.js'
+        ]
+      },
+      {
+        name: 'compact/index',
+        include: [
+          'compact/block1',
+          'compact/block2'
+        ],
+        exclude: ['common']
+      }
+    ]
+  }, function(buildResponse){
+    cb();
+  }, cb);
+});
+
+gulp.task('libs', () => 
+  gulp.src(paths.libs)
+    .pipe(gulp.dest('assets/libs'))
 );
 
 gulp.task('watch', () => {
-  gulp.watch(paths.scripts, ['scripts']);
-  gulp.watch(paths.images, ['images']);
-  gulp.watch(paths.styles, ['styles']);
+  gulp.watch(paths.scripts, ['scripts', reload]);
+  gulp.watch(paths.images, ['images', reload]);
+  gulp.watch(paths.styles, ['styles', reload]);
 });
 
 gulp.task('clean', () => {
-  del(['dist']);
+  del.sync(['assets']);
 });
 
-gulp.task('default', ['watch', 'images', 'styles', 'scripts']);
+gulp.task('default', ['clean', 'images', 'styles', 'scripts', 'watch']);
 
 // gulp.task('default', () => 
 //   gulp.src('app/*.html')

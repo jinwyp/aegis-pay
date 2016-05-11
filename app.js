@@ -30,7 +30,7 @@ var logger                   = require("./common/logger");
 
 
 // 静态文件目录
-var staticDir = path.join(__dirname, 'app/dist');
+var staticDir = path.join(__dirname, 'assets');
 
 // assets
 var assets    = {};

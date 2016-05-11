@@ -1,6 +1,7 @@
 node_modules
 log
-
+assets
+.tmp/
 # Ignore Mac OS desktop services store
 *.DS_Store
 
