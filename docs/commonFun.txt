@@ -1,0 +1,3 @@
+放在common.js里
+
+数字转换大写 方法名 switchTxt
