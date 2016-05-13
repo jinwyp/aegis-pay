@@ -41,7 +41,7 @@ gulp.task('images', () =>
 
 
 // Compile and automatically prefix stylesheets
-gulp.task('styles', () => 
+gulp.task('styles', () =>
   gulp.src(paths.styles)
     .pipe(plugins.newer('.tmp/styles'))
     .pipe(plugins.sass({
@@ -56,7 +56,8 @@ gulp.task('scripts', ['libs'], (cb) => {
   rjs.optimize({
     baseUrl: 'app/scripts',
     paths: {
-      libs: '../libs'
+      libs: '../libs',
+      components: '../components'
     },
     dir: 'assets/scripts',
     optimize: "uglify",
@@ -65,14 +66,14 @@ gulp.task('scripts', ['libs'], (cb) => {
         name: 'common',
         include: [
           'libs/jquery-2.2.3.min.js',
-          'libs/html5shiv.min.js'
+          'components/bootstrap/js/bootstrap.min.js'
         ]
       },
       {
         name: 'compact/index',
         include: [
-          'compact/block1',
-          'compact/block2'
+          'compact/compact',
+          'compact/upload'
         ],
         exclude: ['common']
       }
@@ -82,7 +83,7 @@ gulp.task('scripts', ['libs'], (cb) => {
   }, cb);
 });
 
-gulp.task('libs', () => 
+gulp.task('libs', () =>
   gulp.src(paths.libs)
     .pipe(gulp.dest('assets/libs'))
 );
@@ -90,7 +91,7 @@ gulp.task('libs', () =>
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['scripts', reload]);
   gulp.watch(paths.images, ['images', reload]);
-  gulp.watch(paths.styles, ['styles', reload]);
+  gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
 });
 
 gulp.task('clean', () => {
@@ -99,11 +100,8 @@ gulp.task('clean', () => {
 
 gulp.task('default', ['clean', 'images', 'styles', 'scripts', 'watch']);
 
-// gulp.task('default', () => 
+// gulp.task('default', () =>
 //   gulp.src('app/*.html')
 //         .pipe(plugins.useref())
 //         .pipe(gulp.dest('dist'))
 // )
-
-
-

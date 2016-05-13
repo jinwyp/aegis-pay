@@ -31,6 +31,7 @@ var logger                   = require("./common/logger");
 
 // 静态文件目录
 var staticDir = path.join(__dirname, 'assets');
+var fileStatic = path.join(__dirname, 'static');
 
 // assets
 var assets    = {};
@@ -66,6 +67,7 @@ if (config.debug) {
 // 静态资源
 app.use(Loader.less(__dirname));
 app.use(express.static(staticDir));
+app.use('/static', express.static(fileStatic));
 
 // 每日访问限制
 
@@ -73,7 +75,7 @@ app.use(require('response-time')());
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
 
-// mock api request:  DEBUG = nock.* 
+// mock api request:  DEBUG = nock.*
 if(_.indexOf(_.split(process.env.DEBUG, ','), 'nock.*') >= 0){
   require('./nock/index');
 }
