@@ -50,10 +50,9 @@ var del = function(){
 
   if(length>0){
     for(key in arguments){
-      redis.del(key);
+      redis.del(arguments[key]);
     }
   }
 }
 
 exports.del = del;
-

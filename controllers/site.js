@@ -12,7 +12,3 @@ exports.home = function (req, res, next) {
 				'</ul>'].join('');
 	res.send(home);
 };
-
-exports.compact = function(req, res, next){
-	res.render('compact/compact', {"article":{"title":"签订电子合同"}})
-}

@@ -1,2 +1,2 @@
 require('./site');
-require('./demo');
+require('./compact');

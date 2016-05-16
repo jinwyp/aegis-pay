@@ -79,12 +79,6 @@ exports.cogenMerge = function(req, res, next){
 // reactjs demo 测试用数据
 exports.products = function(req, res, next){
 	request(api_config.products, function(err, data){
-		return res.send(data.body);	
+		return res.send(data.body);
 	})
 }
-
-
-
-
-
-

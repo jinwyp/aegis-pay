@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= article.title %></title>
-  <!-- dev css:assets -->
-  <!-- base: normalize,color -->
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/compact.css">
-  <!-- HTMLshiv for IE -->
-  <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-  <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
+    <title><%= article.title %></title>
+    <!-- dev css:assets -->
+    <!-- base: normalize,color -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/compact.css">
+    <!-- HTMLshiv for IE -->
+    <!--[if lte IE 9]>
+    <script src="/lib/js/html5shiv.min.js"></script><![endif]-->
+    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico"/>
 </head>
 <body>
 <% include ../global/header %>
-<div>compact</div>
+<div class="compactContainer">
+    <h3>签订电子合同</h3>
+    <% include blocks/readme %>
+    <% include blocks/compact %>
+    <% include blocks/upload %>
+</div>
 <% include ../global/footer %>
 </body>
 <!-- dev js:assets -->

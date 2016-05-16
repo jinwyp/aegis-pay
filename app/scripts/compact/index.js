@@ -1,3 +1,3 @@
-requirejs(['../common', 'compact/block1', 'compact/block2'], function($, block1, block2){
-    console.log('compact')
+requirejs(['../common', 'compact/compact', 'compact/upload'], function($, compact, upload){
+    $('#compactImgs').carousel();
 })

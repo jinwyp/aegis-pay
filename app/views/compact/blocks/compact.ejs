@@ -1,0 +1,17 @@
+<div class="compactContainer">
+  <h4>合同内容详情（1/<%= imgs.length %>）<a href='<%= pdfpath %>'>下载合同</a></h4>
+  <div id="compactImgs" class='carousel slider'>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <% imgs.forEach(function(img){ %>
+      <div class="item">
+        <img src='<%= img %>'/>
+      </div>
+    <% }) %>
+    <div class="item"></div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+</div>
