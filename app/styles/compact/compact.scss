@@ -1,7 +1,8 @@
+@import '/components/flexslider/flexslider.css';
 .compactContainer{
   .carousel{
     width:1236px; height:200px; margin:20px; overflow:hidden;
-    .carousel-inner{
+    .slides{
       .item{
         float:left; width:200px; height:194px; overflow:hidden; border:1px solid #ccc; text-align:center; margin:2px; cursor:pointer;
         img{ display:inline-block; *display:inline; zoom:1; width:200px; }
