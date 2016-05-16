@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+    <!-- dev css:assets -->
+    <!-- base: normalize,color -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/demo.css">
+    <!-- HTMLshiv for IE -->
+    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
+    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico" />
+</head>
+<body>
+
+
+<% include ../global/header %>
+
+
+<div>
+
+    <table class="listBox" id="listBox">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>城市</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% listData.forEach(function(city){ %>
+            <tr>
+                <td><%= city.id%></td>
+                <td><%= city.name%></td>
+                <td><%= city.desc%></td>
+            </tr>
+        <% }) %>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<% include ../global/footer %>
+
+
+</body>
+<!-- dev js:assets -->
+<script data-main="/scripts/compact/demo.js" src='../../libs/require.min.js'></script>
+
+</html>
