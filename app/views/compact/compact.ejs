@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= article.title %></title>
-    <!-- dev css:assets -->
-    <!-- base: normalize,color -->
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/compact.css">
-    <!-- HTMLshiv for IE -->
-    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
-  </head>
-  <body>
-    <% include ../global/header %>
-    <div>compact</div>
-    <% include ../global/footer %>
-  </body>
-  <!-- dev js:assets -->
-  <script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>
+<head>
+  <title><%= article.title %></title>
+  <!-- dev css:assets -->
+  <!-- base: normalize,color -->
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="/styles/compact.css">
+  <!-- HTMLshiv for IE -->
+  <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
+  <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
+</head>
+<body>
+<% include ../global/header %>
+<div>compact</div>
+<% include ../global/footer %>
+</body>
+<!-- dev js:assets -->
+<script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>
 </html>

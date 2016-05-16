@@ -8,6 +8,7 @@ exports.home = function (req, res, next) {
 					'<li><a href="/api/async-merge">async merge</a></li>',
 					'<li><a href="/api/cogen-merge">co+genrator merge</a></li>',
 					'<li><a href="/compact">签订电子合同</a></li>',
+					'<li><a href="/demo">demo</a></li>',
 				'</ul>'].join('');
 	res.send(home);
 };
