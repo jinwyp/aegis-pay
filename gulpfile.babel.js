@@ -17,7 +17,8 @@ const paths = {
                 'app/styles/*.css'
               ],
   "scripts":"app/scripts/**/*.js",
-  "libs": "app/libs/*"
+  "libs": "app/libs/*",
+  "components": "app/components/**/*"
 }
 
 // Lint JavaScript
@@ -52,12 +53,15 @@ gulp.task('styles', () =>
     .pipe(gulp.dest('assets/styles'))
 );
 
-gulp.task('scripts', ['libs'], (cb) => {
+gulp.task('scripts', ['libs', 'components'], (cb) => {
   rjs.optimize({
     baseUrl: 'app/scripts',
     paths: {
       libs: '../libs',
       components: '../components'
+    },
+    shims: {
+
     },
     dir: 'assets/scripts',
     optimize: "uglify",
@@ -66,7 +70,7 @@ gulp.task('scripts', ['libs'], (cb) => {
         name: 'common',
         include: [
           'libs/jquery-2.2.3.min.js',
-          'components/bootstrap/js/bootstrap.min.js'
+          'components/bootstrap/dist/js/bootstrap.min.js'
         ]
       },
       {
@@ -86,6 +90,10 @@ gulp.task('scripts', ['libs'], (cb) => {
 gulp.task('libs', () =>
   gulp.src(paths.libs)
     .pipe(gulp.dest('assets/libs'))
+);
+gulp.task('components', () =>
+  gulp.src(paths.components)
+    .pipe(gulp.dest('assets/components'))
 );
 
 gulp.task('watch', () => {
