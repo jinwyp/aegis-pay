@@ -1,9 +1,3 @@
-requirejs.config({
-	baseUrl: 'app/scripts',
-	paths: {
-		libs: '../libs'
-	}
-})
 //数字转大写
 function switchTxt(n) {
 	if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
