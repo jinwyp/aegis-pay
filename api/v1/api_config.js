@@ -9,6 +9,7 @@ var api_config = {
 	signin: host + 'signin',
 	signout: host + 'signout',
 	products: host + 'products',
+	getOrderDetail: host + 'getOrderDetail',
 }
 
 module.exports = api_config;
