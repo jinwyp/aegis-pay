@@ -9,6 +9,7 @@ var api_config = {
 	signin: host + 'signin',
 	signout: host + 'signout',
 	products: host + 'products',
+	uploadCompact: host + 'upload-compact'
 }
 
 module.exports = api_config;
