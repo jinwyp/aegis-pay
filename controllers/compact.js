@@ -33,7 +33,7 @@ var convertData = function(url){
     return {'pdfpath':'/static/' + path.basename(pdf.pdfpath), 'imgs': newImgs};
   })
 }
-
+// fetch compact
 exports.compact = function(req, res, next){
 	var orderid = req.query.orderid;
   var params = '?orderid=' + orderid + '&action=get';
@@ -48,7 +48,7 @@ exports.compact = function(req, res, next){
 					var data = JSON.parse(data.body);
 		      if(data.success){
 		        convertData(data.compact).then(function(result){
-							var pageData = _.assign({}, {'article':{'title':'签订电子合同'}}, result);
+							var pageData = _.assign({}, {'article':{'title':'签订电子合同'}, 'orderid':orderid}, result);
 							cache.set('compacts['+orderid+']', pageData, function(){
 								return res.render('compact/compact', pageData);
 							});

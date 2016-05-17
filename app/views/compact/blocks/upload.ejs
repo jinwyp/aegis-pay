@@ -1,5 +1,5 @@
 <div class="compactUpload">
-  <form id="signCompact" action="signCompact" method="POST" enctype="multipart/form-data">
+  <div id="signCompact">
       <div class="row fileupload-buttonbar">
         <span class="btn btn-success fileinput-button">
             <i class="glyphicon glyphicon-plus"></i>
@@ -8,7 +8,21 @@
         </span>
       </div>
       <input type="hidden" name="orderid" value="<%= orderid %>"/>
-      <input type="submit" class='submit' value="确认提交" />
-      <input type="button" class='cancel' value="取消" />
-  </form>
+      <input type="hidden" name="action" value="post">
+      <input type="button" class='submit' value="确认提交" />
+      <input type="button" class='cancel' value="取消" data-toggle='modal' data-target='#cancelSignModel'/>
+  </div>
+  <div id="cancelSignModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+      <p>确定取消签订合同？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+      <button data-dismiss="modal" class="btn btn-primary">确认</button>
+    </div>
+  </div>
 </div>

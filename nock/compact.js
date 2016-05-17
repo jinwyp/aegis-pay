@@ -16,5 +16,9 @@ compact
     {'filename':'ccc.gif'}
   ]
 })
+.post('/compact', {'action':'post'}).reply(200, {
+  success: true,
+  orderid: 1
+})
 
 module.exports = compact;
