@@ -1,0 +1,15 @@
+@import './compact/var.scss';
+
+.listBox{
+  width: 300px;
+  height: 100px;
+  border: 1px solid #0000cc;
+  border-spacing: 0;
+  background-color: #DDDDDD;
+
+  th, td {
+    border: 1px dashed #009900;
+    border-spacing: 0;
+  }
+}
+
