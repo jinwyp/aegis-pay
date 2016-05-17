@@ -11,6 +11,7 @@ var siteController = require('./controllers/site');
 var compactController = require('./controllers/compact');
 var headerController = require('./controllers/header');
 var footerController = require('./controllers/footer');
+var orderController = require('./controllers/order');
 
 
 
@@ -22,4 +23,5 @@ router.get('/', siteController.home);
 router.get('/compact', compactController.compact);
 router.get('/header', headerController.header);
 router.get('/footer', footerController.footer);
+router.get('/getOrderDetail', orderController.getOrderDetail);
 module.exports = router;
