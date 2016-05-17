@@ -22,6 +22,7 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "flexslider": "FlexSlider#^2.6.1",
-    "blueimp-file-upload": "^9.12.3"
+    "blueimp-file-upload": "^9.12.3",
+    "lightbox2": "^2.8.2"
   }
 }

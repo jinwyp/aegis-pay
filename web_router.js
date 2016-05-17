@@ -12,6 +12,8 @@ var compactController = require('./controllers/compact');
 var headerController = require('./controllers/header');
 var footerController = require('./controllers/footer');
 var orderController = require('./controllers/order');
+var confirmDeliveryController = require('./controllers/confirmDelivery');
+var subHeaderController = require('./controllers/subHeader');
 
 
 
@@ -22,6 +24,8 @@ router.get('/', siteController.home);
 // router.post('/signin', signController.signin);
 router.get('/compact', compactController.compact);
 router.get('/header', headerController.header);
+router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
+router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 module.exports = router;

@@ -53,39 +53,40 @@ gulp.task('styles', () =>
     .pipe(gulp.dest('assets/styles'))
 );
 
-gulp.task('scripts', ['libs', 'components'], (cb) => {
-  rjs.optimize({
-    baseUrl: 'app/scripts',
-    paths: {
-      libs: '../libs',
-      components: '../components'
-    },
-    shims: {
-
-    },
-    dir: 'assets/scripts',
-    optimize: "uglify",
-    modules: [
-      {
-        name: 'common',
-        include: [
-          'libs/jquery-2.2.3.min.js',
-          'components/bootstrap/dist/js/bootstrap.min.js'
-        ]
-      },
-      {
-        name: 'compact/index',
-        include: [
-          'compact/compact',
-          'compact/upload'
-        ],
-        exclude: ['common']
-      }
-    ]
-  }, function(buildResponse){
-    cb();
-  }, cb);
-});
+gulp.task('scripts', ['libs', 'components'], () =>
+  // rjs.optimize({
+  //   baseUrl: 'app/scripts',
+  //   paths: {
+  //     libs: '../libs',
+  //     components: '../components'
+  //   },
+  //   shims: {
+  //
+  //   },
+  //   dir: 'assets/scripts',
+  //   optimize: "uglify",
+  //   modules: [
+  //     {
+  //       name: 'common',
+  //       include: [
+  //         'libs/jquery-2.2.3.min.js',
+  //         'components/bootstrap/dist/js/bootstrap.min.js'
+  //       ]
+  //     },
+  //     {
+  //       name: 'compact/index',
+  //       include: [
+  //         'compact/compact',
+  //         'compact/upload'
+  //       ],
+  //       exclude: ['common']
+  //     }
+  //   ]
+  // }, function(buildResponse){
+  //   cb();
+  // }, cb);
+  gulp.src(paths.scripts).pipe(gulp.dest('assets/scripts'))
+);
 
 gulp.task('libs', () =>
   gulp.src(paths.libs)

@@ -5,7 +5,7 @@
   <ul class="slides">
     <% imgs.forEach(function(img){ %>
       <li class="item">
-        <img src='<%= img %>'/>
+        <a href='<%= img %>' data-lightbox='compact-lightbox'><img src='<%= img %>'/></a>
       </li>
     <% }) %>
   </ul>

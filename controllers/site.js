@@ -10,7 +10,9 @@ exports.home = function (req, res, next) {
 					'<li><a href="/compact">签订电子合同</a></li>',
 					'<li><a href="/demo">demo</a></li>',
 					'<li><a href="/header">header</a></li>',
+					'<li><a href="/subHeader">subHeader</a></li>',
 					'<li><a href="/footer">footer</a></li>',
+					'<li><a href="/confirmDelivery">确认订单</a></li>',
 				'</ul>'].join('');
 	res.send(home);
 };

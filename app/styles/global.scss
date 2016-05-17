@@ -7,6 +7,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+  font-family: 'Microsoft Yahei', Arial, Helvetica, "黑体", sans-serif;
 }
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
@@ -40,7 +41,6 @@ a img { border: none; text-decoration:none; }
 
 /* IE 6/7 */
 .clearfix { *zoom: 1; }
-
 .clear {
   clear: both;
   display: block;
@@ -49,3 +49,149 @@ a img { border: none; text-decoration:none; }
   width: 0;
   height: 0;
 }
+
+//头部css 更新与2016-5-17
+$hoverColor: #00b7ec;
+#paymentHeader{
+
+  .headWrap{
+    height:35px;
+    background: #292929;
+    font-size: 12px;
+    color:#fff;
+    font-family: "microsoft yahei";
+
+    .wrap1000{
+      width: 1000px;
+      margin: 0 auto;
+
+      .menuList{
+        padding:8px 0;
+        float: left;
+
+        li{
+          float: left;
+          padding:0px 10px;
+          position: relative;
+          background: url("/images/header/indexBorder.png") no-repeat right 4px;
+
+          a{
+            color:#fff;
+            display: inline-block;
+            &:hover{
+              color: $hoverColor;
+            }
+          }
+          &.noborder{background: none;}
+          .triggle{
+            width: 0;
+            height: 0;
+            display: inline-block;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #fff;
+            vertical-align: middle;
+          }
+          &:hover{
+            .triggle{
+              width: 0;
+              height: 0;
+              display: inline-block;
+              border-left: 4px solid transparent;
+              border-right: 4px solid transparent;
+              border-bottom: 4px solid #fff;
+              border-top: none;
+              vertical-align: middle;
+            }
+          }
+          .hideMenu{
+            display: none;
+            background: #292929;
+            padding: 10px;
+            padding-top: 15px;
+            width: 65px;
+            position: absolute;
+            z-index:10;
+            top: 16px;
+            left: 0px;
+
+            li{
+              background: none;
+              display: inline;
+              width: 100%;
+              margin-bottom: 5px;
+              padding:0;
+              cursor:pointer;
+
+              &:hover a{color:$hoverColor}
+            }
+          }
+          &.webNav{width:65px;}
+          &.webNav:hover .hideMenu{display: block}
+        }
+        .webNav:hover >a {
+          color:$hoverColor
+        }
+        &::after{clear:both;content: ''}
+      }
+      .rightMenuList{float: right}
+    }
+  }
+}
+#subHeader{
+  .subHeaderWrap{
+    height: 85px;
+    background: #fff;
+    box-shadow: 0px 2px 3px #ddd;
+
+    .subHeader1000{
+      width: 1000px;
+      padding-top: 17px;
+      margin: 0 auto;
+
+      a,span{display: inline-block;vertical-align: middle;font-size: 18px;color:#666;}
+      .subHeaderTit{margin-left: 10px;position: relative;top: -2px}
+    }
+  }
+}
+//头部样式结束
+//底部样式开始 更新与2016-5-17
+#paymentFooter{
+  .footerInfo{
+    background: #292929;
+    color: #999;
+    padding-top: 25px;
+    padding-bottom: 18px;
+
+    .footerInfo-fl{
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: center;
+    }
+    li{
+      display: inline-block;
+      padding:0 10px;
+      text-align: center;
+      background: url("/images/footer/indexBorder1.png") no-repeat right center;
+
+      a{
+        color: #999;
+        text-decoration: none;
+      }
+      &.noborder{background:none;}
+      &:hover a{color:$hoverColor}
+    }
+
+    p{
+      font-size: 12px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    p.szfw-wrap {
+      margin-top: 20px;
+    }
+  }
+}
+//底部样式结束
