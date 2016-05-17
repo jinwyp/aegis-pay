@@ -5,7 +5,10 @@ assets
 .idea/
 # Ignore Mac OS desktop services store
 *.DS_Store
+app/components/
+servicestatic
 
 # Ignore Windows desktop setting file
 desktop.ini
 .idea
+*.iml

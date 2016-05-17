@@ -11,7 +11,7 @@ var config = {
   site_logo: '', 
   site_icon: '', 
   // 程序运行的端口
-  port: 8080,
+  port: 8800,
   // 域名
   host: '',
   session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',

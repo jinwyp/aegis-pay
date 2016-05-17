@@ -1,6 +1,14 @@
 <div class="compactUpload">
-  <form class="" action="signCompact" method="post">
-    <input type="submit" value="确认签订" />
-    <input type="button" value="取消" />
+  <form id="signCompact" action="signCompact" method="POST" enctype="multipart/form-data">
+      <div class="row fileupload-buttonbar">
+        <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+            <input id='fileupload' type="file" name="files[]" multiple="">
+        </span>
+      </div>
+      <input type="hidden" name="orderid" value="<%= orderid %>"/>
+      <input type="submit" class='submit' value="确认提交" />
+      <input type="button" class='cancel' value="取消" />
   </form>
 </div>
