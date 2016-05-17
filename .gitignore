@@ -9,3 +9,4 @@ assets
 # Ignore Windows desktop setting file
 desktop.ini
 .idea
+*.iml
