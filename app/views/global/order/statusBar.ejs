@@ -1,0 +1,45 @@
+<!-- 订单状态模板 -->
+
+
+
+<!-- 状态条 -->
+<div class="statusBar">
+    <ul class="statusMain status_<%= statusObj.step %>">
+        <% statusObj.stepList.forEach(function(obj, ind){ %>
+            <li class="statusStep step_<%= ind+1 %>">
+                <span class="statusHr"></span>
+                <span class="statusDot"></span>
+                <span class="stepName"><%= obj.stepName %></span>
+                <span class="stepDate"><%= obj.stepDate %></span>
+            </li>
+        <% }) %>
+    </ul>
+</div>
+
+
+<!--
+var statusObj = {
+    step: 2,        // 第几步
+    stepList: [
+        {
+            stepName: '提交订单',
+            stepDate: '2016-05-11 01:02:36'
+        },
+        {
+            stepName: '签订合同',
+            stepDate: '2016-05-12 01:02:36'
+        },
+        {
+            stepName: '付款',
+            stepDate: '2016-05-13 01:02:36'
+        },
+        {
+            stepName: '确认提货',
+            stepDate: '2016-05-14 01:02:36'
+        },
+        {
+            stepName: '结算',
+            stepDate: '2016-05-15 01:02:36'
+        }
+    ]
+};   -->

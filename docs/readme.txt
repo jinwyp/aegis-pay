@@ -133,6 +133,7 @@ web_router.js               Web路由配置
 
 // 模拟'接口数据'
 .nock/dome.js
+.nock/index.js       // *公用
 
 // 页面模板
 .app/views/dome/demo.ejs

@@ -16,11 +16,54 @@ exports.demo = function (req, res, next) {
 	//};
 	//res.render('demo/demo', dataObj);			// 指定模板路径 渲染
 
-
 	// 异步调取Java数据
-	request(apiHost + 'listData', function(err, data) {
+	request(apiHost + 'listData', function (err, data) {
+
+
+
+		// 订单状态 数据模拟
+		var statusObj = {
+			step: 2,        // 第几步
+			stepList: [
+				{
+					stepName: '提交订单',
+					stepDate: '2016-05-11 01:02:36'
+				},
+				{
+					stepName: '签订合同',
+					stepDate: '2016-05-12 01:02:36'
+				},
+				{
+					stepName: '付款',
+					stepDate: '2016-05-13 01:02:36'
+				},
+				{
+					stepName: '确认提货',
+					stepDate: '2016-05-14 01:02:36'
+				},
+				{
+					stepName: '结算',
+					stepDate: '2016-05-15 01:02:36'
+				}
+			]
+		};
+
+
+		var DATA = {
+			listData: JSON.parse(data.body),
+			statusObj: statusObj
+		}
+
+
 		// 渲染页面,指定模板&数据
-		res.render('demo/demo', {listData: JSON.parse(data.body)});			// 指定模板路径 渲染
+		res.render('demo/demo', DATA);			// 指定模板路径 渲染
+
 	});
 
+
+
 };
+
+
+
+
