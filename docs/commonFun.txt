@@ -1,4 +1,17 @@
 放在common.js里
 
-数字转换大写 方法名 switchTxt
-数字千分符号 方法名 formatNum
+
+数字转换大写
+{
+
+    方法名 switchTxt(n)
+    例：switchTxt(200) 输出 贰佰元整
+}
+
+数字千分符号
+{
+
+    方法名 formatNum(num , deg)
+    num:输入数字，deg：保留小数位数(默认不写保留两位)
+    例：formatNum (10000 , 2) 输出 100,00.00
+}
