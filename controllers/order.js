@@ -10,6 +10,32 @@ var apiHost = 'http://localhost:8888/mall/order/';			// 域名
 var co = require('co');
 var restler = require('restler-bluebird');
 
+var statusObj = {
+	step: 2,        // 第几步
+	stepList: [
+		{
+			stepName: '提交订单',
+			stepDate: '2016-05-11 01:02:36'
+		},
+		{
+			stepName: '签订合同',
+			stepDate: '2016-05-12 01:02:36'
+		},
+		{
+			stepName: '付款',
+			stepDate: '2016-05-13 01:02:36'
+		},
+		{
+			stepName: '确认提货',
+			stepDate: '2016-05-14 01:02:36'
+		},
+		{
+			stepName: '结算',
+			stepDate: '2016-05-15 01:02:36'
+		}
+	]
+};
+
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
@@ -24,7 +50,7 @@ exports.getOrderDetail = function (req, res, next) {
 	//});
 
 	var id=req.query.id;
-	console.log('获取到的参数是----------------------------'+id);
+	console.log('获取到的参数是------------1111----------------'+id);
 	//request(apiHost + id, function(err, data) {
 	//	//res.header("Access-Control-Allow-Origin", "*");
 	//	console.log('获取到的错误是----------------------------'+err);
@@ -34,14 +60,17 @@ exports.getOrderDetail = function (req, res, next) {
 	//});
 
 	restler.get(apiHost+id).then(function (data) {
-		res.render("compact/orderDetail", data);
+		console.log('获取到的参数是------------2222----------------'+JSON.stringify(data));
+		var value={statusObj:statusObj,sellinfo:data.sellinfo,order:data.order};
+		console.log('获取到的参数是------------3333----------------'+JSON.stringify(value));
+		res.render("compact/orderDetail", {statusObj:statusObj,sellInfo:data.sellInfo,order:data.order});
 	});
 
 
 	//co((function* (tres) {
 	//	var content = yield restler.get(apiHost + id);
 	//	//console.log('获取到的错误是----------------------------'+err);
-	//	console.log('获取到的结果是----------------------------'+content);
+	//	console.log('获取到的结果是----------------------------'+content.body);
 	//	tres.render("compact/orderDetail", content);
 	//})(res));
 
