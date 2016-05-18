@@ -63,7 +63,7 @@ exports.getOrderDetail = function (req, res, next) {
 		console.log('获取到的参数是------------2222----------------'+JSON.stringify(data));
 		var value={statusObj:statusObj,sellinfo:data.sellinfo,order:data.order};
 		console.log('获取到的参数是------------3333----------------'+JSON.stringify(value));
-		res.render("compact/orderDetail", {statusObj:statusObj,sellInfo:data.sellInfo,order:data.order});
+		res.render("compact/orderDetail", {"headerTit":"待签电子合同","statusObj":statusObj,"sellInfo":data.sellInfo,"order":data.order});
 	});
 
 
