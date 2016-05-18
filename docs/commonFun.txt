@@ -31,6 +31,39 @@
 
 网站底部引用
 
-<% include ../global/footer/footer %>
+    <% include ../global/footer/footer %>
+
+-----------------------------------------------------------
+订单状态条
+
+    <% include ../global/order/statusBar %>
+
+    // 订单状态 数据模拟
+    var statusObj = {
+        step: 2,        // 第几步
+        stepList: [
+            {
+                stepName: '提交订单',
+                stepDate: '2016-05-11 01:02:36'
+            },
+            {
+                stepName: '签订合同',
+                stepDate: '2016-05-12 01:02:36'
+            },
+            {
+                stepName: '付款',
+                stepDate: '2016-05-13 01:02:36'
+            },
+            {
+                stepName: '确认提货',
+                stepDate: '2016-05-14 01:02:36'
+            },
+            {
+                stepName: '结算',
+                stepDate: '2016-05-15 01:02:36'
+            }
+        ]
+    };
+    res.render('demo/demo', statusObj);             // 数据插入模板,  详见:8800/demo
 
 -----------------------------------------------------------
