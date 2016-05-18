@@ -81,7 +81,7 @@
     例：
     exports.getOrderDetail = function (req, res, next) {
     // 静态数据
-        res.render("compact/orderDetail", {"sellInfo":data.sellInfo});
+        res.render("compact/orderDetail", {"sellInfo":sellInfo});
     };
 
 -----------------------------------------------------------
