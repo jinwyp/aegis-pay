@@ -34,6 +34,9 @@ $bgUrl: "/images/sprite_ico.png";
       top: 6px;
       left: 82px;
       background: url($bgUrl) no-repeat;
+      color: #ffffff;
+      text-align: center;
+      font: lighter 16px/30px 'arial';
     }
     .stepName {
       display: block;

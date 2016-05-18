@@ -13,10 +13,11 @@
     <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
   </head>
   <body>
-    <% include ../global/header %>
+    <% include ../global/header/header %>
     <div id="order-detail-body">
         <div class="main-content">
-            <div class="main-content fs-24 center">订单进度条</div>
+            <!--<div class="main-content fs-24 center">订单进度条</div>-->
+            <% include ../global/order/statusBar %>
             <div class="status-content">
                 <div class="state-item mt-70 fs-24"><span>当前订单状态：</span><span class="status">货物已下单，请及时签订电子合同</span></div>
                 <div class="state-item mt-20 hint"><span>1. 点击这里</span></div>
@@ -61,13 +62,7 @@
                         <li><span class="hint">品名：</span><span><%= sellInfo.brandname %></span></li>
                         <li><span class="hint">产地：</span>
                             <span>
-                                <%= sellInfo.deliveryprovince %>
-                                <% if(sellInfo.otherharbour!=null){ %>
-                                    <%= sellInfo.otherharbour %>
-                                <% }else{ %>
-                                    <%= sellInfo.deliveryplace %>
-                                    <%= sellInfo.deliveryplace %>
-                                <% } %>
+                                <%= sellInfo.originplace %>
                             </span>
                         </li>
                         <li><span class="hint">热值：</span><span><%= sellInfo.pname %></span></li>
@@ -109,7 +104,7 @@
             </div>
         </div>
     </div>
-    <% include ../global/footer %>
+    <% include ../global/footer/footer %>
   </body>
   <!-- dev js:assets -->
   <script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>

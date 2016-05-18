@@ -12,8 +12,8 @@
     "node": "0.12.x"
   },
   "scripts": {
-    "test": "make test",
-    "start": "DEBUG=nserver,nock.* supervisor --watch '.' app"
+    "test": "DEBUG=nserver,nock.* supervisor --watch '.' app",
+    "start": "DEBUG=nserver, supervisor --watch '.' app"
   },
   "dependencies": {
     "async": "0.9.0",
