@@ -8,17 +8,20 @@ compact
   "success": true,
   "compact":'/Users/beatacao/work/aegis-pay/servicestatic/compact.html'
 })
-.post('/upload-compact').reply(200, {
+.post('/upload-file').reply(200, {
   success: true,
   attach: [
-    {'filename':'aaa.png'},
-    {'filename':'bbb.jpg'},
-    {'filename':'ccc.gif'}
+    {'filename':'aaa.png', 'path': '1'},
+    {'filename':'bbb.jpg', 'path': '2'},
+    {'filename':'ccc.gif', 'path': '3'}
   ]
 })
-.post('/compact', {'action':'post'}).reply(200, {
+.post('/compact').reply(200, {
   success: true,
   orderid: 1
+})
+.post('/del-file').reply(200, {
+  success: true
 })
 
 module.exports = compact;

@@ -10,7 +10,8 @@ router.get('/async-merge',siteController.asyncMerge);
 router.get('/cogen-merge',siteController.cogenMerge);
 router.get('/products',siteController.products);
 
-router.post('/upload-compact', compactApi.uploadCompact);
+router.post('/upload-file', compactApi.uploadFile);
+router.post('/del-file', compactApi.delFile);
 router.post('/sign-compact', compactApi.signCompact);
 
 router.use(function(req, res, next){

@@ -9,7 +9,8 @@ var api_config = {
 	signin: host + 'signin',
 	signout: host + 'signout',
 	products: host + 'products',
-	uploadCompact: host + 'upload-compact',
+	uploadFile: host + 'upload-file',
+	delFile: host + 'del-file',
 	signCompact: host + 'compact',
 	getOrderDetail: host + 'getOrderDetail'
 }

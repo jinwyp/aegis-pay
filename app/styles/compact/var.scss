@@ -1,1 +1,64 @@
-$color: #eee;
+$color_body_bg: #f5f5f5;
+$color_main_bg: #fff;
+$color_blue: #31b9e6;
+$color_border_gray: #d9d9d9;
+$color_border_block_gray: #ddd;
+$color_font: #333;
+$color_btn_blue: #01b7ec;
+$color_btn_gray: #c7c7c7;
+
+$color_readme_bg: #fffaf7;
+$color_readme_font: #ff6e0f;
+$color_readme_border: #fecdb3;
+
+$color_tip_font: #999;
+$color_orange: #ff6e0f;
+
+$main_width: 1000px;
+$main_margintop: 20px;
+$main_marginbottom: 30px;
+
+$size_font_pageTitle: 18px;
+$size_font_blockTitle: 16px;
+$size_font_nomal: 12px;
+
+$font_family: Microsoft YaHei;
+
+.pageTitle{
+  font-size:$size_font_pageTitle; color:#333;
+  line-height: 36px; border-bottom:1px solid $color_border_gray;
+  span{ float:left; width:2px; height:18px; background: $color_blue; margin-top:9px; margin-right:10px; }
+}
+
+.blockTitle{
+  font-size:$size_font_blockTitle; line-height: 36px; border-bottom:1px dashed $color_border_block_gray;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.btn_download, .btn_upload{
+  height:25px; line-height: 25px; padding:0 6px; font-size:12px; color:$color_font;
+  text-decoration:none; border:1px solid #e4e4e4; @include border-radius(2px);
+  background: url('/images/btnbg.gif') repeat-x left top;
+  .icon_download, .icon_upload{
+    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+    width:18px; height:18px; background: url('/images/sprite.png') no-repeat -550px -269px;
+  }
+  .icon_upload{
+    background-position:-550px -307px;
+  }
+}
+
+.btn_blue, .btn_gray{
+  width:140px; height:40px; line-height: 40px; text-align:center;
+  color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
+  @include border-radius(2px); border:none;
+}
+.btn_gray{
+  background: $color_btn_gray;
+}

@@ -9,8 +9,10 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
         $('.flexslider').flexslider({
           animation: "slide",
           animationLoop: false,
-          itemWidth: 210,
-          itemMargin: 5
+          itemWidth: 148,
+          itemMargin: 20,
+          controlsContainer: $(".custom-controls-container"),
+          customDirectionNav: $(".custom-navigation a")
         });
 
       },

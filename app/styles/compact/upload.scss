@@ -2,3 +2,43 @@
 @import '/components/blueimp-file-upload/css/jquery.fileupload.css';
 @import '/components/blueimp-file-upload/css/jquery.fileupload-ui.css';
 @import '/components/bootstrap/dist/css/bootstrap.min.css';
+
+.compactUpload{
+  border-top:1px dashed $color_border_block_gray; padding-top:20px;
+  .uploadWrapper{
+    overflow:hidden;
+    label{
+      font-size:$size_font_blockTitle; font-weight: normal; line-height: 27px; vertical-align: middle;
+      i{ color:red; }
+    }
+    .btn_upload{ vertical-align: middle; }
+    #files{
+      display: inline-block; *display: inline; zoom:1; line-height: 27px; vertical-align: middle;
+      .file{
+        display: inline-block; *display: inline; zoom:1; margin-right:10px; border:1px solid #fff;
+        height:27px; line-height: 27px; padding:0 4px 0 24px; background:#f5f5f5 url('/images/sprite.png') no-repeat -546px -221px;
+        &:hover{
+          border:1px solid $color_btn_blue; background-color:#fff;
+        }
+        .del{
+          display: inline-block; *display: inline; zoom:1; margin-left:15px; vertical-align: middle;
+          width:22px; height:22px; background: url('/images/sprite.png') no-repeat -217px -173px;
+          &:hover{
+            background-position:-257px -173px;
+          }
+        }
+      }
+    }
+  }
+  .btn_gray{
+    margin-right:10px; margin-left:90px;
+  }
+  .tip{
+    color:$color_tip_font; overflow: hidden; margin-left:90px; line-height: 24px; margin-top:3px; margin-bottom:25px;
+    span{
+      color:$color_orange;
+    }
+    label,ul{ float:left; }
+
+  }
+}
