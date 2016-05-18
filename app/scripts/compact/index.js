@@ -32,6 +32,10 @@ requirejs.config({
 			deps: ['jquery'],
 			exports: 'lightbox'
 		},
+    'bootstrap': {
+			deps: ['jquery'],
+			exports: 'bootstrap'
+		}
     // 'jquery.ui.widget': {
     //   deps: ['jquery'],
     //   exports: 'jquery.ui.widget'

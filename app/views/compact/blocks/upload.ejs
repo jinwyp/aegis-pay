@@ -1,12 +1,13 @@
 <div class="compactUpload">
-  <div id="signCompact">
+  <div action='post' id="signCompact">
       <div class="row fileupload-buttonbar">
         <span class="btn btn-success fileinput-button">
             <i class="glyphicon glyphicon-plus"></i>
             <span>Add files...</span>
-            <input id='fileupload' type="file" name="files[]" multiple="">
+            <input id='fileupload' data-url='/api/upload-file' type="file" name="files">
         </span>
       </div>
+      <div id="files"></div>
       <input type="hidden" name="orderid" value="<%= orderid %>"/>
       <input type="hidden" name="action" value="post">
       <input type="button" class='submit' value="确认提交" />
@@ -22,7 +23,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-      <button data-dismiss="modal" class="btn btn-primary">确认</button>
+      <a href='/orders' class="btn btn-primary">确认</a>
     </div>
   </div>
 </div>
