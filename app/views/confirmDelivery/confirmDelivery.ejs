@@ -6,7 +6,8 @@
     <!-- dev css:assets -->
     <!-- base: normalize,color -->
     <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/confirmDelivery.css">
+    <link rel="stylesheet" href="/styles/statusBar.css">
     <!-- HTMLshiv for IE -->
     <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
     <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico" />
@@ -14,7 +15,52 @@
 <body>
 <% include ../global/header/header %>
 <% include ../global/header/subHeader %>
-asdasd
+    <div id="confirmDelivery">
+        <div class="confirmDeliveryWrap">
+            <% include ../global/order/statusBar %>
+            <p class="statusInfo">我已提货，同意并确认提货数量及产品质量</p>
+            <div class="qualityInfo">
+                <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
+                <div class="banCon">
+                    <div class="leftBan">提货数量：</div>
+                    <div class="rightBan"><input type="text" class="amount"/><span class="unit">吨</span></div>
+                </div>
+                <div class="banCon">
+                    <div class="leftBan">填写质量结果：</div>
+                    <div class="rightBan">
+                        <table>
+                            <tr class="thead">
+                                <td width="80">批次</td>
+                                <td width="145">检测时间</td>
+                                <td width="145">提货吨数(吨)</td>
+                                <td width="90">热值</td>
+                                <td width="90">硫分</td>
+                                <td width="90">挥发分</td>
+                                <td>操作</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="banCon">
+                    <div class="leftBan">上传质量确认单</div>
+                    <div class="rightBan">
+                        <div class="uploadFile">
+                            <i class="uploadIcon"></i>选择文件
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <% include ../global/footer/footer %>
 </body>
 </html>

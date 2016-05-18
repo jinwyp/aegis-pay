@@ -19,6 +19,7 @@ requirejs.config({
     'load-image-exif': '../components/blueimp-load-image/js/load-image-exif',
     'load-image-meta': '../components/blueimp-load-image/js/load-image-meta',
     'canvas-to-blob': '../components/blueimp-canvas-to-blob/js/canvas-to-blob.min',
+    'bootstrap': '../components/bootstrap/dist/js/bootstrap.min',
     compact: 'compact/compact',
     upload: 'compact/upload'
   },
