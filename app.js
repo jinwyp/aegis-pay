@@ -28,6 +28,7 @@ var requestLog               = require('./middlewares/request_log');
 var renderMiddleware                   = require('./middlewares/render');
 var logger                   = require("./common/logger");
 
+require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir = path.join(__dirname, 'assets');
