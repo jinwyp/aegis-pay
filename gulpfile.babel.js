@@ -32,10 +32,10 @@ gulp.task('lint', () =>
 // Optimize images
 gulp.task('images', () =>
   gulp.src(paths.images)
-    .pipe(plugins.imagemin({
-      progressive: true,
-      interlaced: true
-    }))
+    // .pipe(plugins.imagemin({
+    //   progressive: true,
+    //   interlaced: true
+    // }))
     .pipe(gulp.dest('assets/images'))
     .pipe(plugins.size({title: 'images'}))
 );

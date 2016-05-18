@@ -48,7 +48,7 @@ exports.compact = function(req, res, next){
 					var data = JSON.parse(data.body);
 		      if(data.success){
 		        convertData(data.compact).then(function(result){
-							var pageData = _.assign({}, {'article':{'title':'签订电子合同'}, 'orderid':orderid}, result);
+							var pageData = _.assign({}, {'article':{'title':'签订电子合同'}, 'orderid':orderid, 'headerTit':'签订电子合同'}, result);
 							cache.set('compacts['+orderid+']', pageData, function(){
 								return res.render('compact/compact', pageData);
 							});

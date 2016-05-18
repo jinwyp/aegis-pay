@@ -13,7 +13,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	        done: function (e, data) {
 							var $fileWrapper = $('#files');
 	            $.each(data.result.attach, function (index, file) {
-									var filehtml = '<p>' + file.filename + '<span class="del">x</span><input type="hidden" name="filepath" value="' + file.path + '"></p>';
+									var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="filepath" value="' + file.path + '"></p>';
 	                $fileWrapper.append(filehtml);
 	            });
 	        },

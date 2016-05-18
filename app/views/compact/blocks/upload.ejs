@@ -1,17 +1,27 @@
 <div class="compactUpload">
   <div action='post' id="signCompact">
-      <div class="row fileupload-buttonbar">
-        <span class="btn btn-success fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>Add files...</span>
+      <div class='uploadWrapper'>
+        <label><i>*</i>上传合同：</label>
+        <span class="fileinput-button btn_upload">
+            <i class="icon_upload"></i>
+            <span>点击上传</span>
             <input id='fileupload' data-url='/api/upload-file' type="file" name="files">
         </span>
+        <div id="files">
+          <p class="file">aaa.png<span class="del"></span><input type="hidden" name="filepath" value="1"></p><p class="file">bbb.jpg<span class="del"></span><input type="hidden" name="filepath" value="2"></p><p class="file">ccc.gif<span class="del"></span><input type="hidden" name="filepath" value="3"></p>
+        </div>
       </div>
-      <div id="files"></div>
+      <div class='tip'>
+        <label>提示：</label>
+        <ul>
+          <li>1. 请在<span>24小时内</span>下载合同，并加盖合同章或者公章后将合同扫描件或照片上传</li>
+          <li>2. 请选择文件扫描件、照片、或文件压缩包上传，容量最大<span>不超过30M</span>。</li>
+        </ul>
+      </div>
       <input type="hidden" name="orderid" value="<%= orderid %>"/>
       <input type="hidden" name="action" value="post">
-      <input type="button" class='submit' value="确认提交" />
-      <input type="button" class='cancel' value="取消" data-toggle='modal' data-target='#cancelSignModel'/>
+      <input type="button" class='cancel btn_gray' value="取消" data-toggle='modal' data-target='#cancelSignModel'/>
+      <input type="button" class='submit btn_blue' value="确认提交" />
   </div>
   <div id="cancelSignModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-header">
