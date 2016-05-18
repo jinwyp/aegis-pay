@@ -11,7 +11,7 @@ exports.confirmDelivery = function (req, res, next) {
 
 	// 订单状态 数据模拟
 	var statusObj = {
-		step: 2,        // 第几步
+		step: 4,        // 第几步
 		stepList: [
 			{
 				stepName: '提交订单',
