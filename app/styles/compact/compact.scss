@@ -13,7 +13,7 @@
   margin-top:38px;
   .blockTitle{
     .btn_download{
-      float:right; 
+      float:right;
     }
   }
   .carousel{
@@ -49,7 +49,7 @@
         a{
           display: block; height:210px;
           .scaleView{
-            display:none;
+            display:none; margin:0;
             position:absolute; bottom:0; right:0; height:22px; line-height: 22px; color:#fff;
             padding:0 10px 0 25px; background:url('/images/sprite.png') no-repeat -546px -173px;
             .pngbg{
