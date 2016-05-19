@@ -19,7 +19,7 @@ requirejs(['common', 'jquery'], function(common, $){
     var $tab = $('.listBox');
 
     $tab.on('click', 'th', function() {
-        console.log( $(this).html() );
+        console.log( $(this).html() ); 
     });
 
 });
