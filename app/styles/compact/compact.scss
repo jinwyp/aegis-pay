@@ -14,6 +14,9 @@
   .blockTitle{
     .btn_download{
       float:right;
+      &:hover{
+        text-decoration: none; color:#333;
+      }
     }
   }
   .carousel{
@@ -65,5 +68,16 @@
         .currentIndex{ line-height:34px; font-size:16px; }
       }
     }
+  }
+}
+
+#cancelSignModel{
+  .icon_confirm{ margin:0 auto;}
+  h4{
+    font-size:18px; color:#666;
+  }
+  .modal-body{
+    text-align:center; padding:15px 40px;
+    p{ color:#999; margin:0; }
   }
 }

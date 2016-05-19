@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var pdf = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
+var ftl = require('node-ftl');
 
 const __dirfiles = '/Users/beatacao/work/aegis-pay/';
 
@@ -41,6 +42,21 @@ exports.html2pdf = function(htmlpath, pdfname){
       }else{
         resolve({'pdfpath':pdfpath});
       }
+    });
+  })
+}
+
+exports.ftl2html = function(data, ftlpath, htmlname){
+  return new Promise(function(resolve, reject){
+    ftl.processTemplate({
+        data: data,
+        settings: {
+            encoding: 'utf-8',
+            viewFolder: __dirfiles + 'static/html/';
+        },
+        filename: 'index.ftl'
+    }).on('end', function(err, html) {
+        fs.writeFileSync('index.html', html, 'utf8');
     });
   })
 }

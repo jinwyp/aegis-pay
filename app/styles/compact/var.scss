@@ -74,7 +74,7 @@ $font_family: Microsoft YaHei;
 #lightbox {
   .lb-outerContainer{ @include border-radius(2px); @include box-shadow(0px 0px 5px #333333); }
   .lb-container{
-    padding: 40px 68px;
+    padding: 40px 68px 56px;
   }
   .lb-nav a.lb-next, .lb-nav a.lb-prev{
     opacity:1; filter:alpha(opacity=100);
@@ -91,11 +91,36 @@ $font_family: Microsoft YaHei;
     }
   }
   .lb-close{
-    position:absolute; top:0; left:50%; z-index:10;
+    position:absolute; top:0; right:0; z-index:10;
     width:30px; height:30px; background:#666 url('/images/sprite.png') no-repeat -116px -171px;
     &:hover{
       background-color:#333;
       background-position: -164px -171px;
     }
   }
+  .lb-dataContainer{
+    height:30px; position:relative; bottom:40px;
+    .lb-details{ float:none; width:100%; text-align:center; }
+    .lb-data .lb-number{ color:#333; }
+  }
 }
+
+.tipModal{
+  .modal-content{ @include box-shadow(none);}
+  .modal-header{ height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4; }
+  .modal-dialog{ width:480px; padding:15px 26px; }
+  .modal-footer{
+    border-top:none; text-align: center; padding-bottom:20px;
+    .btn{
+      width:100px; height:36px; line-height: 36px; font-size:16px; margin-left:0; padding:0; color:#fff;
+      &:hover{ color:#fff; }
+    }
+  }
+}
+
+.icon_confirm{
+  display:block;
+  width:76px; height:88px; background:url(/images/sprite.png) no-repeat 0 -278px;
+}
+
+.color_orange{ color:$color_orange; }

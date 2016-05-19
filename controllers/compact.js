@@ -24,6 +24,7 @@ var requestUrl = {
 // 接收service数据，转化数据为客户端需要的格式
 var convertData = function(url){
   return co(function* (){
+		var html = ''
     var pdf = yield convert.html2pdf(url);
     var imgs = yield convert.pdf2image(pdf.pdfpath);
 		var newImgs = [];
