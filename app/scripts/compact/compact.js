@@ -14,7 +14,7 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
           controlsContainer: $(".custom-controls-container"),
           customDirectionNav: $(".custom-navigation a")
         });
-
+        $('#lightbox .lb-close').appendTo('.lb-outerContainer');
       },
       lightbox: function(){
         lightbox.option({

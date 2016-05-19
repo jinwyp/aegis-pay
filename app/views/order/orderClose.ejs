@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>关闭订单</title>
+    <!-- base: normalize,color -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/orderClose.css">
+    <!-- HTMLshiv for IE -->
+    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
+    <link type="image/x-icon" rel="shortcut icon" href="/images/compact/favicon.png" />
+</head>
+<body>
+
+
+<% include ../global/header/header %>
+
+
+<p class="title"><%= infoObj.article.title%></p>
+<p>sss</p>
+<p>sss</p>
+<p>sss</p>
+
+
+<% include ../global/footer/footer %>
+
+
+<!-- 状态条 -->
+<% include ../global/order/statusBar %>
+
+
+
+</body>
+<!-- dev js:assets -->
+<script data-main="/scripts/order/orderClose.js" src='../../libs/require.min.js'></script>
+
+</html>

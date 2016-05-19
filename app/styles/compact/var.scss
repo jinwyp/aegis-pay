@@ -24,6 +24,19 @@ $size_font_nomal: 12px;
 
 $font_family: Microsoft YaHei;
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+      -moz-box-shadow:$shadow;
+  -webkit-box-shadow:$shadow;
+          box-shadow:$shadow;
+}
+
 .pageTitle{
   font-size:$size_font_pageTitle; color:#333;
   line-height: 36px; border-bottom:1px solid $color_border_gray;
@@ -32,13 +45,6 @@ $font_family: Microsoft YaHei;
 
 .blockTitle{
   font-size:$size_font_blockTitle; line-height: 36px; border-bottom:1px dashed $color_border_block_gray;
-}
-
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
 }
 
 .btn_download, .btn_upload{
@@ -61,4 +67,35 @@ $font_family: Microsoft YaHei;
 }
 .btn_gray{
   background: $color_btn_gray;
+}
+
+// lightbox 样式调整
+.lightboxOverlay{ opacity:0.5; filter:alpha(opacity=50)};
+#lightbox {
+  .lb-outerContainer{ @include border-radius(2px); @include box-shadow(0px 0px 5px #333333); }
+  .lb-container{
+    padding: 40px 68px;
+  }
+  .lb-nav a.lb-next, .lb-nav a.lb-prev{
+    opacity:1; filter:alpha(opacity=100);
+    position:absolute; left:0; top:50%; margin-top:-50px; width:66px; height:100px;
+    background:url('/images/sprite.png') no-repeat -292px -45px;
+    &:hover{
+      background-position: -452px -45px;
+    }
+  }
+  .lb-nav a.lb-next{
+    background-position: -372px -45px; right:0; left:auto;
+    &:hover{
+      background-position: -532px -45px;
+    }
+  }
+  .lb-close{
+    position:absolute; top:0; left:50%; z-index:10;
+    width:30px; height:30px; background:#666 url('/images/sprite.png') no-repeat -116px -171px;
+    &:hover{
+      background-color:#333;
+      background-position: -164px -171px;
+    }
+  }
 }
