@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
   baseUrl: 'scripts',
   paths: {
     'blueimp-file-upload': '../../components/blueimp-file-upload/js/jquery.fileupload',
