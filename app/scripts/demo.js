@@ -6,6 +6,7 @@ requirejs.config({
     baseUrl: 'scripts',
     paths: {
         components: '../components',
+        common: './common',
         libs: '../libs',
         jquery: '../libs/jquery-2.2.3.min'
     }
@@ -13,7 +14,7 @@ requirejs.config({
 
 
 
-requirejs(['./common', 'jquery'], function(common, $){
+requirejs(['common', 'jquery'], function(common, $){
 
     var $tab = $('.listBox');
 
