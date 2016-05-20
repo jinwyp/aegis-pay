@@ -29,10 +29,6 @@ exports.uploadFile = function (req, res, next) {
 
 // del file
 exports.delFile = function (req, res, next) {
-	//api代理，去请求java接口
-	// request.post(api_config.delFile, {id: req.body.id},function(error,data){
-	// 	return res.send(JSON.parse(data.body));
-	// })
 	fs.unlink(uploadPath + req.body.id, function(err){
 		res.send({"success":true});
 	})
