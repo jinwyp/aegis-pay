@@ -348,3 +348,8 @@
 .bg-month-12{
   background: url("/images/datepicker//bg-month-12.png") no-repeat center 35px;
 }
+.picker tr,.picker td{border: none;}
+.picker__table td {
+  margin: 0;
+  padding: 2px 0;
+}
