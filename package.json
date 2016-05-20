@@ -27,6 +27,7 @@
     "cors": "2.5.0",
     "csurf": "1.6.2",
     "data2xml": "0.8.0",
+    "ejs-locals": "^1.0.2",
     "ejs-mate": "2.0.0",
     "eventproxy": "0.3.1",
     "express": "4.9.5",

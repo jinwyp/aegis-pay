@@ -1,20 +1,12 @@
-/*
- * 页面脚本
- * */
+require(['jquery','jQuery.fn.datePicker'],function($){
 
-requirejs.config({
-    baseUrl: '../scripts',
-    paths: {
-        components: '../components',
-        libs: '../libs',
-        jquery: '../libs/jquery-2.2.3.min'
-    }
-});
-
-
-
-requirejs(['./common', 'jquery'], function(common, $){
-
-
-
+   var confirmDelivery={
+      "datepicker" : function(){
+         //$(".datepicker").pickadate({}).pickadate('picker').set("max", [new Date($.now() + 86400000)]);
+         $(".datepicker").each(function(id, item){
+            $(item).pickadate({}).pickadate('picker').set("max", [new Date($.now() + 86400000)]);
+         })
+      }
+   }
+   confirmDelivery.datepicker()
 });

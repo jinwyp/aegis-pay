@@ -24,6 +24,7 @@
     "flexslider": "FlexSlider#^2.6.1",
     "blueimp-file-upload": "^9.12.3",
     "lightbox2": "^2.8.2",
-    "eonasdan-bootstrap-datetimepicker": "bootstrap3-datetimepicker#^4.17.37"
+    "eonasdan-bootstrap-datetimepicker": "bootstrap3-datetimepicker#^4.17.37",
+    "pickadate": "^3.5.6"
   }
 }

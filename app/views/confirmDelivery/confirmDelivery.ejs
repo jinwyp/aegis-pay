@@ -1,104 +1,132 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>买家确认提货</title>
-    <!-- dev css:assets -->
-    <!-- base: normalize,color -->
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/confirmDelivery.css">
-    <link rel="stylesheet" href="/styles/statusBar.css">
-    <!-- HTMLshiv for IE -->
-    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico" />
-</head>
-<body>
-<% include ../global/header/header %>
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet("../../styles/statusBar.css") -%>
+<% stylesheet("../../styles/confirmDelivery.css") -%>
 <% include ../global/header/subHeader %>
-    <div id="confirmDelivery">
-        <div class="confirmDeliveryWrap">
-            <% include ../global/order/statusBar %>
-            <p class="statusInfo">我已提货，同意并确认提货数量及产品质量</p>
-            <div class="qualityInfo">
-                <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
-                <div class="banCon">
-                    <div class="leftBan">提货数量：</div>
-                    <div class="rightBan"><input type="text" class="amount"/><span class="unit">吨</span></div>
-                </div>
-                <table class="checkList">
-                    <tr class="thead">
-                        <td width="45">批次</td>
-                        <td width="92"><i class="calIcon"></i>检测时间</td>
-                        <td width="92">提货吨数(吨)</td>
-                        <td width="92">热值</td>
-                        <td width="92">硫分</td>
-                        <td width="92">挥发分</td>
-                        <td width="92">空干基基硫分</td>
-                        <td width="92">哈氏可磨≥</td>
-                        <td width="92">空干基挥发分 </td>
-                        <td width="94">操作</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><a href="javascript:void(0)">删除</a> <a href="javascript:void(0)">增加</a></td>
-                    </tr>
-                </table>
-                <div class="banCon">
-                    <div class="leftBan">上传质量确认单：</div>
-                    <div class="rightBan">
-                        <div class="unUpload">
-                            <div class="uploadFile">
-                                <i class="uploadIcon"></i>选择文件
-                            </div>
-                            <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
+<% script("../../scripts/confirmDelivery/confirmDelivery.js") -%>
+<div id="confirmDelivery">
+    <div class="confirmDeliveryWrap">
+        <% include ../global/order/statusBar %>
+        <p class="statusInfo">我已提货，同意并确认提货数量及产品质量</p>
+        <div class="qualityInfo">
+            <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
+            <div class="banCon">
+                <div class="leftBan">提货数量：</div>
+                <div class="rightBan"><input type="text" class="amount"/><span class="unit">吨</span></div>
+            </div>
+            <table class="checkList">
+                <tr class="thead">
+                    <td width="45">批次</td>
+                    <td width="92"><i class="calIcon"></i>检测时间</td>
+                    <td width="92">提货吨数(吨)</td>
+                    <td width="92">热值</td>
+                    <td width="92">硫分</td>
+                    <td width="92">挥发分</td>
+                    <td width="92">空干基基硫分</td>
+                    <td width="92">哈氏可磨≥</td>
+                    <td width="92">空干基挥发分 </td>
+                    <td width="94">操作</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><a href="javascript:void(0)">删除</a> <a href="javascript:void(0)">增加</a></td>
+                </tr>
+            </table>
+            <table class="checkList">
+                <tr class="thead">
+                    <td width="45">批次</td>
+                    <td width="92"><i class="calIcon"></i>检测时间</td>
+                    <td width="92">提货吨数(吨)</td>
+                    <td width="92">热值</td>
+                    <td width="92">硫分</td>
+                    <td width="92">挥发分</td>
+                    <td width="92">空干基基硫分</td>
+                    <td width="92">哈氏可磨≥</td>
+                    <td width="92">空干基挥发分 </td>
+                    <td width="94">操作</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">1</td>
+                    <td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td rowspan="3"><a href="javascript:void(0)">删除</a> <a href="javascript:void(0)">增加</a></td>
+                </tr>
+                <tr class="thead">
+                    <td width="92"><i class="calIcon"></i>检测时间</td>
+                    <td width="92">提货吨数(吨)</td>
+                    <td width="92">热值</td>
+                    <td width="92">硫分</td>
+                    <td width="92">挥发分</td>
+                    <td width="92">空干基基硫分</td>
+                    <td width="92">哈氏可磨≥</td>
+                    <td width="92">空干基挥发分 </td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>
+                </tr>
+            </table>
+            <div class="banCon">
+                <div class="leftBan">上传质量确认单：</div>
+                <div class="rightBan">
+                    <div class="unUpload">
+                        <div class="uploadFile">
+                            <i class="uploadIcon"></i>选择文件
                         </div>
-                        <div class="haveUpload">
-                            <ul class="haveUploadList">
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件112312312.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                            </ul>
-                        </div>
+                        <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
+                    </div>
+                    <div class="haveUpload">
+                        <ul class="haveUploadList">
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件112312312.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <div class="banCon">
-                    <div class="leftBan">上传数量确认单：</div>
-                    <div class="rightBan">
-                        <div class="unUpload">
-                            <div class="uploadFile">
-                                <i class="uploadIcon"></i>选择文件
-                            </div>
-                            <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
+            <div class="banCon">
+                <div class="leftBan">上传数量确认单：</div>
+                <div class="rightBan">
+                    <div class="unUpload">
+                        <div class="uploadFile">
+                            <i class="uploadIcon"></i>选择文件
                         </div>
-                        <div class="haveUpload">
-                            <ul class="haveUploadList">
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1asdasdadasd.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                                <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
-                            </ul>
-                        </div>
+                        <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
+                    </div>
+                    <div class="haveUpload">
+                        <ul class="haveUploadList">
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1asdasdadasd.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                            <li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<% include ../global/footer/footer %>
+</div>
 
-
-
-</body>
-<script data-main="/scripts/confirmDelivery/confirmDelivery.js" src='../../libs/require.min.js'></script>
-</html>

@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
   baseUrl: 'scripts',
   paths: {
     'blueimp-file-upload': '../../components/blueimp-file-upload/js/jquery.fileupload',
@@ -11,12 +11,20 @@ requirejs.config({
     moment: '../../components/moment/moment',
     'moment-timezone': '../../components/moment-timezone/builds/moment-timezone-with-data-2010-2020',
     flexslider: '../../components/flexslider/jquery.flexslider',
-    lightbox2: '../../components/lightbox2/dist/js/lightbox'
+    lightbox2: '../../components/lightbox2/dist/js/lightbox',
+    picker: '../../components/pickadate/lib/picker',
+    'picker.date': '../../components/pickadate/lib/picker.date',
+    'picker.time': '../../components/pickadate/lib/picker.time',
+    "jQuery.fn.datePicker": "../scripts/Plugins/jQuery.fn.datePicker"
   },
   packages: [
 
   ],
   shim: {
-
+    "jQuery.fn.datePicker": {
+      deps: [
+        "jquery"
+      ]
+    }
   }
 })
