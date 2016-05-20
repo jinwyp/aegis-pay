@@ -7,6 +7,7 @@ assets
 *.DS_Store
 app/components/
 servicestatic
+static
 
 # Ignore Windows desktop setting file
 desktop.ini

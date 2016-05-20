@@ -14,13 +14,14 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
           controlsContainer: $(".custom-controls-container"),
           customDirectionNav: $(".custom-navigation a")
         });
-
       },
       lightbox: function(){
         lightbox.option({
           'resizeDuration': 200,
-          'wrapAround': true
+          'wrapAround': true,
+          'albumLabel': '(%1/%2)'
         })
+        $('#lightbox .lb-close').appendTo('.lb-outerContainer');
       }
   }
 })

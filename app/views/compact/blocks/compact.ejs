@@ -1,5 +1,5 @@
 <div class="compactContainer">
-  <h4 class='blockTitle'>合同内容详情（1/<%= imgs.length %>）<a class='btn_download' target='_blank' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
+  <h4 class='blockTitle'>合同内容详情（共<%= imgs.length %>页）<a class='btn_download' target='_blank' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
   <div id="compactImgs" class='flexslider carousel'>
   <!-- Carousel items -->
     <ul class="slides">
@@ -7,7 +7,7 @@
         <li class="item">
           <a href='<%= img %>' data-lightbox='compact-lightbox'>
             <img src='<%= img %>'/>
-            <p class='scaleView'><span class='pngbg'></span>点击放大</p>
+            <p class='scaleView'><span class='pngbg'></span><span class='icon_glass'></span>点击放大</p>
           </a>
           <p class='currentIndex'>第<%= index+1 %>页</p>
         </li>

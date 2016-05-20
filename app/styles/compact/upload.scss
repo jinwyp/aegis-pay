@@ -13,9 +13,9 @@
     }
     .btn_upload{ vertical-align: middle; }
     #files{
-      display: inline-block; *display: inline; zoom:1; line-height: 27px; vertical-align: middle;
+      display:inline; margin-left:10px; line-height: 28px; vertical-align: middle;
       .file{
-        display: inline-block; *display: inline; zoom:1; margin-right:10px; border:1px solid #fff;
+        display: inline-block; *display: inline; zoom:1; margin-right:10px; border:1px solid #fff; cursor:default; margin-bottom:10px;
         height:27px; line-height: 27px; padding:0 4px 0 24px; background:#f5f5f5 url('/images/sprite.png') no-repeat -546px -221px;
         &:hover{
           border:1px solid $color_btn_blue; background-color:#fff;

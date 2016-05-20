@@ -43,6 +43,7 @@
     "method-override": "1.0.2",
     "moment": "2.9.0",
     "multiline": "1.0.1",
+    "node-ftl": "^0.1.1",
     "node-jsx": "^0.13.3",
     "node-uuid": "1.4.1",
     "nodemailer": "0.3.43",

@@ -6,9 +6,12 @@ var compact = nock(API.host);
 compact
 .get('/compact?orderid=1&action=get').reply(200, {
   "success": true,
-  "compact":'/Users/beatacao/work/aegis-pay/servicestatic/compact.html'
+  "compact":{
+    "contractno": "订单号121221212121",
+    "createtime": "2015-12-05"
+  }
 })
-.post('/upload-file').reply(200, {
+.post('/upload-file', {'path':/.?/gi}).reply(200, {
   success: true,
   attach: [
     {'filename':'aaa.png', 'path': '1'},

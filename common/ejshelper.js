@@ -1,9 +1,15 @@
 module.exports = function (app) {
-    app.locals.stringAppend = function (str1, str2, str3) {
-        return str1 + str2 + str3;
+    app.locals.stringAppend = function (arg1, arg2, unit) {
+        return arg1 + arg2 + str3;
     }
 
-    app.locals.xxx = function() {
-
+    app.locals.targetIsEmpty = function(arg1, arg2) {
+        if((arg1==undefined&&arg2==undefined)
+            ||(arg1==0&&arg2==0)
+            ||(arg1==null&&arg2==null)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>订单详情</title>
+    <!-- dev css:assets -->
+    <!-- base: normalize,color -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/orderDetail.css">
+    <link rel="stylesheet" href="/styles/statusBar.css">
+    <link rel="stylesheet" href="/styles/orderTable.css">
+    <!-- HTMLshiv for IE -->
+    <!--[if lte IE 9]>
+    <script src="/lib/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
+  </head>
+  <body>
+    <% include ../global/header/header %>
+    <% include ../global/header/subHeader %>
+    <div id="order-detail-body">
+        <div class="main-content">
+            <div class="center-content">
+                <!-- 状态进度条 -->
+                <% include ../global/order/statusBar %>
+
+                <div class="status-content">
+                    <div class="state-item fs-24"><span>当前订单状态：</span><span class="statgit us">货物已下单，请及时签订电子合同</span></div>
+                    <div class="state-item mt-20 hint"><span>1. 点击这里</span></div>
+                    <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，可以<a>&nbsp;关闭交易</a></span></div>
+                </div>
+
+                <!-- 订单表格 -->
+                <% include ../global/order/orderTable %>
+
+                <div class="btn-bottom">
+                    <span class="btn-print"><i class="btn-ico"></i>打印订单详情</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../global/footer/footer %>
+  </body>
+  <!-- dev js:assets -->
+  <script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>
+</html>
