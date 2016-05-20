@@ -27,7 +27,7 @@ var cors                     = require('cors');
 var requestLog               = require('./middlewares/request_log');
 var renderMiddleware                   = require('./middlewares/render');
 var logger                   = require("./common/logger");
-
+var engine                   = require('ejs-locals');
 require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
@@ -52,10 +52,12 @@ config.hostname = urlinfo.hostname || config.host;
 var app = express();
 
 // configuration in all env
+app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs-mate'));
 app.enable('trust proxy');
+
 
 // Request logger。请求时间
 app.use(requestLog);
@@ -64,6 +66,9 @@ if (config.debug) {
   // 渲染时间
   app.use(renderMiddleware.render);
 }
+
+
+require('./common/ejshelper')(app);
 
 // 静态资源
 app.use(Loader.less(__dirname));
