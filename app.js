@@ -65,6 +65,9 @@ if (config.debug) {
   app.use(renderMiddleware.render);
 }
 
+
+require('./common/ejshelper')(app);
+
 // 静态资源
 app.use(Loader.less(__dirname));
 app.use(express.static(staticDir));
