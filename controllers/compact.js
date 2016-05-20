@@ -26,9 +26,7 @@ var convertData = function(compactdata, compactftl){
   return co(function* (){
 		var html = yield convert.ftl2html(compactdata, compactftl);
     var pdf = yield convert.html2pdf(html.htmlpath);
-		console.log(pdf)
     var imgs = yield convert.pdf2image(pdf.pdfpath);
-		console.log(imgs)
 		var newImgs = [];
 		_.forEach(imgs.imgs, function(img){
 			newImgs.push('/static/images/'+path.basename(img));
