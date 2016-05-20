@@ -13,7 +13,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	        done: function (e, data) {
 							var $fileWrapper = $('#files');
 	            $.each(data.result.attach, function (index, file) {
-									var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="filepath" value="' + file.path + '"></p>';
+									var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="id" value="' + file.id + '"></p>';
 	                $fileWrapper.append(filehtml);
 	            });
 	        },
@@ -26,7 +26,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 				var ev = e || window.event;
 				var target = ev.target || ev.srcElement;
 				if(target.className.toLowerCase() == 'del'){
-					$.post('/api/del-file', {'path':$(target).siblings('input[name="filepath"]').val()}, function(result){
+					$.post('/api/del-file', {'id':$(target).siblings('input[name="id"]').val()}, function(result){
 						if(result.success){
 							$(target).parent().remove();
 						}

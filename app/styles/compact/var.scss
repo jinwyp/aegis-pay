@@ -124,3 +124,8 @@ $font_family: Microsoft YaHei;
 }
 
 .color_orange{ color:$color_orange; }
+
+.icon_glass{
+  display:inline-block; *display:inline; zoom:1;
+  width:22px; height:22px; background: url(/images/sprite.png) no-repeat -549px -174px;
+}
