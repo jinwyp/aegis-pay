@@ -12,7 +12,6 @@ var api_config = {
 	uploadFile: host + 'upload-file',
 	delFile: host + 'del-file',
 	signCompact: host + 'compact',
-	getOrderDetail: host + 'getOrderDetail'
 }
 
 module.exports = api_config;
