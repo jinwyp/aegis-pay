@@ -43,7 +43,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
          });
       },
       "submit": function(){
-
+         //table校验
       }
    }
    confirmDelivery.datepicker();
