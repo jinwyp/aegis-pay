@@ -12,7 +12,7 @@
             <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
             <div class="banCon">
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
-                <div class="rightBan"><input type="text" class="amount"/><span class="unit">吨</span></div>
+                <div class="rightBan"><input type="text" class="amount" id="deliveryAmount" /><span class="unit">吨</span></div>
             </div>
             <div class="banCon pb10">
                 <div class="leftBan"><span>* </span>请填写检测结果</div>
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <td class="batch">1</td>
-                        <td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
+                        <td class="dateWrap"><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
@@ -141,10 +141,11 @@
                     </div>
                 </div>
             </div>
+            <p class="errorMes"></p>
             <div class="banCon">
                 <div class="leftBan"></div>
                 <div class="rightBan">
-                    <a href="javascript:void(0)" class="submitBtn">确认收货</a>
+                    <a href="javascript:void(0)" class="submitBtn" id="submitBtn">确认收货</a>
                 </div>
             </div>
         </div>
