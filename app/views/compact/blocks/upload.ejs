@@ -2,12 +2,7 @@
   <form action='post' id="signCompact">
       <div class='uploadWrapper'>
         <label><i>*</i>上传合同：</label>
-        <span class="fileinput-button btn_upload">
-            <i class="icon_upload"></i>
-            <span>点击上传</span>
-            <input id='fileupload' data-url='/api/upload-file' type="file" name="files">
-        </span>
-        <div id="files"></div>
+        <% include ../../../custom_components/upload/upload %>
       </div>
       <div class='tip'>
         <label>提示：</label>
