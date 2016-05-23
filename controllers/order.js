@@ -26,10 +26,10 @@ exports.getOrderDetail = function (req, res, next) {
 	request({url:'http://localhost:7777/getOrderDetail'}, function(err, data) {
 		var source=JSON.parse(data.body);
 		console.log('获取到的错误是----------------------------'+err);
-		var content={headerTit:"待签电子合同",statusObj:statusObj,"sellInfo":source.sellInfo,"orderInfo":source.orderInfo};
+		var content={headerTit:"待签电子合同",type : "mall",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order};
 		console.log('获取到的结果是----------------------------'+content);
 		//渲染页面,指定模板&数据
-		res.render('order/orderDetail',content);
+		res.render('order/buyOrderDetail',content);
 	});
 
 	//var id=req.query.id;
