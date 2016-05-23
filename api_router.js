@@ -13,6 +13,7 @@ router.get('/products',siteController.products);
 router.post('/upload-file', compactApi.uploadFile);
 router.post('/del-file', compactApi.delFile);
 router.post('/sign-compact', compactApi.signCompact);
+router.get('/generate_compact', compactApi.generate_compact);
 
 router.use(function(req, res, next){
 	res.setHeader('Access-Control-Allow-Origin', '*');
