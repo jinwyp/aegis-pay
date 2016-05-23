@@ -3,8 +3,9 @@ var path = require('path');
 var pdf = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
 var ftl = require('node-ftl');
+var config = require('../config');
 
-const __dirfiles = '/Users/beatacao/work/aegis-pay/';
+const __dirfiles = config.sysFileDir;
 
 exports.pdf2image = function(pdfpath, options){
   var imgname = options&&options.imgname || path.basename(pdfpath, '.pdf');

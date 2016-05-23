@@ -20,7 +20,8 @@ var config = {
   	host: '127.0.0.1',
   	port: '6379',
   	db: 0
-  }
+  },
+  sysFileDir: '/Users/beatacao/work/aegis-pay/'    //静态文件根目录绝对路径
 };
 
 module.exports = config;
