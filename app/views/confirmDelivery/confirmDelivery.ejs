@@ -1,6 +1,7 @@
 <% layout('../global/globalTemp/globalTemp') -%>
 <% stylesheet("../../styles/statusBar.css") -%>
 <% stylesheet("../../styles/confirmDelivery.css") -%>
+<% stylesheet("../../styles/orderTable.css") -%>
 <% include ../global/header/subHeader %>
 <% script("../../scripts/confirmDelivery/confirmDelivery.js") -%>
 <div id="confirmDelivery">
@@ -11,7 +12,41 @@
             <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
             <div class="banCon">
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
-                <div class="rightBan"><input type="text" class="amount"/><span class="unit">吨</span></div>
+                <div class="rightBan"><input type="text" class="amount" id="deliveryAmount" /><span class="unit">吨</span></div>
+            </div>
+            <div class="banCon pb10">
+                <div class="leftBan"><span>* </span>请填写检测结果</div>
+            </div>
+            <div class="tableWrap">
+                <table class="checkList">
+                    <tr class="thead">
+                        <td width="45">批次</td>
+                        <td width="92"><i class="calIcon"></i>检测时间</td>
+                        <td width="92">提货吨数(吨)</td>
+                        <td width="92">热值</td>
+                        <td width="92">硫分</td>
+                        <td width="92">挥发分</td>
+                        <td width="92">空干基基硫分</td>
+                        <td width="92">哈氏可磨≥</td>
+                        <td width="92">空干基挥发分 </td>
+                        <td width="94">操作</td>
+                    </tr>
+                    <tr>
+                        <td class="batch">1</td>
+                        <td class="dateWrap"><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td>
+                            <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                            <a href="javascript:void(0)" class="add">增加</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <!--<div class="tableWrap">-->
                 <!--<table class="checkList">-->
@@ -28,7 +63,7 @@
                         <!--<td width="94">操作</td>-->
                     <!--</tr>-->
                     <!--<tr>-->
-                        <!--<td class="batch">1</td>-->
+                        <!--<td rowspan="3"  class="batch">1</td>-->
                         <!--<td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>-->
                         <!--<td><input type="text"/></td>-->
                         <!--<td><input type="text"/></td>-->
@@ -37,64 +72,33 @@
                         <!--<td><input type="text"/></td>-->
                         <!--<td><input type="text"/></td>-->
                         <!--<td><input type="text"/></td>-->
-                        <!--<td>-->
+                        <!--<td rowspan="3">-->
                             <!--<a href="javascript:void(0)" class="del" style="display: none;">删除</a>-->
                             <!--<a href="javascript:void(0)" class="add">增加</a>-->
                         <!--</td>-->
                     <!--</tr>-->
+                    <!--<tr class="thead">-->
+                        <!--<td width="92">挥发分</td>-->
+                        <!--<td width="92">提货吨数(吨)</td>-->
+                        <!--<td width="92">热值</td>-->
+                        <!--<td width="92">硫分</td>-->
+                        <!--<td width="92">挥发分</td>-->
+                        <!--<td width="92">空干基基硫分</td>-->
+                        <!--<td width="92">哈氏可磨≥</td>-->
+                        <!--<td width="92">空干基挥发分 </td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                        <!--<td><input type="text"/></td>-->
+                    <!--</tr>-->
                 <!--</table>-->
             <!--</div>-->
-            <div class="tableWrap">
-                <table class="checkList">
-                    <tr class="thead">
-                        <td width="45">批次</td>
-                        <td width="92"><i class="calIcon"></i>检测时间</td>
-                        <td width="92">提货吨数(吨)</td>
-                        <td width="92">热值</td>
-                        <td width="92">硫分</td>
-                        <td width="92">挥发分</td>
-                        <td width="92">空干基基硫分</td>
-                        <td width="92">哈氏可磨≥</td>
-                        <td width="92">空干基挥发分 </td>
-                        <td width="94">操作</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="3"  class="batch">1</td>
-                        <td><input type="text" class="datepicker" placeholder="yyyy-mm-dd" /></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td rowspan="3">
-                            <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                            <a href="javascript:void(0)" class="add">增加</a>
-                        </td>
-                    </tr>
-                    <tr class="thead">
-                        <td width="92">挥发分</td>
-                        <td width="92">提货吨数(吨)</td>
-                        <td width="92">热值</td>
-                        <td width="92">硫分</td>
-                        <td width="92">挥发分</td>
-                        <td width="92">空干基基硫分</td>
-                        <td width="92">哈氏可磨≥</td>
-                        <td width="92">空干基挥发分 </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                    </tr>
-                </table>
-            </div>
 
             <div class="banCon">
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>
@@ -137,13 +141,15 @@
                     </div>
                 </div>
             </div>
+            <p class="errorMes"></p>
             <div class="banCon">
                 <div class="leftBan"></div>
                 <div class="rightBan">
-                    <a href="javascript:void(0)" class="submitBtn">确认收货</a>
+                    <a href="javascript:void(0)" class="submitBtn" id="submitBtn">确认收货</a>
                 </div>
             </div>
         </div>
+        <% include ../global/order/orderTable %>
     </div>
 </div>
 
