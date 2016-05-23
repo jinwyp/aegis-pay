@@ -24,7 +24,8 @@ require.config({
     'load-image': '../../components/blueimp-load-image/js/load-image',
     'load-image-exif': '../../components/blueimp-load-image/js/load-image-exif',
     'load-image-meta': '../../components/blueimp-load-image/js/load-image-meta',
-    'canvas-to-blob': '../../components/blueimp-canvas-to-blob/js/canvas-to-blob.min'
+    'canvas-to-blob': '../../components/blueimp-canvas-to-blob/js/canvas-to-blob.min',
+    'pay.upload': '../../custom_components/upload/upload'
   },
   packages: [
 

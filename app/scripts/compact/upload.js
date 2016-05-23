@@ -1,38 +1,8 @@
-define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
+define(['jquery', 'pay.upload'],function($, upload){
 	return {
 		init: function(){
-			this.uploadfile();
+			upload.init();
 			this.signCompact();
-		},
-		uploadfile: function(){
-			// 上传文件
-			$('#fileupload').fileupload({
-	        url: '/api/upload-file',
-	        dataType: 'json',
-					maxFileSize: 5000000,
-	        done: function (e, data) {
-							var $fileWrapper = $('#files');
-	            $.each(data.result.attach, function (index, file) {
-									var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="id" value="' + file.id + '"></p>';
-	                $fileWrapper.append(filehtml);
-	            });
-	        },
-					progressall: function (e, data) {
-			        // var progress = parseInt(data.loaded / data.total * 100, 10);
-			    }
-	    });
-			// 删除文件
-			$('#files').click(function(e){
-				var ev = e || window.event;
-				var target = ev.target || ev.srcElement;
-				if(target.className.toLowerCase() == 'del'){
-					$.post('/api/del-file', {'id':$(target).siblings('input[name="id"]').val()}, function(result){
-						if(result.success){
-							$(target).parent().remove();
-						}
-					})
-				}
-			})
 		},
 		signCompact: function(){
 			$('#signCompact .submit').click(function(e){
