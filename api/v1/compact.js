@@ -6,12 +6,13 @@ var fs = require('fs');
 var formidable = require('formidable');
 var uuid = require('node-uuid');
 var path = require('path');
+var config = require('../../config');
 
 var convert = require('../../common/convert');
 var cache = require('../../common/cache');
 
-const uploadPath = '/Users/beatacao/work/aegis-pay/static/upload/';
-const ftlpath= '/Users/beatacao/work/aegis-pay/servicestatic/fs.ftl';
+const uploadPath = config.sysFileDir + 'static/upload/';
+const ftlpath= config.sysFileDir + 'servicestatic/fs.ftl';
 
 exports.uploadFile = function (req, res, next) {
 	//api代理，去请求java接口

@@ -1,12 +1,16 @@
 @import './var.scss';
 
+html>body{
+  font-size:12px;
+}
 .pageTitle{
-  font-size:$size_font_pageTitle; color:#333;
+  font-size:$size_font_pageTitle; color:#333; margin:0;
   line-height: 36px; border-bottom:1px solid $color_border_gray;
   span{ float:left; width:2px; height:18px; background: $color_blue; margin-top:9px; margin-right:10px; }
 }
 
 .blockTitle{
+  margin:0;
   font-size:$size_font_blockTitle; line-height: 36px; border-bottom:1px dashed $color_border_block_gray;
 }
 
