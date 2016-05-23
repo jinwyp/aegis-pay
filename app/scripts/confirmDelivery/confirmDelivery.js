@@ -5,8 +5,8 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
    var confirmDelivery={
       "datepicker" : function(){
 
-         $(document).on("focus",".datepicker",function(){
-            $(".datepicker").each(function(i, item){
+         $(document).on("focus",".checkTime",function(){
+            $(".checkTime").each(function(i, item){
                $(item).pickadate({}).pickadate('picker').set("max", [new Date($.now() + 86400000)]);
             });
          });
@@ -19,7 +19,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             var tableList=$(this).parents(".checkList").clone("true");
             var wrap=$(this).parents(".tableWrap");
             var wrapLen=wrap.children("table").length;
-            var dateNode="<input type='text' class='datepicker' placeholder='yyyy-mm-dd' />";
+            var dateNode="<input type='text' class='checkTime' placeholder='yyyy-mm-dd' />";
 
 
             if($(this).hasClass("add")){
@@ -70,28 +70,52 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
          });
       },
       "submit": function(){
+         var temp=false;
 
          $("#submitBtn").on("click",function(){
 
             //提货数量
-            var deliveryAmount=$("#deliveryAmount");
+            var deliveryAmount=$("#checkAmount");
             if(deliveryAmount.val()==""){
                $(".errorMes").text("提货数量不得为空");
+               temp=false;
                return false;
             }else{
                $(".errorMes").text("");
+               temp=true;
             }
 
             //table校验
-            $(".checkList input").each(function(i,item){
-               if($(this).val()==""){
-                  $(".errorMes").text("检测结果不得为空");
-                  return false;
-               }else{
-                  $(".errorMes").text("");
-               }
-            });
-
+            if($(".checkList").length>0){
+               $(".checkList input").each(function(i,item){
+                  if($(this).val()==""){
+                     $(".errorMes").text("检测结果不得为空");
+                     temp=false;
+                     return false;
+                  }else{
+                     $(".errorMes").text("");
+                     temp=true;
+                  }
+               });
+            }
+            if(temp){
+               var inputList=[];
+               $(".checkList input").each(function(){
+                  inputList.push($(this).val());
+               });
+               $.ajax({
+                  url:'/confirmDelivery/test',
+                  type:'get',
+                  data:{
+                     checkAmount:$("#checkAmount").val(),
+                     indexList:inputList
+                  },
+                  success:function(data){
+                     alert(data);
+                     console.log(inputList)
+                  }
+               })
+            }
          });
       }
    }
