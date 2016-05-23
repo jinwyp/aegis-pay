@@ -1,31 +1,3 @@
-<!-- 订单产品详情表格 -->
-<div class="order-title">
-    <span class="border-title fs-18">订单详情</span>
-</div>
-
-<!-- 买家、卖家信息 -->
-<div class="order-user-info">
-    <div class="user-title"><% if(type=='mall'){ %>卖家信息<% }else{ %>买家信息<% } %></div>
-    <ul>
-        <li class="order-item"><div class="div-label">订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
-        <% if(order.contractNO!=null){ %>
-            <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= order.contractNO %></div></li>
-        <% } %>
-        <% if(order.transactionNO!=null){ %>
-            <li class="order-item"><div class="div-label">付款交易号：</div><div class="div-value"><%= order.transactionNO %></div></li>
-        <% } %>
-        <% if(order.sellerFundAccount!=null){ %>
-            <li class="order-item"><div class="div-label">收款账号：</div><div class="div-value"><%= order.sellerFundAccount %></div></li>
-        <% } %>
-        <% if(order.createtime!=null){ %>
-            <li class="order-item"><div class="div-label">成交时间：</div><div class="div-value"><%= dateformat(order.createtime,"YYYY-MM-DD HH:mm:ss") %></div></li>
-        <% } %>
-        <li class="order-item"><div class="div-label">卖家公司：</div><div class="div-value"><%= order.sellerCompanyName %></div></li>
-        <li class="order-item"><div class="div-label">联系电话：</div><div class="div-value"><%= sellInfo.dealerphone %></div></li>
-        <li class="order-item"><div class="div-label">提货地点：</div><div class="div-value"><%= deliveryplaceAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour) %></div></li>
-    </ul>
-</div>
-
 <div class="order-table-title">
     <div class="title-col w-406">货品</div>
     <div class="title-col w-160">单价(元)</div>

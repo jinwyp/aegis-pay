@@ -11,7 +11,8 @@ require.config({
     'picker': '../../components/pickadate/lib/picker',
     'picker.date': '../../components/pickadate/lib/picker.date',
     'picker.time': '../../components/pickadate/lib/picker.time',
-    "jQuery.fn.datePicker": "../scripts/Plugins/jQuery.fn.datePicker",
+    "jQuery.fn.datePicker": '/scripts/Plugins/jQuery.fn.datePicker',
+    'jquery.fancySelect': '/scripts/Plugins/jQuery.fn.fancySelect',           // 下拉框插件
     'jquery.fileupload': '../../components/blueimp-file-upload/js/jquery.fileupload',
     'jquery.fileupload.ui': '../../components/blueimp-file-upload/js/jquery.fileupload-ui',
     'jquery.ui.widget': '../../components/blueimp-file-upload/js/vendor/jquery.ui.widget',
@@ -31,22 +32,27 @@ require.config({
 
   ],
   shim: {
-    "jQuery.fn.datePicker": {
+    'jQuery.fn.datePicker': {
       deps: [
-        "jquery"
+        'jquery'
       ]
     },
     'flexslider': {
-			deps: ['jquery'],
-			exports: 'flexslider'
-		},
+          deps: ['jquery'],
+          exports: 'flexslider'
+      },
     'lightbox': {
-			deps: ['jquery'],
-			exports: 'lightbox'
-		},
+          deps: ['jquery'],
+          exports: 'lightbox'
+      },
     'bootstrap': {
-			deps: ['jquery'],
-			exports: 'bootstrap'
-		}
+          deps: ['jquery'],
+          exports: 'bootstrap'
+    },
+    'jquery.fancySelect': {
+      deps: [
+        'jquery'
+      ]
+    },
   }
 })

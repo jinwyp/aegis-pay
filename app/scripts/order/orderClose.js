@@ -2,28 +2,8 @@
 * 关闭订单页面 脚本
 * */
 
-requirejs.config({
-    baseUrl: 'scripts',
-    paths: {
-        components: '/components',
-        common: '/scripts/common',
-        libs: '/libs',
-        jquery: '/libs/jquery-2.2.3.min',
-        modal: '/scripts/Plugins/modal',          // 模态框
-        fancySelect: '/scripts/Plugins/jQuery.fn.fancySelect'       // 下拉框插件
-    },
-    shim: {
-        "fancySelect": {
-            deps: [
-                "jquery"
-            ]
-        }
-    }
-});
 
-
-
-requirejs(['common', 'jquery', 'fancySelect'], function(common, $){
+requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
 
     // 下拉框 引用
@@ -44,29 +24,8 @@ requirejs(['common', 'jquery', 'fancySelect'], function(common, $){
     //    "init": function () {
     //        this.initFancySelectListener();
     //        this.setIndexCon();
-    //    }
+    //    }//demand.fancySelect.trigger("update.fs");
     //};
-
-
-    //根据省份名称获取子集-获取港口
-    //$("#deliveryprovince").bind("change", function(){
-    //    $.ajax({
-    //        url:"/sell/getPortsByParentname",
-    //        data:{id:$("#deliveryprovince").val()},
-    //        success:function(data) {
-    //            if (null != data) {
-    //                $("#deliveryplace").html("");
-    //                var json = "";
-    //                $.each(data, function (n, value) {
-    //                    json += "<option value="+value.name+">" + value.name + "</option>";
-    //                });
-    //                $("#deliveryplace").html(json);
-    //                demand.fancySelect.trigger("update.fs");
-    //            }
-    //        }
-    //    });
-    //});
-
 
 
 

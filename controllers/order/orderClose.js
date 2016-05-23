@@ -15,6 +15,7 @@ exports.orderInfo = function (req, res, next) {
 
 
 		var replyData = JSON.parse(data.body);
+		replyData.pageTitle = '关闭订单';
 		res.render('order/orderClose', replyData);			// 渲染页面,指定模板&数据
 
 	});
