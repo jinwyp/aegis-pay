@@ -26,7 +26,7 @@ exports.getOrderDetail = function (req, res, next) {
 	request({url:'http://localhost:7777/getOrderDetail'}, function(err, data) {
 		var source=JSON.parse(data.body);
 		console.log('获取到的错误是----------------------------'+err);
-		var content={headerTit:"待签电子合同",type : "mall",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order};
+		var content={headerTit:"待签电子合同",type : "sell",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order};
 		console.log('获取到的结果是----------------------------'+content);
 		//渲染页面,指定模板&数据
 		res.render('order/buyOrderDetail',content);
@@ -49,9 +49,4 @@ exports.getOrderDetail = function (req, res, next) {
 	//	tres.render("compact/orderDetail", content);
 	//})(res));
 
-};
-
-// 处理业务逻辑
-exports.closeTrade = function (req, res, next) {
-	res.render('order/orderClose',content);
 };
