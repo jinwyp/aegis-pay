@@ -50,3 +50,8 @@ exports.getOrderDetail = function (req, res, next) {
 	//})(res));
 
 };
+
+// 处理业务逻辑
+exports.closeTrade = function (req, res, next) {
+	res.render('order/orderClose',content);
+};

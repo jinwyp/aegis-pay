@@ -1,61 +1,45 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>订单详情</title>
-    <!-- dev css:assets -->
-    <!-- base: normalize,color -->
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/buyOrderDetail.css">
-    <link rel="stylesheet" href="/styles/statusBar.css">
-    <link rel="stylesheet" href="/styles/orderTable.css">
-    <!-- HTMLshiv for IE -->
-    <!--[if lte IE 9]>
-    <script src="/lib/js/html5shiv.min.js"></script>
-    <![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/assets/images/favicon.ico" />
-  </head>
-  <body>
-    <% include ../global/header/header %>
-    <% include ../global/header/subHeader %>
-    <div id="order-detail-body">
-        <div class="main-content">
-            <div class="center-content">
-                <!-- 状态进度条 -->
-                <% include ../global/order/statusBar %>
+<% layout('../global/globalTemp/globalTemp') -%>
 
-                <div class="status-content">
-                    <div class="state-item fs-24"><span>当前订单状态：</span>
-                        <% if(order.status=='WaitSignContract'){ %>
-                            <span class="status">货物已下单，请及时签订电子合同</span>
-                        <% }else if(order.status=='WaitPayment'){ %>
-                            <span class="status">已签订电子合同，请及时支付货款</span>
-                        <% }else if(order.status=='WaitConfirmDelivery'){ %>
-                            <span class="status">已付款</span><span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
-                        <% } %>
-                    </div>
+<link rel="stylesheet" href="/styles/buyOrderDetail.css">
+<link rel="stylesheet" href="/styles/statusBar.css">
+<link rel="stylesheet" href="/styles/orderTable.css">
+<% include ../global/header/subHeader %>
+<div id="order-detail-body">
+    <div class="main-content">
+        <div class="center-content">
+            <!-- 状态进度条 -->
+            <% include ../global/order/statusBar %>
+
+            <div class="status-content">
+                <div class="state-item fs-24"><span>当前订单状态：</span>
                     <% if(order.status=='WaitSignContract'){ %>
-                        <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option">签订合同</span></div>
-                        <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，可以<a>&nbsp;关闭交易</a></span></div>
-                    <% }else if(order.status==''){ %>
-                        <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option">付款</span></div>
-                        <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，可以<a>&nbsp;关闭交易</a></span></div>
-                    <% }else if(order.status==''){ %>
-                        <div class="state-item mt-20 hint"><span>1. 如果您已提货，请及时确认提货</span><span class="btn-option">确认提货</span></div>
-                        <div class="state-item mt-10 hint"><span>2. 如果您对交易有异议，可以<a>&nbsp;申请纠纷处理</a></span></div>
+                    <span class="status">货物已下单，请及时签订电子合同</span>
+                    <% }else if(order.status=='WaitPayment'){ %>
+                    <span class="status">已签订电子合同，请及时支付货款</span>
+                    <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                    <span class="status">已付款</span><span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
                     <% } %>
                 </div>
+                <% if(order.status=='WaitSignContract'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option btn-sign">签订合同</span></div>
+                <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，可以<a class="btn-close">&nbsp;关闭交易</a></span></div>
+                <% }else if(order.status=='WaitPayment'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option btn-pay">付款</span></div>
+                <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，可以<a class="btn-close">&nbsp;关闭交易</a></span></div>
+                <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                <div class="state-item mt-20 hint"><span>1. 如果您已提货，请及时确认提货</span><span class="btn-option btn-take-good">确认提货</span></div>
+                <div class="state-item mt-10 hint"><span>2. 如果您对交易有异议，可以<a class="btn-close">&nbsp;申请纠纷处理</a></span></div>
+                <% } %>
+            </div>
 
-                <!-- 订单表格 -->
-                <% include ../global/order/orderTable %>
+            <!-- 订单表格 -->
+            <% include ../global/order/orderTable %>
 
-                <div class="btn-bottom">
-                    <span class="btn-print"><i class="btn-ico"></i>打印订单详情</span>
-                </div>
+            <div class="btn-bottom">
+                <span class="btn-print"><i class="btn-ico"></i>打印订单详情</span>
             </div>
         </div>
     </div>
-    <% include ../global/footer/footer %>
-  </body>
-  <!-- dev js:assets -->
-  <script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>
-</html>
+</div>
+<% script("../../scripts/order/buyOrderDetail.js") -%>
+
