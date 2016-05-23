@@ -124,6 +124,7 @@ site
 			"sellerFundAccount":"卖家资金账号",
 			//"sellerFundAccount":null,
 			"sellerLoginName":"卖家登陆名",
+			"buyerLoginPhone":"18600000001",
 			"status":"WaitSignContract",
 			"price":500.00,
 			"amount":1000,

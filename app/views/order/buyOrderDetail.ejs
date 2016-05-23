@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="/styles/buyOrderDetail.css">
 <link rel="stylesheet" href="/styles/statusBar.css">
+<link rel="stylesheet" href="/styles/orderUserInfo.css">
 <link rel="stylesheet" href="/styles/orderTable.css">
 <% include ../global/header/subHeader %>
 <div id="order-detail-body">
@@ -32,6 +33,8 @@
                 <% } %>
             </div>
 
+            <!-- 卖家、卖家信息 -->
+            <% include ../global/order/orderUserInfo %>
             <!-- 订单表格 -->
             <% include ../global/order/orderTable %>
 
