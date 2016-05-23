@@ -19,6 +19,8 @@
                     <span class="status">已签订电子合同，请及时支付货款</span>
                     <% }else if(order.status=='WaitConfirmDelivery'){ %>
                     <span class="status">已付款</span><span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                    <% }else if(order.status=='TradeClosed'){ %>
+                    <span class="status-close">交易关闭</span>
                     <% } %>
                 </div>
                 <% if(order.status=='WaitSignContract'){ %>

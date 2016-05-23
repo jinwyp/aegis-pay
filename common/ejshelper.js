@@ -10,9 +10,9 @@ module.exports = function (app) {
     *
     * */
     app.locals.multiArgAppend = function (arg1, arg2, unit) {
-        console.log("arg1=" + arg1 + "-----------" + "arg2=" + arg2);
-        console.log("arg1===0:" + (arg1 == 0) + "-----------" + "arg2=0:" + (arg2 == 0));
-        console.log("arg1===arg2:" + (arg1 == arg2));
+        //console.log("arg1=" + arg1 + "-----------" + "arg2=" + arg2);
+        //console.log("arg1===0:" + (arg1 == 0) + "-----------" + "arg2=0:" + (arg2 == 0));
+        //console.log("arg1===arg2:" + (arg1 == arg2));
         if (arg1 == 0 && arg2 == 0) {
             return "--";
         } else if (arg1 == arg2) {
@@ -98,18 +98,30 @@ module.exports = function (app) {
         return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
     }
 
-    var moment=require('moment');
-
-    app.locals.dateformat = function(obj, format) {
-        if (format == undefined) {
-            format = 'YYYY-MM-DD HH:mm:ss';
+    /*
+     * 格式化时间方法，返回拼接字符串(例：5000-7000 kcal/kg)
+     * @param obj    时间对象
+     * @param type   1(yyyy-MM-dd),2(yyyy-MM-dd HH:mm:ss)
+     *
+     * */
+    app.locals.dateformat = function(obj, type) {
+        if(obj==undefined){
+            return '时间格式错误';
+        }else{
+            if(type==1){
+                return obj.year+"-"+obj.monthValue+"-"+obj.dayOfMonth;
+            }else if(type==2){
+                var second=null;
+                if(obj.second<10){
+                    second=obj.nano+obj.second;
+                }else{
+                    second=obj.second;
+                }
+                return obj.year+"-"+obj.monthValue+"-"+obj.dayOfMonth+" "+obj.hour+":"+obj.minute+":"+second;
+            }else{
+                return '请传入正确的格式化类型';
+            }
         }
-        var ret = moment(obj).format(format);
-        console.log("时间格式是=============="+ret);
-        //ret = new Date().format("yyyy-MM-dd HH:mm:ss");
-        return ret;
-        //return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
-        //return new Date(obj).format(format);
     };
 
     app.locals.targetIsEmpty = function (arg1, arg2) {
