@@ -98,13 +98,18 @@ module.exports = function (app) {
         return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
     }
 
+    var moment=require('moment');
+
     app.locals.dateformat = function(obj, format) {
-        //if (format == undefined) {
-        //    format = 'YYYY-MM-DD HH:mm:ss';
-        //}
-        //var ret = moment(obj).format(format);
+        if (format == undefined) {
+            format = 'YYYY-MM-DD HH:mm:ss';
+        }
+        var ret = moment(obj).format(format);
+        console.log("时间格式是=============="+ret);
+        //ret = new Date().format("yyyy-MM-dd HH:mm:ss");
+        return ret;
         //return ret == 'Invalid date' ? '0000-00-00 00:00:00' : ret;
-        return new Date(obj).format(format);
+        //return new Date(obj).format(format);
     };
 
     app.locals.targetIsEmpty = function (arg1, arg2) {

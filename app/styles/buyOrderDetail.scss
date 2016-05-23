@@ -36,12 +36,12 @@ body{
           margin-right: auto;
           .status{
             color: $green;
-            .status-hint{
-              font-size: 14px;
-              .orange{
-                color:$orange;
-              }
-            }
+          }
+          span.status-hint{
+            font-size: 14px;
+          }
+          span.orange{
+            color:$orange;
           }
           .btn-option{
             background-color: $orange;
