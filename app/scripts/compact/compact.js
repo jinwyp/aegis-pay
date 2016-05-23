@@ -1,8 +1,17 @@
 define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
   return {
       init: function(){
-        this.flexslider();
-        this.lightbox();
+        var self = this;
+        if($('input[name="needGenerate"]').val() == "0"){
+          $.get('/api/generate_compact?orderid=' + $('input[name="orderid"]').val(), function(data){
+            $('.compactContainer').replaceWith(data);
+            self.flexslider();
+            self.lightbox();
+          })
+        }else{
+          self.flexslider();
+          self.lightbox();
+        }
       },
       flexslider: function(){
         $('.slides').css('width', ($('.slides .item').width()+10)*$('.slides .item').size() + 'px')

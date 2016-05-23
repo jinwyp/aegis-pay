@@ -1,4 +1,6 @@
 <div class="compactContainer">
+  <input type='hidden' name='needGenerate' value='<%= imgs.length %>' />
+  <% if(imgs.length>0){ %>
   <h4 class='blockTitle'>合同内容详情（共<%= imgs.length %>页）<a class='btn_download' target='_blank' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
   <div id="compactImgs" class='flexslider carousel'>
   <!-- Carousel items -->
@@ -19,4 +21,10 @@
       <a href="#" class="flex-next"></a>
     </div>
   </div>
+  <% }else{ %>
+    <h4 class='blockTitle'>合同内容详情</h4>
+    <div class="generating">
+      <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> 正在生成合同......
+    </div>
+  <% } %>
 </div>

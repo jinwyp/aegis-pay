@@ -7,24 +7,19 @@ var ftl = require('node-ftl');
 const __dirfiles = '/Users/beatacao/work/aegis-pay/';
 
 exports.pdf2image = function(pdfpath, options){
-  console.log(pdfpath)
   var imgname = options&&options.imgname || path.basename(pdfpath, '.pdf');
   var convertExtension = options&&options.convertExtension || 'jpg';
   var imgpath = options&&options.imgpath || __dirfiles + 'static/images/';
-console.log(imgpath);
   return new Promise(function(resolve, reject){
     var pdfImage = new PDFImage(pdfpath, {
       'outputDirectory':imgpath,
       'convertExtension':convertExtension}
     );
-    console.log(22222222222)
     var imgs = [];
     pdfImage.numberOfPages().then(function(pages){
-      console.log(pages);
       for(var i=0; i<pages; i++){
         (function(i){
           pdfImage.convertPage(i).then(function() {
-            console.log(i)
             imgs.push(imgpath + imgname + '-' + i + "." + convertExtension);
             if(imgs.length>=pages) resolve({'imgs':imgs});
           });
