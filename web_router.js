@@ -4,7 +4,7 @@
  */
 
 var express = require('express');
-var demoController = require('./controllers/demo');                 // 引入 控制模块
+var demoController = require('./controllers/demo');                             // 引入 控制模块
 var siteController = require('./controllers/site');
 // var staticController = require('./controllers/static');
 // var signController = require('./controllers/sign');
@@ -18,7 +18,7 @@ var orderCloseContr = require('./controllers/order/orderClose');                
 
 
 var router = express.Router();
-router.get('/demo', demoController.demo);                           // 添加路由
+router.get('/demo', demoController.demo);                                       // 添加路由
 router.get('/', siteController.home);
 // router.post('/signout', signController.signout);
 // router.post('/signin', signController.signin);
@@ -28,7 +28,7 @@ router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/getOrderDetail', orderController.getOrderDetail);
-router.get('/order/orderClose', orderCloseContr.orderInfo);                   // 关闭订单 路由
+router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 关闭订单 路由
 
 
 
