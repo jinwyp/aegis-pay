@@ -1,18 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    <title><%= article.title %></title>
-    <!-- dev css:assets -->
-    <!-- base: normalize,color -->
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/compact.css">
-    <!-- HTMLshiv for IE -->
-    <!--[if lte IE 9]>
-    <script src="/libs/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico"/>
-</head>
-<body>
-<% include ../global/header/header %>
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet('/styles/compact.css') -%>
 <% include ../global/header/subHeader %>
 <div class="mainWrapper">
     <h3 class='pageTitle'><span></span>签订电子合同</h3>
@@ -20,8 +7,4 @@
     <% include blocks/compact %>
     <% include blocks/upload %>
 </div>
-<% include ../global/footer/footer %>
-</body>
-<!-- dev js:assets -->
-<script data-main="/scripts/compact/index.js" src='/libs/require.min.js'></script>
-</html>
+<% script("/scripts/compact/index.js") -%>

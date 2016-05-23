@@ -4,6 +4,7 @@ $black: #333333;
 $hintColor: #999999;
 .order-title {
   margin-top: 30px;
+  font-size: 18px;
   .border-title {
     padding-left: 6px;
     border-left: solid 2px #00b6ef;
@@ -16,13 +17,22 @@ $hintColor: #999999;
   border: solid 1px #e8e8e8;
   background-color: $white;
   font-size: 14px;
+  .user-title {
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 16px;
+    font-weight: bold;
+  }
   ul{
+    width: 100%;
     border: none;
     float: left;
     list-style-type: none;
     margin: 0;
     padding: 0;
     li{
+      width: 50%;
+      float: left;
       div {
         display: inline-block;
       }
@@ -37,14 +47,6 @@ $hintColor: #999999;
         word-break: break-all;
         word-wrap: break-word;
       }
-      .div-black {
-        color: $black;
-      }
-    }
-    .user-title {
-      margin-top: 30px;
-      font-size: 16px;
-      font-weight: bold;
     }
     .order-item {
       margin-top: 20px;
@@ -83,7 +85,7 @@ $hintColor: #999999;
     .info-title{
       margin-left: 30px;
       .supply-ico {
-        padding: 1px 2px;
+        padding: 1px 3px;
         text-align: center;
         vertical-align: middle;
         background-color: #ff6e27;
@@ -103,7 +105,7 @@ $hintColor: #999999;
       font-size: 12px;
       li {
         list-style-type: none;
-        width: 154px;
+        width: 186px;
         float: left;
         margin-top: 12px;
       }

@@ -1,4 +1,6 @@
-require(['jquery','jQuery.fn.datePicker'],function($){
+require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
+
+  upload.init();
 
    var confirmDelivery={
       "datepicker" : function(){
@@ -56,7 +58,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
          $(".qualityInfo input").on("keyup",function(){
             var numOnly=/^\d+(\.\d{0,2})?$/;
             var thisVal=$(this).val();
-            
+
             if(numOnly.test(thisVal) || thisVal ==""){
                tVal=thisVal;
             }else{
