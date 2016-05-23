@@ -5,22 +5,25 @@
 
 <!-- 买家、卖家信息 -->
 <div class="order-user-info">
+    <div class="user-title"><% if(type=='mall'){ %>卖家信息<% }else{ %>买家信息<% } %></div>
     <ul>
-        <li class="user-title"><div class="div-label div-black">买家信息</div></li>
-        <li class="order-item"><div class="div-label">订单号：</div><div class="div-value">ZY2016051200001</div></li>
-        <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value">2423423423423423</div></li>
-        <li class="order-item"><div class="div-label">易煤网交易号：</div><div class="div-value">312412312321312312</div></li>
-        <li class="order-item"><div class="div-label">收货人：</div><div class="div-value">王琦</div></li>
-        <li class="order-item"><div class="div-label">提货地址：</div><div class="div-value">上海市</div></li>
-        <li class="order-item mb-30"><div class="div-label">手机：</div><div class="div-value">18621266707</div></li>
+        <li class="order-item"><div class="div-label">订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
+        <% if(order.contractNO!=null){ %>
+            <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= order.contractNO %></div></li>
+        <% } %>
+        <% if(order.transactionNO!=null){ %>
+            <li class="order-item"><div class="div-label">付款交易号：</div><div class="div-value"><%= order.transactionNO %></div></li>
+        <% } %>
+        <% if(order.sellerFundAccount!=null){ %>
+            <li class="order-item"><div class="div-label">收款账号：</div><div class="div-value"><%= order.sellerFundAccount %></div></li>
+        <% } %>
+        <% if(order.createtime!=null){ %>
+            <li class="order-item"><div class="div-label">成交时间：</div><div class="div-value"><%= dateformat(order.createtime,"YYYY-MM-DD HH:mm:ss") %></div></li>
+        <% } %>
+        <li class="order-item"><div class="div-label">卖家公司：</div><div class="div-value"><%= order.sellerCompanyName %></div></li>
+        <li class="order-item"><div class="div-label">联系电话：</div><div class="div-value"><%= sellInfo.dealerphone %></div></li>
+        <li class="order-item"><div class="div-label">提货地点：</div><div class="div-value"><%= deliveryplaceAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour) %></div></li>
     </ul>
-    <!--<ul>-->
-    <!--<li class="user-title"><div class="div-label div-black">卖家信息</div></li>-->
-    <!--<li class="order-item"><div class="div-label">供应商：</div><div class="div-value">易煤网</div></li>-->
-    <!--<li class="order-item"><div class="div-label">会员登录名：</div><div class="div-value">刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌刘胜斌</div></li>-->
-    <!--<li class="order-item"><div class="div-label">易煤网收款账号：</div><div class="div-value">3123213123213123213123213232131232131232132321312321312321323213123213123213232132321</div></li>-->
-    <!--<li class="order-item mb-30"><div class="div-label">手机：</div><div class="div-value">18621266707</div></li>-->
-    <!--</ul>-->
 </div>
 
 <div class="order-table-title">
@@ -34,49 +37,49 @@
     <div class="info-col w-406">
         <div class="info-title">
             <span class="supply-ico">商</span>
-            <span class="supply-title">内蒙古镶黄旗7500大卡动力煤</span>
+            <span class="supply-title"><%= ellipse(sellInfoTitleAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour,
+                        sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></span>
         </div>
         <ul>
             <li><span class="hint">煤种：</span><span><%= sellInfo.pname %></span></li>
+            <% if(sellInfo.brandname!=null){ %>
             <li><span class="hint">品名：</span><span><%= sellInfo.brandname %></span></li>
-            <li><span class="hint">产地：</span>
-                            <span>
-                                <%= sellInfo.originplace %>
-                            </span>
-            </li>
-            <li><span class="hint">热值：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">收到基硫分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">收到基挥发分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">全水分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">灰分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">空干基硫分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">空干基挥发分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">固定碳：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">内水分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">G值：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">Y值：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">灰熔点≥：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">灰分：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">哈氏可磨≥：</span><span><%= sellInfo.pname %></span></li>
-            <li><span class="hint">焦渣特征：</span><span class="value">fsdfsdfs</span></li>
+            <% } %>
+            <li><span class="hint">产地：</span><span><%= sellInfo.originplace %></span></li>
+            <li><span class="hint">热值：</span><span><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></span></li>
+            <li><span class="hint">收到基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></span></li>
+            <li><span class="hint">收到基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></span></li>
+            <li><span class="hint">全水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></span></li>
+            <% if(sellInfo.ASH!=0&&sellInfo.ASH02!=0){ %>
+            <li><span class="hint">灰分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></span></li>
+            <% } %>
+            <li><span class="hint">空干基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></span></li>
+            <li><span class="hint">空干基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADV, 2),formatDecimal(sellInfo.ADV02, 2),'%') %></span></li>
+            <li><span class="hint">固定碳：</span><span><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></span></li>
+            <li><span class="hint">内水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></span></li>
+            <li><span class="hint">G值：</span><span><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></span></li>
+            <li><span class="hint">Y值：</span><span><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></span></li>
+            <li><span class="hint">灰熔点≥：</span><span><%= singleArgAppend(sellInfo.AFT,'℃') %></span></li>
+            <li><span class="hint">哈氏可磨≥：</span><span><%= singleArgAppend(sellInfo.HGI,'') %></span></li>
+            <li><span class="hint">焦渣特征：</span><span><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></span></li>
         </ul>
     </div>
 
     <div class="info-col w-160 center-content">
-        <span class="number">400.00</span>
+        <span class="number"><%= formatDecimal(order.price,2) %></span>
     </div>
 
     <div class="info-col w-160 center-content">
-        <span class="number">500</span>
+        <span class="number"><%= order.amount %></span>
     </div>
 
     <div class="info-col w-212 center-content">
-        <span class="money">20,000.00</span></br>
+        <span class="money"><%= formatMoney(order.totalMoney,2) %></span></br>
     </div>
 </div>
 
 <!-- 总金额 -->
 <div class="total-money">
-    <div class="money-number">总金额：<span>200000.00</span></div>
-    <div class="money-zh">(人民币：贰万圆整)</div>
+    <div class="money-number">总金额：<span><%= formatMoney(order.totalMoney,2) %></span></div>
+    <div class="money-zh">(人民币：<%= switchTxt(order.totalMoney) %>)</div>
 </div>

@@ -104,8 +104,8 @@
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>
                 <div class="rightBan">
                     <div class="unUpload">
-                        <div class="uploadFile">
-                            <i class="uploadIcon"></i>点击上传
+                        <div class="uploadFileWrapper">
+                          <% include ../../custom_components/upload/upload %>
                         </div>
                         <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
                     </div>
@@ -152,4 +152,3 @@
         <% include ../global/order/orderTable %>
     </div>
 </div>
-

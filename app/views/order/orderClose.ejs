@@ -2,32 +2,134 @@
 <html>
 <head>
     <title>关闭订单</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/images/compact/favicon.png" />
     <!-- base: normalize,color -->
     <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/styles/orderClose.css">
     <!-- HTMLshiv for IE -->
     <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/images/compact/favicon.png" />
 </head>
 <body>
 
+    <% include ../global/header/header %>
+    <% include ../global/header/subHeader %>
 
-<% include ../global/header/header %>
-
-
-<p class="title"><%= infoObj.article.title%></p>
-<p>sss</p>
-<p>sss</p>
-<p>sss</p>
+    <div class="container">
+        <div class="bodyWrap">
 
 
-<% include ../global/footer/footer %>
 
 
-<!-- 状态条 -->
-<% include ../global/order/statusBar %>
+
+            <!-- 关闭板块 -->
+            <div class="plateBox">
+                <div class="plateHead">
+                    <span class="prefix"></span>
+                    <h3 class="headLeft">交易关闭</h3>
+                    <!--<p class="headContent">居中标题</p>-->
+                    <!--<p class="headRight">重要提示?</p>-->
+                </div>
+                <div class="plateMain clearfix">
+                    <!-- 左侧-->
+                    <div class="sidebarWrap fl">
+                        <div class="termBox">
+                            <dl>
+                                <dt class="">订单号：</dt>
+                                <dd><%= orderInfo.orderNo%></dd>
+                            </dl>
+                            <dl>
+                                <dt>合同编号：</dt>
+                                <dd><%= orderInfo.contractNumber%></dd>
+                            </dl>
+                            <dl>
+                                <dt>下单时间：</dt>
+                                <dd><%= orderInfo.orderTime%></dd>
+                            </dl>
+                            <dl>
+                                <dt>付款时间：</dt>
+                                <dd><%= orderInfo.paymentTime%></dd>
+                            </dl>
+                            <dl>
+                                <dt>订单状态：</dt>
+                                <dd><span class="text_zt"><%= orderInfo.orderStatus%></span></dd>
+                            </dl>
+                            <p class="term_hr"></p>
+                            <dl>
+                                <dt>货品金额：</dt>
+                                <dd><span class="text_je"><%= orderInfo.goodsMoney%></span></dd>
+                            </dl>
+                        </div>
+
+                        <a href="#" class="linkBtn">查看订单详情 <span class="ff_st">&gt;&gt;</span></a>
+
+                    </div>
+                    <!-- 右侧主体-->
+                    <div class="mainWrap fr">
+                        <form action=""></form>
+                        <table class="formTab nBorTab">
+                            <tbody>
+                            <tr>
+                                <td width="80" class="txt_r"><s class="require">*</s>原因：</td>
+                                <td>
+                                    <select name="" id="closeSel" class="ipt inp-sel">
+                                        <option value="">选择关闭原因</option>
+                                        <% reasonList.forEach(function(obj){ %>
+                                        <option value="<%= obj.id %>"><%= obj.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="txt_r">备注：</td>
+                                <td>
+                                    <div class="txtAreaBox">
+                                        <div class="dockDown">
+                                            限<span class="limitNum">500</span>字
+                                        </div>
+                                        <textarea class="txtArea" name="bz" rows="9" cols="80" maxlength="500"
+                                                  placeholder="您可输入汉字、英文、数字、符号。" ></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <input class="iBtn subBtn" type="button" value="确定" disabled/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
+
+    <!-- 模态框 -->
+    <button type="button" class="btn btn-primary " data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+    <div class="modal fade bs-example-modal-sm in tipModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                ...
+                <p>asdf</p>
+                <p>asdf</p>
+                <p>asdf</p>
+                <p>asdf</p>
+                <p>asdf</p>
+            </div>
+        </div>
+    </div>
+
+
+    <% include ../global/footer/footer %>
 
 </body>
 <!-- dev js:assets -->
