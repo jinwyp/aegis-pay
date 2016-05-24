@@ -30,28 +30,7 @@ router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/confirmDelivery/test', confirmDeliveryController.test);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 路由: 关闭订单_信息
-// router.get('/order/orderClose', orderCloseContr.closeOrder);  
+// router.get('/order/orderClose', orderCloseContr.closeOrder);
 router.get('/orderTest', orderController.orderTest);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
