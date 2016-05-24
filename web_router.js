@@ -28,7 +28,8 @@ router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/getOrderDetail', orderController.getOrderDetail);
-router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 关闭订单 路由
+router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 路由: 关闭订单_信息
+router.get('/order/orderClose', orderCloseContr.closeOrder);                    // 路由: 关闭订单_提交
 
 
 
