@@ -37,11 +37,11 @@ exports.confirmDelivery = function (req, res, next) {
 	};
 	// 静态数据
 	//res.render('confirmDelivery/confirmDelivery',{"headerTit":"确认下单",statusObj: statusObj});			// 指定模板路径 渲染
-	request({url:'http://localhost:7777/getOrderDetail'}, function(err, data) {
+	request({url:'http://localhost:8800/confirmDelivery'}, function(err, data) {
 		console.log('获取到的错误是----------------------------'+err);
 		console.log('获取到的结果是data----------------------------'+data.body);
 		var source=JSON.parse(data.body);
-		var content={headerTit:"待签电子合同",statusObj:statusObj,"sellInfo":source.sellInfo,"orderInfo":source.orderInfo};
+		var content={headerTit:"待签电子合同",pageTitle:"确认提货页面",type : "sell",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order,"indexList":source.indexList};
 		console.log('获取到的结果是content----------------------------'+content);
 		//渲染页面,指定模板&数据
 		res.render('confirmDelivery/confirmDelivery',content);
@@ -54,3 +54,7 @@ exports.confirmDelivery = function (req, res, next) {
 	//});
 
 };
+
+exports.test = function (req, res, next) {
+	res.send('success');
+}
