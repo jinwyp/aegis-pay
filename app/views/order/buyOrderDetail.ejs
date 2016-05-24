@@ -19,6 +19,8 @@
                     <span class="status">已签订电子合同，请及时支付货款</span>
                     <% }else if(order.status=='WaitConfirmDelivery'){ %>
                     <span class="status">已付款</span><span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                    <% }else if(order.status=='TradeClosed'){ %>
+                    <span class="status-close">交易关闭</span>
                     <% } %>
                 </div>
                 <% if(order.status=='WaitSignContract'){ %>
@@ -30,6 +32,8 @@
                 <% }else if(order.status=='WaitConfirmDelivery'){ %>
                 <div class="state-item mt-20 hint"><span>1. 如果您已提货，请及时确认提货</span><span class="btn-option btn-take-good">确认提货</span></div>
                 <div class="state-item mt-10 hint"><span>2. 如果您对交易有异议，可以<a class="btn-close">&nbsp;申请纠纷处理</a></span></div>
+                <% }else if(order.status=='TradeClosed'){ %>
+                <div class="state-item mt-10 hint"><span>关闭原因：<%= order.status %>，订单关闭</span></div>
                 <% } %>
             </div>
 

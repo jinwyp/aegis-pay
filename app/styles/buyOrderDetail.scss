@@ -37,6 +37,9 @@ body{
           .status{
             color: $green;
           }
+          .status-close{
+            color: $black;
+          }
           span.status-hint{
             font-size: 14px;
           }

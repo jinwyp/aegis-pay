@@ -28,30 +28,40 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
     //};
 
 
+    var $reasonId = $('[name=reasonId]'),           //原因ID
+        $remarks = $('[name=remarks]'),             //备注
+        $limitNum = $('.limitNum'),                 //剩余字数
+        $subBtn = $('.subBtn'),                     //确认
+        $btnSubClose = $('#btnSubClose');           //确认提交
 
-
-    var $tab = $('.title');
-
-    $tab.on('click', function() {
-        console.log( $(this).html() );
-    });
-
-
-
-    var $closeSel = $('#closeSel');
 
     // 绑定 下拉框插件
-    $("select").fancySelect();
+    $reasonId.fancySelect();
 
-    $closeSel.fancySelect().on('change.fs', function() {
-        $(this).trigger('change.$');
-        //demand.fancySelect.trigger("update");
-        console.log(this.value+'-|=|-');
+    $reasonId.fancySelect().on('change.fs', function() {
+        $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
+        console.log(this.value);
+
+        $subBtn.prop('disabled', $.trim(this.value)==='--');
     });
-    //
-    //$closeSel.change(function() {
-    //    console.log(this.value);
-    //});
+
+
+    // 计算剩余字数
+    $remarks.keyup(function () {
+        var num = 500;
+        num = num - parseInt(this.value.length);
+        $limitNum.html(num);
+    });
+
+
+    // 确认提交
+    $btnSubClose.click(function() {
+        alert('订单关闭成功!');
+
+
+
+        $('.modal .close').click();
+    });
 
 
 });
