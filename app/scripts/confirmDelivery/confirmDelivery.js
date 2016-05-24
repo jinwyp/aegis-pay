@@ -19,7 +19,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             var tableList=$(this).parents(".checkList").clone("true");
             var wrap=$(this).parents(".tableWrap");
             var wrapLen=wrap.children("table").length;
-            var dateNode="<input type='text' class='checkTime' placeholder='yyyy-mm-dd' />";
+            var dateNode="<input type='text' class='checkTime' name='checkTime' placeholder='yyyy-mm-dd' />";
 
 
             if($(this).hasClass("add")){
@@ -69,53 +69,99 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             tVal="";
          });
       },
-      "submit": function(){
-         var temp=false;
+      "submit": function(){        
+         var temp=true;
 
          $("#submitBtn").on("click",function(){
+            var inputList=[];
+            var fileList=[];
+            //质量
+            var qualityList=[];
+            var quantityList=[];
+            //数量
+
+            for(var i=0;i<=$(".checkList").length;i++){
+               $(".checkList").eq(i).find("input").each(function(){
+                  inputList.push("indexList"+"["+i+"]"+"."+$(this).attr("name")+":"+$(this).val());
+               })
+            }
+            $("input[name='file_id']").each(function(){
+               fileList.push($(this).val())
+            });
+            $("#qualityList").find($("input[name='file_id']")).each(function(){
+               qualityList.push($(this).val())
+            });
+            $("#quantityList").find($("input[name='file_id']")).each(function(){
+               quantityList.push($(this).val())
+            });
 
             //提货数量
             var deliveryAmount=$("#checkAmount");
             if(deliveryAmount.val()==""){
                $(".errorMes").text("提货数量不得为空");
-               temp=false;
                return false;
             }else{
                $(".errorMes").text("");
-               temp=true;
             }
 
             //table校验
+
             if($(".checkList").length>0){
+               var temp=true;
                $(".checkList input").each(function(i,item){
                   if($(this).val()==""){
                      $(".errorMes").text("检测结果不得为空");
                      temp=false;
+
                      return false;
                   }else{
                      $(".errorMes").text("");
-                     temp=true;
                   }
+
                });
+
+               if (!temp){
+                  return false;
+               }
+
+            };
+
+            //上传校验
+            if($("#qualityList").find("p.file").length==0){
+               $(".errorMes").text("请上传质量确认单");
+               return false;
+            }else{
+               $(".errorMes").text("");
             }
-            if(temp){
-               var inputList=[];
-               $(".checkList input").each(function(){
-                  inputList.push($(this).val());
-               });
+
+            if($("#quantityList").length){
+               if($("#quantityList").find("p.file").length==0){
+                  $(".errorMes").text("请上传数量确认单");
+                  return false;
+               }
+            }else{
+               $(".errorMes").text("");
+            }
+
+            //if(temp){
                $.ajax({
-                  url:'/confirmDelivery/test',
+                  url:'api/confirmDelivery/test',
                   type:'get',
                   data:{
+                     id:"250",
+                     version:"1",
                      checkAmount:$("#checkAmount").val(),
-                     indexList:inputList
+                     indexList:inputList,
+                     qualityList:qualityList,
+                     quantityList:quantityList
                   },
                   success:function(data){
-                     alert(data);
-                     console.log(inputList)
+                     //alert(data.qualityList);
+                     //alert(data.quantityList);
+                     //console.log(inputList)
                   }
-               })
-            }
+               });
+            //}
          });
       }
    }
