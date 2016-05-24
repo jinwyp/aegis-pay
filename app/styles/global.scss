@@ -1,3 +1,5 @@
+@import './global/common.scss';
+
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
 {
   margin: 0;
@@ -8,6 +10,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   vertical-align: baseline;
   background: transparent;
   font-family: 'Microsoft Yahei', Arial, Helvetica, "黑体", sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
@@ -109,7 +114,7 @@ $hoverColor: #00b7ec;
             background: #292929;
             padding: 10px;
             padding-top: 15px;
-            width: 65px;
+//            width: 65px;
             position: absolute;
             z-index:10;
             top: 16px;
@@ -126,7 +131,7 @@ $hoverColor: #00b7ec;
               &:hover a{color:$hoverColor}
             }
           }
-          &.webNav{width:65px;}
+//          &.webNav{width:65px;}
           &.webNav:hover .hideMenu{display: block}
         }
         .webNav:hover >a {

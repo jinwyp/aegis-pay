@@ -1,13 +1,30 @@
 <div class="compactContainer">
-  <h4>合同内容详情（1/<%= imgs.length %>）<a href='<%= pdfpath %>'>下载合同</a></h4>
+  <input type='hidden' name='needGenerate' value='<%= imgs.length %>' />
+  <% if(imgs.length>0){ %>
+  <h4 class='blockTitle'>合同内容详情（共<%= imgs.length %>页）<a class='btn_download' target='_blank' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
   <div id="compactImgs" class='flexslider carousel'>
   <!-- Carousel items -->
-  <ul class="slides">
-    <% imgs.forEach(function(img){ %>
-      <li class="item">
-        <a href='<%= img %>' data-lightbox='compact-lightbox'><img src='<%= img %>'/></a>
-      </li>
-    <% }) %>
-  </ul>
-</div>
+    <ul class="slides">
+      <% imgs.forEach(function(img, index){ %>
+        <li class="item">
+          <a href='<%= img %>' data-lightbox='compact-lightbox'>
+            <img src='<%= img %>'/>
+            <p class='scaleView'><span class='pngbg'></span><span class='icon_glass'></span>点击放大</p>
+          </a>
+          <p class='currentIndex'>第<%= index+1 %>页</p>
+        </li>
+      <% }) %>
+    </ul>
+    <div class="custom-navigation">
+      <a href="#" class="flex-prev"></a>
+      <div class="custom-controls-container"></div>
+      <a href="#" class="flex-next"></a>
+    </div>
+  </div>
+  <% }else{ %>
+    <h4 class='blockTitle'>合同内容详情</h4>
+    <div class="generating">
+      <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> 正在生成合同......
+    </div>
+  <% } %>
 </div>

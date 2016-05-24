@@ -16,6 +16,13 @@ const paths = {
                 'app/styles/*.scss',
                 'app/styles/*.css'
               ],
+  "custom_components":{
+    "styles": [
+      "app/custom_components/**/*.scss",
+      "app/custom_components/**/*.css"
+    ],
+    "scripts": "app/custom_components/**/*"
+  },
   "scripts":"app/scripts/**/*.js",
   "libs": "app/libs/*",
   "components": "app/components/**/*"
@@ -32,10 +39,10 @@ gulp.task('lint', () =>
 // Optimize images
 gulp.task('images', () =>
   gulp.src(paths.images)
-    .pipe(plugins.imagemin({
-      progressive: true,
-      interlaced: true
-    }))
+    // .pipe(plugins.imagemin({
+    //   progressive: true,
+    //   interlaced: true
+    // }))
     .pipe(gulp.dest('assets/images'))
     .pipe(plugins.size({title: 'images'}))
 );
@@ -53,7 +60,7 @@ gulp.task('styles', () =>
     .pipe(gulp.dest('assets/styles'))
 );
 
-gulp.task('scripts', ['libs', 'components'], () =>
+gulp.task('scripts', ['libs', 'components', 'custom_components'], () =>
   // rjs.optimize({
   //   baseUrl: 'app/scripts',
   //   paths: {
@@ -97,10 +104,24 @@ gulp.task('components', () =>
     .pipe(gulp.dest('assets/components'))
 );
 
+gulp.task('custom_components', () => {
+  gulp.src(paths.custom_components.styles)
+  .pipe(plugins.newer('.tmp/custom_components'))
+  .pipe(plugins.sass({
+    precision: 10
+  }).on('error', plugins.sass.logError))
+  .pipe(gulp.dest('.tmp/custom_components'))
+  .pipe(plugins.size({title: 'custom_components'}))
+  .pipe(gulp.dest('assets/custom_components'))
+
+  gulp.src(paths.custom_components.scripts).pipe(gulp.dest('assets/custom_components'))
+})
+
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['scripts', reload]);
   gulp.watch(paths.images, ['images', reload]);
   gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', reload]);
+  gulp.watch(paths.custom_components.scripts, ['custom_components', reload]);
 });
 
 gulp.task('clean', () => {

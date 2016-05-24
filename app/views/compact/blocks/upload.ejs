@@ -1,28 +1,40 @@
 <div class="compactUpload">
-  <div id="signCompact">
-      <div class="row fileupload-buttonbar">
-        <span class="btn btn-success fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>Add files...</span>
-            <input id='fileupload' type="file" name="files[]" multiple="">
-        </span>
+  <form action='post' id="signCompact">
+      <div class='uploadWrapper'>
+        <label><i>*</i>上传合同：</label>
+        <% include ../../../custom_components/upload/upload %>
+      </div>
+      <div class='tip'>
+        <label>提示：</label>
+        <ul>
+          <li>1. 请在<span>24小时内</span>下载合同，并加盖合同章或者公章后将合同扫描件或照片上传</li>
+          <li>2. 请选择文件扫描件、照片、或文件压缩包上传，容量最大<span>不超过30M</span>。</li>
+        </ul>
       </div>
       <input type="hidden" name="orderid" value="<%= orderid %>"/>
       <input type="hidden" name="action" value="post">
-      <input type="button" class='submit' value="确认提交" />
-      <input type="button" class='cancel' value="取消" data-toggle='modal' data-target='#cancelSignModel'/>
-  </div>
-  <div id="cancelSignModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3>Modal header</h3>
-    </div>
-    <div class="modal-body">
-      <p>确定取消签订合同？</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-      <button data-dismiss="modal" class="btn btn-primary">确认</button>
+      <input type="button" class='cancel btn_gray' value="取消" data-toggle='modal' role='button' data-target='#cancelSignModel'/>
+      <input type="button" class='submit btn_blue' value="确认提交" />
+  </form>
+  <div id="cancelSignModel" class="modal fade tipModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body">
+          <span class='icon_confirm'></span>
+          <h4>你确认取消签订电子合同吗？</h4>
+          <p>
+            取消签订合约后，订单保存在【账户中心 > <a href=''>买到的货品</a>】中，请在<span class='color_orange'>一个工作日内签订</span>，否则订单将自动关闭。
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn_gray" data-dismiss="modal" aria-hidden="true">取消</button>
+          <a href='/orders' class="btn btn_blue">确认</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

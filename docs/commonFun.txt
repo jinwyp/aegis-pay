@@ -67,3 +67,27 @@
     res.render('demo/demo', statusObj);             // 数据插入模板,  详见:8800/demo
 
 -----------------------------------------------------------
+
+订单详情公用用户信息引用
+
+    1.样式引用
+    <link rel="stylesheet" href="/styles/orderUserInfo.css">
+    2.模板引用
+    <% include ../global/order/orderUserInfo %>
+
+    注：type的值为buy/sell
+    res.render("compact/orderDetail", {"type":"sell","order":order});
+
+-----------------------------------------------------------
+
+订单详情公用表格的引用
+
+    1.样式引用
+    <link rel="stylesheet" href="/styles/orderTable.css">
+    2.模板引用
+    <% include ../global/order/orderTable %>
+
+
+    res.render("compact/orderDetail", {"sellInfo":sellInfo,"order":order});
+
+-----------------------------------------------------------

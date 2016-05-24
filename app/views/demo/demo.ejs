@@ -6,9 +6,10 @@
     <!-- base: normalize,color -->
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="/styles/demo.css">
+    <link rel="stylesheet" href="/styles/orderClose.css">
     <!-- HTMLshiv for IE -->
     <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico" />
+    <link type="image/x-icon" rel="shortcut icon" href="/images/compact/favicon.png" />
 </head>
 <body>
 
@@ -16,7 +17,7 @@
 <% include ../global/header/header %>
 
 
-<div>
+<div style="margin: 20px 10px">
 
     <table class="listBox" id="listBox">
         <thead>
@@ -41,12 +42,58 @@
 
 </div>
 
+<!-- 状态条 -->
+<% include ../global/order/statusBar %>
 
+<!-- 页底 -->
 <% include ../global/footer/footer %>
 
 
-<!-- 状态条 -->
-<% include ../global/order/statusBar %>
+<table class="table">
+    <thead>
+    <tr>
+        <td>大号</td>
+        <td>默认</td>
+        <td>小号</td>
+        <td>超小</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input class="iBtn iBtn-lg" type="button" value="确定"/>  </td>
+        <td><input class="iBtn        " type="button" value="确定"/>  </td>
+        <td><input class="iBtn iBtn-sm" type="button" value="确定"/>  </td>
+        <td><input class="iBtn iBtn-xs" type="button" value="确定"/>  </td>
+    </tr>
+    <tr>
+        <td><input class="ipt ipt-lg" type="text"/> </td>
+        <td><input class="ipt       " type="text"/> </td>
+        <td><input class="ipt ipt-sm" type="text"/> </td>
+        <td><input class="ipt ipt-xs" type="text"/> </td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>1111</td>
+        <td>1111</td>
+        <td>1111</td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>1111</td>
+        <td>1111</td>
+        <td>1111</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
 
 
 

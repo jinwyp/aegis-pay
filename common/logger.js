@@ -58,5 +58,3 @@ var writeLog = function (prefix, logType, args) {
     console.log(line);
   }
 };
-
-
