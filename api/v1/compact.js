@@ -41,12 +41,14 @@ exports.delFile = function (req, res, next) {
 };
 
 // sign compact
+
 exports.signCompact = function(req, res, next){
 	var params = req.body;
 	var newids = _.map(params.file_id, function(id){
 		return uploadPath + id;
 	})
 	params.file_id = newids;
+	console.log(params)
 	request.post(api_config.signCompact, params, function(err, data){
 		if(!err && data){
 			return res.send(JSON.parse(data.body));
