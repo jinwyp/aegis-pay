@@ -9,7 +9,7 @@ exports.compact = function(req, res, next){
 		if(!err && data){
 			return res.render('compact/compact', data);
 		}else{
-			var pageData = {'article':{'title':'签订电子合同'}, 'orderid':orderid, 'headerTit':'签订电子合同', 'imgs':[]};
+			var pageData = {'pageTitle':'签订电子合同', 'orderid':orderid, 'headerTit':'签订电子合同', 'imgs':[]};
 			res.render('compact/compact', pageData);
 		}
 	})

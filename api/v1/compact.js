@@ -6,12 +6,13 @@ var fs = require('fs');
 var formidable = require('formidable');
 var uuid = require('node-uuid');
 var path = require('path');
+var config = require('../../config');
 
 var convert = require('../../common/convert');
 var cache = require('../../common/cache');
 
-const uploadPath = '/Users/beatacao/work/aegis-pay/static/upload/';
-const ftlpath= '/Users/beatacao/work/aegis-pay/servicestatic/fs.ftl';
+const uploadPath = config.sysFileDir + 'static/upload/';
+const ftlpath= config.sysFileDir + 'servicestatic/fs.ftl';
 
 exports.uploadFile = function (req, res, next) {
 	//api代理，去请求java接口
@@ -75,7 +76,7 @@ exports.generate_compact = function(req, res, next){
 			var data = JSON.parse(data.body);
 	    if(data.success){
 	      convertData(data.compact, ftlpath).then(function(result){
-					var pageData = _.assign({}, {'article':{'title':'签订电子合同'}, 'orderid':orderid, 'headerTit':'签订电子合同'}, result);
+					var pageData = _.assign({}, {'pageTitle':'签订电子合同', 'orderid':orderid, 'headerTit':'签订电子合同'}, result);
 					cache.set('compacts['+orderid+']', pageData, function(){
 						return res.render('compact/blocks/compact', pageData);
 					});

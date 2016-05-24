@@ -68,6 +68,18 @@
 
 -----------------------------------------------------------
 
+订单详情公用用户信息引用
+
+    1.样式引用
+    <link rel="stylesheet" href="/styles/orderUserInfo.css">
+    2.模板引用
+    <% include ../global/order/orderUserInfo %>
+
+    注：type的值为buy/sell
+    res.render("compact/orderDetail", {"type":"sell","order":order});
+
+-----------------------------------------------------------
+
 订单详情公用表格的引用
 
     1.样式引用
@@ -76,12 +88,6 @@
     <% include ../global/order/orderTable %>
 
 
-
-    关于表格传入参数 sellInfo
-    例：
-    exports.getOrderDetail = function (req, res, next) {
-    // 静态数据
-        res.render("compact/orderDetail", {"sellInfo":sellInfo});
-    };
+    res.render("compact/orderDetail", {"sellInfo":sellInfo,"order":order});
 
 -----------------------------------------------------------
