@@ -9,7 +9,7 @@ define(['jquery', 'pay.upload'],function($, upload){
 				var params = $('#signCompact').serialize();
 				$.post('/api/sign-compact', params, function(result){
 					if(result.success){
-						location.href = '/payment?orderid=' + result.orderid;
+						location.href = '/pay?orderid=' + result.orderid;
 					}
 				})
 			})
