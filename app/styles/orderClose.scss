@@ -38,12 +38,13 @@ $ffArial: 'Arial';
   font-size: 12px;
   font-family: $ffYh;
   color: #3f87a2;
-  text-decoration: initial;
-}
+  text-decoration: none;}
+.linkBtn:link {
+  color: #00b7ec;
+  text-decoration: none;}
 .linkBtn:hover {
   color: #00b7ec;
-  text-decoration: underline;
-}
+  text-decoration: underline;}
 
 .formTab {
   width: 100%;
