@@ -4,7 +4,7 @@
 
 
 var nock = require('nock');
-var apiHost = nock('http://server.180.com/');		// 需要替换的请求域名
+var apiHost = nock('http://localhost:8800');		// 需要替换的请求域名 server.180.com
 
 
 // 订单信息 模拟
@@ -35,18 +35,38 @@ var replyData = {
 	]
 };
 
-// 查询订单 'infoObj'
-apiHost.get('/orderInfo').reply(200, replyData);
-
-
-
 // 提交关闭 返回信息
 var closeData = {
 	success: false,
 	error: '提交失败!',
 	errorcode: 123
 };
-// 关闭订单 'closeOrder'
-apiHost.get('/closeOrder').reply(200, closeData);
+
+
+// 查询订单 'infoObj'
+apiHost.get('/orderInfo').reply(200, replyData);	// *** 路径必须加'/'
+
+
+
+// 查询订单:接口
+// http://localhost:8800/api/order/orderInfo_api
+apiHost.get('/order/orderInfo_api').reply(200, replyData);
+
+
+// 关闭订单:接口
+// http://localhost:8800/api/order/closeOrder_api
+apiHost.get('/order/closeOrder_api').reply(200, closeData);
 
 module.exports = apiHost;
+
+
+
+
+
+
+
+
+
+
+
+

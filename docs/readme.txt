@@ -58,7 +58,7 @@ node_modules/               站点依赖模块*生成
     └──
 .babelrc                    设置ES6语法支持
 .gitignore                  Git忽略文件配置
-api_router.js               Api路由配置
+api_router.js               Api路由配置&Ajax接口调用
 app.js                      站点入口文件
 config.js                   站点配置文件
 gulpfile.babel.js           gulp配置文件
@@ -122,7 +122,7 @@ web_router.js               Web路由配置
 /*
 1. 浏览器请求路由, 路由指定控制层
 2. 控制层指定模板 & 数据
-3. 模板引入 页面样式 & 脚步
+3. 模板引入 页面样式 & 脚本
 */
 
 // 配置页面'路由, 控制模块' *公用

@@ -50,13 +50,12 @@ exports.demo = function (req, res, next) {
 
 
 		var DATA = {
-			listData: JSON.parse(data.body),
-			statusObj: statusObj
-		}
-
+			listData: JSON.parse(data.body),		//服务器端 数据模拟
+			statusObj: statusObj					//NODE端 数据模拟
+		};
 
 		// 渲染页面,指定模板&数据
-		res.render('demo/demo', DATA);			// 指定模板路径 渲染
+		res.render('demo/demo', DATA);				// 指定模板路径 渲染
 
 	});
 
