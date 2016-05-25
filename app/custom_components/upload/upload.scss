@@ -1,7 +1,7 @@
-@import '/components/bootstrap/dist/css/bootstrap.min.css';
-@import '/components/blueimp-file-upload/css/jquery.fileupload.css';
-@import '/components/blueimp-file-upload/css/jquery.fileupload-ui.css';
-@import '/components/bootstrap/dist/css/bootstrap.min.css';
+@import '/static/components/bootstrap/dist/css/bootstrap.min.css';
+@import '/static/components/blueimp-file-upload/css/jquery.fileupload.css';
+@import '/static/components/blueimp-file-upload/css/jquery.fileupload-ui.css';
+@import '/static/components/bootstrap/dist/css/bootstrap.min.css';
 @import '../../styles/global/var.scss';
 
 .fileinput-button{
@@ -11,13 +11,13 @@
   display:inline; margin-left:10px; line-height: 25px; vertical-align: middle;
   .file{
     display: inline-block; *display: inline; zoom:1; margin-right:10px; border:1px solid #fff; cursor:default; margin-bottom:10px;
-    height:27px; line-height: 26px; padding:0 4px 0 24px; background:#f5f5f5 url('/images/sprite.png') no-repeat -546px -221px;
+    height:27px; line-height: 26px; padding:0 4px 0 24px; background:#f5f5f5 url('/static/images/sprite.png') no-repeat -546px -221px;
     &:hover{
       border:1px solid $color_btn_blue; background-color:#fff;
     }
     .del{
       display: inline-block; *display: inline; zoom:1; margin-left:15px; vertical-align: middle;
-      width:22px; height:22px; background: url('/images/sprite.png') no-repeat -217px -173px;
+      width:22px; height:22px; background: url('/static/images/sprite.png') no-repeat -217px -173px;
       &:hover{
         background-position:-257px -173px;
       }

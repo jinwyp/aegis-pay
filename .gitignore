@@ -1,13 +1,12 @@
-node_modules
-log
-assets
+app/node_modules
+backend/node_modules
+backend/log
+static
 .tmp/
 .idea/
 # Ignore Mac OS desktop services store
 *.DS_Store
 app/components/
-servicestatic
-static
 
 # Ignore Windows desktop setting file
 desktop.ini

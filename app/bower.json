@@ -1,0 +1,30 @@
+{
+  "name": "aegis-pay",
+  "description": "yimei payment",
+  "main": "app.js",
+  "authors": [
+    "beatacao <beatacao@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "pay",
+    "yimei"
+  ],
+  "homepage": "https://github.com/yimei180/aegis-pay",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "flexslider": "FlexSlider#^2.6.1",
+    "blueimp-file-upload": "^9.12.3",
+    "lightbox2": "^2.8.2",
+    "eonasdan-bootstrap-datetimepicker": "bootstrap3-datetimepicker#^4.17.37",
+    "pickadate": "^3.5.6"
+  }
+}
