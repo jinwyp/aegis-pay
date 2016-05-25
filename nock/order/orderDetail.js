@@ -2,8 +2,13 @@ var nock = require('nock');
 var site = nock('http://localhost:7777/');
 
 site
-.get('/getOrderDetail').reply(200,
-	{
+.get('/getOrderDetail')
+	//.query({id:"2019"})
+	.query(function(data){
+		console.log("id============================="+data.id);
+		return true;
+	})
+	.reply(200,{
 		"data": {
 			"sellInfo": {
 				"NCV": 5000, "NCV02": 6500,
@@ -192,7 +197,7 @@ site
 				//"sellerFundAccount":null,
 				"sellerLoginName": "卖家登陆名",
 				"buyerLoginPhone": "18600000001",
-				"status": "WaitSignContract",
+				"status": "WaitConfirmDelivery",
 				"price": 5500.00,
 				"amount": 1000,
 				"totalMoney": 50000.00,
