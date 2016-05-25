@@ -2,15 +2,20 @@ var nock = require('nock');
 var site = nock('http://localhost:7777/');
 
 site
-.get('/getOrderDetail').reply(200,
-	{
+.get('/getOrderDetail')
+	//.query({id:"2019"})
+	.query(function(data){
+		console.log("id============================="+data.id);
+		return true;
+	})
+	.reply(200,{
 		"data": {
 			"sellInfo": {
 				"NCV": 5000, "NCV02": 6500,
 				"ADS": 0.00, "ADS02": 0.00,//测试数据
-				"ADV": 1.00, "ADV02": 2.00,
+				"ADV": 11.00, "ADV02": 52.00,
 				"RS": 3.30, "RS02": 4.44,
-				"RV": 3.00, "RV02": 4.00,
+				"RV": 32.00, "RV02": 42.00,
 				"TM": 5.00, "TM02": 6.00,
 				"IM": 7.00, "IM02": 8.00,
 				"ASH": 0.0, "ASH02": 0.0,//测试数据
@@ -192,15 +197,20 @@ site
 				//"sellerFundAccount":null,
 				"sellerLoginName": "卖家登陆名",
 				"buyerLoginPhone": "18600000001",
-				"status": "TradeClosed",
-				"price": 500.00,
+				"status": "WaitConfirmDelivery",
+				"price": 5500.00,
 				"amount": 1000,
 				"totalMoney": 50000.00,
 				"createtime": "2016-05-21 16:47:18",
-				"signContractTime": "2016-05-22 16:47:18",
-				"paymentTime": "2016-05-23 16:47:18",
-				"confirmDeliveryTime": "2016-05-24 16:47:18",
-				"settleAccountTime": "2016-05-25 16:47:18"
+				//"createtime": null,
+				//"signContractTime": "2016-05-22 16:47:18",
+				"signContractTime": null,
+				//"paymentTime": "2016-05-23 16:47:18",
+				"paymentTime": null,
+				//"confirmDeliveryTime": "2016-05-24 16:47:18",
+				"confirmDeliveryTime": null,
+				//"settleAccountTime": "2016-05-25 16:47:18"
+				"settleAccountTime": null
 				//"createtime": {
 				//	"year": 2016,
 				//	"month": "APRIL",
