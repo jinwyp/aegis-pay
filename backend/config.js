@@ -21,7 +21,7 @@ var config = {
   	port: '6379',
   	db: 0
   },
-  sysFileDir: '/Users/beatacao/work/aegis-pay/backend/files/'    //静态文件根目录绝对路径
+  sysFileDir: '/Users/beatacao/work/aegis-pay/backend/files/'
 };
 
 module.exports = config;

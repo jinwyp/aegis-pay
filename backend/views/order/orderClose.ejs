@@ -14,10 +14,6 @@
 <div class="container">
     <div class="bodyWrap">
 
-
-
-
-
         <!-- 关闭板块 -->
         <div class="plateBox">
             <div class="plateHead">
@@ -59,14 +55,15 @@
 
                     <a href="#?Id=<%= order.id %>" class="linkBtn">查看订单详情 <span class="ff_st">&gt;&gt;</span></a>
                     <input type="hidden" name="id" value="<%= order.id %>" placeholder="订单Id"/>
+                    <input type="hidden" name="version" value="<%= order.version %>" placeholder="版本号"/>
                 </div>
                 <!-- 右侧主体-->
                 <div class="mainWrap fr">
-                    <form action="" name="">
+                    <form action="" name="closeForm" id="closeForm">
                         <table class="formTab nBorTab">
                             <tbody>
                             <tr>
-                                <td width="100" class="txt_r"><s class="require">*</s>原因：</td>
+                                <td width="70" class="txt_r"><s class="require">*</s>原因：</td>
                                 <td>
                                     <select name="reasonId" id="reasonId" class="ipt inp-sel">
                                         <option value="--">选择关闭原因</option>
@@ -83,7 +80,7 @@
                                         <div class="dockDown">
                                             限<span class="limitNum">500</span>字
                                         </div>
-                                    <textarea class="txtArea remarks" name="remarks" rows="9" cols="64" maxlength="510"
+                                    <textarea class="txtArea remarks" name="remarks" rows="9" cols="70" maxlength="510"
                                               placeholder="您可输入汉字、英文、数字、符号。" ></textarea>
                                     </div>
                                 </td>
