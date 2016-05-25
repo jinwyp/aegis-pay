@@ -5,28 +5,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
-
-    // 下拉框 引用
-    //var demand = {
-    //    "initFancySelectListener" : function () {
-    //        this.fancySelect = $("select").fancySelect().on('change.fs', function() {
-    //            $(this).trigger('change.$');
-    //            demand.fancySelect.trigger("update");
-    //        }); // trigger the DOM's change event when changing FancySelect
-    //    },
-    //    "setIndexCon" : function(){
-    //        var newType  = this.coalTypeMapper[$("#coaltype").val()];
-    //        if (newType != this.exType) {
-    //            this.changeCoalType(newType);
-    //        }
-    //        demand.fancySelect.trigger("update.fs");
-    //    },
-    //    "init": function () {
-    //        this.initFancySelectListener();
-    //        this.setIndexCon();
-    //    }//demand.fancySelect.trigger("update.fs");
-    //};
-
+    var apiHost = 'http://localhost:8800';			// API域名
 
     var $reasonId = $('[name=reasonId]'),           //原因ID
         $remarks = $('[name=remarks]'),             //备注
@@ -56,11 +35,30 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
     // 确认提交
     $btnSubClose.click(function() {
-        alert('订单关闭成功!');
 
+        // 请求参数 $("#closeForm").serialize()
+        var param = {
+            userId: 'admin',
+            orderId: $('[name=id]').val(),
+            version: $('[name=version]').val(),
+            reasonId: $('[name=reasonId]').val(),
+            remarks: $('[name=remarks]').val()
+        };
 
+        console.dir(param);
 
-        $('.modal .close').click();
+        $.ajax({
+            url: apiHost + '/order/closeOrder_api',
+            data: param,        //$("#closeForm").serialize(),
+            success: function(data){
+                if(data.success) {
+                    alert('订单关闭成功!');
+                    $('.modal .close').click();
+                } else {
+                    alert('error');
+                }
+            }
+        });
     });
 
 
