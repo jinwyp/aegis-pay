@@ -40,6 +40,9 @@ body{
           .status-close{
             color: $black;
           }
+          .status-return{
+            color: $red;
+          }
           span.status-hint{
             font-size: 14px;
           }
@@ -51,7 +54,7 @@ body{
             margin-left: 10px;
             color: $white;
             font-size: 12px;
-            padding: 2px 8px;
+            padding: 2px 16px 4px 16px;
             border-radius: 2px;
             cursor: pointer;
           }
