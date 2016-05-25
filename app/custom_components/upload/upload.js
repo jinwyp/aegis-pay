@@ -5,14 +5,17 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		},
 		uploadfile: function(){
 			// 上传文件
-			$('#fileupload').fileupload({
+			$('.fileupload').fileupload({
 	        url: '/api/upload-file',
 	        dataType: 'json',
-					maxFileSize: 5000000,
+			maxFileSize: 5000000,
 	        done: function (e, data) {
-							var $fileWrapper = $('#files');
+				var e = e || window.event;
+				var target = e.srcElement || e.target;
+				var $fileWrapper = $(target).parent().next('.files');
+				//var $fileWrapper = $('#files');
 	            $.each(data.result.attach, function (index, file) {
-									var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="file_id" value="' + file.id + '"></p>';
+					var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="file_id" value="' + file.id + '"></p>';
 	                $fileWrapper.append(filehtml);
 	            });
 	        },
@@ -21,7 +24,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 			    }
 	    });
 			// 删除文件
-			$('#files').click(function(e){
+			$('.files').click(function(e){
 				var ev = e || window.event;
 				var target = ev.target || ev.srcElement;
 				if(target.className.toLowerCase() == 'del'){

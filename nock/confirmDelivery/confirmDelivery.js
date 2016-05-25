@@ -134,6 +134,7 @@ confirmDelivery
         "confirmDeliveryTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
         "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}}
       },
-      "indexList":["热值","硫分","挥发分"]
+      "indexList":{"CRC":"焦渣特征","ASH":"灰分","TM":"全水分","YV":"Y值","FC":"固定碳"}
+
     });
 module.exports = confirmDelivery

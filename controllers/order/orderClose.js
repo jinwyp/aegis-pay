@@ -4,38 +4,55 @@
 * */
 
 var request = require('request');
-var apiHost = 'http://server.180.com/';						// API域名
+var apiHost = 'http://localhost:8800';						// API域名
 
 
-// 订单信息
+// 页面路由
 exports.orderInfo = function (req, res, next) {
 
+	var req_id = req.query.id;
+	req.userId = '1111111111';
+
+	if(!req_id) {
+		res.send('<script>alert("请输入 订单编号!")</script>');
+	} else {
+		request(apiHost + '/orderInfo', function (err, data) {
+			console.log('---------------orderInfo----------------  '+ err);
+
+			var replyData = JSON.parse(data.body);
+			replyData.pageTitle = '关闭订单页面标题';
+			replyData.headerTit = '关闭订单';
+			res.render('order/orderClose', replyData);			// 渲染页面,(指定模板, 数据)  *** 路径不能加加'/', 默认在views下
+		});
+	}
+};
+
+
+// API路由: 订单信息
+exports.orderInfo_api = function (req, res, next) {
+
 	// 异步调取Java数据
-	request(apiHost + 'orderInfo', function (err, data) {
+	request(apiHost + 'order/orderInfo_api', function (err, data) {
 
 		var req_id = req.query.id;
+		console.log('---------------orderInfo_api----------------  '+ err);
 
-		console.log('控制台');
 		var replyData = JSON.parse(data.body);
 		replyData.pageTitle = '关闭订单页面标题';
 		replyData.headerTit = '关闭订单';
 
-		res.render('order/orderClose', replyData);			// 渲染页面,指定模板&数据
-
+		return res.send(replyData);
 	});
 };
 
 
 
-// 关闭订单
-exports.closeOrder = function() {
-	// 异步调取Java数据
-	request(apiHost + 'closeOrder', function (err, data) {
-
-		var closeData = JSON.parse(data.body);
-		res.render('order/orderClose', closeData);			// 渲染页面,指定模板&数据
-
+// API路由: 提交关闭
+exports.closeOrder_api = function(req, res, next) {
+	//api代理，请求java接口
+	request({url:apiHost + 'order/closeOrder_api'}, function(err, data){
+		console.log('---------------closeOrder_api----------------  '+ err);
+		return res.send(data.body);
 	});
 };
-
 

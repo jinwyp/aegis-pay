@@ -32,7 +32,7 @@ $ffArial: 'Arial';
   font-family: $ffSt;
   color: #f60f60;
   text-decoration: initial;
-  vertical-align: bottom;}
+  vertical-align: middle;}
 
 .linkBtn {
   font-size: 12px;
@@ -198,7 +198,7 @@ $ffArial: 'Arial';
     .mainWrap {
       width: 618px;
       margin-left: -260px;
-      padding: 30px;
+      padding: 30px 20px;
       background: #FFFFFF;
     }
     
@@ -254,8 +254,8 @@ $ffArial: 'Arial';
     padding: 1px 5px;
     position: absolute;
     z-index: 3;
-    bottom: 7px;
-    right: 2px;
+    bottom: 6px;
+    right: 12px;
     text-align: right;
     font-size: 12px;
     line-height: 22px;
@@ -265,6 +265,7 @@ $ffArial: 'Arial';
   }
 }
 .txtArea {
+  width: 98%;
   padding: 5px;
   border: 1px solid #CCCCCC;
   border-radius: 2px;
