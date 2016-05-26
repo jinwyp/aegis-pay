@@ -23,6 +23,37 @@ var api_config = {
 	 * params: {orderid: 1, action: 'get'}
 	 */
 	getCompact: host + 'compact',
+	/**
+	 * 付款页面, 页面展示数据
+	 * method: get
+	 * params: {orderId: 1, userId: 121}
+	 * response: {success: true,	error:'', errorCode: '',
+	 *							data: {
+							    	order: {
+								        id
+								        version
+								        sellerCompanyName:’卖家公司名称’,
+								        sellerFundAccount: ‘卖家资金账户’,
+								        totalMoney: 订单总金额,
+								        sellerBalanceMoney: 余额,
+								     }
+								 }
+							}
+	 */
+	 payPage: host + 'mall/order/payment',
+	 /**
+ 	 * 发送短信
+ 	 * method: post
+ 	 * params: {phone: 18611111111, message: '343434'}
+ 	 */
+	 sendSMSCode: host + 'sendSMSCode',
+	 /**
+ 	 * 支付－确认付款
+ 	 * method: post
+ 	 * params: {version:'', userId:'',orderId:'',payPassword:''}
+ 	 */
+	 paySubmit: host + 'mall/order/payment/submit'
+
 }
 
 module.exports = api_config;
