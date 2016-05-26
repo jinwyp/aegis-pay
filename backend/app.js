@@ -71,7 +71,7 @@ app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
 
 // mock api request:  DEBUG = nock.*
-if(_.indexOf(_.split(process.env.DEBUG, ','), 'nock.*') >= 0){
+if( config.mock == 'true' ){
   require('./nock/index');
 }
 

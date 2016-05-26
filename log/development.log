@@ -1,0 +1,29 @@
+server listening on port %d 8800
+success
+
+
+Started 2016-05-19T06:56:55.148Z GET / ::1
+Completed 200 [32m(58ms)[39m
+
+
+Started 2016-05-19T06:56:55.432Z GET /favicon.ico ::1
+Completed 404 [32m(13ms)[39m
+
+
+Started 2016-05-19T06:56:57.862Z GET /api/apps ::1
+server listening on port %d 8800
+success
+
+
+Started 2016-05-19T06:57:21.304Z GET /compact ::1
+
+
+Started 2016-05-19T06:57:25.996Z GET /compact ::1
+
+
+Started 2016-05-19T06:57:27.982Z GET /api/cogen-merge ::1
+
+
+Started 2016-05-19T06:57:33.038Z GET /api/async-merge ::1
+server listening on port %d 8800
+success

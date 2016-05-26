@@ -1,30 +1,42 @@
+pwd=$(shell pwd)
+latest=$(shell git tag | tail -n1)
+
 all:
-	-@cd app && npm install
-	-@docker build -t aegis-member .
+	-@cd ${pwd}/backend && npm install && cd ..
+	-@docker build -t aegis-pay .
 
-build.%:
-	-@echo build version: $*...	
+# release指定版本
+release.%:
+	@git checkout $*
+	-@cd ${pwd}/backend && npm install && cd ..
+	@docker build -t aegis-pay:$* .
+	@git checkout master
+    
 
-# 清楚容器
+# 用最新的代码构建
+release:
+	@git checkout ${latest}
+	-@cd ${pwd}/backend && npm install && cd ..
+	@docker build -t aegis-pay:${latest} .
+	@git checkout master
+
+# 将构建物发布到harbor
+publish:
+	-@git   
+
+# 删除container
 clean:
-	-@docker stop aegis-member-dev
-	-@docker rm aegis-member-dev
+	-@docker stop aegis-pay-dev > /dev/null 2>&1
+	-@docker rm aegis-pay-dev > /dev/null 2>&1 
 
-# 运行最新版
-dev:
-	-@docker run --name aegis-bridge \
-    --restart=always \
-    -d \
-    --net aegis-bridge \
-    --ip 10.0.20.3 \
-    aegis-member
+# 运行最新image
+dev: clean
+	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay
 
-# 运行指定版
+# 运行指定版本
 run.%:
-	-@docker run --name aegis-bridge-dev \
-    --restart=always \
-    -d \
-    --net aegis-bridge \
-    --ip 10.0.20.3 \
-    aegis-member:$*
+	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay:$*
+
+enter:
+	-@docker exec -it aegis-pay-dev bash
 
