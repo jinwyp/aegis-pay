@@ -4,7 +4,7 @@
 * */
 
 var request = require('request');
-var apiHost = 'http://localhost:8800';						// API域名
+var apiHost = 'http://server.180.com';						// API域名
 
 
 // 页面路由
@@ -32,7 +32,7 @@ exports.orderInfo = function (req, res, next) {
 exports.orderInfo_api = function (req, res, next) {
 
 	// 异步调取Java数据
-	request(apiHost + 'order/orderInfo_api', function (err, data) {
+	request(apiHost + '/order/orderInfo_api', function (err, data) {
 
 		var req_id = req.query.id;
 		console.log('---------------orderInfo_api----------------  '+ err);
@@ -49,10 +49,19 @@ exports.orderInfo_api = function (req, res, next) {
 
 // API路由: 提交关闭
 exports.closeOrder_api = function(req, res, next) {
+	// 关闭订单返回: 静态模拟
+	var closeData = {
+		success: false,
+		error: '提交失败!',
+		errorcode: 234235
+	};
+	res.send(closeData);
+
+
 	//api代理，请求java接口
-	request({url:apiHost + 'order/closeOrder_api'}, function(err, data){
-		console.log('---------------closeOrder_api----------------  '+ err);
-		return res.send(data.body);
-	});
+	//request({url:apiHost + '/order/closeOrder_api'}, function(err, data){
+	//	console.log('---------------closeOrder_api----------------  '+ err);
+	//	return res.send(data.body);
+	//});
 };
 
