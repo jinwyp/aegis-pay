@@ -1,0 +1,14 @@
+@import './global/var.scss';
+
+body{ background-color: $color_body_bg; font-size:$size_font_nomal; font-family: $font_family;}
+
+#paymentHeader .headWrap .wrap1000 .menuList li.webNav{ width:auto; }
+#paymentHeader .headWrap .wrap1000 .menuList li .hideMenu{ width:auto; }
+
+.mainWrapper{
+  width: $main_width; margin:$main_margintop auto $main_marginbottom; padding:10px 25px 40px;
+  background-color:$color_main_bg;
+  #pay{
+    .tip-error{ display:none; }
+  }
+}
