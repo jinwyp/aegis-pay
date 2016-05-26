@@ -9,5 +9,5 @@ export MOCK=false;
 export DEBUG=true;
 export MODE=local;
 
-supervisor -w bin,common,config,models,nock,routes,views  app.js 
+supervisor -w bin,common,config,models,nock,routes,views,app.js app.js 
 
