@@ -1,8 +1,8 @@
 require.config({
-  baseUrl: 'static/scripts',
+  baseUrl: '/static/scripts',
   paths: {
-    'jquery': '../../static/components/jquery/dist/jquery',
-    'bootstrap': '../../static/components/bootstrap/dist/js/bootstrap',
+    'jquery': '/static/components/jquery/dist/jquery',
+    'bootstrap': '/static/components/bootstrap/dist/js/bootstrap',
     'eonasdan-bootstrap-datetimepicker': '../../static/components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
     'moment': '../../static/components/moment/moment',
     'moment-timezone': '../../static/components/moment-timezone/builds/moment-timezone-with-data-2010-2020',
