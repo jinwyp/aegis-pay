@@ -1,44 +1,15 @@
 <table class="order-table">
     <tr class="table-title">
-        <th width="380">货品</th>
-        <th>单价<br><span class="unit">(元/吨)</span></th>
-        <th>订单数量<br><span class="unit">(万吨)</span></th>
-        <th>订单总货款<br><span class="unit">(万元)</span></th>
-        <th>本次提货数<br><span class="unit">(吨)</span></th>
-        <th>剩余数量<br><span class="unit">(吨)</span></th>
-        <th>本次提货金额<br><span class="unit">(万元)</span></th>
-        <th>说明</th>
+        <th width="160">订单号</th>
+        <th>订单数量(吨)</th>
+        <th>实际提货数量(吨)</th>
+        <th>单价(元/吨)</th>
+        <th>实际货款总额(元)</th>
+        <th width="286">说明</th>
     </tr>
     <tr class="table-info">
-        <td class="info-col">
-            <div class="info-title">
-                <span class="supply-ico">商</span>
-                <span class="supply-title"><%= ellipse(sellInfoTitleAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour,
-                        sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></span>
-            </div>
-            <ul>
-                <li><span class="hint">煤种：</span><span><%= sellInfo.pname %></span></li>
-                <% if(sellInfo.brandname!=null){ %>
-                <li><span class="hint">品名：</span><span><%= sellInfo.brandname %></span></li>
-                <% } %>
-                <li><span class="hint">产地：</span><span><%= sellInfo.originplace %></span></li>
-                <li><span class="hint">热值：</span><span><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></span></li>
-                <li><span class="hint">收到基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></span></li>
-                <li><span class="hint">收到基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></span></li>
-                <li><span class="hint">全水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></span></li>
-                <% if(sellInfo.ASH!=0&&sellInfo.ASH02!=0){ %>
-                <li><span class="hint">灰分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></span></li>
-                <% } %>
-                <li><span class="hint">空干基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></span></li>
-                <li><span class="hint">空干基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADV, 2),formatDecimal(sellInfo.ADV02, 2),'%') %></span></li>
-                <li><span class="hint">固定碳：</span><span><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></span></li>
-                <li><span class="hint">内水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></span></li>
-                <li><span class="hint">G值：</span><span><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></span></li>
-                <li><span class="hint">Y值：</span><span><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></span></li>
-                <li><span class="hint">灰熔点≥：</span><span><%= singleArgAppend(sellInfo.AFT,'℃') %></span></li>
-                <li><span class="hint">哈氏可磨≥：</span><span><%= singleArgAppend(sellInfo.HGI,'') %></span></li>
-                <li><span class="hint">焦渣特征：</span><span><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></span></li>
-            </ul>
+        <td class="info-col center-content">
+            <span class="number"><%= formatDecimal(order.price,2) %></span>
         </td>
         <td class="info-col center-content">
             <span class="number"><%= formatDecimal(order.price,2) %></span>
@@ -52,15 +23,20 @@
         <td class="info-col center-content">
             <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
         </td>
-        <td class="info-col center-content">
-            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
-        </td>
-        <td class="info-col center-content">
-            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
-        </td>
-        <td class="info-col center-content">
-            应退货款：<br>
-            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
+        <td class="info-col explain-bg">
+            <div class="explain">
+                <div class="item line-start">
+                    <span class="item_icon"></span>
+                    <div class="item-line">已付货款：<div class="number">200000</div>&nbsp;元</div>
+                    <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
+                </div>
+                <div class="item line-end">
+                    <span class="item_icon"></span>
+                    <div class="item-line">待退货款：<div class="number orange">200000000.00</div>&nbsp;元</div>
+                    <div class="item-line align-right"><span class="money-zh">(大写：一千万)</span></div>
+                    <div class="item-line"><span class="time status-color">等待退回</span></div>
+                </div>
+            </div>
         </td>
     </tr>
 </table>
