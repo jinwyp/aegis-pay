@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: 'static/scripts',
+  baseUrl: '/static/scripts',
   paths: {
     'jquery': '../../static/components/jquery/dist/jquery',
     'bootstrap': '../../static/components/bootstrap/dist/js/bootstrap',
