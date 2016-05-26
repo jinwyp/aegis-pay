@@ -22,7 +22,7 @@ var api_config = {
 	 * method: get
 	 * params: {orderid: 1, action: 'get'}
 	 */
-	getCompact: host + 'compact',
-}
+	getCompact: host + 'compact'
+};
 
 module.exports = api_config;
