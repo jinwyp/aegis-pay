@@ -41,7 +41,7 @@ exports.confirmDelivery = function (req, res, next) {
 		console.log('获取到的错误是----------------------------'+err);
 		console.log('获取到的结果是data----------------------------'+data.body);
 		var source=JSON.parse(data.body);
-		var content={headerTit:"待签电子合同",pageTitle:"确认提货页面",type : "sell",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order,"indexList":source.indexList};
+		var content={headerTit:"确认提货页面",pageTitle:"确认提货页面",type : "sell",statusObj:statusObj,"sellInfo":source.sellInfo,"order":source.order,"indexList":source.indexList};
 		console.log('获取到的结果是content----------------------------'+content);
 		//渲染页面,指定模板&数据
 		res.render('confirmDelivery/confirmDelivery',content);

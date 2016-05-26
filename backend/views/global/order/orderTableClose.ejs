@@ -1,0 +1,48 @@
+<table class="order-table">
+    <tr class="table-title">
+        <th width="160">订单号</th>
+        <th>订单数量(吨)</th>
+        <th>实际提货数量(吨)</th>
+        <th>单价(元/吨)</th>
+        <th>实际货款总额(元)</th>
+        <th width="286">说明</th>
+    </tr>
+    <tr class="table-info">
+        <td class="info-col center-content">
+            <span class="number"><%= formatDecimal(order.price,2) %></span>
+        </td>
+        <td class="info-col center-content">
+            <span class="number"><%= formatDecimal(order.price,2) %></span>
+        </td>
+        <td class="info-col center-content">
+            <span class="number"><%= order.amount %></span>
+        </td>
+        <td class="info-col center-content">
+            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
+        </td>
+        <td class="info-col center-content">
+            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
+        </td>
+        <td class="info-col explain-bg">
+            <div class="explain">
+                <div class="item line-start">
+                    <span class="item_icon"></span>
+                    <div class="item-line">已付货款：<div class="number">200000</div>&nbsp;元</div>
+                    <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
+                </div>
+                <div class="item line-end">
+                    <span class="item_icon"></span>
+                    <div class="item-line">待退货款：<div class="number orange">200000000.00</div>&nbsp;元</div>
+                    <div class="item-line align-right"><span class="money-zh">(大写：一千万)</span></div>
+                    <div class="item-line"><span class="time status-color">等待退回</span></div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!-- 总金额 -->
+<div class="total-money">
+    <div class="money-number">总金额：<span><%= formatMoney(order.totalMoney,2) %></span></div>
+    <div class="money-zh">(人民币：<%= switchTxt(order.totalMoney) %>)</div>
+</div>

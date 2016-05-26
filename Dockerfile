@@ -1,14 +1,16 @@
-FROM: ubuntu-nodejs
+FROM ubuntu-nodejs
 
-MAINTAINER: hary <94093146@qq.com>
+MAINTAINER hary zhou <94093146@qq.com>
 
-ADD  /backend/    /app/aegis-pay/
-
-EXPOSE 3000/tcp
-
-VOLUME  /app/aegis-pay/log
+ADD backend/ /app/aegis-pay/
 
 WORKDIR /app/aegis-pay
 
-CMD node app.js
+VOLUME /app/aegis-pay/logs
+
+EXPOSE 3000/tcp
+
+RUN chmod 755 prod.sh
+
+CMD prod.sh
 

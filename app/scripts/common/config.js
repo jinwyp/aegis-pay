@@ -11,8 +11,8 @@ require.config({
     'picker': '../../static/components/pickadate/lib/picker',
     'picker.date': '../../static/components/pickadate/lib/picker.date',
     'picker.time': '../../static/components/pickadate/lib/picker.time',
-    "jQuery.fn.datePicker": '/scripts/Plugins/jQuery.fn.datePicker',
-    'jquery.fancySelect': '/scripts/Plugins/jQuery.fn.fancySelect',           // 下拉框插件
+    "jQuery.fn.datePicker": 'Plugins/jQuery.fn.datePicker',
+    'jquery.fancySelect': 'Plugins/jQuery.fn.fancySelect',           // 下拉框插件
     'jquery.fileupload': '../../static/components/blueimp-file-upload/js/jquery.fileupload',
     'jquery.fileupload.ui': '../../static/components/blueimp-file-upload/js/jquery.fileupload-ui',
     'jquery.ui.widget': '../../static/components/blueimp-file-upload/js/vendor/jquery.ui.widget',
