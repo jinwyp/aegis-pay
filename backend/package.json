@@ -42,6 +42,8 @@
     "method-override": "1.0.2",
     "moment": "2.9.0",
     "multiline": "1.0.1",
+    "nock": "^8.0.0",
+    "node-ftl": "^0.1.1",
     "node-uuid": "1.4.1",
     "nodemailer": "0.3.43",
     "pdf-image": "^1.1.0",
@@ -53,8 +55,7 @@
     "utility": "1.0.0",
     "validator": "3.22.1",
     "xmlbuilder": "2.5.0",
-    "xss": "0.1.15",
-    "nock": "^8.0.0"
+    "xss": "0.1.15"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
