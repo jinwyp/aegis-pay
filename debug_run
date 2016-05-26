@@ -2,5 +2,5 @@
 
 cd /app/backend;
 
-supervisor -w bin,middlewares,common,models,nock,controllers,api,views  app.js
+supervisor -w middlewares,common,nock,controllers,api,views,app.js  app.js
 
