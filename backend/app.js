@@ -50,6 +50,7 @@ app.enable('trust proxy');
 // Request logger。请求时间
 app.use(requestLog);
 
+
 if (config.debug) {
   // 渲染时间
   app.use(renderMiddleware.render);
@@ -140,8 +141,8 @@ if (config.debug) {
 }
 
 app.listen(config.port, function () {
-  logger.log("server listening on port %d", config.port);
-  logger.log("success");
+  logger.log("Server listening on port:", config.port);
+  logger.log("Success on domain:", config.host, config.port);
 });
 
 

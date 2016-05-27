@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "./run.sh -m",
-    "start": "./run.s"
+    "start": "./run.sh"
   },
   "dependencies": {
     "async": "0.9.0",

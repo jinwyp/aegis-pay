@@ -4,7 +4,7 @@
 
 
 var nock = require('nock');
-var apiHost = nock('http://localhost:8800');		// 需要替换的请求域名 server.180.com
+var apiHost = nock('http://server.180.com');		// 需要替换的请求域名 server.180.com
 
 
 // 订单信息 模拟
@@ -49,13 +49,13 @@ apiHost.get('/orderInfo').reply(200, replyData);	// *** 路径必须加'/'
 
 
 // 查询订单:接口
-// http://localhost:8800/api/order/orderInfo_api
+// http://localhost:3000/api/order/orderInfo_api
 apiHost.get('/order/orderInfo_api').reply(200, replyData);
 
 
 // 关闭订单:接口
-// http://localhost:8800/api/order/closeOrder_api
-apiHost.get('/order/closeOrder_api').reply(200, closeData);
+// http://localhost:3000/api/order/closeOrder_api
+// apiHost.get('/order/closeOrder_api').reply(200, closeData);
 
 module.exports = apiHost;
 
