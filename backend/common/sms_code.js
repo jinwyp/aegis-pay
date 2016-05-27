@@ -1,5 +1,6 @@
 var request = require('request');
 var ccap = require('ccap');
+var redis = require('./redis');
 var api_config = require('../api/v1/api_config');
 
 /**
@@ -9,6 +10,7 @@ var api_config = require('../api/v1/api_config');
  * 30times/day ; 3times/hour ;
  */
 exports.send_sms = function(phone, sms){
+
   return new Promise(function(resolve, reject){
     var params =  {"phone": phone, "message":sms};
     request.post(api_config.sendSMSCode, function(err, data){
