@@ -3,6 +3,8 @@ $gray: #f5f5f5;
 $black: #333333;
 $hintColor: #999999;
 $borderColor: #e8e8e8;
+$green: #1aaa6b;
+$dot-color:#bcbcbc;
 
 .order-table {
   border-left: solid 1px $borderColor;
@@ -20,18 +22,13 @@ $borderColor: #e8e8e8;
       text-align: center;
       font-size: 12px;
       color: #666666;
-      .unit{
-        color: #999999;
-      }
+      .unit{  color: #999999;  }
     }
   }
   .table-info{
-    td{
-      border-right: solid 1px $borderColor;
-    }
-    .explain-bg{
-      background-color: #f3fcff;
-    }
+    td{  border-right: solid 1px $borderColor;  }
+    .explain-paied-bg{  background-color: #fffaf7;  }
+    .explain-bg{  background-color: #f3fcff;  }
     .info-col {
       padding: 30px 0;
       font-size: 14px;
@@ -57,54 +54,47 @@ $borderColor: #e8e8e8;
               font-size: 18px;
               text-align: right;
             }
-            .orange{
-              color: #ff6830;
-            }
-            .time{
-              font-size: 12px;
-              color: #666666;
-            }
-            .status-color{
-              color:#1aaa6b;
-            }
+            .orange{  color: #ff6830;  }
+            .time{  font-size: 12px;  color: #666666;  }
+            .status-color{  color:$green;  }
           }
-          .align-right{
-            text-align: right;
-          }
-          .item_icon {
+          .dot-icon {
             position: absolute;
-            background: #bcbcbc;
             display: inline-block;
             width: 10px;
             height: 10px;
-            top: 20px;
             left: -4px;
             border-radius: 5px;
           }
+          .start{  top: 20px;background-color: $dot-color;  }
+          .end{  top: 30px;  }
+          .dot-gray{  background-color: $dot-color;  }
+          .dot-green{  background-color: $green;  }
         }
-        .line-start{
-          padding-bottom: 20px;
-        }
-        .line-end{
-          padding-top: 20px;
-        }
+        .line-start{  padding-bottom: 10px;  }
+        .line-end{  padding-top: 10px;  }
         .line-start:before {
           content: "";
           width: 2px;
-          height: 74%;
-          background: #bcbcbc;
+          height: 31px;
+          background-color: $dot-color;
           left: 0px;
-          top: 22px;
+          top: 24px;
           position: absolute;
         }
         .line-end:before {
           content: "";
           width: 2px;
-          height: 43%;
-          background: #1fb8ea;
+          height: 34px;
           left: 0px;
           top: 0px;
           position: absolute;
+        }
+        .line-gray:before {
+          background-color: $dot-color;
+        }
+        .line-green:before {
+          background-color: $green;
         }
       }
     }
@@ -117,12 +107,7 @@ $borderColor: #e8e8e8;
   .money-number{
     color: $black;
     font-size: 20px;
-    span{
-      color: #ff6830;
-    }
+    span{  color: #ff6830;  }
   }
-  .money-zh{
-    margin-top: 10px;
-    font-size: 12px;
-  }
+  .money-zh{  margin-top: 10px;  font-size: 12px;  }
 }
