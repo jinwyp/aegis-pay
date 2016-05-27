@@ -24,7 +24,7 @@ exports.test_cache = function(req, res, next){
 			})
 		}
 	})
-}
+};
 
 exports.asyncMerge = function(req, res, next){
 	var res = res;
@@ -46,11 +46,11 @@ exports.asyncMerge = function(req, res, next){
 				callback(null, data);
 			})
 		}
-	}
+	};
 	async.parallel(indexMerge, function(err, result){
 		return res.send({'app': JSON.parse(result.apps.body)[0].name, 'test_cache':JSON.parse(result.test.body), 'app2-length':result.apps2.body.length});
 	})
-}
+};
 
 // co + generator
 exports.cogenMerge = function(req, res, next){
@@ -64,21 +64,21 @@ exports.cogenMerge = function(req, res, next){
 				}
 			})
 		})
-	}
+	};
 	var coIndexMerge = [
 		getProduct(api_config.apps),
 		getProduct(api_config.test),
 		getProduct(api_config.apps2)
-	]
+	];
 	co(function* (){
 		var result = yield coIndexMerge;
 		return res.send({'app': JSON.parse(result[0].body)[0].name, 'test_cache':JSON.parse(result[1].body), 'app2-length':result[2].body.length});
-	})
-}
+	});
+};
 
 // reactjs demo 测试用数据
 exports.products = function(req, res, next){
 	request(api_config.products, function(err, data){
 		return res.send(data.body);
 	})
-}
+};

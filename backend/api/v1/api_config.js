@@ -54,6 +54,6 @@ var api_config = {
  	 */
 	 paySubmit: host + 'mall/order/payment/submit'
 
-}
+};
 
 module.exports = api_config;
