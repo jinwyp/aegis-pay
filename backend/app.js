@@ -45,9 +45,9 @@ var app = express();
 
 // configuration in all env
 app.engine('ejs', engine);
+app.engine('html', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('html', require('ejs-mate'));
 app.enable('trust proxy');
 
 
