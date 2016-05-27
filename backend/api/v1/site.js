@@ -1,6 +1,6 @@
-var eventproxy = require('eventproxy');
-var async = require('async');
-var request = require('request');
+var Promise = require('bluebird');
+var request = require("request");
+var requestP = Promise.promisify(require("request"));
 var api_config = require('./api_config');
 var cache = require('../../common/cache');
 var co = require('co');
@@ -27,29 +27,30 @@ exports.test_cache = function(req, res, next){
 };
 
 exports.asyncMerge = function(req, res, next){
-	var res = res;
-	var indexMerge = {
-		apps: function(callback){
-			request({url:api_config.apps}, function(error,data){
-				callback(null, data);
-			})
-		},
 
-		test: function(callback){
-			request({url:api_config.test}, function(err, data){
-				callback(null, data);
-			})
-		},
 
-		apps2: function(callback){
-			request({url:api_config.apps2}, function(err, data){
-				callback(null, data);
-			})
-		}
-	};
-	async.parallel(indexMerge, function(err, result){
-		return res.send({'app': JSON.parse(result.apps.body)[0].name, 'test_cache':JSON.parse(result.test.body), 'app2-length':result.apps2.body.length});
-	})
+	//requestP({url:api_config.apps}).then(function(result){
+	//	console.log(result);
+	//	return res.send(result.statusCode);
+	//}).catch(next);
+
+	
+	var promiseList = [
+		requestP({url:api_config.apps}),
+		requestP({url:api_config.test}),
+		requestP({url:api_config.apps2})
+	];
+
+	Promise.all(promiseList).then(function(result) {
+
+		return res.send({
+			'app'         : JSON.parse(result[0].body)[0].name,
+			'test_cache'  : JSON.parse(result[1].body),
+			'app2-length' : result[2].body.length
+		});
+	}).catch(next);
+
+
 };
 
 // co + generator
