@@ -11,7 +11,6 @@ release.%:
 	-@cd ${pwd}/backend && npm install && cd ..
 	@docker build -t aegis-pay:$* .
 	@git checkout master
-    
 
 # 用最新的代码构建
 release:
@@ -22,7 +21,8 @@ release:
 
 # 将构建物发布到harbor
 publish:
-	-@git   
+	-@docker tag aegis-pay:${latest} registry.yimei180.com/aegis-pay:${latest}   
+	-@docker push registry.yimei180.com/aegis-pay:${latest}   
 
 # 删除container
 clean:
@@ -34,9 +34,15 @@ dev: clean
 	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay
 
 # 运行指定版本
-run.%:
+dev.%:
 	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay:$*
 
 enter:
 	-@docker exec -it aegis-pay-dev bash
+
+stop:
+	-@docker stop aegis-pay-dev
+
+start:
+	-@docker start aegis-pay-dev
 
