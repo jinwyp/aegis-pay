@@ -4,9 +4,9 @@
 var config = {
   // debug 为 true 时，用于本地调试
 
-  mock: process.env.MOCK,
+  mock: process.env.MOCK == 'true' ? true : false,
+  debug: process.env.MOCK == 'true' ? true : false,
 
-  debug: true,
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
   name: 'NRient',
   description: '',
@@ -15,8 +15,12 @@ var config = {
   site_icon: '',
   // 程序运行的端口
   port: 3000,
+
+  https: false,
+
   // 域名
-  host: '127.0.0.1',
+  host: 'pay-local.yimei180.com',
+
   session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',
   auth_cookie_name: 'signed_cookie_username',
   redis:{

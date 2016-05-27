@@ -21,18 +21,16 @@ var config = {
   https: true,
 
   // 域名
-  host: 'pay.yimei180.com',
+  host: 'pay-staging.yimei180.com',
 
   session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',
   auth_cookie_name: 'signed_cookie_username',
   redis:{
-  	host: '10.0.10.2',   // 这个应该不是这个地址
+  	host: '10.0.10.2',
   	port: '6379',
   	db: 0
   },
-
   sysFileDir: '/Users/beatacao/work/aegis-pay/backend/files/'
-
 };
 
 module.exports = config;
