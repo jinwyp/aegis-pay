@@ -40,7 +40,8 @@ exports.asyncMerge = function(req, res, next){
 			'test_cache'  : JSON.parse(result[1].body),
 			'app2-length' : result[2].body.length
 		});
-	});
+	}).catch(next);
+
 
 };
 
