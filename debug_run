@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /app/backend;
+
+supervisor -w middlewares,common,nock,controllers,api,views,app.js  app.js
+

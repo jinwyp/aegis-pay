@@ -1,0 +1,142 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet("/static/styles/statusBar.css") -%>
+<% stylesheet("/static/styles/sellerDelivery.css") -%>
+<% stylesheet("/static/styles/orderUserInfo.css") -%>
+<% stylesheet("/static/styles/orderTable.css") -%>
+<% script("/static/scripts/confirmDelivery/sellerDelivery.js") -%>
+<% include ../global/header/subHeader %>
+
+<div id="sellerDelivery">
+    <div class="sellerDeliveryWrap">
+    	<p class="containerTit">买家已确认提货，请对提货数据进行审核并开具结算单</p>
+    	<div class="infoContainer">
+    		<div class="deliveryAmount">
+    			提货数量：<b><%= deliveryAmount%></b> 吨
+    		</div>
+    		<div class="tableContainer">
+    			<div class="tableTit">请审核检测结果</div>
+
+                    <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
+                    <% var tableIndex=indexList.length %>
+                    <%for(var j=0;j<tableIndex;j++){%>
+                        <%if(totalCount<=9){%>
+                        <div class="tableWrap">
+                            <table class="checkList">
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount==1){%>
+                                    <td width="55"><%= i %></td>
+                                    <%}else if(tdCount==2){%>
+                                    <td width="105"><i class="calIcon"></i><%= i %></td>
+                                    <%}else{%>
+                                    <td width="105"><%= i %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<9-tdCount;i++){%>
+                                    <td width="105"></td>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <%for(var i in indexList[j]){%>
+                                    <td><%= indexList[j][i]%></td>
+                                    <%}%>
+                                    <%for(var i=0;i<9-tdCount;i++){%>
+                                    <td width="105"></td>
+                                    <%}%>
+                                </tr>
+                            </table>
+                        </div>
+                        <%}else{%>
+                        <div class="tableWrap">
+                            <table class="checkList">
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount<=9){%>
+                                    <%if(tdCount==1){%>
+                                    <td width="55"><%= i %></td>
+                                    <%}else if(tdCount==2){%>
+                                    <td width="105"><i class="calIcon"></i><%= i %></td>
+                                    <%}else{%>
+                                    <td width="105"><%= i %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                        <%if(tdCount<=9){%>
+                                            <%if(tdCount==1){%>
+                                                <td rowspan="3"><%= indexList[j][i]%></td>
+                                            <%}else{%>
+                                                <td><%= indexList[j][i]%></td>
+                                            <%}%>
+                                        <%}%>
+                                    <%}%>
+                                </tr>
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount>9){%>
+                                    <td><%= i %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<17-tdCount;i++){%>
+                                    <td></td>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount>9){%>
+                                    <td><%= indexList[j][i] %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<17-tdCount;i++){%>
+                                    <td></td>
+                                    <%}%>
+                                </tr>
+                            </table>
+                        </div>
+                        <%}%>
+                    <%}%>
+
+    		</div>
+    		<div class="downWrap">
+                <div class="leftBan"><span>*</span>质量确认单</div>
+                <div class="rightBan">
+                	<p>共<span>10</span>个文件，请下载查看。</p>
+                </div>
+    		</div>
+            <div class="downWrap">
+                <div class="leftBan"><span>*</span>数量确认单</div>
+                <div class="rightBan">
+                	<p>共<span>10</span>个文件，请下载查看。</p>
+                </div>
+            </div>
+			<div class="downWrap">
+                <div class="leftBan"></div>
+                <div class="rightBan">
+                	<a href="javascript:void(0)" class="btnStyle return" data-toggle="modal"
+                       data-target="#returnModal">退回</a>
+                	<a href="javascript:void(0)" class="btnStyle confirm">确认并开具结算单</a>
+                </div>
+            </div>            
+
+    	</div>
+    </div>
+</div>
+<div class="container">
+    <div class="row clearfix drop_modal">
+        <div id="returnModal" class="modal fade in" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-content">
+                <div class="modalTit">退回原因<a href="javascript:void(0)" class="closeModal" data-dismiss="modal" aria-hidden="true" ></a></div>
+                <div class="modalCon">
+                    <textarea name="" id="textInput" placeholder="请简要填写退回原因，限200个字" maxlength="200"></textarea>
+                    <p class="restTxt">您还可以输入<span id="restNum">200</span>个字</p>
+                </div>
+                <div class="btnWrap">
+                    <a href="javascript:void(0)" class="btnCancel"  data-dismiss="modal" aria-hidden="true" >取消</a>
+                    <a href="javascript:void(0)" class="btnSubmit">确认</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,13 +8,29 @@ var apiHost = 'http://localhost:8888/mall/order/';			// 域名
 //var co = require('co');
 //var restler = require('restler-bluebird');
 
+var home = ['<ul>',
+	'<li><a>signin: post</a></li>',
+	'<li><a>signout: post</a></li>',
+	'<li><a href="/api/apps">apps</a></li>',
+	'<li><a href="/api/test-cache">test_cache</a></li>',
+	'<li><a href="/api/async-merge">async merge</a></li>',
+	'<li><a href="/api/cogen-merge">co+genrator merge</a></li>',
+	'<li><a href="/compact?orderid=1">签订电子合同</a></li>',
+	'<li><a href="/demo">demo</a></li>',
+	'<li><a href="/header">header</a></li>',
+	'<li><a href="/subHeader">subHeader</a></li>',
+	'<li><a href="/footer">footer</a></li>',
+	'<li><a href="/confirmDelivery">确认订单</a></li>',
+	'</ul>'].join('');
+
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
 	// 异步调取Java数据
-	console.log('获取到的参数是------------1111----------------'+req.query.id);
-	request({url:'http://localhost:7777/getOrderDetail?id='+req.query.id}, function(err, data) {
-		console.log("data===================="+data);
+	console.log('orderDetail获取到的参数是----------------------------'+req.query.id);
+	request({url:'http://localhost:7777/getOrderDetail'}, function(err, data) {
+		console.log('orderDetail获取到的错误是----------------------------' + err);
+		console.log("orderDetail请求返回的数据是----------------------------" + data);
 		if(data!=undefined) {
 			var source = JSON.parse(data.body);
 			var step = 0;
@@ -62,7 +78,6 @@ exports.getOrderDetail = function (req, res, next) {
 				]
 			};
 
-			console.log('获取到的错误是----------------------------' + err);
 			//headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
 			var content = {
 				headerTit: "待签电子合同",
@@ -72,11 +87,13 @@ exports.getOrderDetail = function (req, res, next) {
 				"sellInfo": source.data.sellInfo,
 				"order": source.data.order
 			};
-			console.log('获取到的结果是----------------------------' + content);
+			//console.log('orderDetail获取到的结果是----------------------------' + content);
 			//渲染页面,指定模板&数据
 			res.render('order/buyOrderDetail', content);
+		//	res.send(home);
 		}else{
-			res.send("{您访问的数据不存在}");
+			res.send(data.body);
+			//res.send("{您访问的数据不存在}");
 		}
 	});
 
