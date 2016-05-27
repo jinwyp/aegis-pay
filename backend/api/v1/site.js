@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
-var request = Promise.promisify(require("request"));
+var request = require("request");
+var requestP = Promise.promisify(require("request"));
 var api_config = require('./api_config');
 var cache = require('../../common/cache');
 var co = require('co');
@@ -27,10 +28,17 @@ exports.test_cache = function(req, res, next){
 
 exports.asyncMerge = function(req, res, next){
 
+
+	//requestP({url:api_config.apps}).then(function(result){
+	//	console.log(result);
+	//	return res.send(result.statusCode);
+	//}).catch(next);
+
+	
 	var promiseList = [
-		request({url:api_config.apps}),
-		request({url:api_config.test}),
-		request({url:api_config.apps2})
+		requestP({url:api_config.apps}),
+		requestP({url:api_config.test}),
+		requestP({url:api_config.apps2})
 	];
 
 	Promise.all(promiseList).then(function(result) {
