@@ -39,6 +39,7 @@
     "lodash": "4.11.1",
     "markdown-it": "3.0.3",
     "moment": "^2.13.0",
+    "morgan": "^1.7.0",
     "multiline": "1.0.1",
     "nock": "^8.0.0",
     "node-ftl": "^0.1.1",
