@@ -7,7 +7,6 @@
 var config = {
 
     debug : true, // debug 为 true 时，用于本地调试
-
     mock : process.env.MOCK === 'true' ? true : false,
 
     get mini_assets() {

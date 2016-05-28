@@ -16,10 +16,12 @@ define(['jquery'],function($){
               payPassword = self.els.$pass.val();
           if(!sms_code){
             self.els.$codeTipErr.text('请输入校验码').show();
+            self.els.$code.focus();
             return;
           }
           if(!payPassword){
             self.els.$passTipErr.text('请输入支付密码').show();
+            self.els.$pass.focus();
             return;
           }
           self.els.$codeTipErr.hide();
@@ -38,7 +40,7 @@ define(['jquery'],function($){
             if(data.errType && (data.errType=='sms_code')){
               self.els.$codeTipErr.text('校验码错误').show();
             }else if(data.errType && (data.errType=='payPassword')){
-              self.els.$passTipErr.text('支付密码错误').show();
+              self.els.$passTipErr.text('密码输入错误，请重新输入，您有3次输入密码的机会，若三次输入错误，密码将被锁定').show();
             }
           }
         })

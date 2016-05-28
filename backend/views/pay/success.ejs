@@ -4,7 +4,7 @@
 <div class="mainWrapper">
     <% include ../global/order/statusBar %>
     <div class="progressDetail">
-      <h3>您已成功付款<%= formatMoney(order.totalMoney) %>元</h3>
+      <h3><span class='icon_ok'></span>您已成功付款<%= formatMoney(order.totalMoney) %>元</h3>
       <ul>
         <li><span>提货地址：<%= order.addr %></span></li>
         <li><span>卖家姓名：<%= order.sellerLoginName %></span></li>
