@@ -17,6 +17,7 @@ exports.home = function (req, res, next) {
 				'	<li><a href="/settlement/settlementForm_buyer?id=111&type=1">买家结算单</a></li>',
 				'	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
 				'	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
+				'	<li><a href="/return">退货详情页</a></li>',
 				'</ul>'].join('');
 	res.send(home);
 };

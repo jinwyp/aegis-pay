@@ -24,13 +24,18 @@
   }
 }
 
-.btn_blue, .btn_gray{
+.btn_blue, .btn_gray, .btn_blue_small{
+  display:inline-block; *display:inline; zoom:1;
   width:140px; height:40px; line-height: 40px; text-align:center;
   color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
   @include border-radius(2px); border:none;
 }
 .btn_gray{
   background: $color_btn_gray;
+}
+.btn_blue_small{
+  display:inline-block; *display:inline; zoom:1;
+  height:32px; line-height: 32px; font-size:$size_font_middle; width:110px;
 }
 
 // lightbox 样式调整
@@ -69,7 +74,7 @@
   }
 }
 
-.tipModal{
+.tipModal, .confirmModal{
   .modal-content{ @include box-shadow(none);}
   .modal-header{ height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4; }
   .modal-dialog{ width:480px; padding:15px 26px; }
@@ -80,6 +85,16 @@
       &:hover{ color:#fff; }
     }
   }
+}
+
+.confirmModal{
+    font-size: $size_font_middle;
+    .modal-title{
+        font-size:20px; color:$color_font; margin-top:-6px;
+    }
+    .modal-content{
+        label{ font-weight:normal; }
+    }
 }
 
 .icon_confirm{
@@ -93,6 +108,19 @@
   display:inline-block; *display:inline; zoom:1;
   width:22px; height:22px; background: url(/static/images/sprite.png) no-repeat -549px -174px;
 }
+
+.glyphicon-refresh-animate{
+  animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+.icon_cash, .icon_cash_disable{
+  display: inline-block; *display:inline; zoom:1; width:32px; height:32px;
+  background:url(/static/images/sprite_ico.png) no-repeat -551px -599px;
+}
+.icon_cash_disable{
+  background-position:-551px -664px;
+}
+
 
 // --图片精灵-图标坐标---------->>>>>---->>>>>>>-------------
 // 大叉
@@ -340,3 +368,5 @@
   }
 }
 // --图片精灵-图标坐标---------------<<<<<<<<<<<<<------
+
+

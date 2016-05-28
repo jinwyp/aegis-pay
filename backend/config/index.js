@@ -1,3 +1,11 @@
-var mode = process.env.MODE;
+var defaultConfig = require('./default.js');
 
-module.exports = require('./' + mode);
+
+var mode = process.env.MODE || 'local';
+
+var currentConfig = require('./' + mode);
+
+
+module.exports = Object.assign({}, defaultConfig, currentConfig);
+
+

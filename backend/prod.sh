@@ -4,7 +4,6 @@ script_dir=$(cd `dirname $0`; pwd);
 cd $script_dir;
 
 export NODE_PATH=$HOME/.nvm/versions/node/`node -v`/lib/node_modules;
-export DOMAIN=com;
 export MOCK=false;
 export DEBUG=false;
 export MODE="prod";

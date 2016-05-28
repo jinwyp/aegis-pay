@@ -13,4 +13,4 @@ exports.compact = function(req, res, next){
 			res.render('compact/compact', pageData);
 		}
 	})
-}
+};

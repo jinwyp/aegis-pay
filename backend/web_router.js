@@ -16,7 +16,10 @@ var confirmDeliveryController = require('./controllers/confirmDelivery');
 var subHeaderController = require('./controllers/subHeader');
 var orderCloseContr = require('./controllers/order/orderClose');                            // 关闭订单 模块(控制文件路径)
 var settlementFormContr = require('./controllers/settlement/settlementForm');               // 结算单开具页面 模块(控制文件路径)
-var sellerDeliveryController = require('./controllers/sellerDelivery');
+var sellerDeliveryController = require('./controllers/sellerDelivery');                     // 关闭订单 模块(控制文件路径)
+var returnDetailController = require('./controllers/returnDetail');
+var payCtl = require('./controllers/pay');                                                  //支付模块
+
 
 
 var router = express.Router();
@@ -37,6 +40,12 @@ router.get('/settlement/settlementForm_buyer', settlementFormContr.orderInfo);  
 router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo);             // 结算单 卖家 页面路由
 router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
+router.get('/return', returnDetailController.returnDetail);
+router.get('/order/progress', payCtl.success);
+router.get('/pay', payCtl.page);
+
+
+
 
 
 module.exports = router;
