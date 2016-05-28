@@ -13,13 +13,16 @@ $color_readme_border: #fecdb3;
 
 $color_tip_font: #999;
 $color_orange: #ff6e0f;
+$color_lightblue: #f3fcff;
 
 $main_width: 1000px;
 $main_margintop: 20px;
 $main_marginbottom: 30px;
 
+$size_font_big_num: 24px;
 $size_font_pageTitle: 18px;
 $size_font_blockTitle: 16px;
+$size_font_middle:14px;
 $size_font_nomal: 12px;
 
 $font_family: Microsoft YaHei;
@@ -44,8 +47,4 @@ to { transform: scale(1) rotate(360deg);}
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg);}
     to { -webkit-transform: rotate(360deg);}
-}
-.glyphicon-refresh-animate{
-  animation: spin .7s infinite linear;
-  -webkit-animation: spin2 .7s infinite linear;
 }

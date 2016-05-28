@@ -1,4 +1,4 @@
-@import './global/var.scss';
+@import './global/common.scss';
 @import './statusBar.scss';
 
 body{ background-color: $color_body_bg; font-size:$size_font_nomal; font-family: $font_family;}
@@ -6,16 +6,50 @@ body{ background-color: $color_body_bg; font-size:$size_font_nomal; font-family:
 #paymentHeader .headWrap .wrap1000 .menuList li.webNav{ width:auto; }
 #paymentHeader .headWrap .wrap1000 .menuList li .hideMenu{ width:auto; }
 
+input[type="text"]{
+    width:220px; height:34px; line-height: 34px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
+}
+
 .mainWrapper{
+  font-size:14px;
   width: $main_width; margin:$main_margintop auto $main_marginbottom; padding:10px 25px 40px;
   background-color:$color_main_bg;
-  #pay{
-    .tip-error, .tip-msg{ display:none; }
+  .icon_cash, .icon_cash_disable{
+    vertical-align: middle; margin-right:6px;
   }
-  .progressDetail{
-    a.btn_blue{
-      display: block;
-      &:hover{ color:#fff; text-decoration:none; }
+  .tip-msg, .tip-error{
+      margin-left:75px; font-size:$size_font_nomal; color:$color_tip_font; line-height: 18px;
+  }
+  // 付款页面
+  @import './pay/pay.scss';
+  // 付款成功页
+  @import './pay/success.scss';
+}
+#imgcodeModal{
+    .modal-body{
+        p{
+            margin:20px 0 0;
+            span, img, label{ vertical-align: middle; }
+            &:first-child{
+                img{
+                    border:1px solid $color_border_gray;
+                }
+            }
+            label{ margin-right:10px; }
+            input[type="text"]{ margin-left:0; }
+        }
     }
-  }
+    #generate_imgcode{
+        display:inline-block; *display:inline; zoom:1; line-height: 13px; margin-left:10px;
+        cursor:pointer; font-size:$size_font_nomal; color:$color_tip_font;
+        i{
+            color:$color_btn_blue; display: block;
+        }
+    }
+    .modal-footer{
+        text-align:left;
+        #imgcodeValid{
+            margin-left:94px;
+        }
+    }
 }

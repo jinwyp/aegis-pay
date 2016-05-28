@@ -1,6 +1,11 @@
 define(['jquery','bootstrap'],function($){
   return {
       init: function(){
+          this.els = {
+            $code: $('input[name="sms_code"]'),
+            $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
+            $codeTipMsg: $('input[name="sms_code"]').parent().find('.tip-msg')
+          }
         this.imgcode();
       },
       imgcode: function(){
@@ -25,12 +30,14 @@ define(['jquery','bootstrap'],function($){
         })
       },
       send_sms: function(){
+        var self = this;
         var $send_sms = $('#send_code');
         $.post('api/send_sms', function(data){
           if(data.success){
             var time = data.time;
             $send_sms.addClass('disable').text(time + 's后重新发送');
-            $('input[name="sms_code"]').parent().find('.tip-msg').text('校验码已发送，5分钟之内输入有效，请勿泄露!').show();
+            self.els.$codeTipMsg.text('校验码已发送，5分钟之内输入有效，请勿泄露!').show();
+            self.els.$codeTipErr.hide();
             var timer = setInterval(function(){
               time -= 1;
               if(time>0){

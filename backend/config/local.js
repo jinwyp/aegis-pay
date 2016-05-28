@@ -1,6 +1,6 @@
 /**
  * config
  */
-var config = {};
+var config = {mock: true};
 
 module.exports = config;
