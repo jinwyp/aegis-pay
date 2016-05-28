@@ -17,7 +17,7 @@ var subHeaderController = require('./controllers/subHeader');
 var sellerDeliveryController = require('./controllers/sellerDelivery');  // 关闭订单 模块(控制文件路径)
 var orderCloseContr = require('./controllers/order/orderClose');                // 关闭订单 模块(控制文件路径)
 var payCtl = require('./controllers/pay');    //支付模块
-
+var returnDetailController = require('./controllers/returnDetail');
 
 var router = express.Router();
 router.get('/demo', demoController.demo);                                       // 添加路由
@@ -35,6 +35,7 @@ router.get('/orderTest', orderController.orderTest);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 关闭订单 路由
 router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
+router.get('/return', returnDetailController.returnDetail);
 
 router.get('/pay', payCtl.page);
 router.get('/order/progress', payCtl.success);

@@ -14,6 +14,7 @@ exports.home = function (req, res, next) {
 					'<li><a href="/footer">footer</a></li>',
 					'<li><a href="/confirmDelivery">确认订单</a></li>',
 					'<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
+					'<li><a href="/return">退货详情页</a></li>',
 				'</ul>'].join('');
 	res.send(home);
 };
