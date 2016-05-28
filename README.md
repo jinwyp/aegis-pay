@@ -1,5 +1,6 @@
-# aegis-pay
-支付项目
+# aegis-pay 支付项目
+
+
 
 ## 安装依赖
 backend 目录下：
@@ -19,3 +20,10 @@ app 目录下：
 
 ## 访问
 - http://localhost:8800
+
+
+## Mock 测试数据
+- 使用 [nock](http://github.com) 来拦截Http请求模拟测试数据
+- 默认 nock 的scope 只模拟一次请求, 第二次相同的请求就会返回失败。 使用.times(10)设置可以连续请求的次数 [文档](https://github.com/node-nock/nock#repeat-response-n-times)
+- 使用 persist() 可以模拟无限次请求 [文档](https://github.com/node-nock/nock#persist)
+
