@@ -27,10 +27,19 @@ branch.%:
 	@docker build -t aegis-member:$* .
 	@git checkout master
 
+# 测试发布
+devPublish:
+	@../aegis-docker/publish.sh aegis-pay 192.168.99.100:5000
+
+devPublish.%
+	@../aegis-docker/publish.sh aegis-pay 192.168.99.100:5000 $*
+
 # 将最新的tag构建的image 发布到生产image仓库
 publish:
-	-@docker tag aegis-pay:${latest} registry.yimei180.com/aegis-pay:${latest}   
-	-@docker push registry.yimei180.com/aegis-pay:${latest}   
+	@../aegis-docker/publish.sh aegis-pay registry.yimei180.com
+
+publish.%:
+	@../aegis-docker/publish.sh aegis-pay registry.yimei180.com $*
 
 # 清理容器
 clean: stop
