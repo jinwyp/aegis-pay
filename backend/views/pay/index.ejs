@@ -20,9 +20,10 @@
         <li>支付：<span><%= formatMoney(order.totalMoney) %></span>元</li>
       </ul>
       <ul>
-        <li>手机号码：<%= user.phone %><span class='send_sms'>发送校验码</span></li>
+        <li>手机号码：<%= user.phone %><span id='send_code' class='send_code' data-toggle='modal' role='button' data-target='#imgcodeModal'>发送校验码</span></li>
         <li>
           校验码：<input type="text" name="sms_code" value="">
+          <p class='tip-msg'></p>
           <p class='tip-error'></p>
         </li>
         <li>易煤网支付密码：</li>
@@ -44,4 +45,5 @@
       <% } %>
     </form>
 </div>
+<% include blocks/imgcode.ejs %>
 <% script("/static/scripts/pay/index.js") -%>

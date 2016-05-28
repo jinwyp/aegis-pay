@@ -11,6 +11,7 @@ var api_config = {
 	products: host + 'products',
 	uploadFile: host + 'upload-file',
 	delFile: host + 'del-file',
+	testUser: {"userId":123, "userName": "peach", "phone": 18623232323},
 	/**
 	 * 提交已盖章电子合同
 	 * method: post
@@ -52,7 +53,13 @@ var api_config = {
  	 * method: post
  	 * params: {version:'', userId:'',orderId:'',payPassword:''}
  	 */
-	 paySubmit: host + 'mall/order/payment/submit'
+	 paySubmit: host + 'mall/order/payment/submit',
+	 /**
+ 	 * 支付－付款成功
+ 	 * method: get
+ 	 * params: {orderId:''}
+ 	 */
+	 orderProgress: host + 'mall/order/progress'
 
 };
 

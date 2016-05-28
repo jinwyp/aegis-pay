@@ -23,6 +23,7 @@ router.get('/confirmDelivery/test', confirmDelivery.test);
 router.post('/send_sms', payApi.send_sms);
 router.post('/pay/submit', payApi.submit);
 router.get('/imgcode', payApi.ccapimg);
+router.post('/validImgcode', payApi.validImgcode);
 
 
 router.use(function(req, res, next){

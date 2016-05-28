@@ -1,0 +1,21 @@
+<div id="imgcodeModal" class="modal fade tipModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">图片验证</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          <label>图片验证码：</label><img src="api/imgcode" /><span id='generate_imgcode'>看不清<i>换一张</i></span>
+        </p>
+        <p>
+          <label>输入验证码：</label><input type="text" name="imgcode" value=""/>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <span id='imgcodeValid' class="btn btn_blue">确认</span>
+      </div>
+    </div>
+  </div>
+</div>

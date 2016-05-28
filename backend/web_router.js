@@ -37,6 +37,7 @@ router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 
 router.get('/pay', payCtl.page);
+router.get('/order/progress', payCtl.success);
 
 
 module.exports = router;
