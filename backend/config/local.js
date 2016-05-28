@@ -19,7 +19,8 @@ var config = {
   https: false,
 
   // 域名
-  host: 'pay-local.yimei180.com',
+  domain: 'pay-local.yimei180.com',
+  homepage: 'http://pay-local.yimei180.com:3000',
 
   session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',
   auth_cookie_name: 'signed_cookie_username',

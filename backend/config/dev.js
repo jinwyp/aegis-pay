@@ -21,7 +21,9 @@ var config = {
   https: true,
 
   // 域名
-  host: 'pay-dev.yimei180.com',
+  domain: 'pay-dev.yimei180.com',
+  homepage: 'https://pay-dev.yimei180.com',
+  port: 3000,
 
   session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',
   auth_cookie_name: 'signed_cookie_username',

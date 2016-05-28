@@ -19,7 +19,8 @@ var config = {
   https: true,
 
   // 域名
-  host: 'pay.yimei180.com',
+  domain: 'pay.yimei180.com',
+  homepage: 'https://pay.yimei180.com',
 
   // 程序运行的端口
   port: 3000,
