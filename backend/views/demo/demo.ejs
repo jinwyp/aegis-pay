@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>测试页面</title>
-    <!-- dev css:assets -->
-    <!-- base: normalize,color -->
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/demo.css">
-    <link rel="stylesheet" href="/styles/orderClose.css">
-    <!-- HTMLshiv for IE -->
-    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
-    <link type="image/x-icon" rel="shortcut icon" href="/static/images/compact/favicon.png" />
-</head>
-<body>
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet('/static/styles/demo.css') -%>
+<!-- < pageTitle('Demo 页面') >-->
+<% script("/static/scripts/demo.js") -%>
 
 
-<% include ../global/header/header %>
 
-
-<div style="margin: 20px 10px">
-
-    <table class="listBox" id="listBox">
+<!--测试列表 -->
+<div class="demoList">
+    <table id="listBox">
         <thead>
         <tr>
             <th>序号</th>
@@ -30,61 +18,169 @@
         <tbody>
 
         <% listData.forEach(function(city){ %>
-            <tr>
-                <td><%= city.id%></td>
-                <td><%= city.name%></td>
-                <td><%= city.desc%></td>
-            </tr>
+        <tr>
+            <td><%= city.id%></td>
+            <td><%= city.name%></td>
+            <td><%= city.desc%></td>
+        </tr>
         <% }) %>
-
         </tbody>
     </table>
-
 </div>
+
+
 
 <!-- 状态条 -->
 <% include ../global/order/statusBar %>
 
-<!-- 页底 -->
-<% include ../global/footer/footer %>
 
 
-<table class="table">
-    <thead>
-    <tr>
-        <td>大号</td>
-        <td>默认</td>
-        <td>小号</td>
-        <td>超小</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><input class="iBtn iBtn-lg" type="button" value="确定"/>  </td>
-        <td><input class="iBtn        " type="button" value="确定"/>  </td>
-        <td><input class="iBtn iBtn-sm" type="button" value="确定"/>  </td>
-        <td><input class="iBtn iBtn-xs" type="button" value="确定"/>  </td>
-    </tr>
-    <tr>
-        <td><input class="ipt ipt-lg" type="text"/> </td>
-        <td><input class="ipt       " type="text"/> </td>
-        <td><input class="ipt ipt-sm" type="text"/> </td>
-        <td><input class="ipt ipt-xs" type="text"/> </td>
-    </tr>
-    <tr>
-        <td>1111</td>
-        <td>1111</td>
-        <td>1111</td>
-        <td>1111</td>
-    </tr>
-    <tr>
-        <td>1111</td>
-        <td>1111</td>
-        <td>1111</td>
-        <td>1111</td>
-    </tr>
-    </tbody>
-</table>
+<!-- 各种Icon图标-->
+<div class="icnList">
+    <p class="icnBox">
+        <span class="icn_caretUp"></span>
+        <span class="describe">向上</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_caretDown"></span>
+        <span class="describe">向下</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_smallCross"></span>
+        <span class="describe">小叉</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_cross"></span>
+        <span class="describe">大叉</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_shop"></span>
+        <span class="describe">商城</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_picture"></span>
+        <span class="describe">带图</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_proper"></span>
+        <span class="describe">专有</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_doubt"></span>
+        <span class="describe">疑问</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_upLoad"></span>
+        <span class="describe">上传</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_downLoad"></span>
+        <span class="describe">下载</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_export"></span>
+        <span class="describe">导出</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_print"></span>
+        <span class="describe">打印</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_edit"></span>
+        <span class="describe">编辑</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_refresh"></span>
+        <span class="describe">刷新</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_date"></span>
+        <span class="describe">日历</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_warning"></span>
+        <span class="describe">警告</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_prompt"></span>
+        <span class="describe">提示</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_success"></span>
+        <span class="describe">成功</span>
+    </p>
+</div>
+
+
+<div class="icnList">
+    <p class="icnBox">
+        <span class="icn_roundLight"></span>
+        <span class="describe">圆点 亮</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_roundGray"></span>
+        <span class="describe">圆点 灰</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_ellipsis"></span>
+        <span class="describe">省略</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_payCircle"></span>
+        <span class="describe">支付正常</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_payCircleWrong"></span>
+        <span class="describe">支付异常</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_arrowSmallLeft"></span>
+        <span class="describe">方向键 左</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_arrowSmallRight"></span>
+        <span class="describe">方向键 右</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_arrowBigLeft"></span>
+        <span class="describe">方向键 左</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_arrowBigRight"></span>
+        <span class="describe">方向键 右</span>
+    </p>
+
+    <p class="icnBox">
+        <span class="icn_warningMax"></span>
+        <span class="describe">警告 大</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_errorMax"></span>
+        <span class="describe">错误 大</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_successMax"></span>
+        <span class="describe">成功 大</span>
+    </p>
+</div>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 
 
@@ -93,12 +189,3 @@
 
 
 
-
-
-
-
-</body>
-<!-- dev js:assets -->
-<script data-main="/scripts/demo.js" src='../../libs/require.min.js'></script>
-
-</html>

@@ -23,6 +23,10 @@ $size_font_blockTitle: 16px;
 $size_font_nomal: 12px;
 
 $font_family: Microsoft YaHei;
+$bgUrl: "/static/images/sprite_ico.png";
+$ffYh: "\5FAE\8F6F\96C5\9ED1";
+$ffSt: '\5B8B\4F53';
+$ffArial: 'Arial';
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;

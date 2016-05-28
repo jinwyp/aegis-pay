@@ -50,6 +50,8 @@ exports.demo = function (req, res, next) {
 
 
 		var DATA = {
+			pageTitle: 'Demo_页面标题',
+			headerTit: '开具结算单',
 			listData: JSON.parse(data.body),		//服务器端 数据模拟
 			statusObj: statusObj					//NODE端 数据模拟
 		};
