@@ -10,6 +10,8 @@ source $script_dir/../aegis-docker/common.sh;
 
 eval $(docker-machine env testing);
 
+nginx_ip=`get_vm_ip`;
+
 # 启动基础镜像
 start_docker mysql $mysql_dir;
 start_docker pay-redis $redis_dir;
@@ -28,13 +30,14 @@ fi
 echo "启动测试...";
 cd $script_dir;
 docker run -it --rm \
+  --name aegis-pay \
   --net aegis-bridge \
   --ip 10.0.20.2 \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
-  -e DOMAIN=cn \
   -e MOCK=false \
   -e DEBUG=true \
-  -e MODE=docker \
+  -e MODE=dev \
+  -e NGINX_IP=$nginx_ip \
   ubuntu-nodejs /debug_run
 

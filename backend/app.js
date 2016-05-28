@@ -147,10 +147,12 @@ if (config.debug) {
   });
 }
 
-app.listen(config.port, function () {
-  logger.log("Server listening on port:", config.port);
-  logger.log("Success on domain:", config.host, config.port);
-});
-
-
 module.exports = app;
+
+if (!module.parent) {
+    app.set('port', config.port);
+    app.listen(app.get('port'), function () {
+        console.log('Express started on ' + config.homepage + ', press Ctrl-C to terminate.');
+    });
+}
+

@@ -28,13 +28,19 @@ exports.test_cache = function(req, res, next){
 
 exports.asyncMerge = function(req, res, next){
 
+    //request({url:api_config.apps}, function(err, data){
+    //    if (err) return next(err);
+    //
+    //    return res.send(data.body);
+    //});
+
 
 	//requestP({url:api_config.apps}).then(function(result){
 	//	console.log(result);
 	//	return res.send(result.statusCode);
 	//}).catch(next);
 
-	
+
 	var promiseList = [
 		requestP({url:api_config.apps}),
 		requestP({url:api_config.test}),

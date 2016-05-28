@@ -2,5 +2,7 @@
 
 cd /app/backend;
 
+echo "$nginx_ip  member-$MODE.yimei180.com"  >> /etc/hosts;
+
 supervisor -w middlewares,common,nock,controllers,api,views,app.js  app.js
 
