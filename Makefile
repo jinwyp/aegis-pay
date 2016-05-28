@@ -24,10 +24,11 @@ publish:
 	-@docker tag aegis-pay:${latest} registry.yimei180.com/aegis-pay:${latest}   
 	-@docker push registry.yimei180.com/aegis-pay:${latest}   
 
-# 删除container
-clean:
-	-@docker stop aegis-pay-dev > /dev/null 2>&1
-	-@docker rm aegis-pay-dev > /dev/null 2>&1 
+# 清理容器
+clean: stop
+	@if docker ps -a | grep aegis-pay-dev > /dev/null 2>&1; then \
+        docker rm aegis-pay-dev; \
+    fi
 
 # 运行最新image
 dev: clean
@@ -37,12 +38,32 @@ dev: clean
 dev.%:
 	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay:$*
 
+# 进入容器
 enter:
 	-@docker exec -it aegis-pay-dev bash
 
+# 停止容器
 stop:
-	-@docker stop aegis-pay-dev
+	@if docker ps | grep aegis-pay-dev > /dev/null 2>&1; then \
+		docker stop aegis-pay-dev; \
+    fi
 
+# 启动容器
 start:
-	-@docker start aegis-pay-dev
+	@if docker ps -a | grep aegis-pay-dev > /dev/null 2>&1; then \
+        if ! docker ps | grep aegis-pay-dev > /dev/null 2>&1; then \
+            docker start aegis-pay-dev; \
+        fi \
+    else \
+        make dev; \
+    fi
+
+# 容器内开发
+debug:
+	@./debug.sh
+
+
+# 本地开发
+local:
+	@./backend/run.sh
 

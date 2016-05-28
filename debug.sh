@@ -30,6 +30,7 @@ fi
 echo "启动测试...";
 cd $script_dir;
 docker run -it --rm \
+  --name aegis-pay \
   --net aegis-bridge \
   --ip 10.0.20.2 \
   -v ${script_dir}:/app \
