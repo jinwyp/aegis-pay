@@ -1,32 +1,33 @@
 pwd=$(shell pwd)
 latest=$(shell git tag | tail -n1)
 
+# 用master的最新代码构建image
 all:
 	-@cd ${pwd}/backend && npm install && cd ..
 	-@docker build -t aegis-pay .
 
-# release指定版本
+# 用指定版本的tag构建image
 release.%:
 	@git checkout $*
 	-@cd ${pwd}/backend && npm install && cd ..
 	@docker build -t aegis-pay:$* .
 	@git checkout master
 
-# 用最新的代码构建
+# 用最新的tag构建image
 release:
 	@git checkout ${latest}
 	-@cd ${pwd}/backend && npm install && cd ..
 	@docker build -t aegis-pay:${latest} .
 	@git checkout master
 
-# 构建指定分支
+# 用指定分支构建image
 branch.%:
 	@git checkout -b $*
 	@gradle clean build
 	@docker build -t aegis-member:$* .
 	@git checkout master
 
-# 将构建物发布到harbor
+# 将最新的tag构建的image 发布到生产image仓库
 publish:
 	-@docker tag aegis-pay:${latest} registry.yimei180.com/aegis-pay:${latest}   
 	-@docker push registry.yimei180.com/aegis-pay:${latest}   
@@ -37,11 +38,11 @@ clean: stop
         docker rm aegis-pay-dev; \
     fi
 
-# 运行最新image
+# 运行最新的image
 dev: clean
 	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay
 
-# 运行指定版本
+# 运行指定版本image
 dev.%:
 	-@docker run -d --name aegis-pay-dev --net aegis-bridge --ip 10.0.20.2 -d --restart=always -v ${pwd}/backend/logs:/app/aegis-pay/logs aegis-pay:$*
 
@@ -67,12 +68,13 @@ start:
 
 # 重置容器
 reset:
-	
+	-@docker ps | grep  -v CONT | awk '{ print  $1; }' | xargs docker stop
+	-@docker ps -a | grep  -v CONT | awk '{ print  $1; }' | xargs docker rm
+	-@docker images | grep '<none>' | awk '{ print $3; }' | xargs docker rmi	
 
 # 容器内开发
 debug:
 	@./debug.sh
-
 
 # 本地开发
 local:
