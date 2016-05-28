@@ -22,22 +22,28 @@ exports.send_sms = function (userInfo, smsType) {
         if (isSend) {
             var sms    = generate_code(smsType);
             var params = {"phone" : userInfo.phone, "message" : sms};
+
             request.post(api_config.sendSMSCode, function (err, data) {
-                var res = JSON.parse(data.body);
-                if (res.success) {
-                    // sms period: 5mins
-                    cache.set('yimei180_sms_' + userInfo.userId, sms, 300);
-                    console.log('smssmssmssms:' + sms)
-                    resolve(res);
-                } else {
+                if (err){
                     reject(res);
+                }else{
+                    var res = JSON.parse(data.body);
+                    if (res.success) {
+                        // sms period: 5mins
+                        cache.set('yimei180_sms_' + userInfo.userId, sms, 300);
+                        console.log('smssmssmssms:' + sms)
+                        resolve(res);
+                    } else {
+                        reject(res);
+                    }
                 }
+
             })
         } else {
             reject({"success" : false})
         }
     })
-}
+};
 
 /**
  * 生成校验码
