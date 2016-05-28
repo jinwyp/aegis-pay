@@ -21,13 +21,13 @@ var errorPageMiddleware = require("./middlewares/error_page");
 var RedisStore          = require('connect-redis')(session);
 var _                   = require('lodash');
 var responseTime        = require('response-time');
+var morgan              = require('morgan');
 var csurf               = require('csurf');
 var compression         = require('compression');
 var bodyParser          = require('body-parser');
 var busboy              = require('connect-busboy');
 var errorhandler        = require('errorhandler');
 var cors                = require('cors');
-var requestLog          = require('./middlewares/request_log');
 var renderMiddleware    = require('./middlewares/render');
 var logger              = require("./common/logger");
 var engine              = require('ejs-locals');
@@ -52,7 +52,8 @@ app.enable('trust proxy');
 
 
 // Request logger 请求时间
-app.use(requestLog);
+app.use(morgan('dev'));
+
 
 if (config.debug) {
   // Views 渲染时间
