@@ -19,6 +19,13 @@ release:
 	@docker build -t aegis-pay:${latest} .
 	@git checkout master
 
+# 构建指定分支
+branch.%:
+	@git checkout -b $*
+	@gradle clean build
+	@docker build -t aegis-member:$* .
+	@git checkout master
+
 # 将构建物发布到harbor
 publish:
 	-@docker tag aegis-pay:${latest} registry.yimei180.com/aegis-pay:${latest}   
@@ -57,6 +64,10 @@ start:
     else \
         make dev; \
     fi
+
+# 重置容器
+reset:
+	
 
 # 容器内开发
 debug:
