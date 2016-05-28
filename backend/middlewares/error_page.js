@@ -35,6 +35,10 @@ exports.errorPage = function (req, res, next) {
 
 
 process.on('uncaughtException', function(err) {
-    console.log('Node uncaughtException. Really bad error : ', err.message, err.stack);
+    console.log('Node uncaughtException. Really bad error : ', err.message);
+    console.log('Node uncaughtException. Stack : ', err.stack);
+
+    process.exit(1);
+
 });
 
