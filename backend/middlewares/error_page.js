@@ -30,3 +30,11 @@ exports.errorPage = function (req, res, next) {
 	res.type('txt').send('Not found');
 
 };
+
+
+
+
+process.on('uncaughtException', function(err) {
+    console.log('Node uncaughtException. Really bad error : ', err.message, err.stack);
+});
+
