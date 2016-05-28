@@ -14,8 +14,9 @@ var footerController = require('./controllers/footer');
 var orderController = require('./controllers/order/orderDetail');
 var confirmDeliveryController = require('./controllers/confirmDelivery');
 var subHeaderController = require('./controllers/subHeader');
-var orderCloseContr = require('./controllers/order/orderClose');
 var sellerDeliveryController = require('./controllers/sellerDelivery');  // 关闭订单 模块(控制文件路径)
+var orderCloseContr = require('./controllers/order/orderClose');                // 关闭订单 模块(控制文件路径)
+var payCtl = require('./controllers/pay');    //支付模块
 var returnDetailController = require('./controllers/returnDetail');
 
 var router = express.Router();
@@ -35,6 +36,9 @@ router.get('/order/orderClose', orderCloseContr.orderInfo);                     
 router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/return', returnDetailController.returnDetail);
+
+router.get('/pay', payCtl.page);
+router.get('/order/progress', payCtl.success);
 
 
 module.exports = router;
