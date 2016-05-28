@@ -12,8 +12,9 @@ app 目录下：
 - bower install
 
 ## 启动
-- npm test  (使用nock)
-- npm start (不使用nock)
+- npm test 或 ./run.sh -m (使用nock用来Mock数据)
+- npm start 或 ./run.sh (不使用nock)
+
 
 
 ## 访问
