@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "./run.sh -m",
-    "start": "./run.sh"
+    "start": "./run.sh -m"
   },
   "dependencies": {
     "bluebird": "^3.4.0",
