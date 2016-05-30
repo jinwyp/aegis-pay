@@ -18,7 +18,6 @@
   "dependencies": {
     "bluebird": "^3.4.0",
     "body-parser": "1.9.2",
-    "ccap": "^0.6.4",
     "co": "^4.6.0",
     "colors": "1.1.2",
     "compression": "1.2.0",
