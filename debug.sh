@@ -6,7 +6,7 @@ redis_dir=$(cd $script_dir/../aegis-docker/docker-redis; pwd);
 nginx_dir=$(cd $script_dir/../aegis-docker/docker-nginx; pwd);
 service_dir=$(cd $script_dir/../aegis-service; pwd);
 
-source $script_dir/../aegis-docker/common.sh;
+source $script_dir/../aegis-docker/bin/aegis-common.sh;
 
 eval $(docker-machine env testing);
 
