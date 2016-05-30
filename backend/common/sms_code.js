@@ -31,7 +31,7 @@ exports.send_sms = function (userInfo, smsType) {
                     if (res.success) {
                         // sms period: 5mins
                         cache.set('yimei180_sms_' + userInfo.userId, sms, 300);
-                        console.log('smssmssmssms:' + sms)
+                        console.log('----- Send SMS: ' + sms);
                         resolve(res);
                     } else {
                         reject(res);
