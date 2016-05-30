@@ -27,11 +27,17 @@ html>body{
   }
 }
 
-.btn_blue, .btn_gray, .btn_blue_small{
+.btn_blue, .btn_gray, .btn_blue_small,.btn_respond{
   display:inline-block; *display:inline; zoom:1;
   width:140px; height:40px; line-height: 40px; text-align:center;
   color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
   @include border-radius(2px); border:none;
+  &.disable{
+      background-color: $color_btn_gray; cursor:not-allowed;
+  }
+}
+.btn_respond{
+    width:auto; padding:0 15px;
 }
 .btn_gray{
   background: $color_btn_gray;
@@ -79,7 +85,13 @@ html>body{
 
 .tipModal, .confirmModal{
   .modal-content{ @include box-shadow(none);}
-  .modal-header{ height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4; }
+  .big_gray{font-size:$size_font_pageTitle; color:$color_gray;}
+  .modal-header{
+      height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4;
+      .modal-title{
+          font-size:$size_font_pageTitle; color:$color_gray;
+      }
+  }
   .modal-dialog{ width:480px; padding:15px 26px; }
   .modal-footer{
     border-top:none; text-align: center; padding-bottom:20px;
@@ -122,4 +134,26 @@ html>body{
 }
 .icon_cash_disable{
   background-position:-551px -664px;
+}
+.icon_ok{
+    display: inline-block; *display:inline; zoom:1; width:70px; height:60px;
+    background:url(/static/images/sprite_ico.png) no-repeat -378px -292px;
+}
+.icon_warn{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:18px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -552px -510px;
+}
+.icon_tip{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:20px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -550px -550px;
+}
+.tip-error{
+    color:$color_red;
+}
+.tip-msg{
+    color:$color_tip_font;
+}
+.icon_error{
+    display: inline-block; *display:inline; zoom:1; width:64px; height:64px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -187px -291px;
 }

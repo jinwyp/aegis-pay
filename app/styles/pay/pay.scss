@@ -35,8 +35,21 @@
       }
     }
     &.noneBalance{
-
+        border-color:$color_border_gray; background-color:$color_bg_gray;
     }
+  }
+  .tip-msg.noneBalance{
+      display: block; margin:0; padding-left:15px; background:$color_bg_pink; border:1px solid $color_border_gray; border-top:none;
+      padding:30px 0; color:$color_font;
+      dt{
+          font-size:$size_font_pageTitle; font-weight:normal; margin-bottom:10px;
+          span{
+              color:$color_red;
+          }
+      }
+      dd{
+          font-size:$size_font_middle; color:$color_orange;
+      }
   }
   .valid{
     margin-top:15px;
