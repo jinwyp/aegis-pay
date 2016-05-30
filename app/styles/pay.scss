@@ -18,7 +18,7 @@ input[type="text"]{
     vertical-align: middle; margin-right:6px;
   }
   .tip-msg, .tip-error{
-      margin-left:75px; font-size:$size_font_nomal; color:$color_tip_font; line-height: 18px;
+      margin-left:75px; font-size:$size_font_nomal; line-height: 18px;
   }
   // 付款页面
   @import './pay/pay.scss';
@@ -37,6 +37,9 @@ input[type="text"]{
             }
             label{ margin-right:10px; }
             input[type="text"]{ margin-left:0; }
+            &.tip-error{
+                display: none; margin:0 0 0 94px; font-size:$size_font_nomal;
+            }
         }
     }
     #generate_imgcode{
@@ -51,5 +54,22 @@ input[type="text"]{
         #imgcodeValid{
             margin-left:94px;
         }
+    }
+}
+#passErrModal{
+    .modal-body{
+        text-align:center; padding:25px 58px 0;
+        .big_gray{
+            margin-top:10px;
+        }
+    }
+    a.btn_respond{
+        &:hover{
+            color:#fff; text-decoration: none;
+        }
+    }
+    .tip-msg{
+        margin-top:10px;
+        i{ color:$color_blue;}
     }
 }

@@ -4,17 +4,17 @@
 <div class="mainWrapper">
     <% include ../global/order/statusBar %>
     <div class="progressDetail">
-      <h3><span class='icon_ok'></span>您已成功付款<%= formatMoney(order.totalMoney) %>元</h3>
+      <h3><span class='icon_ok'></span>您已成功付款<i><%= formatMoney(order.totalMoney) %></i>元</h3>
       <ul>
-        <li><span>提货地址：<%= order.addr %></span></li>
-        <li><span>卖家姓名：<%= order.sellerLoginName %></span></li>
-        <li><span>联系方式：<%= order.phone %></span></li>
+        <li><span>提货地址：</span><%= order.addr %></li>
+        <li><span>卖家姓名：</span><%= order.sellerLoginName %></li>
+        <li><span>联系方式：</span><%= order.phone %></li>
       </ul>
       <a href="/getOrderDetail?orderId=<%= order.orderId %>" class='btn_blue'>查看订单详情</a>
     </div>
-    <div class="security-tip">
-      <dl class="">
-        <dt>安全提醒：</dt>
+    <div class="security">
+      <dl class="tip-msg">
+        <dt><i class='icon_warn'></i>安全提醒：</dt>
         <dd>下单后，<span>用QQ、邮件给您发送i连接办理退款的都是骗子！</span></dd>
         <dd>如果易煤网因业务需要进行系统升级，我们会以邮件形式告知您，请关注您的邮箱，谨防假冒我平台客服人员、broker人员电话诈骗！</dd>
       </dl>
