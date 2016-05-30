@@ -1,6 +1,7 @@
 // main page
 exports.home = function (req, res, next) {
 	var home = ['<ul>',
+				'	<h1>测试</h1><hr/>',
 				'	<li><a>signin: post</a></li>',
 				'	<li><a>signout: post</a></li>',
 				'	<li><a href="/api/apps">apps</a></li>',
@@ -18,6 +19,7 @@ exports.home = function (req, res, next) {
 				'	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
 				'	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
 				'	<li><a href="/return">退货详情页</a></li>',
+				'	<h1>正式产品</h1><hr/>',
 				'</ul>'].join('');
 	res.send(home);
 };
