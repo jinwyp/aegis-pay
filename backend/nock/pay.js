@@ -2,9 +2,10 @@ var nock = require('nock');
 var API = require('../api/v1/api_config');
 var _ = require('lodash');
 
-var pay = nock(API.host).persist();
+var pay = nock(API.host);
+var payPersist = nock(API.host).persist();
 
-pay
+payPersist
 .get(function(uri){
   var ismatch = /mall\/order\/payment\?orderId=\d&userId=\d/.test(uri);
   return ismatch;

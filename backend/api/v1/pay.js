@@ -53,6 +53,7 @@ exports.ccapimg = function (req, res, next) {
 
 // 校验图片验证码
 exports.validImgcode = function (req, res, next) {
+
     userInfo    = userInfo || getUserInfo(req);
     var imgcode = req.body.code;
 
