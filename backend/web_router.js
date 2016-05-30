@@ -3,23 +3,22 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express        = require('express');
 var demoController = require('./controllers/demo');                                         // 引入 控制模块
 var siteController = require('./controllers/site');
 // var staticController = require('./controllers/static');
 // var signController = require('./controllers/sign');
-var compactController = require('./controllers/compact');
-var headerController = require('./controllers/header');
-var footerController = require('./controllers/footer');
-var orderController = require('./controllers/order/orderDetail');
+var compactController         = require('./controllers/compact');
+var headerController          = require('./controllers/header');
+var footerController          = require('./controllers/footer');
+var orderController           = require('./controllers/order/orderDetail');
 var confirmDeliveryController = require('./controllers/confirmDelivery');
-var subHeaderController = require('./controllers/subHeader');
-var orderCloseContr = require('./controllers/order/orderClose');                            // 关闭订单 模块(控制文件路径)
-var settlementFormContr = require('./controllers/settlement/settlementForm');               // 结算单开具页面 模块(控制文件路径)
-var sellerDeliveryController = require('./controllers/sellerDelivery');                     // 关闭订单 模块(控制文件路径)
-var returnDetailController = require('./controllers/returnDetail');
-var payCtl = require('./controllers/pay');                                                  //支付模块
-
+var subHeaderController       = require('./controllers/subHeader');
+var orderCloseContr           = require('./controllers/order/orderClose');                            // 关闭订单 模块(控制文件路径)
+var settlementFormContr       = require('./controllers/settlement/settlementForm');               // 结算单开具页面 模块(控制文件路径)
+var sellerDeliveryController  = require('./controllers/sellerDelivery');                     // 关闭订单 模块(控制文件路径)
+var returnDetailController    = require('./controllers/returnDetail');
+var payCtl                    = require('./controllers/pay');                                                  //支付模块
 
 
 var router = express.Router();
@@ -43,9 +42,6 @@ router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDel
 router.get('/return', returnDetailController.returnDetail);
 router.get('/order/progress', payCtl.success);
 router.get('/pay', payCtl.page);
-
-
-
 
 
 module.exports = router;

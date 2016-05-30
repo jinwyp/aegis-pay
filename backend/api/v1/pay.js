@@ -42,7 +42,7 @@ exports.submit = function (req, res, next) {
 }
 
 // 生成图片验证码
-exports.ccapimg      = function (req, res, next) {
+exports.ccapimg = function (req, res, next) {
     userInfo = userInfo || getUserInfo(req);
     var ary  = sms_code.generate_code('img');
     console.log(ary[0])
@@ -56,7 +56,7 @@ exports.validImgcode = function (req, res, next) {
     var imgcode = req.body.code;
     cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
         if (err) return next(err);
-        
+
         if (!err && data && (data == imgcode)) {
             res.json({"success" : true});
         } else {
