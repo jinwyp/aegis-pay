@@ -2,10 +2,11 @@
 
 script_dir=$(cd `dirname $0`; pwd);
 mysql_dir=$(cd $script_dir/../aegis-docker/docker-mysql; pwd);
-redis_dir=$(cd $script_dir/../aegis-docker/docker-redis; pwd);
+redis_dir=$(cd $script_dir/../aegis-docker/pay-redis; pwd);
 nginx_dir=$(cd $script_dir/../aegis-docker/docker-nginx; pwd);
 service_dir=$(cd $script_dir/../aegis-service; pwd);
 
+source $script_dir/../aegis-docker/bin/aegis-config;
 source $script_dir/../aegis-docker/bin/aegis-common.sh;
 
 eval $(docker-machine env testing);
@@ -13,8 +14,8 @@ eval $(docker-machine env testing);
 nginx_ip=`get_vm_ip`;
 
 # 启动基础镜像
-start_docker mysql $mysql_dir;
 start_docker pay-redis $redis_dir;
+start_docker mysql $mysql_dir;
 start_docker aegis-service  $service_dir;
 start_docker nginx $nginx_dir;
 
@@ -29,11 +30,11 @@ fi
 # 启动测试
 echo "启动测试...";
 cd $script_dir;
-mkdir files;
+mkdir -p files;
 docker run -it --rm \
   --name aegis-pay \
   --net aegis-bridge \
-  --ip 10.0.20.2 \
+  --ip ${aegis_pay_ip} \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
   -e MOCK=false \
