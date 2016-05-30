@@ -28,8 +28,8 @@
         </li>
         <li>
           <label>支付密码：</label><input type="text" name="payPassword" value=""><a class="forget"  href=''>忘记秘密</a>
-          <p class='tip-error'></p>
           <p class='tip-msg'>请输入6位数字的支付密码</p>
+          <p class='tip-error'></p>
         </li>
       </ul>
       <input id='payBtn' class='btn_blue payBtn' type="button" value="确认付款" />
@@ -37,11 +37,11 @@
         <ul class="buyer noneBalance">
           <li><input type="radio" disabled /></li>
           <li>
-            <span>账户余额：<%= formatMoney(order.sellerBalanceMoney) %>元</span>
-            <span>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</span>
+              <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.sellerBalanceMoney) %>元</p>
+              <p>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</p>
           </li>
         </ul>
-        <dl class="tip-error noneBalance">
+        <dl class="tip-msg noneBalance">
           <dt>您的<span>余额不足</span>，无法进行支付，请先对易煤网资金账户进行<a href=''>充值</a>，然后再进行支付！</dt>
           <dd>提示：为您的资金安全，我们建议您使用贵公司的同名账户进行充值。</dd>
         </dl>
@@ -49,4 +49,5 @@
     </form>
 </div>
 <% include blocks/imgcode.ejs %>
+<% include blocks/passerr.ejs %>
 <% script("/static/scripts/pay/index.js") -%>
