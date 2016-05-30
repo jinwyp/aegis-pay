@@ -149,8 +149,6 @@ if (config.debug) {
 
 module.exports = app;
 
-console.log(module.parent);
-
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
