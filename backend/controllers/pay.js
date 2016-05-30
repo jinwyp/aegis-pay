@@ -8,7 +8,7 @@ exports.page = function (req, res, next) {
         if (err) return next(err);
 
         var phone = _.toString(user.phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
-         res.render('pay/index', _.assign({}, {
+        return res.render('pay/index', _.assign({}, {
             headerTit : '支付货款',
             pageTitle : '支付货款'
         }, {"user" : {"phone" : phone}}, JSON.parse(data.body).data));

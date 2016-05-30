@@ -35,7 +35,7 @@ var engine              = require('ejs-locals');
 require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir = path.join(__dirname, '../app/static');
+var staticDir  = path.join(__dirname, '../app/static');
 var fileStatic = path.join(__dirname, 'files/static');
 
 var urlinfo     = require('url').parse(config.host);
@@ -56,8 +56,8 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
-  // Views 渲染时间
-  app.use(renderMiddleware.render);
+    // Views 渲染时间
+    app.use(renderMiddleware.render);
 }
 
 
@@ -72,38 +72,38 @@ app.use('/files', express.static(fileStatic));
 // 每日访问限制
 app.use(compression());
 app.use(responseTime());
-app.use(bodyParser.json({limit: '1mb'}));
-app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+app.use(bodyParser.json({limit : '1mb'}));
+app.use(bodyParser.urlencoded({extended : true, limit : '1mb'}));
 
 // mock api request:  DEBUG = nock.*
-if( config.mock ){
-  require('./nock/index');
+if (config.mock) {
+    require('./nock/index');
 }
 
 app.use(require('cookie-parser')(config.session_secret));
 
 app.use(session({
-  secret: config.session_secret,
-  store: new RedisStore({
-    port: config.redis.port,
-    host: config.redis.host,
-  }),
-  resave: true,
-  saveUninitialized: true
+    secret            : config.session_secret,
+    store             : new RedisStore({
+        port : config.redis.port,
+        host : config.redis.host,
+    }),
+    resave            : true,
+    saveUninitialized : true
 }));
 
 // custom middleware
 app.use(auth.authUser);
 
 if (!config.debug) {
-  app.use(function (req, res, next) {
-    if (req.path.indexOf('/api') === -1) {
-      csurf()(req, res, next);
-      return;
-    }
-    next();
-  });
-  app.set('view cache', true);
+    app.use(function (req, res, next) {
+        if (req.path.indexOf('/api') === -1) {
+            csurf()(req, res, next);
+            return;
+        }
+        next();
+    });
+    app.set('view cache', true);
 }
 
 // for debug
@@ -113,20 +113,20 @@ if (!config.debug) {
 
 // set static, dynamic helpers
 _.extend(app.locals, {
-  config: config,
-  Loader: Loader
+    config : config,
+    Loader : Loader
 });
 
 
 app.use(function (req, res, next) {
-  res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
-  next();
+    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    next();
 });
 
 app.use(busboy({
-  limits: {
-    fileSize: 10 * 1024 * 1024 // 10MB
-  }
+    limits : {
+        fileSize : 10 * 1024 * 1024 // 10MB
+    }
 }));
 
 // routes
@@ -134,17 +134,16 @@ app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
 
-
 app.use(errorPageMiddleware.errorPage);
 
 // error handler
 if (config.debug) {
-  app.use(errorhandler());
+    app.use(errorhandler());
 } else {
-  app.use(function (err, req, res, next) {
-    console.error('server 500 error:', err);
-    return res.status(500).send('500 status');
-  });
+    app.use(function (err, req, res, next) {
+        console.error('server 500 error:', err);
+        return res.status(500).send('500 status');
+    });
 }
 
 module.exports = app;

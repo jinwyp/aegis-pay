@@ -3,12 +3,12 @@ module.exports = function (app) {
     //以下所有方法在ejs模板中的调用(例：multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg'))
 
     /*
-    * 拼接煤炭指标方法，返回拼接字符串(例：5000-7000 kcal/kg)
-    * @param arg1   煤炭指标第一个值
-    * @param arg2   煤炭指标的第二个值
-    * @param unit   煤炭指标的单位
-    *
-    * */
+     * 拼接煤炭指标方法，返回拼接字符串(例：5000-7000 kcal/kg)
+     * @param arg1   煤炭指标第一个值
+     * @param arg2   煤炭指标的第二个值
+     * @param unit   煤炭指标的单位
+     *
+     * */
     app.locals.multiArgAppend = function (arg1, arg2, unit) {
         //console.log("arg1=" + arg1 + "-----------" + "arg2=" + arg2);
         //console.log("arg1===0:" + (arg1 == 0) + "-----------" + "arg2=0:" + (arg2 == 0));
@@ -73,12 +73,12 @@ module.exports = function (app) {
 
 
     //格式化数字(两位小数)
-    app.locals.formatDecimal = function (num , deg) {
+    app.locals.formatDecimal = function (num, deg) {
         return (num.toFixed(deg || 2) + '');
     }
 
     //数字千分符
-    app.locals.formatMoney = function (num , deg) {
+    app.locals.formatMoney = function (num, deg) {
         return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     }
 
@@ -88,11 +88,11 @@ module.exports = function (app) {
             return "数据非法";
         var unit = "千百拾亿千百拾万千百拾元角分", str = "";
         n += "00";
-        var p = n.indexOf('.');
+        var p    = n.indexOf('.');
         if (p >= 0)
-            n = n.substring(0, p) + n.substr(p+1, 2);
+            n = n.substring(0, p) + n.substr(p + 1, 2);
         unit = unit.substr(unit.length - n.length);
-        for (var i=0; i < n.length; i++)
+        for (var i = 0; i < n.length; i++)
             str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);
 
         return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
@@ -104,21 +104,21 @@ module.exports = function (app) {
      * @param type   1(yyyy-MM-dd),2(yyyy-MM-dd HH:mm:ss)
      *
      * */
-    app.locals.dateformat = function(obj, type) {
-        if(obj==undefined){
+    app.locals.dateformat = function (obj, type) {
+        if (obj == undefined) {
             return '时间格式错误';
-        }else{
-            if(type==1){
-                return obj.year+"-"+obj.monthValue+"-"+obj.dayOfMonth;
-            }else if(type==2){
-                var second=null;
-                if(obj.second<10){
-                    second=obj.nano+obj.second;
-                }else{
-                    second=obj.second;
+        } else {
+            if (type == 1) {
+                return obj.year + "-" + obj.monthValue + "-" + obj.dayOfMonth;
+            } else if (type == 2) {
+                var second = null;
+                if (obj.second < 10) {
+                    second = obj.nano + obj.second;
+                } else {
+                    second = obj.second;
                 }
-                return obj.year+"-"+obj.monthValue+"-"+obj.dayOfMonth+" "+obj.hour+":"+obj.minute+":"+second;
-            }else{
+                return obj.year + "-" + obj.monthValue + "-" + obj.dayOfMonth + " " + obj.hour + ":" + obj.minute + ":" + second;
+            } else {
                 return '请传入正确的格式化类型';
             }
         }
@@ -134,7 +134,7 @@ module.exports = function (app) {
         }
     }
 
-    app.locals.phoneFormat = function(phone){
-      return phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
+    app.locals.phoneFormat = function (phone) {
+        return phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
     }
 }
