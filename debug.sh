@@ -29,6 +29,7 @@ fi
 # 启动测试
 echo "启动测试...";
 cd $script_dir;
+mkdir files;
 docker run -it --rm \
   --name aegis-pay \
   --net aegis-bridge \
@@ -39,5 +40,6 @@ docker run -it --rm \
   -e DEBUG=true \
   -e MODE=dev \
   -e NGINX_IP=$nginx_ip \
+  -e FILES_DIR=$script_dir/files \
   ubuntu-nodejs /debug_run
 

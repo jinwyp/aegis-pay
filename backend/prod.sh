@@ -11,5 +11,6 @@ export NODE_PATH=$node_modules;
 export MOCK=false;
 export DEBUG=false;
 export MODE="prod";
+export FILES_DIR=/app/aegis-app/files;
 
 node app.js

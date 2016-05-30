@@ -13,7 +13,7 @@ var config = {
         port : '6379',
         db   : 0
     },
-    sysFileDir : '/Users/beatacao/work/aegis-pay/backend/files/'
+    sysFileDir : process.env.FILES_DIR
 };
 
 module.exports = config;

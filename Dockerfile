@@ -10,13 +10,13 @@ ADD backend/ /app/aegis-pay/
 
 VOLUME /app/aegis-pay/logs
 
+VOLUME /app/aegis-pay/files
+
 EXPOSE 3000/tcp
 
 WORKDIR /app/aegis-pay
 
 RUN chmod 755 prod.sh 
-
-# RUN rm -fr node_modules && npm install
 
 CMD ./prod.sh
 
