@@ -16,7 +16,7 @@ WORKDIR /app/aegis-pay
 
 RUN chmod 755 prod.sh 
 
-RUN rm -fr node_modules && npm install
+# RUN rm -fr node_modules && npm install
 
-CMD prod.sh
+CMD ./prod.sh
 
