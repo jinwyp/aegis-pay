@@ -149,10 +149,12 @@ if (config.debug) {
 
 module.exports = app;
 
+console.log(module.parent);
+
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('Express started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        console.log('NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
 
