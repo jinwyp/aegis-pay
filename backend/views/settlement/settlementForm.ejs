@@ -1,0 +1,60 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet('/static/styles/settlementForm.css') -%>
+<!-- < pageTitle('开具 结算单页面') >-->
+<% script("/static/scripts/settlement/settlementForm.js") -%>
+<% include ../global/header/subHeader %>
+
+
+<!-- 以下.内容部分 -->
+<div class="container">
+    <div class="bodyWrap">
+
+        <!-- 关闭板块 -->
+        <div class="plateBox">
+            <div class="plateHead borSolid">
+                <span class="prefix"></span>
+                <h3 class="headLeft fl">开具结算单</h3>
+                <!--<p class="headContent">居中标题</p>-->
+                <p class="headRight">
+                    <span class="i"></span>
+                    <a href="s" class="sdf">重要提示</a>
+                </p>
+            </div>
+            <div class="plateMain clearfix">
+
+                <p>s</p>
+                <p>s</p>
+                <p>s</p>
+                <p>s</p>
+                <p>s</p>
+                <p>s</p>
+                <p>s</p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 模态框 -->
+<div class="modal fade" id="orderModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content mt150 ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="warn_ico"></div>
+                <p class="warn_info">您确定关闭该笔订单交易?</p>
+                <div class="txt_c mt20">
+                    <button type="button" class="iBtn iBtn-cancel" data-dismiss="modal">取消</button>
+                    <button type="button" class="iBtn iBtn-primary" id="btnSubClose">确定</button>
+                </div>
+                <p><br/><br/></p>
+            </div>
+            <!--<div class="modal-footer txt_c"></div>-->
+        </div><!-- /.modal-content -->
+    </div>
+</div>

@@ -31,7 +31,7 @@ branch.%:
 devPublish:
 	@../aegis-docker/publish.sh aegis-pay 192.168.99.100:5000
 
-devPublish.%
+devPublish.%:
 	@../aegis-docker/publish.sh aegis-pay 192.168.99.100:5000 $*
 
 # 将最新的tag构建的image 发布到生产image仓库

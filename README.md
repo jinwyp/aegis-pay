@@ -1,5 +1,9 @@
 # aegis-pay 支付项目
 
+## 开发环境配置说明
+local是本地开发， dev是容器开发,  staging是上线准备环境,  prod是生产环境
+/config 目录下是配置文件
+默认的default.js, 其他的文件例如local.js, dev.js, prod.js 里面只要把数据不同的参数属性写上就可以了,会自动覆盖default.js 的key， 数据相同的key就不用写了, 这样看起来清晰。
 
 
 ## 安装依赖
@@ -29,7 +33,7 @@ app 目录下：
 
 
 
-## Nodejs 错误处理 重要
+## Nodejs 错误处理
 
 1. 回调函数Callback使用中 先处理 err错误, return 一定要写,这样出错就先返回了,不再执行后续的代码。
 ```

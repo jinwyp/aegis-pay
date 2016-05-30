@@ -5,7 +5,6 @@ var config = {
 
   // debug 为 true 时，用于本地调试
   mock: process.env.MOCK == 'true' ? true : false,
-
   debug: process.env.DEBUG == 'true' ? true : false,
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
