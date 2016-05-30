@@ -26,7 +26,7 @@ var csurf               = require('csurf');
 var compression         = require('compression');
 var bodyParser          = require('body-parser');
 var busboy              = require('connect-busboy');
-var errorhandler        = require('errorhandler');
+var errorhandler        = require('./middlewares/errorhandler');
 var cors                = require('cors');
 var renderMiddleware    = require('./middlewares/render');
 var logger              = require("./common/logger");
@@ -135,16 +135,13 @@ app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
 
-app.use(errorPageMiddleware.errorPage);
+app.use(errorhandler.PageNotFoundMiddleware);
 
 // error handler
 if (config.debug) {
-    app.use(errorhandler());
+    app.use(errorhandler.DevelopmentHandlerMiddleware);
 } else {
-    app.use(function (err, req, res, next) {
-        console.error('server 500 error:', err);
-        return res.status(500).send('500 status');
-    });
+    app.use(errorhandler.ProductionHandlerMiddleware);
 }
 
 module.exports = app;

@@ -3,12 +3,13 @@ var API = require('../api/v1/api_config');
 var _ = require('lodash');
 
 var pay = nock(API.host);
+var payPersist = nock(API.host).persist();
 
-pay
+payPersist
 .get(function(uri){
   var ismatch = /mall\/order\/payment\?orderId=\d&userId=\d/.test(uri);
   return ismatch;
-}).times(10).reply(200, function(uri){
+}).reply(200, function(uri){
   return {
     "success": true,
     "data": {"order": {
@@ -22,9 +23,9 @@ pay
               }
             }
 })
-.post('/sendSMSCode').times(100).reply(200, {"success":true, "time":120})
-.post('/mall/order/payment/submit').times(100).reply(200, {'success':false, "error":"times"})
-.get('/mall/order/progress').times(10).reply(200, {
+.post('/sendSMSCode').reply(200, {"success":true, "time":120})
+.post('/mall/order/payment/submit').reply(200, {'success':false, "error":"times"})
+.get('/mall/order/progress').reply(200, {
   "order":{
     "totalMoney": 2000000000,
     "addr": "提货地址",
