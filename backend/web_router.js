@@ -26,7 +26,7 @@ router.get('/demo', demoController.demo);                                       
 router.get('/', siteController.home);
 // router.post('/signout', signController.signout);
 // router.post('/signin', signController.signin);
-router.get('/compact', compactController.compact);
+
 router.get('/header', headerController.header);
 router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
@@ -39,7 +39,10 @@ router.get('/settlement/settlementForm_buyer', settlementFormContr.orderInfo);  
 router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo);             // 结算单 卖家 页面路由
 router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
+
 router.get('/return', returnDetailController.returnDetail);
+
+router.get('/compact', compactController.compact);
 router.get('/order/progress', payCtl.success);
 router.get('/pay', payCtl.page);
 
