@@ -38,8 +38,6 @@ require('./common/ejsFiltersAddon')(require('ejs').filters);
 var staticDir  = path.join(__dirname, '../app/static');
 var fileStatic = path.join(__dirname, 'files/static');
 
-var urlinfo     = require('url').parse(config.host);
-config.hostname = urlinfo.hostname || config.host;
 
 var app = express();
 
@@ -56,6 +54,8 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
+    console.log('----- Environment Config Variable: ');
+    console.log(config);
     // Views 渲染时间
     app.use(renderMiddleware.render);
 }
@@ -75,7 +75,8 @@ app.use(responseTime());
 app.use(bodyParser.json({limit : '1mb'}));
 app.use(bodyParser.urlencoded({extended : true, limit : '1mb'}));
 
-// mock api request:  DEBUG = nock.*
+// mock api request
+
 if (config.mock) {
     require('./nock/index');
 }
@@ -151,7 +152,7 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        console.log('----- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
 
