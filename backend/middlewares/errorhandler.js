@@ -40,11 +40,12 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     // console.log(req.is('application/json'));
 
     var resError = {
+        success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
         status: newErr.status,
-        code: newErr.code,
+        errorCode: newErr.code,
         field: newErr.field,
         stack: newErr.stack,
         error: newErr
@@ -94,10 +95,11 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     logger.log(newErr.stack);
 
     var resError = {
+        success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
-        code: newErr.code,
+        errorCode: newErr.code,
         field: newErr.field
     };
 
