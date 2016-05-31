@@ -34,13 +34,12 @@ app 目录下：
 
 
 
-## 错误分类
+## Nodejs 错误分类
 
 - 目前错误分为两种 一种是已经被代码处理的4xx错误, 一种是系统错误5xx, 其中5xx错误包括程序员写代码错误(例如使用了undefined 变量) 和 系统错误(例如网络超时, 系统挂了等)
 - 参考很好的一篇joyent的官方文章 [Error Handling in Node.js](https://www.joyent.com/developers/node/design/errors)
 - Node.js Errors 官方文档 [Errors](https://nodejs.org/api/errors.html)
-
-- 在errors目录为自定义的错误类  可以参考 [Ghost的错误](https://github.com/TryGhost/Ghost/tree/master/core/server/errors)
+- 在errors目录为自定义的错误类  可以参考 [Ghost的错误 使用Nodejs做的的博客系统](https://github.com/TryGhost/Ghost/tree/master/core/server/errors)
 
 
 #### 4xx错误 包括
@@ -52,30 +51,48 @@ app 目录下：
 
 
 #### 5xx错误 包括
-- SystemError 在程序中没有被处理的错误会在最后的errorhandler自动处理成SystemError。 一般node.js 常见的系统错误 ETIMEDOUT超时 / ECONNREFUSED 连接拒绝  [Errors](https://nodejs.org/api/errors.html)
+- SystemError 在程序中没有被处理的错误会在最后的errorhandler自动处理成SystemError。 一般node.js 常见的系统错误 ETIMEDOUT超时 / ECONNREFUSED 连接拒绝  [Errors文档](https://nodejs.org/api/errors.html)
+
+
+#### uncaughtException 错误
+- uncaughtException 是如果程序中没有正常处理到错误 通过nodejs process 监听 process.on('uncaughtException') 来兜底的错误。
+- 发生该错误表明程序写的有问题,有未处理的错误, 而且该错误的的stack 有时会丢失上下文,报错信息无法具体显示哪一行代码错误。
+- 在Express 框架中应该使用 next(err)来处理错误, 直接使用 throw new Error('Really bad error')将会导致 uncaughtException 错误。
+- 在errorhandler 中 发生uncaughtException 后 应该记录log 然后退出 process.exit(1)
+- 官方文档 [process_event_uncaughtexception](https://nodejs.org/api/process.html#process_event_uncaughtexception) 相关文章 [Uncaught Exceptions in Node.js](http://shapeshed.com/uncaught-exceptions-in-node/)
+
+
+#### unhandledRejection 错误
+- unhandledRejection 错误是针对node.js, ES6的Promise 中的吃掉的错误。在Promise中,如果发生了reject,例如 Promise.reject(new Error('Resource not yet loaded!')), 但错误没有catch(代码中没有写处理错误的catch函数),将会发生unhandledRejection错误, 通过 process.on('unhandledRejection', (reason, p) => {})
+- 在errorhandler 中 发生unhandledRejection 后 应该记录log
+- 官方文档 [process_event_unhandledrejection](https://nodejs.org/api/process.html#process_event_unhandledrejection)
+- Bluebird 这个速度最快的Promise 库同样实现了该错误  [文档](http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events)
+- Bluebird 可以通过 Promise.onUnhandledRejectionHandled 来统一处理该错误 [文档](http://bluebirdjs.com/docs/api/promise.onunhandledrejectionhandled.html)
 
 
 
 ## Nodejs 错误处理
 
-
 1. 回调函数Callback使用中 先处理 err错误, return 一定要写,这样出错就先返回了,不再执行后续的代码。
 ```
+request({url : 'http://localhost:8800/return'}, function (err, data) {
     if (err) return next(err);
+    doSomething()
+})
 ```
 
-2. Promise 处理错误 需要在最后一个使用Promise的地方(一般是controller中) then后增加 catch(next)
+2. Promise 处理错误 需要在最后一个使用Promise的地方(一般是controller中) then后增加 .catch(next)
 ```
-    sms_code.send_sms(userInfo).then(function(data){
-        return res.json(data);
-    }).catch(next);
+sms_code.send_sms(userInfo).then(function(data){
+    return res.json(data);
+}).catch(next);
 ```
 
 catch(next) 实际是以下代码简写
 
 ```
-    catch(function(err){
-        next(err)
-    })
+catch(function(err){
+    next(err)
+})
 ```
 
