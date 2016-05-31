@@ -73,21 +73,19 @@ app 目录下：
 
 ## Nodejs 错误处理
 
-1. 回调函数Callback使用中 先处理 err错误, return 一定要写,这样出错就先返回了,不再执行后续的代码。
+1  回调函数Callback使用中 先处理 err错误, return 一定要写,这样出错就先返回了,不再执行后续的代码。
 ```
 request({url : 'http://localhost:8800/return'}, function (err, data) {
     if (err) return next(err);
     doSomething()
 })
 ```
-
-2. Promise 处理错误 需要在最后一个使用Promise的地方(一般是controller中) then后增加 .catch(next)
+2  Promise 处理错误 需要在最后一个使用Promise的地方(一般是controller中) then后增加 .catch(next)
 ```
 sms_code.send_sms(userInfo).then(function(data){
     return res.json(data);
 }).catch(next);
 ```
-
 catch(next) 实际是以下代码简写
 
 ```
@@ -95,7 +93,6 @@ catch(function(err){
     next(err)
 })
 ```
-
-3. 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
+3  最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
 
 
