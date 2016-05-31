@@ -17,7 +17,6 @@ var session             = require('express-session');
 var webRouter           = require('./web_router');
 var apiRouter           = require('./api_router');
 var auth                = require('./middlewares/auth');
-var errorPageMiddleware = require("./middlewares/error_page");
 var RedisStore          = require('connect-redis')(session);
 var _                   = require('lodash');
 var responseTime        = require('response-time');
@@ -26,7 +25,7 @@ var csurf               = require('csurf');
 var compression         = require('compression');
 var bodyParser          = require('body-parser');
 var busboy              = require('connect-busboy');
-var errorhandler        = require('errorhandler');
+var errorhandler        = require('./middlewares/errorhandler');
 var cors                = require('cors');
 var renderMiddleware    = require('./middlewares/render');
 var logger              = require("./common/logger");
@@ -38,8 +37,6 @@ require('./common/ejsFiltersAddon')(require('ejs').filters);
 var staticDir  = path.join(__dirname, '../app/static');
 var fileStatic = path.join(__dirname, 'files/static');
 
-var urlinfo     = require('url').parse(config.host);
-config.hostname = urlinfo.hostname || config.host;
 
 var app = express();
 
@@ -56,6 +53,8 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
+    console.log('----- Environment Config Variable: ');
+    console.log(config);
     // Views 渲染时间
     app.use(renderMiddleware.render);
 }
@@ -75,7 +74,8 @@ app.use(responseTime());
 app.use(bodyParser.json({limit : '1mb'}));
 app.use(bodyParser.urlencoded({extended : true, limit : '1mb'}));
 
-// mock api request:  DEBUG = nock.*
+// mock api request
+
 if (config.mock) {
     require('./nock/index');
 }
@@ -134,16 +134,13 @@ app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
 
-app.use(errorPageMiddleware.errorPage);
+app.use(errorhandler.PageNotFoundMiddleware);
 
 // error handler
 if (config.debug) {
-    app.use(errorhandler());
+    app.use(errorhandler.DevelopmentHandlerMiddleware);
 } else {
-    app.use(function (err, req, res, next) {
-        console.error('server 500 error:', err);
-        return res.status(500).send('500 status');
-    });
+    app.use(errorhandler.ProductionHandlerMiddleware);
 }
 
 module.exports = app;
@@ -151,6 +148,6 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        console.log('----- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }

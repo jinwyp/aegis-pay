@@ -86,12 +86,11 @@ exports.send_sms = function (userInfo, smsType) {
                     if (res.success) {
                         // cache sms
                         cacheSet(userInfo, sms).then(function(data){
-                            console.log('smssmssmssms:' + sms)
+                            console.log('----- Send SMS: ' + sms)
                             return resolve(res);
                         }).catch(function(err){
                             throw(err);
                         });
-
                     } else {
                         return reject(res);
                     }

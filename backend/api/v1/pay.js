@@ -24,21 +24,23 @@ exports.submit = function (req, res, next) {
         return res.json({"success" : false, "errType" : "sms_code"});
     })
 
-}
+};
 
 // 生成图片验证码
 exports.ccapimg = function (req, res, next) {
     var userInfo = res.locals.currentUserInfo;
     var ary  = sms_code.generate_code('img');
-    console.log(ary[0])
+    console.log("----- ccap captcha: ", ary[0]);
     cache.set(userInfo.userId + "_ccapimgtxt_pay", ary[0]);
     res.end(ary[1]);
-}
+};
+
 
 // 校验图片验证码
 exports.validImgcode = function (req, res, next) {
     var userInfo = res.locals.currentUserInfo;
     var imgcode = req.body.code;
+
     cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
         if (err) return next(err);
 
@@ -48,4 +50,4 @@ exports.validImgcode = function (req, res, next) {
             res.json({"success" : false, "errType":"imgcode"});
         }
     })
-}
+};
