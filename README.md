@@ -96,3 +96,6 @@ catch(function(err){
 })
 ```
 
+3. 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
+
+
