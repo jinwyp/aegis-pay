@@ -2,7 +2,7 @@
 exports.home = function (req, res, next) {
 	var home = [
         '<ul>',
-        '	<h1>测试</h1><hr/>',
+        '	<h1>产品无关调试的页面</h1><hr/>',
         '	<li><a>signin: post</a></li>',
         '	<li><a>signout: post</a></li>',
         '	<li><a href="/api/apps">apps</a></li>',
@@ -19,7 +19,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
         '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
 
-        '	<h1>正式产品</h1><hr/>',
+        '	<h1>产品需要正在做的页面</h1><hr/>',
         '	<li><a href="/compact?orderid=1">签订电子合同</a></li>',
         '	<li><a href="/order/progress">order progress</a></li>',
         '	<li><a href="/pay?orderId=1">pay</a></li>',
