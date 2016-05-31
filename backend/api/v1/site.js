@@ -1,6 +1,6 @@
-var Promise    = require('bluebird');
+var PromiseB    = require('bluebird');
 var request    = require("request");
-var requestP   = Promise.promisify(require("request"));
+var requestP   = PromiseB.promisify(require("request"));
 var api_config = require('./api_config');
 var cache      = require('../../common/cache');
 var co         = require('co');
@@ -47,7 +47,7 @@ exports.asyncMerge = function (req, res, next) {
         requestP({url : api_config.apps2})
     ];
 
-    Promise.all(promiseList).then(function (result) {
+    PromiseB.all(promiseList).then(function (result) {
 
         return res.send({
             'app'         : JSON.parse(result[0].body)[0].name,
@@ -61,30 +61,35 @@ exports.asyncMerge = function (req, res, next) {
 
 // co + generator
 exports.cogenMerge = function (req, res, next) {
+
     var getProduct   = function (api) {
         return new Promise(function (resolve, reject) {
             request(api, function (err, data) {
                 if (err) {
-
+                    reject(err)
                 } else {
                     resolve(data);
                 }
             })
         })
     };
+
     var coIndexMerge = [
         getProduct(api_config.apps),
         getProduct(api_config.test),
         getProduct(api_config.apps2)
     ];
+
     co(function*() {
+
         var result = yield coIndexMerge;
         return res.send({
             'app'         : JSON.parse(result[0].body)[0].name,
             'test_cache'  : JSON.parse(result[1].body),
             'app2-length' : result[2].body.length
         });
-    });
+
+    }).catch(next);
 };
 
 // reactjs demo 测试用数据
