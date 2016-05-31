@@ -17,7 +17,6 @@ var session             = require('express-session');
 var webRouter           = require('./web_router');
 var apiRouter           = require('./api_router');
 var auth                = require('./middlewares/auth');
-var errorPageMiddleware = require("./middlewares/error_page");
 var RedisStore          = require('connect-redis')(session);
 var _                   = require('lodash');
 var responseTime        = require('response-time');
