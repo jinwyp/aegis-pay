@@ -1,10 +1,12 @@
-var PromiseB    = require('bluebird');
+var PromiseB   = require('bluebird');
 var request    = require("request");
 var requestP   = PromiseB.promisify(require("request"));
 var api_config = require('./api_config');
 var cache      = require('../../common/cache');
 var co         = require('co');
 var _          = require('lodash');
+
+
 
 exports.apps = function (req, res, next) {
     //api代理，去请求java接口
@@ -26,19 +28,27 @@ exports.test_cache = function (req, res, next) {
     })
 };
 
+
+
+
 exports.asyncMerge = function (req, res, next) {
 
-    //request({url:api_config.apps}, function(err, data){
-    //    if (err) return next(err);
-    //
-    //    return res.send(data.body);
-    //});
+    // callback
+/*
+    request({url:api_config.apps}, function(err, data){
+        if (err) return next(err);
 
+        return res.send(data.body);
+    });
+*/
 
-    //requestP({url:api_config.apps}).then(function(result){
-    //	console.log(result);
-    //	return res.send(result.statusCode);
-    //}).catch(next);
+    // Promise
+/*
+    requestP({url:api_config.apps}).then(function(result){
+    	console.log(result);
+    	return res.send(result.statusCode);
+    }).catch(next);
+*/
 
 
     var promiseList = [
@@ -91,6 +101,7 @@ exports.cogenMerge = function (req, res, next) {
 
     }).catch(next);
 };
+
 
 // reactjs demo 测试用数据
 exports.products = function (req, res, next) {

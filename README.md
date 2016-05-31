@@ -117,7 +117,6 @@ co(function*() {
 
 ```
 co(function*() {
-
     var result = yield getProduct(api_config.apps);
     return res.send(result);
 }).catch(next)
