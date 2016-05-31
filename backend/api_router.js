@@ -1,6 +1,7 @@
 var express = require('express');
 var router  = express.Router();
 
+var commonMiddleWare = require('./middlewares/common');
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');
 var orderCloseApi   = require('./controllers/order/orderClose');                 // 关闭订单 模块(文件路径)
@@ -20,10 +21,9 @@ router.get('/order/orderInfo_api', orderCloseApi.orderInfo_api);				// 关闭订
 router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭订单: 提交关闭Api
 router.get('/confirmDelivery/test', confirmDelivery.test);
 
-router.post('/send_sms', payApi.send_sms);
 router.post('/pay/submit', payApi.submit);
 router.get('/imgcode', payApi.ccapimg);
-router.post('/validImgcode', payApi.validImgcode);
+router.post('/validImgcode', payApi.validImgcode, commonMiddleWare.send_sms);
 
 
 router.use(function (req, res, next) {

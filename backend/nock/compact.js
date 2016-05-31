@@ -2,11 +2,11 @@ var nock = require('nock');
 var API = require('../api/v1/api_config');
 var _ = require('lodash');
 
-var compact = nock(API.host);
+var compact = nock(API.host).persist();
 
 compact
 .get(function(uri){
-  var ismatch = /compact\?orderid=\d&action=get/.test(uri);
+  var ismatch = /compact\?orderId=\d&action=get/.test(uri);
   return ismatch;
 }).reply(200, function(uri){
   return {
@@ -20,9 +20,9 @@ compact
 .post('/upload-file', {'path':/.?/gi}).reply(200, {
   success: true
 })
-.post('/compact').reply(200, {
+.post('/compact').times(1000).reply(200, {
   success: true,
-  orderid: 1
+  orderId: 1
 })
 .post('/del-file').reply(200, {
   success: true

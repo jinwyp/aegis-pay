@@ -24,7 +24,7 @@ payPersist
             }
 })
 .post('/sendSMSCode').reply(200, {"success":true, "time":120})
-.post('/mall/order/payment/submit').reply(200, {'success':false, "error":"times"})
+.post('/mall/order/payment/submit').reply(200, {'success':true, "error":"times"})
 .get('/mall/order/progress').reply(200, {
   "order":{
     "totalMoney": 2000000000,

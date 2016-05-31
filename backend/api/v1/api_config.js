@@ -11,17 +11,16 @@ var api_config = {
     products      : host + 'products',
     uploadFile    : host + 'upload-file',
     delFile       : host + 'del-file',
-    testUser      : {"userId" : 123, "userName" : "peach", "phone" : 18623232323},
     /**
      * 提交已盖章电子合同
      * method: post
-     * params: {orderid: 1, action: 'post', compact:'电子合同内容'}
+     * params: {orderId: 1, action: 'post', compact:'电子合同内容'}
      */
     signCompact   : host + 'compact',
     /**
      * fetch未盖章电子合同
      * method: get
-     * params: {orderid: 1, action: 'get'}
+     * params: {orderId: 1, action: 'get'}
      */
     getCompact    : host + 'compact',
     /**
