@@ -23,10 +23,8 @@ cd $script_dir;   make clean;
 cd $script_dir;
 echo "启动测试...";
 mkdir -p files;
-docker run -it --rm \
-  --name aegis-pay \
-  --net aegis-bridge \
-  --ip ${aegis_pay_ip} \
+docker run -it --rm --name aegis-pay-dev \
+  --net aegis-bridge --ip ${aegis_pay_ip} \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
   -e MOCK=false \
