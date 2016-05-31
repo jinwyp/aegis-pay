@@ -9,6 +9,7 @@ function generateSession(user, res) {
         signed   : true,
         httpOnly : true
     };
+    res.locals.currentUserInfo = {"userId": 123, "userName":"peach", "phone":18678782323, "ip":"198.168.23.123"}
     res.cookie(config.auth_cookie_name, auth_token, opts); //cookie 有效期30天
 }
 
@@ -18,6 +19,11 @@ exports.generateSession = generateSession;
 exports.authUser = function (req, res, next) {
     var ep = new eventproxy();
     ep.fail(next);
+
+    // 添加测试用户
+    if(config.debug){
+        generateSession({_id:123}, res);
+    }
 
     // Ensure current_user always has defined.
     res.locals.current_user = null;

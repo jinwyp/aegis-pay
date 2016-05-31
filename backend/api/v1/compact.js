@@ -70,8 +70,8 @@ var convertData          = function (compactdata, compactftl) {
 }
 // generate compact
 exports.generate_compact = function (req, res, next) {
-    var orderid = req.query.orderid;
-    var params  = '?orderid=' + orderid + '&action=get';
+    var orderId = req.query.orderId;
+    var params  = '?orderId=' + orderId + '&action=get';
     request(api_config.getCompact + params, function (err, data) {
         if (!err) {
             var data = JSON.parse(data.body);
@@ -79,10 +79,10 @@ exports.generate_compact = function (req, res, next) {
                 convertData(data.compact, ftlpath).then(function (result) {
                     var pageData = _.assign({}, {
                         'pageTitle' : '签订电子合同',
-                        'orderid'   : orderid,
+                        'orderId'   : orderId,
                         'headerTit' : '签订电子合同'
                     }, result);
-                    cache.set('compacts[' + orderid + ']', pageData, function () {
+                    cache.set('compacts[' + orderId + ']', pageData, function () {
                         return res.render('compact/blocks/compact', pageData);
                     });
                 })

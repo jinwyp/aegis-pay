@@ -22,7 +22,7 @@ pay
               }
             }
 })
-.post('/sendSMSCode').times(100).reply(200, {"success":true, "time":120})
+.post('/sendSMSCode').times(1000).reply(200, {"success":true, "time":120})
 .post('/mall/order/payment/submit').times(100).reply(200, {'success':false, "error":"times"})
 .get('/mall/order/progress').times(10).reply(200, {
   "order":{

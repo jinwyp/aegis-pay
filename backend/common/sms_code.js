@@ -11,37 +11,95 @@ var api_config = require('../api/v1/api_config');
  * 30times/day ; 3times/hour ;
  * 5mins有效：发送相同验证码
  */
+// cache sms
+var cacheSet = function(userInfo, sms){
+    var smsData = _.assign({}, userInfo, {"sms":sms, "createtime": new Date().getTime()});
+    return new Promise(function(resolve, reject){
+        cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
+            if(err){ return reject(err); }
+            data = data || [];
+            data.push(smsData);
+            cache.set('yimei180_sms_' + userInfo.userId, data, 86400);
+            resolve(data);
+        })
+    })
+};
+//
+var cacheGet = function(userInfo){
+    return new Promise(function(resolve, reject){
+        var result;
+        cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
+            if(err){ return reject(err); }
+            if(!data || (data&&data.length==0)){
+                result = {"isSend": true};
+                return resolve(result);
+            }
+            var now = new Date().getTime();
+            var minTime = 0,
+                hourTime = 0,
+                dayTime = 0;
+            var minSms = [];
+            _.map(data, function(val, index){
+                var s = (now - val.createtime)/1000,
+                    fmin = 300,
+                    hour = 3600,
+                    day = 86400;
+                if(s<fmin){
+                    minTime++;
+                    minSms.push(val)
+                }
+                (s<hour)&&(hourTime++);
+                (s<day)&&(dayTime++);
+            })
+            if(minTime>0){
+                result = {"isSend":true ,"sms": minSms[minSms.length-1].sms};
+            }
+            if(hourTime>=3){
+                result = {"isSend":false, "errType":"hourTimes"};
+            }
+            if(dayTime>=30){
+                result = {"isSend":false, "errType":"dayTimes"};
+            }
+            result || (result={"isSend": true})
+            return resolve(result);
+        })
+    })
+};
+
 exports.send_sms = function (userInfo, smsType) {
     var smsType  = smsType || 'mix';
     var userInfo = userInfo;
-    var isSend   = true;
-
-    // var smsUser = cache.get('sms_'+userInfo.userId);
 
     return new Promise(function (resolve, reject) {
-        if (isSend) {
-            var sms    = generate_code(smsType);
+        cacheGet(userInfo).then(function(data){
+            if(!data.isSend){
+                data.success = false;
+                return resolve(data);
+            }
+            var sms    = data.sms || generate_code(smsType);
             var params = {"phone" : userInfo.phone, "message" : sms};
-
-            request.post(api_config.sendSMSCode, function (err, data) {
+            request.post(api_config.sendSMSCode, params, function (err, data) {
                 if (err){
-                    reject(res);
+                    return reject(err);
                 }else{
                     var res = JSON.parse(data.body);
                     if (res.success) {
-                        // sms period: 5mins
-                        cache.set('yimei180_sms_' + userInfo.userId, sms, 300);
-                        console.log('smssmssmssms:' + sms)
-                        resolve(res);
+                        // cache sms
+                        cacheSet(userInfo, sms).then(function(data){
+                            console.log('smssmssmssms:' + sms)
+                            return resolve(res);
+                        }).catch(function(err){
+                            throw(err);
+                        });
+
                     } else {
-                        reject(res);
+                        return reject(res);
                     }
                 }
-
             })
-        } else {
-            reject({"success" : false})
-        }
+        }).catch(function(err){
+            throw(err);
+        })
     })
 };
 

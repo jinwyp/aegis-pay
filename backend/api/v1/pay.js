@@ -4,25 +4,10 @@ var cache      = require('../../common/cache');
 var sms_code   = require('../../common/sms_code');
 var api_config = require('./api_config');
 
-var getUserInfo = function (req) {
-    var userInfo = req.session.user || api_config.testUser;
-    userInfo     = _.assign({}, {'ip' : req.ip}, userInfo);
-    return userInfo;
-}
-
-var userInfo = undefined;
-
-exports.send_sms = function (req, res, next) {
-    userInfo = userInfo || getUserInfo(req);
-    sms_code.send_sms(userInfo).then(function (data) {
-        return res.json(data);
-    }).catch(next);
-};
-
 exports.submit = function (req, res, next) {
     var reqbody = req.body,
         code    = reqbody.sms_code;
-    userInfo    = userInfo || getUserInfo(req);
+    var userInfo = res.locals.currentUserInfo;
     sms_code.validate_sms(userInfo, code).then(function (val) {
         request.post(api_config.paySubmit, reqbody, function (err, data) {
             if (!err && data) {
@@ -43,7 +28,7 @@ exports.submit = function (req, res, next) {
 
 // 生成图片验证码
 exports.ccapimg = function (req, res, next) {
-    userInfo = userInfo || getUserInfo(req);
+    var userInfo = res.locals.currentUserInfo;
     var ary  = sms_code.generate_code('img');
     console.log(ary[0])
     cache.set(userInfo.userId + "_ccapimgtxt_pay", ary[0]);
@@ -52,15 +37,15 @@ exports.ccapimg = function (req, res, next) {
 
 // 校验图片验证码
 exports.validImgcode = function (req, res, next) {
-    userInfo    = userInfo || getUserInfo(req);
+    var userInfo = res.locals.currentUserInfo;
     var imgcode = req.body.code;
     cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
         if (err) return next(err);
 
         if (!err && data && (data == imgcode)) {
-            res.json({"success" : true});
+            return next();
         } else {
-            res.json({"success" : false});
+            res.json({"success" : false, "errType":"imgcode"});
         }
     })
 }

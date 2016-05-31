@@ -3,11 +3,12 @@ var _          = require('lodash');
 var api_config = require('../api/v1/api_config');
 
 exports.page = function (req, res, next) {
-    var user = req.session.user || api_config.testUser;
-    request(api_config.payPage + '?orderId=' + req.query.orderId + '&userId=' + user.userId, function (err, data) {
+    var userInfo = res.locals.currentUserInfo;
+
+    request(api_config.payPage + '?orderId=' + req.query.orderId + '&userId=' + userInfo.userId, function (err, data) {
         if (err) return next(err);
 
-        var phone = _.toString(user.phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
+        var phone = _.toString(userInfo.phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
         return res.render('pay/index', _.assign({}, {
             headerTit : '支付货款',
             pageTitle : '支付货款'
