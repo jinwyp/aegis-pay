@@ -50,7 +50,7 @@ log/                        Node日志
 
 middlewares/                Express 中间件文件夹
     ├── auth.js
-    ├── error_page.js
+    ├── errorhandler.js
     ├── render.js
     └── request_log.js
 
