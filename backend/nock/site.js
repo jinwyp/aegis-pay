@@ -2,6 +2,7 @@ var nock = require('nock');
 var API = require('../api/v1/api_config');
 
 var site = nock(API.host);
+var sitePersist = nock(API.host).persist();
 
 site
 .get('/test').reply(200, {"just":{"for":"test"}})
