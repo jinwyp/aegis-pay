@@ -40,7 +40,7 @@ exports.ccapimg = function (req, res, next) {
 exports.validImgcode = function (req, res, next) {
     var userInfo = res.locals.currentUserInfo;
     var imgcode = req.body.code;
-
+// cache.del('yimei180_sms_' + userInfo.userId)
     cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
         if (err) return next(err);
 

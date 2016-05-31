@@ -11,8 +11,8 @@ var config     = require('../../config');
 var convert = require('../../common/convert');
 var cache   = require('../../common/cache');
 
-const uploadPath = config.sysFileDir + 'static/upload/';
-const ftlpath    = config.sysFileDir + 'servicefiles/fs.ftl';
+const uploadPath = config.sysFileDir + '/static/upload/';
+const ftlpath    = config.sysFileDir + '/servicefiles/fs.ftl';
 
 exports.uploadFile = function (req, res, next) {
     //api代理，去请求java接口

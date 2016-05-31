@@ -23,9 +23,9 @@ payPersist
               }
             }
 })
-.post('/sendSMSCode').times(1000).reply(200, {"success":true, "time":120})
-.post('/mall/order/payment/submit').times(100).reply(200, {'success':false, "error":"times"})
-.get('/mall/order/progress').times(10).reply(200, {
+.post('/sendSMSCode').reply(200, {"success":true, "time":120})
+.post('/mall/order/payment/submit').reply(200, {'success':true, "error":"times"})
+.get('/mall/order/progress').reply(200, {
   "order":{
     "totalMoney": 2000000000,
     "addr": "提货地址",

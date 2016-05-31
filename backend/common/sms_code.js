@@ -25,7 +25,8 @@ var cacheSet = function(userInfo, sms){
     })
 };
 //
-var cacheGet = function(userInfo){
+var cacheGet = function(userInfo, validTime){
+    var validTime = validTime || false;
     return new Promise(function(resolve, reject){
         var result;
         cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
@@ -53,6 +54,9 @@ var cacheGet = function(userInfo){
             })
             if(minTime>0){
                 result = {"isSend":true ,"sms": minSms[minSms.length-1].sms};
+                if(validTime){
+                    return resolve(result);
+                }
             }
             if(hourTime>=3){
                 result = {"isSend":false, "errType":"hourTimes"};
@@ -107,7 +111,7 @@ exports.send_sms = function (userInfo, smsType) {
  * params: {type: 'num/mix/img', length: 6}
  */
 var generate_code = exports.generate_code = function (type, options) {
-    var default_opt = {width : 126, height : 30, offset : 18, fontsize : 28};
+    var default_opt = {width : 126, height : 30, offset : 18, fontsize : 26, quality: 200};
     if (options) {
         default_opt = _.assign({}, default_opt, options);
     }
@@ -139,12 +143,21 @@ var generate_code = exports.generate_code = function (type, options) {
  */
 exports.validate_sms = function (userInfo, sms) {
     return new Promise(function (resolve, reject) {
-        cache.get('yimei180_sms_' + userInfo.userId, function (err, data) {
-            if (!err && data && (data == sms)) {
-                resolve(true);
-            } else {
-                reject(false);
+        // cache.get('yimei180_sms_' + userInfo.userId, function (err, data) {
+        //     if (!err && data && (data == sms)) {
+        //         resolve(true);
+        //     } else {
+        //         reject(false);
+        //     }
+        // })
+        cacheGet(userInfo, true).then(function(data){
+            console.log('valid')
+            console.log(data)
+            if(data && data.sms && (data.sms == sms)){
+                return resolve(true);
+            }else{
+                return reject(false);
             }
-        })
+        }).catch(function(err){throw(err);})
     });
 }
