@@ -7,14 +7,18 @@ $color_border_block_gray: #ddd;
 $color_font: #333;
 $color_btn_blue: #01b7ec;
 $color_btn_gray: #c7c7c7;
+$color_bg_gray: #fcfcfc;
+$color_red: #ff0000;
 
 $color_readme_bg: #fffaf7;
 $color_readme_font: #ff6e0f;
 $color_readme_border: #fecdb3;
-
+$color_link: #1fb8ea;
+$color_link_hover: #4cc6ee;
 $color_tip_font: #999;
+$color_gray: #666;
 $color_orange: #ff6e0f;
-$color_red: #ff0000;
+
 $color_green: #1aaa6b;
 $color_bg_status: #f3fcff;
 $color_a: #037191;
@@ -23,15 +27,27 @@ $color_border: #e8e8e8;
 $color_title_text: #666666;
 $color_dot:#bcbcbc;
 
+$color_lightblue: #f3fcff;
+$color_bg_pink: #feecec;
+$color_bg_lightorange: #fffaf7;
+
 $main_width: 1000px;
 $main_margintop: 20px;
 $main_marginbottom: 30px;
 
+$size_font_big_num: 24px;
 $size_font_pageTitle: 18px;
 $size_font_blockTitle: 16px;
+$size_font_middle:14px;
 $size_font_nomal: 12px;
+$size_font_big: 30px;
+$line-height-base: 1.428571429; // 20/14
 
 $font_family: Microsoft YaHei;
+$bgUrl: "/static/images/sprite_ico.png";
+$ffYh: "\5FAE\8F6F\96C5\9ED1";
+$ffSt: '\5B8B\4F53';
+$ffArial: 'Arial';
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -53,8 +69,4 @@ to { transform: scale(1) rotate(360deg);}
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg);}
     to { -webkit-transform: rotate(360deg);}
-}
-.glyphicon-refresh-animate{
-  animation: spin .7s infinite linear;
-  -webkit-animation: spin2 .7s infinite linear;
 }

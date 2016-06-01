@@ -1,8 +1,5 @@
 @import './var.scss';
 
-html>body{
-  font-size:12px;
-}
 .pageTitle{
   font-size:$size_font_pageTitle; color:#333; margin:0;
   line-height: 36px; border-bottom:1px solid $color_border_gray;
@@ -20,20 +17,31 @@ html>body{
   background: url('/static/images/btnbg.gif') repeat-x left top;
   .icon_download, .icon_upload{
     display:inline-block; *display:inline; zoom:1; vertical-align: middle;
-    width:18px; height:18px; background: url('/static/images/sprite.png') no-repeat -550px -269px;
+    width:18px; height:18px; background: url('/static/images/sprite_ico.png') no-repeat -550px -269px;
   }
   .icon_upload{
     background-position:-550px -307px;
   }
 }
 
-.btn_blue, .btn_gray{
+.btn_blue, .btn_gray, .btn_blue_small,.btn_respond{
+  display:inline-block; *display:inline; zoom:1;
   width:140px; height:40px; line-height: 40px; text-align:center;
   color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
   @include border-radius(2px); border:none;
+  &.disable{
+      background-color: $color_btn_gray; cursor:not-allowed;
+  }
+}
+.btn_respond{
+    width:auto; padding:0 15px;
 }
 .btn_gray{
   background: $color_btn_gray;
+}
+.btn_blue_small{
+  display:inline-block; *display:inline; zoom:1;
+  height:32px; line-height: 32px; font-size:$size_font_middle; width:110px;
 }
 
 // lightbox 样式调整
@@ -72,9 +80,15 @@ html>body{
   }
 }
 
-.tipModal{
+.tipModal, .confirmModal{
   .modal-content{ @include box-shadow(none);}
-  .modal-header{ height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4; }
+  .big_gray{font-size:$size_font_pageTitle; color:$color_gray;}
+  .modal-header{
+      height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4;
+      .modal-title{
+          font-size:$size_font_pageTitle; color:$color_gray;
+      }
+  }
   .modal-dialog{ width:480px; padding:15px 26px; }
   .modal-footer{
     border-top:none; text-align: center; padding-bottom:20px;
@@ -83,6 +97,16 @@ html>body{
       &:hover{ color:#fff; }
     }
   }
+}
+
+.confirmModal{
+    font-size: $size_font_middle;
+    .modal-title{
+        font-size:20px; color:$color_font; margin-top:-6px;
+    }
+    .modal-content{
+        label{ font-weight:normal; }
+    }
 }
 
 .icon_confirm{
@@ -96,3 +120,285 @@ html>body{
   display:inline-block; *display:inline; zoom:1;
   width:22px; height:22px; background: url(/static/images/sprite.png) no-repeat -549px -174px;
 }
+
+.glyphicon-refresh-animate{
+  animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+.icon_cash, .icon_cash_disable{
+  display: inline-block; *display:inline; zoom:1; width:32px; height:32px;
+  background:url(/static/images/sprite_ico.png) no-repeat -551px -599px;
+}
+.icon_cash_disable{
+  background-position:-551px -664px;
+}
+.icon_ok{
+    display: inline-block; *display:inline; zoom:1; width:70px; height:60px;
+    background:url(/static/images/sprite_ico.png) no-repeat -378px -292px;
+}
+.icon_warn{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:18px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -552px -510px;
+}
+.icon_tip{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:20px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -550px -550px;
+}
+.tip-error{
+    color:$color_red;
+}
+.tip-msg{
+    color:$color_tip_font;
+}
+.icon_error{
+    display: inline-block; *display:inline; zoom:1; width:64px; height:64px; vertical-align: middle;
+    background:url(/static/images/sprite_ico.png) no-repeat -187px -291px;
+}
+
+
+// --图片精灵-图标坐标---------->>>>>---->>>>>>>-------------
+// 大叉
+.icn_cross {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url($bgUrl) no-repeat -122px -177px;
+  &:hover {
+    background: url($bgUrl) no-repeat -170px -178px;
+  }
+}
+// 小叉
+.icn_smallCross {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url($bgUrl) no-repeat -222px -177px;
+  &:hover {
+    background: url($bgUrl) no-repeat -262px -177px;
+  }
+}
+// 商城
+.icn_shop {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url($bgUrl) no-repeat -306px -177px;
+}
+// 带图
+.icn_picture {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url($bgUrl) no-repeat -343px -177px;
+}
+// 专用
+.icn_proper {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url($bgUrl) no-repeat -383px -177px;
+}
+
+//疑问
+.icn_doubt {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -501px -177px;
+}
+//向上
+.icn_caretUp {
+  display: inline-block;
+  width: 9px;
+  height: 6px;
+  background: url($bgUrl) no-repeat -465px -177px;
+}
+//向下
+.icn_caretDown {
+  display: inline-block;
+  width: 9px;
+  height: 6px;
+  background: url($bgUrl) no-repeat -431px -177px;
+}
+//搜寻
+.icn_search {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -552px -177px;
+}
+//附件
+.icn_paperClip {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -552px -228px;
+}
+//上传
+.icn_upLoad {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -552px -307px;
+}
+//下载
+.icn_downLoad {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -552px -269px;
+}
+//导出
+.icn_export {
+  display: inline-block;
+  width: 14px;
+  height: 12px;
+  background: url($bgUrl) no-repeat -552px -343px;
+}
+
+//打印
+.icn_print {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -552px -379px;
+}
+//编辑
+.icn_edit {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -552px -424px;
+}
+//刷新
+.icn_refresh {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -552px -470px;
+}
+//成功
+.icn_success {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background: url($bgUrl) no-repeat -310px -443px;
+}
+//警告
+.icn_warning {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -552px -510px;
+}
+//提示
+.icn_prompt {
+  display: inline-block;
+  width: 13px;
+  height: 16px;
+  background: url($bgUrl) no-repeat -552px -552px;
+}
+//日历
+.icn_date {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat 1px -542px;
+}
+//支付正常
+.icn_payCircle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url($bgUrl) no-repeat -552px -665px;
+}
+//支付异常
+.icn_payCircleWrong {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url($bgUrl) no-repeat -552px -600px;
+}
+//警告 大
+.icn_warningMax {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background: url($bgUrl) no-repeat -7px -293px;
+}
+//错误 大
+.icn_errorMax {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background: url($bgUrl) no-repeat -189px -293px;
+}
+//成功 大
+.icn_successMax {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background: url($bgUrl) no-repeat -383px -291px;
+}
+//圆点 亮
+.icn_roundLight {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url($bgUrl) no-repeat -380px -443px;
+}
+//圆点 灰
+.icn_roundGray {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url($bgUrl) no-repeat -433px -443px;
+}
+//省略
+.icn_ellipsis {
+  display: inline-block;
+  width: 26px;
+  height: 12px;
+  background: url($bgUrl) no-repeat -488px -441px;
+}
+//方向箭头 小
+.icn_arrowSmall {
+  display: inline-block;
+  width: 16px;
+  height: 26px;
+}
+.icn_arrowSmallLeft {
+  @extend .icn_arrowSmall;
+  background: url($bgUrl) no-repeat -10px -83px;
+  &:hover {
+    background: #01b7ec url($bgUrl) no-repeat -162px -83px;
+  }
+}
+.icn_arrowSmallRight {
+  @extend .icn_arrowSmall;
+  background: url($bgUrl) no-repeat -87px -83px;
+  &:hover {
+    background: #01b7ec url($bgUrl) no-repeat -239px -83px;
+  }
+}
+//方向箭头 大
+.icn_arrowBig {
+  display: inline-block;
+  width: 26px;
+  height: 46px;
+}
+.icn_arrowBigLeft {
+  @extend .icn_arrowBig;
+  background: url($bgUrl) no-repeat -311px -73px;
+  &:hover {
+    background: url($bgUrl) no-repeat -471px -73px;
+  }
+}
+.icn_arrowBigRight {
+  @extend .icn_arrowBig;
+  background: url($bgUrl) no-repeat -391px -73px;
+  &:hover {
+    background: url($bgUrl) no-repeat -551px -73px;
+  }
+}
+// --图片精灵-图标坐标---------------<<<<<<<<<<<<<------

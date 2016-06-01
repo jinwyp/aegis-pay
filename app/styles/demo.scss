@@ -1,6 +1,8 @@
-@import './global/var.scss';
+@import './global.scss';
+@import './statusBar.scss';
 
-.listBox {
+
+#listBox {
     width: 300px;
     height: 100px;
     border: 1px solid #0000cc;
@@ -8,493 +10,60 @@
     background-color: #DDDDDD;
 
     th, td {
+        padding: 3px;
         border: 1px dashed #009900;
         border-spacing: 0;
     }
 }
 
+.demoList {
+    margin: 20px 10px;
+    width: 300px;
+    float: left;
 
-
-/*状态条*/
-$bgUrl: "/static/images/sprite_ico.png";
-
-.statusBar {
-    width: 940px;
-    height: 125px;
-    padding: 0;
-    margin: 20px auto 0;
-    background-color: #ffffff;
-
-    .statusMain {
-        margin-top: 18px;
-        padding: 0;
-        height: 95px;
-        border: 1px solid #0000cc;
-        font-size: 0;
-
-        .statusStep {
-            width: 185px;
-            display: inline-block;
-            position: relative;
-        }
-        .statusHr {
-            width: 100%;
-            height: 32px;
-            display: block;
-            background: url($bgUrl) no-repeat;
-        }
-        .statusDot {
-            width: 26px;
-            height: 26px;
-            display: block;
-            position: absolute;
-            z-index: 3;
-            top: 6px;
-            left: 82px;
-            background: url($bgUrl) no-repeat;
-        }
-        .stepName {
-            display: block;
-            text-align: center;
-            height: 26px;
-            line-height: 26px;
-            font-size: 14px;
-            color: #333;
-        }
-        .stepDate {
-            display: block;
-            text-align: center;
-            height: 22px;
-            line-height: 22px;
-            font-size: 12px;
-            color: #a0a0a0;
-        }
-    }
-
-    .status_1 {
-        .step_1 {
-            .statusHr {
-                background-position: -297px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_2 {
-            .statusHr {
-                background-position: -80px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_3 {
-            .statusHr {
-                background-position: -90px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_4 {
-            .statusHr {
-                background-position: -90px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_5 {
-            .statusHr {
-                background-position: -185px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-    }
-
-    .status_2 {
-        .step_1 {
-            .statusHr {
-                background-position: -297px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_2 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_3 {
-            .statusHr {
-                background-position: -90px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_4 {
-            .statusHr {
-                background-position: -90px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_5 {
-            .statusHr {
-                background-position: -185px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-    }
-
-    .status_3 {
-        .step_1 {
-            .statusHr {
-                background-position: -297px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_2 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_3 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_4 {
-            .statusHr {
-                background-position: -90px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-        .step_5 {
-            .statusHr {
-                background-position: -185px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-    }
-
-    .status_4 {
-        .step_1 {
-            .statusHr {
-                background-position: -297px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_2 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_3 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_4 {
-            .statusHr {
-                background-position: -385px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_5 {
-            .statusHr {
-                background-position: -185px 18px;
-            }
-            .statusDot {
-                background-position: -63px -176px;
-            }
-        }
-    }
-
-    .status_5 {
-        .step_1 {
-            .statusHr {
-                background-position: -297px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_2 {
-            .statusHr {
-                background-position: -387px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_3 {
-            .statusHr {
-                background-position: -387px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_4 {
-            .statusHr {
-                background-position: -387px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-        .step_5 {
-            .statusHr {
-                background-position: -495px 18px;
-            }
-            .statusDot {
-                background-position: -3px -176px;
-            }
-        }
-    }
 }
-
-
-
-
-
-
-
 
 /* ---------------------------------------------------------------------------------------------------------------- */
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    border-spacing: 0;
-    border-collapse: collapse;
-    background-color: transparent;
+.icnList {
+    height: 90px;
+    padding: 15px;
+    background: #ffffff;
 
-    tr {
-        page-break-inside: avoid;
+    .icnBox {
+        display: inline;
+        float: left;
+        padding: 8px;
+        margin-right: 5px;
+        text-align: center;
+        border: 1px dashed #CCCCCC;
     }
-    td,
-    th {
-        padding: 0;
+    .describe {
+        display: block;
+        padding-top: 4px;
+        font-size: 12px;
+        height: 18px;
+        line-height: 18px;
+        color: #333333;
     }
 }
-.table-bordered th,
-.table-bordered td {
-    border: 1px solid #ddd !important;
-}
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border-top: 1px solid #ddd;
-}
-.table > thead > tr > th,
-.table > thead > tr > td {
-    vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
-    background: #f1f1f1;
-}
-.table > thead > tr > td.active,
-.table > tbody > tr > td.active,
-.table > tfoot > tr > td.active,
-.table > thead > tr > th.active,
-.table > tbody > tr > th.active,
-.table > tfoot > tr > th.active,
-.table > thead > tr.active > td,
-.table > tbody > tr.active > td,
-.table > tfoot > tr.active > td,
-.table > thead > tr.active > th,
-.table > tbody > tr.active > th,
-.table > tfoot > tr.active > th {
-    background-color: #f5f5f5;
-}
-.table-nbor > thead > tr > th,
-.table-nbor > tbody > tr > th,
-.table-nbor > tfoot > tr > th,
-.table-nbor > thead > tr > td,
-.table-nbor > tbody > tr > td,
-.table-nbor > tfoot > tr > td {
-    border: none;
-}
+
 
 
 /* 按钮组 ----------------------------------------------- */
-.iBtn {
-    display: inline-block;
-    padding: 6px 15px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 2px;
-}
-.iBtn:focus,
-.iBtn:active:focus,
-.iBtn.active:focus,
-.iBtn.focus,
-.iBtn:active.focus,
-.iBtn.active.focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-}
-
-/* 按钮尺寸:大, 中, 小 */
-.iBtn-lg  {
-    padding: 7px 20px;
-    font-size: 18px;
-    line-height: 1.3333333;
-    border-radius: 3px;
-}
-.iBtn-sm {
-    padding: 5px 14px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 2px;
-}
-.iBtn-xs {
-    padding: 1px 10px;
-    font-size: 12px;
-    line-height: 18px;
-    border-radius: 1px;
-}
-
-/* 按钮语义: 默认, 普通, 信息, 成功, 警告, 危险, 链接 */
-.iBtn-default {
-    color: #c7c7c7;
-}
-.iBtn-primary {
-    color: #00b7ec;
-}
-.iBtn-info {
-
-}
-.iBtn-success {
-
-}
-.iBtn-warning {
-
-}
-.iBtn-danger {
-
-}
-
-
-/* 表单框 ----------------------------------------------- */
-.ipt {
-    display: block;
-    width: 88%;
-    height: 20px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-
-/* 表单尺寸:大, 中, 小 */
-.ipt-lg {
-    height: 34px;
-    padding: 5px 16px;
-    font-size: 18px;
-    line-height: 1.3333333;
-    border-radius: 3px;
-}
-.ipt-sm {
-    height: 18px;
-    padding: 5px 10px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 2px;
-}
-.ipt-xs {
-    height: 16px;
-    padding: 2px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 1px;
-}
-/* 表单类型:复选, 单选, 禁用 */
-.ipt-rdo {
-
-}
-.ipt-che {
-
-}
-.inp-sel {
-
-}
+$ccc: #ffffff;
 
 
 
-/* 模态框 ----------------------------------------------- */
-.modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    display: none;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    outline: 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+

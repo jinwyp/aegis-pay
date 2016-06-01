@@ -5,102 +5,103 @@
 /**
  * Module dependencies.
  */
+//require("babel-register");
+require('colors');
+
 var config = require('./config');
 
-require('colors');
-var path                     = require('path');
-var Loader                   = require('loader');
-var express                  = require('express');
-var session                  = require('express-session');
-var webRouter                = require('./web_router');
-var apiRouter                = require('./api_router');
-var auth                     = require('./middlewares/auth');
-var errorPageMiddleware      = require("./middlewares/error_page");
-var RedisStore               = require('connect-redis')(session);
-var _                        = require('lodash');
-var csurf                    = require('csurf');
-var compress                 = require('compression');
-var bodyParser               = require('body-parser');
-var busboy                   = require('connect-busboy');
-var errorhandler             = require('errorhandler');
-var cors                     = require('cors');
-var requestLog               = require('./middlewares/request_log');
-var renderMiddleware                   = require('./middlewares/render');
-var logger                   = require("./common/logger");
-var engine                   = require('ejs-locals');
+var path                = require('path');
+var express             = require('express');
+var session             = require('express-session');
+var webRouter           = require('./web_router');
+var apiRouter           = require('./api_router');
+var auth                = require('./middlewares/auth');
+var RedisStore          = require('connect-redis')(session);
+var _                   = require('lodash');
+var responseTime        = require('response-time');
+var morgan              = require('morgan');
+var csurf               = require('csurf');
+var compression         = require('compression');
+var bodyParser          = require('body-parser');
+var busboy              = require('connect-busboy');
+var errorhandler        = require('./middlewares/errorhandler');
+var cors                = require('cors');
+var renderMiddleware    = require('./middlewares/render');
+var logger              = require("./common/logger");
+var engine              = require('ejs-locals');
+
 require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir = path.join(__dirname, '../app/static');
-var fileStatic = path.join(__dirname, 'files/static');
+var staticDir  = path.join(__dirname, '../app/static');
+var fileStatic = path.join(__dirname, '../files/static');
 
-var urlinfo     = require('url').parse(config.host);
-config.hostname = urlinfo.hostname || config.host;
 
 var app = express();
 
 // configuration in all env
 app.engine('ejs', engine);
+app.engine('html', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('html', require('ejs-mate'));
 app.enable('trust proxy');
 
 
-// Request logger。请求时间
-app.use(requestLog);
+// Request logger 请求时间
+app.use(morgan('dev'));
 
 
 if (config.debug) {
-  // 渲染时间
-  app.use(renderMiddleware.render);
+    console.log('----- Environment Config Variable: ');
+    console.log(config);
+    // Views 渲染时间
+    app.use(renderMiddleware.render);
 }
 
 
 require('./common/ejshelper')(app);
 
 // 静态资源
-app.use(Loader.less(__dirname));
 app.use('/static', express.static(staticDir));
 app.use('/files', express.static(fileStatic));
 // app.use(express.static(fileStatic));
 
 // 每日访问限制
+app.use(compression());
+app.use(responseTime());
+app.use(bodyParser.json({limit : '1mb'}));
+app.use(bodyParser.urlencoded({extended : true, limit : '1mb'}));
 
-app.use(require('response-time')());
-app.use(bodyParser.json({limit: '1mb'}));
-app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+// mock api request
 
-// mock api request:  DEBUG = nock.*
-if( config.mock ){
-  require('./nock/index');
+if (config.mock) {
+    require('./nock/index');
 }
 
-app.use(require('method-override')());
 app.use(require('cookie-parser')(config.session_secret));
-app.use(compress());
+
 app.use(session({
-  secret: config.session_secret,
-  store: new RedisStore({
-    port: config.redis.port,
-    host: config.redis.host,
-  }),
-  resave: true,
-  saveUninitialized: true
+    secret            : config.session_secret,
+    store             : new RedisStore({
+        port : config.redis.port,
+        host : config.redis.host,
+    }),
+    resave            : true,
+    saveUninitialized : true
 }));
 
 // custom middleware
 app.use(auth.authUser);
 
 if (!config.debug) {
-  app.use(function (req, res, next) {
-    if (req.path.indexOf('/api') === -1) {
-      csurf()(req, res, next);
-      return;
-    }
-    next();
-  });
-  app.set('view cache', true);
+    app.use(function (req, res, next) {
+        if (req.path.indexOf('/api') === -1) {
+            csurf()(req, res, next);
+            return;
+        }
+        next();
+    });
+    app.set('view cache', true);
 }
 
 // for debug
@@ -110,40 +111,40 @@ if (!config.debug) {
 
 // set static, dynamic helpers
 _.extend(app.locals, {
-  config: config,
-  Loader: Loader
+    config : config
 });
 
-app.use(errorPageMiddleware.errorPage);
+
 app.use(function (req, res, next) {
-  res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
-  next();
+    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    next();
 });
 
 app.use(busboy({
-  limits: {
-    fileSize: 10 * 1024 * 1024 // 10MB
-  }
+    limits : {
+        fileSize : 10 * 1024 * 1024 // 10MB
+    }
 }));
 
 // routes
 app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
+
+app.use(errorhandler.PageNotFoundMiddleware);
+
 // error handler
 if (config.debug) {
-  app.use(errorhandler());
+    app.use(errorhandler.DevelopmentHandlerMiddleware);
 } else {
-  app.use(function (err, req, res, next) {
-    console.error('server 500 error:', err);
-    return res.status(500).send('500 status');
-  });
+    app.use(errorhandler.ProductionHandlerMiddleware);
 }
 
-app.listen(config.port, function () {
-  logger.log("Server listening on port:", config.port);
-  logger.log("Success on domain:", config.host, config.port);
-});
-
-
 module.exports = app;
+
+if (!module.parent) {
+    app.set('port', config.port);
+    app.listen(app.get('port'), function () {
+        console.log('----------- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+    });
+}

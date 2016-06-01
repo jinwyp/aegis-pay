@@ -1,0 +1,76 @@
+// 付款页面
+#pay{
+  .tip-error, .tip-msg{ display:none; }
+  .seller{
+    margin-top:15px;
+    li{
+      overflow:hidden;
+      span{ color:$color_tip_font; }
+      .fund{
+        float:right; color:$color_font;
+        i{ color:$color_orange; font-size:$size_font_big_num; }
+      }
+    }
+  }
+  .buyer{
+    border:1px solid $color_btn_blue; border-top-width:2px; margin-top:15px; background-color:$color_lightblue;
+    li{
+      display: inline-block; *display:inline; zoom:1; vertical-align: middle; padding:20px 0; line-height: 24px;
+      &:nth-child(1){
+        width:60px; text-align:center; vertical-align: top; line-height: 26px;
+      }
+      &:nth-child(2){
+        p{
+          span{
+            width:98px;
+          }
+          &:nth-child(2){
+            padding-left:98px;
+          }
+        }
+      }
+      &:nth-child(3){
+        float:right; padding-right:20px; margin-top:15px;
+        span{ color:$color_orange; font-size:$size_font_pageTitle; margin:0 5px;}
+      }
+    }
+    &.noneBalance{
+        border-color:$color_border_gray; background-color:$color_bg_gray;
+    }
+  }
+  .tip-msg.noneBalance{
+      display: block; margin:0; padding-left:15px; background:$color_bg_pink; border:1px solid $color_border_gray; border-top:none;
+      padding:30px 0; color:$color_font;
+      dt{
+          font-size:$size_font_pageTitle; font-weight:normal; margin-bottom:10px;
+          span{
+              color:$color_red;
+          }
+      }
+      dd{
+          font-size:$size_font_middle; color:$color_orange;
+      }
+  }
+  .valid{
+    margin-top:15px;
+    .phone{ font-weight:bold; margin:0 10px 0 5px;}
+    .btn_blue_small{
+      display: inline-block; *display:inline; zoom:1;
+    }
+    li{
+      margin:15px 0;
+      label{ font-weight:normal; width:70px; }
+      &:nth-child(3){
+          margin-top:30px; padding-top:30px; border-top:1px dashed $color_border_gray;
+          .tip-msg{display: block; }
+      }
+    }
+    .forget{
+        // color:$color_blue;
+        margin-left:10px;
+    }
+  }
+  .payBtn{
+      margin-left:75px; margin-top:5px;
+  }
+}

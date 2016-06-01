@@ -1,0 +1,40 @@
+.progressDetail{
+    background: $color_lightblue; padding:45px 90px;
+  a.btn_blue{
+    display: block;
+    &:hover{ color:#fff; text-decoration:none; }
+  }
+  h3{
+      font-size:30px;
+      .icon_ok{
+          vertical-align: middle; margin-right:10px;
+      }
+      i{
+          color:$color_orange; margin:0 5px;
+      }
+  }
+  ul{
+      margin-left:80px; line-height: 24px;
+      span{ color:$color_tip_font; }
+  }
+  .btn_blue{
+      margin-left:80px; margin-top:20px;
+  }
+}
+.security{
+    background-color:$color_bg_lightorange; border-top:1px dashed $color_border_gray;
+    padding:30px 30px 30px 90px;
+    dl{
+        line-height: 24px;
+    }
+    dt{
+        font-size:$size_font_middle; line-height: 24px;
+        .icon_warn{ margin-right:10px; }
+    }
+    dd{
+        font-size:$size_font_nomal; line-height: 24px;
+        span{
+            color:$color_orange;
+        }
+    }
+}

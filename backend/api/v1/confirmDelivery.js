@@ -1,9 +1,10 @@
-var request = require('request');
+var request    = require('request');
 var api_config = require('./api_config');
-var config = require('../../config');
-var _=require('lodash');
+var config     = require('../../config');
+var _          = require('lodash');
 
-const uploadPath = config.sysFileDir + 'static/upload/';
+
+const uploadPath = config.sysFileDir + '/static/upload/';
 exports.test = function (req, res, next) {
 	var params = req.query;
 	console.log(params.file_id)
@@ -17,6 +18,6 @@ exports.test = function (req, res, next) {
 	params.quantityList = newids1;
 
 
-	res.json({'qualityList':params.qualityList,"quantityList":params.quantityList})
+    res.json({'qualityList' : params.qualityList, "quantityList" : params.quantityList})
 
 };

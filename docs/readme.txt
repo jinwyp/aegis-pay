@@ -1,5 +1,20 @@
 ﻿目录结构(aegis-pay)：
 
+app/                        客户端静态文件目录
+    ├── commponents         公用组件
+        └── test4.js
+    ├── images              图片
+    │   └── test4.js
+    ├── libs                基础类库
+    │   └── test4.js
+    ├── scripts             页面脚本
+    │   └── test4.js
+    ├── styles              页面样式
+    │   └── test4.js
+    └── views               页面模板
+        ├── test3.js
+        └── test4.js
+
 api/                        获取数据的API
     ├── v1                  不同版本API
     │   ├── test1.js
@@ -7,20 +22,7 @@ api/                        获取数据的API
     └── v2
         ├── test3.js
         └── test4.js              
-app/                        客户端静态文件目录
-    ├── commponents         公用组件
-        └── test4.js  
-    ├── images              图片
-    │   └── test4.js  
-    ├── libs                基础类库
-    │   └── test4.js  
-    ├── scripts             页面脚本
-    │   └── test4.js 
-    ├── styles              页面样式
-    │   └── test4.js 
-    └── views               页面模板
-        ├── test3.js
-        └── test4.js    
+
 
 assets/                     gulp目录*生成
     ├── images
@@ -32,7 +34,7 @@ assets/                     gulp目录*生成
     └── styles
         ├── test3.js
         └── test4.js 
-common/                     Node公用的中间件
+common/                     Node公用的库
     ├── cache.js
     ├── logger.js
     └── redis.js
@@ -45,17 +47,22 @@ docs/                       说明文档
     └──
 log/                        Node日志
     └──
-middlewares/                中间件文件夹
+
+middlewares/                Express 中间件文件夹
     ├── auth.js
-    ├── error_page.js
+    ├── errorhandler.js
     ├── render.js
     └── request_log.js
+
 nock/                       模拟接口数据
     ├── index.js
     └── site.js
+
 node_modules/               站点依赖模块*生成
     ├── 
     └──
+
+
 .babelrc                    设置ES6语法支持
 .gitignore                  Git忽略文件配置
 api_router.js               Api路由配置&Ajax接口调用

@@ -1,38 +1,7 @@
-
-//@import './Plugins/modals.scss';
+@import './global.scss';
 @import './Plugins/fancySelect.scss';
 
-
-/* 关闭订单页面 */
-$bgUrl: "/static/images/sprite_ico.png";
-$ffYh: "\5FAE\8F6F\96C5\9ED1";
-$ffSt: '\5B8B\4F53';
-$ffArial: 'Arial';
-
-
-/* 公用 */
-.fl { float: left; display: inline;}
-.fr { float: right; display: inline;}
-.txt_r { text-align: right;}
-.txt_l { text-align: left;}
-.txt_c { text-align: center;}
-.mt10 { margin-top: 10px}
-.mt20 { margin-top: 20px}
-.mt30 { margin-top: 30px}
-.mt150 { margin-top: 150px}
-.ml10 { margin-left: 10px;}
-.ml20 { margin-left: 20px;}
-.ff_yh { font-family: $ffYh;}
-.ff_st { font-family: $ffSt;}
-.ff_arial { font-family: $ffArial;}
-
-.require {
-  display: inline-block;
-  padding-right: 3px;
-  font-family: $ffSt;
-  color: #f60f60;
-  text-decoration: initial;
-  vertical-align: middle;}
+/* 关闭订单 页面 *********************************************** */
 
 .linkBtn {
   font-size: 12px;
@@ -129,83 +98,6 @@ $ffArial: 'Arial';
 }
 
 
-/* layout */
-.container {
-  width: 100%;
-  height: 100%;
-  padding-top: 20px;
-  background: #f5f5f5;
-
-  .bodyWrap {
-    width: 940px;
-    margin:0 auto 50px;
-    padding:20px 30px 50px;
-    background: #FFFFFF;
-  }
-
-}
-
-/* 板块 */
-.plateBox {
-  width: auto;
-
-  .plateHead {
-    height: 37px;
-    //border-bottom: 1px dashed #CCCCCC;
-
-    .prefix {
-      float: left;
-      display: inline;
-      width: 2px;
-      height: 18px;
-      margin-top: 10px;
-      background: #00b6ef;
-    }
-    .headLeft {
-      float: left;
-      display: inline;
-      padding-left: 8px;
-      margin: 0;
-      font: lighter 18px/38px "\5FAE\8F6F\96C5\9ED1";
-    }
-    .headContent {
-      width: 30%;
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      font: lighter 18px/38px "\5FAE\8F6F\96C5\9ED1";
-    }
-    .headRight {
-      width: 100px;
-      float: right;
-      display: inline;
-      text-align: right;
-      padding-right: 8px;
-      font-size: 14px;
-      line-height: 38px;
-    }
-  }
-
-  .plateMain {
-    border: 1px solid #e8e8e8;
-
-    .sidebarWrap {
-      width: 260px;
-      padding: 30px 15px 30px 30px;
-      background: #f5f5f5;
-      height: 420px;
-    }
-
-    .mainWrap {
-      width: 618px;
-      margin-left: -260px;
-      padding: 30px 20px;
-      background: #FFFFFF;
-    }
-    
-  }
-}
-
 
 /* 列表 ----------------------------------------------- */
 .termBox {
@@ -243,14 +135,14 @@ $ffArial: 'Arial';
   }
 }
 
-/* 文本域 */
+/* 文本域, 带可输入字数 */
 .txtAreaBox {
   position: relative;
   padding: 0;
   margin: 0;
 
   .dockDown {
-    width: 60px;
+    width: 110px;
     height: 22px;
     padding: 1px 5px;
     position: absolute;
@@ -273,6 +165,8 @@ $ffArial: 'Arial';
   resize: none;
 }
 
+
+// 按钮
 .subBtn {
   width: 172px;
   height: 40px;
@@ -285,8 +179,6 @@ $ffArial: 'Arial';
 .subBtn:hover {
   background: #4cc6ee;
 }
-
-
 .iBtn-cancel, .iBtn-primary {
   width: 100px;
   height: 32px;
@@ -295,7 +187,6 @@ $ffArial: 'Arial';
   font-size: 14px;
   line-height: 32px;
   color: #ffffff;
-  
 }
 .iBtn-cancel {
   background: #CEC7C7;
@@ -311,12 +202,30 @@ $ffArial: 'Arial';
   background: #4cc6ee;
 }
 
+//左侧栏
+.plateMain {
+  .sidebarWrap {
+    width: 260px;
+    padding: 30px 15px 30px 30px;
+    background: #f5f5f5;
+    height: 368px;
+  }
+
+  .mainWrap {
+    width: 678px;
+    padding: 30px 20px;
+    background: #FFFFFF;
+  }
+}
+
+
+
+// 错误提示
 .warn_ico {
   width: 66px;
   height: 66px;
   margin: 30px auto 8px;
   background: url($bgUrl) no-repeat -5px -290px;
-
 }
 .warn_info {
   font-size: 18px;

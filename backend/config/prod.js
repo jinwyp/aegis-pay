@@ -2,21 +2,20 @@
  * config
  */
 var config = {
-  
-  mock: false,
 
-  host: 'pay.yimei180.com', // 域名
-  port: 3000, // 程序运行的端口
-  
-  session_secret: 'this_is_yimeis_secret_key_node_redis__cache_long_',
-  auth_cookie_name: 'signed_cookie_username',
-  
-  redis:{
-  	host: '10.0.10.2',
-  	port: '6379',
-  	db: 0
-  },
-  sysFileDir: '/Users/beatacao/work/aegis-pay/backend/files/'
+    https    : true,
+    domain   : 'pay.yimei180.com', // 域名
+    homepage : 'https://pay.yimei180.com:3000',
+
+    redis : {
+        host : '10.0.10.2',   // 这个应该不是这个地址
+        port : '6379',
+        db   : 0
+    },
+
+    sysFileDir : process.env.FILES_DIR
+
 };
 
 module.exports = config;
+
