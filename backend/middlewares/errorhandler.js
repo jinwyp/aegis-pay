@@ -40,11 +40,12 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     // console.log(req.is('application/json'));
 
     var resError = {
+        success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
         status: newErr.status,
-        code: newErr.code,
+        errorCode: newErr.code,
         field: newErr.field,
         stack: newErr.stack,
         error: newErr
@@ -94,10 +95,11 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     logger.log(newErr.stack);
 
     var resError = {
+        success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
-        code: newErr.code,
+        errorCode: newErr.code,
         field: newErr.field
     };
 
@@ -136,7 +138,7 @@ process.on('uncaughtException', function(error){
 // To render unhandled rejections created in BlueBird:
 // https://nodejs.org/api/process.html#process_event_unhandledrejection
 process.on('unhandledRejection', function(reason, p){
-    logger.log('5XX UnhandledRejection at Promise: ', p, ". Reason: ", reason);
+    logger.log('5XX UnhandledRejection at Promise: ', JSON.stringify(p), ". Reason: ", reason);
 });
 
 

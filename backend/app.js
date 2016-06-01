@@ -148,6 +148,6 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('----- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        console.log('----------- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
