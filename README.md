@@ -83,7 +83,7 @@ request({url : 'http://localhost:8800/return'}, function (err, data) {
 })
 ```
 
-当使用callback风格制作一个库给其他函数调用时, 例如我们自己写个request库, 错误需要通过回调函数的第一个参数传出来, 这样上面使用的时候才能得到err信息。 node.js库约定第一个参数为err, 后面参数为结果。 不能throw err,这样调用者无法得到err信息。
+当使用callback风格制作一个库给其他函数调用时, 例如我们自己写个request库, 错误需要通过回调函数的第一个参数传出来, 这样上面使用的时候才能得到err信息。 node.js库约定第一个参数为err, 后面参数为结果。 不能throw err,这样调用者无法得到err信息。 为什么要这么做呢，因为异步中的错误是无法通过try catch捕获的。
 ```
 function request(url, callback){
     var err = new Error('网络出错了');
@@ -157,9 +157,11 @@ co(function*() {
 注意: 如果使用了try{} catch{} ,那么同时再使用.catch() 不会在再次捕获该错误。之所以推荐使用.catch()方式, 就是因为除非try的部分包括所有代码段,否则try外面的代码出错将捕获不到。而.catch方法则可以统一处理generator函数内所有错误。 另外javascript编程时也尽量减少try里面的代码内容。
 
 
-4 async await 调用方处理错误, 直接使用try catch, 然后next(err)即可
+4 async await 调用方处理错误, 直接使用try catch, 然后next(err)即可. 或使用catch(next),同co使用方法
+
+一种是直接在代码中使用 try{} catch{}
 ```
-async function (req, res, next){
+async function demo(req, res, next){
     try{
         var result = await requestP({url:api_config.apps});
         return res.send(result);
@@ -167,6 +169,17 @@ async function (req, res, next){
         next(err)
     }
 }
+```
+
+另一中使用.catch() 处理错误。
+```
+async function demo(req, res, next){
+
+    var result = await requestP({url:api_config.apps});
+    return res.send(result);
+}
+
+demo().catch(next)
 ```
 
 

@@ -70,12 +70,11 @@ exports.asyncMerge = function (req, res, next) {
 */
 
     async function aa (){
-        console.log('aaa')
         result = await requestP({url:api_config.apps});
         return res.send(result);
     }
 
-    aa()
+    aa().catch(next);
 
 };
 
