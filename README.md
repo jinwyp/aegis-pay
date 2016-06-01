@@ -11,7 +11,7 @@ backend 目录下：
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
-- !!注意: ccap 模块因为部署的问题被移除 需要手动安装 npm install ccap
+- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install ccap
 
 app 目录下：
 - npm install
@@ -129,6 +129,8 @@ new Promise(function(resolve, reject){
 })
 ```
 
+
+注意!! 当编写一个库的时候需要同时提供callback和promise的接口 参考文章 [如何用 Node.js 编写一个 API 客户端](https://cnodejs.org/topic/572d68b1afd3b34a17ff40f0)
 
 3 co + generator 调用方处理错误 有两种办法, 一种是直接在代码中使用 try{} catch{}, 另一种在co结尾处使用.catch(). 因为co在4.0后使用 yield promise, co返回值是promise,可以用catch方法处理
 
