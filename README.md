@@ -184,6 +184,14 @@ async function demo(req, res, next){
 demo().catch(next)
 ```
 
+注意!! : 如果库使用的Event emitter 来处理错误,例如steam相关的库, 那么还需要通过事件来处理错误。 [参考文章](https://strongloop.com/strongblog/async-error-handling-expressjs-es7-promises-generators/)
+```
+app.get('/', wrap(async (req, res, next) => {
+  let company = await getCompanyById(req.query.id)
+  let stream = getLogoStreamById(company.id)
+  stream.on('error', next).pipe(res)
+}))
+```
 
 5 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
 
