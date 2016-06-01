@@ -48,7 +48,8 @@ exports.confirmDelivery = function (req, res, next) {
             statusObj   : statusObj,
             "sellInfo"  : source.sellInfo,
             "order"     : source.order,
-            "indexList" : source.indexList
+            "indexList" : source.indexList,
+            "indexDataList" : source.indexDataList
         };
         console.log('获取到的结果是content----------------------------' + content);
         //渲染页面,指定模板&数据

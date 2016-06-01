@@ -14,99 +14,194 @@
             </div>
             <% if (sellInfo.pricingMethodId==1) {%>
                 <p class="tableTit"><span>* </span>请填写检测结果</p>
-                <div class="banCon pb10">
-                    <%count =0; for(var i in indexList){ count++; %><%}%>
-                        <% if (count<=6) {%>
-                        <div class="tableWrap">
-                            <table class="checkList">
-                                <tr class="thead">
-                                    <td width="55">批次</td>
-                                    <td width="92"><i class="calIcon"></i>检测时间</td>
-                                    <td width="92">提货吨数(吨)</td>
-                                    <% if (count<=6) {%>
-                                        <% for(var i in indexList){%>
-                                            <td width="92"><%= indexList[i] %></td>
-                                        <%}%>
-                                        <% for(var i=0;i<6-count;i++) {%>
-                                            <td width="92"></td>
-                                        <% } %>
-                                    <%}%>
-                                    <td width="94">
-                                        操作
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="batch">1</td>
-                                    <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                    <td><input type="text" name="checkAmount"/></td>
-                                    <% if (count<=6) {%>
-                                        <% for(var i in indexList){%>
-                                        <td><input type="text" name=<%=i%> /></td>
-                                        <%}%>
-                                        <% for(var i=0;i<6-count;i++) {%>
-                                        <td></td>
-                                        <% } %>
-                                    <%}%>
-                                    <td>
-                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                                        <a href="javascript:void(0)" class="add">增加</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <%}else {%>
-                        <div class="tableWrap">
-                            <table class="checkList">
-                                <tr class="thead">
-                                    <td width="55">批次</td>
-                                    <td width="92"><i class="calIcon"></i>检测时间</td>
-                                    <td width="92">提货吨数(吨)</td>
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                        <% if(Tindex<=6) {%>
-                                            <td width="92"><%= indexList[i] %></td>
-                                        <%}%>
-                                    <%}%>
-                                    <td width="94">操作</td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="3"  class="batch">1</td>
-                                    <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                    <td><input type="text" name="checkAmount"/></td>
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                        <% if(Tindex<=6) {%>
-                                        <td><input type="text" name=<%=i%> /></td>
-                                        <%}%>
-                                    <%}%>
-                                    <td rowspan="3">
-                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                                        <a href="javascript:void(0)" class="add">增加</a>
-                                    </td>
-                                </tr>
-                                <tr class="thead">
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                        <% if(Tindex>6) {%>
-                                        <td width="92"><%= indexList[i] %></td>
-                                        <%}%>
-                                    <%}%>
-                                    <% for(var i=0;i<14-count;i++) {%>
-                                        <td></td>
-                                    <% } %>
-                                </tr>
-                                <tr>
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                    <% if(Tindex>6) {%>
-                                    <td><input type="text" name=<%=i%> /></td>
-                                    <%}%>
-                                    <%}%>
-                                    <% for(var i=0;i<14-count;i++) {%>
-                                    <td></td>
-                                    <% } %>
-                                </tr>
-                            </table>
-                        </div>
-                        <%}%>
 
+                <% if(indexDataList.length>0){%>
+                    <div class="banCon pb10">
+                <%count =0; for(var i in indexList){ count++; %><%}%>
+                <% if (count<=6) {%>
+                <div class="tableWrap">
+                    <table class="checkList">
+                        <tr class="thead">
+                            <td width="55">批次</td>
+                            <td width="92"><i class="calIcon"></i>检测时间</td>
+                            <td width="92">提货吨数(吨)</td>
+                            <% if (count<=6) {%>
+                            <% for(var i in indexList){%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <% for(var i=0;i<6-count;i++) {%>
+                            <td width="92"></td>
+                            <% } %>
+                            <%}%>
+                            <td width="94">
+                                操作
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="batch">x</td>
+                            <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%= indexDataList[0].checkTime %> /></td>
+                            <td><input type="text" name="checkAmount" value=<%= indexDataList[0].checkAmount %> /></td>
+                            <% if (count<=6) {%>
+                            <% for(var i in indexDataList[0]){%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <% for(var i=0;i<6-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                            <%}%>
+                            <td>
+                                <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                <a href="javascript:void(0)" class="add">增加</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+                <%}else {%>
+                <div class="tableWrap">
+                    <table class="checkList">
+                        <tr class="thead">
+                            <td width="55">批次</td>
+                            <td width="92"><i class="calIcon"></i>检测时间</td>
+                            <td width="92">提货吨数(吨)</td>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex<=6) {%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <%}%>
+                            <td width="94">操作</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"  class="batch">1</td>
+                            <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
+                            <td><input type="text" name="checkAmount"/></td>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex<=6) {%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <%}%>
+                            <td rowspan="3">
+                                <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                <a href="javascript:void(0)" class="add">增加</a>
+                            </td>
+                        </tr>
+                        <tr class="thead">
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex>6) {%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <%}%>
+                            <% for(var i=0;i<14-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                        </tr>
+                        <tr>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex>6) {%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <%}%>
+                            <% for(var i=0;i<14-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                        </tr>
+                    </table>
+                </div>
+                <%}%>
+            </div>
+                <%}else{%>
+                    <div class="banCon pb10">
+                <%count =0; for(var i in indexList){ count++; %><%}%>
+                <% if (count<=6) {%>
+                <div class="tableWrap">
+                    <table class="checkList">
+                        <tr class="thead">
+                            <td width="55">批次</td>
+                            <td width="92"><i class="calIcon"></i>检测时间</td>
+                            <td width="92">提货吨数(吨)</td>
+                            <% if (count<=6) {%>
+                            <% for(var i in indexList){%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <% for(var i=0;i<6-count;i++) {%>
+                            <td width="92"></td>
+                            <% } %>
+                            <%}%>
+                            <td width="94">
+                                操作
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="batch">1</td>
+                            <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
+                            <td><input type="text" name="checkAmount"/></td>
+                            <% if (count<=6) {%>
+                            <% for(var i in indexList){%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <% for(var i=0;i<6-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                            <%}%>
+                            <td>
+                                <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                <a href="javascript:void(0)" class="add">增加</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <%}else {%>
+                <div class="tableWrap">
+                    <table class="checkList">
+                        <tr class="thead">
+                            <td width="55">批次</td>
+                            <td width="92"><i class="calIcon"></i>检测时间</td>
+                            <td width="92">提货吨数(吨)</td>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex<=6) {%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <%}%>
+                            <td width="94">操作</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"  class="batch">1</td>
+                            <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
+                            <td><input type="text" name="checkAmount"/></td>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex<=6) {%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <%}%>
+                            <td rowspan="3">
+                                <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                <a href="javascript:void(0)" class="add">增加</a>
+                            </td>
+                        </tr>
+                        <tr class="thead">
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex>6) {%>
+                            <td width="92"><%= indexList[i] %></td>
+                            <%}%>
+                            <%}%>
+                            <% for(var i=0;i<14-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                        </tr>
+                        <tr>
+                            <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                            <% if(Tindex>6) {%>
+                            <td><input type="text" name=<%=i%> /></td>
+                            <%}%>
+                            <%}%>
+                            <% for(var i=0;i<14-count;i++) {%>
+                            <td></td>
+                            <% } %>
+                        </tr>
+                    </table>
+                </div>
+                <%}%>
+            </div>
+                <%}%>
             <%}%>
             <div class="banCon pb0" id="qualityList">
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>

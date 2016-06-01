@@ -89,7 +89,7 @@
         padding: 8px 0px;
         position: relative;
         input{width:92px;text-align: center;outline: none;border: none;}
-        i.calIcon{width: 13px;height: 13px;display:inline-block;background: url("/static/images/sprite_ico.png") no-repeat -525px -179px;position:relative;top: 2px;right: 2px;}
+        i.calIcon{width: 13px;height: 13px;display:inline-block;background: url("/static/images/sprite_ico.png") no-repeat 1px -543px;position:relative;top: 2px;right: 2px;}
         a{color:#007193;display: inline-block;text-align: center;}
         a:hover{color:#00b7ec;text-decoration: underline}
         a.add+a.del{margin-right: 5px;}
