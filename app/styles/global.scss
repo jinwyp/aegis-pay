@@ -65,7 +65,7 @@ a:hover {
 .ff_yh { font-family: $ffYh;}
 .ff_st { font-family: $ffSt;}
 .ff_arial { font-family: $ffArial;}
-
+.bright { color: #ff8553;}
 .require {
   display: inline-block;
   padding-right: 3px;
@@ -107,6 +107,8 @@ a:hover {
 
       .plateHead {
         height: 37px;
+        position: relative;
+        z-index: 3;
 
         .prefix {
           float: left;
@@ -134,7 +136,6 @@ a:hover {
           float: right;
           display: inline;
           text-align: right;
-          padding-right: 8px;
           font-size: 12px;
           line-height: 36px;
           font-family: $ffSt;
@@ -146,6 +147,8 @@ a:hover {
       }
 
       .plateMain {
+        position: relative;
+        z-index: 4;
         border: none;
 
         &.borSolid {
@@ -167,11 +170,14 @@ a:hover {
 // >>>>>>>>>>>>>>>>>>>>
 .modal-content {
   border-radius: 2px;
+  border-top: 2px solid #00b6ec;
 }
 .modal-sm {
   width: 400px;
 }
-
+.modal-lg {
+  width: 940px;
+}
 
 
 // <<<<<<<<<<<<<<<<<<<<
