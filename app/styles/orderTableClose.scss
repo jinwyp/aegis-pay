@@ -1,13 +1,7 @@
-$white: #ffffff;
-$gray: #f5f5f5;
-$black: #333333;
-$hintColor: #999999;
-$borderColor: #e8e8e8;
-
 .order-table {
-  border-left: solid 1px $borderColor;
-  border-right: solid 1px $borderColor;
-  border-bottom: solid 1px $borderColor;
+  border-left: solid 1px $color_border;
+  border-right: solid 1px $color_border;
+  border-bottom: solid 1px $color_border;
   width: 100%;
   .center-content {
     text-align: center;
@@ -16,22 +10,17 @@ $borderColor: #e8e8e8;
   .table-title {
     height: 40px;
     th {
-      background-color: $gray;
+      background-color: $color_body_bg;
       text-align: center;
       font-size: 12px;
-      color: #666666;
-      .unit{
-        color: #999999;
-      }
+      color: $color_title_text;
+      .unit{  color: $color_tip_font;  }
     }
   }
   .table-info{
-    td{
-      border-right: solid 1px $borderColor;
-    }
-    .explain-bg{
-      background-color: #f3fcff;
-    }
+    td{  border-right: solid 1px $color_border;  }
+    .explain-paied-bg{  background-color: $color_readme_bg;  }
+    .explain-bg{  background-color: $color_bg_status;  }
     .info-col {
       padding: 30px 0;
       font-size: 14px;
@@ -40,7 +29,7 @@ $borderColor: #e8e8e8;
         margin-left: auto;
         margin-right: auto;
         font-size: 14px;
-        color: black;
+        color: $color_font;
         .item{
           position: relative;
           text-align: left;
@@ -57,54 +46,47 @@ $borderColor: #e8e8e8;
               font-size: 18px;
               text-align: right;
             }
-            .orange{
-              color: #ff6830;
-            }
-            .time{
-              font-size: 12px;
-              color: #666666;
-            }
-            .status-color{
-              color:#1aaa6b;
-            }
+            .orange{  color: $color_orange;  }
+            .time{  font-size: 12px;  color: $color_title_text;  }
+            .status-color{  color:$color_green;  }
           }
-          .align-right{
-            text-align: right;
-          }
-          .item_icon {
+          .dot-icon {
             position: absolute;
-            background: #bcbcbc;
             display: inline-block;
             width: 10px;
             height: 10px;
-            top: 20px;
             left: -4px;
             border-radius: 5px;
           }
+          .start{  top: 20px;background-color: $color_dot;  }
+          .end{  top: 30px;  }
+          .dot-gray{  background-color: $color_dot;  }
+          .dot-green{  background-color: $color_green;  }
         }
-        .line-start{
-          padding-bottom: 20px;
-        }
-        .line-end{
-          padding-top: 20px;
-        }
+        .line-start{  padding-bottom: 10px;  }
+        .line-end{  padding-top: 10px;  }
         .line-start:before {
           content: "";
           width: 2px;
-          height: 74%;
-          background: #bcbcbc;
+          height: 31px;
+          background-color: $color_dot;
           left: 0px;
-          top: 22px;
+          top: 24px;
           position: absolute;
         }
         .line-end:before {
           content: "";
           width: 2px;
-          height: 43%;
-          background: #1fb8ea;
+          height: 34px;
           left: 0px;
           top: 0px;
           position: absolute;
+        }
+        .line-gray:before {
+          background-color: $color_dot;
+        }
+        .line-green:before {
+          background-color: $color_green;
         }
       }
     }
@@ -115,14 +97,9 @@ $borderColor: #e8e8e8;
   margin-top: 30px;
   margin-right: 6px;
   .money-number{
-    color: $black;
+    color: $color_font;
     font-size: 20px;
-    span{
-      color: #ff6830;
-    }
+    span{  color: $color_orange;  }
   }
-  .money-zh{
-    margin-top: 10px;
-    font-size: 12px;
-  }
+  .money-zh{  margin-top: 10px;  font-size: 12px;  }
 }

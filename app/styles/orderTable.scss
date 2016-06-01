@@ -1,29 +1,24 @@
-$white: #ffffff;
-$gray: #f5f5f5;
-$black: #333333;
-$hintColor: #999999;
-
 .w-406{  width:406px;  }
 .w-160{  width:160px;  }
 .w-213{  width:213px;  }
 .order-table-title{
   display: table;
-  background-color: $gray;
+  background-color: $color_body_bg;
   font-size: 12px;
   line-height: 40px;
-  border-left: 1px solid #e8e8e8;
-  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid $color_border;
+  border-right: 1px solid $color_border;
   .title-col {
-    border-left:1px solid $gray;
+    border-left:1px solid $color_body_bg;
     display: table-cell;
     text-align: center;
-    color: #666666;
+    color: $color_title_text;
   }
 }
 .order-table-body{
   display: table;
-  border-bottom: 1px solid #e8e8e8;
-  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid $color_body_bg;
+  border-right: 1px solid $color_body_bg;
   .center-content{
     text-align: center;
     vertical-align: middle;
@@ -31,15 +26,15 @@ $hintColor: #999999;
   .info-col{
     display: table-cell;
     padding: 30px 0;
-    border-left:1px solid #e8e8e8;
+    border-left:1px solid $color_body_bg;
     .info-title{
       margin-left: 30px;
       .supply-ico {
         padding: 1px 3px;
         text-align: center;
         vertical-align: middle;
-        background-color: #ff6e27;
-        color: $white;
+        background-color: $color_orange;
+        color: $color_text_white;
         border-radius: 3px;
         font-size: 12px;
       }
@@ -67,10 +62,10 @@ $hintColor: #999999;
   margin-top: 30px;
   margin-right: 6px;
   .money-number{
-    color: $black;
+    color: $color_font;
     font-size: 20px;
     span{
-      color: #ff6830;
+      color: $color_orange;
     }
   }
   .money-zh{
