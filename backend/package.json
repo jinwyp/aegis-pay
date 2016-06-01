@@ -16,6 +16,11 @@
     "start": "./run.sh -m"
   },
   "dependencies": {
+    "babel-core": "^6.9.1",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-async-to-module-method": "^6.8.0",
+    "babel-polyfill": "^6.9.1",
+    "babel-register": "^6.9.0",
     "bluebird": "^3.4.0",
     "body-parser": "1.9.2",
     "co": "^4.6.0",
