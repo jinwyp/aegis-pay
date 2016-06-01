@@ -9,20 +9,141 @@
 <div class="container">
     <div class="bodyWrap">
 
-        <!-- 关闭板块 -->
+        <!-- 开具结算单 板块 -->
         <div class="plateBox">
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">开具结算单</h3>
                 <!--<p class="headContent">居中标题</p>-->
                 <p class="headRight">
-                    <span class="i"></span>
-                    <a href="s" class="sdf">重要提示</a>
+                    <a href="##" class="doubtInlet">重要提示</a>
                 </p>
             </div>
-            <div class="plateMain clearfix">
+            <div class="plateMain">
 
-                <p>s</p>
+                <!-- 提示框 板块 -->
+                <div class="embedBox">
+                    <div class="significantDoubt">
+                        <h2 class="doubtTitle">重要提示：</h2>
+                        <p class="entry">
+                            1、本结算单由卖方出具，需经买方确认，请买方仔细核对结算单，如没有异议，请<a href="#" class="linkPrint">下载并打印该结算单</a>，将结算单加盖买方公章和财务章后寄至卖家；<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如买方对结算单有异议的，请及时联系卖方。
+                        </p>
+                        <p class="entry">
+                            2、如果实际结算货款<span class="light">少于已付货款</span>，确认结算后应退货款会及时退还到买方账户，卖方会在<span class="light">退款后3个工作日内</span>为买方开出发票。
+                        </p>
+                        <p class="entry">
+                            3、如果实际结算货款<span class="light">多于已付货款</span>，确认结算后请在<span class="light">5个工作日</span>你将应付货款付至卖方账户，
+                            卖方确认收到应付货款后的<span class="light">3个工作日内</span>为买家开具发票。
+                        </p>
+                        <p class="entry">4、如果买方在<span class="light">5个工作日内不确认结算</span>，本次交易将<span class="light">自动进入纠纷处理</span>程序。</p>
+                    </div>
+                </div>
+
+                <!-- 退回原因提示框 板块 -->
+
+
+                <!-- 结算单: 结算信息 -->
+                <div class="mt20">
+                    <h2 class="settlementTit">结算单</h2>
+                    <table class="settlementTable">
+                        <tbody>
+                        <tr>
+                            <th width="230">订单号</th>
+                            <th width="230">合同编号</th>
+                            <th>确认提货时间</th>
+                            <th width="230">结算时间</th>
+                        </tr>
+                        <tr>
+                            <td>82793847398 </td>
+                            <td>82793847398 </td>
+                            <td>2016-05-31 16:29:18</td>
+                            <td>2016-05-31 16:29:22</td>
+                        </tr>
+                        <tr>
+                            <th>港口</th>
+                            <th>煤种</th>
+                            <th>合同吨位（吨）</th>
+                            <th>合同基准单价（元/吨）</th>
+                        </tr>
+                        <tr>
+                            <td>无烟煤 </td>
+                            <td>4000 </td>
+                            <td>400</td>
+                            <td>40,000.00</td>
+                        </tr>
+                        <tr>
+                            <th>合同金额（元）</th>
+                            <th>已付款金额（元）</th>
+                            <th>付款时间</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <td>40,000.00</td>
+                            <td>40,000.00 </td>
+                            <td>400</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 结算单: 实际结算数据 -->
+                <div class="mt20">
+                    <h2 class="settlementTit">实际结算数据</h2>
+                    <table class="settlementTable">
+                        <tbody>
+                        <tr>
+                            <th width="230">总结算吨位（吨）</th>
+                            <th width="230">港务费（元）</th>
+                            <th>总结算金额（元）</th>
+                            <th width="230"><span class="giveChangeTit">应补货款金额（元）</span></th>
+                        </tr>
+                        <tr>
+                            <td class="billBox">
+                                <input type="text" class="billIpt" placeholder="0-100整数"/>
+                                <span class="errInfo"></span>
+                            </td>
+                            <td class="billBox">
+                                <input type="text" class="billIpt" placeholder="0-100整数"/>
+                                <span class="errInfo"></span>
+                            </td>
+                            <td class="billBox">
+                                <input type="text" class="billIpt" placeholder="0-100整数"/>
+                                <span class="errInfo">请输入0-100的整数</span>
+                            </td>
+                            <td><span class="giveChangeNum">880.00</span></td>
+                        </tr>
+                        <tr>
+                            <th>说明</th>
+                            <td colspan="3" class="billBox">
+                                <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写"/>
+                                <span class="errInfo">请填写关于结算的说明</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">购方公司</th>
+                            <th colspan="2">销方公司</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span>买家公司名称全称</span>
+                            </td>
+                            <td colspan="2">
+                                <span>卖家公司名称全称</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- 补充协议文件 板块 -->
+
+                <!-- 上传盖结算单 板块 -->
+
+                <!-- 操作按钮 模块 -->
+
+                <p class="">s</p>
                 <p>s</p>
                 <p>s</p>
                 <p>s</p>
@@ -33,11 +154,51 @@
             </div>
         </div>
 
+        <!-- 清算货款信息 板块-->
+        <div class="plateBox mt20">
+            <div class="plateHead borSolid">
+                <span class="prefix"></span>
+                <h3 class="headLeft fl">清算货款确认</h3>
+                <!--<p class="headContent">居中标题</p>-->
+                <!--<p class="headRight">左侧标题</p>-->
+            </div>
+            <div class="plateMain">
+                <p class="liquidationTime">付款时间:  <span class="time">2016-03-30  12:20:10</span></p>
+                <table class="liquidationGoods">
+                    <tbody>
+                    <tr>
+                        <th>实际结算金额（元）</th>
+                        <th>已付金额（元） </th>
+                        <th>应退余款金额（元）</th>
+                    </tr>
+                    <tr>
+                        <td>100,000.00</td>
+                        <td>100,000.00</td>
+                        <td>
+                            <span class="bright">100,000.00</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
+<!-- 结算单退回原因: 模态框-->
 
-<!-- 模态框 -->
+<!-- 重要提示: 模态框-->
+<div class="modal fade" id="significantModal" role="dialog" aria-labelledby="gridSystemModalLabel" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content significantModalCon" style="margin-top:193px;">
+            <!-- 重要提示-->
+        </div>
+    </div>
+</div>
+
+<!-- 操作提示信息: 模态框-->
 <div class="modal fade" id="orderModal" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content mt150 ">
