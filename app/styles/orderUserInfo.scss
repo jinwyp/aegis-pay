@@ -1,20 +1,17 @@
-$white: #ffffff;
-$hintColor: #999999;
-
 .order-title {
   margin-top: 30px;
   font-size: 18px;
   .border-title {
     padding-left: 6px;
-    border-left: solid 2px #00b6ef;
+    border-left: solid 2px $color_btn_blue;
   }
 }
 .order-user-info {
   overflow: hidden;
   margin-top: 10px;
   padding-bottom: 30px;
-  border: solid 1px #e8e8e8;
-  background-color: $white;
+  border: solid 1px $color_border;
+  background-color: $color_main_bg;
   font-size: 14px;
   .user-title {
     margin-top: 30px;
@@ -38,7 +35,7 @@ $hintColor: #999999;
       .div-label {
         width: 120px;
         padding-left: 30px;
-        color: $hintColor;
+        color: $color_tip_font;
         vertical-align: top;
       }
       .div-value {

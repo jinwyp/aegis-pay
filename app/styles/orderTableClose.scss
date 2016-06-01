@@ -1,15 +1,7 @@
-$white: #ffffff;
-$gray: #f5f5f5;
-$black: #333333;
-$hintColor: #999999;
-$borderColor: #e8e8e8;
-$green: #1aaa6b;
-$dot-color:#bcbcbc;
-
 .order-table {
-  border-left: solid 1px $borderColor;
-  border-right: solid 1px $borderColor;
-  border-bottom: solid 1px $borderColor;
+  border-left: solid 1px $color_border;
+  border-right: solid 1px $color_border;
+  border-bottom: solid 1px $color_border;
   width: 100%;
   .center-content {
     text-align: center;
@@ -18,17 +10,17 @@ $dot-color:#bcbcbc;
   .table-title {
     height: 40px;
     th {
-      background-color: $gray;
+      background-color: $color_body_bg;
       text-align: center;
       font-size: 12px;
-      color: #666666;
-      .unit{  color: #999999;  }
+      color: $color_title_text;
+      .unit{  color: $color_tip_font;  }
     }
   }
   .table-info{
-    td{  border-right: solid 1px $borderColor;  }
-    .explain-paied-bg{  background-color: #fffaf7;  }
-    .explain-bg{  background-color: #f3fcff;  }
+    td{  border-right: solid 1px $color_border;  }
+    .explain-paied-bg{  background-color: $color_readme_bg;  }
+    .explain-bg{  background-color: $color_bg_status;  }
     .info-col {
       padding: 30px 0;
       font-size: 14px;
@@ -37,7 +29,7 @@ $dot-color:#bcbcbc;
         margin-left: auto;
         margin-right: auto;
         font-size: 14px;
-        color: black;
+        color: $color_font;
         .item{
           position: relative;
           text-align: left;
@@ -54,9 +46,9 @@ $dot-color:#bcbcbc;
               font-size: 18px;
               text-align: right;
             }
-            .orange{  color: #ff6830;  }
-            .time{  font-size: 12px;  color: #666666;  }
-            .status-color{  color:$green;  }
+            .orange{  color: $color_orange;  }
+            .time{  font-size: 12px;  color: $color_title_text;  }
+            .status-color{  color:$color_green;  }
           }
           .dot-icon {
             position: absolute;
@@ -66,10 +58,10 @@ $dot-color:#bcbcbc;
             left: -4px;
             border-radius: 5px;
           }
-          .start{  top: 20px;background-color: $dot-color;  }
+          .start{  top: 20px;background-color: $color_dot;  }
           .end{  top: 30px;  }
-          .dot-gray{  background-color: $dot-color;  }
-          .dot-green{  background-color: $green;  }
+          .dot-gray{  background-color: $color_dot;  }
+          .dot-green{  background-color: $color_green;  }
         }
         .line-start{  padding-bottom: 10px;  }
         .line-end{  padding-top: 10px;  }
@@ -77,7 +69,7 @@ $dot-color:#bcbcbc;
           content: "";
           width: 2px;
           height: 31px;
-          background-color: $dot-color;
+          background-color: $color_dot;
           left: 0px;
           top: 24px;
           position: absolute;
@@ -91,10 +83,10 @@ $dot-color:#bcbcbc;
           position: absolute;
         }
         .line-gray:before {
-          background-color: $dot-color;
+          background-color: $color_dot;
         }
         .line-green:before {
-          background-color: $green;
+          background-color: $color_green;
         }
       }
     }
@@ -105,9 +97,9 @@ $dot-color:#bcbcbc;
   margin-top: 30px;
   margin-right: 6px;
   .money-number{
-    color: $black;
+    color: $color_font;
     font-size: 20px;
-    span{  color: #ff6830;  }
+    span{  color: $color_orange;  }
   }
   .money-zh{  margin-top: 10px;  font-size: 12px;  }
 }

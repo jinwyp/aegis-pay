@@ -32,7 +32,7 @@ router.get('/confirmDelivery/test', confirmDeliveryController.test);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/orderTest', orderController.orderTest);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                     // 关闭订单 路由
-router.get('/orderTest', orderController.orderTest);
+router.get('/printDetail', orderController.printDetail);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/return', returnDetailController.returnDetail);
 
