@@ -5,8 +5,8 @@
 
 var PrettyErrorLib = require('pretty-error');
 var PrettyError = new PrettyErrorLib();
-//PrettyError.skipNodeFiles(); // this will skip events.js and http.js and similar core node files, this will skip node.js, path.js, event.js, etc.
-//PrettyError.skipPackage('express', 'mongoose'); // this will skip all the trace lines about express` core and sub-modules
+PrettyError.skipNodeFiles(); // this will skip events.js and http.js and similar core node files, this will skip node.js, path.js, event.js, etc.
+PrettyError.skipPackage('express', 'mongoose'); // this will skip all the trace lines about express` core and sub-modules
 
 var logger = require('../common/logger');
 
@@ -33,7 +33,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
 
     res.status(newErr.status);
 
-    logger.log(PrettyError(newErr.stack));
+    logger.log(PrettyError.render(newErr));
     // debug(err.stack);
     // debug(JSON.stringify(newError, null, 4));
 
@@ -92,7 +92,7 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
 
     res.status(newErr.status);
 
-    logger.log(PrettyError(newErr.stack));
+    logger.log(PrettyError.render(newErr));
 
     var resError = {
         success : false,
