@@ -6,7 +6,6 @@
  * Module dependencies.
  */
 require("babel-register");
-require("babel-polyfill");
 require('colors');
 
 var config = require('./config');
