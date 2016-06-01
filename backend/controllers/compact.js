@@ -1,10 +1,14 @@
-var cache = require('../common/cache');
+var cache   = require('../common/cache');
+var checker = require('../common/datachecker');
+
 
 // fetch compact
 exports.compact = function (req, res, next) {
+
+    checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
 
-// cache.del('compacts['+ orderId + ']')
+    cache.del('compacts[' + orderId + ']');
     cache.get('compacts[' + orderId + ']', function (err, data) {
         if (!err && data) {
             return res.render('compact/compact', data);

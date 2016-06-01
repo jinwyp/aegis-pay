@@ -45,6 +45,10 @@ var validationCode = {
         tokenExpired : 4007,
         tokenLengthWrong : 4008
 
+    },
+    
+    order : {
+        orderIdWrong : 5000
     }
 };
 
