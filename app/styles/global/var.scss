@@ -12,7 +12,8 @@ $color_red: #ff0000;
 $color_readme_bg: #fffaf7;
 $color_readme_font: #ff6e0f;
 $color_readme_border: #fecdb3;
-
+$color_link: #1fb8ea;
+$color_link_hover: #4cc6ee;
 $color_tip_font: #999;
 $color_gray: #666;
 $color_orange: #ff6e0f;
@@ -30,6 +31,7 @@ $size_font_blockTitle: 16px;
 $size_font_middle:14px;
 $size_font_nomal: 12px;
 $size_font_big: 30px;
+$line-height-base: 1.428571429; // 20/14
 
 $font_family: Microsoft YaHei;
 $bgUrl: "/static/images/sprite_ico.png";
