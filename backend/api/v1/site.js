@@ -1,10 +1,11 @@
+
 var PromiseB   = require('bluebird');
 var request    = require("request");
 var requestP   = PromiseB.promisify(require("request"));
 var api_config = require('./api_config');
 var cache      = require('../../common/cache');
 var co         = require('co');
-var _          = require('lodash');
+
 
 
 
@@ -51,6 +52,7 @@ exports.asyncMerge = function (req, res, next) {
 */
 
 
+/*
     var promiseList = [
         requestP({url : api_config.apps}),
         requestP({url : api_config.test}),
@@ -65,7 +67,14 @@ exports.asyncMerge = function (req, res, next) {
             'app2-length' : result[2].body.length
         });
     }).catch(next);
+*/
 
+    async function aa (){
+        result = await requestP({url:api_config.apps});
+        return res.send(result);
+    }
+
+    aa().catch(next);
 
 };
 
