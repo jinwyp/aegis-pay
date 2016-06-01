@@ -99,7 +99,7 @@ exports.cogenMerge = function (req, res, next) {
         getProduct(api_config.apps2)
     ];
 
-    co(function*() {
+/*    co(function*() {
 
         var result = yield coIndexMerge;
         return res.send({
@@ -108,7 +108,17 @@ exports.cogenMerge = function (req, res, next) {
             'app2-length' : result[2].body.length
         });
 
+    }).catch(next);*/
+
+    Promise.all(coIndexMerge).then(function (result) {
+
+        return res.send({
+            'app'         : JSON.parse(result[0].body)[0].name,
+            'test_cache'  : JSON.parse(result[1].body),
+            'app2-length' : result[2].body.length
+        });
     }).catch(next);
+
 };
 
 
