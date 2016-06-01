@@ -5,7 +5,7 @@
 /**
  * Module dependencies.
  */
-require("babel-register");
+//require("babel-register");
 require('colors');
 
 var config = require('./config');

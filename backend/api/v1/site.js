@@ -52,7 +52,6 @@ exports.asyncMerge = function (req, res, next) {
 */
 
 
-/*
     var promiseList = [
         requestP({url : api_config.apps}),
         requestP({url : api_config.test}),
@@ -67,14 +66,15 @@ exports.asyncMerge = function (req, res, next) {
             'app2-length' : result[2].body.length
         });
     }).catch(next);
-*/
 
+/*
     async function aa (){
         result = await requestP({url:api_config.apps});
         return res.send(result);
     }
 
     aa().catch(next);
+*/
 
 };
 
