@@ -31,23 +31,31 @@ exports.pdf2image = function (pdfpath, options) {
     })
 };
 
+
+
 exports.html2pdf = function (htmlpath, pdfname) {
+
+
+    var pdfname = pdfname || path.basename(htmlpath, '.html');
+    var pdfpath = __dirfiles + 'static/pdf/';
+    var pdffile = pdfpath + pdfname + '.pdf';
+
+    console.log(pdffile)
+    var options = {format : 'Letter'};
+    var html    = fs.readFileSync(htmlpath, 'utf8');
     return new Promise(function (resolve, reject) {
-        var html    = fs.readFileSync(htmlpath, 'utf8');
-        var options = {format : 'Letter'};
-        var pdfname = pdfname || path.basename(htmlpath, '.html');
-        var pdfpath = __dirfiles + 'static/pdf/' + pdfname + '.pdf';
-        pdf.create(html, options).toFile(pdfpath, function (err, res) {
+
+        pdf.create(html, options).toFile(pdffile, function (err, res) {
             if (err) {
-                fs.stat(pdfpath, function (err, stat) {
+                fs.stat(pdffile, function (err, stat) {
                     if (stat && stat.isFile()) {
-                        resolve({'pdfpath' : pdfpath});
+                        resolve({'pdfpath' : pdffile});
                     } else {
                         reject(err);
                     }
                 })
             } else {
-                resolve({'pdfpath' : pdfpath});
+                resolve({'pdfpath' : pdffile});
             }
         });
     })
@@ -70,11 +78,16 @@ exports.ftl2html = function (data, ftlpath, options) {
             filename : path.basename(ftlpath)
 
         }).on('end', function (err, resultHtml) {
+
             if (err) reject(err);
 
             if (resultHtml) {
-                fs.writeFileSync(htmlfile, resultHtml, 'utf-8');
-                resolve({'htmlpath' : htmlfile});
+
+                fs.writeFile(htmlfile, resultHtml, 'utf-8', function(err){
+                    if (err) reject(err);
+                    resolve({'htmlpath' : htmlfile});
+                });
+
             }else{
                 resolve({'htmlpath' : 'notfound.html'});
             }

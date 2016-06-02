@@ -31,6 +31,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         newErr = err;
     }
 
+
     res.status(newErr.status);
 
     logger.log(PrettyError.render(newErr));
@@ -63,7 +64,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     }else if (type === 'text'){
         res.setHeader('Content-Type', 'text/plain');
         return res.json(resError);
-        
+
     }else {
         if (resError.errorCode > 1000) {
             resError.url = req.url;
