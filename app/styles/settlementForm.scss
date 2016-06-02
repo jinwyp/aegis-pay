@@ -2,69 +2,8 @@
 
 
 /* 结算单 页面 *********************************************** */
-/* 公用:各种提示Icon --------------------------- */
-.warn_ico {
-  width: 66px;
-  height: 66px;
-  margin: 30px auto 8px;
-  background: url($bgUrl) no-repeat -5px -290px;
-}
+.mt220 { margin-top: 220px}
 
-
-/* 通用: 按钮,输入框 --------------------------- */
-.iBtn {
-  display: inline-block;
-  padding: 6px 15px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 2px;
-}
-.iIpt {
-  display: inline-block;
-  width: 88%;
-  height: 20px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-.iBtn[disabled],
-.iIpt[disabled],
-.iBtn[disabled]:hover {
-  background-color: #c7c7c7;
-  cursor: not-allowed;
-  filter: alpha(opacity=100);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  opacity: 1.0;
-}
-.iIpt[readonly] {
-  background-color: #c7c7c7;
-  cursor: default;
-}
 
 /* 通用: 文本域, 带可输入字数 ------------- */
 .txtAreaBox {
@@ -73,13 +12,13 @@
   margin: 0;
 
   .dockDown {
-    width: 110px;
+    width: 145px;
     height: 22px;
     padding: 1px 5px;
     position: absolute;
     z-index: 3;
     bottom: 6px;
-    right: 12px;
+    right: 2px;
     text-align: right;
     font-size: 12px;
     line-height: 22px;
@@ -87,13 +26,18 @@
   .limitNum {
     color: #ff8553;
   }
-}
-.txtArea {
-  width: 98%;
-  padding: 5px;
-  border: 1px solid #CCCCCC;
-  border-radius: 2px;
-  resize: none;
+
+  .txtArea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    resize: none;
+    
+    &:hover {
+      border: 1px solid #01b7ec;
+    }
+  }
 }
 
 
@@ -253,13 +197,17 @@
           }
 
           .errInfo {
+            width: 200px;
             height: 18px;
             padding: 0 3px;
             position: absolute;
+            z-index: 6;
             font-size: 12px;
             line-height: 18px;
             bottom: 0;
             right: 0;
+            left: 0;
+            margin: 0 auto;
             color: #ff0000;
           }
         }
@@ -272,8 +220,6 @@
   color: #333333;
   text-align: center;
 }
-
-
 
 
 /* 清算货款 板块 --------------------------- */
@@ -318,6 +264,104 @@
         color: #333333;
         font-size: 18px;
       }
+    }
+  }
+}
+
+
+/* 退回原因&编辑原因&重新提交 板块 --------------------------- */
+.reasonsReturn {
+  width: 940px;
+  padding: 20px 30px;
+  border: 1px solid #b0ebfc;
+  background: #f3fcff;
+
+  .returnTitle {
+    height: 48px;
+    line-height: 42px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1aaa6b;
+  }
+  .returnTab {
+    width: 860px;
+    color: #999999;
+    line-height: 18px;
+    font-size: 12px;
+    
+    tr{
+      td{
+        padding: 2px;
+      }
+    }
+  }
+  
+  //查看
+  .reasonsReturn_view {
+    padding-bottom: 10px;
+    display: none;
+  }
+  
+  //编辑
+  .reasonsReturn_edit {
+    display: none;
+  }
+  
+  .show {
+    display: block;
+  }
+}
+.againRefer {
+  border: 1px solid #ffb2b2;
+  background: #feecec;
+
+  .returnTitle {
+    color: #ff0000;
+  }
+  .iBtn { display: none;}
+}
+
+
+/* 操作提示框&操作按钮组&文件操作 --------------------------- */
+.option_info_icn {
+  display: block;
+  margin: 25px auto;
+}
+.option_info {
+  font-size: 18px;
+  text-align: center;
+  color: #666666;
+  line-height: 26px;
+}
+.option_warn {
+  padding-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  color: #999999;
+  line-height: 22px;
+}
+
+.operationBox {
+  padding-left: 126px;
+}
+
+.fileOperation {
+
+  .fileOperation_title {
+    width: 126px;
+    height: 80px;
+    font-size: 14px;
+    color: #666666;
+    line-height: 22px;
+  }
+  .fileOperation_body {
+    width: 780px;
+    margin-left: 126px;
+
+    .fileExplain {
+      padding-top: 6px;
+      line-height: 24px;
+      font-size: 12px;
     }
   }
 }
