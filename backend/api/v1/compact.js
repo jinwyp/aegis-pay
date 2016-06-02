@@ -67,6 +67,9 @@ var convertData = function (compactdata, compactftl) {
     return co(function*() {
         var html    = yield convert.ftl2html(compactdata, compactftl);
         var pdf     = yield convert.html2pdf(html.htmlpath);
+
+        console.log("-----PDF333:", pdf);
+
         var imgs    = yield convert.pdf2image(pdf.pdfpath);
 
         var newImgs = [];
