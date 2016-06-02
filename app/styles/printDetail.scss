@@ -1,0 +1,48 @@
+@import './global.scss';
+@import './orderTable.scss';
+
+#print-detail-body{
+  background-color: $color_main_bg;
+  padding: 40px 0px;
+  .title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .order-tag{
+    text-align: right;
+    line-height: 30px;
+    border-bottom: 1px solid $color-border;
+    div{  display: inline-block;  }
+    .order-id{  margin-right: 20px;  }
+  }
+  .main-content{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    .user-info-title{
+      margin-top: 10px;
+      line-height: 40px;
+      font-size: 18px;
+      color: $color_gray;
+    }
+    table{
+      width: 100%;
+      border: 1px solid $color-border;
+      font-size: 14px;
+      color: $color_font;
+      tr{
+        border-bottom: 1px solid $color-border;
+        td{
+          border-right: 1px solid $color-border;
+          div{  padding: 0 20px;  }
+          .label{
+            line-height: 40px;
+            color: $color_tip_font;
+            background-color: $color_label_bg;
+          }
+        }
+      }
+    }
+  }
+}
