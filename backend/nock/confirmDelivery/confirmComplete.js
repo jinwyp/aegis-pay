@@ -1,8 +1,8 @@
 var nock = require('nock');
-var confirmDelivery = nock('http://localhost:8800');
+var confirmComplete = nock('http://localhost:8800');
 
-confirmDelivery
-    .get('/confirmDelivery').reply(200,
+confirmComplete
+    .get('/confirmDelivery/confirmComplete').reply(200,
     {
       "sellInfo":{
         "NCV":5090, "NCV02":6500,
@@ -133,12 +133,6 @@ confirmDelivery
         "paymentTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
         "confirmDeliveryTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
         "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}}
-      },
-      "indexList":{"CRC":"焦渣特征","ASH":"灰分","TM":"全水分","YV":"Y值","FC":"固定碳"},
-      "deliveryAmount":300,
-      "indexDataList":[{"checkTime":"2016-06-01","checkAmount":"150","CRC":"99","ASH":"10","TM":"11","YV":"12","FC":"13"},{"checkTime":"2016-06-01","checkAmount":"150","CRC":"99","ASH":"10","TM":"11","YV":"12","FC":"13"}],
-      "qualityList":[{"name":"zoomIcon_01.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"},{"name":"zoomIcon_02.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"}],
-      "quantityList":[{"name":"zoomIcon_03.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"},{"name":"zoomIcon_04.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"}]
-
+      }
     });
-module.exports = confirmDelivery
+module.exports = confirmComplete

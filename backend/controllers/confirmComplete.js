@@ -9,7 +9,7 @@ var _ = require('lodash');
 
 
 // 处理业务逻辑
-exports.confirmDelivery = function (req, res, next) {
+exports.confirmComplete = function (req, res, next) {
 
     // 订单状态 数据模拟
     var statusObj = {
@@ -39,13 +39,13 @@ exports.confirmDelivery = function (req, res, next) {
     };
     // 静态数据
     //res.render('confirmDelivery/confirmDelivery',{"headerTit":"确认下单",statusObj: statusObj});			// 指定模板路径 渲染
-    request({url : 'http://localhost:8800/confirmDelivery'}, function (err, data) {
+    request({url : 'http://localhost:8800/confirmDelivery/confirmComplete'}, function (err, data) {
         console.log('获取到的错误是----------------------------' + err);
         console.log('获取到的结果是data----------------------------' + data.body);
         var source  = JSON.parse(data.body);
         var content = {
-            headerTit   : "确认提货页面",
-            pageTitle   : "确认提货页面",
+            headerTit   : "确认完成页面",
+            pageTitle   : "确认完成页面",
             type        : "sell",
             statusObj   : statusObj,
             "sellInfo"  : source.sellInfo,
@@ -66,7 +66,7 @@ exports.confirmDelivery = function (req, res, next) {
 
         console.log('获取到的结果是content----------------------------' + content);
         //渲染页面,指定模板&数据
-        res.render('confirmDelivery/confirmDelivery', content);
+        res.render('confirmDelivery/confirmComplete', content);
     });
 
     // 异步调取Java数据
