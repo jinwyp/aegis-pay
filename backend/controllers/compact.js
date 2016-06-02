@@ -4,7 +4,7 @@ var cache = require('../common/cache');
 exports.compact = function (req, res, next) {
     var orderId = req.query.orderId;
 
-// cache.del('compacts['+ orderId + ']')
+cache.del('compacts['+ orderId + ']')
     cache.get('compacts[' + orderId + ']', function (err, data) {
         if (!err && data) {
             return res.render('compact/compact', data);

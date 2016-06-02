@@ -16,6 +16,7 @@
     "start": "./run.sh -m"
   },
   "dependencies": {
+    "archiver": "^1.0.0",
     "bluebird": "^3.4.0",
     "body-parser": "1.9.2",
     "co": "^4.6.0",
