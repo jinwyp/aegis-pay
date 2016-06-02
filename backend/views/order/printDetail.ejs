@@ -1,0 +1,48 @@
+
+
+
+<link rel="stylesheet" href="/static/styles/printDetail.css">
+<div id="print-detail-body">
+    <div class="title">订单详情</div>
+    <div class="order-tag">
+        <div class="order-id">订单编号：99999999999</div><div class="order-time">导出时间：99999999999</div>
+    </div>
+    <div class="main-content">
+        <div class="user-info-title">买家信息</div>
+        <table>
+            <tr>
+                <td width="100"><div class="label">买家</div></td>
+                <td width="200"><div>买家</div></td>
+                <td width="100"><div class="label">手机号码</div></td>
+                <td width="200"><div>手机号码</div></td>
+            </tr>
+            <tr>
+                <td width="100"><div class="label">付款交易号</div></td>
+                <td width="200"><div>付款交易号</div></td>
+                <td width="100"><div class="label">付款账号</div></td>
+                <td width="200"><div>付款账号</div></td>
+            </tr>
+            <tr>
+                <td width="100"><div class="label">提货地址</div></td>
+                <td width="300" colspan="3"><div>提货地址</div></td>
+            </tr>
+        </table>
+        <div class="user-info-title">卖家信息</div>
+        <table>
+            <tr>
+                <td width="100"><div class="label">卖家</div></td>
+                <td width="200"><div>卖家</div></td>
+                <td width="100"><div class="label">手机号码</div></td>
+                <td width="200"><div>手机号码</div></td>
+            </tr>
+            <tr>
+                <td width="100"><div class="label">收款账号</div></td>
+                <td width="300" colspan="3"><div>收款账号</div></td>
+            </tr>
+        </table>
+        <div class="user-info-title">订单信息</div>
+        <div>fsdfsdfsfsf</div>
+        <% include ../global/order/orderTable %>
+    </div>
+</div>
+<% script("../../scripts/order/buyOrderDetail.js") -%>
