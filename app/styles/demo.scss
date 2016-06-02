@@ -50,8 +50,35 @@
 
 
 /* 按钮组 ----------------------------------------------- */
-$ccc: #ffffff;
+.btnBoxList {
+    width: 1250px;
+    th {
+        background: #f5f5f5;
+    }
+    td,th {
+        padding: 6px 8px;
+        border: 1px dashed #CCCCCC;
+    }
+}
 
+/* 操作提示框 ------------- */
+.option_info_icn {
+    display: block;
+    margin: 25px auto;
+}
+.option_info {
+    font-size: 18px;
+    text-align: center;
+    color: #666666;
+    line-height: 26px;
+}
+.option_warn {
+    padding-top: 8px;
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+    line-height: 22px;
+}
 
 
 
