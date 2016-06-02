@@ -1,5 +1,6 @@
 $color_body_bg: #f5f5f5;
 $color_main_bg: #fff;
+$color_text_white: #fff;
 $color_blue: #31b9e6;
 $color_border_gray: #d9d9d9;
 $color_border_block_gray: #ddd;
@@ -12,10 +13,21 @@ $color_red: #ff0000;
 $color_readme_bg: #fffaf7;
 $color_readme_font: #ff6e0f;
 $color_readme_border: #fecdb3;
-
+$color_link: #1fb8ea;
+$color_link_hover: #4cc6ee;
 $color_tip_font: #999;
 $color_gray: #666;
 $color_orange: #ff6e0f;
+
+$color_green: #1aaa6b;
+$color_bg_status: #f3fcff;
+$color_a: #037191;
+$color_a_hover: #00b7ec;
+$color_border: #e8e8e8;
+$color_title_text: #666666;
+$color_dot:#bcbcbc;
+$color_label_bg:#f6f6f6;
+
 $color_lightblue: #f3fcff;
 $color_bg_pink: #feecec;
 $color_bg_lightorange: #fffaf7;
@@ -30,6 +42,7 @@ $size_font_blockTitle: 16px;
 $size_font_middle:14px;
 $size_font_nomal: 12px;
 $size_font_big: 30px;
+$line-height-base: 1.428571429; // 20/14
 
 $font_family: Microsoft YaHei;
 $bgUrl: "/static/images/sprite_ico.png";

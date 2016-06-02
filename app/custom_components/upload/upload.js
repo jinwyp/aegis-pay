@@ -15,7 +15,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 				var $fileWrapper = $(target).parent().next('.files');
 				//var $fileWrapper = $('#files');
 	            $.each(data.result.attach, function (index, file) {
-					var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="file_id" value="' + file.id + '"></p>';
+					var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="file_id" value="' + file.id + '"><input type="hidden" name="file_name" value="' + file.filename + '"></p>';
 	                $fileWrapper.append(filehtml);
 	            });
 	        },

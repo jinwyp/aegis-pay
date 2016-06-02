@@ -96,9 +96,228 @@
   resize: none;
 }
 
-/* 列表 --------------------------- */
+
+/* 重要提示 板块 --------------------------- */
+.doubtInlet {
+  display: inline-block;
+  padding-left: 19px;
+  height: 28px;
+  color: #007193;
+  font-size: 12px;
+  font-family: $ffSt;
+  line-height: 20px;
+  text-decoration: none;
+  background: url($bgUrl) no-repeat -501px -176px;
+
+  & :hover {
+    color: $color_link_hover;
+    text-decoration: underline;
+  }
+}
+.embedBox {
+  display: none;
+  width: 940px;;
+  height: 218px;
+  position: relative;
+  z-index: 5;
+
+  .significantDoubt {
+    position: absolute;
+    z-index: 3;
+    width: 940px;
+    top: -3px;
+    left: 0;
+  }
+}
+.embedBox::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -10px;
+  right: 17px;
+  z-index: 8;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 0 8px 7px;
+  border-color: transparent transparent #6ed8f5;
+  -webkit-transition: all .4s ease 0s;
+  -moz-transition: all .4s ease 0s;
+  -o-transition: all .4s ease 0s;
+  transition: all .4s ease 0s;
+}
+.embedBox::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -9px;
+  right: 17px;
+  z-index: 9;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 0 8px 7px;
+  border-color: transparent transparent #f3fcff;
+  -webkit-transition: all .4s ease 0s;
+  -moz-transition: all .4s ease 0s;
+  -o-transition: all .4s ease 0s;
+  transition: all .4s ease 0s;
+}
+
+.significantDoubt {
+  padding: 20px 30px;
+  border: 1px solid #abeafb;
+  background: #f3fcff;
+
+  .doubtTitle {
+    height: 38px;
+    padding-top: 5px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 28px;
+  }
+  p.entry {
+    font-size: 12px;
+    line-height: 28px;
+    color: #666666;
+  }
+  span.light {
+    color: #fc9974;
+  }
+
+  .linkPrint {
+    color: $color_link;
+    text-decoration: none;
+
+    &:hover {
+      color: $color_link_hover;
+      text-decoration: underline;
+    }
+  }
+}
+.modal-content {
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    opacity: 0.8;
+  }
+}
+
+/* 结算单表格 板块 --------------------------- */
+.settlementTable {
+    width: 100%;
+    max-width: 100%;
+
+    tbody {
+        tr {
+          th,
+          td {
+            padding: 9px;
+            font-size: 14px;
+            line-height: $line-height-base;
+            vertical-align: top;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+          }
+        }
+        tr {
+          th {
+            background: #f5f5f5;
+            color: #666666;
+          }
+        }
+        tr {
+          td {
+            padding: 15px 0;
+            background: #ffffff;
+            color: #333333;
+          }
+        }
+
+        // 文本框
+        .billBox {
+          position: relative;
+          background: #f3fcff;
+
+          &:hover {
+            outline: #27abff solid thin;
+          }
+          .billIpt {
+            width: 90%;
+            border: none;
+            background: #f3fcff;
+            text-align: center;
+          }
+
+          .errInfo {
+            height: 18px;
+            padding: 0 3px;
+            position: absolute;
+            font-size: 12px;
+            line-height: 18px;
+            bottom: 0;
+            right: 0;
+            color: #ff0000;
+          }
+        }
+    }
+}
+.settlementTit {
+  height: 50px;
+  line-height: 42px;
+  font-size: 22px;
+  color: #333333;
+  text-align: center;
+}
 
 
 
 
+/* 清算货款 板块 --------------------------- */
+.liquidationTime {
+  height: 40px;
+  padding-top: 14px;
+  line-height: 22px;
+  font-size: 12px;
+  color: #666666;
+  
+  .time {
+    color: #333333;
+  }
+}
+.liquidationGoods {
+  width: 100%;
+  max-width: 100%;
 
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        padding: 12px;
+        font-size: 16px;
+        line-height: $line-height-base;
+        vertical-align: top;
+        border: 1px solid #e8e8e8;
+        text-align: center;
+      }
+    }
+    > tr {
+      > th {
+        border-top: 1px dashed #e8e8e8;
+        background: #f5f5f5;
+        color: #666666;
+      }
+    }
+    > tr {
+      > td {
+        padding: 35px 0;
+        background: #ffffff;
+        color: #333333;
+        font-size: 18px;
+      }
+    }
+  }
+}

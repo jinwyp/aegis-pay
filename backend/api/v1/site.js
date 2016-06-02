@@ -1,6 +1,7 @@
-var Promise    = require('bluebird');
+
+var PromiseB   = require('bluebird');
 var request    = require("request");
-var requestP   = Promise.promisify(require("request"));
+var requestP   = PromiseB.promisify(require("request"));
 var api_config = require('./api_config');
 var cache      = require('../../common/cache');
 var co         = require('co');
@@ -33,19 +34,27 @@ exports.test_cache = function (req, res, next) {
     })
 };
 
+
+
+
 exports.asyncMerge = function (req, res, next) {
 
-    //request({url:api_config.apps}, function(err, data){
-    //    if (err) return next(err);
-    //
-    //    return res.send(data.body);
-    //});
+    // callback
+/*
+    request({url:api_config.apps}, function(err, data){
+        if (err) return next(err);
 
+        return res.send(data.body);
+    });
+*/
 
-    //requestP({url:api_config.apps}).then(function(result){
-    //	console.log(result);
-    //	return res.send(result.statusCode);
-    //}).catch(next);
+    // Promise
+/*
+    requestP({url:api_config.apps}).then(function(result){
+    	console.log(result);
+    	return res.send(result.statusCode);
+    }).catch(next);
+*/
 
 
     var promiseList = [
@@ -54,7 +63,7 @@ exports.asyncMerge = function (req, res, next) {
         requestP({url : api_config.apps2})
     ];
 
-    Promise.all(promiseList).then(function (result) {
+    PromiseB.all(promiseList).then(function (result) {
 
         return res.send({
             'app'         : JSON.parse(result[0].body)[0].name,
@@ -63,36 +72,50 @@ exports.asyncMerge = function (req, res, next) {
         });
     }).catch(next);
 
+/*
+    async function aa (){
+        result = await requestP({url:api_config.apps});
+        return res.send(result);
+    }
+
+    aa().catch(next);
+*/
 
 };
 
 // co + generator
 exports.cogenMerge = function (req, res, next) {
+
     var getProduct   = function (api) {
         return new Promise(function (resolve, reject) {
             request(api, function (err, data) {
                 if (err) {
-
+                    reject(err)
                 } else {
                     resolve(data);
                 }
             })
         })
     };
+
     var coIndexMerge = [
         getProduct(api_config.apps),
         getProduct(api_config.test),
         getProduct(api_config.apps2)
     ];
+
     co(function*() {
+
         var result = yield coIndexMerge;
         return res.send({
             'app'         : JSON.parse(result[0].body)[0].name,
             'test_cache'  : JSON.parse(result[1].body),
             'app2-length' : result[2].body.length
         });
-    });
+
+    }).catch(next);
 };
+
 
 // reactjs demo 测试用数据
 exports.products = function (req, res, next) {
