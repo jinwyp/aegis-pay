@@ -117,7 +117,28 @@ exports.getOrderDetail = function (req, res, next) {
 };
 
 exports.printDetail = function (req, res, next) {
-	res.render('order/printDetail');
+	request({url:'http://localhost:7777/getOrderDetail'}, function(err, data) {
+		console.log('printDetail获取到的错误是----------------------------' + err);
+		console.log("printDetail请求返回的数据是----------------------------" + data);
+		if(data!=undefined) {
+			var source = JSON.parse(data.body);
+			//headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
+			var content = {
+				pageTitle: "打印订单详情",
+				type: "buy",
+				detailType: "print",
+				"sellInfo": source.data.sellInfo,
+				"order": source.data.order
+			};
+			console.log('printDetail获取到的结果是----------------------------' + content);
+			//渲染页面,指定模板&数据
+			res.render('order/printDetail', content);
+			//	res.send(home);
+		}else{
+			res.send(data.body);
+			//res.send("{您访问的数据不存在}");
+		}
+	});
 };
 
 exports.orderTest = function (req, res, next) {

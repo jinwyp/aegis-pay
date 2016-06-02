@@ -8,7 +8,7 @@ var data = {
             "ADS": 0.00, "ADS02": 0.00,//测试数据
             "ADV": 11.00, "ADV02": 52.00,
             "RS": 3.30, "RS02": 4.44,
-            "RV": 32.00, "RV02": 42.00,
+            "RV": 0.00, "RV02": 0.00,
             "TM": 5.00, "TM02": 6.00,
             "IM": 7.00, "IM02": 8.00,
             "ASH": 0.0, "ASH02": 0.0,//测试数据
@@ -204,71 +204,6 @@ var data = {
             "confirmDeliveryTime": null,
             //"settleAccountTime": "2016-05-25 16:47:18"
             "settleAccountTime": null
-            //"createtime": {
-            //	"year": 2016,
-            //	"month": "APRIL",
-            //	"dayOfMonth": 6,
-            //	"dayOfWeek": "WEDNESDAY",
-            //	"dayOfYear": 97,
-            //	"monthValue": 4,
-            //	"hour": 11,
-            //	"minute": 28,
-            //	"second": 50,
-            //	"nano": 0,
-            //	"chronology": {"id": "ISO", "calendarType": "iso8601"}
-            //},
-            //"signContractTime": {
-            //	"year": 2016,
-            //	"month": "APRIL",
-            //	"dayOfMonth": 6,
-            //	"dayOfWeek": "WEDNESDAY",
-            //	"dayOfYear": 97,
-            //	"monthValue": 4,
-            //	"hour": 11,
-            //	"minute": 28,
-            //	"second": 50,
-            //	"nano": 0,
-            //	"chronology": {"id": "ISO", "calendarType": "iso8601"}
-            //},
-            //"paymentTime": {
-            //	"year": 2016,
-            //	"month": "APRIL",
-            //	"dayOfMonth": 6,
-            //	"dayOfWeek": "WEDNESDAY",
-            //	"dayOfYear": 97,
-            //	"monthValue": 4,
-            //	"hour": 11,
-            //	"minute": 28,
-            //	"second": 50,
-            //	"nano": 0,
-            //	"chronology": {"id": "ISO", "calendarType": "iso8601"}
-            //},
-            //"confirmDeliveryTime": {
-            //	"year": 2016,
-            //	"month": "APRIL",
-            //	"dayOfMonth": 6,
-            //	"dayOfWeek": "WEDNESDAY",
-            //	"dayOfYear": 97,
-            //	"monthValue": 4,
-            //	"hour": 11,
-            //	"minute": 28,
-            //	"second": 50,
-            //	"nano": 0,
-            //	"chronology": {"id": "ISO", "calendarType": "iso8601"}
-            //},
-            //"settleAccountTime": {
-            //	"year": 2016,
-            //	"month": "APRIL",
-            //	"dayOfMonth": 6,
-            //	"dayOfWeek": "WEDNESDAY",
-            //	"dayOfYear": 97,
-            //	"monthValue": 4,
-            //	"hour": 11,
-            //	"minute": 28,
-            //	"second": 50,
-            //	"nano": 0,
-            //	"chronology": {"id": "ISO", "calendarType": "iso8601"}
-            //}
         }
     }
 }

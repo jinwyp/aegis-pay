@@ -1,67 +1,74 @@
 @import './global.scss';
 .w-406{  width:406px;  }
+.w-411{  width:406px;  }
 .w-160{  width:160px;  }
-.w-213{  width:213px;  }
-.order-table-title{
-  display: table;
-  background-color: $color_body_bg;
-  font-size: 12px;
-  line-height: 40px;
+.w-213{  width:212px;  }
+#order-table{
   border-left: 1px solid $color_border;
   border-right: 1px solid $color_border;
-  .title-col {
-    border-left:1px solid $color_body_bg;
-    display: table-cell;
-    text-align: center;
-    color: $color_title_text;
-  }
-}
-.order-table-body{
-  display: table;
-  border-bottom: 1px solid $color_body_bg;
-  border-right: 1px solid $color_body_bg;
+  border-bottom: 1px solid $color_border;
   .center-content{
     text-align: center;
     vertical-align: middle;
   }
-  .info-col{
-    display: table-cell;
-    padding: 30px 0;
-    border-left:1px solid $color_body_bg;
-    .info-title{
-      margin-left: 30px;
-      .supply-ico {
-        padding: 1px 3px;
+  tr{
+    th{
+      .title-col {
+        line-height: 40px;
+        background-color: $color_body_bg;
         text-align: center;
-        vertical-align: middle;
-        background-color: $color_orange;
-        color: $color_text_white;
-        border-radius: 3px;
-        font-size: 12px;
-      }
-      .supply-title {
-        font-size: 16px;
-        font-weight: bold;
-        margin-left: 6px;
+        color: $color_title_text;
       }
     }
-    ul{
-      padding: 0;
-      margin-left: 30px;
-      font-size: 12px;
-      li {
-        list-style-type: none;
-        width: 186px;
-        float: left;
-        margin-top: 12px;
+    td{
+      .detail-info-table{
+        width: 100%;
+        tr{
+          td{
+            padding: 30px 0;
+            border-left: 1px solid $color_border;
+            .info-title{
+              margin-left: 30px;
+              .supply-ico {
+                padding: 1px 3px;
+                text-align: center;
+                vertical-align: middle;
+                background-color: $color_orange;
+                color: $color_text_white;
+                border-radius: 3px;
+                font-size: 12px;
+              }
+              .supply-title {
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 6px;
+                vertical-align: middle;
+              }
+            }
+            ul{
+              padding: 0;
+              margin-left: 30px;
+              font-size: 12px;
+              li {
+                list-style-type: none;
+                width: 186px;
+                float: left;
+                margin-top: 12px;
+              }
+            }
+            .number{
+              text-align: center;
+            }
+          }
+          td.no-border{ border-left: none;  }
+        }
       }
     }
   }
 }
 .total-money{
   text-align: right;
-  margin-top: 30px;
-  margin-right: 6px;
+  margin-top: 20px;
   .money-number{
     color: $color_font;
     font-size: 20px;

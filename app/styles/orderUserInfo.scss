@@ -31,9 +31,7 @@
       li{
         width: 50%;
         float: left;
-        div {
-          display: inline-block;
-        }
+        div {  display: inline-block;  }
         .div-label {
           width: 120px;
           padding-left: 30px;
@@ -46,9 +44,7 @@
           word-wrap: break-word;
         }
       }
-      .order-item {
-        margin-top: 20px;
-      }
+      .order-item {  margin-top: 20px;  }
     }
   }
 }
