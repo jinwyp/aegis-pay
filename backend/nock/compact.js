@@ -2,7 +2,8 @@ var nock = require('nock');
 var API = require('../api/v1/api_config');
 var _ = require('lodash');
 
-var compact = nock(API.host).persist();
+var compact = nock(API.host);
+var compactPersist = nock(API.host).persist();
 
 compact
 .get(function(uri){

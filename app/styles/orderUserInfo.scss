@@ -1,54 +1,54 @@
-$white: #ffffff;
-$hintColor: #999999;
-
-.order-title {
-  margin-top: 30px;
-  font-size: 18px;
-  .border-title {
-    padding-left: 6px;
-    border-left: solid 2px #00b6ef;
-  }
-}
-.order-user-info {
-  overflow: hidden;
-  margin-top: 10px;
-  padding-bottom: 30px;
-  border: solid 1px #e8e8e8;
-  background-color: $white;
-  font-size: 14px;
-  .user-title {
+@import './global.scss';
+#user-info{
+  .order-title {
     margin-top: 30px;
-    margin-left: 30px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  ul{
-    width: 100%;
-    border: none;
-    float: left;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    li{
-      width: 50%;
-      float: left;
-      div {
-        display: inline-block;
-      }
-      .div-label {
-        width: 120px;
-        padding-left: 30px;
-        color: $hintColor;
-        vertical-align: top;
-      }
-      .div-value {
-        padding-right: 10px;
-        word-break: break-all;
-        word-wrap: break-word;
-      }
+    font-size: 18px;
+    .border-title {
+      padding-left: 6px;
+      border-left: solid 2px $color_btn_blue;
     }
-    .order-item {
-      margin-top: 20px;
+  }
+  .order-user-info {
+    overflow: hidden;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    border: solid 1px $color_border;
+    background-color: $color_main_bg;
+    font-size: 14px;
+    .user-title {
+      margin-top: 30px;
+      margin-left: 30px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    ul{
+      width: 100%;
+      border: none;
+      float: left;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li{
+        width: 50%;
+        float: left;
+        div {
+          display: inline-block;
+        }
+        .div-label {
+          width: 120px;
+          padding-left: 30px;
+          color: $color_tip_font;
+          vertical-align: top;
+        }
+        .div-value {
+          padding-right: 10px;
+          word-break: break-all;
+          word-wrap: break-word;
+        }
+      }
+      .order-item {
+        margin-top: 20px;
+      }
     }
   }
 }

@@ -35,10 +35,10 @@ router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/confirmDelivery/test', confirmDeliveryController.test);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/orderTest', orderController.orderTest);
+router.get('/printDetail', orderController.printDetail);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                                 // 关闭 订单路由
 router.get('/settlement/settlementForm_buyer', settlementFormContr.orderInfo);              // 结算单 买家 页面路由
 router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo);             // 结算单 卖家 页面路由
-router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 

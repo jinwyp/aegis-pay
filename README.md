@@ -11,6 +11,7 @@ backend 目录下：
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
+- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install ccap
 
 app 目录下：
 - npm install
@@ -74,21 +75,39 @@ app 目录下：
 ## Nodejs 错误处理
 
 
-1 回调函数Callback使用中 先处理 err错误, return 一定要写,这样出错就先返回了,不再执行后续的代码。
+1 回调函数Callback 调用方处理错误 先处理 err错误, express中需要把err通过next往下传, 而不能throw err, 同时return 一定要写,这样出错就先返回了,不再执行后续的代码。
 ```
 request({url : 'http://localhost:8800/return'}, function (err, data) {
-    if (err) return next(err);
+    if (err) return next(err); // 不能 throw err 会变成uncaughtException
     doSomething()
 })
 ```
 
+当使用callback风格制作一个库给其他函数调用时, 例如我们自己写个request库, 错误需要通过回调函数的第一个参数传出来, 这样上面使用的时候才能得到err信息。 node.js库约定第一个参数为err, 后面参数为结果。 不能throw err,这样调用者无法得到err信息。 为什么要这么做呢，因为异步中的错误是无法通过try catch捕获的。
+```
+function request(url, callback){
+    var err = new Error('网络出错了');
+    if(err) return calllback(err)
 
-2 Promise 处理错误 需要在最后一个使用Promise的地方(一般是controller中) then后增加 .catch(next)
+    var result;
+    return callback(null, result)
+
+}
 ```
-sms_code.send_sms(userInfo).then(function(data){
+
+
+
+2 Promise 调用方处理错误 需要在最后一个使用Promise的地方(Promise链的最后,一般是controller中) then后增加 .catch(next)。这样在前面的then中只要出错(reject err 或throw err),都会被catch到。
+```
+sms_code(userInfo).then(function(data){
     return res.json(data);
-}).catch(next);
+})
+.then(function(data){
+    return res.json(data);
+})
+.catch(next);
 ```
+
 catch(next) 实际是以下代码简写
 
 ```
@@ -98,7 +117,22 @@ catch(function(err){
 ```
 
 
-3 co + generator 处理错误 有两种办法, 一种是直接在代码中使用 try{} catch{}, 另一种在co结尾处使用.catch(). 因为co在4.0后使用 yield promise, co返回值是promise,可以用catch方法处理
+当使用Promise风格制作一个库给其他函数调用时, 成功使用 resolve(data)返回, 出错通过 reject(err)返回。
+```
+new Promise(function(resolve, reject){
+
+    request({url : 'http://localhost:8800/return'}, function (err, data) {
+        if (err) reject(err); // 这里也可以 throw err,效果等同 推荐使用reject
+
+        resolve(data);
+    })
+})
+```
+
+
+注意!! 当编写一个库的时候需要同时提供callback和promise的接口 参考文章 [如何用 Node.js 编写一个 API 客户端](https://cnodejs.org/topic/572d68b1afd3b34a17ff40f0)
+
+3 co + generator 调用方处理错误 有两种办法, 一种是直接在代码中使用 try{} catch{}, 另一种在co结尾处使用.catch(). 因为co在4.0后使用 yield promise, co返回值是promise,可以用catch方法处理
 
 一种是直接在代码中使用 try{} catch{}
 ```
@@ -125,7 +159,33 @@ co(function*() {
 注意: 如果使用了try{} catch{} ,那么同时再使用.catch() 不会在再次捕获该错误。之所以推荐使用.catch()方式, 就是因为除非try的部分包括所有代码段,否则try外面的代码出错将捕获不到。而.catch方法则可以统一处理generator函数内所有错误。 另外javascript编程时也尽量减少try里面的代码内容。
 
 
-4 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
+4 async await 调用方处理错误, 直接使用try catch, 然后next(err)即可. 或使用catch(next),同co使用方法
+
+一种是直接在代码中使用 try{} catch{}
+```
+async function demo(req, res, next){
+    try{
+        var result = await requestP({url:api_config.apps});
+        return res.send(result);
+    }catch(err){
+        next(err)
+    }
+}
+```
+
+另一中使用.catch() 处理错误。
+```
+async function demo(req, res, next){
+
+    var result = await requestP({url:api_config.apps});
+    return res.send(result);
+}
+
+demo().catch(next)
+```
+
+
+5 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
 
 
 

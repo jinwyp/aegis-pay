@@ -115,6 +115,11 @@ exports.getOrderDetail = function (req, res, next) {
 	//})(res));
 
 };
+
+exports.printDetail = function (req, res, next) {
+	res.render('order/printDetail');
+};
+
 exports.orderTest = function (req, res, next) {
 	console.log('服务器被请求了'+req.query.id);
 	res.send('fdsfsdfsdf');
