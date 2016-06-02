@@ -29,7 +29,7 @@ exports.pdf2image = function (pdfpath, options) {
             }
         });
     })
-}
+};
 
 exports.html2pdf = function (htmlpath, pdfname) {
     return new Promise(function (resolve, reject) {
@@ -51,11 +51,14 @@ exports.html2pdf = function (htmlpath, pdfname) {
             }
         });
     })
-}
+};
+
+
 
 exports.ftl2html = function (data, ftlpath, options) {
     var htmlname = options && options.htmlname || path.basename(ftlpath, '.ftl');
     var htmlpath = options && options.htmlpath || __dirfiles + 'static/html/';
+    var htmlfile = htmlpath + htmlname + '.html';
 
     return new Promise(function (resolve, reject) {
         ftl.processTemplate({
@@ -65,14 +68,16 @@ exports.ftl2html = function (data, ftlpath, options) {
                 viewFolder : path.dirname(ftlpath) + '/'
             },
             filename : path.basename(ftlpath)
-        }).on('end', function (err, html) {
-            if (!err) {
-                var htmlfile = htmlpath + htmlname + '.html';
-                fs.writeFileSync(htmlfile, html, 'utf-8');
+
+        }).on('end', function (err, resultHtml) {
+            if (err) reject(err);
+
+            if (resultHtml) {
+                fs.writeFileSync(htmlfile, resultHtml, 'utf-8');
                 resolve({'htmlpath' : htmlfile});
-            } else {
-                reject(err);
+            }else{
+                resolve({'htmlpath' : 'notfound.html'});
             }
         });
     })
-}
+};

@@ -5,8 +5,9 @@ var _    = require('lodash');
 var compact        = nock(API.host);
 var compactPersist = nock(API.host).persist();
 
-compactPersist.get(function (uri) {
-        var ismatch = /compact\?orderId=\d&action=get/.test(uri);
+compactPersist
+.get(function (uri) {
+        var ismatch = /\/compact\?orderId=\d+&action=get/.test(uri);
         return ismatch;
     }).reply(200, function (uri) {
     return {

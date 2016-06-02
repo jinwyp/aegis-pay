@@ -10,6 +10,8 @@ var config     = require('../../config');
 
 var convert = require('../../common/convert');
 var cache   = require('../../common/cache');
+var checker = require('../../common/datachecker');
+
 
 const uploadPath = config.sysFileDir + '/static/upload/';
 const ftlpath    = config.sysFileDir + '/servicefiles/fs.ftl';
@@ -55,42 +57,59 @@ exports.signCompact = function (req, res, next) {
     })
 }
 
+
+
+
+
+
 // 接收service数据，转化数据为客户端需要的格式
-var convertData          = function (compactdata, compactftl) {
+var convertData = function (compactdata, compactftl) {
     return co(function*() {
         var html    = yield convert.ftl2html(compactdata, compactftl);
         var pdf     = yield convert.html2pdf(html.htmlpath);
         var imgs    = yield convert.pdf2image(pdf.pdfpath);
+
         var newImgs = [];
         _.forEach(imgs.imgs, function (img) {
             newImgs.push('/files/images/' + path.basename(img));
-        })
-        return {'pdfpath' : '/files/pdf/' + path.basename(pdf.pdfpath), 'imgs' : newImgs};
+        });
+        return {
+            'pdfpath' : '/files/pdf/' + path.basename(pdf.pdfpath),
+            'imgs' : newImgs
+        };
     })
-}
+};
+
+
 // generate compact
 exports.generate_compact = function (req, res, next) {
+    checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
     var params  = '?orderId=' + orderId + '&action=get';
+
     request(api_config.getCompact + params, function (err, data) {
-        if (!err) {
+        if (err) return next(err);
+
+        if (data) {
             var data = JSON.parse(data.body);
+
+            var pageData = _.assign({}, {
+                'pageTitle' : '签订电子合同',
+                'orderId'   : orderId,
+                'headerTit' : '签订电子合同'
+            });
+
             if (data.success) {
                 convertData(data.compact, ftlpath).then(function (result) {
-                    var pageData = _.assign({}, {
-                        'pageTitle' : '签订电子合同',
-                        'orderId'   : orderId,
-                        'headerTit' : '签订电子合同'
-                    }, result);
+                    pageData = _.assign(pageData, result);
+
                     cache.set('compacts[' + orderId + ']', pageData, function () {
                         return res.render('compact/blocks/compact', pageData);
                     });
-                })
+                }).catch(next);
             } else {
-                // console.log();
+                return res.render('compact/blocks/compact', pageData);
             }
-        } else {
-            console.log(err);
         }
     })
 }
