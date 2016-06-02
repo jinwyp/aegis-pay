@@ -1,0 +1,25 @@
+@import 'global.scss';
+@import "orderTable.scss";
+@import "statusBar.scss";
+@import "orderUserInfo.scss";
+@import "modal.scss";
+
+#confirmComplete{
+  background: #f5f5f5;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  .confirmCompleteWrap{
+    width: 1000px;
+    margin: 0 auto;
+    padding:30px;
+    background: #fff;
+  }
+  .orderStatus{background: #f3fcff;padding-top: 60px;padding-bottom: 88px;}
+  .orderStatus .orderStatusWrap{padding-left: 240px;}
+  .orderStatus .orderStatusWrap .tit{font-size: 24px;color:#333;margin-bottom: 20px;}
+  .orderStatus .orderStatusWrap .tit b{color:#1aaa6b;}
+  .orderStatus .orderStatusWrap .info{color:#999;font-size: 12px;margin-bottom:10px;}
+  .orderStatus .orderStatusWrap .info .remindSeller{display: inline-block;padding:5px 10px;color:#333;font-size: 12px;border: 1px solid #e4e4e4;margin-left: 8px;background: url("/static/images/gradualLine.png") repeat-x center center;}
+  .orderStatus .orderStatusWrap .info .remindSeller:hover{text-decoration: none;opacity: .8;}
+
+}

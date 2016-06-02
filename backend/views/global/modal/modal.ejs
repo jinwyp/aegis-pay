@@ -1,0 +1,158 @@
+<!--两个按钮取消、确认 modal-->
+    <div class="container modalPublic">
+        <div class="row clearfix">
+            <div class="modal_1 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modal_title_1">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div class="bg_img attention" id="modalImg_1"></div>
+                                <div class="modalInfo">
+                                    <span id="modalInfo_1" >您确认接受供应商的投标并公示投标吗？</span>
+                                </div>
+                                <div class="buttons">
+                                    <input type="button" data-dismiss="modal" class="btn cancel" value="取消" id="md_cancel_1">
+                                    <input type="button" class="btn confirm" value="确认" id="md_ok_1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--一个按钮确认 modal-->
+        <div class="container modalPublic">
+            <div class="row clearfix">
+                <div class="modal_2 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="modal_title_2">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="bg_img attention" id="modalImg_2"></div>
+                                    <div class="modalInfo">
+                                        <span id="modalInfo_2" >您确认接受供应商的投标并公示投标吗？</span>
+                                    </div>
+                                    <div class="buttons">
+                                        <!--<input type="button" data-dismiss="modal" class="btn cancel" value="取消" id="md_cancel_1">-->
+                                        <input type="button" class="btn confirm ml0" value="确认" id="md_ok_2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--无按钮 modal-->
+            <div class="container modalPublic">
+                <div class="row clearfix">
+                    <div class="modal_3 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="modal_title_3">提示</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="pad-t20">
+                                        <div class="bg_img attention" id="modalImg_3"></div>
+                                        <div class="modalInfo">
+                                            <span id="modalInfo_3" >您确认接受供应商的投标并公示投标吗？</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--无按钮(有跳转文本) modal-->
+                <div class="container modalPublic">
+                    <div class="row clearfix">
+                        <div class="modal_5 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modal_title_5">提示</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="pad-t20">
+                                            <div class="bg_img attention" id="modalImg_5"></div>
+                                            <div class="modalInfo">
+                                                <span id="modalInfo_5" >恭喜您，投标提交成功！</span>
+                                            </div>
+                                            <div class="sucClose" id="modal_html_5">
+                                                请关注<span><a class="color-blue" href="/account/myBid">“我的投标”</a></span>中的招标结果。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--5s自动关闭 modal-->
+                    <div class="container modalPublic">
+                        <div class="row clearfix">
+                            <div class="modal_4 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modal_title_4">提示</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <div class="bg_img attention" id="modalImg_4"></div>
+                                                <div class="modalInfo">
+                                                    <span id="modalInfo_4">您确认接受供应商的投标并公示投标吗？</span>
+                                                </div>
+                                                <div class="autoClose">
+                                                    <span class="color-red" id="modal_time_4">5s</span>自动关闭
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 服务器错误 -->
+                        <div class="container modalPublic">
+                            <div class="row clearfix">
+                                <div  id="modal-server-error" class="modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">提示</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="pad-t20">
+                                                    <div class="bg_img attention" id="modalImg_3"></div>
+                                                    <div class="modalInfo">
+                                                        <span class="sr-only">Error:</span>
+                                                        <span id="server-error-msg">您访问的网页不存在...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
