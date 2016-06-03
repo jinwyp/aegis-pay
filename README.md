@@ -34,6 +34,17 @@ app 目录下：
 
 
 
+## 后端字段数据验证工具
+- 在common目录下的datachecker.js, 可以把网站的字段验证统一放到这里。
+- 使用时只要 按照如下使用即可, 默认为throw, 可以传入next, 这样就可以在callback中使用。 同步或在promise中可以直接省略next即可。
+```
+checker.orderId(req.query.orderId); // 同步代码或Promise中
+checker.orderId(req.query.orderId, next); // Callback 回调中
+checker.orderId(req.query.orderId, Promise.reject); // Promise中
+```
+
+
+
 
 ## Nodejs 错误分类
 
