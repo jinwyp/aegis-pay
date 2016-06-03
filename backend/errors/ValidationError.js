@@ -49,6 +49,12 @@ var validationCode = {
     
     order : {
         orderIdWrong : 5000
+    },
+
+    captcha : {
+        typeWrong : 6000,
+        textWrong : 6010,
+        notMatch : 6020
     }
 };
 

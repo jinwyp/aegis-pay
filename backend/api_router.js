@@ -1,13 +1,17 @@
 var express = require('express');
 var router  = express.Router();
 
-var commonMiddleWare = require('./middlewares/common');
+var sms = require('./common/sms_code');
+var captcha = require('./middlewares/captcha');
 
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');
 var orderCloseApi   = require('./controllers/order/orderClose');                 // 关闭订单 模块(文件路径)
 var confirmDelivery = require('./api/v1/confirmDelivery');
 var payApi          = require('./api/v1/pay');
+
+
+
 
 // demo
 router.get('/apps', siteController.apps);
@@ -27,8 +31,9 @@ router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭�
 router.get('/confirmDelivery/test', confirmDelivery.test);
 
 router.post('/pay/submit', payApi.submit);
-router.get('/imgcode', payApi.ccapimg);
-router.post('/validImgcode', payApi.validImgcode, commonMiddleWare.send_sms);
+
+router.get('/imgcode', captcha.genCaptcha('_ccapimgtxt_pay'));
+router.post('/validImgcode', captcha.verifyCaptcha('_ccapimgtxt_pay'), sms.send_sms2);
 
 
 router.use(function (req, res, next) {

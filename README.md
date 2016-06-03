@@ -43,6 +43,18 @@ checker.orderId(req.query.orderId, next); // Callback 回调中
 checker.orderId(req.query.orderId, Promise.reject); // Promise中
 ```
 
+- 前后端使用统一的errorCode 进行处理
+```
+{
+    "success"   : false,
+    "type"      : "UserLevelOperationalError",
+    "name"      : "ValidationError",
+    "message"   : "Field validation error, captcha text length should be 2 - 10",
+    "status"    : 400,
+    "errorCode" : 6010,
+    "field"     : "captchaText"
+}
+```
 
 
 
