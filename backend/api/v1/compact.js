@@ -7,6 +7,7 @@ var formidable = require('formidable');
 var uuid       = require('node-uuid');
 var path       = require('path');
 var config     = require('../../config');
+var utils = require('../../common/utils');
 
 var convert = require('../../common/convert');
 var cache   = require('../../common/cache');
@@ -27,6 +28,9 @@ exports.uploadFile = function (req, res, next) {
             : '';
         var newFile = uuid() + ext;
         var newPath = uploadPath + newFile;
+
+        utils.makeDir(uploadPath);
+
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
@@ -55,7 +59,7 @@ exports.signCompact = function (req, res, next) {
             return res.send(JSON.parse(data.body));
         }
     })
-}
+};
 
 
 
@@ -67,9 +71,6 @@ var convertData = function (compactdata, compactftl) {
     return co(function*() {
         var html    = yield convert.ftl2html(compactdata, compactftl);
         var pdf     = yield convert.html2pdf(html.htmlpath);
-
-        console.log("-----PDF333:", pdf);
-
         var imgs    = yield convert.pdf2image(pdf.pdfpath);
 
         var newImgs = [];
@@ -113,6 +114,7 @@ exports.generate_compact = function (req, res, next) {
             } else {
                 return res.render('compact/blocks/compact', pageData);
             }
+
         }
     })
-}
+};

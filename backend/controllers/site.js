@@ -13,6 +13,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/header">header</a></li>',
         '	<li><a href="/subHeader">subHeader</a></li>',
         '	<li><a href="/footer">footer</a></li>',
+		'	<li><a href="api/zips">zip压缩</a></li>',
 
         '	<h1>产品需要正在做的页面</h1><hr/>',
         '	<li><a href="/compact?orderId=100000">签订电子合同</a> > <a href="/pay?orderId=1">支付</a> > <a href="/order/progress">付款成功</a></li>',
