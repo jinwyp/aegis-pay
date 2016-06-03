@@ -85,9 +85,9 @@ exports.html2pdf = function (htmlpath, pdfname) {
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
 
-    if (!isDirExistsSync(pdfpath)) {
-        fs.mkdirSync(pdfpath);
-    }
+    //if (!isDirExistsSync(pdfpath)) {
+    //    fs.mkdirSync(pdfpath);
+    //}
 
 
     return new Promise(function (resolve, reject) {
@@ -97,21 +97,43 @@ exports.html2pdf = function (htmlpath, pdfname) {
         }else{
 
             fs.readFile(htmlpath, 'utf8', function(err, resultHtml){
-                if (err) reject(err);
+                //if (err) resolve(err);
 
                 if (resultHtml){
-                    pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
 
-                        if (err) reject(err);
-
-                        if (resultPDF) {
-                            console.log("-----PDF11:", resultPDF);
-                            resolve({'pdfpath' : pdffile});
-                        }else {
-                            console.log("-----PDF22:", resultPDF);
-                            resolve({'pdfpath' : 'notfound.pdf'});
+                    pdf.create(resultHtml, options).toFile(pdfpath, function(err, resultPDF) {
+                        if(err){
+                            console.log("-----PDF ERR:", resultPDF);
+                            resolve({'pdfpath' : 'notfound.html'});
+                            fs.stat(pdfpath, function(err, stat){
+                                if(stat && stat.isFile()){
+                                    resolve({'pdfpath':pdfpath});
+                                }else{
+                                    reject(err);
+                                }
+                            })
+                        }else{
+                            console.log("-----PDF SUCCESS", resultPDF);
+                            resolve({'pdfpath':pdfpath});
                         }
                     });
+
+
+
+                    //pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
+                    //    //console.log(typeof err)
+                    //    //console.log( JSON.stringify(err))
+                    //
+                    //    if (resultPDF) {
+                    //        console.log("-----PDF11:", resultPDF);
+                    //        resolve({'pdfpath' : pdffile});
+                    //    }else {
+                    //        //if (err) {reject(err)};  // here is bug for err , err should be null but here is {}
+                    //
+                    //        console.log("-----PDF22:", resultPDF);
+                    //        resolve({'pdfpath' : 'notfound.pdf'});
+                    //    }
+                    //});
                 }else{
                     resolve({'pdfpath' : 'notfound.html'});
                 }
