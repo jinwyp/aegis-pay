@@ -6,7 +6,7 @@
 
 
 <!-- 以下.内容部分 -->
-<div class="container">
+<div class="containerWrap">
     <div class="bodyWrap">
 
         <!-- 开具结算单 板块 -->
@@ -40,7 +40,61 @@
                     </div>
                 </div>
 
+
                 <!-- 退回原因提示框 板块 -->
+                <div class="reasonsReturn .againRefer mt20">
+                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+
+                    <div class="reasonsReturn_view show">
+                        <table class="returnTab">
+                            <tbody>
+                            <tr>
+                                <td width="66">退回原因：</td>
+                                <td>
+                                    <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>2016-06-01 15:46:32</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="button" class="iBtn iBtn_sm iBtn_edit mt10" value="修改退回原因"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="reasonsReturn_edit .show">
+                        <table class="returnTab">
+                            <tbody>
+                            <tr>
+                                <td class="va_top" width="66">退回原因：</td>
+                                <td>
+                                    <div class="txtAreaBox">
+                                        <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
+                                        <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>2016-06-01 15:46:32</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="txt_c">
+                                    <input type="button" class="iBtn iBtn_def" value="取消">
+                                    <input type="button" class="iBtn iBtn_yes" value="确认"><br/><br/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
 
                 <!-- 结算单: 结算信息 -->
@@ -137,22 +191,10 @@
                 </div>
 
 
-                <!-- 补充协议文件 板块 -->
-
-                <!-- 上传盖结算单 板块 -->
-
-                <!-- 操作按钮 模块 -->
-
-                <p class="">s</p>
-                <p>s</p>
-                <p>s</p>
-                <p>s</p>
-                <p>s</p>
-                <p>s</p>
-                <p>s</p>
-
             </div>
         </div>
+
+
 
         <!-- 清算货款信息 板块-->
         <div class="plateBox mt20">
@@ -184,13 +226,100 @@
         </div>
 
 
+        <!-- 补充协议文件 板块 -->
+        <div class="fileOperation mt20">
+            <div class="fileOperation_title fl">
+                <p class="sss">
+                    <span class="require">*</span>补充协议文件：
+                </p>
+            </div>
+            <div class="fileOperation_body">
+                <div class="fileList">
+                    <span class="iBtn iBtn_up">
+                        <i class="iBtn_up_icn"></i>点击上传
+                    </span>
+
+                    <span class="iBtn iBtn_down">
+                        <i class="iBtn_down_icn"></i>下载附件
+                    </span>
+                    <!--<% include ../../custom_components/upload/upload %>-->
+                </div>
+                <p class="fileExplain bright">在审核时请详细查看文件。</p>
+            </div>
+        </div>
+
+        <!-- 上传盖结算单 板块 -->
+        <div class="fileOperation mt20">
+            <div class="fileOperation_title fl">
+                <p class="sss">
+                    <span class="require">*</span>上传盖章结算单：
+                </p>
+            </div>
+            <div class="fileOperation_body">
+                <div class="fileList">
+                    <span class="iBtn iBtn_up">
+                        <i class="iBtn_up_icn"></i>点击上传
+                    </span>
+
+                    <span class="iBtn iBtn_down">
+                        <i class="iBtn_down_icn"></i>下载附件
+                    </span>
+                    <!--<% include ../../custom_components/upload/upload %>-->
+                </div>
+                <p class="fileExplain ">
+                    提示：1.  请将结算单下载并加盖公章或财务章，
+                    <a href="#" class="linkPrint">《下载结算单》</a><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    2.要求扫描件或者照片，大小<span class="bright">不超过5M</span>，如果多个文件，请压缩上传文件夹。</p>
+            </div>
+        </div>
+
+        <!-- 操作按钮 模块 -->
+        <div class="operationBox mt20">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <input type="button" class="iBtn iBtn_no" value="提出异议" data-toggle="modal" data-target="#reasonsReturnModal" />
+            <input type="button" class="iBtn iBtn_yes ml20" value="确认结算">
+            <p>&nbsp;</p>
+        </div>
+
+
+
     </div>
 </div>
 
+
+
+
 <!-- 结算单退回原因: 模态框-->
+<div class="modal fade" id="reasonsReturnModal" role="dialog">
+    <div class="modal-dialog modal-pl" role="document">
+        <div class="modal-content mt220 ">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="pad_15">
+                    <div class="txtAreaBox">
+                        <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
+                        <textarea class="txtArea .returnText" name="remarks" rows="10" maxlength="200" placeholder="请简要填写退回原因，限200个字"></textarea>
+                    </div>
+                </div>
+            </div>
+            <p class="txt_c">
+                <input type="button" class="iBtn iBtn_def" value="取消" data-dismiss="modal" />
+                <input type="button" class="iBtn iBtn_yes ml20" value="确认" />
+                <br/><br/><br/>
+            </p>
+            <!--<div class="modal-footer txt_c"></div>-->
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
 
 <!-- 重要提示: 模态框-->
-<div class="modal fade" id="significantModal" role="dialog" aria-labelledby="gridSystemModalLabel" style="display: none;">
+<div class="modal fade" id="significantModal" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content significantModalCon" style="margin-top:193px;">
             <!-- 重要提示-->
@@ -198,22 +327,20 @@
     </div>
 </div>
 
+
 <!-- 操作提示信息: 模态框-->
-<div class="modal fade" id="orderModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="operationInfoModal" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content mt150 ">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                <h4 class="modal-title">提示</h4>
             </div>
             <div class="modal-body">
-                <div class="warn_ico"></div>
-                <p class="warn_info">您确定关闭该笔订单交易?</p>
-                <div class="txt_c mt20">
-                    <button type="button" class="iBtn iBtn-cancel" data-dismiss="modal">取消</button>
-                    <button type="button" class="iBtn iBtn-primary" id="btnSubClose">确定</button>
-                </div>
-                <p><br/><br/></p>
+                <span class="icn_successMax option_info_icn"></span>
+                <p class="option_info">结算单已重新提交到买家确认！</p>
+                <p class="option_warn"><span class="bright">5S</span> 后自动关闭</p>
+                <p>&nbsp;</p>
             </div>
             <!--<div class="modal-footer txt_c"></div>-->
         </div><!-- /.modal-content -->

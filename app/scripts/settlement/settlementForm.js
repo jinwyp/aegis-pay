@@ -5,13 +5,14 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
-    var apiHost = 'http://localhost:8800';			// API域名
+    var apiHost = 'http://localhost:8800';			    // API域名
 
 
 
-    var $embedBox = $('.embedBox'),                 // 提示框:嵌入
-        $doubtInlet = $('.doubtInlet'),             // 提示框:触发按钮
-        $significantModal = $('#significantModal'); // 重要提示 模态框
+    //---重要提示.板块-------------------
+    var $embedBox = $('.embedBox'),                     // 提示框:嵌入
+        $doubtInlet = $('.doubtInlet'),                 // 提示框:触发按钮
+        $significantModal = $('#significantModal');     // 重要提示 模态框
 
     // 鼠标经过 显/隐 提示框
     $doubtInlet.hover(function() {
@@ -37,8 +38,14 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
 
 
-    //---sdfasf-------------------
+    //---退回原因.板块-------------------
+    var $reasonsReturnModal = $('#reasonsReturnModal');
+    var $operationInfoModal = $('#operationInfoModal');
 
+    if(true) {
+        //$reasonsReturnModal.modal('show');
+        //$operationInfoModal.modal('show');
+    }
 
     //---sdfasg-------------------
     //---sdfasg-------------------

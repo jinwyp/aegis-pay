@@ -1,7 +1,7 @@
 /**
  * config
  */
-
+var path = require('path');
 
 
 var config = {
@@ -28,7 +28,8 @@ var config = {
         port : '6379',
         db   : 0
     },
-    sysFileDir : process.env.FILES_DIR
+    sysFileDir : path.resolve(process.env.FILES_DIR)
 };
+
 
 module.exports = config;

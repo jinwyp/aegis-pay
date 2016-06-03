@@ -34,6 +34,51 @@
 <% include ../global/order/statusBar %>
 
 
+<!-- 按钮颜色&大小 -->
+<table class="btnBoxList">
+    <tbody>
+    <tr>
+        <th>样式尺寸</th>
+        <th>编辑, 更改</th>
+        <th>确认, 提交</th>
+        <th>退回, 否定</th>
+        <th>取消, 返回</th>
+        <th>禁用, disabled</th>
+        <th>只读, readonly</th>
+    </tr>
+    <tr>
+        <th>中号:  140*40</th>
+        <td><input type="button" class="iBtn iBtn_edit" value="修改"/></td>
+        <td><input type="button" class="iBtn iBtn_yes" value="确认"/></td>
+        <td><input type="button" class="iBtn iBtn_no" value="退回"/></td>
+        <td><input type="button" class="iBtn iBtn_def" value="取消"/></td>
+        <td><input type="button" class="iBtn iBtn_yes" value="不可用" disabled/></td>
+        <td><input type="button" class="iBtn iBtn_yes" value="只读" readonly/></td>
+    </tr>
+    <tr>
+        <th>小号:  96*32</th>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_edit" value="修改"/></td>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="确认"/></td>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_no" value="退回"/></td>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_def" value="取消"/></td>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="不可用" disabled/></td>
+        <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="只读" readonly/></td>
+    </tr>
+    <tr>
+        <th>文本框: </th>
+        <td><input type="text" class="iIpt" value="" placeholder="正常状态" /></td>
+        <td><input type="text" class="iIpt" value="输入状态" placeholder="" /></td>
+        <td><input type="text" class="iIpt iIpt_err" value="输入错误" placeholder="" /></td>
+        <td><input type="text" class="iIpt" value="" placeholder="只读状态" readonly /></td>
+        <td><input type="text" class="iIpt" value="" placeholder="禁用状态" disabled /></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="小号" /></td>
+    </tr>
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+
+
 
 <!-- 各种Icon图标-->
 <div class="icnList">
@@ -167,6 +212,30 @@
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<div class="icnList">
+    <span class="iBtn iBtn_up">
+        <i class="iBtn_up_icn"></i>点击上传
+    </span>
+
+    <span class="iBtn iBtn_down">
+        <i class="iBtn_down_icn"></i>下载附件
+    </span>
+
+
+    <p class="fileLab">
+        <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
+        <span class="fileLab_del"></span>
+    </p>
+    <p class="fileLab">
+        <span class="fileLab_name">bbbbbbbbbbbbb.jpg</span>
+        <span class="fileLab_del"></span>
+    </p>
+
+    <input type="button" class="iBtn iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
+
+    <input type="button" class="iBtn iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
+</div>
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -183,9 +252,51 @@
 <p>&nbsp;</p>
 
 
+<!-- 结算单退回原因: 模态框-->
+<div class="modal fade" id="reasonsReturnModal" role="dialog">
+    <div class="modal-dialog modal-pl" role="document">
+        <div class="modal-content mt220 ">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="pad_15">
+                    <div class="txtAreaBox">
+                        <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
+                        <textarea class="txtArea .returnText" name="remarks" rows="10" maxlength="200" placeholder="请简要填写退回原因，限200个字"></textarea>
+                    </div>
+                </div>
+            </div>
+            <p class="txt_c">
+                <input type="button" class="iBtn iBtn_def" value="取消" data-dismiss="modal" />
+                <input type="button" class="iBtn iBtn_yes ml20" value="确认" />
+                <br/><br/><br/>
+            </p>
+            <!--<div class="modal-footer txt_c"></div>-->
+        </div><!-- /.modal-content -->
+    </div>
+</div>
 
 
 
-
+<!-- 操作提示信息: 模态框-->
+<div class="modal fade" id="operationInfoModal" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content mt150 ">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <span class="icn_successMax option_info_icn"></span>
+                <p class="option_info">结算单已重新提交到买家确认！</p>
+                <p class="option_warn"><span class="bright">5S</span> 后自动关闭</p>
+                <p>&nbsp;</p>
+            </div>
+            <!--<div class="modal-footer txt_c"></div>-->
+        </div><!-- /.modal-content -->
+    </div>
+</div>
 
 

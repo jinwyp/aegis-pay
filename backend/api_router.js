@@ -2,6 +2,7 @@ var express = require('express');
 var router  = express.Router();
 
 var commonMiddleWare = require('./middlewares/common');
+
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');
 var orderCloseApi   = require('./controllers/order/orderClose');                 // 关闭订单 模块(文件路径)

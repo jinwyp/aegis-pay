@@ -4,6 +4,10 @@
  */
 
 var express        = require('express');
+var router = express.Router();
+
+var authMiddleware = require('./middlewares/auth');
+
 var demoController = require('./controllers/demo');                                         // 引入 控制模块
 var siteController = require('./controllers/site');
 // var staticController = require('./controllers/static');
@@ -22,7 +26,7 @@ var confirmComplete           =require('./controllers/confirmComplete');        
 var payCtl                    = require('./controllers/pay');                                                  //支付模块
 
 
-var router = express.Router();
+
 router.get('/demo', demoController.demo);                                                   // 添加路由
 router.get('/', siteController.home);
 // router.post('/signout', signController.signout);

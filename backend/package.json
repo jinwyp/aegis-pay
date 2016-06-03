@@ -46,6 +46,7 @@
     "node-ftl": "^0.1.1",
     "node-uuid": "^1.4.7",
     "pdf-image": "^1.1.0",
+    "pretty-error": "^2.0.0",
     "request": "^2.54.0",
     "response-time": "^2.3.1",
     "validator": "^5.3.0",

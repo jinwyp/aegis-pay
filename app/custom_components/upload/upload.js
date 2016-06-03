@@ -9,6 +9,22 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	        url: '/api/upload-file',
 	        dataType: 'json',
 			maxFileSize: 5000000,
+			add: function(e, data) {
+                var uploadErrors = [];
+                // var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
+                // if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
+                //     uploadErrors.push('Not an accepted file type');
+                // }
+                if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 5000000) {
+                    uploadErrors.push('Filesize is too big');
+                }
+                if(uploadErrors.length > 0) {
+					$('.uploadWrapper').next('.tip-error').addClass('uploadlimit').text(uploadErrors.join("\n")).show();
+                } else {
+					$('.uploadlimit.tip-error').removeClass('uploadlimit').hide();
+                    data.submit();
+                }
+        	},
 	        done: function (e, data) {
 				var e = e || window.event;
 				var target = e.srcElement || e.target;
