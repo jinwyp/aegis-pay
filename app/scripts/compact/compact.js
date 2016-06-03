@@ -2,7 +2,8 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
   return {
       init: function(){
         var self = this;
-        if($('input[name="needGenerate"]').val() == "0"){
+
+        if($('input[name="needGenerate"]').val() == "0" && $('input[name="orderId"]').val()){
           $.get('/api/generate_compact?orderId=' + $('input[name="orderId"]').val(), function(data){
             $('.compactContainer').replaceWith(data);
             self.flexslider();

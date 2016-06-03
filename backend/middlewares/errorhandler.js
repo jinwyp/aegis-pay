@@ -3,10 +3,10 @@
  */
 
 
-//var PrettyErrorLib = require('pretty-error');
-//var PrettyError = new PrettyErrorLib();
-//PrettyError.skipNodeFiles(); // this will skip events.js and http.js and similar core node files, this will skip node.js, path.js, event.js, etc.
-//PrettyError.skipPackage('express', 'mongoose'); // this will skip all the trace lines about express` core and sub-modules
+var PrettyErrorLib = require('pretty-error');
+var PrettyError = new PrettyErrorLib();
+PrettyError.skipNodeFiles(); // this will skip events.js and http.js and similar core node files, this will skip node.js, path.js, event.js, etc.
+PrettyError.skipPackage('express', 'mongoose'); // this will skip all the trace lines about express` core and sub-modules
 
 var logger = require('../common/logger');
 
@@ -31,13 +31,13 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         newErr = err;
     }
 
+
     res.status(newErr.status);
 
-    logger.log(newErr.stack);
-    // debug(err.stack);
+    logger.log(PrettyError.render(newErr));
     // debug(JSON.stringify(newError, null, 4));
 
-    // console.log(req.is('application/json'));
+
 
     var resError = {
         success : false,
@@ -58,22 +58,29 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
 
-    if (type === 'text'){
+    if (req.xhr || req.is('application/json') ||  req.get('Content-Type') === 'application/json' || type ==='json' || req.is('application/x-www-form-urlencoded')){
+        return res.json(resError);
+
+    }else if (type === 'text'){
         res.setHeader('Content-Type', 'text/plain');
         return res.json(resError);
-    }
 
-    if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json' || type ==='json' || req.is('application/x-www-form-urlencoded')){
-        return res.json(resError);
-    }else{
+    }else {
+        if (resError.errorCode > 1000) {
+            resError.url = req.url;
+            return res.render('global/globalTemp/validationErrorPage', resError);
+        }
 
-        if (resError.code === 404) {
+        if (resError.errorCode === 404) {
             resError.url = req.url;
             return res.render('global/globalTemp/page404', resError);
         }
 
         return res.render('global/globalTemp/error', resError);
     }
+
+
+
 };
 
 
@@ -92,7 +99,7 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
 
     res.status(newErr.status);
 
-    logger.log(newErr.stack);
+    logger.log(PrettyError.render(newErr));
 
     var resError = {
         success : false,
@@ -106,8 +113,12 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
         return res.json(resError);
     }else{
+        if (resError.errorCode > 1000) {
+            resError.url = req.url;
+            return res.render('global/globalTemp/validationErrorPage', resError);
+        }
 
-        if (resError.code === 404) {
+        if (resError.errorCode === 404) {
             resError.url = req.url;
             return res.render('global/globalTemp/page404', resError);
         }
