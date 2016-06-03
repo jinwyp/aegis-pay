@@ -16,7 +16,8 @@ exports.returnDetail = function (req, res, next) {
     //res.render('confirmDelivery/confirmDelivery',{"headerTit":"确认下单",statusObj: statusObj});			// 指定模板路径 渲染
     req.query.orderId = 100;
     cache.get('qualityZip_' + req.query.orderId, function(err, zipurl){
-        zipurl = req.protocol + '://' + req.host + '/' + zipurl.replace(__dirfiles+'/static', '/files');
+        var qualityZip = req.protocol + '://' + req.host + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+
         request({url : 'http://localhost:8800/return'}, function (err, data) {
             console.log('获取到的错误是----------------------------' + err);
             console.log('获取到的结果是data----------------------------' + data.body);
@@ -32,7 +33,7 @@ exports.returnDetail = function (req, res, next) {
             //    "indexList"      : source.indexList,
             //    "qualityZip": zipurl
             //};
-            var content = _.assign({}, {headerTit: "确认提货页面",pageTitle: "确认提货页面",type: "sell", "qualityZip": zipurl}, source);
+            var content = _.assign({}, {headerTit: "确认提货页面",pageTitle: "确认提货页面",type: "sell", "qualityZip": qualityZip}, source);
             console.log('获取到的结果是content----------------------------' + content);
             //渲染页面,指定模板&数据
             res.render('return/returnDetail', content);
