@@ -137,6 +137,8 @@ var generate_code = exports.generate_code = function (type, options) {
     return txt;
 }
 
+
+
 /**
  * 验证校验码
  * params: {sms}
@@ -161,3 +163,15 @@ exports.validate_sms = function (userInfo, sms) {
         }).catch(function(err){throw(err);})
     });
 }
+
+
+
+exports.send_sms2 = function (req, res, next) {
+    var userInfo = req.user;
+    exports.send_sms(userInfo).then(function (data) {
+        if(!data.success){
+            data.errType = data.errType || "sms";
+        }
+        return res.json(data);
+    }).catch(next);
+};

@@ -34,7 +34,7 @@ define(['jquery','bootstrap'],function($){
     validImgcode: function(imgcode){
         var self = this;
         var $send_sms = $('#send_code');
-        $.post('api/validImgcode', {'code':imgcode}, function(data){
+        $.post('api/validImgcode', {'captchaText':imgcode}, function(data){
           if(data.success){
               $('#imgcodeModal').modal('hide');
               // 发送短信验证码成功
