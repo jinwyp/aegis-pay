@@ -111,10 +111,10 @@ exports.generate_compact = function (req, res, next) {
             if (data.success) {
                 convertData(data.compact, ftlpath).then(function (result) {
                     pageData = _.assign(pageData, result);
-                    return res.render('compact/blocks/compact', pageData);
-                    //cache.set('compacts[' + orderId + ']', pageData, function () {
-                    //
-                    //});
+
+                    cache.set('compacts[' + orderId + ']', pageData, function () {
+                        return res.render('compact/blocks/compact', pageData);
+                    });
                 }).catch(next);
             } else {
                 return res.render('compact/blocks/compact', pageData);
