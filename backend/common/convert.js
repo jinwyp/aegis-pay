@@ -12,73 +12,44 @@ var __dirfiles = config.sysFileDir;
 
 
 
-function isDirExistsSync(dirPath) {
-    try {
-        return fs.statSync(dirPath).isDirectory();
-    } catch (e) {
-        if (e.code === 'ENOENT') {
-            return false;
-        } else {
-            throw e;
-        }
-    }
-}
-
-function isFileExistsSync(filePath) {
-    try {
-        return fs.statSync(filePath).isFile();
-    } catch (e) {
-        if (e.code === 'ENOENT') {
-            return false;
-        } else {
-            throw e;
-        }
-    }
-}
-
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
     var imgpath          = options && options.imgpath || path.join(__dirfiles, 'static/images/');
     var convertExtension = options && options.convertExtension || 'jpg';
 
-    //console.log('------', pdfpath);
-    //if (!isDirExistsSync(imgpath)) {
+    //if (!utils.isDirExistsSync(imgpath)) {
     //    fs.mkdirSync(imgpath);
     //}
 
-
     utils.makeDir(imgpath);
-
 
     return new Promise(function (resolve, reject) {
 
         var imageList = [];
+        var promiseList = [];
+
         var pdfImage = new PDFImage(pdfpath, {
             'outputDirectory'  : imgpath,
             'convertExtension' : convertExtension
         });
 
-
         pdfImage.numberOfPages().then(function (pages) {
             for (var i = 0; i < pages; i++) {
-
                 var imgfile = imgpath + imgname + '-' + i + "." + convertExtension;
-                var promiseList = [];
+                imageList.push(imgfile);
 
-                if (!isFileExistsSync(imgfile)){
-                    //promiseList.push(pdfImage.convertPage(i));
+                if (!utils.isFileExistsSync(imgfile)){
+                    promiseList.push(pdfImage.convertPage(i));
                 }
-                //imageList.push(imgfile);
+            }
 
-                if (promiseList.length > 0){
-                    Promise.all(promiseList).then(function(result){
-                        console.log(result);
-                        resolve({'imgs' : imageList});
-                    }).catch(reject)
-                }else{
+            if (promiseList.length > 0){
+                Promise.all(promiseList).then(function(result){
                     resolve({'imgs' : imageList});
-                }
+                }).catch(reject)
+            }else{
+                resolve({'imgs' : imageList});
             }
         }).catch(reject);
     })
@@ -88,74 +59,48 @@ exports.pdf2image = function (pdfpath, options) {
 
 exports.html2pdf = function (htmlpath, pdfname) {
 
-    //var pdfname = pdfname || path.basename(htmlpath, '.html');
-    //var pdfpath = path.join(__dirfiles, 'static/pdf/');
-    //var pdffile = pdfpath + pdfname + '.pdf';
-    //var options = {format : 'Letter'};
+    var pdfname = pdfname || path.basename(htmlpath, '.html');
+    var pdfpath = path.join(__dirfiles, 'static/pdf/');
+    var pdffile = pdfpath + pdfname + '.pdf';
+    var options = {format : 'Letter'};
 
-    //if (!isDirExistsSync(pdfpath)) {
+    //if (!utils.isDirExistsSync(pdfpath)) {
     //    fs.mkdirSync(pdfpath);
     //}
 
+    utils.makeDir(pdfpath);
 
     return new Promise(function (resolve, reject) {
 
-        //if (isFileExistsSync(pdffile)){
-        //    resolve({'pdfpath' : pdffile});
-        //}else{
-        //
-        //    fs.readFile(htmlpath, 'utf8', function(err, resultHtml){
-        //        //if (err) resolve(err);
-        //
-        //        if (resultHtml){
-        //
-        //            pdf.create(resultHtml, options).toFile(pdfpath, function(err, resultPDF) {
-        //                if(err){
-        //                    console.log("-----PDF ERR:", resultPDF);
-        //                    resolve({'pdfpath' : 'notfound.html'});
-        //                    fs.stat(pdfpath, function(err, stat){
-        //                        if(stat && stat.isFile()){
-        //                            resolve({'pdfpath':pdfpath});
-        //                        }else{
-        //                            reject(err);
-        //                        }
-        //                    })
-        //                }else{
-        //                    console.log("-----PDF SUCCESS", resultPDF);
-        //                    resolve({'pdfpath':pdfpath});
-        //                }
-        //            });
-        //
-        //        }else{
-        //            resolve({'pdfpath' : 'notfound.html'});
-        //        }
-        //
-        //    });
-        //}
+        if (utils.isFileExistsSync(pdffile)){
+            resolve({'pdfpath' : pdffile});
+        }else{
+            fs.readFile(htmlpath, 'utf8', function(err, resultHtml){
+                if (err) reject(err);
 
+                if (resultHtml){
 
+                    pdf.create(resultHtml, options).toFile(pdffile, function(err, resultPDF) {
+                        if(err){
+                            fs.stat(pdffile, function(err, stat){
+                                if (err) reject(err);
 
-        var html    = fs.readFileSync(htmlpath, 'utf8');
-        var options = {format : 'Letter'};
-        var pdfname = pdfname || path.basename(htmlpath, '.html');
-        var pdfpath = __dirfiles + '/static/pdf/' + pdfname + '.pdf';
+                                if(stat && stat.isFile()){
+                                    resolve({'pdfpath':pdffile});
+                                }else{
+                                    reject(err);
+                                }
+                            })
+                        }else{
+                            resolve({'pdfpath':pdfpath});
+                        }
+                    });
 
-        utils.makeDir( __dirfiles + '/static/pdf/');
-
-        pdf.create(html, options).toFile(pdfpath, function (err, res) {
-            if (err) {
-                fs.stat(pdfpath, function (err, stat) {
-                    if (stat && stat.isFile()) {
-                        resolve({'pdfpath' : pdfpath});
-                    } else {
-                        reject(err);
-                    }
-                })
-            } else {
-                resolve({'pdfpath' : pdfpath});
-            }
-        });
-
+                }else{
+                    resolve({'pdfpath' : 'notfound.html'});
+                }
+            });
+        }
     })
 };
 
@@ -167,15 +112,15 @@ exports.ftl2html = function (data, ftlpath, options) {
     var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
     var htmlfile = htmlpath + htmlname + '.html';
 
-    if (!isDirExistsSync(htmlpath)) {
-        fs.mkdirSync(htmlpath);
-    }
+    //if (!utils.isDirExistsSync(htmlpath)) {
+    //    fs.mkdirSync(htmlpath);
+    //}
 
-    //utils.makeDir(htmlpath);
+    utils.makeDir(htmlpath);
 
     return new Promise(function (resolve, reject) {
 
-        if (isFileExistsSync(htmlfile)){
+        if (utils.isFileExistsSync(htmlfile)){
             resolve({'htmlpath' : htmlfile});
         }else{
             ftl.processTemplate({
@@ -211,15 +156,14 @@ exports.ftl2html = function (data, ftlpath, options) {
 
 
 
-
 /**
  * 压缩文件
- * params:{
-    type: zip/tar,  //default:zip
-    output: '输出路径', // default: __dirfiles + '/static/zips'
-    zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
-    path: 压缩文件路径, //必需参数，字符串或数组
- * }
+ *
+ * @param type: zip/tar,  //default:zip
+ * @param output: '输出路径', // default: __dirfiles + '/static/zips'
+ * @param zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
+ * @param path: 压缩文件路径, //必需参数，字符串或数组
+ *
  */
 exports.zipFile = function(options){
     var self = this;

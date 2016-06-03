@@ -1,6 +1,5 @@
 var request    = require('request');
 var api_config = require('./api_config');
-var co         = require('co');
 var _          = require('lodash');
 var fs         = require('fs');
 var formidable = require('formidable');
@@ -68,21 +67,27 @@ exports.signCompact = function (req, res, next) {
 
 // 接收service数据，转化数据为客户端需要的格式
 var convertData = function (compactdata, compactftl) {
-    return co(function*() {
-        var html    = yield convert.ftl2html(compactdata, compactftl);
-        var pdf     = yield convert.html2pdf(html.htmlpath);
-        var imgs    = yield convert.pdf2image(pdf.pdfpath);
+    var data = {
+        'pdfpath' : '',
+        'imgs' : []
+    };
 
-        var newImgs = [];
-        _.forEach(imgs.imgs, function (img) {
-            newImgs.push('/files/images/' + path.basename(img));
-        });
-        return {
-            'pdfpath' : '/files/pdf/' + path.basename(pdf.pdfpath),
-            'imgs' : newImgs
-        };
+    return convert.ftl2html(compactdata, compactftl).then(function(resultHtml){
+        return convert.html2pdf(resultHtml.htmlpath)
     })
+    .then(function(resultPDF){
+        data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
+        return convert.pdf2image(resultPDF.pdfpath)
+    })
+    .then(function(resultImgs){
+        resultImgs.imgs.forEach(function (img) {
+            data.imgs.push('/files/images/' + path.basename(img));
+        });
+        return data
+    });
+
 };
+
 
 
 // generate compact
@@ -91,11 +96,11 @@ exports.generate_compact = function (req, res, next) {
     var orderId = req.query.orderId;
     var params  = '?orderId=' + orderId + '&action=get';
 
-    request(api_config.getCompact + params, function (err, data) {
+    request(api_config.getCompact + params, function (err, result) {
         if (err) return next(err);
 
-        if (data) {
-            var data = JSON.parse(data.body);
+        if (result) {
+            var data = JSON.parse(result.body);
 
             var pageData = _.assign({}, {
                 'pageTitle' : '签订电子合同',

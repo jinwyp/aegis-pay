@@ -1,20 +1,20 @@
 var fs  = require("fs"),
-    pth = require('path');
+    path = require('path');
 
 
 module.exports = (function () {
 
-    var PATH_SEPARATOR = pth.normalize("/");
+    var PATH_SEPARATOR = path.normalize("/");
 
-    function mkdirSync(/*String*/path) {
+    function mkdirSync(/*String*/pathStr) {
 
-        var resolvedPath = path.split(PATH_SEPARATOR)[0];
+        var resolvedPath = pathStr.split(PATH_SEPARATOR)[0];
 
-        path.split(PATH_SEPARATOR).forEach(function (name) {
+        pathStr.split(PATH_SEPARATOR).forEach(function (name) {
 
             if (!name || name.substr(-1, 1) == ":") return;
             resolvedPath += PATH_SEPARATOR + name;
-            
+
             var stat;
             try {
                 stat = fs.statSync(resolvedPath);
@@ -33,13 +33,38 @@ module.exports = (function () {
                 // }
             }
             if (stat && stat.isFile())
-                throw new Error(path + 'is a file')
+                throw new Error(pathStr + 'is a file')
         });
     }
 
     return {
-        makeDir : function (/*String*/path) {
-            mkdirSync(path);
+        makeDir : function (/*String*/pathStr) {
+            mkdirSync(pathStr);
+        },
+
+        isDirExistsSync : function (dirPath) {
+            try {
+                return fs.statSync(dirPath).isDirectory();
+            } catch (e) {
+                if (e.code === 'ENOENT') {
+                    return false;
+                } else {
+                    throw e;
+                }
+            }
+        },
+
+        isFileExistsSync : function (filePath) {
+            try {
+                return fs.statSync(filePath).isFile();
+            } catch (e) {
+                if (e.code === 'ENOENT') {
+                    return false;
+                } else {
+                    throw e;
+                }
+            }
         }
+
     }
 })();
