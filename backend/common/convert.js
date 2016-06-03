@@ -10,91 +10,160 @@ var utils = require('./utils');
 
 var __dirfiles = config.sysFileDir;
 
+
+
+
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
+    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'static/images/');
     var convertExtension = options && options.convertExtension || 'jpg';
-    var imgpath          = options && options.imgpath || __dirfiles + '/static/images/';
+
+    //if (!utils.isDirExistsSync(imgpath)) {
+    //    fs.mkdirSync(imgpath);
+    //}
 
     utils.makeDir(imgpath);
 
     return new Promise(function (resolve, reject) {
+
+        var imageList = [];
+        var promiseList = [];
+
         var pdfImage = new PDFImage(pdfpath, {
-                'outputDirectory'  : imgpath,
-                'convertExtension' : convertExtension
-            }
-        );
-        var imgs     = [];
+            'outputDirectory'  : imgpath,
+            'convertExtension' : convertExtension
+        });
+
         pdfImage.numberOfPages().then(function (pages) {
             for (var i = 0; i < pages; i++) {
-                (function (i) {
-                    pdfImage.convertPage(i).then(function () {
-                        imgs.push(imgpath + imgname + '-' + i + "." + convertExtension);
-                        if (imgs.length >= pages) resolve({'imgs' : imgs});
-                    });
-                })(i)
+                var imgfile = imgpath + imgname + '-' + i + "." + convertExtension;
+                imageList.push(imgfile);
+
+                if (!utils.isFileExistsSync(imgfile)){
+                    promiseList.push(pdfImage.convertPage(i));
+                }
             }
-        });
+
+            if (promiseList.length > 0){
+                Promise.all(promiseList).then(function(result){
+                    resolve({'imgs' : imageList});
+                }).catch(reject)
+            }else{
+                resolve({'imgs' : imageList});
+            }
+        }).catch(reject);
     })
-}
+};
+
+
 
 exports.html2pdf = function (htmlpath, pdfname) {
+
+    var pdfname = pdfname || path.basename(htmlpath, '.html');
+    var pdfpath = path.join(__dirfiles, 'static/pdf/');
+    var pdffile = pdfpath + pdfname + '.pdf';
+    var options = {format : 'Letter'};
+
+    //if (!utils.isDirExistsSync(pdfpath)) {
+    //    fs.mkdirSync(pdfpath);
+    //}
+
+    utils.makeDir(pdfpath);
+
     return new Promise(function (resolve, reject) {
-        var html    = fs.readFileSync(htmlpath, 'utf8');
-        var options = {format : 'Letter'};
-        var pdfname = pdfname || path.basename(htmlpath, '.html');
-        var pdfpath = __dirfiles + '/static/pdf/' + pdfname + '.pdf';
 
-        utils.makeDir( __dirfiles + '/static/pdf/');
+        if (utils.isFileExistsSync(pdffile)){
+            resolve({'pdfpath' : pdffile});
+        }else{
+            fs.readFile(htmlpath, 'utf8', function(err, resultHtml){
+                if (err) reject(err);
 
-        pdf.create(html, options).toFile(pdfpath, function (err, res) {
-            if (err) {
-                fs.stat(pdfpath, function (err, stat) {
-                    if (stat && stat.isFile()) {
-                        resolve({'pdfpath' : pdfpath});
-                    } else {
-                        reject(err);
-                    }
-                })
-            } else {
-                resolve({'pdfpath' : pdfpath});
-            }
-        });
+                if (resultHtml){
+
+                    pdf.create(resultHtml, options).toFile(pdffile, function(err, resultPDF) {
+                        if(err){
+                            fs.stat(pdffile, function(err, stat){
+                                if (err) reject(err);
+
+                                if(stat && stat.isFile()){
+                                    resolve({'pdfpath':pdffile});
+                                }else{
+                                    reject(err);
+                                }
+                            })
+                        }else{
+                            resolve({'pdfpath':pdfpath});
+                        }
+                    });
+
+                }else{
+                    resolve({'pdfpath' : 'notfound.html'});
+                }
+            });
+        }
     })
-}
+};
+
+
 
 exports.ftl2html = function (data, ftlpath, options) {
     var htmlname = options && options.htmlname || path.basename(ftlpath, '.ftl');
-    var htmlpath = options && options.htmlpath || __dirfiles + '/static/html/';
+
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
+    var htmlfile = htmlpath + htmlname + '.html';
+
+    //if (!utils.isDirExistsSync(htmlpath)) {
+    //    fs.mkdirSync(htmlpath);
+    //}
 
     utils.makeDir(htmlpath);
 
     return new Promise(function (resolve, reject) {
-        ftl.processTemplate({
-            data     : data,
-            settings : {
-                encoding   : 'utf-8',
-                viewFolder : path.dirname(ftlpath) + '/'
-            },
-            filename : path.basename(ftlpath)
-        }).on('end', function (err, html) {
-            if (!err) {
-                var htmlfile = htmlpath + htmlname + '.html';
-                fs.writeFileSync(htmlfile, html, 'utf-8');
-                resolve({'htmlpath' : htmlfile});
-            } else {
-                reject(err);
-            }
-        });
+
+        if (utils.isFileExistsSync(htmlfile)){
+            resolve({'htmlpath' : htmlfile});
+        }else{
+            ftl.processTemplate({
+                data     : data,
+                settings : {
+                    encoding   : 'utf-8',
+                    viewFolder : path.dirname(ftlpath) + '/'
+                },
+                filename : path.basename(ftlpath)
+
+            }).on('end', function (err, resultHtml) {
+                if (err) reject(err);
+
+                if (resultHtml) {
+                    fs.writeFile(htmlfile, resultHtml, 'utf-8', function(err){
+                        if (err) reject(err);
+                        resolve({'htmlpath' : htmlfile});
+                    });
+
+                }else{
+                    resolve({'htmlpath' : 'notfound.html'});
+                }
+            });
+        }
+
     })
-}
+
+};
+
+
+
+
+
+
+
 /**
  * 压缩文件
- * params:{
-    type: zip/tar,  //default:zip
-    output: '输出路径', // default: __dirfiles + '/static/zips'
-    zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
-    path: 压缩文件路径, //必需参数，字符串或数组
- * }
+ *
+ * @param type: zip/tar,  //default:zip
+ * @param output: '输出路径', // default: __dirfiles + '/static/zips'
+ * @param zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
+ * @param path: 压缩文件路径, //必需参数，字符串或数组
+ *
  */
 exports.zipFile = function(options){
     var self = this;
@@ -157,4 +226,4 @@ exports.zipFile = function(options){
         })
         archive.finalize();
     })
-}
+};

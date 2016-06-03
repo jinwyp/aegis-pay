@@ -8,4 +8,4 @@ require.config({
 require(['compact', 'upload'], function(compact, upload){
   compact.init();
   upload.init();
-})
+});

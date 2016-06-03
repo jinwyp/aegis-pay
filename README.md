@@ -34,6 +34,17 @@ app 目录下：
 
 
 
+## 后端字段数据验证工具
+- 在common目录下的datachecker.js, 可以把网站的字段验证统一放到这里。
+- 使用时只要 按照如下使用即可, 默认为throw, 可以传入next, 这样就可以在callback中使用。 同步或在promise中可以直接省略next即可。
+```
+checker.orderId(req.query.orderId); // 同步代码或Promise中
+checker.orderId(req.query.orderId, next); // Callback 回调中
+checker.orderId(req.query.orderId, Promise.reject); // Promise中
+```
+
+
+
 
 ## Nodejs 错误分类
 
@@ -184,6 +195,14 @@ async function demo(req, res, next){
 demo().catch(next)
 ```
 
+注意!! : 如果库使用的Event emitter 来处理错误,例如steam相关的库, 那么还需要通过事件来处理错误。 [参考文章](https://strongloop.com/strongblog/async-error-handling-expressjs-es7-promises-generators/)
+```
+app.get('/', wrap(async (req, res, next) => {
+  let company = await getCompanyById(req.query.id)
+  let stream = getLogoStreamById(company.id)
+  stream.on('error', next).pipe(res)
+}))
+```
 
 5 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
 
