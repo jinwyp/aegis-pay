@@ -34,11 +34,10 @@ exports.signin = function (req, res, next) {
 
     //验证用户成功后，设置session
     request(api_config.signin, {username : loginname, password : pass}, function (err, user) {
-        if (err) {
-            return next();
-        }
+        if (err) return next(err);
+
         authMiddleware.generateSession(user, res);
     })
 
-}
+};
 

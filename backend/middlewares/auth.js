@@ -1,5 +1,5 @@
-var config     = require('../config');
-var eventproxy = require('eventproxy');
+var config                     = require('../config');
+var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
 
 function generateSession(user, res) {
     var auth_token = user._id + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
@@ -9,7 +9,7 @@ function generateSession(user, res) {
         signed   : true,
         httpOnly : true
     };
-    res.locals.currentUserInfo = {"userId": 123, "userName":"peach", "phone":18678782323, "ip":"198.168.23.123"}
+
     res.cookie(config.auth_cookie_name, auth_token, opts); //cookie 有效期30天
 }
 
@@ -17,35 +17,34 @@ exports.generateSession = generateSession;
 
 // 验证用户是否登录
 exports.authUser = function (req, res, next) {
-    var ep = new eventproxy();
-    ep.fail(next);
 
-    // 添加测试用户
-    if(config.debug){
-        generateSession({_id:123}, res);
+    var auth_token = req.signedCookies[config.auth_cookie_name];
+    var auth    = auth_token.split('$$$$');
+
+    var user_id = req.session.user || auth[0];
+
+
+    if (!user_id){
+        // next(new UnauthenticatedAccessError(401, 'user token not found', config.auth_cookie_name);
     }
 
-    // Ensure current_user always has defined.
-    res.locals.current_user = null;
+    if (user_id) {
 
-    ep.all('get_user', function (user) {
-        if (!user) {
-            return next();
-        }
-        res.locals.current_user = req.session.user = user;
-        next();
-    });
+        var user = null;
 
-    if (req.session.user) {
-        ep.emit('get_user', req.session.user);
-    } else {
-        var auth_token = req.signedCookies[config.auth_cookie_name];
-        if (!auth_token) {
-            return next();
+        // 添加测试用户
+        if(config.debug){
+            user = {"userId": 123, "userName":"peach", "phone":18678782323, "ip":"198.168.23.123"}
+        }else{
+            // 验证user_id 是否合法
+
+            // 通过验证后  从redis 取出用户信息
+            user = req.session.user
         }
 
-        var auth    = auth_token.split('$$$$');
-        var user_id = auth[0];
-        ep.emit('get_user', user_id);
+        req.user = user;
+        res.locals.user = user;
     }
+
+    next();
 };

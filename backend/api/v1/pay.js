@@ -4,10 +4,11 @@ var cache      = require('../../common/cache');
 var sms_code   = require('../../common/sms_code');
 var api_config = require('./api_config');
 
+
 exports.submit = function (req, res, next) {
     var reqbody = req.body,
         code    = reqbody.sms_code;
-    var userInfo = res.locals.currentUserInfo;
+    var userInfo = req.user;
     sms_code.validate_sms(userInfo, code).then(function (val) {
         request.post(api_config.paySubmit, reqbody, function (err, data) {
             if (!err && data) {
@@ -26,9 +27,11 @@ exports.submit = function (req, res, next) {
 
 };
 
+
+
 // 生成图片验证码
 exports.ccapimg = function (req, res, next) {
-    var userInfo = res.locals.currentUserInfo;
+    var userInfo = req.user;
     var ary  = sms_code.generate_code('img');
     console.log("----- ccap captcha: ", ary[0]);
     cache.set(userInfo.userId + "_ccapimgtxt_pay", ary[0]);
@@ -38,7 +41,7 @@ exports.ccapimg = function (req, res, next) {
 
 // 校验图片验证码
 exports.validImgcode = function (req, res, next) {
-    var userInfo = res.locals.currentUserInfo;
+    var userInfo = req.user;
     var imgcode = req.body.code;
 // cache.del('yimei180_sms_' + userInfo.userId)
     cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
