@@ -7,6 +7,7 @@ var formidable = require('formidable');
 var uuid       = require('node-uuid');
 var path       = require('path');
 var config     = require('../../config');
+var utils = require('../../common/utils');
 
 var convert = require('../../common/convert');
 var cache   = require('../../common/cache');
@@ -25,6 +26,9 @@ exports.uploadFile = function (req, res, next) {
             : '';
         var newFile = uuid() + ext;
         var newPath = uploadPath + newFile;
+
+        utils.makeDir(uploadPath);
+
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
@@ -88,9 +92,10 @@ exports.generate_compact = function (req, res, next) {
                 })
             } else {
                 // console.log();
+                next(err);
             }
         } else {
-            console.log(err);
+            next(err);
         }
     })
 }
