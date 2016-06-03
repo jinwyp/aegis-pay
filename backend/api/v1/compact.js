@@ -6,7 +6,7 @@ var formidable = require('formidable');
 var uuid       = require('node-uuid');
 var path       = require('path');
 var config     = require('../../config');
-var utils = require('../../common/utils');
+var utils      = require('../../common/utils');
 
 var convert = require('../../common/convert');
 var cache   = require('../../common/cache');
