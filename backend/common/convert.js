@@ -185,9 +185,9 @@ exports.zipFile = function(options){
 
         if(!options.zipname){
             if(fs.statSync(options.path[0]).isDirectory()){
-                self.default.zipname = _.last(_.split(options.path, path.sep)) + '.' + self.default.type;
+                self.default.zipname = _.last(_.split(options.path[0], path.sep)) + '.' + self.default.type;
             }else if(fs.statSync(options.path[0]).isFile()){
-                self.default.zipname = path.basename(options.path, path.extname(options.path)) + '.' + self.default.type;
+                self.default.zipname = path.basename(options.path[0], path.extname(options.path[0])) + '.' + self.default.type;
             }
         }
 
@@ -218,9 +218,11 @@ exports.zipFile = function(options){
         archive.pipe(output);
 
         _.map(self.options.path, function(val, index){
+            console.log(val)
             if(fs.statSync(val).isDirectory()){
                 archive.directory(val, val.replace(val, ''));
             }else if(fs.statSync(val).isFile()){
+                console.log(1111)
                 archive.file(val, { name:  path.basename(val)});
             }
         })
