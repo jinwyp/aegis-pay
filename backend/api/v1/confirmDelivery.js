@@ -2,7 +2,9 @@ var request    = require('request');
 var api_config = require('./api_config');
 var config     = require('../../config');
 var _          = require('lodash');
-
+var request = require('request');
+var convert = require('../../common/convert');
+var cache = require('../../common/cache');
 
 const uploadPath = config.sysFileDir + '/static/upload/';
 exports.test = function (req, res, next) {
@@ -19,5 +21,14 @@ exports.test = function (req, res, next) {
 
 console.log(newids,newids1)
     res.json({'qualityList' : params.qualityList, "quantityList" : params.quantityList})
+	//request.post(url, {}, function(err, data){
+	//	res.json()
+	//})
+	req.body.orderId = 100;
+	console.log(newids);
+	convert.zipFile(newids).then(function(val){
+		cache.set('qualityZip_' + req.body.orderId, val);
+	}).catch(next);
+
 
 };

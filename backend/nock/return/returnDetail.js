@@ -4,6 +4,7 @@ var returnDetail = nock('http://localhost:8800');
 returnDetail
     .get('/return').reply(200,
     {
+      "orderId":"100",
       "sellInfo":{
             "NCV":5090, "NCV02":6500,
             "ADS":0.00, "ADS02":0.00,//测试数据
