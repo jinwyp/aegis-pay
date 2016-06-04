@@ -461,6 +461,7 @@ $hoverColor: #00b7ec;
             display: inline-block;
             &:hover{
               color: $hoverColor;
+              text-decoration: none;
             }
           }
           &.noborder{background: none;}

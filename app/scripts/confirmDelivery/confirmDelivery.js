@@ -96,7 +96,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             });
 
             //提货数量
-            var deliveryAmount=$("#checkAmount");
+            var deliveryAmount=$("#deliveryAmount");
             if(deliveryAmount.val()==""){
                $(".errorMes").text("提货数量不得为空");
                return false;
@@ -150,10 +150,11 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                   data:{
                      id:"250",
                      version:"1",
-                     checkAmount:$("#checkAmount").val(),
+                     deliveryAmount:$("#deliveryAmount").val(),
                      indexList:inputList,
                      qualityList:qualityList,
-                     quantityList:quantityList
+                     quantityList:quantityList,
+                     orderId:"123"
                   },
                   success:function(data){
                      //alert(data.qualityList);

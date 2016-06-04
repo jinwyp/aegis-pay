@@ -7,7 +7,7 @@ var payPersist = nock(API.host).persist();
 
 payPersist
 .get(function(uri){
-  var ismatch = /mall\/order\/payment\?orderId=\d&userId=\d/.test(uri);
+  var ismatch = /mall\/order\/payment\?orderId=\d+&userId=\d+/.test(uri);
   return ismatch;
 }).reply(200, function(uri){
   return {

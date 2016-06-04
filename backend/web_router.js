@@ -4,6 +4,10 @@
  */
 
 var express        = require('express');
+var router = express.Router();
+
+var authMiddleware = require('./middlewares/auth');
+
 var demoController = require('./controllers/demo');                                         // 引入 控制模块
 var siteController = require('./controllers/site');
 // var staticController = require('./controllers/static');
@@ -18,10 +22,11 @@ var orderCloseContr           = require('./controllers/order/orderClose');      
 var settlementFormContr       = require('./controllers/settlement/settlementForm');               // 结算单开具页面 模块(控制文件路径)
 var sellerDeliveryController  = require('./controllers/sellerDelivery');                     // 关闭订单 模块(控制文件路径)
 var returnDetailController    = require('./controllers/returnDetail');
+var confirmComplete           =require('./controllers/confirmComplete');            //确认完成页面
 var payCtl                    = require('./controllers/pay');                                                  //支付模块
 
 
-var router = express.Router();
+
 router.get('/demo', demoController.demo);                                                   // 添加路由
 router.get('/', siteController.home);
 // router.post('/signout', signController.signout);
@@ -34,11 +39,12 @@ router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/confirmDelivery/test', confirmDeliveryController.test);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/orderTest', orderController.orderTest);
+router.get('/printDetail', orderController.printDetail);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                                 // 关闭 订单路由
 router.get('/settlement/settlementForm_buyer', settlementFormContr.orderInfo);              // 结算单 买家 页面路由
 router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo);             // 结算单 卖家 页面路由
-router.get('/orderTest', orderController.orderTest);
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
+router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 
 
 router.get('/return', returnDetailController.returnDetail);

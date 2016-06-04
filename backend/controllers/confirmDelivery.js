@@ -4,6 +4,8 @@
 
 var request = require('request');
 var apiHost = 'http://server.180.com/';			// 模拟域名
+var path = require('path');
+var _ = require('lodash');
 
 
 // 处理业务逻辑
@@ -48,8 +50,20 @@ exports.confirmDelivery = function (req, res, next) {
             statusObj   : statusObj,
             "sellInfo"  : source.sellInfo,
             "order"     : source.order,
-            "indexList" : source.indexList
+            "indexList" : source.indexList,
+            "deliveryAmount" : source.deliveryAmount,
+            "indexDataList" : source.indexDataList,
+            "qualityList" : source.qualityList,
+            "quantityList" : source.quantityList
         };
+
+        _.map(content.qualityList, function(val, index){
+            val.file_id = path.basename(val.path);
+        });
+        _.map(content.quantityList, function(val, index){
+            val.file_id = path.basename(val.path);
+        });
+
         console.log('获取到的结果是content----------------------------' + content);
         //渲染页面,指定模板&数据
         res.render('confirmDelivery/confirmDelivery', content);

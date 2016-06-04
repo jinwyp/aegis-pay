@@ -5,13 +5,12 @@
 /**
  * Module dependencies.
  */
-
+//require("babel-register");
 require('colors');
 
 var config = require('./config');
 
 var path                = require('path');
-var Loader              = require('loader');
 var express             = require('express');
 var session             = require('express-session');
 var webRouter           = require('./web_router');
@@ -63,7 +62,6 @@ if (config.debug) {
 require('./common/ejshelper')(app);
 
 // 静态资源
-app.use(Loader.less(__dirname));
 app.use('/static', express.static(staticDir));
 app.use('/files', express.static(fileStatic));
 // app.use(express.static(fileStatic));
@@ -113,8 +111,7 @@ if (!config.debug) {
 
 // set static, dynamic helpers
 _.extend(app.locals, {
-    config : config,
-    Loader : Loader
+    config : config
 });
 
 

@@ -1,8 +1,5 @@
 <% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/statusBar.css") -%>
 <% stylesheet("/static/styles/confirmDelivery.css") -%>
-<% stylesheet("/static/styles/orderUserInfo.css") -%>
-<% stylesheet("/static/styles/orderTable.css") -%>
 <% include ../global/header/subHeader %>
 <% script("/static/scripts/confirmDelivery/confirmDelivery.js") -%>
 <div id="confirmDelivery">
@@ -13,92 +10,125 @@
             <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
             <div class="banCon">
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
-                <div class="rightBan"><input type="text" class="amount" id="checkAmount" /><span class="unit">吨</span></div>
+                <div class="rightBan">
+                    <%if(deliveryAmount.typeof !="undefined"){%>
+                        <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>" />
+                    <%}else{%>
+                        <input type="text" class="amount" id="deliveryAmount" />
+                    <%}%>
+                    <span class="unit">吨</span>
+                </div>
             </div>
             <% if (sellInfo.pricingMethodId==1) {%>
                 <p class="tableTit"><span>* </span>请填写检测结果</p>
-                <div class="banCon pb10">
-                    <%count =0; for(var i in indexList){ count++; %><%}%>
-                        <% if (count<=6) {%>
+
+                <% if(indexDataList.typeof != "undefined"){%>
+                    <div class="banCon pb10">
                         <div class="tableWrap">
-                            <table class="checkList">
-                                <tr class="thead">
-                                    <td width="55">批次</td>
-                                    <td width="92"><i class="calIcon"></i>检测时间</td>
-                                    <td width="92">提货吨数(吨)</td>
-                                    <% if (count<=6) {%>
-                                        <% for(var i in indexList){%>
+                            <!--判断批次总数，下面做判断用-->
+                            <%for(var totalP=0;totalP<indexDataList.length;totalP++){%><%}%>
+                            <!--判断有几个批次，遍历-->
+                            <%for(var k=0;k<indexDataList.length;k++){%>
+
+                                <!--统计数据长度来判断表格样式-->
+                                <%count =0; for(var i in indexList){ count++; %><%}%>
+                                <% if (count<=6) {%>
+                                <!--list小于6的情况-->
+
+                                    <table class="checkList">
+                                        <tr class="thead">
+                                            <td width="55">批次</td>
+                                            <td width="92"><i class="calIcon"></i>检测时间</td>
+                                            <td width="92">提货吨数(吨)</td>
+                                            <% if (count<=6) {%>
+                                            <% for(var i in indexList){%>
                                             <td width="92"><%= indexList[i] %></td>
-                                        <%}%>
-                                        <% for(var i=0;i<6-count;i++) {%>
+                                            <%}%>
+                                            <% for(var i=0;i<6-count;i++) {%>
                                             <td width="92"></td>
-                                        <% } %>
-                                    <%}%>
-                                    <td width="94">
-                                        操作
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="batch">1</td>
-                                    <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                    <td><input type="text" name="checkAmount"/></td>
-                                    <% if (count<=6) {%>
-                                        <% for(var i in indexList){%>
-                                        <td><input type="text" name=<%=i%> /></td>
-                                        <%}%>
-                                        <% for(var i=0;i<6-count;i++) {%>
-                                        <td></td>
-                                        <% } %>
-                                    <%}%>
-                                    <td>
-                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                                        <a href="javascript:void(0)" class="add">增加</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <%}else {%>
-                        <div class="tableWrap">
+                                            <% } %>
+                                            <%}%>
+                                            <td width="94">
+                                                操作
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="batch"><%=k+1%></td>
+                                            <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%= indexDataList[k].checkTime %> /></td>
+                                            <td><input type="text" name="checkAmount" value=<%= indexDataList[k].checkAmount %> /></td>
+                                            <% if (count<=6) {%>
+                                            <!--从提货吨数后开始遍历-->
+                                                <% var count1=0; for(var i in indexDataList[k]){ count1++;%>
+                                                    <%if(count1>2){%>
+                                                        <td><input type="text" name=<%=i%> value=<%= indexDataList[k][i] %> /></td>
+                                                    <%}%>
+                                                <%}%>
+                                            <!--不足6位开始补全-->
+                                                <% for(var i=0;i<6-count;i++) {%>
+                                                <td></td>
+                                                <% } %>
+                                            <%}%>
+                                            <td>
+                                                <%if(k<totalP-1){%>
+                                                <a href="javascript:void(0)" class="del" style="">删除</a>
+                                                <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                                <%}else{%>
+                                                <a href="javascript:void(0)" class="del" style="">删除</a>
+                                                <a href="javascript:void(0)" class="add" style="">增加</a>
+                                                <%}%>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                <%}else {%>
+
                             <table class="checkList">
                                 <tr class="thead">
                                     <td width="55">批次</td>
                                     <td width="92"><i class="calIcon"></i>检测时间</td>
                                     <td width="92">提货吨数(吨)</td>
                                     <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                        <% if(Tindex<=6) {%>
-                                            <td width="92"><%= indexList[i] %></td>
-                                        <%}%>
+                                    <% if(Tindex<=6) {%>
+                                    <td width="92"><%= indexList[i] %></td>
+                                    <%}%>
                                     <%}%>
                                     <td width="94">操作</td>
                                 </tr>
                                 <tr>
-                                    <td rowspan="3"  class="batch">1</td>
-                                    <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                    <td><input type="text" name="checkAmount"/></td>
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                        <% if(Tindex<=6) {%>
-                                        <td><input type="text" name=<%=i%> /></td>
+                                    <td rowspan="3"  class="batch"><%=k+1%></td>
+                                    <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%=indexDataList[k].checkTime%> /></td>
+                                    <td><input type="text" name="checkAmount" value=<%=indexDataList[k].checkAmount%> /></td>
+                                    <!--判断第一行数据表头显示，从提货吨数后开始-->
+                                    <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
+                                        <% if(Tindex>2 && Tindex<=8) {%>
+                                        <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
                                         <%}%>
                                     <%}%>
                                     <td rowspan="3">
-                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                                        <a href="javascript:void(0)" class="add">增加</a>
+                                        <%if(k<totalP-1){%>
+                                            <a href="javascript:void(0)" class="del" style="">删除</a>
+                                            <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                        <%}else{%>
+                                            <a href="javascript:void(0)" class="del" style="">删除</a>
+                                            <a href="javascript:void(0)" class="add" style="">增加</a>
+                                        <%}%>
                                     </td>
                                 </tr>
                                 <tr class="thead">
+                                    <!--第二行开始表头显示-->
                                     <%var Tindex=0; for(var i in indexList){ Tindex++%>
                                         <% if(Tindex>6) {%>
                                         <td width="92"><%= indexList[i] %></td>
                                         <%}%>
                                     <%}%>
                                     <% for(var i=0;i<14-count;i++) {%>
-                                        <td></td>
+                                    <td></td>
                                     <% } %>
                                 </tr>
                                 <tr>
-                                    <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                    <% if(Tindex>6) {%>
-                                    <td><input type="text" name=<%=i%> /></td>
+                                    <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
+                                    <% if(Tindex>8) {%>
+                                    <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
                                     <%}%>
                                     <%}%>
                                     <% for(var i=0;i<14-count;i++) {%>
@@ -106,27 +136,131 @@
                                     <% } %>
                                 </tr>
                             </table>
-                        </div>
-                        <%}%>
 
+                        <%}%>
+            <%}%>
+            </div>
+        </div>
+            <%}else{%>
+                <div class="banCon pb10">
+                    <%count =0; for(var i in indexList){ count++; %><%}%>
+                    <% if (count<=6) {%>
+                    <div class="tableWrap">
+                        <table class="checkList">
+                            <tr class="thead">
+                                <td width="55">批次</td>
+                                <td width="92"><i class="calIcon"></i>检测时间</td>
+                                <td width="92">提货吨数(吨)</td>
+                                <% if (count<=6) {%>
+                                <% for(var i in indexList){%>
+                                <td width="92"><%= indexList[i] %></td>
+                                <%}%>
+                                <% for(var i=0;i<6-count;i++) {%>
+                                <td width="92"></td>
+                                <% } %>
+                                <%}%>
+                                <td width="94">
+                                    操作
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="batch"><%=k+1%></td>
+                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
+                                <td><input type="text" name="checkAmount"/></td>
+                                <% if (count<=6) {%>
+                                <% for(var i in indexList){%>
+                                <td><input type="text" name=<%=i%> /></td>
+                                <%}%>
+                                <% for(var i=0;i<6-count;i++) {%>
+                                <td></td>
+                                <% } %>
+                                <%}%>
+                                <td>
+                                    <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                    <a href="javascript:void(0)" class="add">增加</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%}else {%>
+                    <div class="tableWrap">
+                        <table class="checkList">
+                            <tr class="thead">
+                                <td width="55">批次</td>
+                                <td width="92"><i class="calIcon"></i>检测时间</td>
+                                <td width="92">提货吨数(吨)</td>
+                                <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                                    <% if(Tindex<=6) {%>
+                                    <td width="92"><%= indexList[i] %></td>
+                                    <%}%>
+                                <%}%>
+                                <td width="94">操作</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3"  class="batch"><%=k+1%></td>
+                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
+                                <td><input type="text" name="checkAmount"/></td>
+                                <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                                <% if(Tindex<=6) {%>
+                                <td><input type="text" name=<%=i%> /></td>
+                                <%}%>
+                                <%}%>
+                                <td rowspan="3">
+                                    <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                    <a href="javascript:void(0)" class="add">增加</a>
+                                </td>
+                            </tr>
+                            <tr class="thead">
+                                <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                                <% if(Tindex>6) {%>
+                                <td width="92"><%= indexList[i] %></td>
+                                <%}%>
+                                <%}%>
+                                <% for(var i=0;i<14-count;i++) {%>
+                                <td></td>
+                                <% } %>
+                            </tr>
+                            <tr>
+                                <%var Tindex=0; for(var i in indexList){ Tindex++%>
+                                <% if(Tindex>6) {%>
+                                <td><input type="text" name=<%=i%> /></td>
+                                <%}%>
+                                <%}%>
+                                <% for(var i=0;i<14-count;i++) {%>
+                                <td></td>
+                                <% } %>
+                            </tr>
+                        </table>
+                    </div>
+                    <%}%>
                 </div>
+            <%}%>
             <%}%>
             <div class="banCon pb0" id="qualityList">
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>
                 <div class="rightBan">
                     <div class="unUpload">
                         <div class="uploadFileWrapper">
-                          <% include ../../custom_components/upload/upload %>
+                          <span class="fileinput-button btn_upload">
+                            <i class="icon_upload"></i>
+                            <span>点击上传</span>
+                            <input class='fileupload' data-url='/api/upload-file' type="file" name="files">
+                          </span>
+                          <div class="files">
+                              <%if(qualityList.typeof !="undefined"){%>
+                                <%for (var i=0;i<qualityList.length;i++){%>
+                                    <p class="file"><%= qualityList[i].name %>
+                                        <span class="del"></span>
+                                        <input type="hidden" name="file_id" value="<%= qualityList[i].file_id %>">
+                                        <input type="hidden" name="file_name" value="<%= qualityList[i].name %>">
+                                    </p>
+                                <%}%>
+                              <%}%>
+                          </div>
                         </div>
                         <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
                     </div>
-                    <!--<div class="haveUpload">-->
-                        <!--<ul class="haveUploadList">-->
-                            <!--<li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>-->
-                            <!--<li><i class="fileIcon"></i>文件112312312.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>-->
-                            <!--<li><i class="fileIcon"></i>文件1.jpg<a href="javascript:void(0)" class="deleteFile"></a></li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
+
                 </div>
             </div>
             <% if (sellInfo.pricingMethodId==1) {%>
@@ -135,7 +269,22 @@
                 <div class="rightBan">
                     <div class="unUpload">
                         <div class="uploadFileWrapper">
-                            <% include ../../custom_components/upload/upload %>
+                            <span class="fileinput-button btn_upload">
+                            <i class="icon_upload"></i>
+                            <span>点击上传</span>
+                            <input class='fileupload' data-url='/api/upload-file' type="file" name="files">
+                          </span>
+                            <div class="files">
+                                <%if(quantityList.typeof !="undefined"){%>
+                                <%for (var i=0;i<quantityList.length;i++){%>
+                                <p class="file"><%= quantityList[i].name %>
+                                    <span class="del"></span>
+                                    <input type="hidden" name="file_id" value="<%= quantityList[i].file_id %>">
+                                    <input type="hidden" name="file_name" value="<%= quantityList[i].name %>">
+                                </p>
+                                <%}%>
+                                <%}%>
+                            </div>
                         </div>
                         <div class="uploadInfo">提示：如果上传多个文件，建议将文件打包并压缩成一个上传，单个文件不大于<span>5M</span></div>
                     </div>

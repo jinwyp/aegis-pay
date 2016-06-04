@@ -1,31 +1,29 @@
-$red: red;
-$white: #ffffff;
-$gray: #f5f5f5;
-$black: #333333;
-$green: #1aaa6b;
-$orange: #ff6e27;
-$stateColor: #f3fcff;
-$hintColor: #999999;
+@import './global.scss';
+@import './statusBar.scss';
+@import './orderUserInfo.scss';
+@import './orderTable.scss';
+@import './orderTableClose.scss';
+
 body{
   padding: 0;
   margin: 0;
 }
 #order-detail-body{
-  background-color: $gray;
+  background-color: $color_body_bg;
   padding: 20px 0px;
   .main-content{
-    background-color: $white;
+    background-color: $color_text_white;
     width: 1000px;
     margin: 0 auto 0 auto;
     .center-content{
       margin: 0 30px 0 30px;
       padding-top: 20px;
       padding-bottom: 20px;
-      a{  color: #037191; cursor: pointer;  }
-      .hint{  color: $hintColor; font-size: 12px;  }
+      a{  color: $color_a; cursor: pointer;&:hover{color : $color_a_hover;}  }
+      .hint{  color: $color_tip_font; font-size: 12px;  }
       .fs-18{  font-size: 18px;  }
       .status-content{
-        background-color: $stateColor;
+        background-color: $color_bg_status;
         padding: 50px 0;
         .fs-24{  font-size: 24px;  }
         .mt-20{  margin-top: 20px;  }
@@ -34,25 +32,15 @@ body{
           width: 540px;
           margin-left: auto;
           margin-right: auto;
-          .status{
-            color: $green;
-          }
-          .status-close{
-            color: $black;
-          }
-          .status-return{
-            color: $red;
-          }
-          span.status-hint{
-            font-size: 14px;
-          }
-          span.orange{
-            color:$orange;
-          }
+          .status{  color: $color_green;  }
+          .status-close{  color: $color_font;  }
+          .status-return{  color: $color_red;  }
+          span.status-hint{  font-size: 14px;  }
+          span.orange{  color:$color_orange;  }
           .btn-option{
-            background-color: $orange;
+            background-color: $color_orange;
             margin-left: 10px;
-            color: $white;
+            color: $color_text_white;
             font-size: 12px;
             padding: 2px 16px 4px 16px;
             border-radius: 2px;

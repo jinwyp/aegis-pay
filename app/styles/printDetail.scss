@@ -1,0 +1,162 @@
+@import './global.scss';
+
+#print-detail-body{
+  background-color: $color_main_bg;
+  padding: 40px 0px;
+  font-size: 14px;
+  .title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .order-tag{
+    text-align: right;
+    line-height: 30px;
+    border-bottom: 1px solid $color-border;
+    div{  display: inline-block;  }
+    .order-id{  margin-top: 30px;margin-right: 138px;  }
+  }
+  .main-content{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    .user-info-title{
+      margin-top: 10px;
+      line-height: 40px;
+      font-size: 18px;
+      color: $color_gray;
+    }
+    .user-buy-table,.user-sell-table{
+      width: 100%;
+      border: 1px solid $color-border;
+      font-size: 14px;
+      color: $color_font;
+      tr{
+        border-bottom: 1px solid $color-border;
+        td{
+          border-right: 1px solid $color-border;
+          .label{
+            line-height: 40px;
+            color: $color_tip_font;
+            background-color: $color_label_bg;
+          }
+        }
+        td > div{  padding: 0 20px;  }
+      }
+    }
+    #print-table{
+      border-left: 1px solid $color_border;
+      border-right: 1px solid $color_border;
+      border-bottom: 1px solid $color_border;
+      .center-content{
+        text-align: center;
+        vertical-align: middle;
+      }
+      tr{
+        th{
+          .title-col {
+            line-height: 40px;
+            background-color: $color_body_bg;
+            text-align: center;
+            color: $color_title_text;
+          }
+        }
+        td{
+          .detail-info-table{
+            width: 100%;
+            tr{
+              td{
+                padding: 30px 0;
+                border-left: 1px solid $color_border;
+                .info-title{
+                  margin-left: 30px;
+                  .supply-ico {
+                    padding: 1px 3px;
+                    text-align: center;
+                    vertical-align: middle;
+                    background-color: $color_orange;
+                    color: $color_text_white;
+                    border-radius: 3px;
+                    font-size: 12px;
+                  }
+                  .supply-title {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-left: 6px;
+                    vertical-align: middle;
+                  }
+                }
+                ul{
+                  padding: 0;
+                  margin-left: 30px;
+                  font-size: 12px;
+                  li {
+                    list-style-type: none;
+                    width: 186px;
+                    float: left;
+                    margin-top: 12px;
+                    .hint{
+                      color: $color_tip_font;
+                    }
+                  }
+                }
+                .number{
+                  text-align: center;
+                }
+              }
+              td.no-border{ border-left: none;  }
+            }
+          }
+        }
+      }
+    }
+    .order-info{
+      overflow: hidden;
+      border-left: 1px solid $color-border;
+      border-top: 1px solid $color-border;
+      border-right: 1px solid $color-border;
+      padding-bottom: 20px;
+      ul{
+        width: 100%;
+        border: none;
+        float: left;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li{
+          width: 50%;
+          float: left;
+          div {  display: inline-block;  }
+          .div-label {
+            width: 160px;
+            padding-left: 20px;
+            color: $color_tip_font;
+            vertical-align: top;
+          }
+          .div-value {
+            padding-right: 10px;
+            word-break: break-all;
+            word-wrap: break-word;
+          }
+        }
+        .order-item {  margin-top: 20px;  }
+      }
+    }
+
+    .total-money{
+      text-align: right;
+      margin-top: 20px;
+      .money-number{
+        color: $color_font;
+        font-size: 20px;
+        //span{
+        //  color: $color_orange;
+        //}
+      }
+      .money-zh{
+        margin-top: 10px;
+        font-size: 12px;
+      }
+    }
+  }
+}

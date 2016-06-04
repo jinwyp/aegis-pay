@@ -124,6 +124,14 @@ module.exports = function (app) {
         }
     };
 
+    app.locals.getString = function (arg1) {
+        if (arg1 == undefined || arg1 == null){
+            return '--';
+        } else {
+            return arg1;
+        }
+    }
+
     app.locals.targetIsEmpty = function (arg1, arg2) {
         if ((arg1 == undefined && arg2 == undefined)
             || (arg1 == 0 && arg2 == 0)

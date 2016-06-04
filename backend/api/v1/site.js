@@ -1,3 +1,4 @@
+
 var PromiseB   = require('bluebird');
 var request    = require("request");
 var requestP   = PromiseB.promisify(require("request"));
@@ -5,8 +6,13 @@ var api_config = require('./api_config');
 var cache      = require('../../common/cache');
 var co         = require('co');
 var _          = require('lodash');
+var convert = require('../../common/convert');
+var config = require('../../config');
+var archiver = require('archiver');
+var fs =  require('fs');
+var path     = require('path');
 
-
+var __dirfiles = config.sysFileDir;
 
 exports.apps = function (req, res, next) {
     //api代理，去请求java接口
@@ -66,6 +72,14 @@ exports.asyncMerge = function (req, res, next) {
         });
     }).catch(next);
 
+/*
+    async function aa (){
+        result = await requestP({url:api_config.apps});
+        return res.send(result);
+    }
+
+    aa().catch(next);
+*/
 
 };
 
@@ -90,7 +104,7 @@ exports.cogenMerge = function (req, res, next) {
         getProduct(api_config.apps2)
     ];
 
-    co(function*() {
+/*    co(function*() {
 
         var result = yield coIndexMerge;
         return res.send({
@@ -99,7 +113,17 @@ exports.cogenMerge = function (req, res, next) {
             'app2-length' : result[2].body.length
         });
 
+    }).catch(next);*/
+
+    Promise.all(coIndexMerge).then(function (result) {
+
+        return res.send({
+            'app'         : JSON.parse(result[0].body)[0].name,
+            'test_cache'  : JSON.parse(result[1].body),
+            'app2-length' : result[2].body.length
+        });
     }).catch(next);
+
 };
 
 
@@ -109,3 +133,10 @@ exports.products = function (req, res, next) {
         return res.send(data.body);
     })
 };
+
+// zip demo
+exports.zips = function(req, res, next){
+    convert.zipFile({path:[__dirfiles + '/static/images']}).then(function(val){
+        res.redirect('http://localhost:3000' + val.replace(__dirfiles+'/static', '/files'));
+    }).catch(next);
+}
