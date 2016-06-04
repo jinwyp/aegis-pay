@@ -1,5 +1,6 @@
 var config                     = require('../config');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
+var url = require('url');
 
 function generateSession(user, res) {
     var auth_token = user._id + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
@@ -19,13 +20,14 @@ exports.generateSession = generateSession;
 exports.authUser = function (req, res, next) {
 
     var auth_token = req.signedCookies[config.auth_cookie_name];
-    var auth    = auth_token.split('$$$$');
+    var auth    = auth_token && auth_token.split('$$$$');
 
-    var user_id = req.session.user || auth[0];
-
+    var user_id = req.session.user || (auth && auth[0]);
 
     if (!user_id){
         // next(new UnauthenticatedAccessError(401, 'user token not found', config.auth_cookie_name);
+        // var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
+        // res.redirect(config.site.member+'/login?gotoURL=' + gotoURL);
     }
 
     if (user_id) {

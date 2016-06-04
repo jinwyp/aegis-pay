@@ -8,7 +8,7 @@ var config = {
 
     debug : true, // debug 为 true 时，用于本地调试
     mock  : process.env.MOCK === 'true' || process.env.MOCK === true ? true : false,
-    
+
     name        : 'NRient',
     description : '',
     keywords    : 'nodejs react redux webpack',
@@ -27,6 +27,9 @@ var config = {
         host : '127.0.0.1',
         port : '6379',
         db   : 0
+    },
+    site: {
+      member: 'https://www-local.yimei180.com:7777'
     },
     sysFileDir : path.resolve(process.env.FILES_DIR)
 };

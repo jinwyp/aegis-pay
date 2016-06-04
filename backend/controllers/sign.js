@@ -40,4 +40,20 @@ exports.signin = function (req, res, next) {
     })
 
 };
+exports.setSSOCookie = function(req, res, next){
+  var passport = req.query.passport;
+  var userName = req.query.userName;
+  res.cookie('userName', username, {
+      secure: config.https,
+      domain: config.domain,
+      expires: new Date(Date.now() + 900000) // todo
+  });
+  res.cookie('passport', passport, {
+      secure: config.https,
+      domain: config.domain,
+      expires: new Date(Date.now() + 900000) // todo
+  });
+},
+exports.removeSSOCookie = function(req, res, next){
 
+}

@@ -10,6 +10,7 @@ var orderCloseApi   = require('./controllers/order/orderClose');                
 var confirmDelivery = require('./api/v1/confirmDelivery');
 var confirmComplete = require('./controllers/confirmComplete');
 var payApi          = require('./api/v1/pay');
+var signCtrl = require('./controllers/sign');
 
 
 
@@ -37,6 +38,9 @@ router.post('/pay/submit', payApi.submit);
 router.get('/imgcode', captcha.genCaptcha('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyCaptcha('_ccapimgtxt_pay'), sms.send_sms2);
 
+// setSSOCookie
+router.get('/setSSOCookie', signCtrl.setSSOCookie);
+router.get('/removeSSOCookie', signCtrl.removeSSOCookie);
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
