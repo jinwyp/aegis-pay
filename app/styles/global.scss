@@ -301,6 +301,9 @@ a:hover {
   }
 }
 .iBtn_up {
+  position: relative;
+  z-index: 5;
+
   .iBtn_up_icn {
     margin: 6px 0 0 7px;
     float: left;
@@ -308,6 +311,19 @@ a:hover {
     width: 14px;
     height: 14px;
     background: url($bgUrl) no-repeat -552px -307px;
+  }
+  input[type=file] {
+    display: block;
+    width: 96px;
+    height: 32px;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    font-size: 180em;
+    opacity: 0;
+    filter: alpha(opacity=0);
   }
 }
 //下载
