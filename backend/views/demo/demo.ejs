@@ -224,16 +224,27 @@
 
     <p class="fileLab">
         <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
-        <span class="fileLab_del"></span>
+        <span class="fileLab_del" data-id=""></span>
     </p>
     <p class="fileLab">
         <span class="fileLab_name">bbbbbbbbbbbbb.jpg</span>
-        <span class="fileLab_del"></span>
+        <span class="fileLab_del" data-id=""></span>
     </p>
 
     <input type="button" class="iBtn iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
 
     <input type="button" class="iBtn iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
+</div>
+
+<p>&nbsp;</p>
+<p>上传附件: </p>
+<div class="icnList">
+    <!-- 上传 -->
+    <span class="iBtn iBtn_up">
+        <i class="iBtn_up_icn"></i>点击上传
+        <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
+    </span>
+    <div class="fileList" style="display: inline-block"></div>
 </div>
 
 <p>&nbsp;</p>
