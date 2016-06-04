@@ -137,7 +137,7 @@ confirmDelivery
       "indexList":{"CRC":"焦渣特征","ASH":"灰分","TM":"全水分","YV":"Y值","FC":"固定碳"},
       "deliveryAmount":300,
       "indexDataList":[{"checkTime":"2016-06-01","checkAmount":"150","CRC":"99","ASH":"10","TM":"11","YV":"12","FC":"13"},{"checkTime":"2016-06-01","checkAmount":"150","CRC":"99","ASH":"10","TM":"11","YV":"12","FC":"13"}],
-      "qualityList":[{"name":"zoomIcon_01.png","path": "/Users/beatacao/work/aegis-pay/upload/1be0767c-edfb-45ed-8136-2b12cc9ab765.png"},{"name":"zoomIcon_02.png","path": "/Users/beatacao/work/aegis-pay/upload/1be0767c-edfb-45ed-8136-2b12cc9ab765.png"}],
+      "qualityList":[{"name":"zoomIcon_01.png","path": "/Users/gaoleo/Downloads/Project/aegis-all/aegis-pay/files/static/upload/outDate.png"},{"name":"zoomIcon_02.png","path": "/Users/gaoleo/Downloads/Project/aegis-all/aegis-pay/files/static/upload/outDate.png"}],
       "quantityList":[{"name":"zoomIcon_03.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"},{"name":"zoomIcon_04.png","path":"/a/2ffd574e-5182-4ddf-9bb2-3ed73f3e4561.png"}]
 
     });

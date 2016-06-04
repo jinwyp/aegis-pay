@@ -153,7 +153,8 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                      deliveryAmount:$("#deliveryAmount").val(),
                      indexList:inputList,
                      qualityList:qualityList,
-                     quantityList:quantityList
+                     quantityList:quantityList,
+                     orderId:"123"
                   },
                   success:function(data){
                      //alert(data.qualityList);

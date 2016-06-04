@@ -9,7 +9,6 @@ var cache = require('../../common/cache');
 const uploadPath = config.sysFileDir + '/static/upload/';
 exports.test = function (req, res, next) {
 	var params = req.query;
-	// console.log(params.file_id)
 	var newids = _.map(params.qualityList, function(id,name){
 		return {id: uploadPath + id, name: uploadPath + name}
 	});
@@ -20,17 +19,23 @@ exports.test = function (req, res, next) {
 	var newids1 = _.map(params.quantityList, function(id,name){
 		return {id: uploadPath + id, name: uploadPath + name}
 	});
+	var patharr1 = _.map(params.quantityList, function(id,name){
+		return uploadPath + id;
+	});
 
 	params.qualityList = newids;
 	params.quantityList = newids1;
 
-	// console.log(newids,newids1)
-	req.body.orderId = 100;
 	convert.zipFile({path:patharr}).then(function(val){
 		cache.set('qualityZip_' + req.body.orderId, val);
 	}).catch(next);
 
-    res.json({'qualityList' : params.qualityList, "quantityList" : params.quantityList})
+	convert.zipFile({path:patharr}).then(function(val){
+		cache.set('quantityZip_' + req.body.orderId, val);
+	}).catch(next);
+
+
+	res.json({'qualityList' : params.qualityList, "quantityList" : params.quantityList})
 	//request.post(url, {}, function(err, data){
 	//	res.json()
 	//})
