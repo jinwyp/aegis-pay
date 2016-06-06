@@ -18,8 +18,25 @@ function generateSession(user, res) {
 exports.generateSession = generateSession;
 
 // 验证用户是否登录，获取并存储用户信息
+// user: {
+//     id: 213,
+//     securephone: 18634343434,
+//     nickname: 'peach',
+//     isactive: true,
+//     verifystatus: true,
+//     qq: 34343434,
+//     telephone: 18765656565,
+//     clienttype: 0,
+//     email: '12324@aa.com',
+//     verifyuuid: 'dkfi234',
+//     userFrom: 'userfrom',
+//     traderid: 'traderid'
+// }
 exports.passport = function(req, res, next) {
     // req.session.user = null;
+    if(req.path.indexOf('setSSOCookie')>=0){
+        return next();
+    }
     if( !req.session || !req.session.user ) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
@@ -33,19 +50,18 @@ exports.passport = function(req, res, next) {
             }, function(err, auth){
                 "use strict";
                 if(err){
-                    next(err);
-                    return;
+                    return next(err);
                 }
                 var auth = JSON.parse(auth.body);
                 if(auth.success) {
                     req.session.user = auth.user;
-                    next();
+                    return next();
                 } else {
                     res.redirect(config.passport.member+'/login' + '?gotoURL=' + gotoURL + "&from=" + config.domain);
                 }
             });
         }
     } else {
-        next();
+        return next();
     }
 };

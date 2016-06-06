@@ -58,6 +58,7 @@ exports.setSSOCookie = function(req, res, next){
   next();
 },
 exports.removeSSOCookie = function(req, res, next){
+    req.session.user = null;
     res.clearCookie('userName', {
         domain: config.domain
     });

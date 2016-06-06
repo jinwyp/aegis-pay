@@ -91,7 +91,7 @@ app.use(session({
 }));
 
 // custom middleware
-// app.use(auth.passport);
+app.use(auth.passport);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
@@ -127,7 +127,7 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api', auth.passport, cors(), apiRouter);
+app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
 app.use(errorhandler.PageNotFoundMiddleware);
