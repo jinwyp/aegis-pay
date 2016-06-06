@@ -64,7 +64,6 @@ exports.confirmDelivery = function (req, res, next) {
             val.file_id = path.basename(val.path);
         });
 
-        console.log('获取到的结果是content----------------------------' + content);
         //渲染页面,指定模板&数据
         res.render('confirmDelivery/confirmDelivery', content);
     });
