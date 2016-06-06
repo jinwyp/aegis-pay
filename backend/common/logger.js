@@ -1,8 +1,8 @@
 var fs     = require('fs');
 var config = require('../config');
 
-if (!fs.existsSync("./log")) {
-    fs.mkdirSync("./log");
+if (!fs.existsSync("../logs")) {
+    fs.mkdirSync("../logs");
 }
 
 exports.log = function () {
@@ -52,7 +52,7 @@ var writeLog     = function (prefix, logType, args) {
     var line = prefix + logStr;
 
     if (filePrint) {
-        fs.appendFile('./log/' + env + '.log', line + "\n");
+        fs.appendFile('../logs/' + env + '.log', line + "\n");
     }
     if (consolePrint) {
         console.log(line);

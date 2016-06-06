@@ -15,10 +15,15 @@ var checker = require('../../common/datachecker');
 
 const uploadPath = config.sysFileDir + '/static/upload/';
 const ftlpath    = config.sysFileDir + '/servicefiles/fs.ftl';
+const uploadTmp = config.files_root+config.upload_tmp;
 
 exports.uploadFile = function (req, res, next) {
+    utils.makeDir(uploadTmp);
     //api代理，去请求java接口
     var form = new formidable.IncomingForm();
+
+    form.uploadDir = uploadTmp;
+
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
         var extName = /\.[^\.]+/.exec(files.files.name);
@@ -29,7 +34,7 @@ exports.uploadFile = function (req, res, next) {
         var newPath = uploadPath + newFile;
 
         utils.makeDir(uploadPath);
-
+        
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
