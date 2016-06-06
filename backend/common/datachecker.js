@@ -25,19 +25,19 @@ function throwError (code, message, field, isNext){
 
 
 exports.orderId = function(orderId, next){
-    if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) || !validator.isInt(orderId, { min: 100000, max: 90000000}) ) {
+    if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) ) {
         return throwError(ValidationError.code.order.orderIdWrong, 'Field validation error, orderId length should be 6 - 100', 'orderId', next);
     }
 };
 
 exports.captchaType = function(captchaType, next){
-    if (!captchaType || typeof captchaType !== 'string' || !validator.isLength(captchaType, { min: 2, max: 50}) ) {
+    if (!captchaType || typeof captchaType !== 'string'  ) {
         return throwError(ValidationError.code.captcha.typeWrong, 'Field validation error, captcha type length should be 2 - 50', 'captchaType', next);
     }
 };
 
 exports.captchaText = function(captchaText, next){
-    if (!captchaText || typeof captchaText !== 'string' || !validator.isLength(captchaText, { min: 2, max: 10}) ) {
+    if (!captchaText || typeof captchaText !== 'string') {
         return throwError(ValidationError.code.captcha.textWrong, 'Field validation error, captcha text length should be 2 - 10', 'captchaText', next);
     }
 };
