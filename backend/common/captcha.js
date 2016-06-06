@@ -3,8 +3,8 @@
  */
 
 var ccap       = require('ccap');
-var checker    = require('../common/datachecker');
-var cache      = require('../common/cache');
+var checker    = require('./datachecker');
+var cache      = require('./cache');
 
 
 /**
@@ -51,7 +51,7 @@ function generate_code (type, options) {
 
 
 // 生成图片验证码
-exports.genCaptcha = function (type) {
+exports.sendCode = function (type) {
     return function (req, res, next) {
         checker.captchaType(type); // _ccapimgtxt_pay
         
@@ -68,7 +68,7 @@ exports.genCaptcha = function (type) {
 
 
 // 校验图片验证码
-exports.verifyCaptcha = function (type) {
+exports.verifyMiddleware = function (type) {
     return function (req, res, next) {
 
         checker.captchaType(type); // _ccapimgtxt_pay
@@ -87,10 +87,7 @@ exports.verifyCaptcha = function (type) {
             } else {
                 //return checker.captchaNotMatch(next);
 
-                return res.json({
-                    "success" : false,
-                    "errType":"imgcode"
-                });
+                return res.json({ "success" : false, "errType":"imgcode" });
             }
         })
     }

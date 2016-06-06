@@ -2,7 +2,7 @@ var express = require('express');
 var router  = express.Router();
 
 var sms = require('./common/sms_code');
-var captcha = require('./middlewares/captcha');
+var captcha = require('./common/captcha');
 
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');
@@ -32,10 +32,12 @@ router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭�
 router.get('/confirmDelivery/test', confirmDelivery.test);
 router.get('/confirmComplete/test', confirmComplete.cp);
 
-router.post('/pay/submit', payApi.submit);
 
-router.get('/imgcode', captcha.genCaptcha('_ccapimgtxt_pay'));
-router.post('/validImgcode', captcha.verifyCaptcha('_ccapimgtxt_pay'), sms.send_sms2);
+
+router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
+router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
+router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
+
 
 
 
