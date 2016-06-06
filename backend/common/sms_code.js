@@ -1,6 +1,8 @@
 var request    = require('request');
 var ccap       = require('ccap');
 var _          = require('lodash');
+
+var checker    = require('./datachecker');
 var cache      = require('./cache');
 var api_config = require('../api/v1/api_config');
 
@@ -14,9 +16,11 @@ var api_config = require('../api/v1/api_config');
 // cache sms
 var cacheSet = function(userInfo, sms){
     var smsData = _.assign({}, userInfo, {"sms":sms, "createtime": new Date().getTime()});
+
     return new Promise(function(resolve, reject){
         cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
             if(err){ return reject(err); }
+
             data = data || [];
             data.push(smsData);
             cache.set('yimei180_sms_' + userInfo.userId, data, 86400);
@@ -24,87 +28,66 @@ var cacheSet = function(userInfo, sms){
         })
     })
 };
+
+
 //
 var cacheGet = function(userInfo, validTime){
-    var validTime = validTime || false;
+    validTime = validTime || false;
+
     return new Promise(function(resolve, reject){
-        var result;
+        var result = {"readyToSend": true};
+
         cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
             if(err){ return reject(err); }
-            if(!data || (data&&data.length==0)){
-                result = {"isSend": true};
+
+            if(!data || (data&&data.length === 0)){
+                result.readyToSend = true;
                 return resolve(result);
             }
+
+
             var now = new Date().getTime();
             var minTime = 0,
                 hourTime = 0,
                 dayTime = 0;
             var minSms = [];
+
+            var fivemin = 300,
+            hour = 3600,
+            day = 86400;
+
             _.map(data, function(val, index){
-                var s = (now - val.createtime)/1000,
-                    fmin = 300,
-                    hour = 3600,
-                    day = 86400;
-                if(s<fmin){
+                var s = (now - val.createtime)/1000;
+
+                if(s<fivemin){
                     minTime++;
                     minSms.push(val)
                 }
                 (s<hour)&&(hourTime++);
                 (s<day)&&(dayTime++);
-            })
+            });
+
             if(minTime>0){
-                result = {"isSend":true ,"sms": minSms[minSms.length-1].sms};
+                result = {"readyToSend":true, "sms": minSms[minSms.length-1].sms};
                 if(validTime){
                     return resolve(result);
                 }
             }
             if(hourTime>=3){
-                result = {"isSend":false, "errType":"hourTimes"};
+                result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
-                result = {"isSend":false, "errType":"dayTimes"};
+                result = {"readyToSend":false, "errType":"dayTimes"};
             }
-            result || (result={"isSend": true})
+
             return resolve(result);
         })
     })
 };
 
-exports.send_sms = function (userInfo, smsType) {
-    var smsType  = smsType || 'mix';
-    var userInfo = userInfo;
 
-    return new Promise(function (resolve, reject) {
-        cacheGet(userInfo).then(function(data){
-            if(!data.isSend){
-                data.success = false;
-                return resolve(data);
-            }
-            var sms    = data.sms || generate_code(smsType);
-            var params = {"phone" : userInfo.phone, "message" : sms};
-            request.post(api_config.sendSMSCode, params, function (err, data) {
-                if (err){
-                    return reject(err);
-                }else{
-                    var res = JSON.parse(data.body);
-                    if (res.success) {
-                        // cache sms
-                        cacheSet(userInfo, sms).then(function(data){
-                            console.log('----- Send SMS: ' + sms)
-                            return resolve(res);
-                        }).catch(function(err){
-                            throw(err);
-                        });
-                    } else {
-                        return reject(res);
-                    }
-                }
-            })
-        }).catch(function(err){
-            throw(err);
-        })
-    })
-};
+
+
 
 /**
  * 生成校验码
@@ -115,7 +98,9 @@ var generate_code = exports.generate_code = function (type, options) {
     if (options) {
         default_opt = _.assign({}, default_opt, options);
     }
+    var txt = '';
     var length = default_opt.length || 6;
+
     if (type == 'num') {
         var i   = 0;
         var txt = '';
@@ -125,9 +110,11 @@ var generate_code = exports.generate_code = function (type, options) {
         return txt
     }
 
-    var ary = ccap(default_opt).get(),
-        txt = ary[0],
-        buf = ary[1];
+    var ary = ccap(default_opt).get();
+
+    var buf = ary[1];
+    txt = ary[0];
+
     if (type == 'mix') {
         return txt;
     }
@@ -135,7 +122,56 @@ var generate_code = exports.generate_code = function (type, options) {
         return ary;
     }
     return txt;
-}
+};
+
+
+
+
+
+
+
+exports.sendCode = function (req, res, next) {
+    var userInfo = req.user;
+    var smsType  = smsType || 'mix';
+
+
+    cacheGet(userInfo).then(function(data){
+
+        var result = {
+            success : false,
+            errType : 'sms'
+        };
+        if(!data.readyToSend){
+            result.errType = data.errType || 'sms';
+            return res.json(result);
+        }
+
+        var sms    = data.sms || generate_code(smsType);
+        var params = {
+            "phone" : userInfo.phone,
+            "message" : sms
+        };
+
+        request.post(api_config.sendSMSCode, params, function (err, data) {
+            if (err) return next(err);
+
+            var dataSMS = JSON.parse(data.body);
+
+            if (dataSMS.success) {
+
+                cacheSet(userInfo, sms).then(function(data){
+                    console.log('----- Send SMS Success: ' + sms);
+                    return res.json(dataSMS);
+                }).catch(next);
+
+            } else {
+                return res.json(dataSMS);
+            }
+        })
+
+    }).catch(next);
+
+};
 
 
 
@@ -143,8 +179,14 @@ var generate_code = exports.generate_code = function (type, options) {
  * 验证校验码
  * params: {sms}
  */
-exports.validate_sms = function (userInfo, sms) {
-    return new Promise(function (resolve, reject) {
+exports.verifyMiddleware = function () {
+    return function (req, res, next) {
+
+        checker.smsText(req.body.sms_code);
+
+        var sms  = req.body.sms_code;
+        var userInfo = req.user;
+
         // cache.get('yimei180_sms_' + userInfo.userId, function (err, data) {
         //     if (!err && data && (data == sms)) {
         //         resolve(true);
@@ -152,26 +194,17 @@ exports.validate_sms = function (userInfo, sms) {
         //         reject(false);
         //     }
         // })
+
+        var result = {"success" : false, "errType" : "sms_code"};
+
         cacheGet(userInfo, true).then(function(data){
-            console.log('valid')
-            console.log(data)
-            if(data && data.sms && (data.sms == sms)){
-                return resolve(true);
+            if(data && data.sms && (data.sms === sms)){
+                return next();
             }else{
-                return reject(false);
+                return res.json(result);
             }
-        }).catch(function(err){throw(err);})
-    });
-}
+        }).catch(next)
 
-
-
-exports.send_sms2 = function (req, res, next) {
-    var userInfo = req.user;
-    exports.send_sms(userInfo).then(function (data) {
-        if(!data.success){
-            data.errType = data.errType || "sms";
-        }
-        return res.json(data);
-    }).catch(next);
+    }
 };
+
