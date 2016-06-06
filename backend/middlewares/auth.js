@@ -33,10 +33,28 @@ exports.generateSession = generateSession;
 //     traderid: 'traderid'
 // }
 exports.passport = function(req, res, next) {
-    // req.session.user = null;
     if(req.path.indexOf('setSSOCookie')>=0){
         return next();
     }
+
+    if(process.env.MODE == 'local'){
+        req.session.user = {
+            id: 213,
+            securephone: 18634343434,
+            nickname: 'peach',
+            isactive: true,
+            verifystatus: true,
+            qq: 34343434,
+            telephone: 18765656565,
+            clienttype: 0,
+            email: '12324@aa.com',
+            verifyuuid: 'dkfi234',
+            userFrom: 'userfrom',
+            traderid: 'traderid'
+        }
+        return next();
+    }
+
     if( !req.session || !req.session.user ) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
