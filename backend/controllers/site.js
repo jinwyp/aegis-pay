@@ -16,7 +16,7 @@ exports.home = function (req, res, next) {
 
         '	<h1>产品需要正在做的页面</h1><hr/>',
         '	<li><a href="/compact?orderId=100000">签订电子合同</a> > <a href="/pay?orderId=100000">支付</a> > <a href="/order/progress">付款成功</a></li>',
-		'	<li><a href="/getOrderDetail?orderId=1">订单详情</a></li>',
+		'	<li><a href="/getOrderDetail?orderId=100000">订单详情</a></li>',
         '	<li><a href="/confirmDelivery">确认提货</a></li>',
         '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
         '	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',

@@ -1,7 +1,7 @@
 var nock = require('nock');
 var API  = require('../../api/v1/api_config');
 
-var orderDetail        = nock(API.host);
+var orderDetail        = nock(API.host).log(console.log);
 var orderDetailPersist = nock(API.host).persist();
 
 var data = {
