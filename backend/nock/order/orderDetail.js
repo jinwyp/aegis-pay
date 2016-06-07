@@ -209,7 +209,7 @@ var data = {
             "settleAccountTime": null
         }
     }
-}
+};
 
 orderDetail.get('/getOrderDetail').query({orderId:'100000'}).reply(200, data);
 
