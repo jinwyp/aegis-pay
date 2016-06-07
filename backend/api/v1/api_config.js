@@ -14,15 +14,15 @@ var api_config = {
     /**
      * 提交已盖章电子合同
      * method: post
-     * params: {orderId: 1, action: 'post', compact:'电子合同内容'}
+     * params: {orderId: 1, userId:1, version: 1, files:'电子合同文件path'}
      */
-    signCompact   : host + 'compact',
+    signCompact   : host + 'mall/order/signcontract',
     /**
      * fetch未盖章电子合同
      * method: get
-     * params: {orderId: 1, action: 'get'}
+     * params: {orderId: 1, userId:12}
      */
-    getCompact    : host + 'compact',
+    getCompact    : host + 'mall/order/contract',
     /**
      * 付款页面, 页面展示数据
      * method: get
