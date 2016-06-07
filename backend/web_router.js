@@ -39,6 +39,7 @@ router.get('/footer', footerController.footer);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 router.get('/confirmDelivery/test', confirmDeliveryController.test);
 router.get('/getOrderDetail', orderController.getOrderDetail);
+
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                                 // 关闭 订单路由

@@ -41,24 +41,32 @@ var api_config = {
 							}
      */
     payPage       : host + 'mall/order/payment',
+
+
     /**
      * 发送短信
      * method: post
      * params: {phone: 18611111111, message: '343434'}
      */
     sendSMSCode   : host + 'sendSMSCode',
+
+
     /**
      * 支付－确认付款
      * method: post
      * params: {version:'', userId:'',orderId:'',payPassword:''}
      */
     paySubmit     : host + 'mall/order/payment/submit',
+
+
     /**
      * 支付－付款成功
      * method: get
      * params: {orderId:''}
      */
-    orderProgress : host + 'mall/order/progress'
+    orderProgress : host + 'mall/order/progress',
+
+    orderDetail : host + 'getOrderDetail'
 
 };
 
