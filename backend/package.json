@@ -13,7 +13,8 @@
   },
   "scripts": {
     "test": "./run.sh -m",
-    "start": "./run.sh -m"
+    "start": "./run.sh -m",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "dependencies": {
     "archiver": "^1.0.0",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "del": "^2.2.0",
+    "flow-bin": "^0.26.0",
     "istanbul": "*",
     "mocha": "^2.5.3",
     "should": "^9.0.0"
