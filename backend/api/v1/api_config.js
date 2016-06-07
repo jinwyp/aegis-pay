@@ -17,12 +17,16 @@ var api_config = {
      * params: {orderId: 1, action: 'post', compact:'电子合同内容'}
      */
     signCompact   : host + 'compact',
+
+
     /**
      * fetch未盖章电子合同
      * method: get
      * params: {orderId: 1, action: 'get'}
      */
     getCompact    : host + 'compact',
+
+
     /**
      * 付款页面, 页面展示数据
      * method: get
@@ -41,24 +45,32 @@ var api_config = {
 							}
      */
     payPage       : host + 'mall/order/payment',
+
+
     /**
      * 发送短信
      * method: post
      * params: {phone: 18611111111, message: '343434'}
      */
     sendSMSCode   : host + 'sendSMSCode',
+
+
     /**
      * 支付－确认付款
      * method: post
      * params: {version:'', userId:'',orderId:'',payPassword:''}
      */
     paySubmit     : host + 'mall/order/payment/submit',
+
+
     /**
      * 支付－付款成功
      * method: get
      * params: {orderId:''}
      */
-    orderProgress : host + 'mall/order/progress'
+    orderProgress : host + 'mall/order/progress',
+
+    orderDetail : host + 'getOrderDetail'
 
 };
 
