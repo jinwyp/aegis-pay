@@ -51,7 +51,7 @@ exports.passport = function(req, res, next) {
             verifyuuid: 'dkfi234',
             userFrom: 'userfrom',
             traderid: 'traderid'
-        }
+        };
         return next();
     }
 

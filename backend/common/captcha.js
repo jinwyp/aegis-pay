@@ -55,11 +55,11 @@ exports.sendCode = function (type) {
     return function (req, res, next) {
         checker.captchaType(type); // _ccapimgtxt_pay
         
-        var userInfo = req.user;
+        var userInfo = req.session.user;
         var ary      = generate_code('mixed');
 
-        console.log("----- Captcha key: ", userInfo.userId+type, " Captcha Text: ", ary[0]);
-        cache.set(userInfo.userId + type, ary[0]);
+        console.log("----- Captcha key: ", userInfo.id+type, " Captcha Text: ", ary[0]);
+        cache.set(userInfo.id + type, ary[0]);
         res.end(ary[1]);
     };
 
@@ -74,12 +74,12 @@ exports.verifyMiddleware = function (type) {
         checker.captchaType(type); // _ccapimgtxt_pay
         checker.captchaText(req.body.captchaText);
 
-        var userInfo = req.user;
+        var userInfo = req.session.user;
         var captchaText = req.body.captchaText;
 
 
-        //cache.del('yimei180_sms_' + userInfo.userId)
-        cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
+        //cache.del('yimei180_sms_' + userInfo.id)
+        cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
             if (err) return next(err);
 
             if (data && data === captchaText) {
