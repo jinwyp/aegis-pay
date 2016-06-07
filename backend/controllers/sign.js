@@ -43,7 +43,8 @@ exports.signin = function (req, res, next) {
 exports.setSSOCookie = function(req, res, next){
   var passport = req.query.passport;
   var userName = req.query.userName;
-  res.cookie('userName', username, {
+
+  res.cookie('userName', userName, {
       secure: config.https,
       domain: config.domain,
       expires: new Date(Date.now() + 900000) // todo
@@ -53,7 +54,16 @@ exports.setSSOCookie = function(req, res, next){
       domain: config.domain,
       expires: new Date(Date.now() + 900000) // todo
   });
+
+  next();
 },
 exports.removeSSOCookie = function(req, res, next){
-
+    req.session.user = null;
+    res.clearCookie('userName', {
+        domain: config.domain
+    });
+    res.clearCookie('passport', {
+        domain: config.domain
+    });
+    next();
 }

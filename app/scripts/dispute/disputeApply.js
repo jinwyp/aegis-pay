@@ -16,8 +16,8 @@ require(['jquery','pay.upload'],function($,upload){
         "upload" : function(){
             // ---上传操作----->->->->->->->->->->->->->->->->----------
             var $fileList = $('.fileList'),         //附件列表
-                $upFile = $('#upFile'),          //上传控件
-                imgSrc='/Users/gaoleo/Downloads/Project/aegis-all/aegis-pay/files/static/upload/';
+                $upFile = $('#upFile')          //上传控件
+                //imgSrc='/Users/gaoleo/Downloads/Project/aegis-all/aegis-pay/files/static/upload/';
             //上传操作
             $upFile.click(function() {
                 var $tag = $(this);
@@ -26,9 +26,9 @@ require(['jquery','pay.upload'],function($,upload){
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
                             htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_name" data-id="'+ file.id +'"></span></p>';
-                            htmlStr += '<img src="'+imgSrc+file.filename+'" alt="">';
+                            //htmlStr += '<img src="'+'" alt="">';
                         });
-
+                        console.log(data)
                         $fileList.append(htmlStr);
                     }
                 });

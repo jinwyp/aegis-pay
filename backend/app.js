@@ -34,7 +34,9 @@ require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../app/static');
-var fileStatic = path.join(__dirname, '../files/static');
+// var fileStatic = path.join(__dirname,   '../../files/static');
+//
+var fileStatic = config.sysFileDir;
 
 
 var app = express();
@@ -91,7 +93,7 @@ app.use(session({
 }));
 
 // custom middleware
-app.use(auth.authUser);
+app.use(auth.passport);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
@@ -117,6 +119,7 @@ _.extend(app.locals, {
 
 app.use(function (req, res, next) {
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    res.locals.currentLocation= req.protocol + '://' + req.host + ":" + config.port + req.originalUrl;
     next();
 });
 
@@ -129,7 +132,6 @@ app.use(busboy({
 // routes
 app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
-
 
 app.use(errorhandler.PageNotFoundMiddleware);
 

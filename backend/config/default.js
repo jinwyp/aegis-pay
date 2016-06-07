@@ -28,10 +28,18 @@ var config = {
         port : '6379',
         db   : 0
     },
-    site: {
-      member: 'https://www-local.yimei180.com:7777'
+    passport: {
+      member: 'https://member-local.yimei180.com:7777',
+      cookieName: 'passport'
     },
-    sysFileDir : path.resolve(process.env.FILES_DIR)
+
+    //文件目录
+    sysFileDir : path.resolve(process.env.FILES_DIR),
+
+    // 上传文件的临时目录
+	files_root:  '/app',
+    upload_tmp: '/files/upload_tmp_pay',
+    upload:     '/files/upload'
 };
 
 

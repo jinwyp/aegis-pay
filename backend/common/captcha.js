@@ -3,8 +3,8 @@
  */
 
 var ccap       = require('ccap');
-var checker    = require('../common/datachecker');
-var cache      = require('../common/cache');
+var checker    = require('./datachecker');
+var cache      = require('./cache');
 
 
 /**
@@ -51,15 +51,15 @@ function generate_code (type, options) {
 
 
 // 生成图片验证码
-exports.genCaptcha = function (type) {
+exports.sendCode = function (type) {
     return function (req, res, next) {
         checker.captchaType(type); // _ccapimgtxt_pay
         
-        var userInfo = req.user;
+        var userInfo = req.session.user;
         var ary      = generate_code('mixed');
 
-        console.log("----- Captcha key: ", userInfo.userId+type, " Captcha Text: ", ary[0]);
-        cache.set(userInfo.userId + type, ary[0]);
+        console.log("----- Captcha key: ", userInfo.id+type, " Captcha Text: ", ary[0]);
+        cache.set(userInfo.id + type, ary[0]);
         res.end(ary[1]);
     };
 
@@ -68,18 +68,18 @@ exports.genCaptcha = function (type) {
 
 
 // 校验图片验证码
-exports.verifyCaptcha = function (type) {
+exports.verifyMiddleware = function (type) {
     return function (req, res, next) {
 
         checker.captchaType(type); // _ccapimgtxt_pay
         checker.captchaText(req.body.captchaText);
 
-        var userInfo = req.user;
+        var userInfo = req.session.user;
         var captchaText = req.body.captchaText;
 
 
-        //cache.del('yimei180_sms_' + userInfo.userId)
-        cache.get(userInfo.userId + "_ccapimgtxt_pay", function (err, data) {
+        //cache.del('yimei180_sms_' + userInfo.id)
+        cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
             if (err) return next(err);
 
             if (data && data === captchaText) {
@@ -87,10 +87,7 @@ exports.verifyCaptcha = function (type) {
             } else {
                 //return checker.captchaNotMatch(next);
 
-                return res.json({
-                    "success" : false,
-                    "errType":"imgcode"
-                });
+                return res.json({ "success" : false, "errType":"imgcode" });
             }
         })
     }

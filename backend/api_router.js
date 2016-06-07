@@ -2,7 +2,7 @@ var express = require('express');
 var router  = express.Router();
 
 var sms = require('./common/sms_code');
-var captcha = require('./middlewares/captcha');
+var captcha = require('./common/captcha');
 
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');
@@ -10,13 +10,12 @@ var orderCloseApi   = require('./controllers/order/orderClose');                
 var confirmDelivery = require('./api/v1/confirmDelivery');
 var confirmComplete = require('./controllers/confirmComplete');
 var payApi          = require('./api/v1/pay');
-var signCtrl = require('./controllers/sign');
 
 
 
 
 // demo
-router.get('/apps', siteController.apps);
+router.get('/user', siteController.user);
 router.get('/test-cache', siteController.test_cache);
 router.get('/async-merge', siteController.asyncMerge);
 router.get('/cogen-merge', siteController.cogenMerge);
@@ -33,14 +32,14 @@ router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭�
 router.get('/confirmDelivery/test', confirmDelivery.test);
 router.get('/confirmComplete/test', confirmComplete.cp);
 
-router.post('/pay/submit', payApi.submit);
 
-router.get('/imgcode', captcha.genCaptcha('_ccapimgtxt_pay'));
-router.post('/validImgcode', captcha.verifyCaptcha('_ccapimgtxt_pay'), sms.send_sms2);
 
-// setSSOCookie
-router.get('/setSSOCookie', signCtrl.setSSOCookie);
-router.get('/removeSSOCookie', signCtrl.removeSSOCookie);
+router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
+router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
+router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
+
+
+
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

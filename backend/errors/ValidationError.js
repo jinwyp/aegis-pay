@@ -21,8 +21,9 @@ var validationCode = {
     user : {
         usernameWrong : 1001,
         passwordWrong : 1002,
-        emailWrong : 1003,
-        mobileWrong : 1004,
+        payPasswordWrong : 1003,
+        emailWrong : 1006,
+        mobileWrong : 1007,
 
         usernameExist : 1011,
         passwordExist : 1012,
@@ -55,6 +56,12 @@ var validationCode = {
         typeWrong : 6000,
         textWrong : 6010,
         notMatch : 6020
+    },
+
+    sms : {
+        typeWrong : 7000,
+        textWrong : 7010,
+        notMatch : 7020
     }
 };
 
