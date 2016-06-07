@@ -19,8 +19,8 @@ exports.home = function (req, res, next) {
 		'	<li><a href="/getOrderDetail?orderId=100000">订单详情</a></li>',
         '	<li><a href="/confirmDelivery">确认提货</a></li>',
         '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a> > <a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
-        '	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
-        '	<li><a href="/settlement/settlementForm_buyer?id=111&type=1">买家结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm_seller?id=100000&type=1">卖家结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm_buyer?id=100000&type=1">买家结算单</a></li>',
         '	<li><a href="/return">退货详情页</a></li>',
         '	<li><a href="/order/orderClose?id=111">关闭订单</a></li>',
         '</ul>'

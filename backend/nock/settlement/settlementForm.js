@@ -2,10 +2,11 @@
 * 开具结算单 页面数据模拟
 * */
 
-
 var nock = require('nock');
-var apiHost = nock('http://server.180.com');		// 需要替换的请求域名 server.180.com
+var API  = require('../../api/v1/api_config');
 
+var orderInfo        = nock(API.host).log(console.log);
+var orderInfoPersist = nock(API.host).persist();
 
 // 订单信息 模拟
 var replyData = {
@@ -44,20 +45,20 @@ var closeData = {
 
 
 // 查询订单 'infoObj'
-apiHost.get('/orderInfo').reply(200, replyData);	// *** 路径必须加'/'
+orderInfoPersist.get('/orderInfo').reply(200, replyData);	// *** 路径必须加'/'
 
 
 
 // 查询订单:接口
 // http://localhost:3000/api/order/orderInfo_api
-apiHost.get('/order/orderInfo_api').reply(200, replyData);
+orderInfoPersist.get('/order/orderInfo_api').reply(200, replyData);
 
 
 // 关闭订单:接口
 // http://localhost:3000/api/order/closeOrder_api
-// apiHost.get('/order/closeOrder_api').reply(200, closeData);
+// orderInfoPersist.get('/order/closeOrder_api').reply(200, closeData);
 
-module.exports = apiHost;
+module.exports = orderInfo;
 
 
 
