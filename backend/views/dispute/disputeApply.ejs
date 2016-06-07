@@ -1,0 +1,20 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet("/static/styles/confirmComplete.css") -%>
+<% script("/static/scripts/confirmDelivery/confirmComplete.js") -%>
+<% include ../global/header/subHeader %>
+<% include ../global/modal/modal %>
+<div id="confirmComplete">
+    <div class="confirmCompleteWrap">
+        <% include ../global/order/statusBar %>
+        <div class="orderStatus">
+            <div class="orderStatusWrap">
+                <p class="tit">当前订单状态：<b>已确提货，等待结算</b></p>
+                <p class="info">1、您可以提醒卖家开具结算单<a href="javascript:void(0)" class="remindSeller" id="remindSeller">提醒卖家开结算单</a></p>
+                <p class="info">2、如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</p>
+            </div>
+        </div>
+        <% include ../global/order/orderUserInfo %>
+        <% include ../global/order/orderTable %>
+        <a href="javascript:void(0)" class="dlDetail"><i class="printer"></i>打印订单详情</a>
+    </div>
+</div>
