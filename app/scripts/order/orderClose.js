@@ -5,7 +5,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
-    var apiHost = 'http://localhost:8800';			// API域名
+    var apiHost = '/api';			// API域名
 
     var $reasonId = $('[name=reasonId]'),           //原因ID
         $remarks = $('[name=remarks]'),             //备注

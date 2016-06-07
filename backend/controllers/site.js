@@ -22,7 +22,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/settlement/settlementForm_seller?id=100000&type=1">卖家结算单</a></li>',
         '	<li><a href="/settlement/settlementForm_buyer?id=100000&type=1">买家结算单</a></li>',
         '	<li><a href="/return?orderId=100000">退货详情页</a></li>',
-        '	<li><a href="/order/orderClose?id=111">关闭订单</a></li>',
+        '	<li><a href="/order/orderClose?id=100000">关闭订单</a></li>',
         '</ul>'
     ].join('');
 	res.send(home);

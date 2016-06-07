@@ -4,46 +4,52 @@
 * */
 
 var request = require('request');
-var apiHost = 'http://server.180.com';						// API域名
+var checker    = require('../../common/datachecker');
+var api_config = require('../../api/v1/api_config');
 
 
 // 页面路由
 exports.orderInfo = function (req, res, next) {
+	checker.orderId(req.query.id);
+	req.userId = req.session.user.id;
 
-	var req_id = req.query.id;
-	req.userId = '1111111111';
+	var url = api_config.orderInfo;
+	request(url, function (err, data) {
+		if (err) return next(err);
 
-	if(!req_id) {
-		res.send('<script>alert("请输入 订单编号!")</script>');
-	} else {
-		request(apiHost + '/orderInfo', function (err, data) {
-			console.log('---------------orderInfo----------------  '+ err);
-
+		if (data){
 			var replyData = JSON.parse(data.body);
 			replyData.pageTitle = '关闭订单页面标题';
 			replyData.headerTit = '关闭订单';
 			res.render('order/orderClose', replyData);			// 渲染页面,(指定模板, 数据)  *** 路径不能加加'/', 默认在views下
-		});
-	}
+		}
+	});
 };
 
 
 // API路由: 订单信息
 exports.orderInfo_api = function (req, res, next) {
 
+	checker.orderId(req.query.id);
+
 	// 异步调取Java数据
-	request(apiHost + '/order/orderInfo_api', function (err, data) {
+	var url = api_config.orderCloseAPI;
+	request(url, function (err, data) {
+		if (err) return next(err);
 
-		var req_id = req.query.id;
-		console.log('---------------orderInfo_api----------------  '+ err);
+		if (data){
+			var replyData = JSON.parse(data.body);
+			replyData.pageTitle = '关闭订单页面标题';
+			replyData.headerTit = '关闭订单';
 
-		var replyData = JSON.parse(data.body);
-		replyData.pageTitle = '关闭订单页面标题';
-		replyData.headerTit = '关闭订单';
-
-		return res.send(replyData);
+			return res.send(replyData);
+		}
 	});
 };
+
+
+
+
 
 
 

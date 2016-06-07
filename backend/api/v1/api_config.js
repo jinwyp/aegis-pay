@@ -74,6 +74,7 @@ var api_config = {
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'orderInfo',
+    orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return'
 
 };
