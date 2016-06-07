@@ -13,8 +13,26 @@ compactPersist
     return {
         "success" : true,
         "compact" : {
-            "contractno" : _.split(_.split(_.split(uri, '?')[1], '&')[0], '=')[1],
-            "createtime" : "2015-12-05"
+            "orderContractNO" : _.split(_.split(_.split(uri, '?')[1], '&')[0], '=')[1],
+            "contractSignDate" : "2015-12-05",
+            "buyerCompanyName": "买方名称",
+            "buyerCompanyAddress": "买方住所",
+            "buyerCompanyLegalPersonName": "法定代表人",
+            "buyerCompanyName": "买方公司名称",
+            "productNO": "产品编号",
+            "orderAmount": "数量 吨",
+            "productNCV": "NCV",
+            "orderPrice": "10000", //元/吨
+            "orderDeliveryRegion": "orderDeliveryRegion",
+            "orderDeliveryProvince": "orderDeliveryProvince",
+            "orderDeliveryHarbour": "orderDeliveryHarbour",
+            "orderDeliveryDate1": "orderDeliveryDate1",
+            "orderDeliveryDate2": "orderDeliveryDate2",
+            "buyerCompanyPhone": 'buyerCompanyPhone',
+            "buyerCompanyOpeningBank": "buyerCompanyOpeningBank",
+            "buyerCompanyAccount": "buyerCompanyAccount",
+            "buyerCompanyFax": 'buyerCompanyFax',
+            "buyerCompanyZipCode": "buyerCompanyZipCode"
         }
     }
 })

@@ -38,7 +38,7 @@ exports.passport = function(req, res, next) {
     }
 
     if(process.env.MODE == 'local'){
-        req.session.user = {
+        req.session.user = res.locals.user = {
             id: 213,
             securephone: 18634343434,
             nickname: 'peach',
@@ -72,7 +72,7 @@ exports.passport = function(req, res, next) {
                 }
                 var auth = JSON.parse(auth.body);
                 if(auth.success) {
-                    req.session.user = auth.user;
+                    req.session.user = res.locals.user = auth.user;
                     return next();
                 } else {
                     res.redirect(config.passport.member+'/login' + '?gotoURL=' + gotoURL + "&from=" + config.domain);

@@ -15,7 +15,7 @@ var payApi          = require('./api/v1/pay');
 
 
 // demo
-router.get('/apps', siteController.apps);
+router.get('/user', siteController.user);
 router.get('/test-cache', siteController.test_cache);
 router.get('/async-merge', siteController.asyncMerge);
 router.get('/cogen-merge', siteController.cogenMerge);

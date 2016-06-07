@@ -1,14 +1,13 @@
+var config = require('../config');
 // main page
 exports.home = function (req, res, next) {
+	var signin = config.passport.member + '/login?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
+	var signout = config.passport.member + '/logout?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
+	var register = config.passport.member + '/register?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
 	var home = [
         '<ul>',
         '	<h1>产品无关调试的页面</h1><hr/>',
-        '	<li><a>signin: post</a></li>',
-        '	<li><a>signout: post</a></li>',
-        '	<li><a href="/api/apps">apps</a></li>',
-        '	<li><a href="/api/test-cache">test_cache</a></li>',
-        '	<li><a href="/api/async-merge">async merge</a></li>',
-        '	<li><a href="/api/cogen-merge">co+genrator merge</a></li>',
+        '	<li><a href="/api/user">user session（fetch：req.session.user)</a></li>',
         '	<li><a href="/demo">demo</a></li>',
         '	<li><a href="/header">header</a></li>',
         '	<li><a href="/subHeader">subHeader</a></li>',

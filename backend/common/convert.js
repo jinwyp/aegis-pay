@@ -8,9 +8,10 @@ var config   = require('../config');
 var _ = require('lodash');
 var utils = require('./utils');
 
+// var app = require('../app');
+var ejs = require('ejs');
+
 var __dirfiles = config.sysFileDir;
-
-
 
 
 exports.pdf2image = function (pdfpath, options) {
@@ -104,58 +105,6 @@ exports.html2pdf = function (htmlpath, pdfname) {
     })
 };
 
-
-
-exports.ftl2html = function (data, ftlpath, options) {
-    var htmlname = options && options.htmlname || path.basename(ftlpath, '.ftl');
-
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
-    var htmlfile = htmlpath + htmlname + '.html';
-
-    //if (!utils.isDirExistsSync(htmlpath)) {
-    //    fs.mkdirSync(htmlpath);
-    //}
-
-    utils.makeDir(htmlpath);
-
-    return new Promise(function (resolve, reject) {
-
-        if (utils.isFileExistsSync(htmlfile)){
-            resolve({'htmlpath' : htmlfile});
-        }else{
-            ftl.processTemplate({
-                data     : data,
-                settings : {
-                    encoding   : 'utf-8',
-                    viewFolder : path.dirname(ftlpath) + '/'
-                },
-                filename : path.basename(ftlpath)
-
-            }).on('end', function (err, resultHtml) {
-                if (err) reject(err);
-
-                if (resultHtml) {
-                    fs.writeFile(htmlfile, resultHtml, 'utf-8', function(err){
-                        if (err) reject(err);
-                        resolve({'htmlpath' : htmlfile});
-                    });
-
-                }else{
-                    resolve({'htmlpath' : 'notfound.html'});
-                }
-            });
-        }
-
-    })
-
-};
-
-
-
-
-
-
-
 /**
  * 压缩文件
  *
@@ -229,3 +178,33 @@ exports.zipFile = function(options){
         archive.finalize();
     })
 };
+
+exports.ejs2html = function(data, ejspath, options){
+    var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
+
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
+    var htmlfile = htmlpath + htmlname + '.html';
+
+    utils.makeDir(htmlpath);
+
+    return new Promise(function (resolve, reject) {
+
+        if (utils.isFileExistsSync(htmlfile)){
+            resolve({'htmlpath' : htmlfile});
+        }else{
+            ejs.renderFile(ejspath, data, function(err, resulthtml){
+                if(err) reject(err);
+
+                if(resulthtml){
+                    fs.writeFile(htmlfile, resulthtml, 'utf-8', function(err){
+                        if (err) reject(err);
+                        resolve({'htmlpath' : htmlfile});
+                    });
+                }else{
+                    resolve({'htmlpath' : 'notfound.html'});
+                }
+            })
+        }
+
+    })
+}

@@ -14,11 +14,9 @@ var path     = require('path');
 
 var __dirfiles = config.sysFileDir;
 
-exports.apps = function (req, res, next) {
+exports.user = function (req, res, next) {
     //api代理，去请求java接口
-    request({url : api_config.apps}, function (error, data) {
-        return res.send(data.body);
-    })
+    res.json(req.session.user);
 };
 
 exports.test_cache = function (req, res, next) {
