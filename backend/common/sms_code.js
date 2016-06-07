@@ -18,12 +18,12 @@ var cacheSet = function(userInfo, sms){
     var smsData = _.assign({}, userInfo, {"sms":sms, "createtime": new Date().getTime()});
 
     return new Promise(function(resolve, reject){
-        cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
+        cache.get('yimei180_sms_' + userInfo.id, function(err, data){
             if(err){ return reject(err); }
 
             data = data || [];
             data.push(smsData);
-            cache.set('yimei180_sms_' + userInfo.userId, data, 86400);
+            cache.set('yimei180_sms_' + userInfo.id, data, 86400);
             resolve(data);
         })
     })
@@ -37,7 +37,7 @@ var cacheGet = function(userInfo, validTime){
     return new Promise(function(resolve, reject){
         var result = {"readyToSend": true};
 
-        cache.get('yimei180_sms_' + userInfo.userId, function(err, data){
+        cache.get('yimei180_sms_' + userInfo.id, function(err, data){
             if(err){ return reject(err); }
 
             if(!data || (data&&data.length === 0)){
@@ -131,7 +131,7 @@ var generate_code = exports.generate_code = function (type, options) {
 
 
 exports.sendCode = function (req, res, next) {
-    var userInfo = req.user;
+    var userInfo = req.session.user;
     var smsType  = smsType || 'mix';
 
 
@@ -185,9 +185,9 @@ exports.verifyMiddleware = function () {
         checker.smsText(req.body.sms_code);
 
         var sms  = req.body.sms_code;
-        var userInfo = req.user;
+        var userInfo = req.session.user;
 
-        // cache.get('yimei180_sms_' + userInfo.userId, function (err, data) {
+        // cache.get('yimei180_sms_' + userInfo.id, function (err, data) {
         //     if (!err && data && (data == sms)) {
         //         resolve(true);
         //     } else {
