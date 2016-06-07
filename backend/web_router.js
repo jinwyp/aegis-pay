@@ -26,6 +26,9 @@ var confirmComplete           =require('./controllers/confirmComplete');        
 var payCtl                    = require('./controllers/pay');
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 
+var wealthCenter              = require('./controllers/wealth/wealthCenter');       //财富管理
+
+
 
 
 router.get('/demo', demoController.demo);                                                   // 添加路由
@@ -47,6 +50,8 @@ router.get('/settlement/settlementForm_buyer', settlementFormContr.orderInfo);  
 router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo);             // 结算单 卖家 页面路由
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
+
+router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 
 
 router.get('/return', returnDetailController.returnDetail);
