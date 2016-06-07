@@ -3,6 +3,8 @@
  * Module dependencies.
  */
 
+// @flow
+
 var express        = require('express');
 var router = express.Router();
 
@@ -36,9 +38,10 @@ router.get('/', siteController.home);
 router.get('/header', headerController.header);
 router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
-router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
-router.get('/confirmDelivery/test', confirmDeliveryController.test);
+
 router.get('/getOrderDetail', orderController.getOrderDetail);
+router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
+
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
