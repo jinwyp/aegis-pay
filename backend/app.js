@@ -34,7 +34,9 @@ require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../app/static');
-var fileStatic = path.join(__dirname, '../../files/static');
+// var fileStatic = path.join(__dirname,   '../../files/static');
+//
+var fileStatic = config.sysFileDir;
 
 
 var app = express();
