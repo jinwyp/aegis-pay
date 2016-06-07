@@ -33,7 +33,6 @@ router.get('/order/orderInfo_api', orderCloseApi.orderInfo_api);				// 关闭订
 router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭订单: 提交关闭Api
 
 router.post('/confirmDelivery/test', confirmDelivery.test);
-router.get('/confirmComplete/test', confirmComplete.cp);
 
 
 router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));

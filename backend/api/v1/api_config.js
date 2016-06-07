@@ -70,7 +70,9 @@ var api_config = {
     orderProgress : host + 'mall/order/progress',
 
     orderDetail : host + 'getOrderDetail',
-    confirmDelivery : host + 'confirmDelivery'
+    confirmDelivery : host + 'confirmDelivery',
+    confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
+    confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete'
 
 };
 
