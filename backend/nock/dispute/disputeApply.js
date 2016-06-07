@@ -2,7 +2,7 @@ var nock = require('nock');
 var confirmComplete = nock('http://localhost:8800');
 
 confirmComplete
-    .get('/confirmDelivery/confirmComplete').reply(200,
+    .get('/dispute/disputeApply').reply(200,
     {
       "sellInfo":{
         "NCV":5090, "NCV02":6500,
