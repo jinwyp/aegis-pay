@@ -3,7 +3,6 @@ var path     = require('path');
 var archiver = require('archiver');
 var pdf      = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
-var ftl      = require('node-ftl');
 var config   = require('../config');
 var _ = require('lodash');
 var utils = require('./utils');
@@ -105,13 +104,49 @@ exports.html2pdf = function (htmlpath, pdfname) {
     })
 };
 
+
+
+
+exports.ejs2html = function(data, ejspath, options){
+    var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
+
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
+    var htmlfile = htmlpath + htmlname + '.html';
+
+    utils.makeDir(htmlpath);
+
+    return new Promise(function (resolve, reject) {
+
+        if (utils.isFileExistsSync(htmlfile)){
+            resolve({'htmlpath' : htmlfile});
+        }else{
+            ejs.renderFile(ejspath, data, function(err, resulthtml){
+                if(err) reject(err);
+
+                if(resulthtml){
+                    fs.writeFile(htmlfile, resulthtml, 'utf-8', function(err){
+                        if (err) reject(err);
+                        resolve({'htmlpath' : htmlfile});
+                    });
+                }else{
+                    resolve({'htmlpath' : 'notfound.html'});
+                }
+            })
+        }
+
+    })
+};
+
+
+
+
 /**
  * 压缩文件
  *
- * @param type: zip/tar,  //default:zip
- * @param output: '输出路径', // default: __dirfiles + '/static/zips'
- * @param zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
- * @param path: 压缩文件路径, //必需参数，字符串或数组
+ * @param options.type: zip/tar,  //default:zip
+ * @param options.output: '输出路径', // default: __dirfiles + '/static/zips'
+ * @param options.zipname: '压缩包名称', //默认：path最后一个路径名, 字符串或数组
+ * @param options.path: 压缩文件路径, //必需参数，字符串或数组
  *
  */
 exports.zipFile = function(options){
@@ -167,44 +202,13 @@ exports.zipFile = function(options){
         archive.pipe(output);
 
         _.map(self.options.path, function(val, index){
-            console.log(val)
             if(fs.statSync(val).isDirectory()){
                 archive.directory(val, val.replace(val, ''));
             }else if(fs.statSync(val).isFile()){
-                console.log(1111)
                 archive.file(val, { name:  path.basename(val)});
             }
-        })
+        });
         archive.finalize();
     })
 };
 
-exports.ejs2html = function(data, ejspath, options){
-    var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
-
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
-    var htmlfile = htmlpath + htmlname + '.html';
-
-    utils.makeDir(htmlpath);
-
-    return new Promise(function (resolve, reject) {
-
-        if (utils.isFileExistsSync(htmlfile)){
-            resolve({'htmlpath' : htmlfile});
-        }else{
-            ejs.renderFile(ejspath, data, function(err, resulthtml){
-                if(err) reject(err);
-
-                if(resulthtml){
-                    fs.writeFile(htmlfile, resulthtml, 'utf-8', function(err){
-                        if (err) reject(err);
-                        resolve({'htmlpath' : htmlfile});
-                    });
-                }else{
-                    resolve({'htmlpath' : 'notfound.html'});
-                }
-            })
-        }
-
-    })
-}
