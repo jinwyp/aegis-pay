@@ -1,4 +1,7 @@
-//api
+// @flow
+
+// api
+
 var host = 'http://service.yimei180.com/';
 
 var api_config = {
@@ -14,19 +17,19 @@ var api_config = {
     /**
      * 提交已盖章电子合同
      * method: post
-     * params: {orderId: 1, action: 'post', compact:'电子合同内容'}
+     * params: {orderId: 1, userId:1, version: 1, files:'电子合同文件path'}
      */
-    signCompact   : host + 'compact',
+    signCompact   : host + 'mall/order/signcontract',
     /**
      * fetch未盖章电子合同
      * method: get
-     * params: {orderId: 1, action: 'get'}
+     * params: {orderId: 1, userId:12}
      */
-    getCompact    : host + 'compact',
+    getCompact    : host + 'mall/order/contract',
     /**
      * 付款页面, 页面展示数据
      * method: get
-     * params: {orderId: 1, userId: 121}
+     * params: {orderId: 1, userId: 121, type:1}
      * response: {success: true,	error:'', errorCode: '',
 	 *							data: {
 							    	order: {
@@ -41,24 +44,40 @@ var api_config = {
 							}
      */
     payPage       : host + 'mall/order/payment',
+
+
     /**
      * 发送短信
      * method: post
      * params: {phone: 18611111111, message: '343434'}
      */
     sendSMSCode   : host + 'sendSMSCode',
+    // user can send sms again after 120s
+    smsResend: 120,
+    
+
     /**
      * 支付－确认付款
      * method: post
-     * params: {version:'', userId:'',orderId:'',payPassword:''}
+     * params: {version:'', userId:'',orderId:'',payPassword:'',type:1}
      */
     paySubmit     : host + 'mall/order/payment/submit',
+
+
     /**
      * 支付－付款成功
      * method: get
-     * params: {orderId:''}
+     * params: {orderId:'', userId:, type}
      */
-    orderProgress : host + 'mall/order/progress'
+    orderProgress : host + 'mall/order/payment/success',
+
+    orderDetail : host + 'getOrderDetail',
+    confirmDelivery : host + 'confirmDelivery',
+    confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
+    confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
+    orderInfo : host + 'orderInfo',
+    orderCloseAPI : host + '/order/orderInfo_api',
+    orderReturn : host + 'return'
 
 };
 

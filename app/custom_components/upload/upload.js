@@ -60,22 +60,27 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 			this.uploadfile();
 		},
 		uploadfile: function(){
+			var self = this;
 			// 上传文件
 			$('.fileupload').fileupload({
 	        url: '/api/upload-file',
 	        dataType: 'json',
-			maxFileSize: 5000000,
+			maxFileSize: 30000000,
 			add: function(e, data) {
+				var e = e || window.event;
+				var target = e.srcElement || e.target;
+				self.$inputfile = $(target).parent();
+
                 var uploadErrors = [];
                 // var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
                 // if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
                 //     uploadErrors.push('Not an accepted file type');
                 // }
-                if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 5000000) {
+                if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 30000000) {
                     uploadErrors.push('Filesize is too big');
                 }
                 if(uploadErrors.length > 0) {
-					$('.uploadWrapper').next('.tip-error').addClass('uploadlimit').text(uploadErrors.join("\n")).show();
+					self.$inputfile.siblings('.tip-error').addClass('uploadlimit').text(uploadErrors.join("\n")).show();
                 } else {
 					$('.uploadlimit.tip-error').removeClass('uploadlimit').hide();
                     data.submit();
@@ -84,16 +89,27 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	        done: function (e, data) {
 				var e = e || window.event;
 				var target = e.srcElement || e.target;
-				var $fileWrapper = $(target).parent().next('.files');
+				var self = this;
+				self.$fileWrapper = $(target).parent().next('.files');
 				//var $fileWrapper = $('#files');
 	            $.each(data.result.attach, function (index, file) {
 					var filehtml = '<p class="file">' + file.filename + '<span class="del"></span><input type="hidden" name="file_id" value="' + file.id + '"><input type="hidden" name="file_name" value="' + file.filename + '"></p>';
-	                $fileWrapper.append(filehtml);
+	                self.$fileWrapper.append(filehtml);
 	            });
 	        },
-					progressall: function (e, data) {
-			        // var progress = parseInt(data.loaded / data.total * 100, 10);
-			    }
+			progressall: function (e, data) {
+				var $p = self.$inputfile.siblings('.progress');
+				if(data.total < 20000000){
+					$p.hide();
+					return;
+				}
+		        var progress = parseInt(data.loaded / data.total * 100, 10);
+				$p.children('.progress-bar').css('width', progress+ '%');
+				$p.attr("aria-valuenow", progress).show();
+				if(progress>=100){
+					$p.hide();
+				}
+			}
 	    });
 
 			// 删除文件

@@ -1,5 +1,8 @@
 var nock = require('nock');
-var orderdetail = nock('http://localhost:7777/');
+var API  = require('../../api/v1/api_config');
+
+var orderDetail        = nock(API.host).log(console.log);
+var orderDetailPersist = nock(API.host).persist();
 
 var data = {
     "data": {
@@ -206,9 +209,11 @@ var data = {
             "settleAccountTime": null
         }
     }
-}
+};
 
-orderdetail
-    .get('/getOrderDetail').reply(200, data)
+orderDetail.get('/getOrderDetail').query({orderId:'100000'}).reply(200, data);
 
-module.exports = orderdetail;
+module.exports = orderDetail;
+
+
+

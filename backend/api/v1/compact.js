@@ -57,7 +57,8 @@ exports.signCompact = function (req, res, next) {
     var newids     = _.map(params.file_id, function (id) {
         return uploadPath + id;
     })
-    params.file_id = newids;
+    params.files = newids;
+    _.unset(params, 'file_id');
     request.post(api_config.signCompact, params, function (err, data) {
         if (!err && data) {
             return res.send(JSON.parse(data.body));
@@ -99,7 +100,7 @@ var convertData = function (compactdata, compactejs) {
 exports.generate_compact = function (req, res, next) {
     checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
-    var params  = '?orderId=' + orderId + '&action=get';
+    var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
 
     request(api_config.getCompact + params, function (err, result) {
         if (err) return next(err);
@@ -114,8 +115,8 @@ exports.generate_compact = function (req, res, next) {
             });
 
             if (data.success) {
-                convertData({data: data.compact}, ejspath).then(function (result) {
-                    pageData = _.assign(pageData, result);
+                convertData({data: data.data.compact}, ejspath).then(function (result) {
+                    pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {
                         return res.render('compact/blocks/compact', pageData);

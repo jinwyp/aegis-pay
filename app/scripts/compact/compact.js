@@ -5,13 +5,17 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
 
         if($('input[name="needGenerate"]').val() == "0" && $('input[name="orderId"]').val()){
           $.get('/api/generate_compact?orderId=' + $('input[name="orderId"]').val(), function(data){
+            $('#signCompact input[name="version"]').val($(data).find('input[name="version"]').val());
             $('.compactContainer').replaceWith(data);
+            $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
+            $('').remove();
             self.flexslider();
             self.lightbox();
           })
         }else{
           self.flexslider();
           self.lightbox();
+          $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
         }
       },
       flexslider: function(){

@@ -34,13 +34,14 @@ var config = {
     },
 
     //文件目录
-    sysFileDir : path.resolve(process.env.FILES_DIR),
+    sysFileDir : path.resolve(process.env.FILES_DIR || ''),
 
     // 上传文件的临时目录
 	files_root:  '/app',
     upload_tmp: '/files/upload_tmp_pay',
     upload:     '/files/upload'
 };
+
 
 
 module.exports = config;
