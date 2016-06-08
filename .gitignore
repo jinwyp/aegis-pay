@@ -2,9 +2,10 @@ app/node_modules
 app/components
 backend/node_modules
 backend/log
-static
+app/static/
 .tmp/
-
+*.log
+files
 
 
 

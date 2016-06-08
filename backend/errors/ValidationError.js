@@ -9,7 +9,7 @@ function ValidationError(code, message, field) {
 
     this.code = code || 400;
     this.field = field || "unknownfield";
-    this.status = 400;
+    this.status = 409;
 }
 
 ValidationError.prototype = Object.create(Error.prototype);

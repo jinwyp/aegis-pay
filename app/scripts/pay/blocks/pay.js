@@ -42,11 +42,12 @@ define(['jquery'],function($){
               self.els.$codeTipErr.text('校验码错误').show();
               self.els.$code.focus();
             }else if(data.errType && (data.errType=='payPassword')){
-              self.els.$passTipErr.text('密码输入错误，请重新输入，您有3次输入密码的机会，若三次输入错误，密码将被锁定').show();
-              self.els.$pass.focus();
-              if(data.error=='times'){
+              if(data.errorCode==1004){
                   $('#passErrModal').modal();
                   $('#payBtn').attr('id','').addClass('disable');
+              }else{
+                  self.els.$passTipErr.text('密码输入错误，请重新输入，您有3次输入密码的机会，若三次输入错误，密码将被锁定').show();
+                  self.els.$pass.focus();
               }
             }
           }

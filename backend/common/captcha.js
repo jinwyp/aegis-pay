@@ -2,10 +2,10 @@
  * Created by tttt on 6/3/16.
  */
 
-var ccap       = require('ccap');
-var checker    = require('./datachecker');
-var cache      = require('./cache');
-
+var ccap    = require('ccap');
+var checker = require('./datachecker');
+var cache   = require('./cache');
+var logger  = require("./logger");
 
 /**
  * 生成图形验证码
@@ -58,7 +58,7 @@ exports.sendCode = function (type) {
         var userInfo = req.session.user;
         var ary      = generate_code('mixed');
 
-        console.log("----- Captcha key: ", userInfo.id+type, " Captcha Text: ", ary[0]);
+        logger.debug("----- Captcha key: ", userInfo.id+type, " Captcha Text: ", ary[0]);
         cache.set(userInfo.id + type, ary[0]);
         res.end(ary[1]);
     };

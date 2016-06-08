@@ -14,7 +14,7 @@ var checker = require('../../common/datachecker');
 
 
 const uploadPath = config.sysFileDir + '/upload/';
-const ejspath    = config.sysFileDir + '/servicefiles/payCompact.ejs';
+const ejspath    = process.cwd() + '/views/global/compact.ejs';
 const uploadTmp = config.files_root+config.upload_tmp;
 
 exports.uploadFile = function (req, res, next) {
@@ -37,7 +37,7 @@ exports.uploadFile = function (req, res, next) {
 
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
+            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
         })
 
     });
@@ -72,16 +72,17 @@ exports.signCompact = function (req, res, next) {
 
 
 // 接收service数据，转化数据为客户端需要的格式
-var convertData = function (compactdata, compactejs) {
+var convertData = function (compactdata, compactejs, orderId) {
     var data = {
         'pdfpath' : '',
         'imgs' : []
     };
 
-    return convert.ejs2html(compactdata, compactejs).then(function(resultHtml){
+    return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
         return convert.html2pdf(resultHtml.htmlpath)
     })
     .then(function(resultPDF){
+        console.log(resultPDF)
         data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
@@ -115,7 +116,7 @@ exports.generate_compact = function (req, res, next) {
             });
 
             if (data.success) {
-                convertData({data: data.data.compact}, ejspath).then(function (result) {
+                convertData({data: data.data.compact}, ejspath, orderId).then(function (result) {
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {

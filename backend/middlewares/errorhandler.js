@@ -38,7 +38,6 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     // debug(JSON.stringify(newError, null, 4));
 
 
-
     var resError = {
         success : false,
         type : newErr.type,
@@ -68,22 +67,16 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     }else {
         if (resError.errorCode > 1000) {
             resError.url = req.url;
-            logger.info(PrettyError.render(newErr));
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
-            logger.warn(PrettyError.render(newErr));
             return res.render('global/globalTemp/page404', resError);
         }
 
-        logger.error(PrettyError.render(newErr));
-
         return res.render('global/globalTemp/error', resError);
     }
-
-
 
 };
 
@@ -104,22 +97,27 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     res.status(newErr.status);
 
 
-
     var resError = {
         success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
+        status: newErr.status,
         errorCode: newErr.code,
         field: newErr.field
     };
 
     if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
+
+        if (resError.errorCode === 404) {
+            logger.warn(PrettyError.render(newErr));
+        }else if (resError.errorCode >= 500){
+            logger.error(PrettyError.render(newErr));
+        }
+
         return res.json(resError);
     }else{
         if (resError.errorCode > 1000) {
-            resError.url = req.url;
-            logger.info(PrettyError.render(newErr));
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
