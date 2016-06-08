@@ -27,6 +27,12 @@ app 目录下：
 - http://localhost:8800
 
 
+## 目录命名 文件命名 规范
+- 目录命名 使用小写字符 并使用减号 作为单词连接符号, 例如 /array-find-index/
+- 文件命名 使用驼峰式命名法, 例如confirmComplete.js, 如果是类要第一个单词大写,例如 PageNotFoundError.js
+
+
+
 ## Mock 测试数据
 - 使用 [nock](http://github.com) 来拦截Http请求模拟测试数据
 - 默认 nock 的scope 只模拟一次请求, 第二次相同的请求就会返回失败。 使用.times(10)设置可以连续请求的次数 [文档](https://github.com/node-nock/nock#repeat-response-n-times)

@@ -3,12 +3,14 @@
  * */
 
 var request = require('request');
-var _ = require('lodash');
+var _       = require('lodash');
 
+var cache      = require('../common/cache');
+var logger     = require("../common/logger");
 var checker    = require('../common/datachecker');
 var api_config = require('../api/v1/api_config');
 var config     = require('../config');
-var cache = require('../common/cache');
+
 var __dirfiles = config.sysFileDir;
 
 
@@ -32,7 +34,7 @@ exports.returnDetail = function (req, res, next) {
             if (data){
                 var source = JSON.parse(data.body);
                 var content = _.assign({}, {headerTit: "确认提货页面",pageTitle: "确认提货页面",type: "sell", "qualityZip": qualityZip,"quantityZip":quantityZip}, source);
-                console.log('获取到的结果是content----------------------------' + content);
+                logger.debug('获取到的结果是content----------------------------' + content);
                 //渲染页面,指定模板&数据
                 res.render('return/returnDetail', content);
             }
