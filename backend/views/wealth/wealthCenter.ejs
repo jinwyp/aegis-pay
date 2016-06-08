@@ -1,8 +1,47 @@
 <% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/wealth/wealthCenter.css") -%>
-<% stylesheet("/static/styles/global.css") -%>
+<% stylesheet("/static/styles/wealthCenter.css") -%>
+<% script("/static/scripts/wealth/wealthCenter.js") -%>
+<% include ../global/modal/modal  %>
+
 <div id="wealthCenterWrap">
     <div class="wealthCenterTop">
-sfsfs
+        <div class="wealthLogo"></div>
+        <p class="wealthIntroduce">财务管理中心介绍</p>
+        <div class="wealthInfo">
+            <p>“财务管理中心”是易煤网针对从事煤炭交易的企业量身打造的财务管理增值服务。</p>
+            <p>开通易煤网资金账户将在易煤网网站上享有种种特权。</p>
+            <p>它是企业交易的资金管理中心，同时也是在易煤网从事交易活动的前提。</p>
+        </div>
+        <div class="centerWorkWrap">
+            <ul class="centerWork">
+                <li><a href="#"><em class="trade"></em><br/><span>交易支付</span></a></li>
+                <li><a href="#"><em class="work"></em><br/><span>管控业务风险</span></a></li>
+                <li><a href="#"><em class="wealth"></em><br/><span>财务单据管理</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wealthCenterBottom">
+        <p class="wealthPower">财务管理中心五大权限</p>
+        <div class="fivePower">
+            <ul class="clearfix">
+                <li><a href="#"><p><em class="power-1"></em></p><br/><span>汇款回执</span></a></li>
+                <li><a href="#"><p><em class="power-2"></em></p><br/><span>结算管理</span></a></li>
+                <li><a href="#"><p><em class="power-3"></em></p><br/><span>资金安全管理</span></a></li>
+                <li><a href="#"><p><em class="power-4"></em></p><br/><span>票据管理</span></a></li>
+                <li><a href="#"><p><em class="power-5"></p></em><br/><span>业务管理</span></a></li>
+            </ul>
+        </div>
+        <div class="agreement">
+            <input type="checkbox" name="checkbox" id="checkbox" checked />
+            <label for="checkbox" class="checkbox check"></label>
+            同意并签署<span>《中信银行开通附属账户协议》</span>
+        </div>
+
+        <div class="openAccount" id="open-btn">
+            <a href="javascript:void(0);">开通易煤网资金账户</a>
+        </div>
+        <!--<div class="closeAccount">-->
+            <!--<a href="javascript:void(0);">开通易煤网资金账户</a>-->
+        <!--</div>-->
     </div>
 </div>
