@@ -9,3 +9,4 @@ require('./confirmDelivery/sellerDelivery');
 require('./confirmDelivery/confirmComplete');
 require('./pay'); //支付
 require('./return/returnDetail');
+require('./dispute/disputeApply');
