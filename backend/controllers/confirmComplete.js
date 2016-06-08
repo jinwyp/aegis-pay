@@ -87,3 +87,14 @@ exports.confirmComplete = function (req, res, next) {
 
 };
 
+
+
+
+
+exports.cp = function (req, res, next) {
+    var data={
+        success:true
+    }
+    res.send(data);
+}
+
