@@ -17,72 +17,71 @@
             </div>
             <div class="tableCon">
                 <div class="goodsName goodsCon">
-                    <p class="goodsTit"><span>商</span>内蒙古镶黄旗7500大卡动力煤</p>
+                    <p class="goodsTit"><span>商</span><%= ellipse(sellInfoTitleAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour,
+                                sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></p>
                     <ul class="goodsDetail">
-                        <li><label>煤种：</label>无烟煤</li>
-                        <li><label>品名：</label>粒煤</li>
-                        <li><label>产地：</label>内蒙古</li>
-                        <li><label>热值：</label>4200kcal/kg</li>
-                        <li><label>收到基基硫分：</label>6.05-6.07%</li>
-                        <li><label>收到基挥发：</label>6.05-6.07%</li>
-                        <li><label>全水分：</label>6.05-6.07%</li>
-                        <li><label>灰分：</label>6.05-6.07%</li>
-                        <li><label>空干基基硫分：</label>6.05-6.07%</li>
-                        <li><label>固定碳：</label>6.05-6.07%</li>
-                        <li><label>内水分：</label>6.05-6.07%</li>
-                        <li><label>G值：</label>6.05-6.07%</li>
-                        <li><label>Y值：</label>6.05-6.07%</li>
-                        <li><label>灰熔点&ge;：</label>6.05-6.07%</li>
-                        <li><label>灰分：</label>6.05-6.07%</li>
-                        <li><label>哈氏可磨&ge;：</label>6.05-6.07%</li>
-                        <li><label>焦渣特征：</label>6.05-6.07%</li>
+                        <li><label>煤种：</label><%= sellInfo.pname%></li>
+                        <li><label>品名：</label><%= sellInfo.brandname %></li>
+                        <li><label>产地：</label><%= sellInfo.originplace %></li>
+                        <li><label>热值：</label><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></li>
+                        <li><label>收到基基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></li>
+                        <li><label>收到基挥发：</label><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></li>
+                        <li><label>全水分：</label><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></li>
+                        <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <li><label>空干基基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></li>
+                        <li><label>固定碳：</label><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></li>
+                        <li><label>内水分：</label><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></li>
+                        <li><label>G值：</label><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></li>
+                        <li><label>Y值：</label><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></li>
+                        <li><label>灰熔点&ge;：</label><%= singleArgAppend(sellInfo.AFT,'℃') %></li>
+                        <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <li><label>哈氏可磨&ge;：</label><%= singleArgAppend(sellInfo.HGI,'') %></li>
+                        <li><label>焦渣特征：</label><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></li>
                     </ul>
                 </div>
-                <div class="price">400.00</div>
-                <div class="amount">500</div>
-                <div class="totalPrice">500</div>
-                <div class="havePaid"><b>20,000.00</b></div>
+                <div class="price"><%= formatDecimal(order.price,2) %></div>
+                <div class="amount"><%= order.amount %></div>
+                <div class="totalPrice"><%= formatMoney(order.totalMoney,2) %></div>
+                <div class="havePaid"><b><%= formatMoney(order.totalMoney,2) %></b></div>
                 <div class="orderStatus"><b class="unShift">未办货权转移</b></div>
             </div>
             <div class="orderSummary">
                 <div class="summaryL">
                     <p class="summaryLTit">订单摘要</p>
-                    <p><label>订单号：</label>12312312312</p>
-                    <p><label>下单时间：</label>2016-12-12 12:12:12</p>
-                    <p><label>签合同时间：</label>2016-12-12 12:12:12</p>
-                    <p><label>付款时间：</label>2016-12-12 12:12:12</p>
-                    <p><label>订单状态：</label><span>待提货</span></p>
+                    <p><label>订单号：</label><%=order.orderNO%></p>
+                    <p><label>下单时间：</label><%= getString(order.createtime) %></p>
+                    <p><label>签合同时间：</label><%= getString(order.signContractTime)%></p>
+                    <p><label>付款时间：</label><%= getString(order.paymentTime)%></p>
+                    <p><label>订单状态：</label><span><%=order.statusName%></span></p>
                     <p class="searchDetail"><a href="javascript:void(0)">查看订单详情&gt;&gt;</a></p>
                     <div class="summaryLAdditional">
-                        <p><label>卖家：</label>卖家的公司</p>
-                        <p><label>联系人：</label>陈先生</p>
-                        <p><label>联系方式：</label>13020210291</p>
+                        <p><label>卖家：</label><%= order.sellerCompanyName%></p>
+                        <p><label>联系人：</label><%= order.dealerName%></p>
+                        <p><label>联系方式：</label><%= order.dealerPhone%></p>
                     </div>
                 </div>
                 <div class="rightCon">
-                    <div class="conList"><span><em class="hid">* </em>订单编号：</span>98982394892380</div>
-                    <div class="conList"><span><em class="hid">* </em>合同编号：</span>98982394892380</div>
-                    <div class="conList delivery"><span><em>* </em>是否提货：</span><label for="deliveryConfirm"><input type="radio" name="delivery" id="deliveryConfirm" value="0" /> 是</label><label for="alreadyDelivery"><input type="radio" name="delivery" id="alreadyDelivery" value="1" /> 已部分提货</label><label for="confirmNo"><input type="radio" name="delivery" id="confirmNo" value="2"/> 否</label></div>
-                    <div class="conList return"><span><em>* </em>是否退货：</span><label for="returnConfirm"><input type="radio" name="return" id="returnConfirm" value="0"  /> 是</label><label for="returnNo"><input type="radio" name="return" id="returnNo" value="1" /> 否</label></div>
+                    <div class="conList"><span><em class="hid">* </em>订单编号：</span><%= order.orderNO %></div>
+                    <div class="conList"><span><em class="hid">* </em>合同编号：</span><%= order.contractNO %></div>
+                    <div class="conList delivery"><span><em>* </em>是否提货：</span><label for="deliveryConfirm"><input type="radio" name="delivery" id="deliveryConfirm" value="2" /> 是</label><label for="alreadyDelivery"><input type="radio" name="delivery" id="alreadyDelivery" value="1" /> 已部分提货</label><label for="confirmNo"><input type="radio" name="delivery" id="confirmNo" value="0"/> 否</label></div>
+                    <div class="conList return"><span><em>* </em>是否退货：</span><label for="returnConfirm"><input type="radio" name="return" id="returnConfirm" value="1"  /> 是</label><label for="returnNo"><input type="radio" name="return" id="returnNo" value="0" /> 否</label></div>
                     <div class="conList">
                         <span><em>* </em>退款原因及说明：</span>
-                        <textarea name="" id="returnReason" cols="30" rows="10" placeholder="请填写退款的原因及其他需要说明的内容" maxlength="200" ></textarea>
+                        <textarea name="" id="disputeRemarks" cols="30" rows="10" placeholder="请填写退款的原因及其他需要说明的内容" maxlength="200" ></textarea>
                         <div class="leftTxt">最多可输入<span id="leftTxt">200</span>字</div>
                     </div>
                     <div class="conList">
                         <span><em class="hid">* </em>上传凭证：</span>
-                        <div class="uploadInfo">您可以上传有助于您退款审核的文件照片或者扫描件，最多可上传20张图片，例如：付款凭证、提货
+                        <div class="uploadInfo">您可以上传有助于您退款审核的文件照片或者扫描件，<span>最多</span>可上传<span>20张图片</span>，例如：付款凭证、提货
                             单、化验单或第三方凭证。</div>
                     </div>
-                    <div class="conList">
-                        <div class="icnList">
+                    <div class="conList mb0">
                             <!-- 上传 -->
-                            <span class="iBtn iBtn_up">
-                                <i class="iBtn_up_icn"></i>点击上传
-                                <input id="upFile" class="iptFile" type="file" name="files">
-                            </span>
-                            <div class="fileList"></div>
-                        </div>
+
+                            <div class="disputeuploadWrap">
+                                <div class="fileList"><div class="addImg"><img src="/static/images/dispute/addImg.png" alt=""/><p>上传证件</p><input id="fileUpload" class="fileStyle" type="file" name="files"></div></div>
+                            </div>
+
                     </div>
                     <div class="errorMsg" id="errorMsg"></div>
                     <a href="javascript:void(0)" class="confirmSubmit" id="confirmSubmit">确认提交</a>

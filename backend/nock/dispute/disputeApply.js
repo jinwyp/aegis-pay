@@ -1,7 +1,7 @@
 var nock = require('nock');
-var confirmComplete = nock('http://localhost:8800');
+var disputeApply = nock('http://localhost:8800');
 
-confirmComplete
+disputeApply
     .get('/dispute/disputeApply').reply(200,
     {
       "sellInfo":{
@@ -125,14 +125,17 @@ confirmComplete
         //"sellerFundAccount":null,
         "sellerLoginName":"卖家登陆名",
         "status":"WaitSignContract",
+        "statusName":"待审核",
         "price":500.00,
         "amount":1000,
         "totalMoney":50000.00,
-        "createtime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
-        "signContractTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
-        "paymentTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
+        "dealerName":"Chen",
+        "dealerPhone":"13045105222",
+        "createtime":"2016-03-05 21:35",
+        "signContractTime":"2016-03-06 21:35",
+        "paymentTime":"2016-03-07 21:35",
         "confirmDeliveryTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
         "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}}
       }
     });
-module.exports = confirmComplete
+module.exports = disputeApply;

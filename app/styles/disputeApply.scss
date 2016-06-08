@@ -53,6 +53,7 @@
   //  右半部分
   .orderSummary .rightCon{padding-left: 28px;padding-top: 50px;font-size: 12px;color:#333;}
   .orderSummary .rightCon .conList{margin-bottom: 15px;position: relative}
+  .orderSummary .rightCon .mb0{margin-bottom: 0px;}
   .orderSummary .rightCon .conList span{font-weight: normal}
   .orderSummary .rightCon .conList span em{font-weight: normal;color:#ff0000;}
   .orderSummary .rightCon .conList span em.hid{visibility: hidden;}
@@ -61,9 +62,23 @@
   .orderSummary .rightCon .conList .leftTxt{position:absolute;right: 35px;bottom: 5px;color:#666;}
   .orderSummary .rightCon .conList .leftTxt span{color:#ff6e27;}
   .orderSummary .rightCon .conList .uploadInfo{display: inline-block;width: 537px;vertical-align: top;border-bottom: 1px dotted #e0e0e0;margin-left: 35px;padding-bottom: 12px;}
-  .orderSummary .rightCon .confirmSubmit{background: #01b7ec;text-align: center;color:#fff;border-radius: 2px;font-size: 16px;display: block;width: 140px;height: 40px;line-height: 40px;margin-top: 40px;margin-left: 106px;}
+  .orderSummary .rightCon .conList .uploadInfo span{color:#ff6e27;}
+  .orderSummary .rightCon .confirmSubmit{background: #01b7ec;text-align: center;color:#fff;border-radius: 2px;font-size: 16px;display: block;width: 140px;height: 40px;line-height: 40px;margin-top: 10px;margin-left: 106px;}
   .orderSummary .rightCon .confirmSubmit:hover{text-decoration: none;opacity: .8;}
   .orderSummary .rightCon .errorMsg{font-size: 12px;color:#ff0000;padding-left: 107px;height: 20px;}
 
+   //  上传文件样式
+  .orderSummary .rightCon .conList .disputeuploadWrap{padding-left: 107px;}
+  .orderSummary .rightCon .conList .addImg{width: 152px;height: 152px;background: #f5f5f5;text-align: center;font-size: 14px;color:#999;cursor: pointer;display: inline-block;}
+  .orderSummary .rightCon .conList .addImg .fileStyle{display:none;}
+  .orderSummary .rightCon .conList .addImg img{margin-top: 38px;margin-bottom: 10px;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .fileList{display: inline-block;vertical-align: top;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview{width: 152px;height: 152px;display: inline-block;text-align: center;margin-right: 20px;margin-bottom: 10px;position: relative;vertical-align: top;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview img{width: 150px;height: 150px;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview:hover{border: 1px solid #00b6ef;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview:hover .modifyFile{display: block;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile {display:none;width:100%;;height: 34px;padding:0px 10px;position: absolute;bottom: 0;left:0;font-size: 14px;text-align: center;line-height: 34px;background: url("/static/images/dispute/blackBg.png") repeat;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile a{width:50%;color:#fff;display: inline-block}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile a:hover{color:#01b7ec;}
 
 }

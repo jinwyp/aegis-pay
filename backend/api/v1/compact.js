@@ -13,7 +13,7 @@ var cache   = require('../../common/cache');
 var checker = require('../../common/datachecker');
 
 
-const uploadPath = config.sysFileDir + '/static/upload/';
+const uploadPath = config.sysFileDir + '/upload/';
 const ejspath    = config.sysFileDir + '/servicefiles/payCompact.ejs';
 const uploadTmp = config.files_root+config.upload_tmp;
 
@@ -37,7 +37,7 @@ exports.uploadFile = function (req, res, next) {
 
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
+            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
         })
 
     });

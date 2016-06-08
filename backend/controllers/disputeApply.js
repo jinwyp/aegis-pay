@@ -25,3 +25,9 @@ exports.disputeApply = function (req, res, next) {
 
 };
 
+exports.dispute = function (req, res, next) {
+    var data={
+        success:true
+    }
+    res.send(data);
+}
