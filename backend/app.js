@@ -30,7 +30,7 @@ var renderMiddleware    = require('./middlewares/render');
 var logger              = require("./common/logger");
 var engine              = require('ejs-locals');
 
-require('./common/ejsFiltersAddon')(require('ejs').filters);
+// require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../app/static');

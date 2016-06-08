@@ -48,7 +48,8 @@
     "winston": "^2.2.0",
     "winston-daily-rotate-file": "^1.1.2",
     "xmlbuilder": "^8.2.2",
-    "xss": "^0.2.13"
+    "xss": "^0.2.13",
+    "ejs":"2.4.2"
   },
   "devDependencies": {
     "del": "^2.2.0",
