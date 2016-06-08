@@ -31,7 +31,7 @@ app 目录下：
 - 使用 [nock](http://github.com) 来拦截Http请求模拟测试数据
 - 默认 nock 的scope 只模拟一次请求, 第二次相同的请求就会返回失败。 使用.times(10)设置可以连续请求的次数 [文档](https://github.com/node-nock/nock#repeat-response-n-times)
 - 使用 persist() 可以模拟无限次请求 [文档](https://github.com/node-nock/nock#persist)
-
+- 请使用统一的配置文件 进行路径设置, 在backend/api/vi/api_config.js 不要在代码中写死测试路径。
 
 
 ## 后端字段数据校验工具
