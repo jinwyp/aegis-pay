@@ -25,3 +25,10 @@ exports.compact = function (req, res, next) {
         }
     })
 };
+exports.compactDetail = function (req, res, next) {
+
+    checker.orderId(req.query.id);
+    var id = req.query.id;
+
+
+};
