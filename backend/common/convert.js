@@ -81,7 +81,7 @@ exports.html2pdf = function (htmlpath, pdfname) {
                 if (resultHtml) {
 
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
-                        if (err) {
+                        if (!err) {
                             fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);
 
