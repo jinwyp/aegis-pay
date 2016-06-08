@@ -10,7 +10,6 @@ var config   = require('../config');
 var utils    = require('./utils');
 
 
-
 var __dirfiles = config.sysFileDir;
 
 
