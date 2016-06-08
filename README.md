@@ -27,14 +27,20 @@ app 目录下：
 - http://localhost:8800
 
 
+## 目录命名 文件命名 规范
+- 目录命名 使用小写字符 并使用减号 作为单词连接符号, 例如 /array-find-index/
+- 文件命名 使用驼峰式命名法, 例如confirmComplete.js, 如果是类要第一个单词大写,例如 PageNotFoundError.js
+
+
+
 ## Mock 测试数据
 - 使用 [nock](http://github.com) 来拦截Http请求模拟测试数据
 - 默认 nock 的scope 只模拟一次请求, 第二次相同的请求就会返回失败。 使用.times(10)设置可以连续请求的次数 [文档](https://github.com/node-nock/nock#repeat-response-n-times)
 - 使用 persist() 可以模拟无限次请求 [文档](https://github.com/node-nock/nock#persist)
+- 请使用统一的配置文件 进行路径设置, 在backend/api/vi/api_config.js 不要在代码中写死测试路径。
 
 
-
-## 后端字段数据验证工具
+## 后端字段数据校验工具
 - 在common目录下的datachecker.js, 可以把网站的字段验证统一放到这里。
 - 使用时只要 按照如下使用即可, 默认为throw, 可以传入next, 这样就可以在callback中使用。 同步或在promise中可以直接省略next即可。
 ```
@@ -43,7 +49,7 @@ checker.orderId(req.query.orderId, next); // Callback 回调中
 checker.orderId(req.query.orderId, Promise.reject); // Promise中
 ```
 
-- 前后端使用统一的errorCode 进行处理
+- 前后端使用统一的errorCode 进行处理 在errors/ValidationError.js 里面统一了所有的字段验证的代码,例如1001是 usernameWrong, 1011是usernameExist用户名已存在,这样前端页面可以通过该code进行判断,
 ```
 {
     "success"   : false,
@@ -55,6 +61,7 @@ checker.orderId(req.query.orderId, Promise.reject); // Promise中
     "field"     : "captchaText"
 }
 ```
+- 在nodejs代码中 表单字段验证 只要使用 checker.orderId(req.query.orderId) 即可, 就等于 throw new ValidationError(ValidationError.code.order.orderIdWrong, 'Field validation error, orderId length should be 6 - 100', 'orderId');
 
 
 
@@ -68,7 +75,7 @@ checker.orderId(req.query.orderId, Promise.reject); // Promise中
 
 #### 4xx错误 包括
 - 404 页面没找到错误 PageNotFoundError 使用方法 next(new PageNotFoundError(404 , 'Page Not Found'))
-- 400 表单验证错误 ValidationError 使用方法 next(new ValidationError(ValidationError.code.user.usernameWrong , 'Field validation error, username length must be 4-30', 'username'))
+- 409 表单验证错误 ValidationError 使用方法 next(new ValidationError(ValidationError.code.user.usernameWrong , 'Field validation error, username length must be 4-30', 'username'))
 - 401 登陆或Token/Oauth认证错误 UnauthenticatedAccessError 使用方法 next(new UnauthenticatedAccessError(ValidationError.code.token.tokenNotFound , 'User Unauthenticated, token not found', 'username'))
 - 403 授权或权限错误 UnauthorizedAccessError 使用方法 next(new UnauthorizedAccessError(ValidationError.code.token.tokenNotFound , 'User Unauthorized, token not found', 'username'))
 - [401与403区别](http://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses)
@@ -219,4 +226,17 @@ app.get('/', wrap(async (req, res, next) => {
 5 最后在app.js 中使用 app.use(errorhandler.DevelopmentHandlerMiddleware); 统一处理err错误的返回, 通过header头部类型判断 是否返回页面或json数据或其他类型.
 
 
+## Nodejs 日志处理
+
+- 目前使用 winston 来处理日志, 在logs 文件夹会根据日期生成每天的日志, 每天会有两个日志,  例如 2016-06-08.local-debug.log 和 2016-06-08.local-error.log 。local代表程序启动的环境变量。
+- 日志等级分类 error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5
+- debug 日志文件包含所有的错误和调试信息, error 日志只包括错误的日志(5xx错误, 未捕获的错误等);
+- 在调试时, 请不要用console.log, 需要引入common/logger.js,  按照以下方法使用即可, 会同时输出到命令行控制台和写入日志文件。 local-debug.log 包括所有日志, local-error.log 仅包括error的日志。
+```
+var logger  = require('./logger');
+logger.debug('debug 信息')
+logger.info('info 信息')
+logger.warn('warn 信息')
+logger.error('error 信息')
+```
 

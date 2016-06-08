@@ -34,9 +34,8 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
 
     res.status(newErr.status);
 
-    logger.log(PrettyError.render(newErr));
+    logger.debug(PrettyError.render(newErr));
     // debug(JSON.stringify(newError, null, 4));
-
 
 
     var resError = {
@@ -79,8 +78,6 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         return res.render('global/globalTemp/error', resError);
     }
 
-
-
 };
 
 
@@ -99,29 +96,38 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
 
     res.status(newErr.status);
 
-    logger.log(PrettyError.render(newErr));
 
     var resError = {
         success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
+        status: newErr.status,
         errorCode: newErr.code,
         field: newErr.field
     };
 
     if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
+
+        if (resError.errorCode === 404) {
+            logger.warn(PrettyError.render(newErr));
+        }else if (resError.errorCode >= 500){
+            logger.error(PrettyError.render(newErr));
+        }
+
         return res.json(resError);
     }else{
         if (resError.errorCode > 1000) {
-            resError.url = req.url;
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
+            logger.warn(PrettyError.render(newErr));
             return res.render('global/globalTemp/page404', resError);
         }
+
+        logger.error(PrettyError.render(newErr));
 
         return res.render('global/globalTemp/error', resError);
     }
@@ -140,7 +146,8 @@ process.on('uncaughtException', function(error){
         newError = error;
     }
 
-    logger.log('5XX UncaughtException: ', JSON.stringify(newError, null, 4));
+    logger.error('5XX UncaughtException: ', JSON.stringify(newError, null, 4));
+
     process.exit(1);
 });
 
@@ -149,7 +156,7 @@ process.on('uncaughtException', function(error){
 // To render unhandled rejections created in BlueBird:
 // https://nodejs.org/api/process.html#process_event_unhandledrejection
 process.on('unhandledRejection', function(reason, p){
-    logger.log('5XX UnhandledRejection at Promise: ', JSON.stringify(p), ". Reason: ", reason);
+    logger.error('5XX UnhandledRejection at Promise: ', JSON.stringify(p), ". Reason: ", reason);
 });
 
 

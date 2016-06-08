@@ -37,7 +37,7 @@ exports.uploadFile = function (req, res, next) {
 
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
+            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
         })
 
     });

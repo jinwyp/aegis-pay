@@ -8,8 +8,7 @@ var PDFImage = require("pdf-image").PDFImage;
 var ejs = require('ejs');
 var config   = require('../config');
 var utils    = require('./utils');
-
-
+var logger  = require("./logger");
 
 var __dirfiles = config.sysFileDir;
 
@@ -182,8 +181,8 @@ exports.zipFile = function (options) {
         archive.on('error', reject);
 
         output.on('close', function () {
-            console.log(archive.pointer() + ' total bytes');
-            console.log('archiver has been finalized and the output file descriptor has closed.');
+            logger.debug(archive.pointer() + ' total bytes');
+            logger.debug('archiver has been finalized and the output file descriptor has closed.');
             resolve(self.options.output + '/' + self.options.zipname);
         });
 
@@ -196,7 +195,7 @@ exports.zipFile = function (options) {
             } else if (utils.isFileExistsSync(val)) {
                 archive.file(val, {name : path.basename(val)});
             }else{
-                console.log('archiver nothing')
+                logger.debug('archiver nothing')
             }
         });
         archive.finalize();

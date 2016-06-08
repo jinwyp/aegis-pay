@@ -2,12 +2,12 @@
  * 业务控制 (模板 & 数据请求)
  * */
 
-var request = require('request');
+var path       = require('path');
+var _          = require('lodash');
+var request    = require('request');
+
 var api_config = require('../api/v1/api_config');
-
-var path = require('path');
-var _ = require('lodash');
-
+var logger = require("../common/logger");
 
 // 处理业务逻辑
 exports.confirmComplete = function (req, res, next) {
@@ -46,8 +46,8 @@ exports.confirmComplete = function (req, res, next) {
 
         if (err) return next(err);
 
-        console.log('获取到的错误是----------------------------' + err);
-        console.log('获取到的结果是data----------------------------' + data.body);
+        logger.debug('获取到的错误是----------------------------' + err);
+        logger.debug('获取到的结果是data----------------------------' + data.body);
 
         if (data){
             var source  = JSON.parse(data.body);
@@ -72,7 +72,7 @@ exports.confirmComplete = function (req, res, next) {
                 val.file_id = path.basename(val.path);
             });
 
-            console.log('获取到的结果是content----------------------------' + content);
+            logger.debug('获取到的结果是content----------------------------' + content);
             //渲染页面,指定模板&数据
             res.render('confirmDelivery/confirmComplete', content);
         }

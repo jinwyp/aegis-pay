@@ -54,8 +54,8 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
-    console.log('----- Environment Config Variable: ');
-    console.log(config);
+    logger.info('----- NodeJS Environment Config Variable: ');
+    logger.info(config);
     // Views 渲染时间
     app.use(renderMiddleware.render);
 }
@@ -147,6 +147,6 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('----------- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }

@@ -30,7 +30,6 @@
     "csurf": "^1.9.0",
     "data2xml": "^1.2.5",
     "ejs-locals": "^1.0.2",
-    "eventproxy": "^0.3.4",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "formidable": "^1.0.17",
@@ -46,6 +45,8 @@
     "request": "^2.54.0",
     "response-time": "^2.3.1",
     "validator": "^5.3.0",
+    "winston": "^2.2.0",
+    "winston-daily-rotate-file": "^1.1.2",
     "xmlbuilder": "^8.2.2",
     "xss": "^0.2.13"
   },
