@@ -4,7 +4,7 @@ backend/node_modules
 backend/log
 static
 .tmp/
-*.log
+
 
 
 
