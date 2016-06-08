@@ -15,7 +15,7 @@ var __dirfiles = config.sysFileDir;
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
-    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'static/images/');
+    var imgpath          = options && options.imgpath || path.join(__dirfiles, '/images/');
     var convertExtension = options && options.convertExtension || 'jpg';
 
     //if (!utils.isDirExistsSync(imgpath)) {
@@ -60,7 +60,7 @@ exports.pdf2image = function (pdfpath, options) {
 exports.html2pdf = function (htmlpath, pdfname) {
 
     var pdfname = pdfname || path.basename(htmlpath, '.html');
-    var pdfpath = path.join(__dirfiles, 'static/pdf/');
+    var pdfpath = path.join(__dirfiles, '/pdf/');
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
 
@@ -110,7 +110,7 @@ exports.html2pdf = function (htmlpath, pdfname) {
 exports.ejs2html = function(data, ejspath, options){
     var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
 
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, '/html/');
     var htmlfile = htmlpath + htmlname + '.html';
 
     utils.makeDir(htmlpath);
@@ -165,7 +165,7 @@ exports.zipFile = function(options){
             options.path = [options.path];
         }
 
-        self.default = {type:'zip', output: __dirfiles + '/static/zips'};
+        self.default = {type:'zip', output: __dirfiles + '/zips'};
 
         if(!options.zipname){
             if(fs.statSync(options.path[0]).isDirectory()){
@@ -211,4 +211,3 @@ exports.zipFile = function(options){
         archive.finalize();
     })
 };
-

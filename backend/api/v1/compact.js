@@ -13,7 +13,7 @@ var cache   = require('../../common/cache');
 var checker = require('../../common/datachecker');
 
 
-const uploadPath = config.sysFileDir + '/static/upload/';
+const uploadPath = config.sysFileDir + '/upload/';
 const ejspath    = config.sysFileDir + '/servicefiles/payCompact.ejs';
 const uploadTmp = config.files_root+config.upload_tmp;
 
