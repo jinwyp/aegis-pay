@@ -1,4 +1,7 @@
-//api
+// @flow
+
+// api
+
 var host = 'http://service.yimei180.com/';
 
 var api_config = {
@@ -66,7 +69,13 @@ var api_config = {
      */
     orderProgress : host + 'mall/order/progress',
 
-    orderDetail : host + 'getOrderDetail'
+    orderDetail : host + 'getOrderDetail',
+    confirmDelivery : host + 'confirmDelivery',
+    confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
+    confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
+    orderInfo : host + 'orderInfo',
+    orderCloseAPI : host + '/order/orderInfo_api',
+    orderReturn : host + 'return'
 
 };
 

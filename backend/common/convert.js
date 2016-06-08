@@ -1,21 +1,22 @@
 var fs       = require('fs');
 var path     = require('path');
+var _        = require('lodash');
+
 var archiver = require('archiver');
 var pdf      = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
-var config   = require('../config');
-var _ = require('lodash');
-var utils = require('./utils');
-
-// var app = require('../app');
 var ejs = require('ejs');
+var config   = require('../config');
+var utils    = require('./utils');
+
+
 
 var __dirfiles = config.sysFileDir;
 
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
-    var imgpath          = options && options.imgpath || path.join(__dirfiles, '/images/');
+    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'images/');
     var convertExtension = options && options.convertExtension || 'jpg';
 
     //if (!utils.isDirExistsSync(imgpath)) {
@@ -26,7 +27,7 @@ exports.pdf2image = function (pdfpath, options) {
 
     return new Promise(function (resolve, reject) {
 
-        var imageList = [];
+        var imageList   = [];
         var promiseList = [];
 
         var pdfImage = new PDFImage(pdfpath, {
@@ -39,16 +40,16 @@ exports.pdf2image = function (pdfpath, options) {
                 var imgfile = imgpath + imgname + '-' + i + "." + convertExtension;
                 imageList.push(imgfile);
 
-                if (!utils.isFileExistsSync(imgfile)){
+                if (!utils.isFileExistsSync(imgfile)) {
                     promiseList.push(pdfImage.convertPage(i));
                 }
             }
 
-            if (promiseList.length > 0){
-                Promise.all(promiseList).then(function(result){
+            if (promiseList.length > 0) {
+                Promise.all(promiseList).then(function (result) {
                     resolve({'imgs' : imageList});
                 }).catch(reject)
-            }else{
+            } else {
                 resolve({'imgs' : imageList});
             }
         }).catch(reject);
@@ -56,11 +57,10 @@ exports.pdf2image = function (pdfpath, options) {
 };
 
 
-
 exports.html2pdf = function (htmlpath, pdfname) {
 
     var pdfname = pdfname || path.basename(htmlpath, '.html');
-    var pdfpath = path.join(__dirfiles, '/pdf/');
+    var pdfpath = path.join(__dirfiles, 'pdf/');
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
 
@@ -72,31 +72,31 @@ exports.html2pdf = function (htmlpath, pdfname) {
 
     return new Promise(function (resolve, reject) {
 
-        if (utils.isFileExistsSync(pdffile)){
+        if (utils.isFileExistsSync(pdffile)) {
             resolve({'pdfpath' : pdffile});
-        }else{
-            fs.readFile(htmlpath, 'utf8', function(err, resultHtml){
+        } else {
+            fs.readFile(htmlpath, 'utf8', function (err, resultHtml) {
                 if (err) reject(err);
 
-                if (resultHtml){
+                if (resultHtml) {
 
-                    pdf.create(resultHtml, options).toFile(pdffile, function(err, resultPDF) {
-                        if(err){
-                            fs.stat(pdffile, function(err, stat){
+                    pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
+                        if (err) {
+                            fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);
 
-                                if(stat && stat.isFile()){
-                                    resolve({'pdfpath':pdffile});
-                                }else{
+                                if (stat && stat.isFile()) {
+                                    resolve({'pdfpath' : pdffile});
+                                } else {
                                     reject(err);
                                 }
                             })
-                        }else{
-                            resolve({'pdfpath':pdfpath});
+                        } else {
+                            resolve({'pdfpath' : pdfpath});
                         }
                     });
 
-                }else{
+                } else {
                     resolve({'pdfpath' : 'notfound.html'});
                 }
             });
@@ -105,30 +105,28 @@ exports.html2pdf = function (htmlpath, pdfname) {
 };
 
 
-
-
-exports.ejs2html = function(data, ejspath, options){
+exports.ejs2html = function (data, ejspath, options) {
     var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
 
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, '/html/');
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'html/');
     var htmlfile = htmlpath + htmlname + '.html';
 
     utils.makeDir(htmlpath);
 
     return new Promise(function (resolve, reject) {
 
-        if (utils.isFileExistsSync(htmlfile)){
+        if (utils.isFileExistsSync(htmlfile)) {
             resolve({'htmlpath' : htmlfile});
-        }else{
-            ejs.renderFile(ejspath, data, function(err, resulthtml){
-                if(err) reject(err);
+        } else {
+            ejs.renderFile(ejspath, data, function (err, resulthtml) {
+                if (err) reject(err);
 
-                if(resulthtml){
-                    fs.writeFile(htmlfile, resulthtml, 'utf-8', function(err){
+                if (resulthtml) {
+                    fs.writeFile(htmlfile, resulthtml, 'utf-8', function (err) {
                         if (err) reject(err);
                         resolve({'htmlpath' : htmlfile});
                     });
-                }else{
+                } else {
                     resolve({'htmlpath' : 'notfound.html'});
                 }
             })
@@ -136,8 +134,6 @@ exports.ejs2html = function(data, ejspath, options){
 
     })
 };
-
-
 
 
 /**
@@ -149,63 +145,58 @@ exports.ejs2html = function(data, ejspath, options){
  * @param options.path: 压缩文件路径, //必需参数，字符串或数组
  *
  */
-exports.zipFile = function(options){
+exports.zipFile = function (options) {
     var self = this;
-    return new Promise(function(resolve, reject){
-        if(!options || !options.path){
+    return new Promise(function (resolve, reject) {
+        if (!options || !options.path) {
             // throw new Error('zipFile needs param path');
             reject('zipFile needs param path');
         }
 
-        if(typeof options === 'string'){
-            options = {path: [options]};
+        if (typeof options === 'string') {
+            options = {path : [options]};
         }
 
-        if(options && options.path && !_.isArray(options.path)){
+        if (options && options.path && !_.isArray(options.path)) {
             options.path = [options.path];
         }
 
-        self.default = {type:'zip', output: __dirfiles + '/zips'};
+        self.default = {type : 'zip', output : path.join(__dirfiles, 'zips')};
 
-        if(!options.zipname){
-            if(fs.statSync(options.path[0]).isDirectory()){
+        if (!options.zipname) {
+            if (utils.isDirExistsSync(options.path[0])) {
                 self.default.zipname = _.last(_.split(options.path[0], path.sep)) + '.' + self.default.type;
-            }else if(fs.statSync(options.path[0]).isFile()){
+            } else {
                 self.default.zipname = path.basename(options.path[0], path.extname(options.path[0])) + '.' + self.default.type;
             }
         }
 
-        self.options = _.assign({}, self.default, options||{});
+        self.options = _.assign({}, self.default, options || {});
 
         utils.makeDir(self.options.output);
 
-        var archive = archiver(self.options.type);
+        var archive = archiver(self.options.type, {});
 
         var output = fs.createWriteStream(self.options.output + '/' + self.options.zipname);
 
-        archive.on('error', function(err) {
-            // throw new Error('archiver error');
-            reject('archiver error')
+        archive.on('error', reject);
+
+        output.on('close', function () {
+            console.log(archive.pointer() + ' total bytes');
+            console.log('archiver has been finalized and the output file descriptor has closed.');
+            resolve(self.options.output + '/' + self.options.zipname);
         });
 
-        output.on('close', function() {
-          console.log(archive.pointer() + ' total bytes');
-          console.log('archiver has been finalized and the output file descriptor has closed.');
-          resolve(self.options.output + '/' + self.options.zipname);
-        });
-
-        archive.on('error', function(err) {
-        //   throw err;
-            reject(err);
-        });
 
         archive.pipe(output);
 
-        _.map(self.options.path, function(val, index){
-            if(fs.statSync(val).isDirectory()){
+        _.each(self.options.path, function (val) {
+            if (utils.isDirExistsSync(val)) {
                 archive.directory(val, val.replace(val, ''));
-            }else if(fs.statSync(val).isFile()){
-                archive.file(val, { name:  path.basename(val)});
+            } else if (utils.isFileExistsSync(val)) {
+                archive.file(val, {name : path.basename(val)});
+            }else{
+                console.log('archiver nothing')
             }
         });
         archive.finalize();

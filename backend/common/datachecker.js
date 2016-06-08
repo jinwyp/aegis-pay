@@ -61,3 +61,11 @@ exports.payPassword = function(password, next){
         return throwError(ValidationError.code.user.payPasswordWrong, 'Field validation error, User payPassword length should be 6 - 20', 'payPassword', next);
     }
 };
+
+
+
+exports.deliveryAmount = function(deliveryAmount, next){
+    if (!deliveryAmount || !validator.isInt(deliveryAmount, { min: 1, max: 999999999}) ) {
+        return throwError(ValidationError.code.order.orderIdWrong, 'Field validation error, deliveryAmount should be 1 - 999999999', 'deliveryAmount', next);
+    }
+};

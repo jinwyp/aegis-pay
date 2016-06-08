@@ -87,6 +87,7 @@ exports.getOrderDetail = function (req, res, next) {
 
 };
 
+
 exports.printDetail = function (req, res, next) {
     request({url : 'http://localhost:7777/getOrderDetail'}, function (err, data) {
         console.log('printDetail获取到的错误是----------------------------' + err);
