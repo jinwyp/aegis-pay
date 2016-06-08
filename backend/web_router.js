@@ -55,7 +55,7 @@ router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);
 router.get('/return', returnDetailController.returnDetail);
 
 router.get('/compact', compactController.compact);
-router.get('/order/progress', payCtl.success);
+router.get('/pay/success', payCtl.success);
 router.get('/pay', payCtl.page);
 
 // setSSOCookie

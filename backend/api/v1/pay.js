@@ -1,4 +1,5 @@
 var request    = require('request');
+var _ = require('lodash');
 
 var checker    = require('../../common/datachecker');
 var api_config = require('./api_config');
@@ -10,7 +11,9 @@ exports.submit = function (req, res, next) {
     checker.payPassword(req.body.payPassword);
 
     var body = req.body;
-    
+
+    var params = _.assign({}, {type: 1, userId: req.session.user.id}, body);
+
     request.post(api_config.paySubmit, body, function (err, data) {
 
         if (err) return next(err);
@@ -26,5 +29,3 @@ exports.submit = function (req, res, next) {
     })
 
 };
-
-

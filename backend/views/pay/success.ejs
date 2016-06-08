@@ -4,11 +4,11 @@
 <div class="mainWrapper">
     <% include ../global/order/statusBar %>
     <div class="progressDetail">
-      <h3><span class='icon_ok'></span>您已成功付款<i><%= formatMoney(order.totalMoney) %></i>元</h3>
+      <h3><span class='icon_ok'></span>您已成功付款<i><%= formatMoney(order.paymentMoney) %></i>元</h3>
       <ul>
-        <li><span>提货地址：</span><%= order.addr %></li>
-        <li><span>卖家姓名：</span><%= order.sellerLoginName %></li>
-        <li><span>联系方式：</span><%= order.phone %></li>
+        <li><span>提货地址：</span><%= order.deliveryAddress %></li>
+        <li><span>卖家姓名：</span><%= order.dealerName %></li>
+        <li><span>联系方式：</span><%= order.dealerPhone %></li>
       </ul>
       <a href="/getOrderDetail?orderId=<%= order.orderId %>" class='btn_blue'>查看订单详情</a>
     </div>

@@ -81,5 +81,3 @@ exports.confirmDelivery = function (req, res, next) {
     //});
 
 };
-
-

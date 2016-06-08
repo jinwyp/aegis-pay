@@ -36,7 +36,7 @@ define(['jquery'],function($){
         $.post('api/pay/submit', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
-            location.href = '/order/progress?orderId=' + $('input[name="orderId"]').val();
+            location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=1';
           }else{
             if(data.errType && (data.errType=='sms_code')){
               self.els.$codeTipErr.text('校验码错误').show();

@@ -7,7 +7,7 @@ var payPersist = nock(API.host).persist();
 
 payPersist
 .get(function(uri){
-  var ismatch = /mall\/order\/payment\?orderId=\d+&userId=\d+/.test(uri);
+  var ismatch = /mall\/order\/payment\?orderId=\d+&userId=\d+&type=1/.test(uri);
   return ismatch;
 }).reply(200, function(uri){
   return {
@@ -23,20 +23,19 @@ payPersist
               }
             }
 })
-.post('/sendSMSCode').reply(200, {"success":true, "time":120})
+.post('/sendSMSCode').reply(200, {"success":true})
 .post('/mall/order/payment/submit').reply(200, {'success':true, "error":"times"})
-.get('/mall/order/progress').reply(200, {
-  "order":{
-    "totalMoney": 2000000000,
-    "addr": "提货地址",
-    "sellerLoginName":"卖家姓名",
-    "phone":18698989899
-  },
-  "createtime": "2016-05-21 16:47:18",
-  "signContractTime": "2016-05-22 16:47:18",
-  "paymentTime": "2016-05-23 16:47:18",
-  "confirmDeliveryTime": null,
-  "settleAccountTime": null
+.get('/mall/order/payment/success').reply(200, {'success':true, 'data': {
+        "order": {
+            "paymentMoney": 2000000000,
+            "deliveryAddress": "提货地址",
+            "dealerName":"卖家姓名",
+            "dealerPhone":18698989899,
+            "signContractTime": "1465356905881",
+            "paymentTime": "1465356905881",
+            "createTime": "1465356905881"
+        }
+    }
 });
 
 module.exports = pay;
