@@ -1,16 +1,11 @@
-FROM ubuntu-nodejs
+FROM ubuntu-1404
 
 MAINTAINER hary zhou <94093146@qq.com>
-
-RUN apt-get update  \
-  && apt-get install -y imagemagick ghostscript poppler-utils git \
-  && rm -rf /var/lib/apt/lists/*
 
 ADD backend/ /app/aegis-pay/
 
 VOLUME /app/aegis-pay/logs
-
-VOLUME /app/aegis-pay/files
+VOLUME /app/files
 
 EXPOSE 3000/tcp
 
