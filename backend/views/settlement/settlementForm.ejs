@@ -9,20 +9,21 @@
 <div class="containerWrap">
     <div class="bodyWrap">
 
-        <!-- 开具结算单 板块 -->
-        <div class="plateBox">
+        <!-- 重要提示 板块 -->
+        <div id="doubtPlate" class="plateBox">
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
-                <h3 class="headLeft fl">开具结算单</h3>
+                <h3 class="headLeft fl"><%= subTitle %></h3>
                 <!--<p class="headContent">居中标题</p>-->
+                <% if(userType == 'buy') { %>
                 <p class="headRight">
                     <a href="##" class="doubtInlet">重要提示</a>
                 </p>
+                <% } %>
             </div>
             <div class="plateMain">
-
                 <!-- 提示框 板块 -->
-                <div class="embedBox">
+                <div class="embedBox" data-status="<%= order.status %>" data-type="<%= userType %>">
                     <div class="significantDoubt">
                         <h2 class="doubtTitle">重要提示：</h2>
                         <p class="entry">
@@ -40,164 +41,272 @@
                     </div>
                 </div>
 
-
-                <!-- 退回原因提示框 板块 -->
-                <div class="reasonsReturn .againRefer mt20">
-                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
-
-                    <div class="reasonsReturn_view show">
-                        <table class="returnTab">
-                            <tbody>
-                            <tr>
-                                <td width="66">退回原因：</td>
-                                <td>
-                                    <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>2016-06-01 15:46:32</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <input type="button" class="iBtn iBtn_sm iBtn_edit mt10" value="修改退回原因"/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="reasonsReturn_edit .show">
-                        <table class="returnTab">
-                            <tbody>
-                            <tr>
-                                <td class="va_top" width="66">退回原因：</td>
-                                <td>
-                                    <div class="txtAreaBox">
-                                        <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
-                                        <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"></textarea>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>2016-06-01 15:46:32</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="txt_c">
-                                    <input type="button" class="iBtn iBtn_def" value="取消">
-                                    <input type="button" class="iBtn iBtn_yes" value="确认"><br/><br/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-                <!-- 结算单: 结算信息 -->
-                <div class="mt20">
-                    <h2 class="settlementTit">结算单</h2>
-                    <table class="settlementTable">
-                        <tbody>
-                        <tr>
-                            <th width="230">订单号</th>
-                            <th width="230">合同编号</th>
-                            <th>确认提货时间</th>
-                            <th width="230">结算时间</th>
-                        </tr>
-                        <tr>
-                            <td>82793847398 </td>
-                            <td>82793847398 </td>
-                            <td>2016-05-31 16:29:18</td>
-                            <td>2016-05-31 16:29:22</td>
-                        </tr>
-                        <tr>
-                            <th>港口</th>
-                            <th>煤种</th>
-                            <th>合同吨位（吨）</th>
-                            <th>合同基准单价（元/吨）</th>
-                        </tr>
-                        <tr>
-                            <td>无烟煤 </td>
-                            <td>4000 </td>
-                            <td>400</td>
-                            <td>40,000.00</td>
-                        </tr>
-                        <tr>
-                            <th>合同金额（元）</th>
-                            <th>已付款金额（元）</th>
-                            <th>付款时间</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        <tr>
-                            <td>40,000.00</td>
-                            <td>40,000.00 </td>
-                            <td>400</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- 结算单: 实际结算数据 -->
-                <div class="mt20">
-                    <h2 class="settlementTit">实际结算数据</h2>
-                    <table class="settlementTable">
-                        <tbody>
-                        <tr>
-                            <th width="230">总结算吨位（吨）</th>
-                            <th width="230">港务费（元）</th>
-                            <th>总结算金额（元）</th>
-                            <th width="230"><span class="giveChangeTit">应补货款金额（元）</span></th>
-                        </tr>
-                        <tr>
-                            <td class="billBox">
-                                <input type="text" class="billIpt" placeholder="0-100整数"/>
-                                <span class="errInfo"></span>
-                            </td>
-                            <td class="billBox">
-                                <input type="text" class="billIpt" placeholder="0-100整数"/>
-                                <span class="errInfo"></span>
-                            </td>
-                            <td class="billBox">
-                                <input type="text" class="billIpt" placeholder="0-100整数"/>
-                                <span class="errInfo">请输入0-100的整数</span>
-                            </td>
-                            <td><span class="giveChangeNum">880.00</span></td>
-                        </tr>
-                        <tr>
-                            <th>说明</th>
-                            <td colspan="3" class="billBox">
-                                <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写"/>
-                                <span class="errInfo">请填写关于结算的说明</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th colspan="2">购方公司</th>
-                            <th colspan="2">销方公司</th>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <span>买家公司名称全称</span>
-                            </td>
-                            <td colspan="2">
-                                <span>卖家公司名称全称</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
             </div>
         </div>
 
 
+        <!-- 退回原因提示框 板块 -->
+        <% if(order.status == 'WaitVerifySettle' || order.status == 'ReturnedSettleAccounts') {%>
+        <div id="reasonsReturnPlate">
+            <% if(userType == 'buy' && order.status == 'WaitVerifySettle'){ %>
+            <!-- 待审核.状态提示-->
+            <div class="reasonsReturn mt20">
+                <div class="reasonsReturn_back show">
+                    <h2 class="returnTitle"><span class="statusLab">当前状态：</span>待确认结算</h2>
+                    <p class="sf">您还有
+                        <span class="bright Day">12</span>天
+                        <span class="bright Hour">12</span>小时
+                        <span class="bright Minute">12</span>分
+                        <span class="bright Second">12</span>秒来确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。</p>
+                </div>
+            </div>
+            <% } %>
+
+            <% if(userType == 'buy' && order.status == 'ReturnedSettleAccounts'){ %>
+            <div class="reasonsReturn mt20">
+                <!-- 审核退回.查看原因-->
+                <div class="reasonsReturn_view show">
+                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+                    <table class="returnTab">
+                        <tbody>
+                        <tr>
+                            <td width="66">退回原因：</td>
+                            <td>
+                                <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2016-06-01 15:46:32</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" class="iBtn iBtn_sm iBtn_edit mt10" value="修改退回原因"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 审核退回.修改原因-->
+                <div class="reasonsReturn_edit .show">
+                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+                    <table class="returnTab">
+                        <tbody>
+                        <tr>
+                            <td class="va_top" width="66">退回原因：</td>
+                            <td>
+                                <div class="txtAreaBox">
+                                    <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
+                                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2016-06-01 15:46:32</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="txt_c">
+                                <input type="button" class="iBtn iBtn_def" value="取消">
+                                <input type="button" class="iBtn iBtn_yes ml20" value="确认"><br/><br/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <% } %>
+
+            <% if(userType == 'sell' && order.status == 'ReturnedSettleAccounts'){ %>
+            <!-- 审核退回.卖家修改-->
+            <div class="reasonsReturn againRefer mt20">
+                <div class="reasonsReturn_view show">
+                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+                    <table class="returnTab">
+                        <tbody>
+                        <tr>
+                            <td width="66">退回原因：</td>
+                            <td>
+                                <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2016-06-01 15:46:32</td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <% } %>
+
+        </div>
+        <% } %>
+
+
+        <!-- 结算单信息 板块-->
+        <div id="settlementInfoPlate">
+            <!-- 结算信息 -->
+            <div class="mt20">
+                <h2 class="settlementTit">结算单</h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">订单号</th>
+                        <th width="230">合同编号</th>
+                        <th>确认提货时间</th>
+                        <th width="230">结算时间</th>
+                    </tr>
+                    <tr>
+                        <td>82793847398 </td>
+                        <td>82793847398 </td>
+                        <td>2016-05-31 16:29:18</td>
+                        <td>2016-05-31 16:29:22</td>
+                    </tr>
+                    <tr>
+                        <th>港口</th>
+                        <th>煤种</th>
+                        <th>合同吨位（吨）</th>
+                        <th>合同基准单价（元/吨）</th>
+                    </tr>
+                    <tr>
+                        <td>无烟煤 </td>
+                        <td>4000 </td>
+                        <td>400</td>
+                        <td>40,000.00</td>
+                    </tr>
+                    <tr>
+                        <th>合同金额（元）</th>
+                        <th>已付款金额（元）</th>
+                        <th>付款时间</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td>40,000.00</td>
+                        <td>40,000.00 </td>
+                        <td>400</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 实际结算数据 -->
+            <div class="mt20">
+                <% var isShowEdit_sj = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status != 'WaitVerifySettle' || order.status != 'ReturnedSettleAccounts')) %>
+                <h2 class="settlementTit">实际结算数据
+                    <% if(isShowEdit_sj) {%><span class="subEditTitle">(带 <s class="require">*</s>的为必填项)</span><%}%>
+                </h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            总结算吨位（吨）
+                        </th>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            港务费（元）
+                        </th>
+                        <th>
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            总结算金额（元）
+                        </th>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            <span class="giveChangeTit">应补货款金额（元）</span>
+                        </th>
+                    </tr>
+
+                    <% if(isShowEdit_sj) {%>
+                    <tr>
+                        <td class="billBox">
+                            <input type="text" class="billIpt" placeholder="0-100整数"/>
+                            <span class="errInfo"></span>
+                        </td>
+                        <td class="billBox">
+                            <input type="text" class="billIpt" placeholder="0-100整数"/>
+                            <span class="errInfo"></span>
+                        </td>
+                        <td class="billBox">
+                            <input type="text" class="billIpt" placeholder="0-100整数"/>
+                            <span class="errInfo"></span>
+                        </td>
+                        <td><span class="giveChangeNum">880.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>说明</th>
+                        <td colspan="3" class="billBox">
+                            <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写"/>
+                            <span class="errInfo"></span>
+                        </td>
+                    </tr>
+
+                    <% } else { %>
+                    <tr>
+                        <td>3234623</td>
+                        <td>23451236</td>
+                        <td>1232446457</td>
+                        <td><span class="giveChangeNum">880.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>说明</th>
+                        <td colspan="3">243125135</td>
+                    </tr>
+                    <% } %>
+
+                    <tr>
+                        <th colspan="2">购方公司</th>
+                        <th colspan="2">销方公司</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span>买家公司名称全称</span>
+                        </td>
+                        <td colspan="2">
+                            <span>卖家公司名称全称</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- 补充协议文件 板块 -->
+        <% if(order.status == 'WaitSettleAccounts') { %>
+        <div id="supplyAgreementPlate" class="fileOperation mt20">
+            <div class="fileOperation_title fl">
+                <p class="sss">
+                    <span class="require">*</span>补充协议文件：
+                </p>
+            </div>
+            <div class="fileOperation_body">
+                <div class="fileList">
+                    <span class="iBtn iBtn_up">
+                        <i class="iBtn_up_icn"></i>点击上传
+                    </span>
+
+                    <span class="iBtn iBtn_down">
+                        <i class="iBtn_down_icn"></i>下载附件
+                    </span>
+                    <!--<% include ../../custom_components/upload/upload %>-->
+                </div>
+                <p class="fileExplain bright">在审核时请详细查看文件。</p>
+            </div>
+        </div>
+        <% } %>
+
 
         <!-- 清算货款信息 板块-->
-        <div class="plateBox mt20">
+        <% if(userType == 'buy' && (order.status == 'WaitVerifySettle' || order.status == 'WaitSettleAccounts')) { %>
+        <div id="clearPaymentPlate" class="plateBox mt20">
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">清算货款确认</h3>
@@ -224,32 +333,12 @@
                 </table>
             </div>
         </div>
+        <% } %>
 
 
-        <!-- 补充协议文件 板块 -->
-        <div class="fileOperation mt20">
-            <div class="fileOperation_title fl">
-                <p class="sss">
-                    <span class="require">*</span>补充协议文件：
-                </p>
-            </div>
-            <div class="fileOperation_body">
-                <div class="fileList">
-                    <span class="iBtn iBtn_up">
-                        <i class="iBtn_up_icn"></i>点击上传
-                    </span>
-
-                    <span class="iBtn iBtn_down">
-                        <i class="iBtn_down_icn"></i>下载附件
-                    </span>
-                    <!--<% include ../../custom_components/upload/upload %>-->
-                </div>
-                <p class="fileExplain bright">在审核时请详细查看文件。</p>
-            </div>
-        </div>
-
-        <!-- 上传盖结算单 板块 -->
-        <div class="fileOperation mt20">
+        <!-- 上传盖章结算单 板块 -->
+        <% if(userType == 'buy') { %>
+        <div id="upSealPlate" class="fileOperation mt20">
             <div class="fileOperation_title fl">
                 <p class="sss">
                     <span class="require">*</span>上传盖章结算单：
@@ -273,17 +362,20 @@
                     2.要求扫描件或者照片，大小<span class="bright">不超过5M</span>，如果多个文件，请压缩上传文件夹。</p>
             </div>
         </div>
+        <% } %>
 
         <!-- 操作按钮 模块 -->
-        <div class="operationBox mt20">
+        <% if(order.status == 'WaitSettleAccounts') {%>
+        <div id="operationBtnPlate" class="operationBox mt20">
             <p>&nbsp;</p>
             <p>&nbsp;</p>
+            <% if(userType == 'buy') { %>
             <input type="button" class="iBtn iBtn_no" value="提出异议" data-toggle="modal" data-target="#reasonsReturnModal" />
+            <% } %>
             <input type="button" class="iBtn iBtn_yes ml20" value="确认结算">
             <p>&nbsp;</p>
         </div>
-
-
+        <% } %>
 
     </div>
 </div>
@@ -319,7 +411,7 @@
 
 
 <!-- 重要提示: 模态框-->
-<div class="modal fade" id="significantModal" role="dialog" style="display: none;">
+<div class="modal fade" id="significantModal" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content significantModalCon" style="margin-top:193px;">
             <!-- 重要提示-->

@@ -25,18 +25,22 @@
                             <dt>订单号：</dt>
                             <dd><%= order.orderNO%></dd>
                         </dl>
+                        <% if(order.contractNO) {%>
                         <dl>
                             <dt>合同编号：</dt>
-                            <dd><%= order.contractNO%></dd>
+                            <dd><%= order.contractNO %></dd>
                         </dl>
+                        <% } %>
                         <dl>
                             <dt>下单时间：</dt>
                             <dd><%= order.createTime%></dd>
                         </dl>
+                        <% if(order.payTime) {%>
                         <dl>
                             <dt>付款时间：</dt>
                             <dd><%= order.payTime%></dd>
                         </dl>
+                        <% } %>
                         <dl>
                             <dt>订单状态：</dt>
                             <dd><span class="text_zt"><%= order.status%></span></dd>
@@ -106,7 +110,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content mt150 ">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
             </div>
             <div class="modal-body">
