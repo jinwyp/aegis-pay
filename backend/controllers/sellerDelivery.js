@@ -4,7 +4,7 @@
 
 var request = require('request');
 var api_config = require('../api/v1/api_config');
-var cache      = require('../common/cache');
+var cache      = require('../libs/cache');
 var config     = require('../config');
 var __dirfiles = config.sysFileDir;
 var logger     = require("../libs/logger");
