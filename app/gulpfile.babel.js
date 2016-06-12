@@ -2,6 +2,7 @@
 
 import gulp from 'gulp';
 import del from 'del';
+import spritesmith from 'gulp.spritesmith';
 import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import rjs from 'requirejs';
@@ -72,7 +73,13 @@ gulp.task('sass', () =>
 );
 
 
-
+gulp.task('sprite', function () {
+    var spriteData = gulp.src(sourcePaths.images).pipe(spritesmith({
+        imgName: distPaths.images + '/auto-sprite.png',
+        cssName: distPaths.css + '/auto-sprite.css'
+    }));
+    return spriteData.pipe(gulp.dest('path/to/output/'));
+});
 
 gulp.task('libs', () =>
     gulp.src(sourcePaths.libs)
