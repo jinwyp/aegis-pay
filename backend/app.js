@@ -150,3 +150,4 @@ if (!module.parent) {
         logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
+
