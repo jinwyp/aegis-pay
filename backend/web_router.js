@@ -29,6 +29,7 @@ var payCtl                    = require('./controllers/pay');
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 
 var wealthCenter              = require('./controllers/wealth/wealthCenter');       //财富管理
+var financialCenter              = require('./controllers/wealth/financialCenter');       //财富管理
 
 
 
@@ -55,6 +56,7 @@ router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDel
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
+router.get('/wealth/financialCenter', financialCenter.financialCenter);    //财务管理中心
 
 
 router.get('/return', returnDetailController.returnDetail);

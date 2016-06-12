@@ -433,11 +433,12 @@ a:hover {
 
 //头部css 更新与2016-5-17
 $hoverColor: #00b7ec;
+$headerBgColor: #292929;
 #paymentHeader{
 
   .headWrap{
     height:35px;
-    background: #292929;
+    background: $headerBgColor;
     font-size: 12px;
     color:#fff;
     font-family: "microsoft yahei";
@@ -531,6 +532,94 @@ $hoverColor: #00b7ec;
 
       a,span{display: inline-block;vertical-align: middle;font-size: 18px;color:#666;}
       .subHeaderTit{margin-left: 10px;position: relative;top: -2px}
+    }
+  }
+}
+
+#financialCenterHeader{
+  .headWrap{
+    height:35px;
+    line-height: 35px;
+    background: $headerBgColor;
+    font-size: 12px;
+    color:#fff;
+    font-family: "microsoft yahei";
+
+    .wrap1000{
+      width: 1000px;
+      margin: 0 auto;
+
+      .menuList{
+        padding:8px 0;
+        //float: left;
+
+        li{
+          float: left;
+          padding:0px 10px;
+          position: relative;
+          background: url("/static/images/header/indexBorder.png") no-repeat right 4px;
+
+          a{
+            color:#fff;
+            display: inline-block;
+            vertical-align: middle;
+            &:hover{
+              color: $hoverColor;
+              text-decoration: none;
+            }
+          }
+          &.noborder{background: none;}
+          .triggle{
+            width: 0;
+            height: 0;
+            display: inline-block;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #fff;
+            vertical-align: middle;
+          }
+          &:hover{
+            .triggle{
+              width: 0;
+              height: 0;
+              display: inline-block;
+              border-left: 4px solid transparent;
+              border-right: 4px solid transparent;
+              border-bottom: 4px solid #fff;
+              border-top: none;
+              vertical-align: middle;
+            }
+          }
+          .hideMenu{
+            display: none;
+            background: #292929;
+            padding: 10px;
+            padding-top: 15px;
+            position: absolute;
+            z-index:10;
+            top: 16px;
+            left: 0px;
+
+            li{
+              background: none;
+              display: inline;
+              width: 100%;
+              margin-bottom: 5px;
+              padding:0;
+              cursor:pointer;
+
+              &:hover a{color:$hoverColor}
+            }
+          }
+          &.webNav:hover .hideMenu{display: block}
+        }
+        .border-right-none
+        .webNav:hover >a {
+          color:$hoverColor
+        }
+        &::after{clear:both;content: ''}
+      }
+      .rightMenuList{float: right}
     }
   }
 }
