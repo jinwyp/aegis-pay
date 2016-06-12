@@ -107,14 +107,18 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
         field: newErr.field
     };
 
+    if (resError.errorCode === 404) {
+        logger.warn(newErr);
+    }else if (resError.errorCode >= 500){
+        logger.error(newErr);
+    }else if (resError.errorCode >= 1000){
+
+    }else{
+        logger.error(newErr);
+    }
+
+
     if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
-
-        if (resError.errorCode === 404) {
-            logger.warn(PrettyError.render(newErr));
-        }else if (resError.errorCode >= 500){
-            logger.error(PrettyError.render(newErr));
-        }
-
         return res.json(resError);
     }else{
         if (resError.errorCode > 1000) {
@@ -123,11 +127,8 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
-            logger.warn(PrettyError.render(newErr));
             return res.render('global/globalTemp/page404', resError);
         }
-
-        logger.error(PrettyError.render(newErr));
 
         return res.render('global/globalTemp/error', resError);
     }
