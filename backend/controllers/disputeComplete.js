@@ -5,7 +5,7 @@
 var request    = require('request');
 
 var api_config = require('../api/v1/api_config');
-var logger = require("../common/logger");
+var logger = require("../libs/logger");
 
 exports.disputeComplete = function (req, res, next) {
     
