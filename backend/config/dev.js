@@ -11,6 +11,11 @@ var config = {
         host : '10.100.10.2',
         port : '6379',
         db   : 0
+    },
+
+    passport: {
+      member: 'https://member-dev.yimei180.com',
+      cookieName: 'passport'
     }
 };
 
