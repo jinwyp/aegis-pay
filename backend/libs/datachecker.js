@@ -3,7 +3,7 @@
  */
 
 var validator = require('validator');
-var code = require('../common/ValidationCode');
+var code = require('./validationCode');
 
 var ValidationError = require('../errors/ValidationError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');

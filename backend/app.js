@@ -27,7 +27,7 @@ var busboy              = require('connect-busboy');
 var errorhandler        = require('./middlewares/errorhandler');
 var cors                = require('cors');
 var renderMiddleware    = require('./middlewares/render');
-var logger              = require("./common/logger");
+var logger              = require("./libs/logger");
 var engine              = require('ejs-locals');
 
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
@@ -61,7 +61,7 @@ if (config.debug) {
 }
 
 
-require('./common/ejshelper')(app);
+require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/static', express.static(staticDir));

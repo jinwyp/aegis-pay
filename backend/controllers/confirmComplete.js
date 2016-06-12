@@ -7,7 +7,7 @@ var _          = require('lodash');
 var request    = require('request');
 
 var api_config = require('../api/v1/api_config');
-var logger = require("../common/logger");
+var logger = require("../libs/logger");
 
 // 处理业务逻辑
 exports.confirmComplete = function (req, res, next) {

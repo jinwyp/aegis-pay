@@ -5,9 +5,9 @@
 var request = require('request');
 var _       = require('lodash');
 
-var cache      = require('../common/cache');
-var logger     = require("../common/logger");
-var checker    = require('../common/datachecker');
+var cache      = require('../libs/cache');
+var logger     = require("../libs/logger");
+var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var config     = require('../config');
 

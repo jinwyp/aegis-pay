@@ -12,6 +12,8 @@ var _ = require('lodash');
 exports.disputeApply = function (req, res, next) {
     request({url : 'http://localhost:8800/dispute/disputeApply'}, function (err, data) {
 
+        if (err) return next(err);
+        
         var source  = JSON.parse(data.body);
         var content = _.assign({}, {headerTit: "纠纷申请页面",pageTitle: "纠纷申请页面"}, source)
         res.render('dispute/disputeApply', content);
