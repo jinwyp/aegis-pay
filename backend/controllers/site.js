@@ -20,10 +20,14 @@ exports.home = function (req, res, next) {
 		'	<li><a href="/getOrderDetail?orderId=1">订单详情</a></li>',
         '	<li><a href="/confirmDelivery">确认提货</a></li>',
         '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
-        '	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
-        '	<li><a href="/settlement/settlementForm_buyer?id=111&type=1">买家结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm?type=2&id=11" target="_blank">结算单:待结算.卖家开具结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm?type=2&id=21" target="_blank">结算单:待审核.卖家编辑结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm?type=1&id=22" target="_blank">结算单:待审核.买家审核结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm?type=2&id=31" target="_blank">结算单:审核退回.卖家修改数据</a></li>',
+        '	<li><a href="/settlement/settlementForm?type=1&id=32" target="_blank">结算单:审核退回.买家修改退回原因</a></li>',
+        '	<li><a href="/order/orderClose?id=222">关闭订单(待签合同)</a></li>',
+        '	<li><a href="/order/orderClose?id=111">关闭订单(待付款)</a></li>',
         '	<li><a href="/return">退货详情页</a></li>',
-        '	<li><a href="/order/orderClose?id=111">关闭订单</a></li>',
         '	<li><a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
         '</ul>'
     ].join('');
