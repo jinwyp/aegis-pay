@@ -8,7 +8,7 @@ var config = {
     homepage : 'https://pay-dev.yimei180.com',
 
     redis      : {
-        host : '10.0.10.2',
+        host : '10.100.10.2',
         port : '6379',
         db   : 0
     }
