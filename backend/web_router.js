@@ -61,6 +61,7 @@ router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
 
 router.get('/return', returnDetailController.returnDetail);
 router.get('/compact', compactController.compact);
+router.get('/compactDetail', compactController.compactDetail);
 router.get('/pay/success', payCtl.success);
 router.get('/pay', payCtl.page);
 
