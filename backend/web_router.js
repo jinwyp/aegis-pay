@@ -23,9 +23,11 @@ var orderCloseContr           = require('./controllers/order/orderClose');      
 var settlementFormContr       = require('./controllers/settlement/settlementForm');               // 结算单开具页面 模块(控制文件路径)
 var sellerDeliveryController  = require('./controllers/sellerDelivery');                     // 关闭订单 模块(控制文件路径)
 var returnDetailController    = require('./controllers/returnDetail');
+
                                                //支付模块
-var disputeApply              = require('./controllers/disputeApply');   //纠纷申请                                               //支付模块
-var confirmComplete           =require('./controllers/confirmComplete');            //确认完成页面
+var disputeApply              = require('./controllers/disputeApply');   //纠纷申请
+var disputeComplete           = require('./controllers/disputeComplete');   //纠纷申请完成页面
+var confirmComplete           = require('./controllers/confirmComplete');            //确认完成页面
 var payCtl                    = require('./controllers/pay');
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 
@@ -52,6 +54,7 @@ router.get('/settlement/settlementForm_seller', settlementFormContr.orderInfo); 
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 router.get('/dispute/disputeApply', disputeApply.disputeApply);
+router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
 
 
 
