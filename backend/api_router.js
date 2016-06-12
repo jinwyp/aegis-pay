@@ -1,8 +1,8 @@
 var express = require('express');
 var router  = express.Router();
 
-var sms = require('./common/sms_code');
-var captcha = require('./common/captcha');
+var sms = require('./libs/sms_code');
+var captcha = require('./libs/captcha');
 
 var siteController  = require('./api/v1/site');
 var compactApi      = require('./api/v1/compact');

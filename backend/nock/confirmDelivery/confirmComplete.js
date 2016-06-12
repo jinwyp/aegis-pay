@@ -1,10 +1,9 @@
 var nock = require('nock');
 var API  = require('../../api/v1/api_config');
-
 var confirmComplete        = nock(API.host).log(console.log);
 var confirmCompletePersist = nock(API.host).persist();
 
-confirmComplete.get('/confirmDelivery/confirmComplete').reply(200,
+confirmCompletePersist.get('/confirmDelivery/confirmComplete').reply(200,
     {
         "sellInfo" : {
             "NCV"                  : 5090, "NCV02"  : 6500,
