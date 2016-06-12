@@ -27,10 +27,10 @@ var busboy              = require('connect-busboy');
 var errorhandler        = require('./middlewares/errorhandler');
 var cors                = require('cors');
 var renderMiddleware    = require('./middlewares/render');
-var logger              = require("./common/logger");
+var logger              = require("./libs/logger");
 var engine              = require('ejs-locals');
 
-require('./common/ejsFiltersAddon')(require('ejs').filters);
+// require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../app/static');
@@ -54,14 +54,14 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
-    console.log('----- Environment Config Variable: ');
-    console.log(config);
+    logger.info('----- NodeJS Environment Config Variable: ');
+    logger.info(config);
     // Views 渲染时间
     app.use(renderMiddleware.render);
 }
 
 
-require('./common/ejshelper')(app);
+require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/static', express.static(staticDir));
@@ -147,6 +147,7 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('----------- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
+

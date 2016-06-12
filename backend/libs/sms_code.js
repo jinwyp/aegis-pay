@@ -1,10 +1,12 @@
-var request    = require('request');
-var ccap       = require('ccap');
-var _          = require('lodash');
+var request = require('request');
+var ccap    = require('ccap');
+var _       = require('lodash');
 
+var logger     = require("./logger");
 var checker    = require('./datachecker');
 var cache      = require('./cache');
 var api_config = require('../api/v1/api_config');
+
 
 /**
  * 发送校验码
@@ -162,7 +164,7 @@ exports.sendCode = function (req, res, next) {
             if (dataSMS.success) {
 
                 cacheSet(userInfo, sms).then(function(data){
-                    console.log('----- Send SMS Success: ' + sms);
+                    logger.debug('----- Send SMS Success: ' + sms);
                     return res.json(dataSMS);
                 }).catch(next);
 

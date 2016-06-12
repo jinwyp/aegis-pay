@@ -4,9 +4,9 @@
 
 var request = require('request');
 
-var checker    = require('../../common/datachecker');
+var checker    = require('../../libs/datachecker');
 var api_config = require('../../api/v1/api_config');
-
+var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
@@ -76,22 +76,20 @@ exports.getOrderDetail = function (req, res, next) {
                 "order"    : source.data.order
             };
 
-            //console.log('orderDetail获取到的结果是----------------------------' + content);
+            //logger.debug('orderDetail获取到的结果是----------------------------' + content);
 
             res.render('order/buyOrderDetail', content);
         } else {
             res.send(data.body);
         }
     });
-
-
 };
 
 
 exports.printDetail = function (req, res, next) {
     request({url : 'http://localhost:7777/getOrderDetail'}, function (err, data) {
-        console.log('printDetail获取到的错误是----------------------------' + err);
-        console.log("printDetail请求返回的数据是----------------------------" + data);
+        logger.debug('printDetail获取到的错误是----------------------------' + err);
+        logger.debug("printDetail请求返回的数据是----------------------------" + data);
         if (data != undefined) {
             var source  = JSON.parse(data.body);
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
@@ -102,7 +100,7 @@ exports.printDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
-            console.log('printDetail获取到的结果是----------------------------' + content);
+            logger.debug('printDetail获取到的结果是----------------------------' + content);
             //渲染页面,指定模板&数据
             res.render('order/printDetail', content);
             //	res.send(home);
@@ -114,6 +112,6 @@ exports.printDetail = function (req, res, next) {
 };
 
 exports.orderTest = function (req, res, next) {
-    console.log('服务器被请求了' + req.query.id);
+    logger.debug('服务器被请求了' + req.query.id);
     res.send('fdsfsdfsdf');
 };

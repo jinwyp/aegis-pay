@@ -8,7 +8,7 @@ var PrettyError = new PrettyErrorLib();
 PrettyError.skipNodeFiles(); // this will skip events.js and http.js and similar core node files, this will skip node.js, path.js, event.js, etc.
 PrettyError.skipPackage('express', 'mongoose'); // this will skip all the trace lines about express` core and sub-modules
 
-var logger = require('../common/logger');
+var logger = require('../libs/logger');
 
 var PageNotFoundError = require('../errors/PageNotFoundError');
 var SystemError = require('../errors/SystemError');
@@ -36,7 +36,6 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
 
     logger.debug(PrettyError.render(newErr));
     // debug(JSON.stringify(newError, null, 4));
-
 
 
     var resError = {
@@ -68,22 +67,16 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     }else {
         if (resError.errorCode > 1000) {
             resError.url = req.url;
-            logger.info(PrettyError.render(newErr));
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
-            logger.warn(PrettyError.render(newErr));
             return res.render('global/globalTemp/page404', resError);
         }
 
-        logger.error(PrettyError.render(newErr));
-
         return res.render('global/globalTemp/error', resError);
     }
-
-
 
 };
 
@@ -104,32 +97,38 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     res.status(newErr.status);
 
 
-
     var resError = {
         success : false,
         type : newErr.type,
         name : newErr.name,
         message: newErr.message,
+        status: newErr.status,
         errorCode: newErr.code,
         field: newErr.field
     };
+
+    if (resError.errorCode === 404) {
+        logger.warn(newErr);
+    }else if (resError.errorCode >= 500){
+        logger.error(newErr);
+    }else if (resError.errorCode >= 1000){
+
+    }else{
+        logger.error(newErr);
+    }
+
 
     if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
         return res.json(resError);
     }else{
         if (resError.errorCode > 1000) {
-            resError.url = req.url;
-            logger.info(PrettyError.render(newErr));
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
-            logger.warn(PrettyError.render(newErr));
             return res.render('global/globalTemp/page404', resError);
         }
-
-        logger.error(PrettyError.render(newErr));
 
         return res.render('global/globalTemp/error', resError);
     }
