@@ -142,10 +142,8 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             }else{
                $(".errorMes").text("");
             }
-
-            //if(temp){
                $.ajax({
-                  url:'api/confirmDelivery/test',
+                  url:'/api/confirmDelivery/confirmDeliveryIndex',
                   method:'POST',
                   data:{
                      id:"250",
@@ -154,15 +152,12 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                      indexList:inputList,
                      qualityList:qualityList,
                      quantityList:quantityList,
-                     orderId:"100000"
+                     orderId:"1000000"
                   },
                   success:function(data){
-                     //alert(data.qualityList);
-                     //alert(data.quantityList);
-                     //console.log(inputList)
+
                   }
                });
-            //}
          });
       }
    }

@@ -11,7 +11,7 @@ var cache      = require('../../libs/cache');
 const uploadPath = config.sysFileDir + '/static/upload/';
 
 
-exports.test = function (req, res, next) {
+exports.confirmDeliveryIndex = function (req, res, next) {
     checker.orderId(req.body.orderId);
     checker.deliveryAmount(req.body.deliveryAmount);
     var params   = req.body;
