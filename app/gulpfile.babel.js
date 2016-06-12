@@ -63,10 +63,10 @@ gulp.task('sass', () =>
             outputStyle: 'compact',
             errLogToConsole: true
         }).on('error', plugins.sass.logError))
-        .pipe(plugins.autoprefixer({
-            browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
-            cascade: false
-        }))
+        //.pipe(plugins.autoprefixer({
+        //    browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
+        //    cascade: false
+        //}))
         .pipe(plugins.size({title : 'CSS Styles'}))
         .pipe(gulp.dest(distPaths.css))
 );
