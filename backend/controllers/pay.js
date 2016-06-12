@@ -1,6 +1,6 @@
 var request    = require('request');
 var _          = require('lodash');
-var checker    = require('../common/datachecker');
+var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 
 

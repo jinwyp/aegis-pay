@@ -1,5 +1,5 @@
-var cache   = require('../common/cache');
-var checker = require('../common/datachecker');
+var cache   = require('../libs/cache');
+var checker = require('../libs/datachecker');
 
 
 // fetch compact
