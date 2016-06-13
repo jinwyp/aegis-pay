@@ -20,14 +20,14 @@
     "tests"
   ],
   "dependencies": {
-    "jquery":"1.12.4",
-    "html5shiv":"3.7.3",
-    "requirejs":"2.2.0",
-    "bootstrap": "^3.3.6",
-    "flexslider": "FlexSlider#^2.6.1",
     "blueimp-file-upload": "^9.12.3",
-    "lightbox2": "^2.8.2",
+    "bootstrap": "^3.3.6",
     "eonasdan-bootstrap-datetimepicker": "bootstrap3-datetimepicker#^4.17.37",
+    "flexslider": "FlexSlider#^2.6.1",
+    "jquery":"1.12.4",
+    "lightbox2": "^2.8.2",
+    "html5shiv":"^3.7.3",
+    "requirejs":"2.2.0",
     "pickadate": "^3.5.6"
   }
 }
