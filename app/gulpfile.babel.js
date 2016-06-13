@@ -12,22 +12,25 @@ const reload  = browserSync.reload;
 
 
 const sourcePaths = {
-    "javascript" : "scripts/**/*.js",
+    "javascript"               : "scripts/**/*.js",
     "custom_components_styles" : "custom_components/**/*.scss",
-    "custom_components_js" : "custom_components/**/*.js",
-    "libs"       : "libs/*",
-    "components" : "components/**/*",
-    "images"     : "images/**/*",
-    "scss"       : 'styles/*.scss'
+    "custom_components_js"     : "custom_components/**/*.js",
+    "libs"                     : "libs/*",
+    "components"               : "components/**/*",
+    "images"                   : "images/**/*",
+    "imagesSprites"            : "images/sprite/icon/**/*",
+    "scss"                     : 'styles/*.scss'
 };
 
 const distPaths = {
-    "javascript" : "static/scripts",
+    "javascript"        : "static/scripts",
     "custom_components" : "static/custom_components",
-    "libs"       : "static/libs",
-    "components" : "static/components",
-    "images"     : "static/images",
-    "css"        : "static/styles"
+    "libs"              : "static/libs",
+    "components"        : "static/components",
+    "images"            : "static/images",
+    "imagesSprites"     : "images/sprite",
+    "imagesSpritesScss" : "styles/sprite",
+    "css"               : "static/styles"
 };
 
 
@@ -53,7 +56,7 @@ gulp.task('images', () =>
 
 
 // Compile and automatically prefix stylesheets
-gulp.task('sass', () =>
+gulp.task('sass', ['sprite'], () =>
     gulp.src(sourcePaths.scss)
         .pipe(plugins.newer({
             dest: distPaths.css,
@@ -74,11 +77,12 @@ gulp.task('sass', () =>
 
 
 gulp.task('sprite', function () {
-    var spriteData = gulp.src(sourcePaths.images).pipe(spritesmith({
-        imgName: distPaths.images + '/auto-sprite.png',
-        cssName: distPaths.css + '/auto-sprite.css'
+    var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
+        imgName:  distPaths.imagesSprites + '/auto-sprites.png',
+        cssName:  distPaths.imagesSpritesScss + '/_sprites.scss',
+        cssFormat:  'scss'
     }));
-    return spriteData.pipe(gulp.dest('path/to/output/'));
+    return spriteData.pipe(gulp.dest(''));
 });
 
 gulp.task('libs', () =>
