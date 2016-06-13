@@ -20,15 +20,17 @@
                     <li><a href="javascript:void(0)">业务管理中心</a></li>
                     <li class="noborder"><a href="javascript:void(0)">财务管理中心</a></li>
                 </ul>
-                <!--未登录状态-->
+
                 <ul class="menuList rightMenuList">
-                    <li><a href="javascript:void(0)">登录</a></li>
-                    <li class="noborder"><a href="javascript:void(0)">注册</a></li>
-                </ul>
-                <!--登录状态-->
-                <ul class="menuList rightMenuList">
-                    <li><a href="javascript:void(0)">账户名：130****5222</a></li>
-                    <li class="noborder"><a href="javascript:void(0)">退出</a></li>
+                    <!--登录状态-->
+                    <% if(user && user.id){ %>
+                    <li><a href="javascript:void(0)">账户名：<%= user.nickname %></a></li>
+                    <li class="noborder"><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
+                    <% }else{ %>
+                    <!--未登录状态-->
+                    <li><a href="<%= config.passport.member %>/login?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">登录</a></li>
+                    <li class="noborder"><a href="<%= config.passport.member %>/register?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">注册</a></li>
+                    <% } %>
                 </ul>
             </div>
         </div>

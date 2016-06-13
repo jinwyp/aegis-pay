@@ -531,7 +531,12 @@ $hoverColor: #00b7ec;
       margin: 0 auto;
 
       a,span{display: inline-block;vertical-align: middle;font-size: 18px;color:#666;}
-      .subHeaderTit{margin-left: 10px;position: relative;top: -2px}
+      .subHeaderTit{
+          margin-left: 10px;position: relative;top: -2px;
+          i{
+              font-size:$size_font_middle;
+          }
+      }
     }
   }
 }
@@ -612,15 +617,3 @@ $hoverColor: #00b7ec;
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

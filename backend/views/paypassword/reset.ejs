@@ -1,0 +1,21 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet('/static/styles/paypassword.css') -%>
+<% include ../global/header/subHeader %>
+<div class="mainWrapper">
+    <p class='reset-tip'>您正在为账户<span><%= userName %>（易煤网支付账户名称）</span>重置支付密码，请选择重置方式：</p>
+    <ul>
+        <li>
+            <a href="#">
+                <h5><span>忘记</span>支付密码<i>荐</i></h5>
+                <p>使用<span>绑定的手机号码</span>和<span>实名认证账户的注册号</span>或<span>社会统一代码证号</span>进行验证</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <h5><span>修改</span>支付密码</h5>
+                <p>使用<span>使用原支付密码</span>进行验证</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<% script("/static/scripts/paypassword/reset.js") -%>

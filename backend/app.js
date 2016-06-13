@@ -27,14 +27,16 @@ var busboy              = require('connect-busboy');
 var errorhandler        = require('./middlewares/errorhandler');
 var cors                = require('cors');
 var renderMiddleware    = require('./middlewares/render');
-var logger              = require("./common/logger");
+var logger              = require("./libs/logger");
 var engine              = require('ejs-locals');
 
-require('./common/ejsFiltersAddon')(require('ejs').filters);
+// require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../app/static');
-var fileStatic = path.join(__dirname, '../files/static');
+// var fileStatic = path.join(__dirname,   '../../files/static');
+//
+var fileStatic = config.sysFileDir;
 
 
 var app = express();
@@ -52,14 +54,14 @@ app.use(morgan('dev'));
 
 
 if (config.debug) {
-    console.log('----- Environment Config Variable: ');
-    console.log(config);
+    logger.info('----- NodeJS Environment Config Variable: ');
+    logger.info(config);
     // Views 渲染时间
     app.use(renderMiddleware.render);
 }
 
 
-require('./common/ejshelper')(app);
+require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/static', express.static(staticDir));
@@ -91,7 +93,7 @@ app.use(session({
 }));
 
 // custom middleware
-app.use(auth.authUser);
+app.use(auth.passport);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
@@ -117,6 +119,7 @@ _.extend(app.locals, {
 
 app.use(function (req, res, next) {
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
     next();
 });
 
@@ -129,7 +132,6 @@ app.use(busboy({
 // routes
 app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
-
 
 app.use(errorhandler.PageNotFoundMiddleware);
 
@@ -145,6 +147,7 @@ module.exports = app;
 if (!module.parent) {
     app.set('port', config.port);
     app.listen(app.get('port'), function () {
-        console.log('----------- NodeJS Express Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
+        logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
+

@@ -1,0 +1,14 @@
+
+[include]
+./api/
+./common/
+./config/
+./controllers/
+./errors/
+./middlewares/
+
+
+[ignore]
+
+.*/__tests__/.*
+.*\.ignore\.js
