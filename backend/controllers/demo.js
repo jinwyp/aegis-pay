@@ -23,7 +23,8 @@ exports.demo = function (req, res, next) {
 
 		// 订单状态 数据模拟
 		var statusObj = {
-			step: 2,        // 第几步
+			step: 4,        // 第几步
+			total: 5,		// 总步数
 			stepList: [
 				{
 					stepName: '提交订单',
@@ -42,7 +43,7 @@ exports.demo = function (req, res, next) {
 					stepDate: '2016-05-14 01:02:36'
 				},
 				{
-					stepName: '结算',
+					stepName: '结算1111',
 					stepDate: '2016-05-15 01:02:36'
 				}
 			]

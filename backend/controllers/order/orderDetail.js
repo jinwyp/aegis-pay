@@ -4,9 +4,9 @@
 
 var request = require('request');
 
-var checker    = require('../../common/datachecker');
+var checker    = require('../../libs/datachecker');
 var api_config = require('../../api/v1/api_config');
-
+var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
@@ -69,6 +69,8 @@ exports.getOrderDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
+            //logger.debug('orderDetail获取到的结果是----------------------------' + content);
+
             res.render('order/buyOrderDetail', content);
         } else {
             res.send(data.body);
@@ -90,7 +92,7 @@ exports.printDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
-            console.log('printDetail获取到的结果是----------------------------' + content);
+            logger.debug('printDetail获取到的结果是----------------------------' + content);
             //渲染页面,指定模板&数据
             res.render('order/printDetail', content);
             //	res.send(home);
@@ -102,6 +104,6 @@ exports.printDetail = function (req, res, next) {
 };
 
 exports.orderTest = function (req, res, next) {
-    console.log('服务器被请求了' + req.query.id);
+    logger.debug('服务器被请求了' + req.query.id);
     res.send('fdsfsdfsdf');
 };

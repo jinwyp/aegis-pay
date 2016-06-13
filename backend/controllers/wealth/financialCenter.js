@@ -10,7 +10,7 @@ var api_config = require('../../api/v1/api_config');
 // 处理业务逻辑
 exports.financialCenter = function (req, res, next) {
     var firstTab=req.query.firstTab;
-    var secondTab=req.query.secondTab;
+    var secondTab=req.query.;
     //if(firstTab==null){
     //    //homePage,accountPage,transactionPage,settlementPage,contractPage
     //    firstTab="accountPage";

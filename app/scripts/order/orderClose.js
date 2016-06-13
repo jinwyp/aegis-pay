@@ -3,10 +3,9 @@
 * */
 
 
-requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
+requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = 'http://localhost:8800';			// API域名
-
+    var apiHost = '/api';			                // API域名
     var $reasonId = $('[name=reasonId]'),           //原因ID
         $remarks = $('[name=remarks]'),             //备注
         $limitNum = $('.limitNum'),                 //剩余字数
@@ -15,15 +14,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
 
     // 绑定 下拉框插件
-    $reasonId.fancySelect();
-
     $reasonId.fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
         console.log(this.value);
-
         $subBtn.prop('disabled', $.trim(this.value)==='--');
     });
-
 
     // 计算剩余字数
     $remarks.keyup(function () {
@@ -38,24 +33,34 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap'], function($){
 
         // 请求参数 $("#closeForm").serialize()
         var param = {
-            userId: 'admin',
+            userId: 'userId',
             orderId: $('[name=id]').val(),
             version: $('[name=version]').val(),
             reasonId: $('[name=reasonId]').val(),
             remarks: $('[name=remarks]').val()
         };
-
-        console.dir(param);
+        console.dir(param);             // TODO: 打印参数
 
         $.ajax({
             url: apiHost + '/order/closeOrder_api',
             data: param,        //$("#closeForm").serialize(),
             success: function(data){
                 if(data.success) {
-                    alert('订单关闭成功!');
                     $('.modal .close').click();
+                    message({
+                        type: 'done',
+                        title: '完成：',
+                        detail: '操作成功'
+                    });
+                    setTimeout(function() {
+                        location.href = '/';
+                    }, 3000);
                 } else {
-                    alert('error');
+                    message({
+                        type: 'done',
+                        title: '完成：',
+                        detail: '操作失败!!'
+                    });
                 }
             }
         });

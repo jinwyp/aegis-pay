@@ -29,7 +29,7 @@ var api_config = {
     /**
      * 付款页面, 页面展示数据
      * method: get
-     * params: {orderId: 1, userId: 121}
+     * params: {orderId: 1, userId: 121, type:1}
      * response: {success: true,	error:'', errorCode: '',
 	 *							data: {
 							    	order: {
@@ -52,12 +52,14 @@ var api_config = {
      * params: {phone: 18611111111, message: '343434'}
      */
     sendSMSCode   : host + 'sendSMSCode',
-
+    // user can send sms again after 120s
+    smsResend: 120,
+    
 
     /**
      * 支付－确认付款
      * method: post
-     * params: {version:'', userId:'',orderId:'',payPassword:''}
+     * params: {version:'', userId:'',orderId:'',payPassword:'',type:1}
      */
     paySubmit     : host + 'mall/order/payment/submit',
 
@@ -65,12 +67,19 @@ var api_config = {
     /**
      * 支付－付款成功
      * method: get
-     * params: {orderId:''}
+     * params: {orderId:'', userId:, type}
      */
-    orderProgress : host + 'mall/order/progress',
+    orderProgress : host + 'mall/order/payment/success',
 
     orderDetail : host + 'getOrderDetail',
-    confirmDelivery : host + 'confirmDelivery'
+    confirmDelivery : host + 'confirmDelivery',
+    confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
+    confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
+    orderInfo : host + 'order/orderInfo',
+    orderSettlement : host + 'settlement',
+    orderCloseAPI : host + '/order/orderInfo_api',
+    orderReturn : host + 'return',
+    disputeComplete : host + 'dispute/disputeComplete'
 
 };
 
