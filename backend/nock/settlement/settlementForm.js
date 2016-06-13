@@ -27,7 +27,7 @@ var nkScopePersist = nock(API.host).persist();		        // 执行多次
 
 
 // 待结算_卖:WaitSettleAccounts
-nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'11'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'11'})
 	.reply(200, {
 		headerTit: '待结算.卖家开具结算单 11111111',
 		subTitle: '开具结算单.s',
@@ -38,10 +38,10 @@ nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'11'})
 	});
 
 // 待审核_卖:WaitVerifySettle
-nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'21'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'21'})
 	.reply(200, {
-		headerTit: '待审核.卖家编辑结算单 121212121212',
-		subTitle: '编辑结算单.s',
+		headerTit: '待审核.卖家查看结算单 121212121212',
+		subTitle: '查看结算单.s',
 		userType: 'sell',
 		order: {
 			status: 'WaitVerifySettle'
@@ -49,7 +49,7 @@ nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'21'})
 	});
 
 // 待审核_买:WaitVerifySettle
-nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'22'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'22'})
 	.reply(200, {
 		headerTit: '待审核.买家审核结算单 2222222222',
 		subTitle: '审核结算单.b',
@@ -60,7 +60,7 @@ nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'22'})
 	});
 
 // 结算被退回_卖:ReturnedSettleAccounts
-nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'31'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'31'})
 	.reply(200, {
 		headerTit: '审核不通过.卖家修改数据 31313131313131313131',
 		subTitle: '编辑结算单.s',
@@ -71,7 +71,7 @@ nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'31'})
 	});
 
 // 结算被退回_买:ReturnedSettleAccounts
-nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'32'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'32'})
 	.reply(200, {
 		headerTit: '审核不通过.买家修改退回原因 32323232323232323232',
 		subTitle: '结算单详情.b',
@@ -87,4 +87,4 @@ nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'32'})
 
 
 
-module.exports = nkScope;
+module.exports = nkScopePersist;

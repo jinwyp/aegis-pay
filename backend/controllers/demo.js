@@ -23,8 +23,8 @@ exports.demo = function (req, res, next) {
 
 		// 订单状态 数据模拟
 		var statusObj = {
-			step: 4,        // 第几步
-			total: 5,		// 总步数
+			step: 3,        // 第几步
+			total: 4,		// 总步数
 			stepList: [
 				{
 					stepName: '提交订单',

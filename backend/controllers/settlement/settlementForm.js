@@ -37,15 +37,15 @@ exports.orderSettlement = function (req, res, next) {
 		req_type = req.query.type,
 		typeArr = ['none', 'buy', 'sell'];
 
-	checker.orderId(req_id);
+	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	if(!req_id) {
 		res.send('<p>请输入 订单编号!</p>');
 	} else {
-		console.log('-=-控制层-=-=-=-=-=-=-=-=-=-id: '+ req_id+' ,type: '+ req_type);
+		//console.log('-=-控制层-=-=-=-=-=-=-=-=-=-apiHost.host: '+ apiHost.host);
 
-		var url = apiHost.host + '/settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
+		var url = apiHost.host + 'settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
 		request(url, function (err, data) {
 			if (err) return next(err);
 
@@ -66,11 +66,11 @@ exports.sellerView = function (req, res, next) {
 
 	var req_id = req.query.id;
 
-	checker.orderId(req_id);
+	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	// 异步调取Java数据
-	var url = apiHost.host + '/settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
+	var url = apiHost.host + 'settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
 	request(url, function (err, data) {
 		if (err) return next(err);
 

@@ -18,7 +18,7 @@ exports.orderInfo = function (req, res, next) {
 		res.send('<p>"请输入 订单编号!"</p>');
 	} else {
 
-		var url = apiHost.host + '/order/orderInfo?orderId='+ req_id;			// TODO: apiHost.host 需换成指定接口, 如: apiHost.orderDetail
+		var url = apiHost.host + 'order/orderInfo?orderId='+ req_id;			// TODO: apiHost.host 需换成指定接口, 如: apiHost.orderDetail
 		request(url, function (err, data) {
 			if (err) return next(err);
 
@@ -38,7 +38,7 @@ exports.closeOrder_api = function(req, res, next) {
 	checker.orderId(req.query.id);
 
 	// 异步调取Java数据
-	var url = apiHost.host + '/order/closeOrder_api?orderId='+ req.query.id;
+	var url = apiHost.host + 'order/closeOrder_api?orderId='+ req.query.id;
 	request(url, function (err, data) {
 		if (err) return next(err);
 
@@ -57,7 +57,7 @@ exports.orderInfo_api = function (req, res, next) {
 	var req_type = req.query.type;
 
 	// 异步调取Java数据
-	var url = apiHost.host + '/order/orderInfo_api?id='+ req_id +'&type='+ req_type;
+	var url = apiHost.host + 'order/orderInfo_api?id='+ req_id +'&type='+ req_type;
 	request(url, function (err, data) {
 
 		if (err) return next(err);

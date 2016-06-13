@@ -3,12 +3,14 @@
     <% var i = 0, total = statusObj.total || 5 %>
     <% statusObj.step = (statusObj.step == total) ? 5 : statusObj.step %>
     <ul class="statusMain status_<%= statusObj.step %>">
+        <% var step = 1 %>
         <% for(i; i < total; i++){ %>
             <% var obj = statusObj.stepList[i], s = 0 %>
-            <% if(i == total - 1) {%>
-            <li class="statusStep step_<%= 5 %>">
+            <% step = (i == total - 1) ? 5 : i+1 %>
+            <% if(total > 4) {%>
+            <li class="statusStep step_<%= step %>">
             <% } else { %>
-             <li class="statusStep step_<%= i+1 %>">
+             <li class="statusMax step_<%= step %>">
             <% } %>
                 <span class="statusHr"></span>
                 <span class="statusDot"><%= i+1 %></span>
