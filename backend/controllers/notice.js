@@ -37,7 +37,7 @@ exports.notice = function (req, res, next) {
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : ''
+                listLink : 'accountSetting'
             },
             {
                 listName : '安全设置',
@@ -45,7 +45,7 @@ exports.notice = function (req, res, next) {
             },
             {
                 listName : '消息提醒',
-                listLink : ''
+                listLink : 'notice'
             }
         ]
     };

@@ -1,9 +1,15 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/accountSetting.css") -%>
-<% include ../global/modal/modal  %>
+
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/accountSetting.css">
+</head>
+
+
+<body>
+<%- include ../global/modal/modal  %>
+<%- include ../global/header/header %>
 <% include ../global/header/subHeader  %>
-
-
 <div id="accountSetting">
     <div class="accountSetting">
         <div class="wrap clearfix">
@@ -47,3 +53,11 @@
         </div>
     </div>
 </div>
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+</body>
+</html>

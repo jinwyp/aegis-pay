@@ -19,7 +19,7 @@ exports.accountSetting = function (req, res, next) {
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : ''
+                listLink : 'accountSetting'
             },
             {
                 listName : '安全设置',
@@ -27,13 +27,13 @@ exports.accountSetting = function (req, res, next) {
             },
             {
                 listName : '消息提醒',
-                listLink : ''
+                listLink : 'notice'
             }
         ]
     };
 
     var content = {
-        headerTit      : "账户设置",
+        headerTit      : "基本信息",
         pageTitle      : "账户设置",
         accountSideBar :accountSideBar
 

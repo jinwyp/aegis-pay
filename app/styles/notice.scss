@@ -23,22 +23,21 @@
           tr{
             height:148px;
             border-bottom:1px solid $color_border;
-            th{
-              width:250px;
-              text-align:right;
-            }
-            td{
-              padding-left:10px;
-              a{
-                padding:4px 13px;
-                background:#fd6e35;
-                color:#fff;
-                border-radius:2px;
-                font-size:12px;
+            .noticeAccount{
+              width:300px;
+              padding-left:72px;
+              h2{
+                font-size:18px;
+                line-height:34px;
               }
-            }
-            .red{
-              color:$color_red;
+              p{
+                font-size:14px;
+                color:#999;
+                line-height:34px;
+                span{
+                  color:#000;
+                }
+              }
             }
           }
           .noBorder{
@@ -48,5 +47,12 @@
       }
     }
 
+  }
+}
+
+.statusBar{
+  width:auto!important;
+  .statusMain{
+    padding-top:10px;
   }
 }
