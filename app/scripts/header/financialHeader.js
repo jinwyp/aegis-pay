@@ -22,6 +22,11 @@ requirejs(['jquery', 'bootstrap'], function($){
         $(".arrow-blue").removeClass("tab-step-"+index);
         $(this).addClass("selected");
         $(".arrow-blue").addClass("tab-step-"+newIndex);
+        if(newIndex==2){
+            $(".secondTab").removeClass("hidden-ul");
+        }else{
+            $(".secondTab").addClass("hidden-ul");
+        }
     });
 
 });
