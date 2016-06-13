@@ -10,10 +10,8 @@ define(['jquery'],function($){
         this.eventBind();
       },
       eventBind: function(){
-          console.log(111111)
         var self = this;
         $('#validBtn').click(function(){
-            console.log(232324234)
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val(),
                 cardID = self.els.$cardID.val();
