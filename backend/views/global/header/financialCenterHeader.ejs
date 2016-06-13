@@ -1,40 +1,38 @@
-<div id="financialCenterHeader">
+<div id="paymentHeader">
     <div class="headWrap">
             <div class="wrap1000">
-                <span>移动客户端</span>
-                <span>移动客户端</span>
-                <!--<ul class="menuList">-->
-                    <!--<li class="webNav">-->
-                        <!--<span></span>-->
-                        <!--<span>移动客户端</span>-->
-                        <!--<a href="javascript:void(0)">移动客户端</a>-->
-                        <!--<span class="triggle"></span>-->
-                        <!--&lt;!&ndash;<ul class="hideMenu">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">首页</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">易煤商城</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">现货搜索</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">阳光采购</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">报价区</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">金融</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">团购</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">行情资讯</a></li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<li><a href="javascript:void(0)">数据中心</a></li>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                    <!--</li>-->
-                    <!--<li><a href="javascript:void(0)">业务管理中心</a></li>-->
-                    <!--<li class="noborder"><a href="javascript:void(0)">财务管理中心</a></li>-->
-                <!--</ul>-->
+                <ul class="menuList">
+                    <li class="noborder"><span class="icon-phone"></span><span>移动客户端</span></li>
+                </ul>
 
                 <ul class="menuList rightMenuList">
+                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="javascript:void(0)"><%= user.nickname %></a><% } %></li>
+
                     <!--登录状态-->
                     <% if(user && user.id){ %>
-                    <li><a href="javascript:void(0)">账户名：<%= user.nickname %></a></li>
-                    <li class="noborder"><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
+                    <li>职务：<%= user.nickname %></li>
+                    <li><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
                     <% }else{ %>
                     <!--未登录状态-->
                     <li><a href="<%= config.passport.member %>/login?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">登录</a></li>
-                    <li class="noborder"><a href="<%= config.passport.member %>/register?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">注册</a></li>
+                    <li><a href="<%= config.passport.member %>/register?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">注册</a></li>
                     <% } %>
+                    <li class="webNav">
+                        <a href="javascript:void(0)">关于我们</a>
+                        <span class="triggle"></span>
+                        <ul class="hideMenu">
+                            <li><a href="javascript:void(0)">首页</a></li>
+                            <li><a href="javascript:void(0)">易煤商城</a></li>
+                            <li><a href="javascript:void(0)">现货搜索</a></li>
+                            <li><a href="javascript:void(0)">阳光采购</a></li>
+                            <li><a href="javascript:void(0)">报价区</a></li>
+                            <li><a href="javascript:void(0)">金融</a></li>
+                            <li><a href="javascript:void(0)">团购</a></li>
+                            <li><a href="javascript:void(0)">行情资讯</a></li>
+                            <li><a href="javascript:void(0)">数据中心</a></li>
+                        </ul>
+                    </li>
+                    <li class="noborder"><span class="icon-tel"></span><span>400-728-0153</span></li>
                 </ul>
             </div>
         </div>
