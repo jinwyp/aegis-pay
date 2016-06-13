@@ -54,7 +54,7 @@ var api_config = {
     sendSMSCode   : host + 'sendSMSCode',
     // user can send sms again after 120s
     smsResend: 120,
-    
+
 
     /**
      * 支付－确认付款
@@ -79,7 +79,10 @@ var api_config = {
     orderSettlement : host + 'settlement',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
-    disputeComplete : host + 'dispute/disputeComplete'
+    disputeComplete : host + 'dispute/disputeComplete',
+
+    // 忘记密码 － 验证身份 － 下一步
+    paypasswordForgetValid: host + 'paypassword/forget/valid'
 
 };
 

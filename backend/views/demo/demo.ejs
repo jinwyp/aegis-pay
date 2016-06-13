@@ -1,7 +1,17 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/demo.css') -%>
-<!-- < pageTitle('Demo 页面') >-->
-<% script("/static/scripts/demo.js") -%>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/demo.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
+
+
 
 
 
@@ -310,3 +320,22 @@
         </div><!-- /.modal-content -->
     </div>
 </div>
+
+
+
+
+
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/demo.js"></script>
+
+</body>
+</html>
+
+
+
