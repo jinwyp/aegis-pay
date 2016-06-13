@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function (app) {
 
     //以下所有方法在ejs模板中的调用(例：multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg'))
@@ -143,7 +145,7 @@ module.exports = function (app) {
     }
 
     app.locals.phoneFormat = function (phone) {
-        return phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
+        return _.toString(phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
     }
 
 /**

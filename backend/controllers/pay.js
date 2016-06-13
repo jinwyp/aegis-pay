@@ -12,13 +12,12 @@ exports.page = function (req, res, next) {
     request(api_config.payPage + query, function (err, data) {
         if (err) return next(err);
 
-        var phone = _.toString(userInfo.phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
         return res.render('pay/index', _.assign({},
             {
                 headerTit : '支付货款',
                 pageTitle : '支付货款'
             },
-            {"user" : {"phone" : phone}},
+            {"user" : {"phone" : userInfo.securephone}},
             JSON.parse(data.body).data));
     })
 };

@@ -106,7 +106,9 @@ gulp.task('custom_components', () => {
 });
 
 
-gulp.task('javascript', [ 'components', 'custom_components'], () =>
+
+gulp.task('javascript', ['components', 'custom_components'], () =>
+
     // rjs.optimize({
     //   baseUrl: 'app/scripts',
     //   paths: {
