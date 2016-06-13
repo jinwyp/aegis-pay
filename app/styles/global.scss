@@ -80,7 +80,9 @@ a:hover {
   font-family: $ffSt;
   color: #f60f60;
   text-decoration: initial;
-  vertical-align: middle;}
+  vertical-align: middle;
+  padding-top: 2px;
+  height: 16px;}
 .clearfix:before, .clearfix:after { content: ""; display: table; font-size:0 !important; line-height:0!important; height:0!important;}
 .clearfix:after { clear: both; }
 
@@ -321,7 +323,6 @@ a:hover {
     top: 0;
     left: 0;
     cursor: pointer;
-    font-size: 180em;
     opacity: 0;
     filter: alpha(opacity=0);
   }
