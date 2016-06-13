@@ -10,6 +10,10 @@ requirejs(['jquery', 'bootstrap'], function($){
         }
     }
 
+    $(".a-option").on("click", function(){
+        alert(000000);
+    })
+
 });
 
 
