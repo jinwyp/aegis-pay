@@ -27,7 +27,9 @@ require.config({
     'load-image-meta': '../../static/components/blueimp-load-image/js/load-image-meta',
     'canvas-to-blob': '../../static/components/blueimp-canvas-to-blob/js/canvas-to-blob.min',
     'pay.upload': '../../static/custom_components/upload/upload',
-    'message': 'Plugins/message',                      // 消息提示
+    'message': 'Plugins/message',
+    'html5shiv': '/static/components/html5shiv/dist/html5shiv',
+    'requirejs': '/static/components/requirejs/require'
   },
   packages: [
 
@@ -38,22 +40,28 @@ require.config({
         'jquery'
       ]
     },
-    'flexslider': {
-      deps: ['jquery'],
+    flexslider: {
+      deps: [
+        'jquery'
+      ],
       exports: 'flexslider'
     },
-    'lightbox': {
-      deps: ['jquery'],
+    lightbox: {
+      deps: [
+        'jquery'
+      ],
       exports: 'lightbox'
     },
-    'bootstrap': {
-      deps: ['jquery'],
+    bootstrap: {
+      deps: [
+        'jquery'
+      ],
       exports: 'bootstrap'
     },
     'jquery.fancySelect': {
       deps: [
         'jquery'
       ]
-    },
+    }
   }
 })
