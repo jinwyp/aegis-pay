@@ -10,25 +10,25 @@ require('colors');
 
 var config = require('./config');
 
-var path                = require('path');
-var express             = require('express');
-var session             = require('express-session');
-var webRouter           = require('./web_router');
-var apiRouter           = require('./api_router');
-var auth                = require('./middlewares/auth');
-var RedisStore          = require('connect-redis')(session);
-var _                   = require('lodash');
-var responseTime        = require('response-time');
-var morgan              = require('morgan');
-var csurf               = require('csurf');
-var compression         = require('compression');
-var bodyParser          = require('body-parser');
-var busboy              = require('connect-busboy');
-var errorhandler        = require('./middlewares/errorhandler');
-var cors                = require('cors');
-var renderMiddleware    = require('./middlewares/render');
-var logger              = require("./libs/logger");
-var engine              = require('ejs-locals');
+var path             = require('path');
+var express          = require('express');
+var session          = require('express-session');
+var webRouter        = require('./web_router');
+var apiRouter        = require('./api_router');
+var auth             = require('./middlewares/auth');
+var RedisStore       = require('connect-redis')(session);
+var _                = require('lodash');
+var responseTime     = require('response-time');
+var morgan           = require('morgan');
+var csurf            = require('csurf');
+var compression      = require('compression');
+var bodyParser       = require('body-parser');
+var busboy           = require('connect-busboy');
+var errorhandler     = require('./middlewares/errorhandler');
+var cors             = require('cors');
+var renderMiddleware = require('./middlewares/render');
+var logger           = require("./libs/logger");
+var ejs              = require('ejs');
 
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
 
@@ -42,8 +42,9 @@ var fileStatic = config.sysFileDir;
 var app = express();
 
 // configuration in all env
-app.engine('ejs', engine);
-app.engine('html', engine);
+app.engine('ejs', ejs.__express);
+app.engine('html', ejs.__express);
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.enable('trust proxy');

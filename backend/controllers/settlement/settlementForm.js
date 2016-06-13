@@ -41,18 +41,18 @@ exports.orderSettlement = function (req, res, next) {
 	req.userId = req.session.user.id;
 
 	if(!req_id) {
-		res.send('<p>请输入 订单编号!</p>');
+		res.send('<p>"请输入 订单编号!"</p>');
 	} else {
-		console.log('-=-控制层-=-=-=-=-=-=-=-=-=-id: '+ req_id+' ,type: '+ req_type);
+		console.log('-=-控制层-=-=-=-=-=-=-=-=-=-id: '+ req_id+' ,type: '+ typeArr[req_type]);
 
-		var url = apiHost.host + '/settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
+		var url = apiHost.host + 'settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
 		request(url, function (err, data) {
 			if (err) return next(err);
 
 			var replyData = JSON.parse(data.body);
 			replyData.pageTitle = '结算单_页面标题';
 			replyData.headerTit = replyData.headerTit;
-			res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
+			return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
 
 		});
 	}
@@ -78,7 +78,7 @@ exports.sellerView = function (req, res, next) {
 			var replyData = JSON.parse(data.body);
 			return res.send(replyData);
 		}else{
-			next(new Error('Nock error!'))
+			return next(new Error('Nock error!'))
 		}
 	});
 };

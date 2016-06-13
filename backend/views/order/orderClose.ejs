@@ -1,8 +1,15 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/orderClose.css') -%>
-<!-- < pageTitle('关闭订单') >-->
-<% script("/static/scripts/order/orderClose.js") -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/orderClose.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
 
 
 <!-- 以下.内容部分 -->
@@ -126,3 +133,17 @@
         </div><!-- /.modal-content -->
     </div>
 </div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/order/orderClose.js"></script>
+
+</body>
+</html>
+
+
+
+

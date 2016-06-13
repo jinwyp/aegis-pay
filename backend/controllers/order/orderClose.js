@@ -18,7 +18,7 @@ exports.orderInfo = function (req, res, next) {
 		res.send('<p>"请输入 订单编号!"</p>');
 	} else {
 
-		var url = apiHost.host + '/order/orderInfo?orderId='+ req_id;			// TODO: apiHost.host 需换成指定接口, 如: apiHost.orderDetail
+		var url = apiHost.host + 'order/orderInfo?orderId='+ req_id;			// TODO: apiHost.host 需换成指定接口, 如: apiHost.orderDetail
 		request(url, function (err, data) {
 			if (err) return next(err);
 

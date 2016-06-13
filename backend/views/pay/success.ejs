@@ -1,23 +1,49 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/pay.css') -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/pay.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+
 <div class="mainWrapper">
-    <% include ../global/order/statusBar %>
+    <%- include ../global/order/statusBar %>
     <div class="progressDetail">
-      <h3><span class='icon_ok'></span>您已成功付款<i><%= formatMoney(order.paymentMoney) %></i>元</h3>
-      <ul>
-        <li><span>提货地址：</span><%= order.deliveryAddress %></li>
-        <li><span>卖家姓名：</span><%= order.dealerName %></li>
-        <li><span>联系方式：</span><%= order.dealerPhone %></li>
-      </ul>
-      <a href="/getOrderDetail?orderId=<%= order.orderId %>" class='btn_blue'>查看订单详情</a>
+        <h3><span class='icon_ok'></span>您已成功付款<i><%= formatMoney(order.paymentMoney) %></i>元</h3>
+        <ul>
+            <li><span>提货地址：</span><%= order.deliveryAddress %></li>
+            <li><span>卖家姓名：</span><%= order.dealerName %></li>
+            <li><span>联系方式：</span><%= order.dealerPhone %></li>
+        </ul>
+        <a href="/getOrderDetail?orderId=<%= order.orderId %>" class='btn_blue'>查看订单详情</a>
     </div>
     <div class="security">
-      <dl class="tip-msg">
-        <dt><i class='icon_warn'></i>安全提醒：</dt>
-        <dd>下单后，<span>用QQ、邮件给您发送i连接办理退款的都是骗子！</span></dd>
-        <dd>如果易煤网因业务需要进行系统升级，我们会以邮件形式告知您，请关注您的邮箱，谨防假冒我平台客服人员、broker人员电话诈骗！</dd>
-      </dl>
+        <dl class="tip-msg">
+            <dt><i class='icon_warn'></i>安全提醒：</dt>
+            <dd>下单后，<span>用QQ、邮件给您发送i连接办理退款的都是骗子！</span></dd>
+            <dd>如果易煤网因业务需要进行系统升级，我们会以邮件形式告知您，请关注您的邮箱，谨防假冒我平台客服人员、broker人员电话诈骗！</dd>
+        </dl>
     </div>
 </div>
-<% script("/static/scripts/pay/index.js") -%>
+
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/pay/index.js"></script>
+
+</body>
+</html>
+
+
+
+
+

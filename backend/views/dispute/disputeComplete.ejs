@@ -1,6 +1,15 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/disputeComplete.css") -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/disputeComplete.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
 <div id="disputeComplete">
     <div class="disputeCompleteWrap">
         <div class="disputeCompleteTit"><span>纠纷处理申请</span></div>
@@ -18,3 +27,14 @@
         </div>
     </div>
 </div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<!--<script src="/static/scripts/compact/index.js"></script>-->
+
+</body>
+</html>
+

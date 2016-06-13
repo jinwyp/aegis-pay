@@ -1,6 +1,16 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/paypassword.css') -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/paypassword.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
+
 <div class="mainWrapper">
     <p class='reset-tip'>您正在为账户<span><%= userName %>（易煤网支付账户名称）</span>重置支付密码，请选择重置方式：</p>
     <ul>
@@ -18,4 +28,14 @@
         </li>
     </ul>
 </div>
-<% script("/static/scripts/paypassword/reset.js") -%>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/paypassword/reset.js"></script>
+
+</body>
+</html>
+
