@@ -69,7 +69,6 @@ exports.getOrderDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
-
             //logger.debug('orderDetail获取到的结果是----------------------------' + content);
 
             res.render('order/buyOrderDetail', content);
