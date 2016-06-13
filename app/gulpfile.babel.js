@@ -81,7 +81,7 @@ gulp.task('libs', () =>
 
 gulp.task('components', () =>
     gulp.src(sourcePaths.components)
-        .pipe(gulp.dest(distPaths.libs))
+        .pipe(gulp.dest(distPaths.components))
 );
 
 gulp.task('custom_components', () => {

@@ -31,8 +31,8 @@ var confirmComplete           = require('./controllers/confirmComplete');       
 var payCtl                    = require('./controllers/pay');
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 
-
-
+// paypassword
+var paypasswordCtl = require('./controllers/paypassword/index');
 
 router.get('/demo', demoController.demo);                                                   // 添加路由
 router.get('/', siteController.home);
@@ -64,6 +64,9 @@ router.get('/compact', compactController.compact);
 router.get('/compactDetail', compactController.compactDetail);
 router.get('/pay/success', payCtl.success);
 router.get('/pay', payCtl.page);
+
+// paypassword
+router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);

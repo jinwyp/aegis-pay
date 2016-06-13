@@ -2,7 +2,7 @@
     <div class="subHeaderWrap">
         <div class="subHeader1000">
             <a href="javascript:void(0)"><img src="/static/images/header/yimeiLogo.png" alt=""/></a>
-            <span class="subHeaderTit"><%= headerTit %></span>
+            <span class="subHeaderTit"><%= headerTit %><% if(typeof subHeaderTit !== 'undefined'){ %><i> —— <%= subHeaderTit %></i><% } %></span>
         </div>
     </div>
 </div>
