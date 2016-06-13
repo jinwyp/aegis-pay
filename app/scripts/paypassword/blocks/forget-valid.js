@@ -3,52 +3,49 @@ define(['jquery'],function($){
       init: function(){
         this.els = {
           $code: $('input[name="sms_code"]'),
-          $pass: $('input[name="payPassword"]'),
+          $cardID: $('input[name="cardID"]'),
           $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
-          $passTipErr: $('input[name="payPassword"]').parent().find('.tip-error')
+          $cardIdTipErr: $('input[name="cardID"]').parent().find('.tip-error')
         }
         this.eventBind();
       },
       eventBind: function(){
+          console.log(111111)
         var self = this;
-        $('#payBtn').click(function(){
+        $('#validBtn').click(function(){
+            console.log(232324234)
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val(),
-                payPassword = self.els.$pass.val();
+                cardID = self.els.$cardID.val();
             if(!sms_code){
                 self.els.$codeTipErr.text('请输入校验码').show();
                 self.els.$code.focus();
                 return;
             }
-            if(!payPassword){
-                self.els.$passTipErr.text('请输入支付密码').show();
-                self.els.$pass.focus();
+            if(!cardID){
+                self.els.$cardIdTipErr.text('请输入营业执照号码').show();
+                self.els.$cardID.focus();
                 return;
             }
                 self.els.$codeTipErr.hide();
-                self.els.$passTipErr.hide();
+                self.els.$cardIdTipErr.hide();
                 self.submit();
             })
       },
       submit: function(){
         var self = this;
-        var params = $('#pay').serialize();
-        $.post('/api/pay/submit', params, function(data){
+        var params = $('#forgetValid').serialize();
+        $.post('/api/paypassword/forget/valid', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
-            location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=1';
+            location.href = '/ucenter/paypassword/fg/set';
           }else{
             if(data.errType && (data.errType=='sms_code')){
               self.els.$codeTipErr.text('校验码错误').show();
               self.els.$code.focus();
-            }else if(data.errType && (data.errType=='payPassword')){
-              if(data.errorCode==1004){
-                  $('#passErrModal').modal();
-                  $('#payBtn').attr('id','').addClass('disable');
-              }else{
-                  self.els.$passTipErr.text('密码输入错误，请重新输入，您有3次输入密码的机会，若三次输入错误，密码将被锁定').show();
-                  self.els.$pass.focus();
-              }
+          }else if(data.errType && (data.errType=='cardID')){
+              self.els.$cardIdTipErr.text('营业执照号码错误，请重新输入！').show();
+              self.els.$cardID.focus();
             }
           }
         })

@@ -29,7 +29,8 @@ require.config({
     'pay.upload': '../../static/custom_components/upload/upload',
     'message': 'Plugins/message',
     'html5shiv': '/static/components/html5shiv/dist/html5shiv',
-    'requirejs': '/static/components/requirejs/require'
+    'requirejs': '/static/components/requirejs/require',
+    'pay.smscode': '../../static/custom_components/sms-code/sms-code',
   },
   packages: [
 

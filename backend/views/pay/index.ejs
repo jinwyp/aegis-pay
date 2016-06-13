@@ -20,17 +20,9 @@
         <li>支付<span><%= formatMoney(order.totalMoney) %></span>元</li>
       </ul>
       <ul class='valid'>
+        <% include ../global/sms-code/form-part %>
         <li>
-            <label>手机号码：</label><i class='phone'><%= user.phone %></i><span id='send_code' class='send_code btn_blue_small' data-toggle='modal' role='button' data-target='#imgcodeModal'>发送校验码</span>
-            <p class='tip-error'></p>
-        </li>
-        <li>
-          <label>校&nbsp;验&nbsp;码&nbsp;：</label><input type="text" placeholder='请勿泄露' name="sms_code" value="">
-          <p class='tip-msg'></p>
-          <p class='tip-error'></p>
-        </li>
-        <li>
-          <label>支付密码：</label><input type="text" name="payPassword" value=""><a class="forget"  href=''>忘记秘密</a>
+          <label>支付密码：</label><input type="text" name="payPassword" value=""><a class="forget"  href='/ucenter/paypassword/fg/vl'>忘记秘密</a>
           <p class='tip-msg'>请输入6位数字的支付密码</p>
           <p class='tip-error'></p>
         </li>
@@ -51,6 +43,6 @@
       <% } %>
     </form>
 </div>
-<% include blocks/imgcode.ejs %>
+<% include ../global/sms-code/imgcode-modal %>
 <% include blocks/passerr.ejs %>
 <% script("/static/scripts/pay/index.js") -%>

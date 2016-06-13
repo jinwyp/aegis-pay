@@ -15,7 +15,6 @@ const sourcePaths = {
     "javascript"               : "scripts/**/*.js",
     "custom_components_styles" : "custom_components/**/*.scss",
     "custom_components_js"     : "custom_components/**/*.js",
-    "libs"                     : "libs/*",
     "components"               : "components/**/*",
     "images"                   : "images/**/*",
     "imagesSprites"            : "images/sprite/icon/**/*",
@@ -25,7 +24,6 @@ const sourcePaths = {
 const distPaths = {
     "javascript"        : "static/scripts",
     "custom_components" : "static/custom_components",
-    "libs"              : "static/libs",
     "components"        : "static/components",
     "images"            : "static/images",
     "imagesSprites"     : "images/sprite",
@@ -85,11 +83,6 @@ gulp.task('sprite', function () {
     return spriteData.pipe(gulp.dest(''));
 });
 
-gulp.task('libs', () =>
-    gulp.src(sourcePaths.libs)
-        .pipe(gulp.dest(distPaths.libs))
-);
-
 gulp.task('components', () =>
     gulp.src(sourcePaths.components)
         .pipe(gulp.dest(distPaths.components))
@@ -111,7 +104,7 @@ gulp.task('custom_components', () => {
 });
 
 
-gulp.task('javascript', ['libs', 'components', 'custom_components'], () =>
+gulp.task('javascript', ['components', 'custom_components'], () =>
     // rjs.optimize({
     //   baseUrl: 'app/scripts',
     //   paths: {
@@ -148,7 +141,7 @@ gulp.task('javascript', ['libs', 'components', 'custom_components'], () =>
 
 
 gulp.task('watch', () => {
-    gulp.watch(sourcePaths.scripts, ['javascript', reload]);
+    gulp.watch(sourcePaths.javascript, ['javascript', reload]);
     gulp.watch(sourcePaths.images, ['images', reload]);
     gulp.watch(sourcePaths.scss, ['sass', reload]);
     gulp.watch(sourcePaths.custom_components_js, ['custom_components', reload]);

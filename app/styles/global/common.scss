@@ -155,8 +155,8 @@
     background:url(/static/images/sprite_ico.png) no-repeat -187px -291px;
 }
 .icon_recommend{
-    display: inline-block; *display:inline; zoom:1; width:64px; height:64px; vertical-align: middle;
-    background:url(/static/images/sprite_ico.png) no-repeat -187px -291px;
+    display: inline-block; *display:inline; zoom:1; width:16px; height:16px; vertical-align: middle; line-height: 15px;
+    font-size:$size_font_nomal; color:$color_text_white; background: $color_orange; @include border-radius(1px);
 }
 
 // --图片精灵-图标坐标---------->>>>>---->>>>>>>-------------

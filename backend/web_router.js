@@ -67,6 +67,7 @@ router.get('/pay', payCtl.page);
 
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
+router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);
