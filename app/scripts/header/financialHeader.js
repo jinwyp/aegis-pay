@@ -10,23 +10,16 @@ requirejs(['jquery', 'bootstrap'], function($){
         }
     }
 
-    //$(".financialHeader li").click(function(){
-    //
-    //});
+    $(".firstTab li a").click(function(){
+        var firstTab=$(this).data("value");
+        var secondTab=$(".secondTab li.selected a").data("value");
+        location.href="/wealth/financialHome?firstTab="+firstTab+"&secondTab="+secondTab;
+    });
 
-    $(".a-option").click(function(){
-        var newIndex=$(this).data('value');
-        var selectedObj=$(".firstTab li a.selected");
-        selectedObj.removeClass("selected");
-        var index=selectedObj.data("value");
-        $(".arrow-blue").removeClass("tab-step-"+index);
-        $(this).addClass("selected");
-        $(".arrow-blue").addClass("tab-step-"+newIndex);
-        if(newIndex==2){
-            $(".secondTab").removeClass("hidden-ul");
-        }else{
-            $(".secondTab").addClass("hidden-ul");
-        }
+    $(".secondTab li a").click(function(){
+        var firstTab=$(".firstTab li a.selected").data("value");
+        var secondTab=$(this).data("value");
+        location.href="/wealth/financialHome?firstTab="+firstTab+"&secondTab="+secondTab;
     });
 
 });

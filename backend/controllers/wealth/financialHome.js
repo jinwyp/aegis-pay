@@ -9,7 +9,7 @@ var logger     = require("../../libs/logger");
 
 
 // 处理业务逻辑
-exports.financialCenter = function (req, res, next) {
+exports.financialHome = function (req, res, next) {
     var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?1:req.query.secondTab;
     var content = {
