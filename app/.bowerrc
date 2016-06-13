@@ -1,6 +1,3 @@
 {
-  "directory": "components",
-  "scripts": {
-    "postinstall": "bower-requirejs -t -c scripts/common/config.js"
-  }
+  "directory": "components"
 }
