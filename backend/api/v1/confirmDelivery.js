@@ -1,42 +1,54 @@
 var request    = require('request');
+var _          = require('lodash');
+
 var api_config = require('./api_config');
 var config     = require('../../config');
-var _          = require('lodash');
-var request = require('request');
-var convert = require('../../common/convert');
-var cache = require('../../common/cache');
+var checker    = require('../../libs/datachecker');
+var convert    = require('../../libs/convert');
+var cache      = require('../../libs/cache');
+
 
 const uploadPath = config.sysFileDir + '/static/upload/';
-exports.test = function (req, res, next) {
-	var params = req.query;
-	var newids = _.map(params.qualityList, function(id,name){
-		return {id: uploadPath + id, name: uploadPath + name}
-	});
-	// 需要压缩文件的绝对路径数组
-	var patharr = _.map(params.qualityList, function(id,name){
-		return uploadPath + id;
-	});
-	var newids1 = _.map(params.quantityList, function(id,name){
-		return {id: uploadPath + id, name: uploadPath + name}
-	});
-	var patharr1 = _.map(params.quantityList, function(id,name){
-		return uploadPath + id;
-	});
-
-	params.qualityList = newids;
-	params.quantityList = newids1;
-
-	convert.zipFile({path:patharr}).then(function(val){
-		cache.set('qualityZip_' + req.body.orderId, val);
-	}).catch(next);
-
-	convert.zipFile({path:patharr}).then(function(val){
-		cache.set('quantityZip_' + req.body.orderId, val);
-	}).catch(next);
 
 
-	res.json({'qualityList' : params.qualityList, "quantityList" : params.quantityList})
-	//request.post(url, {}, function(err, data){
-	//	res.json()
-	//})
+exports.confirmDeliveryIndex = function (req, res, next) {
+    checker.orderId(req.body.orderId);
+    checker.deliveryAmount(req.body.deliveryAmount);
+    var params   = req.body;
+
+    var qualityArray = [];
+    var qualityPathArray = [];
+
+    _.each(params.qualityList, function (value, index) {
+        qualityArray.push({id : uploadPath + index, name : uploadPath + value});
+        qualityPathArray.push(uploadPath + value); // 需要压缩文件的绝对路径数组
+    });
+
+    var quantityArray = [];
+    var quantityPathArray = [];
+
+    _.each(params.quantityList, function (value, index) {
+        quantityArray.push({id : uploadPath + index, name : uploadPath + value});
+        quantityPathArray.push(uploadPath + value); // 需要压缩文件的绝对路径数组
+    });
+
+
+    convert.zipFile({path : qualityPathArray}).then(function (val) {
+        cache.set('qualityZip_' + req.body.orderId, val);
+    }).catch(next);
+
+    convert.zipFile({path : quantityPathArray}).then(function (val) {
+        cache.set('quantityZip_' + req.body.orderId, val);
+    }).catch(next);
+
+
+    res.json({
+        'qualityList' : qualityArray,
+        "quantityList" : quantityArray
+    });
+
+
+    //request.post(url, {}, function(err, data){
+    //	res.json()
+    //})
 };

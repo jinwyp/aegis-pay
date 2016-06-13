@@ -19,8 +19,10 @@
  /settlement/settlementForm?type=2&id=66		审核通过.待卖家开发票(无 WaitWriteReceipt)
  */
 
+var API  = require('../../api/v1/api_config');              // 接口路径配置
 var nock = require('nock');
-var nkScope = nock('http://server.180.com').persist().log(console.log);				// 请求域名 server.180.com
+var nkScope = nock(API.host).log(console.log);		        // 执行一次
+var nkScopePersist = nock(API.host).persist();		        // 执行多次
 
 
 
@@ -79,64 +81,10 @@ nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'32'})
 		}
 	});
 
-
-
-// 待买家补款:WaitPayTailMoney
-//nkScope.get('/settlement/settlementForm').query({type: 'buy', orderId:'44'})
-//	.reply(200, {
-//		headerTit: '审核通过.待买家补款.下一步 4444444444',
-//		subTitle: '结算单详情.b',
-//		userType: 'buy',
-//		order: {
-//			status: 'WaitPayTailMoney'
-//		}
-//	});
-// 待卖家退款:WaitPayRefundMoney
-//nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'55'})
-//	.reply(200, {
-//		headerTit: '审核通过.待卖家退款 555555555555',
-//		subTitle: '结算单详情.s',
-//		userType: 'sell',
-//		order: {
-//			status: 'WaitPayRefundMoney'
-//		}
-//	});
-// 待卖家开发票:WaitWriteReceipt
-//nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'66'})
-//	.reply(200, {
-//		headerTit: '审核通过.待卖家开发票 66666666666',
-//		subTitle: '结算单详情.b',
-//		userType: 'sell',
-//		order: {
-//			status: 'WaitWriteReceipt'
-//		}
-//	});
-
-// +_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
-
-
-
-
-
-
-
-
-
+// +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 
 
 
 
 
 module.exports = nkScope;
-
-
-
-
-
-
-
-
-
-
-
-

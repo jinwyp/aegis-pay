@@ -4,7 +4,6 @@
         <label><i>*</i>上传合同：</label>
         <% include ../../../custom_components/upload/upload %>
       </div>
-      <p class='tip-error'></p>
       <div class='tip'>
         <label>提示：</label>
         <ul>
@@ -13,7 +12,8 @@
         </ul>
       </div>
       <input type="hidden" name="orderId" value="<%= orderId %>"/>
-      <input type="hidden" name="action" value="post">
+      <input type="hidden" name="userId" value="<%= user.id %>"/>
+      <input type="hidden" name="version" value="<%= version %>"/>
       <input type="button" class='cancel btn_gray' value="取消" data-toggle='modal' role='button' data-target='#cancelSignModel'/>
       <input type="button" class='submit btn_blue' value="确认提交" />
   </form>

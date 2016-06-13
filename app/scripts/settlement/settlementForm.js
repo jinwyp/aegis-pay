@@ -15,12 +15,10 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = 'http://localhost:8800',			            // API域名
+    var apiHost = '/api';			                            // API域名
         uId = getUrlParam('id'),
         uType = getUrlParam('type'),
         uStatus = getUrlParam('status');
-
-
 
     //var statusArr = ['', 'WaitSettleAccounts', 'WaitVerifySettle', 'ReturnedSettleAccounts',
     //        'WaitPayTailMoney', 'WaitPayRefundMoney', 'WaitWriteReceipt'];
@@ -101,30 +99,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
 
 
     /* ---页面逻辑控制---------------------------------------- */
-    settlementForm.doubtPlateHandle();
-
-
-
-    // 卖家.待结算
-    if(uType === '1' && uStatus == '1') {
-
-    }
-
-    // 卖家.审核不通过 重新提交
-    if(uType === '1' && uStatus == '3') {
-
-    }
-
-    // 买家.待审核
-    if(uType === '2' && uStatus == '2') {
-
-    }
-
-    // 买家.审核完成
-    if(uType === '2' && uStatus == '4') {
-
-    }
-
+    settlementForm.init();
 
 
     //---退回原因.板块-------------------
@@ -134,7 +109,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
     //    //$reasonsReturnModal.modal('show');
     //    //$operationInfoModal.modal('show');
     //}
-
 
 
 

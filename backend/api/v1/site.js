@@ -3,10 +3,10 @@ var PromiseB   = require('bluebird');
 var request    = require("request");
 var requestP   = PromiseB.promisify(require("request"));
 var api_config = require('./api_config');
-var cache      = require('../../common/cache');
+var cache      = require('../../libs/cache');
 var co         = require('co');
 var _          = require('lodash');
-var convert = require('../../common/convert');
+var convert = require('../../libs/convert');
 var config = require('../../config');
 var archiver = require('archiver');
 var fs =  require('fs');
@@ -14,11 +14,9 @@ var path     = require('path');
 
 var __dirfiles = config.sysFileDir;
 
-exports.apps = function (req, res, next) {
+exports.user = function (req, res, next) {
     //api代理，去请求java接口
-    request({url : api_config.apps}, function (error, data) {
-        return res.send(data.body);
-    })
+    res.json(req.session.user);
 };
 
 exports.test_cache = function (req, res, next) {

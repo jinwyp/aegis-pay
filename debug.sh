@@ -31,6 +31,5 @@ docker run -it --rm --name aegis-pay-dev \
   -e DEBUG=true \
   -e MODE=dev \
   -e NGINX_IP=$nginx_ip \
-  -e FILES_DIR=$script_dir/files \
+  -e FILES_DIR=$script_dir/../files \
   ubuntu-nodejs /debug_run
-

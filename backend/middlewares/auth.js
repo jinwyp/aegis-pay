@@ -1,5 +1,8 @@
+var request = require('request');
+
 var config                     = require('../config');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
+
 
 function generateSession(user, res) {
     var auth_token = user._id + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
@@ -15,36 +18,69 @@ function generateSession(user, res) {
 
 exports.generateSession = generateSession;
 
-// 验证用户是否登录
-exports.authUser = function (req, res, next) {
-
-    var auth_token = req.signedCookies[config.auth_cookie_name];
-    var auth    = auth_token.split('$$$$');
-
-    var user_id = req.session.user || auth[0];
-
-
-    if (!user_id){
-        // next(new UnauthenticatedAccessError(401, 'user token not found', config.auth_cookie_name);
+// 验证用户是否登录，获取并存储用户信息
+// user: {
+//     id: 213,
+//     securephone: 18634343434,
+//     nickname: 'peach',
+//     isactive: true,
+//     verifystatus: true,
+//     qq: 34343434,
+//     telephone: 18765656565,
+//     clienttype: 0,
+//     email: '12324@aa.com',
+//     verifyuuid: 'dkfi234',
+//     userFrom: 'userfrom',
+//     traderid: 'traderid'
+// }
+exports.passport = function (req, res, next) {
+    if (req.path.indexOf('setSSOCookie') >= 0) {
+        return next();
     }
 
-    if (user_id) {
+    if (process.env.NODE_ENV == 'local') {
+        req.session.user = res.locals.user = {
+            id           : 213,
+            securephone  : 18634343434,
+            nickname     : 'peach',
+            isactive     : true,
+            verifystatus : true,
+            qq           : 34343434,
+            telephone    : 18765656565,
+            clienttype   : 0,
+            email        : '12324@aa.com',
+            verifyuuid   : 'dkfi234',
+            userFrom     : 'userfrom',
+            traderid     : 'traderid'
+        };
+        return next();
+    }
 
-        var user = null;
+    if (!req.session || !req.session.user) {
+        var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
-        // 添加测试用户
-        if(config.debug){
-            user = {"userId": 123, "userName":"peach", "phone":18678782323, "ip":"198.168.23.123"}
-        }else{
-            // 验证user_id 是否合法
-
-            // 通过验证后  从redis 取出用户信息
-            user = req.session.user
+        if (!req.cookies[config.passport.cookieName]) {
+            res.redirect(config.passport.member + '/login?gotoURL=' + gotoURL + '&from=' + config.domain);
+        } else {
+            request.post(config.passport.member + '/auth', {
+                data : {
+                    passport : req.cookies[config.passport.cookieName]
+                }
+            }, function (err, auth) {
+                "use strict";
+                if (err) {
+                    return next(err);
+                }
+                var auth = JSON.parse(auth.body);
+                if (auth.success) {
+                    req.session.user = res.locals.user = auth.user;
+                    return next();
+                } else {
+                    res.redirect(config.passport.member + '/login' + '?gotoURL=' + gotoURL + "&from=" + config.domain);
+                }
+            });
         }
-
-        req.user = user;
-        res.locals.user = user;
+    } else {
+        return next();
     }
-
-    next();
 };

@@ -6,19 +6,24 @@ var formidable = require('formidable');
 var uuid       = require('node-uuid');
 var path       = require('path');
 var config     = require('../../config');
-var utils      = require('../../common/utils');
+var utils      = require('../../libs/utils');
 
-var convert = require('../../common/convert');
-var cache   = require('../../common/cache');
-var checker = require('../../common/datachecker');
+var convert = require('../../libs/convert');
+var cache   = require('../../libs/cache');
+var checker = require('../../libs/datachecker');
 
 
-const uploadPath = config.sysFileDir + '/static/upload/';
-const ftlpath    = config.sysFileDir + '/servicefiles/fs.ftl';
+const uploadPath = config.sysFileDir + '/upload/';
+const ejspath    = process.cwd() + '/views/global/compact.ejs';
+const uploadTmp = config.files_root+config.upload_tmp;
 
 exports.uploadFile = function (req, res, next) {
+    utils.makeDir(uploadTmp);
     //api代理，去请求java接口
     var form = new formidable.IncomingForm();
+
+    form.uploadDir = uploadTmp;
+
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
         var extName = /\.[^\.]+/.exec(files.files.name);
@@ -32,7 +37,7 @@ exports.uploadFile = function (req, res, next) {
 
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile}]})
+            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
         })
 
     });
@@ -52,7 +57,8 @@ exports.signCompact = function (req, res, next) {
     var newids     = _.map(params.file_id, function (id) {
         return uploadPath + id;
     })
-    params.file_id = newids;
+    params.files = newids;
+    _.unset(params, 'file_id');
     request.post(api_config.signCompact, params, function (err, data) {
         if (!err && data) {
             return res.send(JSON.parse(data.body));
@@ -66,16 +72,17 @@ exports.signCompact = function (req, res, next) {
 
 
 // 接收service数据，转化数据为客户端需要的格式
-var convertData = function (compactdata, compactftl) {
+var convertData = function (compactdata, compactejs, orderId) {
     var data = {
         'pdfpath' : '',
         'imgs' : []
     };
 
-    return convert.ftl2html(compactdata, compactftl).then(function(resultHtml){
+    return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
         return convert.html2pdf(resultHtml.htmlpath)
     })
     .then(function(resultPDF){
+        console.log(resultPDF)
         data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
@@ -94,7 +101,7 @@ var convertData = function (compactdata, compactftl) {
 exports.generate_compact = function (req, res, next) {
     checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
-    var params  = '?orderId=' + orderId + '&action=get';
+    var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
 
     request(api_config.getCompact + params, function (err, result) {
         if (err) return next(err);
@@ -109,8 +116,8 @@ exports.generate_compact = function (req, res, next) {
             });
 
             if (data.success) {
-                convertData(data.compact, ftlpath).then(function (result) {
-                    pageData = _.assign(pageData, result);
+                convertData({data: data.data.compact}, ejspath, orderId).then(function (result) {
+                    pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {
                         return res.render('compact/blocks/compact', pageData);

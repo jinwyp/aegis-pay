@@ -5,8 +5,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = 'http://localhost:3000';			// API域名
-
+    var apiHost = '/api';			                // API域名
     var $reasonId = $('[name=reasonId]'),           //原因ID
         $remarks = $('[name=remarks]'),             //备注
         $limitNum = $('.limitNum'),                 //剩余字数
@@ -43,7 +42,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
         console.dir(param);             // TODO: 打印参数
 
         $.ajax({
-            url: apiHost + '/api/order/closeOrder_api',
+            url: apiHost + '/order/closeOrder_api',
             data: param,        //$("#closeForm").serialize(),
             success: function(data){
                 if(data.success) {

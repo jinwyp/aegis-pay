@@ -3,30 +3,41 @@
  * */
 
 var request = require('request');
-var apiHost = 'http://server.180.com/';			// 模拟域名
+var _       = require('lodash');
+
+var cache      = require('../libs/cache');
+var logger     = require("../libs/logger");
+var checker    = require('../libs/datachecker');
+var api_config = require('../api/v1/api_config');
 var config     = require('../config');
-var cache = require('../common/cache');
+
 var __dirfiles = config.sysFileDir;
-var _ = require('lodash');
+
 
 // 处理业务逻辑
 exports.returnDetail = function (req, res, next) {
 
-    // 静态数据
-    //res.render('confirmDelivery/confirmDelivery',{"headerTit":"确认下单",statusObj: statusObj});			// 指定模板路径 渲染
-    req.query.orderId = 100;
-    cache.get('qualityZip_' + req.query.orderId, function(err, zipurl){
-        var qualityZip = req.protocol + '://' + req.host + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
-        var quantityZip = req.protocol + '://' + req.host + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+    checker.orderId(req.query.orderId);
 
-        request({url : 'http://localhost:8800/return'}, function (err, data) {
-            console.log('获取到的错误是----------------------------' + err);
-            console.log('获取到的结果是data----------------------------' + data.body);
-            var source = JSON.parse(data.body);
-            var content = _.assign({}, {headerTit: "确认提货页面",pageTitle: "确认提货页面",type: "sell", "qualityZip": qualityZip,"quantityZip":quantityZip}, source);
-            console.log('获取到的结果是content----------------------------' + content);
-            //渲染页面,指定模板&数据
-            res.render('return/returnDetail', content);
+    cache.get('qualityZip_' + req.query.orderId, function(err, zipurl){
+
+        if (err) return next(err);
+
+        var qualityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+        var quantityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+        
+        var url = api_config.orderReturn;
+
+        request({url : url}, function (err, data) {
+            if (err) return next(err);
+
+            if (data){
+                var source = JSON.parse(data.body);
+                var content = _.assign({}, {headerTit: "确认提货页面",pageTitle: "确认提货页面",type: "sell", "qualityZip": qualityZip,"quantityZip":quantityZip}, source);
+                logger.debug('获取到的结果是content----------------------------' + content);
+                //渲染页面,指定模板&数据
+                res.render('return/returnDetail', content);
+            }
         });
     });
 
@@ -39,6 +50,4 @@ exports.returnDetail = function (req, res, next) {
 
 };
 
-exports.test = function (req, res, next) {
-    res.send('success');
-}
+
