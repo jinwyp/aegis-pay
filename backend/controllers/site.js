@@ -24,6 +24,8 @@ exports.home = function (req, res, next) {
         '	<li><a href="/return">退货详情页</a></li>',
         '	<li><a href="/order/orderClose?id=111">关闭订单</a></li>',
         '	<li><a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
+        '	<li><a href="/wealth/wealthCenter">财务管理首页</a></li>',
+        '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
 	res.send(home);

@@ -1,0 +1,32 @@
+.sideBar{
+  width:120px;
+  height:400px;
+  background:#fff;
+  border:1px solid $color_border;
+  margin-right:10px;
+  float:left;
+  ul{
+    padding-top:10px;
+    li{
+      text-align:center;
+      line-height:38px;
+      a{
+        color:#000;
+        text-decoration:none;
+        width:100%;
+        height:100%;
+        display:inline-block;
+        font-size:14px;
+        &:hover{
+          color:$color_a_hover;
+          cursor: pointer;
+        }
+      }
+    }
+    .current{
+      a{
+        color:$color_a_hover;
+      }
+    }
+  }
+}
