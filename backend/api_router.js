@@ -10,6 +10,7 @@ var orderCloseApi   = require('./controllers/order/orderClose');                
 var confirmDelivery = require('./api/v1/confirmDelivery');
 var confirmComplete = require('./controllers/confirmComplete');
 var disputeApply = require('./controllers/disputeApply');
+var disputeCancel = require('./controllers/disputeDetail');
 var payApi          = require('./api/v1/pay');
 
 
@@ -34,6 +35,7 @@ router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeli
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 
 router.post('/disputeApply', disputeApply.dispute);
+router.post('/disputeCancel', disputeCancel.disputeCancel);
 
 
 

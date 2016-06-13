@@ -1,0 +1,87 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet("/static/styles/disputeDetail.css") -%>
+<% script("/static/scripts/dispute/disputeDetail.js") -%>
+<% include ../global/modal/modal %>
+<% include ../global/header/subHeader %>
+<div id="disputeDetail">
+    <div class="disputeDetailWrap">
+        <div class="disputeDetailTit"><span>纠纷处理详情</span></div>
+        <div class="disputeStatus"></div>
+        <div class="disputeDetailInfoWrap">
+            <div class="disputeInfoTit">当前订单状态：<b>纠纷等待双方协商处理</b></div>
+            <p>1、如果您继续购买货品以，您可<a href="javascript:void(0)" class="cancel" id="disputeCancel">撤销纠纷处理</a></p>
+            <p>2、如果您需要补充或者修改纠纷处理申请，您可以<a href="/dispute/disputeApply?orderId=1&&userId=2" class="modify"> 修改&gt;&gt; </a></p>
+            <p>3、如果您在协商退款过程中有困难，可以致电：<span class="logoBlue">400-960-1180</span>，我们会派出专门的协调人员协助您。</p>
+        </div>
+        <div class="diputeTableWrap">
+            <div class="disputeBlock">
+                <p class="disputeTit">纠纷详情</p>
+                <p><span>申请纠纷时间:</span><%= order.disputeCreateTime%></p>
+                <p><span>处理状态:</span><span class="disputeStatusTxt"><%= order.statusName%></span></p>
+                <p><span>买家是否提货:</span><% if(order.deliveryGoods==0){%>否
+                    <%}else if(order.deliveryGoods==1){%>已部分提货
+                    <%}else{%>是
+                    <%}%>
+                </p>
+                <p><span>是否需要退货:</span><% if(order.returnGoods){%>是
+                    <%}else{%>否
+                    <%}%>
+                </p>
+                <p><span>退款原因:</span><label for=""><%= order.disputeRemarks%></label></p>
+            </div>
+            <div class="disputeBlock sellInfo">
+                <p class="disputeTit">卖家信息</p>
+                <p><span>卖家:</span><%= order.sellerCompanyName %></p>
+                <p><span>电话:</span><%= order.dealerPhone %></p>
+                <p><span>会员登录名:</span><%= order.sellerLoginPhone %></p>
+                <p><span>订单号:</span><%= order.orderNO %></p>
+                <p><span>收款账户:</span><%= order.sellerFundAccount%></p>
+                <p><span>合同编号:</span><%= order.contractNO %></p>
+                <p><span>联系人:</span><%= order.dealerName %></p>
+            </div>
+        </div>
+        <div class="disputetableInfo">
+            <div class="tableTit">
+                <div class="goodsName">货品</div>
+                <div class="price">单价(元)</div>
+                <div class="amount">数量(万吨)</div>
+                <div class="totalPrice">金额(万元)</div>
+                <div class="havePaid">已付金额(万元)</div>
+                <div class="orderStatus">订单状态</div>
+            </div>
+            <div class="tableCon">
+                <div class="goodsName goodsCon">
+                    <p class="goodsTit"><span>商</span><%= ellipse(sellInfoTitleAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour,
+                                sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></p>
+                    <ul class="goodsDetail">
+                        <li><label>煤种：</label><%= sellInfo.pname%></li>
+                        <li><label>品名：</label><%= sellInfo.brandname %></li>
+                        <li><label>产地：</label><%= sellInfo.originplace %></li>
+                        <li><label>热值：</label><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></li>
+                        <li><label>收到基基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></li>
+                        <li><label>收到基挥发：</label><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></li>
+                        <li><label>全水分：</label><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></li>
+                        <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <li><label>空干基基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></li>
+                        <li><label>固定碳：</label><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></li>
+                        <li><label>内水分：</label><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></li>
+                        <li><label>G值：</label><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></li>
+                        <li><label>Y值：</label><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></li>
+                        <li><label>灰熔点&ge;：</label><%= singleArgAppend(sellInfo.AFT,'℃') %></li>
+                        <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <li><label>哈氏可磨&ge;：</label><%= singleArgAppend(sellInfo.HGI,'') %></li>
+                        <li><label>焦渣特征：</label><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></li>
+                    </ul>
+                </div>
+                <div class="price"><%= formatDecimal(order.price,2) %></div>
+                <div class="amount"><%= order.amount %></div>
+                <div class="totalPrice"><%= formatMoney(order.totalMoney,2) %></div>
+                <div class="havePaid"><b><%= formatMoney(order.totalMoney,2) %></b></div>
+                <div class="orderStatus"><b class="unShift"><%=order.statusName%></b></div>
+            </div>
+        </div>
+        <div class="amountsPayable">应付总额：<b><%= formatMoney(order.totalMoney,2) %></b></div>
+        <div class="amountsPayableName">( 人民币 : <%= switchTxt(order.totalMoney) %> )</div>
+
+    </div>
+</div>

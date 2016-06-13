@@ -78,7 +78,9 @@ var api_config = {
     orderInfo : host + 'orderInfo',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
-    disputeComplete : host + 'dispute/disputeComplete'
+    disputeApply : host + 'dispute/disputeApply',
+    disputeComplete : host + 'dispute/disputeComplete',
+    disputeDetail : host + 'dispute/disputeDetail'
 
 };
 
