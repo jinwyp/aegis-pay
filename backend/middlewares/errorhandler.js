@@ -67,14 +67,17 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     }else {
         if (resError.errorCode > 1000) {
             resError.url = req.url;
+            resError.pageTitle = 'Field validation Error, 提交的数据不符合规格!';
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
+            resError.pageTitle = '404 Page Not Found, 抱歉,页面没有找到!';
             return res.render('global/globalTemp/page404', resError);
         }
 
+        resError.pageTitle = '500 系统错误, 请稍后重试!';
         return res.render('global/globalTemp/error', resError);
     }
 

@@ -1,8 +1,17 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/settlementForm.css') -%>
-<!-- < pageTitle('开具 结算单页面') >-->
-<% script("/static/scripts/settlement/settlementForm.js") -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/settlementForm.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
+
+
 
 
 <!-- 以下.内容部分 -->
@@ -438,3 +447,18 @@
         </div><!-- /.modal-content -->
     </div>
 </div>
+
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/settlement/settlementForm.js"></script>
+
+</body>
+</html>
+
+
+
