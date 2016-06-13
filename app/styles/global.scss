@@ -433,11 +433,12 @@ a:hover {
 
 //头部css 更新与2016-5-17
 $hoverColor: #00b7ec;
+$headerBgColor: #292929;
 #paymentHeader{
 
   .headWrap{
     height:35px;
-    background: #292929;
+    background: $headerBgColor;
     font-size: 12px;
     color:#fff;
     font-family: "microsoft yahei";
@@ -450,11 +451,30 @@ $hoverColor: #00b7ec;
         padding:8px 0;
         float: left;
 
+        li>span{ vertical-align: middle; }
+
         li{
           float: left;
           padding:0px 10px;
           position: relative;
           background: url("/static/images/header/indexBorder.png") no-repeat right 4px;
+
+          .icon-phone{
+            width: 10px;
+            height: 15px;
+            margin-right: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url("/static/images/header/phone_icon.png");
+          }
+          .icon-tel{
+            width: 18px;
+            height: 11px;
+            margin-right: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url("/static/images/header/tel_icon.png");
+          }
 
           a{
             color:#fff;
@@ -520,10 +540,16 @@ $hoverColor: #00b7ec;
 }
 #subHeader{
   .subHeaderWrap{
-    height: 85px;
+    //height: 85px;
+    min-height: 85px;
     background: #fff;
     box-shadow: 0px 2px 3px #ddd;
 
+    a{
+      cursor: pointer;
+      outline: none;
+      text-decoration: none;
+    }
     .subHeader1000{
       width: 1000px;
       padding-top: 17px;
@@ -531,9 +557,61 @@ $hoverColor: #00b7ec;
 
       a,span{display: inline-block;vertical-align: middle;font-size: 18px;color:#666;}
       .subHeaderTit{margin-left: 10px;position: relative;top: -2px}
+      .tab-cards{
+        display: inline-block;
+        float: right;
+        margin-top: 10px;
+        ul{
+          float: right;
+          font-size: 18px;
+          color: #666666;
+          li{
+            float: left;
+            padding: 5px 10px;
+            position: relative;
+            a.selected{  color: $color_btn_blue;  }
+            .arrow-blue{
+              position: absolute;
+              border-style:solid dashed dashed;
+              border-color:transparent transparent $color_btn_blue;
+              bottom: -7px;
+            }
+            .tab-step-1{  border-width:7px;  left: 23px;  }
+            .tab-step-2{  border-width:7px;  left: 92px;  }
+            .tab-step-3{  border-width:7px;  left: 186px;
+            .tab-step-4{  border-width:7px;  left: 278px;  }
+            .tab-step-5{  border-width:7px;  left: 372px;  }
+          }
+        }
+        }
+      }
+    }
+    .second-tab {
+      border: 1px solid $color_btn_blue;
+      background-color: $color_btn_blue;
+      font-size: 16px;
+      color: $color_text_white;
+      .hidden-ul{  display: none;  }
+      ul {
+        height: 32px;
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        li {
+          float: left;
+          width: 100px;
+          padding: 6px 0;
+          margin: -1px;
+          text-align: center;
+          &:hover {  background-color: #8edaf1;  }
+          a {  color: $color_text_white;  }
+        }
+        li.selected {  background-color: #8edaf1;  }
+      }
     }
   }
 }
+
 //头部样式结束
 //底部样式开始 更新与2016-5-17
 #paymentFooter{
@@ -595,9 +673,7 @@ $hoverColor: #00b7ec;
     font-size: 12px;
     line-height: 22px;
   }
-  .limitNum {
-    color: #ff8553;
-  }
+  .limitNum {  color: #ff8553;  }
 
   .txtArea {
     width: 100%;
@@ -607,7 +683,7 @@ $hoverColor: #00b7ec;
     resize: none;
 
     &:hover {
-      border: 1px solid #01b7ec;
+      border: 1px solid $color_btn_blue;
     }
   }
 }
