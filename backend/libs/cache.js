@@ -1,7 +1,8 @@
-var redis   = require('./redis');
-var _       = require('lodash');
-var logger  = require('./logger');
 var request = require('request');
+var _       = require('lodash');
+var redis   = require('./redis');
+var logger  = require('./logger');
+
 
 var get = function (key, callback){
     var t = new Date();

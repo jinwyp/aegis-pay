@@ -145,4 +145,38 @@ module.exports = function (app) {
     app.locals.phoneFormat = function (phone) {
         return phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
     }
+
+/**
+ * 日期格式化
+ * params:
+ * {
+ * date: 时间戳    //必填参数
+ * format：YYYY-MM-DD HM   //格式，非必填，默认 YYYY年MM月DD日
+ * }
+ * <%= dateFormat（date,  "YYYY-MM-DD HM") %>
+ */
+    app.locals.dateFormat = function(date,format){
+        var date = parseInt(date),
+            currentTime =  new Date().getTime(),
+            diffTime = currentTime - date;
+        var minute = 60*1000,
+            hour = 60*minute,
+            day = 24*hour,
+            format = format || 'YYYY年MM月DD日',
+            alwaysDiff = alwaysDiff || false;
+        var formatArr = ['YYYY','MM','DD','H','M','S'];
+        var date = new Date(date),
+            year = date.getFullYear(),
+            month = date.getMonth()+1,
+            month = (month>9) ? month : '0'+month,
+            day = (date.getDate()>9) ? date.getDate() : '0'+ date.getDate(),
+            hour = (date.getHours()>9) ? date.getHours() : '0'+ date.getHours(),
+            minute = (date.getMinutes()>9) ? date.getMinutes() : '0'+date.getMinutes(),
+            second = (date.getSeconds()>9) ? date.getSeconds() : '0'+date.getSeconds(),
+            dateArr = [year,month,day,hour,':'+minute,':'+ second];
+        for(var i=0; i < formatArr.length; i++){
+            format = format.replace(formatArr[i],dateArr[i]);
+        }
+        return format;
+    };
 }

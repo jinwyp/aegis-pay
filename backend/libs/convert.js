@@ -8,15 +8,14 @@ var PDFImage = require("pdf-image").PDFImage;
 var ejs = require('ejs');
 var config   = require('../config');
 var utils    = require('./utils');
-
-
+var logger  = require("./logger");
 
 var __dirfiles = config.sysFileDir;
 
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
-    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'static/images/');
+    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'images/');
     var convertExtension = options && options.convertExtension || 'jpg';
 
     //if (!utils.isDirExistsSync(imgpath)) {
@@ -60,7 +59,7 @@ exports.pdf2image = function (pdfpath, options) {
 exports.html2pdf = function (htmlpath, pdfname) {
 
     var pdfname = pdfname || path.basename(htmlpath, '.html');
-    var pdfpath = path.join(__dirfiles, 'static/pdf/');
+    var pdfpath = path.join(__dirfiles, 'pdf/');
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
 
@@ -81,7 +80,7 @@ exports.html2pdf = function (htmlpath, pdfname) {
                 if (resultHtml) {
 
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
-                        if (err) {
+                        if (!err) {
                             fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);
 
@@ -108,7 +107,7 @@ exports.html2pdf = function (htmlpath, pdfname) {
 exports.ejs2html = function (data, ejspath, options) {
     var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
 
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'static/html/');
+    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'html/');
     var htmlfile = htmlpath + htmlname + '.html';
 
     utils.makeDir(htmlpath);
@@ -161,7 +160,7 @@ exports.zipFile = function (options) {
             options.path = [options.path];
         }
 
-        self.default = {type : 'zip', output : path.join(__dirfiles, 'static/zips')};
+        self.default = {type : 'zip', output : path.join(__dirfiles, 'zips')};
 
         if (!options.zipname) {
             if (utils.isDirExistsSync(options.path[0])) {
@@ -182,8 +181,8 @@ exports.zipFile = function (options) {
         archive.on('error', reject);
 
         output.on('close', function () {
-            console.log(archive.pointer() + ' total bytes');
-            console.log('archiver has been finalized and the output file descriptor has closed.');
+            logger.debug(archive.pointer() + ' total bytes');
+            logger.debug('archiver has been finalized and the output file descriptor has closed.');
             resolve(self.options.output + '/' + self.options.zipname);
         });
 
@@ -196,10 +195,9 @@ exports.zipFile = function (options) {
             } else if (utils.isFileExistsSync(val)) {
                 archive.file(val, {name : path.basename(val)});
             }else{
-                console.log('archiver nothing')
+                logger.debug('archiver nothing')
             }
         });
         archive.finalize();
     })
 };
-
