@@ -249,3 +249,26 @@ logger.warn('warn 信息')
 logger.error('error 信息')
 ```
 
+##controller的自动注入功能
+
+newdemo.js 只需要在controllers文件夹里面添加实现了init(app)的方法,系统会自动加载controller
+```
+var router = require('express').Router();
+
+module.exports.init = function (app) {
+    app.use('/', router);
+};
+
+router.get('/newdemo', function (req, res, next) {
+
+    res.render('newdemo/newdemo',{
+        courseName:'CS201',
+        foo:'3',
+        friends:["ni",'niu','bi'],
+        rows:['水电费水电费','魄力','水电电费','sdfsfs'],
+        name:''
+    });
+});
+```
+
+
