@@ -34,7 +34,7 @@ const distPaths = {
 
 
 // Lint JavaScript
-gulp.task('lint', () =>
+gulp.task('jslint', () =>
     gulp.src(sourcePaths.javascript)
         .pipe(plugins.eslint())
         .pipe(plugins.eslint.format())
@@ -107,7 +107,7 @@ gulp.task('custom_components', () => {
 
 
 
-gulp.task('javascript', ['components', 'custom_components'], () =>
+gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
 
     // rjs.optimize({
     //   baseUrl: 'app/scripts',
