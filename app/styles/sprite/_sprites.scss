@@ -55,17 +55,6 @@ $person-yes-total-width: 173px;
 $person-yes-total-height: 118px;
 $person-yes-image: '../../images/sprite/auto-sprites.png';
 $person-yes: (60px, 0px, -60px, 0px, 58px, 58px, 173px, 118px, '../../images/sprite/auto-sprites.png', 'personYes', );
-$print-icon-name: 'print_icon';
-$print-icon-x: 118px;
-$print-icon-y: 55px;
-$print-icon-offset-x: -118px;
-$print-icon-offset-y: -55px;
-$print-icon-width: 16px;
-$print-icon-height: 16px;
-$print-icon-total-width: 173px;
-$print-icon-total-height: 118px;
-$print-icon-image: '../../images/sprite/auto-sprites.png';
-$print-icon: (118px, 55px, -118px, -55px, 16px, 16px, 173px, 118px, '../../images/sprite/auto-sprites.png', 'print_icon', );
 $yes-name: 'yes';
 $yes-x: 0px;
 $yes-y: 60px;
@@ -80,7 +69,7 @@ $yes: (0px, 60px, 0px, -60px, 58px, 58px, 173px, 118px, '../../images/sprite/aut
 $spritesheet-width: 173px;
 $spritesheet-height: 118px;
 $spritesheet-image: '../../images/sprite/auto-sprites.png';
-$spritesheet-sprites: ($attention, $drop, $person-no, $person-yes, $print-icon, $yes, );
+$spritesheet-sprites: ($attention, $drop, $person-no, $person-yes, $yes, );
 $spritesheet: (173px, 118px, '../../images/sprite/auto-sprites.png', $spritesheet-sprites, );
 
 /*
