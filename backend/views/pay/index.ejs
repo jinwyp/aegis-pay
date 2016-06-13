@@ -1,6 +1,14 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/pay.css') -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/pay.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
 <div class="mainWrapper">
     <h3 class='pageTitle'><span></span>易煤网 — 在线支付</h3>
     <form method="post" id='pay'>
@@ -20,7 +28,7 @@
         <li>支付<span><%= formatMoney(order.totalMoney) %></span>元</li>
       </ul>
       <ul class='valid'>
-        <% include ../global/sms-code/form-part %>
+        <%- include ../global/sms-code/form-part %>
         <li>
           <label>支付密码：</label><input type="text" name="payPassword" value=""><a class="forget"  href='/ucenter/paypassword/fg/vl'>忘记秘密</a>
           <p class='tip-msg'>请输入6位数字的支付密码</p>
@@ -30,19 +38,28 @@
       <input id='payBtn' class='btn_blue payBtn' type="button" value="确认付款" />
       <% }else{ %>
         <ul class="buyer noneBalance">
-          <li><input type="radio" disabled /></li>
-          <li>
-              <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.sellerBalanceMoney) %>元</p>
-              <p>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</p>
-          </li>
+            <li><input type="radio" disabled /></li>
+            <li>
+                <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.sellerBalanceMoney) %>元</p>
+                <p>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</p>
+            </li>
         </ul>
         <dl class="tip-msg noneBalance">
-          <dt>您的<span>余额不足</span>，无法进行支付，请先对易煤网资金账户进行<a href=''>充值</a>，然后再进行支付！</dt>
-          <dd>提示：为您的资金安全，我们建议您使用贵公司的同名账户进行充值。</dd>
+            <dt>您的<span>余额不足</span>，无法进行支付，请先对易煤网资金账户进行<a href=''>充值</a>，然后再进行支付！</dt>
+            <dd>提示：为您的资金安全，我们建议您使用贵公司的同名账户进行充值。</dd>
         </dl>
-      <% } %>
+        <% } %>
     </form>
 </div>
-<% include ../global/sms-code/imgcode-modal %>
-<% include blocks/passerr.ejs %>
-<% script("/static/scripts/pay/index.js") -%>
+
+<%- include ../global/sms-code/imgcode-modal %>
+<%- include blocks/passerr.ejs %>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/pay/index.js"></script>
+
+</body>
+</html>

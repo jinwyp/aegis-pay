@@ -22,12 +22,12 @@
 var API  = require('../../api/v1/api_config');              // 接口路径配置
 var nock = require('nock');
 var nkScope = nock(API.host).log(console.log);		        // 执行一次
-var nkScopePersist = nock(API.host).persist();		        // 执行多次
+var nkScopePersist = nock(API.host).log(console.log).persist();		        // 执行多次
 
 
 
 // 待结算_卖:WaitSettleAccounts
-nkScope.get('/settlement/settlementForm').query({type: 'sell', orderId:'11'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'110000'})
 	.reply(200, {
 		headerTit: '待结算.卖家开具结算单 11111111',
 		subTitle: '开具结算单.s',

@@ -1,6 +1,13 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/paypassword.css') -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/paypassword.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
 <div class="mainWrapper forgetValid">
     <div class="stepStatus">
         <p class='totalWidth'><span></span></p>
@@ -10,7 +17,7 @@
     </div>
     <form method="post" id='forgetValid'>
       <ul class='valid'>
-        <% include ../global/sms-code/form-part %>
+        <%- include ../global/sms-code/form-part %>
         <li>
           <label>注册号（社会统一代码证号）：</label><input type="text" name="cardID" placeholder='请输入填写营业执照号码' value="">
           <p class='tip-msg'>填写您注册易煤网时填写的公司营业执照号码</p>
@@ -23,5 +30,13 @@
       </p>
     </form>
 </div>
-<% include ../global/sms-code/imgcode-modal %>
-<% script("/static/scripts/paypassword/forget.js") -%>
+<%- include ../global/sms-code/imgcode-modal %>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/paypassword/forget.js"></script>
+
+</body>
+</html>
