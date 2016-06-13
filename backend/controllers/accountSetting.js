@@ -13,7 +13,7 @@ var request = require('request');
 // 处理业务逻辑
 exports.accountSetting = function (req, res, next) {
 
-    // 订单状态 数据模拟
+    // sideBar
     var accountSideBar = {
         current : "1",
         sideBarList : [

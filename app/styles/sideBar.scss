@@ -1,8 +1,9 @@
+
 .sideBar{
   width:120px;
   height:400px;
   background:#fff;
-  border:1px solid $color_border;
+  border:1px solid #e8e8e8;
   margin-right:10px;
   float:left;
   ul{
@@ -18,14 +19,14 @@
         display:inline-block;
         font-size:14px;
         &:hover{
-          color:$color_a_hover;
+          color:#00b7ec;
           cursor: pointer;
         }
       }
     }
     .current{
       a{
-        color:$color_a_hover;
+        color:#00b7ec;
       }
     }
   }

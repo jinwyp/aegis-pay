@@ -30,6 +30,7 @@ var signCtrl = require('./controllers/sign');                                   
 
 var wealthCenter              = require('./controllers/wealth/wealthCenter');       //财富管理
 var accountSetting              = require('./controllers/accountSetting');       //账户设置
+var notice              = require('./controllers/notice');       //账户设置消息提醒
 
 
 
@@ -57,6 +58,7 @@ router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
+router.get('/account/notice', notice.notice);    //账户设置消息提醒
 
 
 router.get('/return', returnDetailController.returnDetail);
