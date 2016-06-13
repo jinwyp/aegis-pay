@@ -10,9 +10,19 @@ requirejs(['jquery', 'bootstrap'], function($){
         }
     }
 
-    $(".a-option").on("click", function(){
-        alert(000000);
-    })
+    //$(".financialHeader li").click(function(){
+    //
+    //});
+
+    $(".a-option").click(function(){
+        var newIndex=$(this).data('value');
+        var selectedObj=$(".firstTab li a.selected");
+        selectedObj.removeClass("selected");
+        var index=selectedObj.data("value");
+        $(".arrow-blue").removeClass("tab-step-"+index);
+        $(this).addClass("selected");
+        $(".arrow-blue").addClass("tab-step-"+newIndex);
+    });
 
 });
 

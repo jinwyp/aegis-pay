@@ -10,7 +10,7 @@ var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.financialCenter = function (req, res, next) {
-    var firstTab=req.query.firstTab==undefined?"homePage":req.query.firstTab;
+    var firstTab=req.query.firstTab==undefined?1:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?1:req.query.secondTab;
     var content = {
         pageTitle : "财务管理中心",

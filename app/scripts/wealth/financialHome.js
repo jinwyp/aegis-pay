@@ -10,9 +10,6 @@ requirejs(['jquery', 'bootstrap'], function($){
     //    }
     //}
 
-    $(".financialHeader li").click(function(){
-        alert(11111);
-    });
 
 });
 
