@@ -149,7 +149,7 @@ gulp.task('watch', () => {
         proxy: "http://localhost:3000"
     });
     gulp.watch(sourcePaths.html).on('change', reload);
-    gulp.watch(sourcePaths.scripts, ['javascript', reload]);
+    gulp.watch(sourcePaths.javascript, ['javascript', reload]);
     gulp.watch(sourcePaths.images, ['images']);
     gulp.watch(sourcePaths.scss, ['sass', reload]);
     gulp.watch(sourcePaths.custom_components_js, ['custom_components', reload]);
