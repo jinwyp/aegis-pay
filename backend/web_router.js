@@ -40,24 +40,28 @@ var paypasswordCtl = require('./controllers/paypassword/index');    // paypasswo
 router.get('/demo', demoController.demo);                                                       // 添加路由
 router.get('/', siteController.home);
 
-
 router.get('/header', headerController.header);
 router.get('/subHeader', subHeaderController.subHeader);
 router.get('/footer', footerController.footer);
 
+
+
+
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 
+router.get('/settlement/settlementForm', settlementFormContr.orderSettlement);                  // 结算单 买家 页面路由
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
 router.get('/order/orderClose', orderCloseContr.orderInfo);                                     // 关闭 订单路由
-router.get('/settlement/settlementForm', settlementFormContr.orderSettlement);                  // 结算单 买家 页面路由
+
+router.get('/return', returnDetailController.returnDetail);
+
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 router.get('/dispute/disputeApply', disputeApply.disputeApply);
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
-
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 router.get('/wealth/financialCenter', financialCenter.financialCenter);    //财务管理中心
@@ -65,11 +69,13 @@ router.get('/account/accountSetting', accountSetting.accountSetting);    //账�
 router.get('/account/notice', notice.notice);    //账户设置消息提醒
 
 
-router.get('/return', returnDetailController.returnDetail);
+
+
 router.get('/compact', compactController.compact);
 router.get('/compactDetail', compactController.compactDetail);
-router.get('/pay/success', payCtl.success);
 router.get('/pay', payCtl.page);
+router.get('/pay/success', payCtl.success);
+
 
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);

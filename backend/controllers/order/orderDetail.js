@@ -70,7 +70,6 @@ exports.getOrderDetail = function (req, res, next) {
                 "order"    : source.data.order
             };
             //logger.debug('orderDetail获取到的结果是----------------------------' + content);
-
             res.render('order/buyOrderDetail', content);
         } else {
             res.send(data.body);

@@ -1,8 +1,17 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/confirmComplete.css") -%>
-<% script("/static/scripts/confirmDelivery/confirmComplete.js") -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/confirmComplete.css">
+    <link rel="stylesheet" href="/static/styles/confirmComplete.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
 <% include ../global/modal/modal %>
+
 <div id="confirmComplete">
     <div class="confirmCompleteWrap">
         <% include ../global/order/statusBar %>
@@ -18,3 +27,14 @@
         <a href="javascript:void(0)" class="dlDetail"><i class="printer"></i>打印订单详情</a>
     </div>
 </div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/confirmDelivery/confirmComplete.js"></script>
+
+</body>
+</html>
+

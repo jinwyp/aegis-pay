@@ -1,8 +1,16 @@
-<% layout('../global/globalTemp/globalTemp') -%>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/buyOrderDetail.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
 
 
-<link rel="stylesheet" href="/static/styles/buyOrderDetail.css">
-<% include ../global/header/subHeader %>
 <div id="order-detail-body">
     <div class="main-content">
         <div class="center-content">
@@ -62,4 +70,15 @@
         </div>
     </div>
 </div>
-<% script("/static/scripts/order/buyOrderDetail.js") -%>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/order/buyOrderDetail.js"></script>
+
+</body>
+</html>
+
+
+

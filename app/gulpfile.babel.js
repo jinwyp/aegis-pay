@@ -104,7 +104,7 @@ gulp.task('custom_components', () => {
         .pipe(plugins.sass({
             precision : 10
         }).on('error', plugins.sass.logError))
-        .pipe(plugins.size({title : 'ustom_components'}))
+        .pipe(plugins.size({title : 'Custom_components'}))
         .pipe(gulp.dest(distPaths.custom_components));
 
     gulp.src(sourcePaths.custom_components_js).pipe(gulp.dest(distPaths.custom_components))

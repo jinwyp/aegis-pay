@@ -1,7 +1,16 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/wealthCenter.css") -%>
-<% script("/static/scripts/wealth/wealthCenter.js") -%>
-<% include ../global/modal/modal  %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/wealthCenter.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+<%- include ../global/modal/modal  %>
+
 
 <div id="wealthCenterWrap">
     <div class="wealthCenterTop">
@@ -42,3 +51,17 @@
         </div>
     </div>
 </div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/wealth/wealthCenter.js"></script>
+
+</body>
+</html>
+
+
+
+

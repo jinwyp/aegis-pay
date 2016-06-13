@@ -5,11 +5,11 @@
 var API  = require('../../api/v1/api_config');              // 接口路径配置
 var nock = require('nock');
 var nkOrder = nock(API.host).log(console.log);		        // 执行一次
-var nkOrderPersist = nock(API.host).persist();		        // 执行多次
+var nkOrderPersist = nock(API.host).log(console.log).persist();		        // 执行多次
 
 
 // 查询订单 (111, 代付款)
-nkOrder.get('/order/orderInfo').query({orderId:'111'})
+nkOrderPersist.get('/order/orderInfo').query({orderId:'111000'})
     .reply(200, {
         order: {
             version: '111',
@@ -38,7 +38,7 @@ nkOrder.get('/order/orderInfo').query({orderId:'111'})
     });
 
 // 查询订单 (222, 待签合同)
-nkOrder.get('/order/orderInfo').query({orderId:'222'})
+nkOrderPersist.get('/order/orderInfo').query({orderId:'222000'})
     .reply(200, {
         order: {
             version: '222',

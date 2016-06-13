@@ -14,8 +14,9 @@ var request = require('request');
 exports.wealthCenter = function (req, res, next) {
 
     var content = {
-        pageTitle   : "账户管理中心"
-        
+        pageTitle   : "账户管理中心",
+        headerTit   : "账户管理中心"
+
     };
         //渲染页面
         res.render('wealth/wealthCenter',content);
