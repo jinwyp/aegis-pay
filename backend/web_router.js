@@ -31,6 +31,9 @@ var confirmComplete           = require('./controllers/confirmComplete');       
 var payCtl                    = require('./controllers/pay');
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 
+var wealthCenter              = require('./controllers/wealth/wealthCenter');       //财富管理
+
+
 
 
 
@@ -56,6 +59,8 @@ router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);
 router.get('/dispute/disputeApply', disputeApply.disputeApply);
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
 
+
+router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 
 
 
