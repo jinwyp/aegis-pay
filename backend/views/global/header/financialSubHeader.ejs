@@ -4,7 +4,7 @@
             <a href="javascript:void(0)"><img src="/static/images/header/yimeiLogo.png" alt=""/></a>
             <span class="subHeaderTit"><%= headerTit %></span>
             <div class="tab-cards">
-                <ul>
+                <ul class="financialHeader">
                     <li>
                         <a class="a-option <% if(tabObj.firstTab=="homePage"){ %>selected<% } %>">首页</a>
                         <span class="arrow-blue
@@ -21,17 +21,17 @@
                         <% } %>">
                         </span>
                     </li>
-                    <li><a class="a-option <% if(tabObj.firstTab=="accountPage"){ %>selected<% } %>">账户管理</a></li>
-                    <li><a class="a-option <% if(tabObj.firstTab=="transactionPage"){ %>selected<% } %>">交易明细</a></li>
-                    <li><a class="a-option <% if(tabObj.firstTab=="settlementPage"){ %>selected<% } %>">结算清单</a></li>
-                    <li><a class="a-option <% if(tabObj.firstTab=="contractPage"){ %>selected<% } %>">合同管理</a></li>
+                    <li><a class="<% if(tabObj.firstTab=="accountPage"){ %>selected<% } %>">账户管理</a></li>
+                    <li><a class="<% if(tabObj.firstTab=="transactionPage"){ %>selected<% } %>">交易明细</a></li>
+                    <li><a class="<% if(tabObj.firstTab=="settlementPage"){ %>selected<% } %>">结算清单</a></li>
+                    <li><a class="<% if(tabObj.firstTab=="contractPage"){ %>selected<% } %>">合同管理</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="second-tab">
             <% if(tabObj.firstTab=="accountPage"){ %>
-            <ul>
+            <ul class="financialHeader">
                 <li class="<% if(tabObj.secondTab==1){ %>selected<% } %>"><a>账户通</a></li>
                 <li class="<% if(tabObj.secondTab==2){ %>selected<% } %>"><a>收支明细</a></li>
                 <li class="<% if(tabObj.secondTab==3){ %>selected<% } %>"><a>账户设置</a></li>

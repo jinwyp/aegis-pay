@@ -2,7 +2,7 @@
 * 页面脚本
 * */
 
-requirejs(['jquery','../header/financialHeader', 'bootstrap'], function($){
+requirejs(['jquery', 'bootstrap'], function($){
 
     //var financialHeader = {
     //    "initFirstTab":function(){
@@ -10,9 +10,9 @@ requirejs(['jquery','../header/financialHeader', 'bootstrap'], function($){
     //    }
     //}
 
-    $(".a-option").on("click", function(){
-        alert(000000);
-    })
+    $(".financialHeader li").click(function(){
+        alert(11111);
+    });
 
 });
 
