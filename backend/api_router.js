@@ -12,6 +12,7 @@ var confirmDelivery = require('./api/v1/confirmDelivery');
 var confirmComplete = require('./controllers/confirmComplete');
 var disputeApply = require('./controllers/disputeApply');
 var payApi = require('./api/v1/pay');
+var paypasswordApi = require('./api/v1/paypassword');
 
 // demo
 router.get('/user', siteController.user);
@@ -37,6 +38,7 @@ router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
 router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
+router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.forgetValid)
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -1,7 +1,7 @@
 require(['jquery', 'bootstrap'],function($){
     $("#remindSeller").on("click",function(){
         $.ajax({
-            url:"../api/confirmComplete/test",
+            url:"/api/confirmComplete/test",
             type:"get",
             data:{userId:1,orderId:2},
             success:function(data){
