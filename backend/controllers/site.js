@@ -31,6 +31,14 @@ exports.home = function (req, res, next) {
         '	<li><a href="/order/orderClose?id=100000">关闭订单</a></li>',
         '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a> &gt; <a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
         '	<li><a href="/dispute/disputeApply">纠纷处理申请</a> &gt; <a href="/dispute/disputeComplete">纠纷处理申请完成</a></li>',
+        '	<li><a href="/confirmDelivery/sellerDelivery">卖家审核提货</a></li>',
+        '	<li><a href="/settlement/settlementForm_seller?id=222&type=1">卖家结算单</a></li>',
+        '	<li><a href="/settlement/settlementForm_buyer?id=111&type=1">买家结算单</a></li>',
+        '	<li><a href="/return">退货详情页</a></li>',
+        '	<li><a href="/order/orderClose?id=111">关闭订单</a></li>',
+        '	<li><a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
+        '	<li><a href="/wealth/wealthCenter">财务管理首页</a></li>',
+        '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
 	res.send(home);

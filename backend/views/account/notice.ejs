@@ -1,0 +1,23 @@
+<% layout('../global/globalTemp/globalTemp') -%>
+<% stylesheet("/static/styles/notice.css") -%>
+<% include ../global/modal/modal  %>
+<% include ../global/header/subHeader  %>
+
+
+<div id="notice">
+    <div class="notice">
+        <div class="wrap clearfix">
+            <% include sideBar  %>
+            <div class="content">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <% include ../global/order/statusBar %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
