@@ -16,4 +16,4 @@ if [[ $# = 1 ]]; then
     export MOCK=true;
 fi
 
-supervisor -w api,common,config,custom_components,middlewares,errors,nock,controllers,app.js app.js
+supervisor -w api,libs,config,custom_components,middlewares,errors,nock,controllers,app.js app.js

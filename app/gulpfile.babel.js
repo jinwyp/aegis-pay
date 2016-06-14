@@ -27,8 +27,8 @@ const distPaths = {
     "custom_components" : "static/custom_components",
     "components"        : "static/components",
     "images"            : "static/images",
-    "imagesSprites"     : "images/sprite",
-    "imagesSpritesScss" : "styles/sprite",
+    "imagesSprites"     : "images/sprite/auto-sprite.png",
+    "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
     "css"               : "static/styles"
 };
 
@@ -77,8 +77,8 @@ gulp.task('sass', ['sprite'], () =>
 
 gulp.task('sprite', function () {
     var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
-        imgName:  distPaths.imagesSprites + '/auto-sprites.png',
-        cssName:  distPaths.imagesSpritesScss + '/_sprites.scss',
+        imgName:  distPaths.imagesSprites ,
+        cssName:  distPaths.imagesSpritesScss ,
         cssFormat:  'scss'
     }));
     return spriteData.pipe(gulp.dest(''));
