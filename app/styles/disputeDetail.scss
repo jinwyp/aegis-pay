@@ -1,0 +1,66 @@
+@import './global.scss';
+@import "modal.scss";
+#disputeDetail{
+  background: #f5f5f5;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  .disputeDetailWrap{
+    width: 1000px;
+    padding: 30px;
+    margin: 0 auto;
+    background: #fff;
+
+    .disputeDetailTit{font-size: 18px;color:#333;border-bottom: 1px solid #d9d9d9;padding-bottom: 15px;}
+    .disputeDetailTit span{display: inline-block;border-left:2px solid #31b9e6;padding-left: 10px;}
+    .disputeStatus{margin: 18px 0;height:48px;background: url("/static/images/dispute/statusPic.png") no-repeat 0px -47px;}
+
+    .disputeDetailInfoWrap{background:#f3fcff;padding-left:230px;padding-top:48px;padding-bottom: 48px;}
+    .disputeDetailInfoWrap .disputeInfoTit{font-size:24px;margin-bottom: 20px;}
+    .disputeDetailInfoWrap .disputeInfoTit b{color:#ff0000;}
+    .disputeDetailInfoWrap p{margin-bottom:10px;color:#999;}
+    .disputeDetailInfoWrap a{color:#037191;}
+    .disputeDetailInfoWrap a.cancel{background:url("/static/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
+    .disputeDetailInfoWrap a.cancel:hover{text-decoration: none;opacity: .8;}
+    .disputeDetailInfoWrap span.logoBlue{color:#00b7ec;vertical-align: middle;}
+
+    .diputeTableWrap{
+      margin-top:20px;border:1px solid #e8e8e8;padding:0px 35px;padding-bottom:13px;
+      .disputeBlock{border-bottom:1px dotted #ddd;padding-top:28px;padding-bottom:15px;}
+      .disputeBlock p{color:#333;font-size: 14px;margin-bottom: 15px;}
+      .disputeBlock p span{color:#999;display: inline-block;min-width: 120px;vertical-align:top;}
+      .disputeBlock p label{color:#333;font-weight:normal;width:730px;display: inline-block;}
+      .disputeBlock p span.disputeStatusTxt{color:#ff0000}
+      .disputeBlock .disputeTit{font-size:18px;color:#333;margin-bottom: 25px;width:100%; }
+      .sellInfo{border-bottom: none;}
+      .sellInfo p{display: inline-block;width:48%;}
+    }
+    .disputetableInfo{
+      .tableTit{display: table;color:#999;font-size: 12px;text-align: center;width:100%;}
+      .tableTit > div{display: table-cell;height: 40px;background: #f5f5f5;vertical-align: middle;}
+      div.goodsName{width: 380px;}
+      div.price{width: 106px;}
+      div.amount{width: 90px;}
+      div.totalPrice{width: 90px;}
+      div.havePaid{width: 140px;}
+      div.orderStatus{width: 125px;}
+
+      .tableCon{display: table;border-collapse: collapse;margin-bottom: 20px;width:100%;}
+      .tableCon > div{border: 1px solid #e8e8e8;border-top: none;display: table-cell;vertical-align: middle;text-align: center;}
+      .goodsCon{padding-left: 20px;padding-top: 22px;padding-bottom: 20px;}
+      .goodsCon .goodsTit{font-size: 16px;margin-bottom: 18px;text-align: left;}
+      .goodsCon .goodsTit span{display: inline-block;background: #ff6e27;width: 16px;height: 16px;color:#fff;margin-right:10px;font-size: 12px;vertical-align: middle;text-align: center;border-radius: 2px;line-height: 15px;position: relative;top: -1px;}
+      .goodsCon .goodsDetail{font-size: 12px;width: 100%;text-align: left;}
+      .goodsCon .goodsDetail label{color:#999;font-weight: normal;}
+      .goodsCon .goodsDetail li{float: left;width: 50%;margin-bottom: 10px;}
+
+      .tableCon div{font-size: 14px;}
+      .tableCon .havePaid{font-size: 16px;}
+      .tableCon .orderStatus .unShift{color:#ff0000;}
+    }
+    .amountsPayable{text-align: right;font-size: 20px;color:#333;}
+    .amountsPayable b {color:#ff6830;}
+    .amountsPayableName{color:#333;font-size: 12px;text-align: right;margin-top: 20px;}
+  }
+
+}

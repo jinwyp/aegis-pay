@@ -26,8 +26,10 @@ var returnDetailController    = require('./controllers/returnDetail');
 
 var disputeApply              = require('./controllers/disputeApply');   //纠纷申请
 var disputeComplete           = require('./controllers/disputeComplete');   //纠纷申请完成页面
-var confirmComplete           = require('./controllers/confirmComplete');            //确认完成页面
+var disputeDetail             = require('./controllers/disputeDetail');     //纠纷详情页
+var confirmComplete           = require('./controllers/confirmComplete'); //确认完成页面
 var payCtl                    = require('./controllers/pay');
+var signCtrl                  = require('./controllers/sign');                                                 //支付模块
 var signCtrl = require('./controllers/sign');                                                 //支付模块
 var wealthCenter              = require('./controllers/wealth/wealthCenter');       //财富管理
 var financialHome              = require('./controllers/wealth/financialHome');       //财富管理
@@ -62,6 +64,7 @@ router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDel
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);    //确认完成页面
 router.get('/dispute/disputeApply', disputeApply.disputeApply);
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
+router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 router.get('/wealth/financialHome', financialHome.financialHome);    //财务管理中心
