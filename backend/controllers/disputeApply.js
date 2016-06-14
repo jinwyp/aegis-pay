@@ -6,11 +6,13 @@ var request = require('request');
 var apiHost = 'http://server.180.com/';			// 模拟域名
 var path = require('path');
 var _ = require('lodash');
+var api_config = require('../api/v1/api_config');
 
 
 // 处理业务逻辑
 exports.disputeApply = function (req, res, next) {
-    request({url : 'http://localhost:8800/dispute/disputeApply'}, function (err, data) {
+    var url = api_config.disputeApply;
+    request({url : url}, function (err, data) {
 
         if (err) return next(err);
         

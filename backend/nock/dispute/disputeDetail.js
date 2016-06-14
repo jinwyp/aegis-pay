@@ -1,12 +1,12 @@
 var nock = require('nock');
 var API  = require('../../api/v1/api_config');
-var disputeApply        = nock(API.host).log(console.log);
-var disputeApplyPersist = nock(API.host).persist();
+var disputeDetail        = nock(API.host).log(console.log);
+var disputeDetailPersist = nock(API.host).persist();
 
-disputeApplyPersist
-    .get('/dispute/disputeApply').reply(200,
-    {
-      "sellInfo":{
+disputeDetailPersist
+    .get('/dispute/disputeDetail').reply(200,
+{
+    "sellInfo":{
         "NCV":5090, "NCV02":6500,
         "ADS":0.00, "ADS02":0.00,//测试数据
         "ADV":1.00, "ADV02":2.00,
@@ -110,8 +110,8 @@ disputeApplyPersist
         "ps":3,
         "aft":1300,
         "psname":"末煤"
-      },
-      "order":{
+    },
+    "order":{
         "id":2019,
         "version":0,
         "orderNO":"订单编号",
@@ -123,12 +123,12 @@ disputeApplyPersist
         "sellerCompanyName":"卖家公司名称",
         "buyerFundAccount":"买家资金账号",
         //"buyerFundAccount":null,
-        "sellerFundAccount":"卖家资金账号",
-        //"sellerFundAccount":null,
+        "sellerFundAccount":"1302010192010291010",
         "sellerLoginName":"卖家登陆名",
         "status":"WaitSignContract",
         "statusName":"待审核",
         "price":500.00,
+        sellerLoginPhone:"13029210291",
         "amount":1000,
         "totalMoney":50000.00,
         "dealerName":"Chen",
@@ -137,8 +137,13 @@ disputeApplyPersist
         "signContractTime":"2016-03-06 21:35",
         "paymentTime":"2016-03-07 21:35",
         "statusName" : "未办货权转移",
+        "disputeCreateTime" : "2016-03-02",
+        "statusName" : "处理状态啊",
+        "deliveryGoods" :2,
+        "returnGoods" : false,
+        "disputeRemarks" : "退款隐隐啦啦啦啦啦",
         "confirmDeliveryTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
         "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}}
-      }
-    });
-module.exports = disputeApply;
+    }
+});
+module.exports = disputeDetail;

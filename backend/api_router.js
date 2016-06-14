@@ -11,6 +11,11 @@ var settlementFormApi = require('./controllers/settlement/settlementForm');     
 var confirmDelivery = require('./api/v1/confirmDelivery');
 var confirmComplete = require('./controllers/confirmComplete');
 var disputeApply = require('./controllers/disputeApply');
+var disputeCancel = require('./controllers/disputeDetail');
+var payApi          = require('./api/v1/pay');
+
+
+
 var payApi = require('./api/v1/pay');
 var paypasswordApi = require('./api/v1/paypassword');
 
@@ -34,6 +39,10 @@ router.get('/settlement/sellerView', settlementFormApi.sellerView);             
 router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliveryIndex);
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 router.post('/disputeApply', disputeApply.dispute);
+router.post('/disputeCancel', disputeCancel.disputeCancel);
+
+
+
 router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
 router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);

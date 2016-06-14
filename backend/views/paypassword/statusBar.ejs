@@ -1,0 +1,21 @@
+<!-- 订单状态条 -->
+<div class="statusBar">
+    <% var i = 0, total = statusObj.total || 5 %>
+    <% var lastMark = (statusObj.step == total)?'status_last':'' %>
+    <ul class="statusMain <%= lastMark %> status_<%= statusObj.step %>">
+        <% for(i; i < total; i++){ %>
+            <% var obj = statusObj.stepList[i], s = 0; %>
+            <% var doneMark = (i < statusObj.step)?'step_done':'' %>
+            <% if(i == total - 1) {%>
+            <li class="statusStep <%= doneMark %>  step_last step_<%= total %>">
+            <% } else { %>
+             <li class="statusStep  <%= doneMark %>  step_<%= i+1 %>">
+            <% } %>
+                <span class="statusHr"></span>
+                <span class="statusDot"><%= i+1 %></span>
+                <span class="stepName"><%= obj.stepName %></span>
+                <span class="stepDate"><%= obj.stepDate ? dateFormat(obj.stepDate, 'YYYY-MM-DD HMS') : '' %></span>
+            </li>
+        <% }%>
+    </ul>
+</div>
