@@ -20,10 +20,14 @@ require(['jquery','pay.upload'],function($,upload){
 
         },
         "countDown" : function(){
+            $(window).load(function(){
+                var initialLen=200-($("#disputeRemarks").val().length);
+                $("#leftTxt").text(initialLen);
+            });
             $("#disputeRemarks").on("input",function(){
                 var Len=$(this).val().length;
                 var restNum=200-Len;
-                $("#leftTxt").text(restNum)
+                $("#leftTxt").text(restNum);
             });
         },
         "upload" : function(){
@@ -39,32 +43,32 @@ require(['jquery','pay.upload'],function($,upload){
                     return true;
                 }
             };
-
-            $("#fileUpload").change(function () {
-                var oFile = document.getElementById('fileUpload').files[0];
-                if(!filterFormat(oFile)){
-                    $(this).val("");
-                    initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
-                    return;
-                }else if(oFile.size>iMaxFilesize){
-                    $(this).val("");
-                    initErrors(false,"请上传大小5M以内的图片");
-                    return;
-                }else if($(".preview").length>20){
-                    $(this).val("");
-                    initErrors(false,"最多上传20张照片");
-                    return;
-                }
-                else{
-                    initErrors(true,"");
-                    return true;
-                }
-            });
+            
+                $("#fileUpload").change(function () {
+                    var oFile = document.getElementById('fileUpload').files[0];
+                    if(!filterFormat(oFile)){
+                        $(this).val("");
+                        initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
+                        return;
+                    }else if(oFile.size>iMaxFilesize){
+                        $(this).val("");
+                        initErrors(false,"请上传大小5M以内的图片");
+                        return;
+                    } else{
+                        initErrors(true,"");
+                        return true;
+                    }
+                });
 
 
             var $fileList = $('.fileList');       //附件列表
             //上传操作
             $('.addImg').click(function(){
+                if($(".preview").length>=20){
+                    $(this).val("");
+                    initErrors(false,"最多上传20张照片");
+                    return;
+                }
                 modifyImg=false;
                 $("#fileUpload").click();
             });
@@ -141,7 +145,6 @@ require(['jquery','pay.upload'],function($,upload){
                 $(".fileList .preview").each(function(i,val){
                     imgList.push("imgList"+"["+i+"]"+".path"+":"+$(this).data("id")+","+$(this).val()+"imgList"+"["+i+"]"+".name"+":"+$(this).data("name"));
                 });
-                console.log(imgList)
                 $.ajax({
                     url : "/api/disputeApply",
                     data:{

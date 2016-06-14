@@ -138,7 +138,13 @@ disputeApplyPersist
         "paymentTime":"2016-03-07 21:35",
         "statusName" : "未办货权转移",
         "confirmDeliveryTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
-        "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}}
+        "settleAccountTime":{"year":2016,"month":"APRIL","dayOfMonth":6,"dayOfWeek":"WEDNESDAY","dayOfYear":97,"monthValue":4,"hour":11,"minute":28,"second":50,"nano":0,"chronology":{"id":"ISO","calendarType":"iso8601"}},
+        // 修改
+        "deliveryGoods":0,
+        "returnGoods":true,
+        "disputeRemarks" : "这是退款原因",
+        "imgList":[{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"},{path:"9545d27b-3ca8-4d48-bd0e-28eb0b201b16.png",name:"zoomIcon_05.png"}]
       }
+      
     });
 module.exports = disputeApply;
