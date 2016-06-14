@@ -1,23 +1,16 @@
-/** 开具结算单 [及类型, 页面状态]
+/**
+ * 开具结算单 [及类型, 页面状态]
  * 数据模拟
  * type: buy 1买家; sell 2卖家
  * status:
- *   1.待结算 (开具结算单)
- *   2.待审核;
- *   3.审核不通过;
- *   4.审核完成;
- *   5.结算完成;
-
- /settlement/settlementForm?type=2&id=11		待结算.卖家开具结算单(卖 WaitSettleAccounts)
- /settlement/settlementForm?type=2&id=21		待审核.卖家编辑结算单(卖 WaitVerifySettle)
- /settlement/settlementForm?type=1&id=22		待审核.买家审核结算单(买 WaitVerifySettle)
- /settlement/settlementForm?type=2&id=31		审核退回.卖家修改数据(卖 ReturnedSettleAccounts)
- /settlement/settlementForm?type=1&id=32		审核退回.买家修改原因(买 ReturnedSettleAccounts)
-
- /settlement/settlementForm?type=1&id=44		审核通过.待买家补款  (无 WaitPayTailMoney)
- /settlement/settlementForm?type=2&id=55		审核通过.待卖家退款  (无 WaitPayRefundMoney)
- /settlement/settlementForm?type=2&id=66		审核通过.待卖家开发票(无 WaitWriteReceipt)
- */
+	 WaitSettleAccounts	 	待结算.卖家开具结算单(卖)
+	 WaitVerifySettle	 	待审核.卖家编辑结算单(卖)
+	 WaitVerifySettle	 	待审核.买家审核结算单(买)
+	 ReturnedSettleAccounts	审核退回.卖家修改数据(卖)
+	 ReturnedSettleAccounts	审核退回.买家修改原因(买)
+	 WaitPayTailMoney	 	审核通过.待买家补款  (_)
+	 WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
+	 WaitWriteReceipt	 	审核通过.待卖家开发票(_)  */
 
 var API  = require('../../api/v1/api_config');              // 接口路径配置
 var nock = require('nock');
