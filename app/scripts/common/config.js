@@ -30,7 +30,7 @@ require.config({
     'message': 'Plugins/message',
     'html5shiv': '/static/components/html5shiv/dist/html5shiv',
     'requirejs': '/static/components/requirejs/require',
-    'pay.smscode': '../../static/custom_components/sms-code/sms-code',
+    'pay.smscode': '../../static/custom_components/sms-code/sms-code'
   },
   packages: [
 

@@ -9,6 +9,7 @@ exports.home = function (req, res, next) {
         '	<h1>产品无关调试的页面</h1><hr/>',
         '	<li><a href="/api/user">user session（fetch：req.session.user)</a></li>',
         '	<li><a href="/demo">demo</a></li>',
+        '	<li><a href="/newdemo">newdemo</a></li>',
         '	<li><a href="/header">header</a></li>',
         '	<li><a href="/subHeader">subHeader</a></li>',
         '	<li><a href="/footer">footer</a></li>',
