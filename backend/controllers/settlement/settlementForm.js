@@ -37,7 +37,7 @@ exports.orderSettlement = function (req, res, next) {
 		req_type = req.query.type,
 		typeArr = ['none', 'buy', 'sell'];
 
-	checker.orderId(req_id);
+	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	if(!req_id) {
@@ -66,11 +66,11 @@ exports.sellerView = function (req, res, next) {
 
 	var req_id = req.query.id;
 
-	checker.orderId(req_id);
+	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	// 异步调取Java数据
-	var url = apiHost.host + '/settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
+	var url = apiHost.host + 'settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
 	request(url, function (err, data) {
 		if (err) return next(err);
 

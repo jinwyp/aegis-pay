@@ -67,7 +67,6 @@ exports.demo = function (req, res, next) {
                 statusObj: {}					//NODE端 数据模拟
             });				// 指定模板路径 渲染
         }
-        
 	});
 
 

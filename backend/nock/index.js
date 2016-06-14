@@ -12,3 +12,4 @@ require('./return/returnDetail');
 require('./dispute/disputeApply');
 require('./dispute/disputeComplete');
 require('./paypassword'); 
+require('./dispute/disputeDetail');
