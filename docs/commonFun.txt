@@ -35,13 +35,13 @@
 
 -----------------------------------------------------------
 
-财务管理中心头部引用（一级导航、二级导航）
+财务管理中心头部引用（头部、导航栏）
 
-    //一级头部
+    //头部
     <%- include ../global/header/financialFirstHeader %>
-    //二级头部
+    //导航栏
     <%- include ../global/header/financialSecondHeader %>
-    //头部控制js
+    //导航栏控制js
     <script src="/static/scripts/header/financialHeader.js"></script>
     //firstTab一级导航下标(1.首页 2.账户管理 3.交易明细 4.结算清单 5.合同管理)
     //secondTab二级级导航下标(1.账户通 2.收支明细 3.账户设置)
