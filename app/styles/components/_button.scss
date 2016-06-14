@@ -1,0 +1,241 @@
+/* 公用: 按钮,输入框 --------------------------- */
+.iBtn {
+  width: 140px;
+  height: 40px;
+  padding: 3px 5px;
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 32px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.iIpt {
+  display: inline-block;
+  width: 88%;
+  height: 38px;
+  padding: 3px 6px;
+  font-size: 14px;
+  line-height: 36;
+  color: #333;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+  &:hover {
+    border: 1px solid #01b7ec;
+  }
+}
+
+.iBtn[disabled],
+.iIpt[disabled],
+.iBtn[disabled]:hover,
+.iIpt[disabled]:hover {
+  background-color: #bbbcbd;
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  cursor: not-allowed;
+  filter: alpha(opacity=100);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: 1.0;
+}
+
+.iBtn[readonly],
+.iIpt[readonly],
+.iBtn[readonly]:hover,
+.iIpt[readonly]:hover {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  color: #d1d1d1;
+  cursor: default;
+}
+
+//默认, 取消
+.iBtn_def {
+  color: #ffffff;
+  border: 1px solid #e4e4e4;
+  background: #c7c7c7;
+
+  &:hover {
+    border: 1px solid #cccccc;
+  }
+}
+
+//编辑
+.iBtn_edit {
+  color: #656565;
+  border: 1px solid #e4e4e4;
+  background: url($bgShadow) repeat-x;
+
+  &:hover {
+    background: #FFFFFF;
+    border: 1px solid #1fb8ea;
+    color: #1fb8ea;
+  }
+}
+
+//确定
+.iBtn_yes {
+  color: #ffffff;
+  background: #1fb8ea;
+
+  &:hover {
+    background: #4cc6ee;
+  }
+}
+
+//否定, 退回
+.iBtn_no {
+  color: #ffffff;
+  background: #fd6e35;
+
+  &:hover {
+    background: #fd8b5d;
+  }
+}
+
+//错误
+.iIpt_err,
+.iIpt_err:hover {
+  border: 1px solid #ff0303;
+}
+
+//上传&下载
+.iBtn_up, .iBtn_down {
+  @extend .iBtn_sm;
+  margin-right: 10px;
+  border: 1px solid #e4e4e4;
+  background: url($bgShadow) repeat-x;
+  text-align: left;
+  text-indent: 8px;
+  font-size: 14px;
+  color: #656565;
+
+  &:hover {
+    background: #FFFFFF;
+    border: 1px solid #1fb8ea;
+    color: #1fb8ea;
+  }
+}
+
+.iBtn_up {
+  position: relative;
+  z-index: 5;
+
+  .iBtn_up_icn {
+    margin: 6px 0 0 7px;
+    float: left;
+    display: inline;
+    width: 14px;
+    height: 14px;
+    background: url($bgUrl) no-repeat -552px -307px;
+  }
+  input[type=file] {
+    display: block;
+    width: 96px;
+    height: 32px;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+}
+
+//下载
+.iBtn_down {
+  .iBtn_down_icn {
+    margin: 6px 0 0 7px;
+    float: left;
+    display: inline;
+    width: 14px;
+    height: 14px;
+    background: url($bgUrl) no-repeat -552px -269px;
+  }
+}
+
+//附件
+.fileLab {
+  display: inline-block;
+  height: 30px;
+  margin-right: 10px;
+  padding: 3px 7px 0 30px;
+  zoom: 1;
+  font-size: 12px;
+  line-height: 22px;
+  color: #666666;
+  border: 1px solid #f5f5f5;
+  background: #f5f5f5 url($bgUrl) no-repeat -542px -221px;
+  text-align: left;
+  vertical-align: middle;
+  cursor: default;
+
+  &:hover {
+    border: 1px solid #45b8ed;
+    background: #ffffff url($bgUrl) no-repeat -542px -221px;
+  }
+
+  .fileLab_del {
+    display: inline;
+    float: right;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    margin: 4px 0 0 20px;
+    background: url($bgUrl) no-repeat -222px -176px;
+
+    &:hover {
+      background: url($bgUrl) no-repeat -262px -176px;
+    }
+  }
+}
+
+.fileLab.only {
+  border: 1px solid #f3f3f3;
+  padding: 3px 10px 0 30px;
+  .fileLab_del {
+    display: none;
+  }
+  &:hover {
+    border: 1px solid #f3f3f3;
+    background: #f3f3f3 url($bgUrl) no-repeat -542px -221px;
+  }
+}
+
+//小号
+.iBtn_sm {
+  width: 96px;
+  height: 32px;
+  padding: 2px 3px;
+  font-size: 12px;
+  line-height: 26px;
+}
+
+.iIpt_sm {
+  height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 22px;
+}
