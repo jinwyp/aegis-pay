@@ -18,9 +18,9 @@
                     <table>
                         <tr>
                             <td class="noticeAccount">
-                                <h2>退款到附属账户</h2>
-                                <p>附属账户: <span>尾号</span></p>
-                                <p>金额: <span>元</span></p>
+                                <h2><%= noticeInfo.operation %></h2>
+                                <p>附属账户: <span>尾号<%= noticeInfo.account %></span></p>
+                                <p>金额: <span><%= formatMoney(noticeInfo.money,2) %>元</span></p>
                             </td>
                             <td>
                                 <% include ../global/order/statusBar %>
