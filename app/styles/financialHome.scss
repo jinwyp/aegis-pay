@@ -1,6 +1,9 @@
 @import './global.scss';
 @import './components/_modal.scss';
 
+
+
+
 #financial-body{
   background-color: $color_body_bg;
   padding: 20px 0px;
@@ -85,5 +88,35 @@
         }
       }
     }
+
+
+    .financial-details{
+      padding: 20px 10px;
+    }
+
+    .form-search {
+      width: 300px;
+
+      label {
+        font-size: $size_font_normal;
+        color: $color_text_gray;
+        padding-top:5px;
+        padding-right: 6px;
+      }
+
+      .inputbox {
+        font-size: $size_font_normal;
+        color: $color_text_select_gray;
+        width: 170px;
+        height:28px;
+        border-radius:0px;
+        border: 0px;
+        outline: 1px solid $color_border_input_gray;
+        box-shadow: none;
+        //-webkit-appearance: none;
+      }
+    }
+
+
   }
 }

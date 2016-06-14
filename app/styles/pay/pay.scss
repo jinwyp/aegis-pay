@@ -1,4 +1,7 @@
 // 付款页面
+@import '../helpers/_variables.scss';
+
+
 #pay{
   .tip-error, .tip-msg{ display:none; }
   .seller{

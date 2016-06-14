@@ -2,8 +2,7 @@
 @import './components/_common.scss';
 @import './layout/_statusBar.scss';
 
-
-body{ background-color: $color_body_bg; font-size:$size_font_nomal; font-family: $font_family;}
+body{ background-color: $color_body_bg; font-size:$size_font_normal; font-family: $font_family;}
 
 #paymentHeader .headWrap .wrap1000 .menuList li.webNav{ width:auto; }
 #paymentHeader .headWrap .wrap1000 .menuList li .hideMenu{ width:auto; }
@@ -20,7 +19,7 @@ input[type="text"]{
     vertical-align: middle; margin-right:6px;
   }
   .tip-msg, .tip-error{
-      margin-left:75px; font-size:$size_font_nomal; line-height: 18px;
+      margin-left:75px; font-size:$size_font_normal; line-height: 18px;
   }
   // 付款页面
   @import './pay/pay.scss';
