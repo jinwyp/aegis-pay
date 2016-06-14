@@ -55,7 +55,7 @@
 订单状态条, 详见:8800/demo
 
     样式引入:
-    @import './statusBar.scss';
+    @import './Plugins/statusBar.scss';
 
     模板引入:
     <% include ../global/order/statusBar %>
@@ -112,7 +112,6 @@
     2.模板引用
     <% include ../global/order/orderTable %>
 
-
     res.render("compact/orderDetail", {"sellInfo":sellInfo,"order":order});
 
 -----------------------------------------------------------
@@ -151,8 +150,38 @@
 
 
 -----------------------------------------------------------
-标题:
-    内容
+标题:结算单退回原因编辑框
+
+    样式引入:
+    @import './Plugins/reasonsReturnPlate.scss';
+
+    模板引入:
+    <%- include ../Plugins/reasonsReturnPlate %>
+
+    模板数据:
+    {
+        userType: 'buy',     //用户类型: buy, sell
+        order: {
+            status: 'ReturnedSettleAccounts'
+        }
+    }
+-----------------------------------------------------------
+标题:结算单信息,实际结算信息表格
+
+    样式引入:
+    @import './Plugins/settlementInfoPlate.scss';
+
+    模板引入:
+    <%- include ../Plugins/settlementInfoPlate %>
+
+    模板数据:
+    {
+        userType: 'buy',     //用户类型: buy, sell
+        order: {
+            status: 'ReturnedSettleAccounts'
+        }
+    }
+
 
 
 -----------------------------------------------------------

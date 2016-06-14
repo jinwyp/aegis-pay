@@ -1,6 +1,7 @@
 @import './global.scss';
 @import './Plugins/message.scss';
-
+@import './Plugins/reasonsReturnPlate.scss';      // 退回原因编辑, 结算信息
+@import './Plugins/settlementInfoPlate.scss';
 
 /* 结算单 页面 *********************************************** */
 .mt220 { margin-top: 220px}
@@ -116,84 +117,7 @@
 }
 
 /* 结算单表格 板块 --------------------------- */
-.settlementTable {
-    width: 100%;
-    max-width: 100%;
 
-    tbody {
-        tr {
-          th,
-          td {
-            padding: 9px;
-            font-size: 14px;
-            line-height: $line-height-base;
-            vertical-align: top;
-            border: 1px solid #e8e8e8;
-            text-align: center;
-          }
-        }
-        tr {
-          th {
-            background: #f5f5f5;
-            color: #666666;
-          }
-        }
-        tr {
-          td {
-            padding: 15px 0;
-            background: #ffffff;
-            color: #333333;
-          }
-        }
-
-        // 文本框
-        .billBox {
-          position: relative;
-          background: #f3fcff;
-
-          &:hover {
-            outline: #27abff solid thin;
-          }
-          .billIpt {
-            width: 90%;
-            border: none;
-            background: #f3fcff;
-            text-align: center;
-          }
-
-          .errInfo {
-            width: 200px;
-            height: 18px;
-            padding: 0 3px;
-            position: absolute;
-            z-index: 6;
-            font-size: 12px;
-            line-height: 18px;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            margin: 0 auto;
-            color: #ff0000;
-          }
-        }
-    }
-}
-.settlementTit {
-  height: 50px;
-  line-height: 42px;
-  font-size: 22px;
-  color: #333333;
-  text-align: center;
-
-  .subEditTitle {
-    font-size: 12px;
-    color:#666666;
-
-    .require {
-      line-height: 16px;
-    }
-  }
-}
 
 
 /* 清算货款 板块 --------------------------- */
@@ -244,69 +168,7 @@
 
 
 /* 退回原因&编辑原因&重新提交 板块 --------------------------- */
-.reasonsReturn {
-  width: 940px;
-  padding: 20px 30px;
-  border: 1px solid #b0ebfc;
-  background: #f3fcff;
 
-  .returnTitle {
-    height: 48px;
-    line-height: 42px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1aaa6b;
-  }
-  .returnTab {
-    width: 860px;
-    color: #999999;
-    line-height: 18px;
-    font-size: 12px;
-    
-    tr{
-      td{
-        padding: 2px;
-      }
-    }
-  }
-  //倒计时
-  .reasonsReturn_back {
-    padding: 10px 0 18px 240px;
-    display: none;
-
-    .statusLab {
-      font-weight: 400;
-      color:#333333;
-    }
-    p {
-      padding-top: 8px;
-    }
-  }
-  
-  //查看
-  .reasonsReturn_view {
-    padding-bottom: 10px;
-    display: none;
-  }
-  
-  //编辑
-  .reasonsReturn_edit {
-    display: none;
-  }
-  
-  .show {
-    display: block;
-  }
-}
-.againRefer {
-  border: 1px solid #ffb2b2;
-  background: #feecec;
-
-  .returnTitle {
-    color: #ff0000;
-  }
-  .iBtn { display: none;}
-}
 
 
 /* 操作提示框&操作按钮组&文件操作 --------------------------- */
@@ -340,6 +202,10 @@
     font-size: 14px;
     color: #666666;
     line-height: 22px;
+
+    p.fileTitle {
+      padding-top: 5px;
+    }
   }
   .fileOperation_body {
     width: 780px;
