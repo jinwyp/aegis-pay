@@ -1,3 +1,6 @@
+var request = require('request');
+var _ = require('lodash');
+// var api_config = require('../')
 exports.reset = function(req, res, next){
     var pageData = {
         pageTitle : '安全设置 —— 支付密码',
@@ -18,8 +21,4 @@ exports.validCard = function(req, res, next){
         }
     };
     res.render('paypassword/forget-valid', pageData);
-}
-
-exports.validCardSubmit = function(req, res, next){
-    res.send({success:false})
 }

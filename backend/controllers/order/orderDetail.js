@@ -13,13 +13,9 @@ exports.getOrderDetail = function (req, res, next) {
     checker.orderId(req.query.orderId);
 
     request({url : api_config.orderDetail + '?orderId=' + req.query.orderId}, function (err, data) {
-
         if (err) return next(err);
-
-        var source = JSON.parse(data.body);
-
         if (data) {
-
+            var source = JSON.parse(data.body);
             var step = 0;
             switch (source.data.order.status) {
                 case 'WaitSignContract':
@@ -39,7 +35,6 @@ exports.getOrderDetail = function (req, res, next) {
                     step = 5;
                     break;
             }
-
             var statusObj = {
                 step     : step,        // 第几步
                 stepList : [
@@ -65,7 +60,6 @@ exports.getOrderDetail = function (req, res, next) {
                     }
                 ]
             };
-
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var content = {
                 headerTit  : "待签电子合同",
@@ -75,7 +69,6 @@ exports.getOrderDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
-
             //logger.debug('orderDetail获取到的结果是----------------------------' + content);
             res.render('order/buyOrderDetail', content);
         } else {
@@ -87,9 +80,8 @@ exports.getOrderDetail = function (req, res, next) {
 
 exports.printDetail = function (req, res, next) {
     request({url : 'http://localhost:7777/getOrderDetail'}, function (err, data) {
-        logger.debug('printDetail获取到的错误是----------------------------' + err);
-        logger.debug("printDetail请求返回的数据是----------------------------" + data);
-        if (data != undefined) {
+        if (err) return next(err);
+        if (data) {
             var source  = JSON.parse(data.body);
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var content = {

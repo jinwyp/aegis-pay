@@ -11,7 +11,7 @@ $color_bg_gray: #fcfcfc;
 $color_red: #ff0000;
 
 $color_readme_bg: #fffaf7;
-$color_readme_font: #ff6e0f;
+$color_readme_font: #ffzz6e0f;
 $color_readme_border: #fecdb3;
 $color_link: #1fb8ea;
 $color_link_hover: #4cc6ee;
@@ -31,6 +31,7 @@ $color_label_bg:#f6f6f6;
 $color_lightblue: #f3fcff;
 $color_bg_pink: #feecec;
 $color_bg_lightorange: #fffaf7;
+$color_manage_text: #007193;
 
 $main_width: 1000px;
 $main_margintop: 20px;
@@ -51,24 +52,26 @@ $ffYh: "\5FAE\8F6F\96C5\9ED1";
 $ffSt: '\5B8B\4F53';
 $ffArial: 'Arial';
 
+
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 
 @mixin box-shadow($shadow) {
-      -moz-box-shadow:$shadow;
+  -moz-box-shadow:$shadow;
   -webkit-box-shadow:$shadow;
-          box-shadow:$shadow;
+  box-shadow:$shadow;
 }
 
 @keyframes spin {
-from { transform: scale(1) rotate(0deg);}
-to { transform: scale(1) rotate(360deg);}
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
 }
 @-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
 }

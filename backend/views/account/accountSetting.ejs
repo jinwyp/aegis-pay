@@ -1,0 +1,63 @@
+
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/accountSetting.css">
+</head>
+
+
+<body>
+<%- include ../global/modal/modal  %>
+<%- include ../global/header/header %>
+<% include ../global/header/subHeader  %>
+<div id="accountSetting">
+    <div class="accountSetting">
+        <div class="wrap clearfix">
+            <% include sideBar  %>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>真实姓名：</th>
+                        <td colspan="2">张三</td>
+                    </tr>
+                    <tr>
+                        <th>角色职务：</th>
+                        <td colspan="2">超级业务员</td>
+                    </tr>
+                    <tr>
+                        <th>手机号码：</th>
+                        <td colspan="2">18000000001</td>
+                    </tr>
+                    <tr>
+                        <th>注册时间：</th>
+                        <td colspan="2"zz>2016.01.02</td>
+                    </tr>
+                    <tr>
+                        <th>邮箱地址：</th>
+                        <td class="red">您的邮箱尚未绑定</td>
+                        <td><a href="#">绑定</a></td>
+                    </tr>
+                    <tr>
+                        <th>附属账户：</th>
+                        <td>已开通</td>
+                        <td><a href="#">查看</a></td>
+                    </tr>
+                    <tr class="noBorder">
+                        <th>银行账户：</th>
+                        <td>银行账户等待确认汇款金额</td>
+                        <td><a href="#">认证</a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+</body>
+</html>

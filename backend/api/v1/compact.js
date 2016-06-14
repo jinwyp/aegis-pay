@@ -59,9 +59,9 @@ exports.signCompact = function (req, res, next) {
     })
     params.files = newids;
     _.unset(params, 'file_id');
-    request.post(api_config.signCompact, params, function (err, data) {
+    request.post(api_config.signCompact, {body:params, json:true}, function (err, data) {
         if (!err && data) {
-            return res.send(JSON.parse(data.body));
+            return res.send(data.body);
         }
     })
 };
