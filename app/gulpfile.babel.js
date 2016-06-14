@@ -27,8 +27,8 @@ const distPaths = {
     "custom_components" : "static/custom_components",
     "components"        : "static/components",
     "images"            : "static/images",
-    "imagesSprites"     : "images/sprite",
-    "imagesSpritesScss" : "styles/sprite",
+    "imagesSprites"     : "images/sprite/auto-sprite.png",
+    "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
     "css"               : "static/styles"
 };
 
@@ -77,8 +77,8 @@ gulp.task('sass', ['sprite'], () =>
 
 gulp.task('sprite', function () {
     var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
-        imgName:  distPaths.imagesSprites + '/auto-sprites.png',
-        cssName:  distPaths.imagesSpritesScss + '/_sprites.scss',
+        imgName:  distPaths.imagesSprites ,
+        cssName:  distPaths.imagesSpritesScss ,
         cssFormat:  'scss'
     }));
     return spriteData.pipe(gulp.dest(''));
@@ -145,6 +145,18 @@ gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
 
 
 gulp.task('watch', () => {
+    gulp.watch(sourcePaths.javascript, ['javascript']);
+    gulp.watch(sourcePaths.images, ['images']);
+    gulp.watch(sourcePaths.scss, ['sass']);
+    gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
+    gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
+});
+
+
+gulp.task('watchBrowserSync', () => {
+    browserSync.init({
+        proxy: "http://localhost:3000"
+    });
     gulp.watch(sourcePaths.html).on('change', reload);
     gulp.watch(sourcePaths.javascript, ['javascript', reload]);
     gulp.watch(sourcePaths.images, ['images']);
@@ -153,14 +165,6 @@ gulp.task('watch', () => {
     gulp.watch(sourcePaths.custom_components_styles, ['custom_components', reload]);
 });
 
-
-gulp.task('watchBrowserSync', () => {
-    gulp.watch(sourcePaths.javascript, ['javascript']);
-    gulp.watch(sourcePaths.images, ['images']);
-    gulp.watch(sourcePaths.scss, ['sass']);
-    gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
-    gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
-});
 
 
 gulp.task('clean', () => {

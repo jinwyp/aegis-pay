@@ -19,7 +19,7 @@ define(['jquery','bootstrap'],function($){
         });
 
         $('#generate_imgcode').click(function(){
-          $code_img.attr('src','api/imgcode?time='+new Date().getTime())
+          $code_img.attr('src','/api/imgcode?time='+new Date().getTime())
         })
 
         $('#imgcodeValid').click(function(){

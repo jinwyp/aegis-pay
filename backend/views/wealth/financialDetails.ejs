@@ -1,0 +1,51 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/financialHome.css">
+</head>
+
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+<div id="financial-body">
+    <div class="financial-main">
+
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="exampleInputEmail3">订单分类</label>
+
+                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/header/financialHeader.js"></script>
+<script src="/static/scripts/wealth/financialHome.js"></script>
+
+</body>
+</html>
+
+
+
