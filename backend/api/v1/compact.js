@@ -6,11 +6,11 @@ var formidable = require('formidable');
 var uuid       = require('node-uuid');
 var path       = require('path');
 var config     = require('../../config');
-var utils      = require('../../common/utils');
+var utils      = require('../../libs/utils');
 
-var convert = require('../../common/convert');
-var cache   = require('../../common/cache');
-var checker = require('../../common/datachecker');
+var convert = require('../../libs/convert');
+var cache   = require('../../libs/cache');
+var checker = require('../../libs/datachecker');
 
 
 const uploadPath = config.sysFileDir + '/upload/';

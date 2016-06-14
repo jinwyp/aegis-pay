@@ -6,7 +6,7 @@ var request = require('request');
 var path = require('path');
 var _ = require('lodash');
 
-var checker    = require('../common/datachecker');
+var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 
 
@@ -81,3 +81,5 @@ exports.confirmDelivery = function (req, res, next) {
     //});
 
 };
+
+

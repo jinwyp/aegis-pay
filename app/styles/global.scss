@@ -80,7 +80,9 @@ a:hover {
   font-family: $ffSt;
   color: #f60f60;
   text-decoration: initial;
-  vertical-align: middle;}
+  vertical-align: middle;
+  padding-top: 2px;
+  height: 16px;}
 .clearfix:before, .clearfix:after { content: ""; display: table; font-size:0 !important; line-height:0!important; height:0!important;}
 .clearfix:after { clear: both; }
 
@@ -321,7 +323,6 @@ a:hover {
     top: 0;
     left: 0;
     cursor: pointer;
-    font-size: 180em;
     opacity: 0;
     filter: alpha(opacity=0);
   }
@@ -370,6 +371,17 @@ a:hover {
     &:hover {
       background: url($bgUrl) no-repeat -262px -176px;
     }
+  }
+}
+.fileLab.only {
+  border: 1px solid #f3f3f3;
+  padding: 3px 10px 0 30px;
+  .fileLab_del {
+    display: none;
+  }
+  &:hover {
+    border: 1px solid #f3f3f3;
+    background: #f3f3f3 url($bgUrl) no-repeat -542px -221px;
   }
 }
 //小号
@@ -530,7 +542,12 @@ $hoverColor: #00b7ec;
       margin: 0 auto;
 
       a,span{display: inline-block;vertical-align: middle;font-size: 18px;color:#666;}
-      .subHeaderTit{margin-left: 10px;position: relative;top: -2px}
+      .subHeaderTit{
+          margin-left: 10px;position: relative;top: -2px;
+          i{
+              font-size:$size_font_middle;
+          }
+      }
     }
   }
 }
@@ -611,15 +628,3 @@ $hoverColor: #00b7ec;
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,16 +6,25 @@ local是本地开发， dev是容器开发,  staging是上线准备环境,  prod
 默认的default.js, 其他的文件例如local.js, dev.js, prod.js 里面只要把数据不同的参数属性写上就可以了,会自动覆盖default.js 的key， 数据相同的key就不用写了, 这样看起来清晰。
 
 
-## 安装依赖
+## 安装依赖 后端
 backend 目录下：
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
 - !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install ccap
 
+## 安装依赖 前端
 app 目录下：
 - npm install
 - bower install
+- 使用gulp 进行文件打包编译
+- css sprite 自动拼接雪碧图, 图标图片文件放到 app/images/sprite/icon/下面, 就会自动在app/images/sprite 下生成拼好的图片auto-sprites.png, 同时生成scss文件styles/sprite/_sprites.scss
+- css sprite 在scss中 首先 import styles/sprite/_sprites.scss 文件,然后使用以下代码即可使用。 [教程](http://www.w3ctrain.com/2015/12/09/generating-sprites-with-gulp/)
+```
+.icon-email {
+  @include sprite($icon-emailxxx); //图片文件名
+}
+```
 
 ## 启动
 - npm test 或 ./run.sh -m (使用nock用来Mock数据)
@@ -239,4 +248,27 @@ logger.info('info 信息')
 logger.warn('warn 信息')
 logger.error('error 信息')
 ```
+
+##controller的自动注入功能
+
+newdemo.js 只需要在controllers文件夹里面添加实现了init(app)的方法,系统会自动加载controller
+```
+var router = require('express').Router();
+
+module.exports.init = function (app) {
+    app.use('/', router);
+};
+
+router.get('/newdemo', function (req, res, next) {
+
+    res.render('newdemo/newdemo',{
+        courseName:'CS201',
+        foo:'3',
+        friends:["ni",'niu','bi'],
+        rows:['水电费水电费','魄力','水电电费','sdfsfs'],
+        name:''
+    });
+});
+```
+
 

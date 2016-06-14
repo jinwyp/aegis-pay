@@ -7,6 +7,7 @@ $bgUrl: "/static/images/sprite_ico.png";
   padding: 0;
   margin: 20px auto 0;
   background-color: #ffffff;
+  text-align: center;
 
   .statusMain {
     margin-top: 18px;
@@ -16,6 +17,12 @@ $bgUrl: "/static/images/sprite_ico.png";
 
     .statusStep {
       width: 185px;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+    }
+    .statusMax {
+      width: 199px;
       display: inline-block;
       vertical-align: top;
       position: relative;
@@ -76,7 +83,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_3 {
       .statusHr {
-        background-position: -90px 18px;
+        background-position: -88px 18px;
       }
       .statusDot {
         background-position: -63px -176px;
@@ -84,7 +91,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_4 {
       .statusHr {
-        background-position: -90px 18px;
+        background-position: -88px 18px;
       }
       .statusDot {
         background-position: -63px -176px;
@@ -119,7 +126,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_3 {
       .statusHr {
-        background-position: -90px 18px;
+        background-position: -88px 18px;
       }
       .statusDot {
         background-position: -63px -176px;
@@ -127,7 +134,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_4 {
       .statusHr {
-        background-position: -90px 18px;
+        background-position: -88px 18px;
       }
       .statusDot {
         background-position: -63px -176px;
@@ -170,7 +177,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_4 {
       .statusHr {
-        background-position: -90px 18px;
+        background-position: -88px 18px;
       }
       .statusDot {
         background-position: -63px -176px;
@@ -240,7 +247,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_2 {
       .statusHr {
-        background-position: -387px 18px;
+        background-position: -385px 18px;
       }
       .statusDot {
         background-position: -3px -176px;
@@ -248,7 +255,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_3 {
       .statusHr {
-        background-position: -387px 18px;
+        background-position: -385px 18px;
       }
       .statusDot {
         background-position: -3px -176px;
@@ -256,7 +263,7 @@ $bgUrl: "/static/images/sprite_ico.png";
     }
     .step_4 {
       .statusHr {
-        background-position: -387px 18px;
+        background-position: -385px 18px;
       }
       .statusDot {
         background-position: -3px -176px;

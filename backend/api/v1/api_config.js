@@ -54,7 +54,7 @@ var api_config = {
     sendSMSCode   : host + 'sendSMSCode',
     // user can send sms again after 120s
     smsResend: 120,
-    
+
 
     /**
      * 支付－确认付款
@@ -75,9 +75,14 @@ var api_config = {
     confirmDelivery : host + 'confirmDelivery',
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
-    orderInfo : host + 'orderInfo',
+    orderInfo : host + 'order/orderInfo',
+    orderSettlement : host + 'settlement',
     orderCloseAPI : host + '/order/orderInfo_api',
-    orderReturn : host + 'return'
+    orderReturn : host + 'return',
+    disputeComplete : host + 'dispute/disputeComplete',
+
+    // 忘记密码 － 验证身份 － 下一步
+    paypasswordForgetValid: host + 'paypassword/forget/valid'
 
 };
 

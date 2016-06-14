@@ -114,7 +114,7 @@ require(['jquery','pay.upload'],function($,upload){
 
                 var deliveryVal=$('input:radio[name="delivery"]:checked').val();
                 var returnVal=$('input:radio[name="return"]:checked').val();
-                var returnReason=$("#returnReason").val();
+                var disputeRemarks=$("#disputeRemarks").val();
 
                 if(deliveryVal==null){
                     initErrors(false,"请选择是否提货");
@@ -128,7 +128,7 @@ require(['jquery','pay.upload'],function($,upload){
                 }else{
                     initErrors(true,"");
                 };
-                if(returnReason==""){
+                if(disputeRemarks==""){
                     initErrors(false,"请输入退款原因及说明");
                     return false;
                 }else{

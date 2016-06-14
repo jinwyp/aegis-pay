@@ -1,7 +1,16 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/disputeApply.css") -%>
-<% script("/static/scripts/dispute/disputeApply.js") -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/disputeApply.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
+
 <div id="disputeApply">
     <div class="disputeApplyWrap">
         <div class="disputeApplyTit"><span>纠纷处理申请</span></div>
@@ -43,7 +52,7 @@
                 <div class="amount"><%= order.amount %></div>
                 <div class="totalPrice"><%= formatMoney(order.totalMoney,2) %></div>
                 <div class="havePaid"><b><%= formatMoney(order.totalMoney,2) %></b></div>
-                <div class="orderStatus"><b class="unShift">未办货权转移</b></div>
+                <div class="orderStatus"><b class="unShift"><%=order.statusName%></b></div>
             </div>
             <div class="orderSummary">
                 <div class="summaryL">
@@ -76,11 +85,11 @@
                             单、化验单或第三方凭证。</div>
                     </div>
                     <div class="conList mb0">
-                            <!-- 上传 -->
+                        <!-- 上传 -->
 
-                            <div class="disputeuploadWrap">
-                                <div class="fileList"><div class="addImg"><img src="/static/images/dispute/addImg.png" alt=""/><p>上传证件</p><input id="fileUpload" class="fileStyle" type="file" name="files"></div></div>
-                            </div>
+                        <div class="disputeuploadWrap">
+                            <div class="fileList"><div class="addImg"><img src="/static/images/dispute/addImg.png" alt=""/><p>上传证件</p><input id="fileUpload" class="fileStyle" type="file" name="files"></div></div>
+                        </div>
 
                     </div>
                     <div class="errorMsg" id="errorMsg"></div>
@@ -90,3 +99,15 @@
         </div>
     </div>
 </div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/dispute/disputeApply.js"></script>
+
+</body>
+</html>
+
+
+

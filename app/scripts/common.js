@@ -17,3 +17,21 @@ function switchTxt(n) {
 function formatNum (num , deg) {
 	return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
 }
+
+
+/**
+ * 获取URL参数值
+ * @param param 参数名
+ * @param hrefStr 指定Url, 可选
+ * @author wze
+ */
+function getUrlParam (param, hrefStr) {
+	var request = {
+		QueryString: function (val) {
+			var uri = hrefStr || window.location.search;
+			var re = new RegExp("" + val + "=([^&?]*)", "ig");
+			return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
+		}
+	};
+	return request.QueryString(param);
+}

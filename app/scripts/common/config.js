@@ -26,7 +26,11 @@ require.config({
     'load-image-exif': '../../static/components/blueimp-load-image/js/load-image-exif',
     'load-image-meta': '../../static/components/blueimp-load-image/js/load-image-meta',
     'canvas-to-blob': '../../static/components/blueimp-canvas-to-blob/js/canvas-to-blob.min',
-    'pay.upload': '../../static/custom_components/upload/upload'
+    'pay.upload': '../../static/custom_components/upload/upload',
+    'message': 'Plugins/message',
+    'html5shiv': '/static/components/html5shiv/dist/html5shiv',
+    'requirejs': '/static/components/requirejs/require',
+    'pay.smscode': '../../static/custom_components/sms-code/sms-code'
   },
   packages: [
 
@@ -37,22 +41,28 @@ require.config({
         'jquery'
       ]
     },
-    'flexslider': {
-          deps: ['jquery'],
-          exports: 'flexslider'
-      },
-    'lightbox': {
-          deps: ['jquery'],
-          exports: 'lightbox'
-      },
-    'bootstrap': {
-          deps: ['jquery'],
-          exports: 'bootstrap'
+    flexslider: {
+      deps: [
+        'jquery'
+      ],
+      exports: 'flexslider'
+    },
+    lightbox: {
+      deps: [
+        'jquery'
+      ],
+      exports: 'lightbox'
+    },
+    bootstrap: {
+      deps: [
+        'jquery'
+      ],
+      exports: 'bootstrap'
     },
     'jquery.fancySelect': {
       deps: [
         'jquery'
       ]
-    },
+    }
   }
 })

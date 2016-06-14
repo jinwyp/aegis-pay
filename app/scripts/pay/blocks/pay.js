@@ -33,7 +33,7 @@ define(['jquery'],function($){
       submit: function(){
         var self = this;
         var params = $('#pay').serialize();
-        $.post('api/pay/submit', params, function(data){
+        $.post('/api/pay/submit', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
             location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=1';

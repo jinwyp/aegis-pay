@@ -3,15 +3,15 @@ var _          = require('lodash');
 
 var api_config = require('./api_config');
 var config     = require('../../config');
-var checker    = require('../../common/datachecker');
-var convert    = require('../../common/convert');
-var cache      = require('../../common/cache');
+var checker    = require('../../libs/datachecker');
+var convert    = require('../../libs/convert');
+var cache      = require('../../libs/cache');
 
 
 const uploadPath = config.sysFileDir + '/static/upload/';
 
 
-exports.test = function (req, res, next) {
+exports.confirmDeliveryIndex = function (req, res, next) {
     checker.orderId(req.body.orderId);
     checker.deliveryAmount(req.body.deliveryAmount);
     var params   = req.body;

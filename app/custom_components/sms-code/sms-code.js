@@ -13,7 +13,7 @@ define(['jquery','bootstrap'],function($){
         var self = this;
         var $code_img = $('#generate_imgcode').parent().find("img");
         $('#imgcodeModal').on('show.bs.modal', function(){
-            $code_img.attr('src','api/imgcode?time='+new Date().getTime());
+            $code_img.attr('src','/api/imgcode?time='+new Date().getTime());
             self.els.$imgcodeTipErr.hide();
             $('input[name="imgcode"]').val('');
         });
@@ -34,7 +34,7 @@ define(['jquery','bootstrap'],function($){
     validImgcode: function(imgcode){
         var self = this;
         var $send_sms = $('#send_code');
-        $.post('api/validImgcode', {'captchaText':imgcode}, function(data){
+        $.post('/api/validImgcode', {'captchaText':imgcode}, function(data){
           if(data.success){
               $('#imgcodeModal').modal('hide');
               // 发送短信验证码成功

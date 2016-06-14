@@ -4,9 +4,9 @@
 
 var request = require('request');
 
-var checker    = require('../../common/datachecker');
+var checker    = require('../../libs/datachecker');
 var api_config = require('../../api/v1/api_config');
-var logger     = require("../../common/logger");
+var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
@@ -77,7 +77,6 @@ exports.getOrderDetail = function (req, res, next) {
             };
 
             //logger.debug('orderDetail获取到的结果是----------------------------' + content);
-
             res.render('order/buyOrderDetail', content);
         } else {
             res.send(data.body);
