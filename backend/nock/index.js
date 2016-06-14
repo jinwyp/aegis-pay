@@ -11,4 +11,6 @@ require('./pay'); //支付
 require('./return/returnDetail');
 require('./dispute/disputeApply');
 require('./dispute/disputeComplete');
-require('./paypassword'); 
+require('./paypassword');
+require('./account/accountSetting');
+require('./account/notice');
