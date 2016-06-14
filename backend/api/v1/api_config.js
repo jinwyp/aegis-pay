@@ -84,6 +84,10 @@ var api_config = {
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
 
+    // 获取用户资金账号
+    fetchFundAccount: host + 'account/payPwd',
+    // 获取支付手机号
+    fetchPayPhone: host + 'account/payPwd/forget/first',
     // 忘记密码 － 验证身份 － 下一步
     paypasswordForgetValid: host + 'paypassword/forget/valid'
 
