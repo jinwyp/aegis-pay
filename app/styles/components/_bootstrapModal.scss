@@ -1,0 +1,44 @@
+// Bootstrap 全局样式重写
+// >>>>>>>>>>>>>>>>>>>>
+.modal-content {
+  border-radius: 2px;
+  border-top: 2px solid #00b6ec;
+}
+
+.modal-header {
+  height: 50px;
+  padding: 10px 12px;
+
+  .close {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin: 3px 0 0 0;
+    background: url($bgUrl) no-repeat -120px -175px;
+
+    &:hover {
+      background: url($bgUrl) no-repeat -168px -176px;
+    }
+  }
+}
+
+.modal-title {
+  color: #333333;
+  font-size: 20px;
+  font-family: $ffYh;
+  line-height: 30px;
+}
+
+.modal-pl {
+  width: 800px;
+}
+
+.modal-sm {
+  width: 400px;
+}
+
+.modal-lg {
+  width: 940px;
+}
+
+// <<<<<<<<<<<<<<<<<<<<

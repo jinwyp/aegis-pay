@@ -28,7 +28,7 @@
         <li>支付<span><%= formatMoney(order.totalMoney) %></span>元</li>
       </ul>
       <ul class='valid'>
-        <%- include ../global/sms-code/form-part %>
+        <%- include ../../custom_components/ccapimg-modal/form-part %>
         <li>
           <label>支付密码：</label><input type="text" name="payPassword" value=""><a class="forget"  href='/ucenter/paypassword/fg/vl'>忘记秘密</a>
           <p class='tip-msg'>请输入6位数字的支付密码</p>
@@ -52,7 +52,7 @@
     </form>
 </div>
 
-<%- include ../global/sms-code/imgcode-modal %>
+<%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
 <%- include blocks/passerr.ejs %>
 
 <%- include ../global/footer/footer %>

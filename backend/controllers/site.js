@@ -31,8 +31,9 @@ exports.home = function (req, res, next) {
         '	<li><a href="/return?orderId=100000" target="_blank">退货详情页</a></li>',
 
         '	<li><a href="/confirmDelivery/sellerDelivery" target="_blank">卖家审核提货</a> &gt; <a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>',
-        '	<li><a href="/dispute/disputeApply">纠纷处理申请</a> &gt; <a href="/dispute/disputeComplete">纠纷处理申请完成</a></li>',
+        '	<li><a href="/dispute/disputeApply">纠纷处理申请</a> &gt; <a href="/dispute/disputeComplete">纠纷处理申请完成</a> &gt; <a href="/dispute/disputeDetail">纠纷详情</a></li>',
         '	<li><a href="/wealth/wealthCenter">财务管理首页</a></li>',
+        '	<li><a href="/wealth/financialHome">财务管理中心 账户管理</a>  &gt; <a href="/wealth/financialDetails">交易明细</a></li>',
         '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
