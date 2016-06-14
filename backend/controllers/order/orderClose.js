@@ -11,7 +11,7 @@ var apiHost  = require('../../api/v1/api_config');          // 接口路径配�
 exports.orderInfo = function (req, res, next) {
 	var req_id = req.query.id;
 
-	checker.orderId(req_id);
+	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	if(!req_id) {
@@ -35,7 +35,7 @@ exports.orderInfo = function (req, res, next) {
 
 // API路由: 提交关闭
 exports.closeOrder_api = function(req, res, next) {
-	checker.orderId(req.query.id);
+	//checker.orderId(req.query.id);
 
 	// 异步调取Java数据
 	var url = apiHost.host + 'order/closeOrder_api?orderId='+ req.query.id;

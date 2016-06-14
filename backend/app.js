@@ -69,7 +69,27 @@ require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/static', express.static(staticDir));
-app.use('/files', express.static(fileStatic));
+
+// 支付下载文件目录
+app.use('/download/:path?/:name', function(req, res, next){
+    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/'
+    var options = {
+        root: __dirname + '/views/' + path,
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    var fileName = req.params.name;
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            next(err);
+        }
+    });
+})
+
 // app.use(express.static(fileStatic));
 
 // 每日访问限制
@@ -163,4 +183,3 @@ if (!module.parent) {
         logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
-

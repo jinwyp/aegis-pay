@@ -3,14 +3,14 @@
 * @id 订单Id
 * @type 用户类型
 * @status 订单状态
-*
- //WaitSettleAccounts("待卖家结算"),         //1 待结算:卖家
- //WaitVerifySettle("待审核结算"),           //2 待审核:买家
- //ReturnedSettleAccounts("结算被退回"),     //3 审核不通过:退回,卖家重新结算
- //WaitPayTailMoney("待买家补款"),           //4 通过:已经审核结算-待买家补款
- //WaitPayRefundMoney("待卖家退款"),         //5 通过:结算完成-待卖家退款
- //WaitWriteReceipt("待卖家开发票"),         //6 通过:待卖家开发票
-* */
+     WaitSettleAccounts	 	待结算.卖家开具结算单(卖)
+     WaitVerifySettle	 	待审核.卖家编辑结算单(卖)
+     WaitVerifySettle	 	待审核.买家审核结算单(买)
+     ReturnedSettleAccounts	审核退回.卖家修改数据(卖)
+     ReturnedSettleAccounts	审核退回.买家修改原因(买)
+     WaitPayTailMoney	 	审核通过.待买家补款  (_)
+     WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
+     WaitWriteReceipt	 	审核通过.待卖家开发票(_)   */
 
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
@@ -19,9 +19,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
         uId = getUrlParam('id'),
         uType = getUrlParam('type'),
         uStatus = getUrlParam('status');
-
-    //var statusArr = ['', 'WaitSettleAccounts', 'WaitVerifySettle', 'ReturnedSettleAccounts',
-    //        'WaitPayTailMoney', 'WaitPayRefundMoney', 'WaitWriteReceipt'];
 
 
     // 页面模块控制
@@ -38,7 +35,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
             $doubtInlet.hover(function() {
                 $embedBox.css('display', 'block');
             });
-            $embedBox.hover(function() {
+            $embedBox.hover(
+                function() {
                     $embedBox.css('display', 'block');
                 },
                 function() {
@@ -57,6 +55,33 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
         // 退回原因
         reasonsReturnHandle: function() {
 
+            var $but123124 = $('#but123124'),
+                $btn22222 = $('#btn22222'),
+                $btn33333 = $('#btn33333'),
+                $reasonsReturn_view = $('.reasonsReturn_view'),
+                $reasonsReturn_edit = $('.reasonsReturn_edit');
+
+            // 显示编辑框
+            $but123124.click(function() {
+                $reasonsReturn_view.removeClass('show');
+                $reasonsReturn_edit.addClass('show');
+            });
+
+            // 取消编辑
+            $btn22222.click(function() {
+                $reasonsReturn_edit.removeClass('show');
+                $reasonsReturn_view.addClass('show');
+            });
+
+            // 提交编辑
+            $btn33333.click(function() {
+                message({
+                    type: 'done',
+                    title: '完成：',
+                    detail: '提交原因成功'
+                });
+                $btn22222.click();
+            });
         },
 
         // 结算表单信息(基本/实际)

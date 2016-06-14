@@ -1,3 +1,5 @@
+@import '../helpers/_variables.scss';
+
 .progressDetail{
     background: $color_lightblue; padding:45px 90px;
   a.btn_blue{
@@ -32,7 +34,7 @@
         .icon_warn{ margin-right:10px; }
     }
     dd{
-        font-size:$size_font_nomal; line-height: 24px;
+        font-size:$size_font_normal; line-height: 24px;
         span{
             color:$color_orange;
         }
