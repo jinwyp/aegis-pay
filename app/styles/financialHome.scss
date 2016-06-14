@@ -94,8 +94,11 @@
       padding: 20px 10px;
     }
 
+    .form-row{
+      margin: 10px 5px;
+    }
     .form-search {
-      width: 300px;
+      width: 295px;
 
       label {
         font-size: $size_font_normal;
@@ -104,7 +107,7 @@
         padding-right: 6px;
       }
 
-      .inputbox {
+      .inputselect {
         font-size: $size_font_normal;
         color: $color_text_select_gray;
         width: 170px;
@@ -114,6 +117,10 @@
         outline: 1px solid $color_border_input_gray;
         box-shadow: none;
         //-webkit-appearance: none;
+      }
+
+      .inputbox {
+        width: 280px;
       }
     }
 
