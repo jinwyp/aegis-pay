@@ -1,19 +1,23 @@
 #!/bin/bash
 
-script_dir=$(cd `dirname $0`; pwd);
-parent_dir="$(dirname "$script_dir")"
+custom=$1;
 
+script_dir=$(cd `dirname $0`; pwd);
 cd $script_dir;
 
-export NODE_PATH=$HOME/.nvm/versions/node/`node -v`/lib/node_modules;
-export DOMAIN=cn;
-export DEBUG=true;
-export MODE=local;
+node_path=$(which node);
+node_modules=$(cd `dirname $node_path`/../lib/node_modules; pwd);
+export NODE_PATH=$node_modules;
 export MOCK=false;
-export FILES_DIR=$parent_dir/../../files;
-
-if [[ $# = 1 ]]; then
-    export MOCK=true;
+export DEBUG=true;
+if [[ "x$custom" = "x" ]]; then
+	export MODE="local";
+else
+	export MODE=$custom;
 fi
+
+echo "---------------------------------------------------------------";
+echo "mode = $MODE";
+echo "---------------------------------------------------------------";
 
 supervisor -w api,common,config,custom_components,middlewares,errors,nock,controllers,views,app.js app.js

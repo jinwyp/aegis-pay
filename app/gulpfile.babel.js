@@ -145,7 +145,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('clean', () => {
-    del.sync(['static']);
+    del.sync(['static/**/*']);
 });
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
