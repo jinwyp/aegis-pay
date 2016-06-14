@@ -133,7 +133,7 @@
             <!-- 审核退回.卖家修改-->
             <div class="reasonsReturn againRefer mt20">
                 <div class="reasonsReturn_view show">
-                    <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+                    <h2 class="returnTitle">结算单已被买家退回，请核算修改之后重新提交!</h2>
                     <table class="returnTab">
                         <tbody>
                         <tr>
@@ -208,7 +208,7 @@
             </div>
             <!-- 实际结算数据 -->
             <div class="mt20">
-                <% var isShowEdit_sj = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status != 'WaitVerifySettle' || order.status != 'ReturnedSettleAccounts')) %>
+                <% var isShowEdit_sj = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status == 'ReturnedSettleAccounts')) %>
                 <h2 class="settlementTit">实际结算数据
                     <% if(isShowEdit_sj) {%><span class="subEditTitle">(带 <s class="require">*</s>的为必填项)</span><%}%>
                 </h2>
@@ -289,28 +289,49 @@
 
 
         <!-- 补充协议文件 板块 -->
-        <% if(order.status == 'WaitSettleAccounts') { %>
+        <% var isSupply_buy = (userType == 'buy' && (order.status == 'WaitVerifySettle' || order.status == 'ReturnedSettleAccounts')) %>
+        <% var isSupply_sell = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status == 'ReturnedSettleAccounts')) %>
+        <% var isSupply_only = (userType == 'sell' && order.status == 'WaitVerifySettle') %>
         <div id="supplyAgreementPlate" class="fileOperation mt20">
             <div class="fileOperation_title fl">
                 <p class="sss">
-                    <span class="require">*</span>补充协议文件：
+                    <% if(isSupply_buy || isSupply_sell) {%>
+                    <span class="require">*</span>
+                    <% } else { %>
+                    <span class="require"> </span>
+                    <% } %>
+                    补充协议文件：
                 </p>
             </div>
             <div class="fileOperation_body">
                 <div class="fileList">
+                    <% if(isSupply_sell){ %>
                     <span class="iBtn iBtn_up">
                         <i class="iBtn_up_icn"></i>点击上传
+                        <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                     </span>
-
-                    <span class="iBtn iBtn_down">
-                        <i class="iBtn_down_icn"></i>下载附件
-                    </span>
-                    <!--<% include ../../custom_components/upload/upload %>-->
+                    <div class="supplyFileList" style="display: inline-block">
+                        <p class="fileLab">
+                            <span class="fileLab_name">1234564768.JPG</span>
+                            <span class="fileLab_del" data-id="11"></span>
+                        </p>
+                    </div>
+                    <% } %>
+                    <% if(isSupply_only){ %>
+                    <div class="supplyFileList" style="display: inline-block">
+                        <p class="fileLab only">
+                            <span class="fileLab_name">dfghjdhdfss.JPG</span>
+                            <span class="fileLab_del" data-id="22"></span>
+                        </p>
+                    </div>
+                    <% } %>
+                    <% if(isSupply_buy){ %>
+                    <a href="#dwonLink" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
+                    <% } %>
                 </div>
                 <p class="fileExplain bright">在审核时请详细查看文件。</p>
             </div>
         </div>
-        <% } %>
 
 
         <!-- 清算货款信息 板块-->
@@ -346,7 +367,7 @@
 
 
         <!-- 上传盖章结算单 板块 -->
-        <% if(userType == 'buy') { %>
+        <% if(userType == 'buy' && order.status == 'WaitVerifySettle') { %>
         <div id="upSealPlate" class="fileOperation mt20">
             <div class="fileOperation_title fl">
                 <p class="sss">
@@ -355,14 +376,20 @@
             </div>
             <div class="fileOperation_body">
                 <div class="fileList">
-                    <span class="iBtn iBtn_up">
+                     <span class="iBtn iBtn_up">
                         <i class="iBtn_up_icn"></i>点击上传
+                        <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                     </span>
-
-                    <span class="iBtn iBtn_down">
-                        <i class="iBtn_down_icn"></i>下载附件
-                    </span>
-                    <!--<% include ../../custom_components/upload/upload %>-->
+                    <div class="upSealFileList" style="display: inline-block">
+                        <p class="fileLab">
+                            <span class="fileLab_name">1234564768.JPG</span>
+                            <span class="fileLab_del" data-id="11"></span>
+                        </p>
+                        <p class="fileLab only">
+                            <span class="fileLab_name">dfghjdhdfss.JPG</span>
+                            <span class="fileLab_del" data-id="22"></span>
+                        </p>
+                    </div>
                 </div>
                 <p class="fileExplain ">
                     提示：1.  请将结算单下载并加盖公章或财务章，
@@ -373,23 +400,27 @@
         </div>
         <% } %>
 
+
         <!-- 操作按钮 模块 -->
-        <% if(order.status == 'WaitSettleAccounts') {%>
+        <% var isOperate_buy = (userType == 'buy' && order.status == 'WaitVerifySettle') %>
+        <% var isOperate_sell = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status == 'ReturnedSettleAccounts')) %>
+        <% if(isOperate_buy || isOperate_sell) {%>
         <div id="operationBtnPlate" class="operationBox mt20">
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-            <% if(userType == 'buy') { %>
+            <% if(isOperate_buy) { %>
             <input type="button" class="iBtn iBtn_no" value="提出异议" data-toggle="modal" data-target="#reasonsReturnModal" />
-            <% } %>
             <input type="button" class="iBtn iBtn_yes ml20" value="确认结算">
+            <% } else {%>
+            <input type="button" class="iBtn iBtn_yes ml20" value="确认">
+            <% } %>
             <p>&nbsp;</p>
         </div>
         <% } %>
 
     </div>
 </div>
-
-
+<input type="hidden" name="order.status" data-status="<%= order.status %>" />
 
 
 <!-- 结算单退回原因: 模态框-->

@@ -34,7 +34,7 @@ const distPaths = {
 
 
 // Lint JavaScript
-gulp.task('lint', () =>
+gulp.task('jslint', () =>
     gulp.src(sourcePaths.javascript)
         .pipe(plugins.eslint())
         .pipe(plugins.eslint.format())
@@ -107,7 +107,7 @@ gulp.task('custom_components', () => {
 
 
 
-gulp.task('javascript', ['components', 'custom_components'], () =>
+gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
 
     // rjs.optimize({
     //   baseUrl: 'app/scripts',
@@ -145,9 +145,6 @@ gulp.task('javascript', ['components', 'custom_components'], () =>
 
 
 gulp.task('watch', () => {
-    browserSync.init({
-        proxy: "http://localhost:3000"
-    });
     gulp.watch(sourcePaths.html).on('change', reload);
     gulp.watch(sourcePaths.javascript, ['javascript', reload]);
     gulp.watch(sourcePaths.images, ['images']);
@@ -156,11 +153,22 @@ gulp.task('watch', () => {
     gulp.watch(sourcePaths.custom_components_styles, ['custom_components', reload]);
 });
 
+
+gulp.task('watchBrowserSync', () => {
+    gulp.watch(sourcePaths.javascript, ['javascript']);
+    gulp.watch(sourcePaths.images, ['images']);
+    gulp.watch(sourcePaths.scss, ['sass']);
+    gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
+    gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
+});
+
+
 gulp.task('clean', () => {
     del.sync(['static']);
 });
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
+gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watchBrowserSync']);
 
 // gulp.task('default', () =>
 //   gulp.src('app/*.html')

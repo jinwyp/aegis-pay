@@ -373,6 +373,17 @@ a:hover {
     }
   }
 }
+.fileLab.only {
+  border: 1px solid #f3f3f3;
+  padding: 3px 10px 0 30px;
+  .fileLab_del {
+    display: none;
+  }
+  &:hover {
+    border: 1px solid #f3f3f3;
+    background: #f3f3f3 url($bgUrl) no-repeat -542px -221px;
+  }
+}
 //小号
 .iBtn_sm {
   width: 96px;
