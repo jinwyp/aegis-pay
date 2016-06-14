@@ -1,6 +1,9 @@
 @import './global.scss';
 @import './components/_modal.scss';
 
+
+
+
 #financial-body{
   background-color: $color_body_bg;
   padding: 20px 0px;
@@ -85,5 +88,17 @@
         }
       }
     }
+
+
+  .form-search {
+    width: 270px;
+
+    label {
+      font-size: $size_font_normal;
+      color: $color_text_gray;
+    }
+  }
+
+
   }
 }
