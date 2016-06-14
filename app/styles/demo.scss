@@ -1,6 +1,8 @@
 @import './global.scss';
-@import './statusBar.scss';
+@import './Plugins/statusBar.scss';
 @import './Plugins/message.scss';
+@import './Plugins/reasonsReturnPlate.scss';
+@import './Plugins/settlementInfoPlate.scss';
 
 #listBox {
     width: 300px;

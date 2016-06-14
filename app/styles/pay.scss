@@ -1,6 +1,6 @@
 @import './global.scss';
 @import './global/common.scss';
-@import './statusBar.scss';
+@import './Plugins/statusBar.scss';
 
 body{ background-color: $color_body_bg; font-size:$size_font_nomal; font-family: $font_family;}
 
