@@ -1,0 +1,8 @@
+<!--账户设置侧边栏-->
+<div class="sideBar">
+    <ul>
+        <% accountSideBar.sideBarList.forEach(function(obj, ind){ %>
+        <li class="<% if(ind+1 == accountSideBar.current){%>current<%} %>"><a href="<%= obj.listLink %>"><%= obj.listName %></a></li>
+        <% }) %>
+    </ul>
+</div>
