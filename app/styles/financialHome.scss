@@ -2,5 +2,88 @@
 @import './modal.scss';
 
 #financial-body{
-
+  background-color: $color_body_bg;
+  padding: 20px 0px;
+  .financial-main{
+    background-color: $color_text_white;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    .financial-header > div{
+      float: left;
+    }
+    .financial-header{
+      border: 1px solid #e4e4e4;
+      height: 160px;
+      color: $color_font;
+      .label{  color: $color_tip_font;padding: 0;  }
+      .fs-14{  font-size: 14px;  }
+      .border-right{  border-right: 1px solid #e4e4e4;  }
+      .header-left{
+        width: 314px;
+        height: inherit;
+        padding: 20px 20px;
+        font-size: 12px;
+        .username{  font-size: 18px; }
+        .companyname{  margin-top: 10px; }
+        .occupation{  margin-top: 10px; }
+        ul{
+          margin-top: 25px;
+          li{  float:left;  }
+          li.separator{
+            height: 14px;
+            margin: 2px 14px;
+            border-left: 1px solid #e4e4e4;
+          }
+        }
+      }
+      .ml-40{  margin-left: 40px;  }
+      .ml-10{  margin-left: 10px;  }
+      .ml-20{  margin-left: 20px;  }
+      .header-center{
+        width: 370px;
+        height: inherit;
+        vertical-align: top;
+        padding: 20px 20px;
+        font-size: 14px;
+        .useraccount{
+          border-bottom: 1px dotted #e4e4e4;
+          padding: 10px 0;
+        }
+        .center-operate{
+          margin-top: 46px;
+          .balance{
+            font-size: 20px;
+            .orange{ color: $color-orange; }
+          }
+          .btn-option{
+            padding: 3px 12px;
+            color: $color_text_white;
+            background-color: $color_orange;
+            border-radius: 2px;
+          }
+        }
+      }
+      .header-right{
+        width: 314px;
+        height: inherit;
+        vertical-align: top;
+        //padding: 20px 20px;
+        .fs-24{  font-size: 24px; }
+        .bankcard{
+          line-height: 60px;
+          background-color: #eff9ff;
+          .bank-icon{
+            display: inline-block;
+            width: 24px;
+            height: 18px;
+            background: url("/static/images/wealth/bank_card_icon.png");
+          }
+          .account-color{  color: $color_a_hover;  }
+          .manage-color{  color: $color_manage_text;float: right;
+            margin-right: 20px;  }
+        }
+      }
+    }
+  }
 }
