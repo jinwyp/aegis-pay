@@ -19,7 +19,3 @@ exports.validCard = function(req, res, next){
     };
     res.render('paypassword/forget-valid', pageData);
 }
-
-exports.validCardSubmit = function(req, res, next){
-    res.send({success:false})
-}
