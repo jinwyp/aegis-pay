@@ -6,11 +6,9 @@
 
 var request = require('request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
-// var path = require('path');
-// var _ = require('lodash');
-// var request    = require('request');
-//
-// var api_config = require('../api/v1/api_config');
+var path = require('path');
+var _ = require('lodash');
+var api_config = require('../api/v1/api_config');
 var logger = require("../libs/logger");
 
 // 处理业务逻辑
@@ -33,21 +31,26 @@ exports.accountSetting = function (req, res, next) {
         ]
     };
 
-    var content = {
-        headerTit      : "基本信息",
-        pageTitle      : "账户设置",
-        accountSideBar :accountSideBar,
-        tabObj : {
-            firstTab : firstTab,
-            secondTab : secondTab
+    request({url : api_config.accountSetting}, function (err, data) {
+        if(err) return next(err);
+        if(data){
+            var source = JSON.parse(data.body);
+            var content = {
+                headerTit      : "基本信息",
+                pageTitle      : "账户设置",
+                accountSideBar :accountSideBar,
+                tabObj : {
+                    firstTab : firstTab,
+                    secondTab : secondTab
+                },
+                'accountInfo'    :source.accountInfo
+
+            };
+            logger.debug('获取到的结果是content----------------------------' + content);
+            //渲染页面
+            return res.render('account/accountSetting',content);
         }
-        // accountInfo    :source.accountInfo
+    })
 
-    };
-
-
-    logger.debug('获取到的结果是content----------------------------' + content);
-    //渲染页面
-    res.render('account/accountSetting',content);
 };
 

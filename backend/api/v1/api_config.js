@@ -85,7 +85,16 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
 
     // 忘记密码 － 验证身份 － 下一步
-    paypasswordForgetValid: host + 'paypassword/forget/valid'
+    paypasswordForgetValid: host + 'paypassword/forget/valid',
+
+
+    /**
+     * 账户设置
+     * method: get
+     *
+     */
+    accountSetting : host + 'account/accountSetting',
+    notice : host + 'account/notice'
 
 };
 

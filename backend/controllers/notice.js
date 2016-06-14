@@ -6,8 +6,9 @@
 
 var request = require('request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
-//var path = require('path');
-//var _ = require('lodash');
+var path = require('path');
+var _ = require('lodash');
+var api_config = require('../api/v1/api_config');
 
 
 // 处理业务逻辑
@@ -49,19 +50,27 @@ exports.notice = function (req, res, next) {
             }
         ]
     };
+    request({url : api_config.notice}, function (err, data) {
+        if(err) return next(err);
+        if(data){
+            var source = JSON.parse(data.body);
+            var content = {
+                headerTit      : "消息提醒",
+                pageTitle      : "消息提醒",
+                accountSideBar : accountSideBar,
+                statusObj      : statusObj,
+                tabObj         : {
+                    firstTab   : firstTab,
+                    secondTab  : secondTab
+                },
+                "noticeInfo"   : source.noticeInfo
 
-    var content = {
-        headerTit      : "消息提醒",
-        pageTitle      : "消息提醒",
-        accountSideBar : accountSideBar,
-        statusObj      : statusObj,
-        tabObj         : {
-              firstTab : firstTab,
-             secondTab : secondTab
+            };
+            //渲染页面
+            res.render('account/notice',content);
         }
 
-    };
-    //渲染页面
-    res.render('account/notice',content);
+    })
+
 };
 
