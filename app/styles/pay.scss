@@ -26,37 +26,8 @@ input[type="text"]{
   // 付款成功页
   @import './pay/success.scss';
 }
-#imgcodeModal{
-    .modal-body{
-        p{
-            margin:20px 0 0;
-            span, img, label{ vertical-align: middle; }
-            &:first-child{
-                img{
-                    border:1px solid $color_border_gray;
-                }
-            }
-            label{ margin-right:10px; }
-            input[type="text"]{ margin-left:0; }
-            &.tip-error{
-                display: none; margin:0 0 0 94px; font-size:$size_font_nomal;
-            }
-        }
-    }
-    #generate_imgcode{
-        display:inline-block; *display:inline; zoom:1; line-height: 13px; margin-left:10px;
-        cursor:pointer; font-size:$size_font_nomal; color:$color_tip_font;
-        i{
-            color:$color_btn_blue; display: block;
-        }
-    }
-    .modal-footer{
-        text-align:left;
-        #imgcodeValid{
-            margin-left:94px;
-        }
-    }
-}
+@import './Plugins/ccapimg-modal.scss';
+
 #passErrModal{
     .modal-body{
         text-align:center; padding:25px 58px 0;
