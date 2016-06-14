@@ -9,13 +9,9 @@ exports.forgetValid = function (req, res, next) {
     var body = req.body;
 
     var params = _.assign({}, { userId: req.session.user.id}, body);
-
-    request.post(api_config.paypasswordForgetValid, body, function (err, data) {
-
+    request.post(api_config.paypasswordForgetValid, {body:params, json:true}, function (err, data) {
         if (err) return next(err);
-
-        var result = JSON.parse(data.body);
-
+        var result = data.body;
         if (data && result.success) {
             return res.json(result);
         }else {
@@ -23,5 +19,4 @@ exports.forgetValid = function (req, res, next) {
             return res.json(result);
         }
     })
-
 };

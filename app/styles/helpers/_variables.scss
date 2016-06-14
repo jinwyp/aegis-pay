@@ -33,6 +33,11 @@ $color_bg_pink: #feecec;
 $color_bg_lightorange: #fffaf7;
 $color_manage_text: #007193;
 
+$btn_orange_color:#fd6e35;
+$btn_orange_color_hover:#fd8b5d;
+$money_orange:$color_orange;
+$tr_hover_color:#effafd;
+
 $main_width: 1000px;
 $main_margintop: 20px;
 $main_marginbottom: 30px;
@@ -52,24 +57,26 @@ $ffYh: "\5FAE\8F6F\96C5\9ED1";
 $ffSt: '\5B8B\4F53';
 $ffArial: 'Arial';
 
+
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 
 @mixin box-shadow($shadow) {
-      -moz-box-shadow:$shadow;
+  -moz-box-shadow:$shadow;
   -webkit-box-shadow:$shadow;
-          box-shadow:$shadow;
+  box-shadow:$shadow;
 }
 
 @keyframes spin {
-from { transform: scale(1) rotate(0deg);}
-to { transform: scale(1) rotate(360deg);}
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
 }
 @-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
 }

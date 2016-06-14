@@ -5,6 +5,11 @@ var _ = require('lodash');
 var paypasswordPersist = nock(API.host).persist();
 
 paypasswordPersist
-.post('/paypassword/forget/valid').reply(200, {"success":true})
+.post('/paypassword/forget/valid').reply(200, function(uri, requestBody){
+    if(requestBody.cardID.length<10){
+        return { 'success': false };
+    }
+    return {'success': true};
+})
 
 module.exports = paypasswordPersist;
