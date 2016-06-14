@@ -9,7 +9,7 @@
     "babel-preset-stage-3": "^6.5.0",
     "bower": "^1.7.9",
     "bower-requirejs": "^1.2.0",
-    "browser-sync": "^2.9.0",
+    "browser-sync": "^2.13.0",
     "del": "^2.0.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
@@ -28,6 +28,7 @@
     "gulp-uglify": "^1.0.1",
     "gulp-uncss": "^1.0.5",
     "gulp-useref": "^3.0.0",
+    "gulp.spritesmith": "^6.2.1",
     "requirejs": "^2.2.0"
   }
 }

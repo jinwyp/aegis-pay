@@ -1,10 +1,28 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet('/static/styles/compact.css') -%>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/compact.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+
+<%- include ../global/header/subHeader %>
+
 <div class="mainWrapper">
     <h3 class='pageTitle'><span></span>签订电子合同</h3>
-    <% include blocks/readme %>
-    <% include blocks/compact %>
-    <% include blocks/upload %>
+    <%- include blocks/readme %>
+    <%- include blocks/compact %>
+    <%- include blocks/upload %>
 </div>
-<% script("/static/scripts/compact/index.js") -%>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/compact/index.js"></script>
+
+</body>
+</html>

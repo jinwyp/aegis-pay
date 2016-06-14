@@ -2,6 +2,7 @@
 
 import gulp from 'gulp';
 import del from 'del';
+import spritesmith from 'gulp.spritesmith';
 import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import rjs from 'requirejs';
@@ -11,27 +12,29 @@ const reload  = browserSync.reload;
 
 
 const sourcePaths = {
-    "javascript" : "scripts/**/*.js",
+    "html"               : "../backend/views/**/*",
+    "javascript"               : "scripts/**/*.js",
     "custom_components_styles" : "custom_components/**/*.scss",
-    "custom_components_js" : "custom_components/**/*.js",
-    "libs"       : "libs/*",
-    "components" : "components/**/*",
-    "images"     : "images/**/*",
-    "scss"       : 'styles/*.scss'
+    "custom_components_js"     : "custom_components/**/*.js",
+    "components"               : "components/**/*",
+    "images"                   : "images/**/*",
+    "imagesSprites"            : "images/sprite/icon/**/*",
+    "scss"                     : 'styles/*.scss'
 };
 
 const distPaths = {
-    "javascript" : "static/scripts",
+    "javascript"        : "static/scripts",
     "custom_components" : "static/custom_components",
-    "libs"       : "static/libs",
-    "components" : "static/components",
-    "images"     : "static/images",
-    "css"        : "static/styles"
+    "components"        : "static/components",
+    "images"            : "static/images",
+    "imagesSprites"     : "images/sprite",
+    "imagesSpritesScss" : "styles/sprite",
+    "css"               : "static/styles"
 };
 
 
 // Lint JavaScript
-gulp.task('lint', () =>
+gulp.task('jslint', () =>
     gulp.src(sourcePaths.javascript)
         .pipe(plugins.eslint())
         .pipe(plugins.eslint.format())
@@ -52,7 +55,7 @@ gulp.task('images', () =>
 
 
 // Compile and automatically prefix stylesheets
-gulp.task('sass', () =>
+gulp.task('sass', ['sprite'], () =>
     gulp.src(sourcePaths.scss)
         .pipe(plugins.newer({
             dest: distPaths.css,
@@ -72,16 +75,19 @@ gulp.task('sass', () =>
 );
 
 
+gulp.task('sprite', function () {
+    var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
+        imgName:  distPaths.imagesSprites + '/auto-sprites.png',
+        cssName:  distPaths.imagesSpritesScss + '/_sprites.scss',
+        cssFormat:  'scss'
+    }));
+    return spriteData.pipe(gulp.dest(''));
+});
 
-
-gulp.task('libs', () =>
-    gulp.src(sourcePaths.libs)
-        .pipe(gulp.dest(distPaths.libs))
-);
 
 gulp.task('components', () =>
     gulp.src(sourcePaths.components)
-        .pipe(gulp.dest(distPaths.libs))
+        .pipe(gulp.dest(distPaths.components))
 );
 
 gulp.task('custom_components', () => {
@@ -93,14 +99,16 @@ gulp.task('custom_components', () => {
         .pipe(plugins.sass({
             precision : 10
         }).on('error', plugins.sass.logError))
-        .pipe(plugins.size({title : 'ustom_components'}))
+        .pipe(plugins.size({title : 'Custom_components'}))
         .pipe(gulp.dest(distPaths.custom_components));
 
     gulp.src(sourcePaths.custom_components_js).pipe(gulp.dest(distPaths.custom_components))
 });
 
 
-gulp.task('javascript', ['libs', 'components', 'custom_components'], () =>
+
+gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
+
     // rjs.optimize({
     //   baseUrl: 'app/scripts',
     //   paths: {
@@ -137,18 +145,30 @@ gulp.task('javascript', ['libs', 'components', 'custom_components'], () =>
 
 
 gulp.task('watch', () => {
-    gulp.watch(sourcePaths.scripts, ['javascript', reload]);
-    gulp.watch(sourcePaths.images, ['images', reload]);
+    gulp.watch(sourcePaths.html).on('change', reload);
+    gulp.watch(sourcePaths.javascript, ['javascript', reload]);
+    gulp.watch(sourcePaths.images, ['images']);
     gulp.watch(sourcePaths.scss, ['sass', reload]);
     gulp.watch(sourcePaths.custom_components_js, ['custom_components', reload]);
     gulp.watch(sourcePaths.custom_components_styles, ['custom_components', reload]);
 });
+
+
+gulp.task('watchBrowserSync', () => {
+    gulp.watch(sourcePaths.javascript, ['javascript']);
+    gulp.watch(sourcePaths.images, ['images']);
+    gulp.watch(sourcePaths.scss, ['sass']);
+    gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
+    gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
+});
+
 
 gulp.task('clean', () => {
     del.sync(['static/**/*']);
 });
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
+gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watchBrowserSync']);
 
 // gulp.task('default', () =>
 //   gulp.src('app/*.html')

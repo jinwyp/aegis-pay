@@ -1,44 +1,9 @@
 @import './global.scss';
+@import './Plugins/message.scss';
 
 
 /* 结算单 页面 *********************************************** */
 .mt220 { margin-top: 220px}
-
-
-/* 通用: 文本域, 带可输入字数 ------------- */
-.txtAreaBox {
-  position: relative;
-  padding: 0;
-  margin: 0;
-
-  .dockDown {
-    width: 145px;
-    height: 22px;
-    padding: 1px 5px;
-    position: absolute;
-    z-index: 3;
-    bottom: 6px;
-    right: 2px;
-    text-align: right;
-    font-size: 12px;
-    line-height: 22px;
-  }
-  .limitNum {
-    color: #ff8553;
-  }
-
-  .txtArea {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #CCCCCC;
-    border-radius: 2px;
-    resize: none;
-    
-    &:hover {
-      border: 1px solid #01b7ec;
-    }
-  }
-}
 
 
 /* 重要提示 板块 --------------------------- */
@@ -219,6 +184,15 @@
   font-size: 22px;
   color: #333333;
   text-align: center;
+
+  .subEditTitle {
+    font-size: 12px;
+    color:#666666;
+
+    .require {
+      line-height: 16px;
+    }
+  }
 }
 
 
@@ -293,6 +267,19 @@
       td{
         padding: 2px;
       }
+    }
+  }
+  //倒计时
+  .reasonsReturn_back {
+    padding: 10px 0 18px 240px;
+    display: none;
+
+    .statusLab {
+      font-weight: 400;
+      color:#333333;
+    }
+    p {
+      padding-top: 8px;
     }
   }
   

@@ -1,7 +1,9 @@
 var nock = require('nock');
-var disputeApply = nock('http://localhost:8800');
+var API  = require('../../api/v1/api_config');
+var disputeApply        = nock(API.host).log(console.log);
+var disputeApplyPersist = nock(API.host).persist();
 
-disputeApply
+disputeApplyPersist
     .get('/dispute/disputeApply').reply(200,
     {
       "sellInfo":{
