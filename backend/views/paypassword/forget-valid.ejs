@@ -9,12 +9,8 @@
 <%- include ../global/header/subHeader %>
 
 <div class="mainWrapper forgetValid">
-    <div class="stepStatus">
-        <p class='totalWidth'><span></span></p>
-        <ul>
-            <li>验证身份>充值支付密码>重置成功</li>
-        </ul>
-    </div>
+    <% var statusObj = {step:1, total:3, stepList: [{stepName:'验证身份', stepDate:''}, {stepName:'重置支付密码', stepDate:''}, {stepName:'重置成功', stepDate:''}]} %>
+    <%- include ./statusBar %>
     <form method="post" id='forgetValid'>
       <ul class='valid'>
         <%- include ../global/sms-code/form-part %>
@@ -26,7 +22,6 @@
       </ul>
       <p>
           <input id='validBtn' class='btn_blue validBtn' type="button" value="下一步" />
-          <span>取消</span>
       </p>
     </form>
 </div>
