@@ -12,6 +12,10 @@ var request = require('request');
 
 // 处理业务逻辑
 exports.notice = function (req, res, next) {
+    //头部
+    var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
+    var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
+
     //  数据模拟
     var statusObj = {
         step     : 2,
@@ -33,15 +37,11 @@ exports.notice = function (req, res, next) {
     };
     // sideBar
     var accountSideBar = {
-        current : "3",
+        current : "2",
         sideBarList : [
             {
                 listName : '基本信息',
                 listLink : 'accountSetting'
-            },
-            {
-                listName : '安全设置',
-                listLink : ''
             },
             {
                 listName : '消息提醒',
@@ -54,7 +54,11 @@ exports.notice = function (req, res, next) {
         headerTit      : "消息提醒",
         pageTitle      : "消息提醒",
         accountSideBar : accountSideBar,
-        statusObj      : statusObj
+        statusObj      : statusObj,
+        tabObj         : {
+              firstTab : firstTab,
+             secondTab : secondTab
+        }
 
     };
     //渲染页面
