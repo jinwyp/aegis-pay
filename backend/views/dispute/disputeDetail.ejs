@@ -1,8 +1,19 @@
-<% layout('../global/globalTemp/globalTemp') -%>
-<% stylesheet("/static/styles/disputeDetail.css") -%>
-<% script("/static/scripts/dispute/disputeDetail.js") -%>
-<% include ../global/modal/modal %>
-<% include ../global/header/subHeader %>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/disputeDetail.css">
+    <script type="application/javascript" src="/static/scripts/dispute/disputeDetail.js"></script>
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/modal/modal %>
+<%- include ../global/header/subHeader %>
+
+
+
+
 <div id="disputeDetail">
     <div class="disputeDetailWrap">
         <div class="disputeDetailTit"><span>纠纷处理详情</span></div>

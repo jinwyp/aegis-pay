@@ -81,7 +81,7 @@ var api_config = {
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
     disputeComplete : host + 'dispute/disputeComplete',
-    disputeDetail : host + 'dispute/disputeDetail'
+    disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
 
     // 忘记密码 － 验证身份 － 下一步
