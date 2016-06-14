@@ -23,8 +23,8 @@ exports.demo = function (req, res, next) {
 		if (data && data.body) {
 			// 订单状态 数据模拟
             var statusObj = {
-                step: 4,        // 第几步
-                total: 5,		// 总步数
+                step: 3,        // 第几步
+                total: 4,		// 总步数
                 stepList: [
                     {
                         stepName: '提交订单',
@@ -54,8 +54,13 @@ exports.demo = function (req, res, next) {
 				pageTitle: 'Demo_页面标题',
 				headerTit: '开具结算单',
 				listData: JSON.parse(data.body),		//服务器端 数据模拟
-				statusObj: statusObj					//NODE端 数据模拟
-			};
+				statusObj: statusObj,					//NODE端 数据模拟
+
+                userType: 'buy',                        //结算单 审核不通过.买家修改退回原因
+                order: {
+                    status: 'ReturnedSettleAccounts'
+                }
+            };
 
 			// 渲染页面,指定模板&数据
 			res.render('demo/demo', DATA);				// 指定模板路径 渲染

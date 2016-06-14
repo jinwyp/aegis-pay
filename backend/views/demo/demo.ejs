@@ -5,44 +5,7 @@
 </head>
 
 <body>
-
 <%- include ../global/header/header %>
-
-<%- include ../global/header/subHeader %>
-
-
-
-
-
-
-<!--测试列表 -->
-<div class="demoList">
-    <table id="listBox">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>城市</th>
-            <th>描述</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <% listData.forEach(function(city){ %>
-        <tr>
-            <td><%= city.id%></td>
-            <td><%= city.name%></td>
-            <td><%= city.desc%></td>
-        </tr>
-        <% }) %>
-        </tbody>
-    </table>
-</div>
-
-
-
-<!-- 状态条 -->
-<% include ../global/order/statusBar %>
-
 
 <!-- 按钮颜色&大小 -->
 <table class="btnBoxList">
@@ -86,8 +49,6 @@
     </tbody>
 </table>
 <p>&nbsp;</p>
-
-
 
 
 <!-- 各种Icon图标-->
@@ -221,57 +182,93 @@
 
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 <div class="icnList">
+    <input type="button" class="btn btn-sm iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
+    <input type="button" class="btn btn-sm iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
+
     <a href="#" class="btn btn-sm btn-info" id="msg_err">错误:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_alt">警告:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_info">信息:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_done">完成:提示框</a>
-</div>
 
-
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div class="icnList">
-    <span class="iBtn iBtn_up">
-        <i class="iBtn_up_icn"></i>点击上传
-    </span>
 
     <span class="iBtn iBtn_down">
         <i class="iBtn_down_icn"></i>下载附件
     </span>
-
-
-    <p class="fileLab">
-        <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
-        <span class="fileLab_del" data-id=""></span>
-    </p>
-    <p class="fileLab">
-        <span class="fileLab_name">bbbbbbbbbbbbb.jpg</span>
-        <span class="fileLab_del" data-id=""></span>
-    </p>
-
-    <input type="button" class="iBtn iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
-
-    <input type="button" class="iBtn iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
-</div>
-
-<p>&nbsp;</p>
-<p>上传附件: </p>
-<div class="icnList">
     <!-- 上传 -->
     <span class="iBtn iBtn_up">
         <i class="iBtn_up_icn"></i>点击上传
         <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
     </span>
-    <div class="fileList" style="display: inline-block"></div>
+    <div class="fileList" style="display: inline-block">
+        <p class="fileLab">
+            <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
+            <span class="fileLab_del" data-id=""></span>
+        </p>
+    </div>
 </div>
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
+<div class="containerWrap">
+    <div class="bodyWrap">
+        <!-- 状态条 -->
+        <% include ../global/order/statusBar %>
+        <p>&nbsp;</p>
+
+
+        <!-- 退回原因提示框 板块 -->
+        <%- include ../Plugins/reasonsReturnPlate %>
+        <p>&nbsp;</p>
+
+
+        <!-- 结算单信息 板块-->
+        <%- include ../Plugins/settlementInfoPlate %>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--测试列表 -->
+<div class="demoList fl">
+    <table id="listBox">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>城市</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% listData.forEach(function(city){ %>
+        <tr>
+            <td><%= city.id%></td>
+            <td><%= city.name%></td>
+            <td><%= city.desc%></td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
 
 
 <!-- 结算单退回原因: 模态框-->
@@ -301,7 +298,6 @@
 </div>
 
 
-
 <!-- 操作提示信息: 模态框-->
 <div class="modal fade" id="operationInfoModal" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
@@ -329,9 +325,7 @@
 
 
 <%- include ../global/footer/footer %>
-
 <%- include ../global/includehead/bottomscript %>
-
 <script src="/static/scripts/demo.js"></script>
 
 </body>

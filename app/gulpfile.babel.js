@@ -19,7 +19,7 @@ const sourcePaths = {
     "components"               : "components/**/*",
     "images"                   : "images/**/*",
     "imagesSprites"            : "images/sprite/icon/**/*",
-    "scss"                     : 'styles/*.scss'
+    "scss"                     : 'styles/**/*.scss'
 };
 
 const distPaths = {
