@@ -1,6 +1,8 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/dist/components/pickadate/lib/compressed/themes/classic.css">
+    <link rel="stylesheet" href="/dist/components/pickadate/lib/compressed/themes/classic.date.css">
     <link rel="stylesheet" href="/dist/styles/financialHome.css">
 </head>
 
@@ -16,13 +18,7 @@
             <form class="form-inline">
                 <div class="form-row " >
                     <div class="form-group form-search indexHigh">
-                        <label class="col-sm-3 control-label" for="orderCategory">订单分类:</label>
-
-                        <!--<select class="form-control inputselect" id="orderCategory" >-->
-                            <!--<option>全部</option>-->
-                            <!--<option>2</option>-->
-                        <!--</select>-->
-
+                        <label class="col-sm-4 control-label" for="orderCategory">订单分类:</label>
                         <select name="orderCategory" id="orderCategory" class="">
                             <option value="--">全部</option>
                             <option value="--">全部222</option>
@@ -31,18 +27,20 @@
                         </select>
                     </div>
 
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易时间:</label>
+                    <div class="form-group form-search form-search-big">
+                        <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control input-text input-date orderDateFrom" name="orderDateFrom" placeholder="yyyy-mm-dd" value="222" />
+                        </div>
+                        <label class="col-sm-1 control-label label-timeto" for="orderDateFrom">到:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control input-text input-date orderDateTo" name="orderDateTo" placeholder="yyyy-mm-dd" value="2223" />
+                        </div>
 
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
                     </div>
 
                     <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
-
+                        <label class="col-sm-4 control-label" for="orderStatus">交易状态:</label>
                         <select name="orderStatus" id="orderStatus" class="">
                             <option value="--">全部</option>
                             <option value="--">全部222</option>
@@ -54,7 +52,7 @@
 
                 <div class="form-row ">
                     <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易编号:</label>
+                        <label class="col-sm-4 control-label" for="orderNo">交易编号:</label>
 
                         <select name="orderNo" id="orderNo" class="">
                             <option value="--">全部</option>
@@ -64,15 +62,13 @@
                         </select>
                     </div>
 
-                    <div class="form-group form-search">
+                    <div class="form-group form-search form-search-big">
                         <label class="sr-only" for="exampleInputEmail3">交易编号</label>
-                        <input type="text" class="form-control inputselect inputbox" id="exampleInputName2" placeholder="请输入编号号码">
+                        <input type="text" class="form-control input-text inputbox" id="exampleInputName2" placeholder="请输入编号号码">
                     </div>
 
                     <button type="submit" class="iBtn iBtn_sm iBtn_yes">查询</button>
                 </div>
-
-
 
             </form>
 

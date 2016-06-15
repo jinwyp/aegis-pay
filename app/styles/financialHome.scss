@@ -247,17 +247,27 @@
       .form-row{
         margin: 10px 5px;
       }
+
       .form-search {
-        width: 295px;
+        width: 255px;
 
         label {
           font-size: $size_font_normal;
           color: $color_text_gray;
-          padding-top:5px;
-          padding-right: 6px;
+          padding-top:7px;
+          padding-right: 2px;
+          margin-right: -10px
         }
 
-        .inputselect {
+        .label-timefrom{
+          width:70px;
+        }
+        .label-timeto{
+          width:30px;
+          margin-left: -15px;
+        }
+
+        .input-text {
           font-size: $size_font_normal;
           color: $color_text_select_gray;
           width: 170px;
@@ -269,11 +279,20 @@
           //-webkit-appearance: none;
         }
 
+        .input-date{
+          width: 130px;
+          background-color: #fff;
+        }
+
+
         .inputbox {
-          width: 280px;
+          width: 364px;
         }
       }
 
+      .form-search-big{
+        width: 460px;
+      }
       .table-box{
         padding: 5px 35px;
       }
