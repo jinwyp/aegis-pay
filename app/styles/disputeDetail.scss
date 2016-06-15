@@ -14,14 +14,14 @@
 
     .disputeDetailTit{font-size: 18px;color:#333;border-bottom: 1px solid #d9d9d9;padding-bottom: 15px;}
     .disputeDetailTit span{display: inline-block;border-left:2px solid #31b9e6;padding-left: 10px;}
-    .disputeStatus{margin: 18px 0;height:48px;background: url("/static/images/dispute/statusPic.png") no-repeat 0px -47px;}
+    .disputeStatus{margin: 18px 0;height:48px;background: url("/dist/images/dispute/statusPic.png") no-repeat 0px -47px;}
 
     .disputeDetailInfoWrap{background:#f3fcff;padding-left:230px;padding-top:48px;padding-bottom: 48px;}
     .disputeDetailInfoWrap .disputeInfoTit{font-size:24px;margin-bottom: 20px;}
     .disputeDetailInfoWrap .disputeInfoTit b{color:#ff0000;}
     .disputeDetailInfoWrap p{margin-bottom:10px;color:#999;}
     .disputeDetailInfoWrap a{color:#037191;}
-    .disputeDetailInfoWrap a.cancel{background:url("/static/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
+    .disputeDetailInfoWrap a.cancel{background:url("/dist/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
     .disputeDetailInfoWrap a.cancel:hover{text-decoration: none;opacity: .8;}
     .disputeDetailInfoWrap span.logoBlue{color:#00b7ec;vertical-align: middle;}
 
