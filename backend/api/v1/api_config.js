@@ -85,10 +85,11 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
 
     // 获取用户资金账号
-    fetchFundAccount: host + 'account/payPwd',
+    fetchFundAccount: host + 'account/fund/payPwd',
     // 获取支付手机号
-    fetchPayPhone: host + 'account/payPwd/forget/first',
+    fetchPayPhone: host + 'account/fund/payPwd/forget/first',
     // 忘记密码 － 验证身份 － 下一步
+<<<<<<< HEAD
     paypasswordForgetValid: host + 'paypassword/forget/valid',
 
 
@@ -99,6 +100,11 @@ var api_config = {
      */
     accountSetting : host + 'account/accountSetting',
     notice : host + 'account/notice'
+=======
+    paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
+    // 忘记密码 － 重置密码 - 提交
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit'
+>>>>>>> dev
 
 };
 
