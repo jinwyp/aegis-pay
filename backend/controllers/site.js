@@ -1,9 +1,9 @@
 var config = require('../config');
 // main page
 exports.home = function (req, res, next) {
-	var signin = config.passport.member + '/login?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
-	var signout = config.passport.member + '/logout?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
-	var register = config.passport.member + '/register?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
+	// var signin = config.passport.member + '/login?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
+	// var signout = config.passport.member + '/logout?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
+	// var register = config.passport.member + '/register?gotoURL=' + res.locals.currentLocation + '&from=' + config.domain;
 	var home = [
         '<ul>',
         '	<h1>产品无关调试的页面</h1><hr/>',
@@ -15,7 +15,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/footer">footer</a></li>',
 		'	<li><a href="api/zips">zip压缩</a></li>',
 
-        '	<h1>产品需要正在做的页面</h1><hr/>',
+        '	<h1>产品需要正在做的页</h1><hr/>',
 
         '	<li><a href="/compact?orderId=100006">签订电子合同</a> > <a href="/pay?orderId=100000&userId=123&type=1">支付</a> > <a href="/pay/success?orderId=121212&type=1">付款成功</a></li>',
 		'	<li><a href="/ucenter/paypassword/reset">重置支付密码</a></li>',
@@ -37,5 +37,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
-	res.send(home);
+	// res.send(home);
+    res.render('index','');
+
 };
