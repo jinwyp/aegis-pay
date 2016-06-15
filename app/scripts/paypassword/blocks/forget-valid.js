@@ -3,9 +3,9 @@ define(['jquery'],function($){
       init: function(){
         this.els = {
           $code: $('input[name="sms_code"]'),
-          $cardID: $('input[name="cardID"]'),
+          $cardID: $('input[name="companyUniqueCode"]'),
           $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
-          $cardIdTipErr: $('input[name="cardID"]').parent().find('.tip-error')
+          $cardIdTipErr: $('input[name="companyUniqueCode"]').parent().find('.tip-error')
         }
         this.eventBind();
       },
