@@ -1,6 +1,6 @@
 @import './global.scss';
 @import './components/_modal.scss';
-
+@import './Plugins/fancySelect.scss';
 
 
 
@@ -238,7 +238,9 @@
     .financial-details{
       padding: 20px 10px;
 
-
+      .indexHigh{
+        z-index:99
+      }
       .form-row{
         margin: 10px 5px;
       }
@@ -287,12 +289,26 @@
           background-color: $color_bg_table_th_gray;
           text-align: center;
         }
+
+        tr {
+          border-bottom: 1px dotted $color_border;
+          &:hover{
+            background-color: $tr_hover_color;
+          }
+        }
         td{
+          padding:20px 1px;
           text-align: center;
           font-size: $size_font_middle;
-
+          color: #323333;
+          vertical-align: middle;
         }
 
+        .table_btn {
+          padding: 1px 10px;
+          height: 25px;
+          min-width: 60px;
+        }
       }
 
 
@@ -303,3 +319,5 @@
 
   }
 }
+
+

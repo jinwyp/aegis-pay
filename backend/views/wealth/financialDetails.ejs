@@ -15,12 +15,19 @@
         <div class="row financial-details">
             <form class="form-inline">
                 <div class="form-row">
-                    <div class="form-group form-search">
+                    <div class="form-group form-search indexHigh">
                         <label class="col-sm-3 control-label" for="orderCategory">订单分类:</label>
 
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                        <!--<select class="form-control inputselect" id="orderCategory" >-->
+                            <!--<option>全部</option>-->
+                            <!--<option>2</option>-->
+                        <!--</select>-->
+
+                        <select name="orderCategory" id="orderCategory" class="">
+                            <option value="--">全部</option>
+                            <option value="--">全部222</option>
+                            <option value="--">全部333</option>
+                            <option value="--">全部444</option>
                         </select>
                     </div>
 
@@ -36,20 +43,24 @@
                     <div class="form-group form-search">
                         <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
 
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                        <select name="orderStatus" id="orderStatus" class="">
+                            <option value="--">全部</option>
+                            <option value="--">全部222</option>
+                            <option value="--">全部333</option>
+                            <option value="--">全部444</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
+                        <label class="col-sm-3 control-label" for="orderCategory">交易编号:</label>
 
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                        <select name="orderNo" id="orderNo" class="">
+                            <option value="--">全部</option>
+                            <option value="--">全部222</option>
+                            <option value="--">全部333</option>
+                            <option value="--">全部444</option>
                         </select>
                     </div>
 
@@ -93,7 +104,29 @@
                                 <td >12345678901234</td>
                                 <td >和略电子商务公司</td>
                                 <td >中国银行</td>
-                                <td ><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
+                            </tr>
+                            <tr>
+                                <td >2016-05-12</td>
+                                <td >123456789012345678</td>
+                                <td ><%= formatMoney(1000000,2) %></td>
+                                <td ><%= formatMoney(1000000,2) %></td>
+                                <td >提现</td>
+                                <td >12345678901234</td>
+                                <td >和略电子商务公司</td>
+                                <td >中国银行</td>
+                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
+                            </tr>
+                            <tr>
+                                <td >2016-05-12</td>
+                                <td >123456789012345678</td>
+                                <td ><%= formatMoney(1000000,2) %></td>
+                                <td ><%= formatMoney(1000000,2) %></td>
+                                <td >提现</td>
+                                <td >12345678901234</td>
+                                <td >和略电子商务公司</td>
+                                <td >中国银行</td>
+                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
                             </tr>
                         </table>
 
