@@ -239,8 +239,11 @@
       padding: 20px 10px;
 
       .indexHigh{
-        z-index:99
+        ul{
+          z-index:99
+        }
       }
+
       .form-row{
         margin: 10px 5px;
       }
