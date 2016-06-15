@@ -69,6 +69,7 @@ require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/dist', express.static(staticDir));
+app.use('/files',express.static(fileStatic));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
@@ -90,7 +91,7 @@ app.use('/download/:path?/:name', function(req, res, next){
     });
 })
 
-app.use('/files',express.static(fileStatic));
+
 
 // 每日访问限制
 app.use(compression());
