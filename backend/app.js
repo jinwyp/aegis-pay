@@ -84,9 +84,9 @@ app.use('/download/:path?/:name', function(req, res, next){
 
     var fileName = req.params.name;
     res.sendFile(fileName, options, function (err) {
-    if (err) {
-        next(err);
-    }
+        if (err) {
+            next(err);
+        }
     });
 })
 

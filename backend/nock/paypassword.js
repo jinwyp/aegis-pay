@@ -11,5 +11,7 @@ paypasswordPersist
     }
     return {'success': true};
 })
+.get('/account/payPwd').reply(200, {'success':true, 'data':{'userFundAccount':23243435}})
+.get('/account/payPwd/forget/first').reply(200, {'success':true, 'data':{'payPhone':18623232323}})
 
 module.exports = paypasswordPersist;
