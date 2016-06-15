@@ -90,6 +90,7 @@ router.get('/pay/success', payCtl.success);
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
 router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);
+router.get('/ucenter/paypassword/fg/success', paypasswordCtl.forgetSuccess);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);

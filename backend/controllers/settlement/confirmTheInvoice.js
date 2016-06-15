@@ -11,7 +11,6 @@ var apiHost  = require('../../api/v1/api_config');          // 接口路径配�
 
 // 确认开票.页面路由
 exports.invoiceInfo = function (req, res, next) {
-
 	var req_id = req.query.id,
 		req_type = req.query.type,
 		typeArr = ['none', 'buy', 'sell'];
