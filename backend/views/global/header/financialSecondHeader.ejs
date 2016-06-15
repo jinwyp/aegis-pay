@@ -6,14 +6,14 @@
             <div class="tab-cards">
                 <ul class="firstTab">
                     <li>
-                        <a class="a-option <% if(tabObj.firstTab==1){ %>selected<% } %>" data-value="1">首页</a>
-                        <span class="arrow-blue tab-step-<%= tabObj.firstTab %>"></span>
+                        <a class="a-option <% if(tabObj.firstTab==1){ %>selected<% } %>" href="/wealth/financialHome?firstTab=1&secondTab=1" data-value="1">首页</a>
                     </li>
                     <li><a class="a-option <% if(tabObj.firstTab==2){ %>selected<% } %>" data-value="2">账户管理</a></li>
-                    <li><a class="a-option <% if(tabObj.firstTab==3){ %>selected<% } %>" data-value="3">交易明细</a></li>
+                    <li><a class="a-option <% if(tabObj.firstTab==3){ %>selected<% } %>" href="/wealth/financialTranaction?firstTab=3&secondTab=1" data-value="3">交易明细</a></li>
                     <li><a class="a-option <% if(tabObj.firstTab==4){ %>selected<% } %>" data-value="4">结算清单</a></li>
                     <li><a class="a-option <% if(tabObj.firstTab==5){ %>selected<% } %>" data-value="5">合同管理</a></li>
                 </ul>
+                <span class="arrow-blue tab-step-<%= tabObj.firstTab %>"></span>
             </div>
         </div>
 
