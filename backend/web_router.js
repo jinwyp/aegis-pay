@@ -88,6 +88,7 @@ router.get('/pay/success', payCtl.success);
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
 router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
+router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);
