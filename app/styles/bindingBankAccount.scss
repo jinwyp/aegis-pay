@@ -1,0 +1,22 @@
+@import './layout/_statusBar.scss';
+
+#bindingBankAccount{
+  background: #f6f6f6;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  .bindingBankAccountWrap{
+    width:1000px;
+    margin: 0 auto;
+    padding:20px 30px;
+    background: #fff;
+
+    .accountInfoTit{color:#333;font-size: 18px;}
+    .accountInfoTit span{border-left:2px solid #00b6ef;padding-left:10px;}
+    .accountInfoWrap{margin-top:10px;border:1px solid #e8e8e8;padding: 40px;}
+    .accountInfoWrap ul{margin-left: 250px;}
+    .accountInfoWrap ul li{margin-bottom:20px;font-size:14px;color:#333;}
+    .accountInfoWrap ul li label{font-weight:normal;display: inline-block;width:140px;text-align: right;margin-right: 10px;}
+    .accountInfoWrap ul li label span{color:#ff6e0f;}
+  }
+}

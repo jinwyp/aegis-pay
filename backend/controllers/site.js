@@ -35,6 +35,7 @@ exports.home = function (req, res, next) {
         '	<li><a href="/wealth/wealthCenter">财务管理首页</a></li>',
         '	<li><a href="/wealth/financialHome">财务管理中心 账户管理</a>  &gt; <a href="/wealth/financialDetails">交易明细</a></li>',
         '	<li><a href="/account/accountSetting">账户设置</a></li>',
+        '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
 	 //res.send(home);

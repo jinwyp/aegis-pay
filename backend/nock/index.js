@@ -16,3 +16,4 @@ require('./dispute/disputeDetail');
 require('./paypassword');
 require('./account/accountSetting');
 require('./account/notice');
+require('./wealth/bindingBankAccount');

@@ -1,0 +1,47 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/dist/styles/bindingBankAccount.css">
+    <link rel="stylesheet" href="/dist/styles/global.css">
+</head>
+
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+
+<%- include ../global/modal/modal  %>
+
+<div id="bindingBankAccount">
+    <div class="bindingBankAccountWrap">
+        <% include ../global/order/statusBar %>
+        <div class="accountInfoTit"><span>填写账户信息</span></div>
+        <div class="accountInfoWrap">
+            <ul>
+                <li><label><span>*</span>开户名称 :</label>注册公司名称</li>
+                <li>
+                    <label><span>*</span>开户行 :</label>
+                    <select>
+                        <option value="工商银行" name="a">工商银行</option>
+                        <option value="交通银行" name="b">交通银行</option>
+                        <option value="农业银行" name="c">农业银行</option>
+                    </select>
+                </li>
+                <li><label><span>*</span>开户行所在城市 :</label>请选择城市</li>
+                <li><label><span>*</span>开户行支行名称 :</label>请选择支行</li>
+                <li><label><span>*</span>企业对公账户 :</label>请输入对公账户号码</li>
+                <li><label><span>*</span>验证码 :</label>请输入验证码</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+<script src="/dist/scripts/wealth/bindingBankAccount.js"></script>
+</body>
+</html>
+
+
+
+
