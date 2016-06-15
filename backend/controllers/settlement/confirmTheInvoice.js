@@ -24,7 +24,7 @@ exports.invoiceInfo = function (req, res, next) {
 	} else {
 
 
-		var url = apiHost.host + 'settlement/confirmTheInvoice?orderId=' + req_id +'&type='+ typeArr[req_type];
+		var url = apiHost.host + 'settlement/invoiceInfo?orderId=' + req_id +'&type='+ typeArr[req_type];
 		console.log('-=-控制层-=-=-=-=-=-=-=-=-=- URL : '+ url );
 
 		request(url, function (err, data) {
