@@ -1,0 +1,67 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/confirmTheInvoice.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+<!-- 以下.内容部分 -->
+<div class="containerWrap">
+    <div class="bodyWrap">
+
+        <!-- 重要提示 板块 -->
+        <div id="doubtPlate" class="plateBox">
+            <div class="plateHead borSolid">
+                <span class="prefix"></span>
+                <h3 class="headLeft fl"><%= subTitle %></h3>
+                <!--<p class="headContent">居中标题</p>-->
+                <p class="headRight">
+                    <a href="##" class="doubtInlet">重要提示</a>
+                </p>
+            </div>
+            <div class="plateMain">
+                <!-- 提示框 板块 -->
+                <div class="embedBox" data-status="<%= order.status %>" data-type="<%= userType %>">
+                    <div class="significantDoubt">
+                        <h2 class="doubtTitle">重要提示：</h2>
+                        <p class="entry">
+                            1、本结算单由卖方出具，需经买方确认，请买方仔细核对结算单，如没有异议，请<a href="#" class="linkPrint">下载并打印该结算单</a>，将结算单加盖买方公章和财务章后寄至卖家；<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如买方对结算单有异议的，请及时联系卖方。
+                        </p>
+                        <p class="entry">
+                            2、如果实际结算货款<span class="light">少于已付货款</span>，确认结算后应退货款会及时退还到买方账户，卖方会在<span class="light">退款后3个工作日内</span>为买方开出发票。
+                        </p>
+                        <p class="entry">
+                            3、如果实际结算货款<span class="light">多于已付货款</span>，确认结算后请在<span class="light">5个工作日</span>你将应付货款付至卖方账户，
+                            卖方确认收到应付货款后的<span class="light">3个工作日内</span>为买家开具发票。
+                        </p>
+                        <p class="entry">4、如果买方在<span class="light">5个工作日内不确认结算</span>，本次交易将<span class="light">自动进入纠纷处理</span>程序。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+<script src="/static/scripts/settlement/confirmTheInvoice.js"></script>
+
+</body>
+</html>
+
+
+
