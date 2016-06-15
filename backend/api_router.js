@@ -43,7 +43,9 @@ router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
 router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
-router.post('/paypassword/forget/valid', sms.verifyMiddleware(), payPasswordApi.forgetValid);
+
+router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.forgetValid);
+router.post('/paypassword/forget/submit', paypasswordApi.forgetSubmit);
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
