@@ -23,13 +23,13 @@ const sourcePaths = {
 };
 
 const distPaths = {
-    "javascript"        : "static/scripts",
-    "custom_components" : "static/custom_components",
-    "components"        : "static/components",
-    "images"            : "static/images",
+    "javascript"        : "dist/scripts",
+    "custom_components" : "dist/custom_components",
+    "components"        : "dist/components",
+    "images"            : "dist/images",
     "imagesSprites"     : "images/sprite/auto-sprite.png",
     "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
-    "css"               : "static/styles"
+    "css"               : "dist/styles"
 };
 
 
@@ -168,7 +168,7 @@ gulp.task('watchBrowserSync', () => {
 
 
 gulp.task('clean', () => {
-    del.sync(['static']);
+    del.sync(['dist']);
 });
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
