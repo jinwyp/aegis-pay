@@ -53,7 +53,7 @@ gulp.task('images', () =>
          //  interlaced: true
          //}))
         .pipe(gulp.dest(distPaths.images))
-        .pipe(plugins.size({title : 'Images'}))
+        //.pipe(plugins.size({title : 'Images'}))
 );
 
 
@@ -155,14 +155,11 @@ gulp.task('nodemon', function (cb) {
             // bs.reload();
             onStart();
         }
-    }).on('restart',onReStart);
+    }).on('restart',onReStart)
+      .once('quit', function () {
+            process.exit()
+        });
 });
-
-
-
-
-
-
 
 
 
