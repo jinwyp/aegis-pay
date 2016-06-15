@@ -68,7 +68,7 @@ if (config.debug) {
 require('./libs/ejshelper')(app);
 
 // 静态资源
-app.use('/static', express.static(staticDir));
+app.use('/dist', express.static(staticDir));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
