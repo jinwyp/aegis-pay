@@ -4,11 +4,13 @@
 
 requirejs(['jquery', 'bootstrap'], function($){
 
-    //var financialHeader = {
-    //    "initFirstTab":function(){
-    //
-    //    }
-    //}
+    $(".recharge").click(function(){
+        $(".bubble").removeClass("bubble-hidden");
+    });
+
+    $(".close").click(function(){
+        $(".bubble").addClass("bubble-hidden");
+    });
 
 
 });

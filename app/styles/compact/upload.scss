@@ -1,3 +1,5 @@
+@import '../helpers/_variables.scss';
+
 .compactUpload{
   border-top:1px dashed $color_border_block_gray; padding-top:20px;
   .uploadWrapper{
@@ -20,6 +22,6 @@
 
   }
   .tip-error{
-      display: none; margin-left:90px; font-size:$size_font_nomal;
+      display: none; margin-left:90px; font-size:$size_font_normal;
   }
 }
