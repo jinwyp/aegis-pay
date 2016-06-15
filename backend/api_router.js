@@ -4,20 +4,16 @@ var router = express.Router();
 var sms = require('./libs/sms_code');
 var captcha = require('./libs/captcha');
 
-var siteController = require('./api/v1/site');
-var compactApi = require('./api/v1/compact');
-var orderCloseApi = require('./controllers/order/orderClose');                  // 关闭订单 模块(文件路径)
+var siteController    = require('./api/v1/site');
+var compactApi        = require('./api/v1/compact');
+var orderCloseApi     = require('./controllers/order/orderClose');                  // 关闭订单 模块(文件路径)
 var settlementFormApi = require('./controllers/settlement/settlementForm');     // 结算单页面 模块(控制文件路径)
-var confirmDelivery = require('./api/v1/confirmDelivery');
-var confirmComplete = require('./controllers/confirmComplete');
-var disputeApply = require('./controllers/disputeApply');
-var disputeCancel = require('./controllers/disputeDetail');
-var payApi          = require('./api/v1/pay');
-
-
-
-var payApi = require('./api/v1/pay');
-var paypasswordApi = require('./api/v1/paypassword');
+var confirmDelivery   = require('./api/v1/confirmDelivery');
+var confirmComplete   = require('./controllers/confirmComplete');
+var disputeApply      = require('./controllers/disputeApply');
+var disputeCancel     = require('./controllers/disputeDetail');
+var payApi            = require('./api/v1/pay');
+var paypasswordApi    = require('./api/v1/paypassword');
 
 // demo
 router.get('/user', siteController.user);
