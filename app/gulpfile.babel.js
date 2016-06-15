@@ -136,7 +136,7 @@ gulp.task('nodemon', function (cb) {
         env: { 'MODE': 'local' , 'MOCK':true},
         ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
         // watch core server file(s) that require server restart on change
-        // watch: ['app.js',]
+         watch: ['../backend/**/*.js']
     }).on('start', () => {
         // ensure start only got called once
         if (!called) {
@@ -144,10 +144,13 @@ gulp.task('nodemon', function (cb) {
             cb();
         }
     }).on('restart', () => {
+        setTimeout(function () {
+            reload({ stream: false });
+        }, 3000);
         console.log('---------- nodemon 重启服务器成功 ---------- ');
     }).once('exit', () => {
         console.log('---------- Exiting the process ---------- ');
-        process.exit();
+        //process.exit();
     });
 });
 
