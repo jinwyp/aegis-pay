@@ -16,5 +16,4 @@ if [[ $# = 1 ]]; then
     export MOCK=true;
 fi
 
-gulp
-#supervisor -w api,libs,config,custom_components,middlewares,errors,nock,controllers,app.js app.js
+supervisor -w api,config,controllers,custom_components,middlewares,errors,libs,nock,app.js app.js

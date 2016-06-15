@@ -27,13 +27,15 @@ app 目录下：
 ```
 
 ## 启动
-- npm test 或 ./run.sh -m (使用nock用来Mock数据)
-- npm start 或 ./run.sh (不使用nock)
+
+- 进入app 目录 运行 npm start 或 gulp sync  直接使用nodemon启动nodejs服务器和自动刷新浏览器功能, 并启动Mock数据功能  http://localhost:4000
+- 不启动自动刷新浏览器功能 进入app 目录 运行 gulp 仅启动前端编译功能。 或运行gulp server 启动nodejs服务器和前端编译,不带浏览器自动刷新功能。 http://localhost:3000
+- 在 backend 目录 运行 npm test 或 ./run.sh -m  使用supervisor启动node.js 服务器(使用nock用来Mock数据) http://localhost:3000
+- 在 backend 目录 npm start 或 ./run.sh 使用supervisor启动node.js 服务器 (不使用nock) http://localhost:3000
+- 在 根路径 运行 make local  使用supervisor启动node.js 服务器 (不使用nock) http://localhost:3000
 
 
 
-## 访问
-- http://localhost:8800
 
 
 ## 目录命名 文件命名 规范
