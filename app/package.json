@@ -2,6 +2,12 @@
   "name": "app",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "5.9.x"
+  },
+  "scripts": {
+    "start": "gulp sync"
+  },
   "devDependencies": {
     "babel-core": "^6.9.0",
     "babel-polyfill": "^6.7.4",
@@ -10,7 +16,7 @@
     "bower": "^1.7.9",
     "bower-requirejs": "^1.2.0",
     "browser-sync": "^2.13.0",
-    "del": "^2.0.2",
+    "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.0.0",
@@ -20,7 +26,7 @@
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.0.0",
-    "gulp-load-plugins": "^1.0.0",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-newer": "^1.0.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.1",
