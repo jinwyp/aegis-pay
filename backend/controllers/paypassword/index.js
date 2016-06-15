@@ -80,3 +80,15 @@ exports.forgetReset = function(req, res, next){
         res.render('paypassword/forget-set', pageData);
     }).catch(next);
 }
+
+exports.forgetSuccess = function(req, res, next){
+    var pageData = {
+        pageTitle : '安全设置 —— 设置支付密码',
+        headerTit : '安全设置',
+        subHeaderTit: '设置支付密码',
+        // user: {
+        //     id: req.session.user.id
+        // }
+    };
+    res.render('paypassword/forget-success', pageData);
+}
