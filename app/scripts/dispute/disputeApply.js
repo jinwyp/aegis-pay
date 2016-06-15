@@ -20,10 +20,9 @@ require(['jquery','pay.upload'],function($,upload){
 
         },
         "countDown" : function(){
-            $(window).load(function(){
+            $(document).ready(function(){
                 var initialLen=200-($("#disputeRemarks").val().length);
-                $("#leftTxt").text(initialLen);
-            });
+                $("#leftTxt").text(initialLen);})
             $("#disputeRemarks").on("input",function(){
                 var Len=$(this).val().length;
                 var restNum=200-Len;
