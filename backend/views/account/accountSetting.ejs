@@ -8,8 +8,9 @@
 
 <body>
 <%- include ../global/modal/modal  %>
-<%- include ../global/header/header %>
-<% include ../global/header/subHeader  %>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
 <div id="accountSetting">
     <div class="accountSetting">
         <div class="wrap clearfix">
@@ -18,24 +19,29 @@
                 <table>
                     <tr>
                         <th>真实姓名：</th>
-                        <td colspan="2">张三</td>
+                        <td colspan="2"><%= accountInfo.name %></td>
                     </tr>
                     <tr>
                         <th>角色职务：</th>
-                        <td colspan="2">超级业务员</td>
+                        <td colspan="2"><%= accountInfo.work %></td>
                     </tr>
                     <tr>
                         <th>手机号码：</th>
-                        <td colspan="2">18000000001</td>
+                        <td colspan="2"><%= phoneFormat(accountInfo.phone)%></td>
                     </tr>
                     <tr>
                         <th>注册时间：</th>
-                        <td colspan="2"zz>2016.01.02</td>
+                        <td colspan="2"><%= accountInfo.registerDate %></td>
                     </tr>
                     <tr>
                         <th>邮箱地址：</th>
-                        <td class="red">您的邮箱尚未绑定</td>
-                        <td><a href="#">绑定</a></td>
+                        <% if(accountInfo.email ==''){%>
+                            <td class="red">您的邮箱尚未绑定</td>
+                            <td><a href="#">绑定</a></td>
+                        <%}else{%>
+                            <td><%= accountInfo.email %></td>
+                            <td><a href="#">修改</a></td>
+                        <%}%>
                     </tr>
                     <tr>
                         <th>附属账户：</th>
@@ -44,8 +50,16 @@
                     </tr>
                     <tr class="noBorder">
                         <th>银行账户：</th>
-                        <td>银行账户等待确认汇款金额</td>
-                        <td><a href="#">认证</a></td>
+                        <% if(accountInfo.accountStatus =='1'){%>
+                            <td>尚未绑定出金账户</td>
+                            <td><a href="#">绑定</a></td>
+                        <%}else if(accountInfo.accountStatus =='2'){%>
+                            <td>银行账户等待确认汇款金额</td>
+                            <td><a href="#">认证</a></td>
+                        <%}else if(accountInfo.accountStatus =='3'){%>
+                            <td>已绑定1张出金账户</td>
+                            <td><a href="#">查看</a></td>
+                        <%}%>
                     </tr>
 
                 </table>

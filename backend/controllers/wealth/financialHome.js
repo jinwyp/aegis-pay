@@ -21,7 +21,7 @@ exports.financialHome = function (req, res, next) {
         }
     };
     //渲染页面
-    res.render('wealth/financialCenter',content);
+    res.render('wealth/financialCenterHome',content);
 };
 
 
