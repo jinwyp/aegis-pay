@@ -24,6 +24,7 @@
                                     <p>金额: <span><%= formatMoney(noticeInfo[i].money,2) %>元</span></p>
                                 </td>
                                 <td>
+                                    <% var statusObj = statusArr[i]%>
                                     <% include ../global/order/statusBar %>
                                 </td>
                             </tr>
