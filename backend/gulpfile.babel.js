@@ -26,13 +26,13 @@ const sourcePaths = {
 };
 
 const distPaths = {
-    "javascript"        : "../app/static/scripts",
-    "custom_components" : "../app/static/custom_components",
-    "components"        : "../app/static/components",
-    "images"            : "../app/static/images",
+    "javascript"        : "../app/dist/scripts",
+    "custom_components" : "../app/dist/custom_components",
+    "components"        : "../app/dist/components",
+    "images"            : "../app/dist/images",
     "imagesSprites"     : "../app/images/sprite/auto-sprite.png",
     "imagesSpritesScss" : "../app/styles/helpers/_auto_sprite.scss",
-    "css"               : "../app/static/styles"
+    "css"               : "../app/dist/styles"
 };
 
 
@@ -216,7 +216,7 @@ function onStart() {
 
 
 gulp.task('clean', () => {
-    del.sync(['static']);
+    del.sync(['dist']);
 });
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch','nodemon']);

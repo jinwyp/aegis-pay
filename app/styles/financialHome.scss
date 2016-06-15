@@ -92,7 +92,7 @@
             display: inline-block;
             width: 24px;
             height: 18px;
-            background: url("/static/images/wealth/bank_card_icon.png");
+            background: url("/dist/images/wealth/bank_card_icon.png");
           }
           .account-color{  color: $color_a_hover;  }
           .manage-color{  color: $color_manage_text;float: right;  margin-right: 20px;  }
@@ -101,7 +101,7 @@
           text-align: center;
           margin-top: 34px;
           .add-icon {
-            background: url("/static/images/wealth/bank_add.png");
+            background: url("/dist/images/wealth/bank_add.png");
             display: inline-block;
             width: 21px;
             height: 21px;
