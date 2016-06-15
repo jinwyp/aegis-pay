@@ -6,9 +6,9 @@
 
 #financial-body{
   background-color: $color_body_bg;
-  padding: 20px 0px;
+  padding: $main_margintop 0 $main_marginbottom 0;
   .financial-main{
-    width: 1000px;
+    width: $main_width;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -18,7 +18,7 @@
     .financial-header{
       border: 1px solid #e4e4e4;
       height: 160px;
-      background-color: $color_text_white;
+      background-color: $color_main_bg;
       color: $color_font;
       .label{  color: $color_tip_font;padding: 0;  }
       .fs-14{  font-size: 14px;  }
