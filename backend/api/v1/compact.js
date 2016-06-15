@@ -23,9 +23,6 @@ exports.uploadFile = function (req, res, next) {
     var form = new formidable.IncomingForm();
 
     form.uploadDir = uploadTmp;
-    console.log(config)
-console.log(uploadTmp)
-console.log(uploadPath)
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
         var extName = /\.[^\.]+/.exec(files.files.name);
@@ -36,8 +33,6 @@ console.log(uploadPath)
         var newPath = uploadPath + newFile;
 
         utils.makeDir(uploadPath);
-console.log(files.files.path);
-console.log(newPath);
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
@@ -85,7 +80,6 @@ var convertData = function (compactdata, compactejs, orderId) {
         return convert.html2pdf(resultHtml.htmlpath)
     })
     .then(function(resultPDF){
-        console.log(resultPDF)
         data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
