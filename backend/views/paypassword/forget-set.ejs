@@ -1,0 +1,43 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/static/styles/paypassword.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper forgetSet">
+    <% var statusObj = {step:2, total:3, stepList: [{stepName:'验证身份', stepDate:''}, {stepName:'重置支付密码', stepDate:''}, {stepName:'重置成功', stepDate:''}]} %>
+    <%- include ./statusBar %>
+    <form method="post" id='forgetSet'>
+      <ul class='valid'>
+        <li>
+            <label>易煤网资金账户号：</label><%= phoneFormat(user.userFundAccount) %>
+        </li>
+        <li>
+          <label>设置新支付密码：</label><input type="password" placeholder='设置新支付密码' value="">
+          <p class='tip-msg'><i class='icon_tip'></i>6-16位字符（字母、数字、符号），区分大小写</p>
+          <p class='tip-error'></p>
+        </li>
+        <li>
+          <label>再次输入新支付密码：</label><input type="password" name='newPayPassword' placeholder='再次输入新支付密码' value="">
+          <p class='tip-error'></p>
+        </li>
+      </ul>
+      <p>
+          <input id='setBtn' class='btn_blue setBtn' type="button" value="确定" />
+      </p>
+    </form>
+    <%- include ./tip %>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/static/scripts/paypassword/forget.js"></script>
+
+</body>
+</html>
