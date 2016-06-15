@@ -20,9 +20,10 @@ var footerController          = require('./controllers/footer');
 var orderController           = require('./controllers/order/orderDetail');
 var confirmDeliveryController = require('./controllers/confirmDelivery');
 var subHeaderController       = require('./controllers/subHeader');
-var orderCloseContr           = require('./controllers/order/orderClose');                      // 关闭订单 模块(控制文件路径)
-var settlementFormContr       = require('./controllers/settlement/settlementForm');             // 结算单开具页面 模块(控制文件路径)
-var sellerDeliveryController  = require('./controllers/sellerDelivery');                        // 关闭订单 模块(控制文件路径)
+var orderCloseControl         = require('./controllers/order/orderClose');                      // 关闭订单 模块(控制文件路径)
+var settlementFormControl     = require('./controllers/settlement/settlementForm');             // 结算单开具页面 模块(控制文件路径)
+var confirmTheInvoiceControl  = require('./controllers/settlement/confirmTheInvoice');          // 结算单.确认开票
+var sellerDeliveryController  = require('./controllers/sellerDelivery');
 var returnDetailController    = require('./controllers/returnDetail');
 
 var disputeApply    = require('./controllers/disputeApply');   //纠纷申请
@@ -52,11 +53,14 @@ router.get('/footer', footerController.footer);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 
-router.get('/settlement/settlementForm', settlementFormContr.orderSettlement);                  // 结算单 买家 页面路由
+router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                  // 结算单 页面路由
+router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo);                // 结算单.确认开票 页面路由
+
+
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
-router.get('/order/orderClose', orderCloseContr.orderInfo);                                     // 关闭 订单路由
+router.get('/order/orderClose', orderCloseControl.orderInfo);                                     // 关闭 订单路由
 
 router.get('/return', returnDetailController.returnDetail);
 
