@@ -14,8 +14,8 @@
 	 WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
 	 WaitWriteReceipt	 	审核通过.待卖家开发票(_)  */
 
-var request = require('request');
-var checker    = require('../../libs/datachecker');			// 验证
+var request  = require('request');
+var checker  = require('../../libs/datachecker');			// 验证
 var apiHost  = require('../../api/v1/api_config');          // 接口路径配置
 
 

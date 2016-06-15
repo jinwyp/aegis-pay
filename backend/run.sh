@@ -10,10 +10,11 @@ export DOMAIN=cn;
 export DEBUG=true;
 export MODE=local;
 export MOCK=false;
-export FILES_DIR=$parent_dir/../../files;
+export FILES_DIR=$parent_dir/../files;
 
 if [[ $# = 1 ]]; then
     export MOCK=true;
 fi
 
-supervisor -w api,libs,config,custom_components,middlewares,errors,nock,controllers,app.js app.js
+gulp
+#supervisor -w api,libs,config,custom_components,middlewares,errors,nock,controllers,app.js app.js
