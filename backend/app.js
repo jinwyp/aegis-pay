@@ -90,7 +90,7 @@ app.use('/download/:path?/:name', function(req, res, next){
     });
 })
 
-// app.use(express.static(fileStatic));
+app.use(express.static(fileStatic));
 
 // 每日访问限制
 app.use(compression());
