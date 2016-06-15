@@ -37,7 +37,23 @@ exports.home = function (req, res, next) {
         '	<li><a href="/account/accountSetting">账户设置</a></li>',
         '</ul>'
     ].join('');
-	// res.send(home);
-    res.render('index','');
+	 //res.send(home);
+    res.render('index',{
+            webs:[
+                {url:'/demo',name:'demo'},
+                {url:'/newdemo',name:'newdemo'},
+                {url:'/header',name:'header'},
+                {url:'/subHeader',name:'subHeader'},
+                {url:'/footer',name:'footer'},
+                {url:'/api/zips',name:'zip压缩'},
+            ],
+            webdoing:[
+                {url:'/demo',name:'demo'},
+                {url:'/demo',name:'demo'},
+                {url:'/demo',name:'demo'},
+                {url:'/demo',name:'demo'},
+                {url:'/demo',name:'demo'},
+            ]
+    });
 
 };
