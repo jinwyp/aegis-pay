@@ -148,7 +148,7 @@ gulp.task('nodemon', function (cb) {
             reload({ stream: false });
         }, 3000);
         console.log('---------- nodemon 重启服务器成功 ---------- ');
-    }).once('exit', () => {
+    }).on('exit', () => {
         console.log('---------- Exiting the process ---------- ');
         //process.exit();
     });
