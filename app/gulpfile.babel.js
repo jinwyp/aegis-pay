@@ -5,10 +5,12 @@ import del from 'del';
 import spritesmith from 'gulp.spritesmith';
 import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
-import rjs from 'requirejs';
+import nodemon from  'nodemon';
 
+var bs  = browserSync.create();
+var reload  = bs.reload;
 const plugins = gulpLoadPlugins();
-const reload  = browserSync.reload;
+
 
 
 const sourcePaths = {
@@ -23,14 +25,16 @@ const sourcePaths = {
 };
 
 const distPaths = {
-    "javascript"        : "static/scripts",
-    "custom_components" : "static/custom_components",
-    "components"        : "static/components",
-    "images"            : "static/images",
+    "javascript"        : "dist/scripts",
+    "custom_components" : "dist/custom_components",
+    "components"        : "dist/components",
+    "images"            : "dist/images",
     "imagesSprites"     : "images/sprite/auto-sprite.png",
     "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
-    "css"               : "static/styles"
+    "css"               : "dist/styles",
+    "browserSyncWatchFiles" : [sourcePaths.html, "dist/scripts/**/*.js", "dist/styles/**/*.css"]
 };
+
 
 
 // Lint JavaScript
@@ -108,38 +112,6 @@ gulp.task('custom_components', () => {
 
 
 gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
-
-    // rjs.optimize({
-    //   baseUrl: 'app/scripts',
-    //   paths: {
-    //     libs: '../libs',
-    //     components: '../components'
-    //   },
-    //   shims: {
-    //
-    //   },
-    //   dir: 'assets/scripts',
-    //   optimize: "uglify",
-    //   modules: [
-    //     {
-    //       name: 'common',
-    //       include: [
-    //         'libs/jquery-2.2.3.min.js',
-    //         'components/bootstrap/dist/js/bootstrap.min.js'
-    //       ]
-    //     },
-    //     {
-    //       name: 'compact/index',
-    //       include: [
-    //         'compact/compact',
-    //         'compact/upload'
-    //       ],
-    //       exclude: ['common']
-    //     }
-    //   ]
-    // }, function(buildResponse){
-    //   cb();
-    // }, cb);
     gulp.src(sourcePaths.javascript).pipe(gulp.dest(distPaths.javascript))
 );
 
@@ -153,26 +125,63 @@ gulp.task('watch', () => {
 });
 
 
-gulp.task('watchBrowserSync', () => {
-    browserSync.init({
-        proxy: "http://localhost:3000"
+
+
+
+gulp.task('nodemon', function (cb) {
+    var called = false;
+    return nodemon({
+        // nodemon our expressjs server
+        script: '../backend/app.js',
+        env: { 'MODE': 'local' , 'MOCK':true},
+        ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
+        // watch core server file(s) that require server restart on change
+        // watch: ['app.js',]
+    }).on('start', () => {
+        // ensure start only got called once
+        if (!called) {
+            called = true;
+            cb();
+        }
+    }).on('restart', () => {
+        console.log('---------- nodemon 重启服务器成功 ---------- ');
+    }).once('exit', () => {
+        console.log('---------- Exiting the process ---------- ');
+        process.exit();
     });
-    gulp.watch(sourcePaths.html).on('change', reload);
-    gulp.watch(sourcePaths.javascript, ['javascript', reload]);
-    gulp.watch(sourcePaths.images, ['images']);
-    gulp.watch(sourcePaths.scss, ['sass', reload]);
-    gulp.watch(sourcePaths.custom_components_js, ['custom_components', reload]);
-    gulp.watch(sourcePaths.custom_components_styles, ['custom_components', reload]);
 });
+
+
+
+gulp.task('browser-sync', function() {
+    bs.init({
+        // informs browser-sync to proxy our expressjs app which would run at the following location
+        proxy: 'http://localhost:3000',
+        // informs browser-sync to use the following port for the proxied app
+        // notice that the default port is 3000, which would clash with our expressjs
+        port: 4000,
+        // browser: ['google-chrome'], // open the proxied app in chrome
+        notify: true,
+        open: false,
+        files: distPaths.browserSyncWatchFiles
+    });
+});
+
+
 
 
 
 gulp.task('clean', () => {
-    del.sync(['static']);
+    del.sync(['dist']);
 });
 
+
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
-gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watchBrowserSync']);
+gulp.task('server', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon']);
+gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon', 'browser-sync']);
+
+
+
 
 // gulp.task('default', () =>
 //   gulp.src('app/*.html')

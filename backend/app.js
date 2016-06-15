@@ -36,7 +36,7 @@ var glob             = require('glob');
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir  = path.join(__dirname, '../app/static');
+var staticDir  = path.join(__dirname, '../app/dist');
 // var fileStatic = path.join(__dirname,   '../../files/static');
 //
 var fileStatic = config.sysFileDir;
@@ -68,7 +68,7 @@ if (config.debug) {
 require('./libs/ejshelper')(app);
 
 // 静态资源
-app.use('/static', express.static(staticDir));
+app.use('/dist', express.static(staticDir));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
@@ -90,7 +90,7 @@ app.use('/download/:path?/:name', function(req, res, next){
     });
 })
 
-// app.use(express.static(fileStatic));
+app.use('/files',express.static(fileStatic));
 
 // 每日访问限制
 app.use(compression());
