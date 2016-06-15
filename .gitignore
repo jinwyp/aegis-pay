@@ -3,6 +3,7 @@ app/components
 backend/node_modules
 backend/log
 app/static/
+app/dist/
 .tmp/
 *.log
 files
