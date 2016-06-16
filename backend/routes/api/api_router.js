@@ -1,23 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var sms = require('./libs/sms_code');
-var captcha = require('./libs/captcha');
+var sms = require('../../libs/sms_code');
+var captcha = require('../../libs/captcha');
 
-var siteController = require('./api/v1/site');
-var compactApi = require('./api/v1/compact');
-var orderCloseApi = require('./controllers/order/orderClose');                  // 关闭订单 模块(文件路径)
-var settlementFormApi = require('./controllers/settlement/settlementForm');     // 结算单页面 模块(控制文件路径)
-var confirmDelivery = require('./api/v1/confirmDelivery');
-var confirmComplete = require('./controllers/confirmComplete');
-var disputeApply = require('./controllers/disputeApply');
-var disputeCancel = require('./controllers/disputeDetail');
-var payApi          = require('./api/v1/pay');
+var siteController    = require('../../api/v1/site');
+var compactApi        = require('../../api/v1/compact');
+var orderCloseApi     = require('../../controllers/order/orderClose');                  // 关闭订单 模块(文件路径)
+var settlementFormApi = require('../../controllers/settlement/settlementForm');     // 结算单页面 模块(控制文件路径)
+var confirmDelivery   = require('../../api/v1/confirmDelivery');
+var confirmComplete   = require('../../controllers/confirmComplete');
+var disputeApply      = require('../../controllers/disputeApply');
+var disputeCancel     = require('../../controllers/disputeDetail');
+var payApi            = require('../../api/v1/pay');
+var payPasswordApi    = require('../../api/v1/paypassword');
 
-
-
-var payApi = require('./api/v1/pay');
-var paypasswordApi = require('./api/v1/paypassword');
+var financialApi    = require('../../api/v1/financialDetails');
 
 // demo
 router.get('/user', siteController.user);
@@ -51,6 +49,12 @@ router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.
 router.post('/paypassword/forget/submit', paypasswordApi.forgetSubmit);
 router.post('/paypassword/modify/valid', sms.verifyMiddleware(), paypasswordApi.modifyValid);
 router.post('/paypassword/modify/submit', paypasswordApi.modifySubmit);
+
+
+
+router.post('/financial/order/details', financialApi.financialDetailsApi);
+
+
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

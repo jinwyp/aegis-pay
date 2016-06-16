@@ -13,8 +13,7 @@ var config = require('./config');
 var path             = require('path');
 var express          = require('express');
 var session          = require('express-session');
-var webRouter        = require('./web_router');
-var apiRouter        = require('./api_router');
+var routes           = require('./routes');
 var auth             = require('./middlewares/auth');
 var RedisStore       = require('connect-redis')(session);
 var _                = require('lodash');
@@ -29,7 +28,6 @@ var cors             = require('cors');
 var renderMiddleware = require('./middlewares/render');
 var logger           = require("./libs/logger");
 var ejs              = require('ejs');
-var glob             = require('glob');
 
 
 
@@ -69,6 +67,7 @@ require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/dist', express.static(staticDir));
+app.use('/files',express.static(fileStatic));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
@@ -88,9 +87,9 @@ app.use('/download/:path?/:name', function(req, res, next){
             next(err);
         }
     });
-})
+});
 
-app.use('/files',express.static(fileStatic));
+
 
 // 每日访问限制
 app.use(compression());
@@ -154,17 +153,10 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api', cors(), apiRouter);
-app.use('/', webRouter);
+app.use('/api', cors(), routes.api);
+app.use('/', routes.webPage);
+routes.autoLoaderControllers(app);
 
-var controllers = glob.sync('./controllers/**/*.js');
-
-controllers.forEach(function (controller) {
-    if(require(controller).init){
-        require(controller).init(app);
-        logger.info('auto init controller:'+controller);
-    }
-});
 
 app.use(errorhandler.PageNotFoundMiddleware);
 

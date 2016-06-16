@@ -100,7 +100,9 @@ var api_config = {
     // 忘记密码 － 重置密码 - 提交
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
-    paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit'
+    paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
+
+    financialDetails : host + 'financial/order/details'
 
 };
 

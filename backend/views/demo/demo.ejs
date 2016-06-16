@@ -11,7 +11,7 @@
 <table class="btnBoxList">
     <tbody>
     <tr>
-        <th>样式尺寸</th>
+        <th width="130">样式尺寸</th>
         <th>编辑, 更改</th>
         <th>确认, 提交</th>
         <th>退回, 否定</th>
@@ -20,7 +20,7 @@
         <th>只读, readonly</th>
     </tr>
     <tr>
-        <th>中号:  140*40</th>
+        <th>按钮_大:  140*40</th>
         <td><input type="button" class="iBtn iBtn_edit" value="修改"/></td>
         <td><input type="button" class="iBtn iBtn_yes" value="确认"/></td>
         <td><input type="button" class="iBtn iBtn_no" value="退回"/></td>
@@ -29,7 +29,7 @@
         <td><input type="button" class="iBtn iBtn_yes" value="只读" readonly/></td>
     </tr>
     <tr>
-        <th>小号:  96*32</th>
+        <th>按钮_中:  96*32</th>
         <td><input type="button" class="iBtn iBtn_sm iBtn_edit" value="修改"/></td>
         <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="确认"/></td>
         <td><input type="button" class="iBtn iBtn_sm iBtn_no" value="退回"/></td>
@@ -38,13 +38,42 @@
         <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="只读" readonly/></td>
     </tr>
     <tr>
-        <th>文本框: </th>
+        <th>按钮_小:  60*24</th>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_edit" value="修改"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="确认"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_no" value="退回"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_def" value="取消"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="不可用" disabled/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="只读" readonly/></td>
+    </tr>
+
+
+    <tr>
+        <th>文本_大:  88% * 40</th>
         <td><input type="text" class="iIpt" value="" placeholder="正常状态" /></td>
-        <td><input type="text" class="iIpt" value="输入状态" placeholder="" /></td>
+        <td><input type="text" class="iIpt" value="输入状态" placeholder="请输入" /></td>
         <td><input type="text" class="iIpt iIpt_err" value="输入错误" placeholder="" /></td>
-        <td><input type="text" class="iIpt" value="" placeholder="只读状态" readonly /></td>
+        <td></td>
         <td><input type="text" class="iIpt" value="" placeholder="禁用状态" disabled /></td>
-        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="小号" /></td>
+        <td><input type="text" class="iIpt" value="" placeholder="只读状态" readonly /></td>
+    </tr>
+    <tr>
+        <th>文本_中:88% * 32</th>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="请输入" /></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="输入状态" placeholder="请输入" /></td>
+        <td><input type="text" class="iIpt iIpt_sm iIpt_err" value="输入错误" placeholder="" /></td>
+        <td></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="禁用状态" disabled /></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="只读状态" readonly /></td>
+    </tr>
+    <tr>
+        <th>文本_小:  88% * 24</th>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="正常状态" /></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="输入状态" placeholder="请输入" /></td>
+        <td><input type="text" class="iIpt iIpt_xs iIpt_err" value="输入错误" placeholder="" /></td>
+        <td></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="禁用状态" disabled /></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="只读状态" readonly /></td>
     </tr>
     </tbody>
 </table>
@@ -53,6 +82,14 @@
 
 <!-- 各种Icon图标-->
 <div class="icnList">
+    <p class="icnBox">
+        <span class="icn_phone"></span>
+        <span class="describe">手机</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_tel"></span>
+        <span class="describe">电话</span>
+    </p>
     <p class="icnBox">
         <span class="icn_caretUp"></span>
         <span class="describe">向上</span>
@@ -111,7 +148,11 @@
     </p>
     <p class="icnBox">
         <span class="icn_date"></span>
-        <span class="describe">日历</span>
+        <span class="describe">日历.右</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_date_l"></span>
+        <span class="describe">日历.左</span>
     </p>
     <p class="icnBox">
         <span class="icn_warning"></span>
@@ -129,6 +170,15 @@
 
 
 <div class="icnList">
+    <p class="icnBox">
+        <span class="icn_fold"></span>
+        <span class="describe">折叠.右</span>
+    </p>
+    <p class="icnBox">
+        <span class="icn_spread"></span>
+        <span class="describe">展开.下</span>
+    </p>
+
     <p class="icnBox">
         <span class="icn_roundLight"></span>
         <span class="describe">圆点 亮</span>

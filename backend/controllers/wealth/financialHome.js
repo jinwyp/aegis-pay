@@ -26,11 +26,6 @@ exports.financialHome = function (req, res, next) {
 
 
 
-
-
-
-
-
 exports.financialDetails = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 2;
@@ -45,5 +40,21 @@ exports.financialDetails = function (req, res, next) {
     };
 
     res.render('wealth/financialDetails',content);
+};
+
+exports.financialTransaction = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 3;
+    var secondTab = req.query.secondTab || 1;
+    var content = {
+        pageTitle : "财务管理中心 - 交易明细",
+        headerTit : "财务管理中心 - 交易明细",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        }
+    };
+
+    res.render('wealth/transactionRecord',content);
 };
 
