@@ -70,6 +70,20 @@
   cursor: default;
 }
 
+//错误
+.iIpt_err,
+.iIpt_err:hover {
+  border: 1px solid #ff0303;
+  color: #fd8b5d;
+}
+
+//日历.右
+.iIpt_date {
+  background: url($bgUrl) no-repeat right -704px;
+}
+
+
+
 //默认, 取消
 .iBtn_def {
   color: #ffffff;
@@ -112,13 +126,6 @@
   &:hover {
     background: #fd8b5d;
   }
-}
-
-//错误
-.iIpt_err,
-.iIpt_err:hover {
-  border: 1px solid #ff0303;
-  color: #fd8b5d;
 }
 
 //上传&下载
