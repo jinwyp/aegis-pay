@@ -36,6 +36,7 @@ var wealthCenter    = require('./controllers/wealth/wealthCenter');       //财�
 var financialHome   = require('./controllers/wealth/financialHome');       //财富管理
 var accountSetting  = require('./controllers/accountSetting');       //账户设置
 var notice          = require('./controllers/notice');       //账户设置消息提醒
+var settlementManagement          = require('./controllers/wealth/settlementManagement');       //结算管理
 
 var paypasswordCtl = require('./controllers/paypassword/index');    // paypassword
 
@@ -73,6 +74,8 @@ router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 router.get('/wealth/financialHome', financialHome.financialHome);    //财务管理中心 账户管理
 router.get('/wealth/financialDetails', financialHome.financialDetails);    //财务管理中心 交易明细
+router.get('/wealth/settlementManagement', settlementManagement.settlementManagement);    //结算管理发票中心
+
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
 router.get('/account/notice', notice.notice);    //账户设置消息提醒
 
