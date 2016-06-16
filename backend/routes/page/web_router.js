@@ -36,7 +36,7 @@ var wealthCenter    = require('../../controllers/wealth/wealthCenter');       //
 var financialHome   = require('../../controllers/wealth/financialHome');       //财富管理
 var accountSetting  = require('../../controllers/accountSetting');       //账户设置
 var notice          = require('../../controllers/notice');       //账户设置消息提醒
-var settlementManagement          = require('./controllers/wealth/settlementManagement');
+var settlementManagement          = require('../../controllers/wealth/settlementManagement');
 var paypasswordCtl = require('../../controllers/paypassword/index');    // paypassword
 
 

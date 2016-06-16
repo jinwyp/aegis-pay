@@ -2,7 +2,17 @@
 <div class="sideBar">
     <ul>
         <% accountSideBar.sideBarList.forEach(function(obj, ind){ %>
-        <li class="<% if(ind+1 == accountSideBar.current){%>current<%} %>"><a href="<%= obj.listLink %>"><%= obj.listName %></a></li>
+        <li class="<% if(ind+1 == accountSideBar.current){%>current<%} %>">
+            <a href="<%= obj.listLink %>"><%= obj.listName %></a>
+            <% if(obj.secListName != ''){ %>
+            <dl>
+                <dd><%= obj.secListName.waitSettle %>&nbsp;<%= waitSettleNum %></dd>
+                <dd><%= obj.secListName.hadSettle %>&nbsp;<%= hadSettleNum %></dd>
+            </dl>
+            <%}else{%>
+
+            <%}%>
+        </li>
         <% }) %>
     </ul>
 </div>

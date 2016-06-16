@@ -17,6 +17,24 @@ exports.settlementManagement = function (req, res, next) {
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
 
+    var accountSideBar = {
+        current : "2",
+        sideBarList : [
+            {
+                listName : '基本信息',
+                listLink : 'accountSetting',
+                secListName  :{
+                    waitSettle:"待开票",
+                    hadSettle:"已开票"
+                }
+            },
+            {
+                listName : '消息提醒',
+                listLink : 'notice',
+                secListName:''
+            }
+        ]
+    };
     var content = {
         pageTitle   : "结算管理",
         headerTit   : "结算管理",
@@ -24,6 +42,9 @@ exports.settlementManagement = function (req, res, next) {
             firstTab   : firstTab,
             secondTab  : secondTab
         },
+        accountSideBar:accountSideBar,
+        waitSettleNum:8,
+        hadSettleNum:4,
 
     };
     //渲染页面

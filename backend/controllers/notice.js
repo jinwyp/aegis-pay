@@ -99,11 +99,13 @@ exports.notice = function (req, res, next) {
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : 'accountSetting'
+                listLink : 'accountSetting',
+                secListName:''
             },
             {
                 listName : '消息提醒',
-                listLink : 'notice'
+                listLink : 'notice',
+                secListName:''
             }
         ]
     };
