@@ -136,7 +136,7 @@ gulp.task('nodemon', function (cb) {
         env: { 'MODE': 'local' , 'MOCK':true},
         ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
         // watch core server file(s) that require server restart on change
-        // watch: ['app.js',]
+         watch: ['../backend/**/*.js']
     }).on('start', () => {
         // ensure start only got called once
         if (!called) {
@@ -144,10 +144,13 @@ gulp.task('nodemon', function (cb) {
             cb();
         }
     }).on('restart', () => {
+        setTimeout(function () {
+            reload({ stream: false });
+        }, 3000);
         console.log('---------- nodemon 重启服务器成功 ---------- ');
-    }).once('exit', () => {
+    }).on('exit', () => {
         console.log('---------- Exiting the process ---------- ');
-        process.exit();
+        //process.exit();
     });
 });
 
@@ -172,13 +175,14 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('clean', () => {
-    del.sync(['dist']);
+    del.sync(['dist/**/*']);
 });
 
 
 gulp.task('default', ['clean', 'images', 'sass', 'javascript', 'watch']);
 gulp.task('server', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon']);
 gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon', 'browser-sync']);
+gulp.task('build', ['clean', 'images', 'sass', 'javascript']);
 
 
 

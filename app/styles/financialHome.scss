@@ -1,14 +1,14 @@
 @import './global.scss';
 @import './components/_modal.scss';
-
-
+@import './Plugins/fancySelect.scss';
+@import './components/_datePicker.scss';
 
 
 #financial-body{
   background-color: $color_body_bg;
-  padding: 20px 0px;
+  padding: $main_margintop 0 $main_marginbottom 0;
   .financial-main{
-    width: 1000px;
+    width: $main_width;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -18,7 +18,7 @@
     .financial-header{
       border: 1px solid #e4e4e4;
       height: 160px;
-      background-color: $color_text_white;
+      background-color: $color_main_bg;
       color: $color_font;
       .label{  color: $color_tip_font;padding: 0;  }
       .fs-14{  font-size: 14px;  }
@@ -228,40 +228,118 @@
     }
 
 
+
+
+
+
+
+
+
     .financial-details{
       padding: 20px 10px;
-    }
 
-    .form-row{
-      margin: 10px 5px;
-    }
-    .form-search {
-      width: 295px;
-
-      label {
-        font-size: $size_font_normal;
-        color: $color_text_gray;
-        padding-top:5px;
-        padding-right: 6px;
+      .indexHigh{
+        ul{
+          z-index:99
+        }
       }
 
-      .inputselect {
+      .form-row{
+        margin: 10px 5px;
+      }
+
+      .form-search {
+        width: 255px;
+
+        label {
+          font-size: $size_font_normal;
+          color: $color_text_gray;
+          padding-top:7px;
+          padding-right: 2px;
+          margin-right: -10px
+        }
+
+        .label-timefrom{
+          width:70px;
+        }
+        .label-timeto{
+          width:30px;
+          margin-left: -15px;
+        }
+
+        .input-text {
+          font-size: $size_font_normal;
+          color: $color_text_select_gray;
+          width: 170px;
+          height:28px;
+          border-radius:0px;
+          border: 0px;
+          outline: 1px solid $color_border_input_gray;
+          box-shadow: none;
+          //-webkit-appearance: none;
+        }
+
+        .input-date{
+          width: 130px;
+          background-color: #fff;
+        }
+
+
+        .inputbox {
+          width: 364px;
+        }
+      }
+
+      .form-search-big{
+        width: 460px;
+      }
+      .table-box{
+        padding: 5px 35px;
+      }
+      .record-title{
         font-size: $size_font_normal;
         color: $color_text_select_gray;
-        width: 170px;
-        height:28px;
-        border-radius:0px;
-        border: 0px;
-        outline: 1px solid $color_border_input_gray;
-        box-shadow: none;
-        //-webkit-appearance: none;
+      }
+      .record-no{
+        font-size: $size_font_pageTitle;
       }
 
-      .inputbox {
-        width: 280px;
+      .financeDetailTable{
+        width: 970px;
+        th {
+          color: $color_text_table_th_gray;
+          background-color: $color_bg_table_th_gray;
+          text-align: center;
+        }
+
+        tr {
+          border-bottom: 1px dotted $color_border;
+          &:hover{
+            background-color: $tr_hover_color;
+          }
+        }
+        td{
+          padding:20px 1px;
+          text-align: center;
+          font-size: $size_font_middle;
+          color: #323333;
+          vertical-align: middle;
+        }
+
+        .table_btn {
+          padding: 1px 10px;
+          height: 25px;
+          min-width: 60px;
+        }
       }
+
+
     }
+
+
 
 
   }
 }
+
+

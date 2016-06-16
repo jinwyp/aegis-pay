@@ -3,9 +3,9 @@
 script_dir=$(cd `dirname $0`; pwd);
 source $script_dir/../aegis-docker/bin/aegis-config;
 source $script_dir/../aegis-docker/bin/aegis-common.sh;
-mysql_dir=$(cd $script_dir/../aegis-docker/docker-mysql; pwd);
-redis_dir=$(cd $script_dir/../aegis-docker/pay-redis; pwd);
-nginx_dir=$(cd $script_dir/../aegis-docker/docker-nginx; pwd);
+mysql_dir=$(cd $script_dir/../docker-mysql; pwd);
+redis_dir=$(cd $script_dir/../docker-redis-pay; pwd);
+nginx_dir=$(cd $script_dir/../docker-nginx; pwd);
 service_dir=$(cd $script_dir/../aegis-service; pwd);
 
 eval $(docker-machine env testing);
@@ -32,4 +32,4 @@ docker run -it --rm --name aegis-pay-dev \
   -e MODE=dev \
   -e NGINX_IP=$nginx_ip \
   -e FILES_DIR=$script_dir/../files \
-  ubuntu-nodejs /debug_run
+  ubuntu-1404 /debug_run

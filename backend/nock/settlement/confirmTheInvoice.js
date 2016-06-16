@@ -6,16 +6,16 @@
 
   */
 
-var API  = require('../../api/v1/api_config');              // 接口路径配置
+var API  = require('../../api/v1/api_config');              		// 接口路径配置
 var nock = require('nock');
-var nkScope = nock(API.host).log(console.log);		        // 执行一次
-var nkScopePersist = nock(API.host).log(console.log).persist();		        // 执行多次
+var nkScope = nock(API.host).log(console.log);		        		// 执行一次
+var nkScopePersist = nock(API.host).log(console.log).persist();		// 执行多次
 
 
 
 // 结算单.开票信息
 nkScopePersist.get('/settlement/invoiceInfo')
-	.query({type: 'sell', orderId:'11'})
+	.query({type: 'sell', orderId:'110000'})
 	.reply(200, {
 		headerTit: '结算单.获取开票信息 11111111',
 		subTitle: '开票信息.s',
