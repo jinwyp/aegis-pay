@@ -3,7 +3,19 @@
 * */
 
 requirejs(['jquery', 'bootstrap','jquery.fancySelect'], function($){
-    $("select").fancySelect();
+
+
+    var bindingBankAccount={
+
+        "init" : function(){
+            $("select").fancySelect();
+        },
+        "Verify" : function(){
+        // 开户行校验
+            var bankCode=$("#bankCode").val();
+        }
+    }
+    bindingBankAccount.init();
 });
 
 

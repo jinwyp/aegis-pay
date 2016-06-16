@@ -1,4 +1,5 @@
 @import './layout/_statusBar.scss';
+@import './Plugins/fancySelect.scss';
 
 #bindingBankAccount{
   background: #f6f6f6;
@@ -14,9 +15,40 @@
     .accountInfoTit{color:#333;font-size: 18px;}
     .accountInfoTit span{border-left:2px solid #00b6ef;padding-left:10px;}
     .accountInfoWrap{margin-top:10px;border:1px solid #e8e8e8;padding: 40px;}
-    .accountInfoWrap ul{margin-left: 250px;}
-    .accountInfoWrap ul li{margin-bottom:20px;font-size:14px;color:#333;}
-    .accountInfoWrap ul li label{font-weight:normal;display: inline-block;width:140px;text-align: right;margin-right: 10px;}
-    .accountInfoWrap ul li label span{color:#ff6e0f;}
+    .accountInfoWrap .accountInfoUl{margin-left: 170px;}
+    //初始化下拉框
+    .accountInfoWrap .accountInfoUl div.fancy-select{width:auto;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{border-bottom:1px solid #e4e4e4;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi{margin-bottom:20px;font-size:14px;color:#333;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi label{font-weight:normal;display: inline-block;width:140px;text-align: right;margin-right: 10px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi label span{color:#ff6e0f;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi select{display:none;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger{line-height: 39px;width:300px;height: 40px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger::after{top:17px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{top:40px;width:300px;z-index: 99;height:230px;overflow-y:scroll;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options li{background: #fff;position: relative;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi >div{display: inline-block}
+
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise div.trigger::after{top:13px;right:10px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger{min-width: 112px;width:112px;height:32px;line-height: 31px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger::before{content:'';width:32px;height:32px;background: #f5f5f5;border-left:1px solid #ccc;position: absolute;right:0px;top:0px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise ul.options{top:32px;width:112px;min-width:112px;z-index: 99;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi span.unit{display: inline-block;width:34px;text-align: center;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p{font-size: 12px;color:#666;padding-top: 6px;margin-left: 110px;margin-left: 154px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p i{display: inline-block;width:15px;height:15px;background: url("/dist/images/sprite_ico.png") no-repeat -8px -216px;vertical-align: top;margin-right: 2px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p span.strengthTxt{color:#01b7ec;width:auto;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput{width:300px;height:40px;line-height: 40px;font-size:12px;padding-left:10px;border:1px solid #ccc;border-radius:2px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput:focus{border: 1px solid #00b7ec}
+
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap{position: relative;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:5px;top:5px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown:hover{text-decoration: none;opacity: .8;}
+    .accountInfoWrap .btnWrap{padding-left: 326px;padding-top: 50px;}
+    .accountInfoWrap .btnWrap .haveRead{margin-right: 10px;}
+    .accountInfoWrap .btnWrap label{font-weight:normal;}
+    .accountInfoWrap .btnWrap a.protocol{color:#007193;}
+    .accountInfoWrap .btnWrap a.protocol:hover{text-decoration: none;opacity: .8;}
+    .accountInfoWrap .btnWrap a.submitInfo{width:180px;height:40px;margin-top:10px;color:#fff;font-size: 16px;line-height: 40px;text-align:center;border-radius:2px;background: #00b6ef;display: block;}
+    .accountInfoWrap .btnWrap a.submitInfo:hover{text-decoration: none;opacity: .8;}
   }
 }

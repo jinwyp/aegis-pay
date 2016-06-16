@@ -47,13 +47,11 @@ exports.bindingBankAccount = function (req, res, next) {
 
             var source  = JSON.parse(data.body);
             var content = {
-                headerTit   : "确认完成页面",
-                pageTitle   : "确认完成页面",
+                pageTitle   : "绑定银行账户",
                 statusObj   : statusObj
             };
-
-
             logger.debug('获取到的结果是content----------------------------' + content);
+
             //渲染页面,指定模板&数据
             res.render('wealth/bindingBankAccount', content);
         }
