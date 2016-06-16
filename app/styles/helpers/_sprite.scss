@@ -184,7 +184,7 @@
   display: inline-block;
   width: 14px;
   height: 14px;
-  background: url($bgUrl) no-repeat -570px -713px;
+  background: url($bgUrl) no-repeat -577px -713px;
 }
 
 //支付正常
@@ -233,7 +233,7 @@
   width: 9px;
   height: 15px;
   background: #CCCCCC url($bgUrl) no-repeat -195px -542px;
-  &:hover {
+  &:hover, &.hover {
     background: #CCCCCC url($bgUrl) no-repeat -148px -542px;
   }
 }
@@ -243,7 +243,7 @@
   width: 15px;
   height: 9px;
   background: #CCCCCC url($bgUrl) no-repeat -239px -542px;
-  &:hover {
+  &:hover, &.hover {
     background: #CCCCCC url($bgUrl) no-repeat -284px -542px;
   }
 }
@@ -282,7 +282,7 @@
 .icn_arrowSmallLeft {
   @extend .icn_arrowSmall;
   background: url($bgUrl) no-repeat -10px -83px;
-  &:hover {
+  &:hover, &.hover {
     background: #01b7ec url($bgUrl) no-repeat -162px -83px;
   }
 }
@@ -290,7 +290,7 @@
 .icn_arrowSmallRight {
   @extend .icn_arrowSmall;
   background: url($bgUrl) no-repeat -87px -83px;
-  &:hover {
+  &:hover, &.hover {
     background: #01b7ec url($bgUrl) no-repeat -239px -83px;
   }
 }
@@ -305,7 +305,7 @@
 .icn_arrowBigLeft {
   @extend .icn_arrowBig;
   background: url($bgUrl) no-repeat -311px -73px;
-  &:hover {
+  &:hover, &.hover {
     background: url($bgUrl) no-repeat -471px -73px;
   }
 }
@@ -313,7 +313,7 @@
 .icn_arrowBigRight {
   @extend .icn_arrowBig;
   background: url($bgUrl) no-repeat -391px -73px;
-  &:hover {
+  &:hover, &.hover {
     background: url($bgUrl) no-repeat -551px -73px;
   }
 }
