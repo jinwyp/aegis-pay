@@ -28,10 +28,18 @@
       dd{
         text-align:center;
         line-height:38px;
+        a{
+          font-size:12px!important;
+        }
+      }
+      dd.current{
+        a{
+          color:#00b7ec;
+        }
       }
     }
     .current{
-      a{
+      a.navBar{
         color:#00b7ec;
       }
     }

@@ -18,19 +18,20 @@ exports.settlementManagement = function (req, res, next) {
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
 
     var accountSideBar = {
-        current : "2",
+        current : "1",
+        secCurrent:'',
         sideBarList : [
             {
-                listName : '基本信息',
-                listLink : 'accountSetting',
+                listName : '全部发票',
+                listLink : '',
                 secListName  :{
                     waitSettle:"待开票",
                     hadSettle:"已开票"
                 }
             },
             {
-                listName : '消息提醒',
-                listLink : 'notice',
+                listName : '开票设置',
+                listLink : '',
                 secListName:''
             }
         ]
