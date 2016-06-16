@@ -6,9 +6,9 @@
 
 var request = require('request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
-//var path = require('path');
-//var _ = require('lodash');
-
+var path = require('path');
+var _ = require('lodash');
+var api_config = require('../../api/v1/api_config');
 
 // 处理业务逻辑
 exports.settlementManagement = function (req, res, next) {
@@ -36,19 +36,29 @@ exports.settlementManagement = function (req, res, next) {
             }
         ]
     };
-    var content = {
-        pageTitle   : "结算管理",
-        headerTit   : "结算管理",
-        tabObj         : {
-            firstTab   : firstTab,
-            secondTab  : secondTab
-        },
-        accountSideBar:accountSideBar,
-        waitSettleNum:8,
-        hadSettleNum:4,
 
-    };
-    //渲染页面
-    res.render('wealth/settlementManagement',content);
+    request({url : api_config.settlementManagement}, function (err, data) {
+        if (err) return next(err);
+
+        if(data) {
+            var source = JSON.parse(data.body);
+            var content = {
+                pageTitle: "结算管理",
+                headerTit: "结算管理",
+                tabObj: {
+                    firstTab: firstTab,
+                    secondTab: secondTab
+                },
+                accountSideBar: accountSideBar,
+                waitSettleNum: 8,
+                hadSettleNum: 4,
+                "settleInfo":source.settleInfo
+
+            };
+            //渲染页面
+            return res.render('wealth/settlementManagement', content);
+        }
+    })
+
 };
 

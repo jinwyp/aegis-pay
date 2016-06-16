@@ -49,6 +49,20 @@
             }
 
           }
+          .noInfo{
+            height: 440px;
+            font-size: 18px;
+            border: none;
+            a{
+              width: 140px;
+              height: 40px;
+              display: inline-block;
+              color: #ffffff;
+              background-color: #01b7ec;
+              line-height: 40px;
+              border-radius: 2px;
+            }
+          }
         }
       }
     }

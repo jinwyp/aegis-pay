@@ -99,7 +99,9 @@ var api_config = {
     notice : host + 'account/notice',
     paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
     // 忘记密码 － 重置密码 - 提交
-    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit'
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
+    //开票中心
+    settlementManagement : host + 'wealth/settlementManagement'
 
 };
 

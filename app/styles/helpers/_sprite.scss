@@ -233,7 +233,7 @@
   width: 9px;
   height: 15px;
   background: #CCCCCC url($bgUrl) no-repeat -195px -542px;
-  &:hover {
+  &:hover, &.hover {
     background: #CCCCCC url($bgUrl) no-repeat -148px -542px;
   }
 }
@@ -243,7 +243,7 @@
   width: 15px;
   height: 9px;
   background: #CCCCCC url($bgUrl) no-repeat -239px -542px;
-  &:hover {
+  &:hover, &.hover {
     background: #CCCCCC url($bgUrl) no-repeat -284px -542px;
   }
 }
