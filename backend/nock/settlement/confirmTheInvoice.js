@@ -13,12 +13,25 @@ var nkScopePersist = nock(API.host).log(console.log).persist();		// 执行多次
 
 
 
-// 结算单.开票信息
+// 页面数据.确认开票
 nkScopePersist.get('/settlement/invoiceInfo')
 	.query({type: 'sell', orderId:'110000'})
 	.reply(200, {
 		headerTit: '结算单.获取开票信息 11111111',
-		subTitle: '开票信息.s',
+		subTitle: '确认开票信息',
+		userType: 'sell',
+		order: {
+			status: 'WaitSettleAccounts'
+		}
+	});
+
+
+// 页面数据.开票备注
+nkScopePersist.get('/settlement/invoiceNotes')
+	.query({type: 'sell', orderId:'220000'})
+	.reply(200, {
+		headerTit: '结算单.添加开票备注 2222222',
+		subTitle: '开票备注信息',
 		userType: 'sell',
 		order: {
 			status: 'WaitSettleAccounts'
