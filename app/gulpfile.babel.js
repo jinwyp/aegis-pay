@@ -186,7 +186,7 @@ gulp.task('build', ['clean', 'images', 'sass', 'javascript']);
 
 
 
-t st
+
 // gulp.task('default', () =>
 //   gulp.src('app/*.html')
 //         .pipe(plugins.useref())
