@@ -53,6 +53,21 @@
   background: url($bgUrl) no-repeat -501px -177px;
 }
 
+//手机
+.icn_phone {
+  display: inline-block;
+  width: 12px;
+  height: 17px;
+  background: #CCCCCC url($bgUrl) no-repeat -48px -542px;
+}
+//电话
+.icn_tel {
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  background: #CCCCCC url($bgUrl) no-repeat -96px -542px;
+}
+
 //向上
 .icn_caretUp {
   display: inline-block;
@@ -164,6 +179,13 @@
   height: 14px;
   background: url($bgUrl) no-repeat 1px -542px;
 }
+//日历2
+.icn_date_l {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -570px -713px;
+}
 
 //支付正常
 .icn_payCircle {
@@ -203,6 +225,27 @@
   width: 60px;
   height: 60px;
   background: url($bgUrl) no-repeat -383px -291px;
+}
+
+// 折叠.右
+.icn_fold {
+  display: inline-block;
+  width: 9px;
+  height: 15px;
+  background: #CCCCCC url($bgUrl) no-repeat -195px -542px;
+  &:hover {
+    background: #CCCCCC url($bgUrl) no-repeat -148px -542px;
+  }
+}
+// 展开.下
+.icn_spread {
+  display: inline-block;
+  width: 15px;
+  height: 9px;
+  background: #CCCCCC url($bgUrl) no-repeat -239px -542px;
+  &:hover {
+    background: #CCCCCC url($bgUrl) no-repeat -284px -542px;
+  }
 }
 
 //圆点 亮

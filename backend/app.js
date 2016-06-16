@@ -13,8 +13,7 @@ var config = require('./config');
 var path             = require('path');
 var express          = require('express');
 var session          = require('express-session');
-var pageRouter        = require('./routes/page/index');
-var apiRouter        = require('./routes/api/api_router');
+var routes           = require('./routes');
 var auth             = require('./middlewares/auth');
 var RedisStore       = require('connect-redis')(session);
 var _                = require('lodash');
@@ -154,8 +153,9 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api', cors(), apiRouter);
-pageRouter(app);
+app.use('/api', cors(), routes.api);
+app.use('/', routes.webPage);
+routes.autoLoaderControllers(app);
 
 
 app.use(errorhandler.PageNotFoundMiddleware);
