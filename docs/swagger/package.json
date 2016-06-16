@@ -1,0 +1,19 @@
+{
+  "name": "Pay-api",
+  "version": "1.0.0",
+  "description": "Move your app forward with the Pay API",
+  "main": "index.js",
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon index.js --watch api --watch controllers"
+  },
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1"
+  }
+}
