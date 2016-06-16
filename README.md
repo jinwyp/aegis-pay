@@ -11,7 +11,7 @@ backend 目录下：
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
-- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install ccap
+- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install -g ccap
 
 ## 安装依赖 前端
 app 目录下：

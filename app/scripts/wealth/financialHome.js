@@ -36,8 +36,8 @@ requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
             });
 
 
-            $formDateFrom.pickadate({format:'yyyy-mm-dd'});
-            $formDateTo.pickadate({});
+            $formDateFrom.pickadate({format:'yyyy-mm-dd', max:true});
+            $formDateTo.pickadate({min:1});
         }
     };
 
