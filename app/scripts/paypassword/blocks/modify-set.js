@@ -2,11 +2,13 @@ define(['jquery'],function($){
   return {
       init: function(){
         this.els = {
-          $pass1: $('#forgetSet input[type="password"]').eq(0),
-          $pass2: $('#forgetSet input[type="password"]').eq(1),
-          $passFormatErr: $('#forgetSet input[type="password"]').eq(0).parent().find('.tip-error'),
-          $passDiffErr: $('#forgetSet input[type="password"]').eq(1).parent().find('.tip-error'),
-          $submit: $('#forgetSet #setBtn')
+          $oldpass: $('#modifySet input[type="password"]').eq(0),
+          $pass1: $('#modifySet input[type="password"]').eq(1),
+          $pass2: $('#modifySet input[type="password"]').eq(2),
+          $oldpassErr: $('#modifySet input[type="password"]').eq(0).parent().find('.tip-error'),
+          $passFormatErr: $('#modifySet input[type="password"]').eq(1).parent().find('.tip-error'),
+          $passDiffErr: $('#modifySet input[type="password"]').eq(2).parent().find('.tip-error'),
+          $submit: $('#modifySet #setBtn')
         }
         this.eventBind();
       },
@@ -34,6 +36,11 @@ define(['jquery'],function($){
         // click submit
         self.els.$submit.click(function(){
             if($(this).hasClass('disable')) return;
+            if(!self.els.$oldpass.val()){
+                self.els.$oldpass.focus();
+                self.els.$oldpassErr.text('请填写原支付密码').show();
+                return;
+            }
             if(!self.els.$pass1.val()){
                 self.els.$pass1.focus();
                 self.els.$passFormatErr.text('请重置支付密码').show();
@@ -57,13 +64,16 @@ define(['jquery'],function($){
       },
       submit: function(){
         var self = this;
-        var params = $('#forgetSet').serialize();
+        var params = $('#modifySet').serialize();
         self.els.$submit.addClass('disable');
-        $.post('/api/paypassword/forget/submit', params, function(data){
+        $.post('/api/paypassword/modify/submit', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
-            location.href = '/ucenter/paypassword/fg/success';
-          }else{
+            location.href = '/ucenter/paypassword/modify/success';
+            }else if(data.errorCode==1004){
+                self.els.$oldpass.focus();
+                self.els.$oldpassErr.text('原支付密码错误，请重新输入！').show();
+            }else{
               self.els.$submit.removeClass('disable');
               self.els.$passFormatErr.text('请重置支付密码').show();
               self.els.$passDiffErr.text('请重置支付密码').show();

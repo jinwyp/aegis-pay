@@ -49,6 +49,8 @@ router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
 router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.forgetValid);
 router.post('/paypassword/forget/submit', paypasswordApi.forgetSubmit);
+router.post('/paypassword/modify/valid', sms.verifyMiddleware(), paypasswordApi.modifyValid);
+router.post('/paypassword/modify/submit', paypasswordApi.modifySubmit);
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

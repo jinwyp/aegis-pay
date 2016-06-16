@@ -8,13 +8,14 @@
 <%- include ../global/header/header %>
 <%- include ../global/header/subHeader %>
 
-<div class="mainWrapper forgetSet">
-    <% var statusObj = {step:2, total:3, stepList: [{stepName:'验证身份', stepDate:''}, {stepName:'重置支付密码', stepDate:''}, {stepName:'重置成功', stepDate:''}]} %>
+<div class="mainWrapper modifySet">
+    <% var statusObj = {step:2, total:3, stepList: [{stepName:'校验手机号码', stepDate:''}, {stepName:'修改支付密码', stepDate:''}, {stepName:'修改成功', stepDate:''}]} %>
     <%- include ./statusBar %>
-    <form method="post" id='forgetSet'>
+    <form method="post" id='modifySet'>
       <ul class='valid'>
         <li>
-            <label>易煤网资金账户号：</label><%= phoneFormat(user.userFundAccount) %>
+            <label>原支付密码：</label><input type="password" name='oldPayPassword' placeholder='原支付密码' value="">
+            <p class='tip-error'></p>
         </li>
         <li>
           <label>设置新支付密码：</label><input type="password" placeholder='设置新支付密码' value="">

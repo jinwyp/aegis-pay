@@ -2,16 +2,16 @@ define(['jquery'],function($){
   return {
       init: function(){
         this.els = {
-          $code: $('input[name="sms_code"]'),
-          $cardID: $('input[name="companyUniqueCode"]'),
-          $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
-          $cardIdTipErr: $('input[name="companyUniqueCode"]').parent().find('.tip-error')
+          $code: $('#forgetValid input[name="sms_code"]'),
+          $cardID: $('#forgetValid input[name="companyUniqueCode"]'),
+          $codeTipErr: $('#forgetValid input[name="sms_code"]').parent().find('.tip-error'),
+          $cardIdTipErr: $('#forgetValid input[name="companyUniqueCode"]').parent().find('.tip-error')
         }
         this.eventBind();
       },
       eventBind: function(){
         var self = this;
-        $('#validBtn').click(function(){
+        $('#forgetValid #validBtn').click(function(){
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val(),
                 cardID = self.els.$cardID.val();
