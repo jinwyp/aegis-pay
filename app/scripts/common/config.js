@@ -30,6 +30,7 @@ require.config({
     'message': 'Plugins/message',
     'html5shiv': '/dist/components/html5shiv/dist/html5shiv',
     'requirejs': '/dist/components/requirejs/require',
+    'avalon': '/dist/components/avalon/dist/avalon',
     'pay.smscode': '../../dist/custom_components/sms-code/sms-code'
   },
   packages: [
@@ -63,6 +64,10 @@ require.config({
       deps: [
         'jquery'
       ]
+    },
+    avalon: {
+      exports: "avalon"
     }
+
   }
 })

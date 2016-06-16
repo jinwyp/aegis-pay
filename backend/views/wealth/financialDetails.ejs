@@ -12,7 +12,7 @@
 <div id="financial-body">
     <div class="financial-main">
 
-        <div class="row financial-details">
+        <div class="row financial-details ms-controller" ms-controller="financialDetailsController">
             <form class="form-inline">
                 <div class="form-row " >
                     <div class="form-group form-search indexHigh">
@@ -89,39 +89,20 @@
                                 <th >对方开户行</th>
                                 <th >操作</th>
                             </tr>
-                            <tr>
-                                <td >2016-05-12</td>
-                                <td >123456789012345678</td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td >提现</td>
-                                <td >12345678901234</td>
-                                <td >和略电子商务公司</td>
-                                <td >中国银行</td>
+
+
+                            <tr ms-for='(key, order) in @orderList'>
+                                <td >{{order.date}}</td>
+                                <td >{{order.orderNo}}</td>
+                                <td >{{order.amoumt}}</td>
+                                <td >{{order.account}}</td>
+                                <td >{{order.tradeType}}</td>
+                                <td >{{order.toPersonAccount}}</td>
+                                <td >{{order.toPersonAccountName}}</td>
+                                <td >{{order.toPersonBankName}}</td>
                                 <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
                             </tr>
-                            <tr>
-                                <td >2016-05-12</td>
-                                <td >123456789012345678</td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td >提现</td>
-                                <td >12345678901234</td>
-                                <td >和略电子商务公司</td>
-                                <td >中国银行</td>
-                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
-                            </tr>
-                            <tr>
-                                <td >2016-05-12</td>
-                                <td >123456789012345678</td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td ><%= formatMoney(1000000,2) %></td>
-                                <td >提现</td>
-                                <td >12345678901234</td>
-                                <td >和略电子商务公司</td>
-                                <td >中国银行</td>
-                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
-                            </tr>
+
                         </table>
 
                         <nav>

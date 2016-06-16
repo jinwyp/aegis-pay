@@ -15,6 +15,8 @@ var disputeCancel     = require('../../controllers/disputeDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 
+var financialApi    = require('../../api/v1/financialDetails');
+
 // demo
 router.get('/user', siteController.user);
 router.get('/test-cache', siteController.test_cache);
@@ -46,6 +48,13 @@ router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
 router.post('/paypassword/forget/valid', sms.verifyMiddleware(), payPasswordApi.forgetValid);
 router.post('/paypassword/forget/submit', payPasswordApi.forgetSubmit);
+
+
+
+router.post('/financial/order/details', financialApi.financialDetailsApi);
+
+
+
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
