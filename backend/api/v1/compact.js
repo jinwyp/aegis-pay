@@ -23,7 +23,6 @@ exports.uploadFile = function (req, res, next) {
     var form = new formidable.IncomingForm();
 
     form.uploadDir = uploadTmp;
-
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
         var extName = /\.[^\.]+/.exec(files.files.name);
@@ -34,7 +33,6 @@ exports.uploadFile = function (req, res, next) {
         var newPath = uploadPath + newFile;
 
         utils.makeDir(uploadPath);
-
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
@@ -59,9 +57,9 @@ exports.signCompact = function (req, res, next) {
     })
     params.files = newids;
     _.unset(params, 'file_id');
-    request.post(api_config.signCompact, params, function (err, data) {
+    request.post(api_config.signCompact, {body:params, json:true}, function (err, data) {
         if (!err && data) {
-            return res.send(JSON.parse(data.body));
+            return res.send(data.body);
         }
     })
 };
@@ -82,7 +80,6 @@ var convertData = function (compactdata, compactejs, orderId) {
         return convert.html2pdf(resultHtml.htmlpath)
     })
     .then(function(resultPDF){
-        console.log(resultPDF)
         data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })

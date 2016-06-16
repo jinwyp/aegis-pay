@@ -1,0 +1,230 @@
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-family: 'Microsoft Yahei', Arial, Helvetica, "黑体", sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-width: 1000px;
+  font-size: $size_font_normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  float: none !important;
+}
+
+table, th, td {
+  vertical-align: middle;
+}
+
+em, i {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Remove annoying border on linked images. */
+a img {
+  border: none;
+  text-decoration: none;
+}
+
+/* Remember to define your own focus styles! */
+:focus {
+  outline: 0;
+}
+
+a:link,
+a:focus {
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+a:hover {
+  color: #00b7ec;
+  text-decoration: underline;
+}
+
+/* #Clearing
+================================================== */
+/* 公用 */
+.fl {
+  float: left;
+  display: inline;
+}
+
+.fr {
+  float: right;
+  display: inline;
+}
+
+.txt_r {
+  text-align: right;
+}
+
+.txt_l {
+  text-align: left;
+}
+
+.txt_c {
+  text-align: center;
+}
+
+.va_top {
+  vertical-align: top;
+}
+
+.va_btm {
+  vertical-align: bottom;
+}
+
+.va_mid {
+  vertical-align: middle;
+}
+
+.mt10 {
+  margin-top: 10px
+}
+
+.mt20 {
+  margin-top: 20px
+}
+
+.mt30 {
+  margin-top: 30px
+}
+
+.mt150 {
+  margin-top: 150px
+}
+
+.mt220 {
+  margin-top: 220px
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.pad_10 {
+  padding: 10px;
+}
+
+.pad_15 {
+  padding: 15px;
+}
+
+.pad_20 {
+  padding: 20px;
+}
+
+.pad_30 {
+  padding: 30px;
+}
+
+.ff_yh {
+  font-family: $ffYh;
+}
+
+.ff_st {
+  font-family: $ffSt;
+}
+
+.ff_arial {
+  font-family: $ffArial;
+}
+
+.bright {
+  color: #ff8553;
+}
+
+.require {
+  display: inline-block;
+  padding-right: 3px;
+  font-family: $ffSt;
+  color: #f60f60;
+  text-decoration: initial;
+  vertical-align: middle;
+  padding-top: 2px;
+  height: 16px;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  height: 0 !important;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* IE 6/7 */
+.clearfix {
+  *zoom: 1;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}

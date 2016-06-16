@@ -62,16 +62,16 @@ exports.passport = function (req, res, next) {
         if (!req.cookies[config.passport.cookieName]) {
             res.redirect(config.passport.member + '/login?gotoURL=' + gotoURL + '&from=' + config.domain);
         } else {
-            request.post(config.passport.member + '/auth', {
+            request.post(config.passport.member + '/auth', {body: {
                 data : {
                     passport : req.cookies[config.passport.cookieName]
                 }
-            }, function (err, auth) {
+            }, json:true}, function (err, auth) {
                 "use strict";
                 if (err) {
                     return next(err);
                 }
-                var auth = JSON.parse(auth.body);
+                var auth = auth.body;
                 if (auth.success) {
                     req.session.user = res.locals.user = auth.user;
                     return next();

@@ -10,8 +10,8 @@ var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.financialHome = function (req, res, next) {
-    var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
-    var secondTab=req.query.secondTab==undefined?1:req.query.secondTab;
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 1;
     var content = {
         pageTitle : "财务管理中心",
         headerTit : "财务管理中心",
@@ -21,6 +21,40 @@ exports.financialHome = function (req, res, next) {
         }
     };
     //渲染页面
-    res.render('wealth/financialCenter',content);
+    res.render('wealth/financialCenterHome',content);
+};
+
+
+
+exports.financialDetails = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 2;
+    var content = {
+        pageTitle : "财务管理中心 - 交易明细",
+        headerTit : "财务管理中心 - 交易明细",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        }
+    };
+
+    res.render('wealth/financialDetails',content);
+};
+
+exports.financialTransaction = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 3;
+    var secondTab = req.query.secondTab || 1;
+    var content = {
+        pageTitle : "财务管理中心 - 交易明细",
+        headerTit : "财务管理中心 - 交易明细",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        }
+    };
+
+    res.render('wealth/transactionRecord',content);
 };
 

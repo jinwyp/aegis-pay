@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/paypassword.css">
+    <link rel="stylesheet" href="/dist/styles/paypassword.css">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 
 
 <div class="mainWrapper resetPage">
-    <p class='reset-tip'>您正在为账户<span><%= userName %>（易煤网支付账户名称）</span>重置支付密码，请选择重置方式：</p>
+    <p class='reset-tip'>您正在为账户<span><%= userFundAccount %>（易煤网支付账户名称）</span>重置支付密码，请选择重置方式：</p>
     <ul>
         <li>
             <a href="/ucenter/paypassword/fg/vl">
@@ -34,7 +34,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/paypassword/reset.js"></script>
+<script src="/dist/scripts/paypassword/reset.js"></script>
 
 </body>
 </html>

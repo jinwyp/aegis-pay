@@ -36,7 +36,7 @@ var glob             = require('glob');
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir  = path.join(__dirname, '../app/static');
+var staticDir  = path.join(__dirname, '../app/dist');
 // var fileStatic = path.join(__dirname,   '../../files/static');
 //
 var fileStatic = config.sysFileDir;
@@ -68,9 +68,30 @@ if (config.debug) {
 require('./libs/ejshelper')(app);
 
 // 静态资源
-app.use('/static', express.static(staticDir));
-app.use('/files', express.static(fileStatic));
-// app.use(express.static(fileStatic));
+app.use('/dist', express.static(staticDir));
+app.use('/files',express.static(fileStatic));
+
+// 支付下载文件目录
+app.use('/download/:path?/:name', function(req, res, next){
+    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/'
+    var options = {
+        root: __dirname + '/views/' + path,
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    var fileName = req.params.name;
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            next(err);
+        }
+    });
+})
+
+
 
 // 每日访问限制
 app.use(compression());
@@ -163,4 +184,3 @@ if (!module.parent) {
         logger.info('----- NodeJS Server started on ' + config.homepage + ', press Ctrl-C to terminate.');
     });
 }
-

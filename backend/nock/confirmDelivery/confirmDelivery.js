@@ -2,7 +2,7 @@ var nock = require('nock');
 var API  = require('../../api/v1/api_config');
 
 var confirmDelivery        = nock(API.host).log(console.log);
-var confirmDeliveryPersist = nock(API.host).persist();
+var confirmDeliveryPersist = nock(API.host).log(console.log).persist();
 
 confirmDeliveryPersist.get('/confirmDelivery').reply(200,
     {
@@ -296,4 +296,4 @@ confirmDeliveryPersist.get('/confirmDelivery').reply(200,
     });
 
 
-module.exports = confirmDelivery;
+module.exports = confirmDeliveryPersist;

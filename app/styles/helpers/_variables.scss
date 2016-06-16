@@ -1,7 +1,10 @@
 $color_body_bg: #f5f5f5;
 $color_main_bg: #fff;
 $color_text_white: #fff;
+$color_text_gray: #676767;
+$color_text_select_gray: #A6A6A6;
 $color_blue: #31b9e6;
+$color_border_input_gray: #E4E4E4;
 $color_border_gray: #d9d9d9;
 $color_border_block_gray: #ddd;
 $color_font: #333;
@@ -25,6 +28,7 @@ $color_a: #037191;
 $color_a_hover: #00b7ec;
 $color_border: #e8e8e8;
 $color_title_text: #666666;
+
 $color_dot:#bcbcbc;
 $color_label_bg:#f6f6f6;
 
@@ -32,6 +36,15 @@ $color_lightblue: #f3fcff;
 $color_bg_pink: #feecec;
 $color_bg_lightorange: #fffaf7;
 $color_manage_text: #007193;
+$color_link: #337ab7;
+
+$color_bg_table_th_gray: #F5F5F5;
+$color_text_table_th_gray: #AEAEAE;
+
+$btn_orange_color:#fd6e35;
+$btn_orange_color_hover:#fd8b5d;
+$money_orange:$color_orange;
+$tr_hover_color:#effafd;
 
 $main_width: 1000px;
 $main_margintop: 20px;
@@ -41,35 +54,37 @@ $size_font_big_num: 24px;
 $size_font_pageTitle: 18px;
 $size_font_blockTitle: 16px;
 $size_font_middle:14px;
-$size_font_nomal: 12px;
+$size_font_normal: 12px;
 $size_font_big: 30px;
 $line-height-base: 1.428571429; // 20/14
 
 $font_family: Microsoft YaHei;
-$bgUrl: "/static/images/sprite_ico.png";
-$bgShadow: "/static/images/gradualLine.png";
+$bgUrl: "/dist/images/sprite_ico.png";
+$bgShadow: "/dist/images/gradualLine.png";
 $ffYh: "\5FAE\8F6F\96C5\9ED1";
 $ffSt: '\5B8B\4F53';
 $ffArial: 'Arial';
 
+
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 
 @mixin box-shadow($shadow) {
-      -moz-box-shadow:$shadow;
+  -moz-box-shadow:$shadow;
   -webkit-box-shadow:$shadow;
-          box-shadow:$shadow;
+  box-shadow:$shadow;
 }
 
 @keyframes spin {
-from { transform: scale(1) rotate(0deg);}
-to { transform: scale(1) rotate(360deg);}
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
 }
 @-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
 }

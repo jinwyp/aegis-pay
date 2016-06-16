@@ -1,0 +1,64 @@
+/* 退回原因&编辑原因&重新提交 板块 --------------------------- */
+.reasonsReturn {
+  width: 940px;
+  padding: 20px 30px;
+  border: 1px solid #b0ebfc;
+  background: #f3fcff;
+
+  .returnTitle {
+    height: 48px;
+    line-height: 42px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1aaa6b;
+  }
+  .returnTab {
+    width: 860px;
+    color: #999999;
+    line-height: 18px;
+    font-size: 12px;
+
+    tr{
+      td{
+        padding: 2px;
+      }
+    }
+  }
+  //倒计时
+  .reasonsReturn_back {
+    padding: 10px 0 18px 240px;
+    display: none;
+
+    .statusLab {
+      font-weight: 400;
+      color:#333333;
+    }
+    p {
+      padding-top: 8px;
+    }
+  }
+
+  //查看
+  .reasonsReturn_view {
+    padding-bottom: 10px;
+    display: none;
+  }
+
+  //编辑
+  .reasonsReturn_edit {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+}
+.againRefer {
+  border: 1px solid #ffb2b2;
+  background: #feecec;
+
+  .returnTitle {
+    color: #ff0000;
+  }
+  .iBtn { display: none;}
+}

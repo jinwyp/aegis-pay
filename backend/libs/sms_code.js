@@ -154,10 +154,10 @@ exports.sendCode = function (req, res, next) {
             "message" : sms
         };
 
-        request.post(api_config.sendSMSCode, params, function (err, data) {
+        request.post(api_config.sendSMSCode, {body: params, json:true}, function (err, data) {
             if (err) return next(err);
 
-            var dataSMS = JSON.parse(data.body);
+            var dataSMS = data.body;
 
             dataSMS.time = api_config.smsResend;
 
@@ -186,12 +186,16 @@ exports.sendCode = function (req, res, next) {
 exports.verifyMiddleware = function () {
     return function (req, res, next) {
 
-        checker.smsText(req.body.sms_code);
-
         var sms  = req.body.sms_code;
         var userInfo = req.session.user;
 
         var result = {"success" : false, "errType" : "sms_code"};
+
+        checker.smsText(req.body.sms_code, function(err){
+            if(err){
+                return res.json(result);
+            }
+        });
 
         cacheGet(userInfo, true).then(function(data){
             if(data && data.sms && (data.sms === sms)){

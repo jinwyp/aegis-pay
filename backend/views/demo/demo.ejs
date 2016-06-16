@@ -1,54 +1,17 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/demo.css">
+    <link rel="stylesheet" href="/dist/styles/demo.css">
 </head>
 
 <body>
-
 <%- include ../global/header/header %>
-
-<%- include ../global/header/subHeader %>
-
-
-
-
-
-
-<!--测试列表 -->
-<div class="demoList">
-    <table id="listBox">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>城市</th>
-            <th>描述</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <% listData.forEach(function(city){ %>
-        <tr>
-            <td><%= city.id%></td>
-            <td><%= city.name%></td>
-            <td><%= city.desc%></td>
-        </tr>
-        <% }) %>
-        </tbody>
-    </table>
-</div>
-
-
-
-<!-- 状态条 -->
-<% include ../global/order/statusBar %>
-
 
 <!-- 按钮颜色&大小 -->
 <table class="btnBoxList">
     <tbody>
     <tr>
-        <th>样式尺寸</th>
+        <th width="130">样式尺寸</th>
         <th>编辑, 更改</th>
         <th>确认, 提交</th>
         <th>退回, 否定</th>
@@ -57,7 +20,7 @@
         <th>只读, readonly</th>
     </tr>
     <tr>
-        <th>中号:  140*40</th>
+        <th>按钮_大:  140*40</th>
         <td><input type="button" class="iBtn iBtn_edit" value="修改"/></td>
         <td><input type="button" class="iBtn iBtn_yes" value="确认"/></td>
         <td><input type="button" class="iBtn iBtn_no" value="退回"/></td>
@@ -66,7 +29,7 @@
         <td><input type="button" class="iBtn iBtn_yes" value="只读" readonly/></td>
     </tr>
     <tr>
-        <th>小号:  96*32</th>
+        <th>按钮_中:  96*32</th>
         <td><input type="button" class="iBtn iBtn_sm iBtn_edit" value="修改"/></td>
         <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="确认"/></td>
         <td><input type="button" class="iBtn iBtn_sm iBtn_no" value="退回"/></td>
@@ -75,19 +38,46 @@
         <td><input type="button" class="iBtn iBtn_sm iBtn_yes" value="只读" readonly/></td>
     </tr>
     <tr>
-        <th>文本框: </th>
+        <th>按钮_小:  60*24</th>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_edit" value="修改"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="确认"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_no" value="退回"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_def" value="取消"/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="不可用" disabled/></td>
+        <td><input type="button" class="iBtn iBtn_xs iBtn_yes" value="只读" readonly/></td>
+    </tr>
+
+
+    <tr>
+        <th>文本_大:  88% * 40</th>
         <td><input type="text" class="iIpt" value="" placeholder="正常状态" /></td>
         <td><input type="text" class="iIpt" value="输入状态" placeholder="" /></td>
         <td><input type="text" class="iIpt iIpt_err" value="输入错误" placeholder="" /></td>
-        <td><input type="text" class="iIpt" value="" placeholder="只读状态" readonly /></td>
+        <td></td>
         <td><input type="text" class="iIpt" value="" placeholder="禁用状态" disabled /></td>
-        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="小号" /></td>
+        <td><input type="text" class="iIpt" value="" placeholder="只读状态" readonly /></td>
+    </tr>
+    <tr>
+        <th>文本_中:88% * 32</th>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态" /></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="输入状态" placeholder="" /></td>
+        <td><input type="text" class="iIpt iIpt_sm iIpt_err" value="输入错误" placeholder="" /></td>
+        <td></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="禁用状态" disabled /></td>
+        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="只读状态" readonly /></td>
+    </tr>
+    <tr>
+        <th>文本_小:  88% * 24</th>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="正常状态" /></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="输入状态" placeholder="" /></td>
+        <td><input type="text" class="iIpt iIpt_xs iIpt_err" value="输入错误" placeholder="" /></td>
+        <td></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="禁用状态" disabled /></td>
+        <td><input type="text" class="iIpt iIpt_xs" value="" placeholder="只读状态" readonly /></td>
     </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>
-
-
 
 
 <!-- 各种Icon图标-->
@@ -221,57 +211,93 @@
 
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 <div class="icnList">
+    <input type="button" class="btn btn-sm iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
+    <input type="button" class="btn btn-sm iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
+
     <a href="#" class="btn btn-sm btn-info" id="msg_err">错误:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_alt">警告:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_info">信息:提示框</a>
     <a href="#" class="btn btn-sm btn-info" id="msg_done">完成:提示框</a>
-</div>
 
-
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div class="icnList">
-    <span class="iBtn iBtn_up">
-        <i class="iBtn_up_icn"></i>点击上传
-    </span>
 
     <span class="iBtn iBtn_down">
         <i class="iBtn_down_icn"></i>下载附件
     </span>
-
-
-    <p class="fileLab">
-        <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
-        <span class="fileLab_del" data-id=""></span>
-    </p>
-    <p class="fileLab">
-        <span class="fileLab_name">bbbbbbbbbbbbb.jpg</span>
-        <span class="fileLab_del" data-id=""></span>
-    </p>
-
-    <input type="button" class="iBtn iBtn_no" value="模态框:提议" data-toggle="modal" data-target="#reasonsReturnModal" />
-
-    <input type="button" class="iBtn iBtn_no" value="模态框:提示" data-toggle="modal" data-target="#operationInfoModal" />
-</div>
-
-<p>&nbsp;</p>
-<p>上传附件: </p>
-<div class="icnList">
     <!-- 上传 -->
     <span class="iBtn iBtn_up">
         <i class="iBtn_up_icn"></i>点击上传
         <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
     </span>
-    <div class="fileList" style="display: inline-block"></div>
+    <div class="fileList" style="display: inline-block">
+        <p class="fileLab">
+            <span class="fileLab_name">AAAAAAAAAAAAAA.JPG</span>
+            <span class="fileLab_del" data-id=""></span>
+        </p>
+    </div>
 </div>
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
+<div class="containerWrap">
+    <div class="bodyWrap">
+        <!-- 状态条 -->
+        <% include ../global/order/statusBar %>
+        <p>&nbsp;</p>
+
+
+        <!-- 退回原因提示框 板块 -->
+        <%- include ../Plugins/reasonsReturnPlate %>
+        <p>&nbsp;</p>
+
+
+        <!-- 结算单信息 板块-->
+        <%- include ../Plugins/settlementInfoPlate %>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--测试列表 -->
+<div class="demoList fl">
+    <table id="listBox">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>城市</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% listData.forEach(function(city){ %>
+        <tr>
+            <td><%= city.id%></td>
+            <td><%= city.name%></td>
+            <td><%= city.desc%></td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
 
 
 <!-- 结算单退回原因: 模态框-->
@@ -301,7 +327,6 @@
 </div>
 
 
-
 <!-- 操作提示信息: 模态框-->
 <div class="modal fade" id="operationInfoModal" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
@@ -329,10 +354,8 @@
 
 
 <%- include ../global/footer/footer %>
-
 <%- include ../global/includehead/bottomscript %>
-
-<script src="/static/scripts/demo.js"></script>
+<script src="/dist/scripts/demo.js"></script>
 
 </body>
 </html>

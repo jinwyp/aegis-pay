@@ -12,12 +12,19 @@ var api_config = require('../api/v1/api_config');
 // 处理业务逻辑
 exports.disputeApply = function (req, res, next) {
     var url = api_config.disputeApply;
-    request({url : url}, function (err, data) {
+    var params = {userId: req.session.user.id, orderId: req.query.orderId};
+
+    request(url, params, function (err, data) {
 
         if (err) return next(err);
         
         var source  = JSON.parse(data.body);
-        var content = _.assign({}, {headerTit: "纠纷申请页面",pageTitle: "纠纷申请页面"}, source)
+        
+        _.map(source.order.imgList, function(val, index){
+            val.id = path.basename(val.path);
+            val.url = '/files/upload/' + path.basename(val.path);
+        });
+        var content = _.assign({}, {headerTit: "纠纷申请页面",pageTitle: "纠纷申请页面"}, source);
         res.render('dispute/disputeApply', content);
     });
 

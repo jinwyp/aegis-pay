@@ -54,7 +54,7 @@ function generate_code (type, options) {
 exports.sendCode = function (type) {
     return function (req, res, next) {
         checker.captchaType(type); // _ccapimgtxt_pay
-        
+
         var userInfo = req.session.user;
         var ary      = generate_code('mixed');
 
@@ -70,13 +70,18 @@ exports.sendCode = function (type) {
 // 校验图片验证码
 exports.verifyMiddleware = function (type) {
     return function (req, res, next) {
-
-        checker.captchaType(type); // _ccapimgtxt_pay
-        checker.captchaText(req.body.captchaText);
-
         var userInfo = req.session.user;
         var captchaText = req.body.captchaText;
+        var result = { "success" : false, "errType":"imgcode" };
 
+        var cb = function(err){
+            if(err){
+                return res.json(result);
+            }
+        }
+
+        checker.captchaType(type, cb); // _ccapimgtxt_pay
+        checker.captchaText(req.body.captchaText, cb);
 
         //cache.del('yimei180_sms_' + userInfo.id)
         cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
@@ -87,10 +92,8 @@ exports.verifyMiddleware = function (type) {
             } else {
                 //return checker.captchaNotMatch(next);
 
-                return res.json({ "success" : false, "errType":"imgcode" });
+                return res.json(result);
             }
         })
     }
 };
-
-

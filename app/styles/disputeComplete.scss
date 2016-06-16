@@ -12,7 +12,7 @@
 
     .disputeCompleteTit{font-size: 18px;color:#333;border-bottom: 1px solid #d9d9d9;padding-bottom: 15px;}
     .disputeCompleteTit span{display: inline-block;border-left:2px solid #31b9e6;padding-left: 10px;}
-    .disputeStatus{margin: 18px 0;height:48px;background: url("/static/images/dispute/statusPic.png") no-repeat 0px -48px;}
+    .disputeStatus{margin: 18px 0;height:48px;background: url("/dist/images/dispute/statusPic.png") no-repeat 0px -48px;}
     .disputeInfoWrap{background:#f3fcff;padding-left:230px;padding-top:48px;padding-bottom: 48px;}
     .disputeInfoWrap .disputeInfoTit{font-size:24px;margin-bottom: 20px;}
     .disputeInfoWrap .disputeInfoTit b{color:#1aaa6b;}
@@ -21,6 +21,6 @@
     .disputeProgressWrap{margin-top: 40px;}
     .disputeProgressTit{font-size: 16px;color:#333;border-bottom: 1px solid #e8e8e8;padding-bottom: 10px;}
     .disputeProgressTit span{display: inline-block;border-left:2px solid #31b9e6;padding-left: 10px;}
-    .disputeProgressWrap .disputeProgressInfo{height:135px;margin-top:30px;background: url("/static/images/dispute/disputeProgress.png") no-repeat;}
+    .disputeProgressWrap .disputeProgressInfo{height:135px;margin-top:30px;background: url("/dist/images/dispute/disputeProgress.png") no-repeat;}
   }
 }

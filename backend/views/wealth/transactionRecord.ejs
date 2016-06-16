@@ -1,0 +1,75 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/dist/styles/transactionRecord.css">
+</head>
+
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+<div id="transaction-body">
+    <div class="transaction-main">
+        <div class="search-div">
+            <div class="search-row row-one">
+                <span>订单类型:</span>
+                <select name="orderType" id="orderType">
+                    <option value="--">全部</option>
+                    <option value="--">卖货订单</option>
+                    <option value="--">卖货订单</option>
+                </select>
+                <span>交易时间:</span>
+                <input type="text" class="iIpt iIpt_sm time" readonly/>
+                <span>交易状态:</span>
+                <select name="orderType" id="orderType">
+                    <option value="--">全部</option>
+                    <option value="--">卖货订单</option>
+                    <option value="--">卖货订单</option>
+                </select>
+            </div>
+
+            <div class="search-row row-two mt-20">
+                <span>交易编号:</span>
+                <select name="orderType" id="orderType">
+                    <option value="--">全部</option>
+                    <option value="--">卖货订单</option>
+                    <option value="--">卖货订单</option>
+                </select>
+                <input type="button" class="iBtn iBtn_sm iBtn_yes" value="查询">
+            </div>
+        </div>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>创建时间</th>
+                    <th>名称</th>
+                    <th>订单号/交易号</th>
+                    <th>对方</th>
+                    <th>金额/明细</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>2016-04-22</th>
+                    <th>名称名称名称名称名称</th>
+                    <th>订单号/交易号</th>
+                    <th>对方</th>
+                    <th>金额/明细</th>
+                    <th>交易成功</th>
+                    <th>详情</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+
+<script src="/dist/scripts/wealth/transactionRecord.js"></script>
+
+</body>
+</html>

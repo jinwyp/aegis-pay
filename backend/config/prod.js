@@ -2,7 +2,9 @@
  * config
  */
 var config = {
-
+    debug : false,
+    mock  : false,
+    
     https    : true,
     domain   : 'pay.yimei180.com', // 域名
     homepage : 'https://pay.yimei180.com',
