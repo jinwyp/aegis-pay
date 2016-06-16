@@ -45,10 +45,10 @@ router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
 router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
-router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.forgetValid);
-router.post('/paypassword/forget/submit', paypasswordApi.forgetSubmit);
-router.post('/paypassword/modify/valid', sms.verifyMiddleware(), paypasswordApi.modifyValid);
-router.post('/paypassword/modify/submit', paypasswordApi.modifySubmit);
+router.post('/paypassword/forget/valid', sms.verifyMiddleware(), payPasswordApi.forgetValid);
+router.post('/paypassword/forget/submit', payPasswordApi.forgetSubmit);
+router.post('/paypassword/modify/valid', sms.verifyMiddleware(), payPasswordApi.modifyValid);
+router.post('/paypassword/modify/submit', payPasswordApi.modifySubmit);
 
 
 
