@@ -1,3 +1,18 @@
 @import './global.scss';
 @import './components/_modal.scss';
 @import './layout/_accountSideBar.scss';
+
+
+#settlementManagement{
+  .settlementManagement{
+    background:#f6f6f6;
+    padding:30px 0 100px 0;
+    .wrap{
+      width:1200px;
+      margin:0 auto;
+      .content{
+
+      }
+    }
+  }
+}
