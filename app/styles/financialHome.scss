@@ -4,6 +4,7 @@
 @import './components/_datePicker.scss';
 
 
+
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -314,6 +315,7 @@
 
         tr {
           border-bottom: 1px dotted $color_border;
+
           &:hover{
             background-color: $tr_hover_color;
           }
@@ -324,6 +326,7 @@
           font-size: $size_font_middle;
           color: #323333;
           vertical-align: middle;
+          border-top: 0px dotted $color_border;
         }
 
         .table_btn {

@@ -2,7 +2,7 @@
 * 页面脚本
 * */
 
-requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'], function($, bootstrap, fancySelect, datePicker){
+requirejs([ 'jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], function( $, bootstrap, fancySelect, datePicker, avalon){
 
     $(".recharge").click(function(){
         $(".bubble").removeClass("bubble-hidden");
@@ -12,7 +12,7 @@ requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
         $(".bubble").addClass("bubble-hidden");
     });
 
-
+    var vm = {};
     var app = {
         init : function(){
             var $formSelectOrderCategory = $('[name=orderCategory]');
@@ -38,6 +38,13 @@ requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
 
             $formDateFrom.pickadate({format:'yyyy-mm-dd', max:true});
             $formDateTo.pickadate({min:1});
+
+            vm = avalon.define({
+                $id: "financialDetailsController",
+                name: "司徒正美",
+                orderList: []
+            });
+            //avalon.scan(document.body)
         },
 
         getFinancialDetailsApi : function(params){
@@ -48,20 +55,17 @@ requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
                 method:"POST",
                 data:params,
                 success:function(data){
-                    console.log(data)
-                    //if(data.success){
-                    //    $(".modal_2").modal("show");
-                    //    $(".modal_2 .bg_img").addClass("yes");
-                    //    $("#modalInfo_2").text("发送成功").css({fontSize:"18px"});
-                    //}
+
+                    vm.orderList = data;
                 }
             })
         }
     };
 
-    app.init();
-    app.getFinancialDetailsApi();
-
+    $( document ).ready( function() {
+        app.init();
+        app.getFinancialDetailsApi();
+    });
 
 
 });
