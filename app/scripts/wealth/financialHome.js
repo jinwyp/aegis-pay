@@ -38,10 +38,29 @@ requirejs(['jquery', 'bootstrap', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
 
             $formDateFrom.pickadate({format:'yyyy-mm-dd', max:true});
             $formDateTo.pickadate({min:1});
+        },
+
+        getFinancialDetailsApi : function(params){
+            params = params || {};
+
+            $.ajax({
+                url:"/api/financial/order/details",
+                method:"POST",
+                data:params,
+                success:function(data){
+                    console.log(data)
+                    //if(data.success){
+                    //    $(".modal_2").modal("show");
+                    //    $(".modal_2 .bg_img").addClass("yes");
+                    //    $("#modalInfo_2").text("发送成功").css({fontSize:"18px"});
+                    //}
+                }
+            })
         }
     };
 
-    app.init()
+    app.init();
+    app.getFinancialDetailsApi();
 
 
 
