@@ -26,7 +26,7 @@ $headerBgColor: #292929;
           float: left;
           padding: 0px 10px;
           position: relative;
-          background: url("/static//images/header/indexBorder.png") no-repeat right 4px;
+          background: url("#{$assetPath}/images/header/indexBorder.png") no-repeat right 4px;
 
           .icon-phone {
             width: 10px;
@@ -34,7 +34,7 @@ $headerBgColor: #292929;
             margin-right: 8px;
             display: inline-block;
             vertical-align: middle;
-            background: url("/static//images/header/phone_icon.png");
+            background: url("#{$assetPath}/images/header/phone_icon.png");
           }
           .icon-tel {
             width: 18px;
@@ -42,7 +42,7 @@ $headerBgColor: #292929;
             margin-right: 8px;
             display: inline-block;
             vertical-align: middle;
-            background: url("/static//images/header/tel_icon.png");
+            background: url("#{$assetPath}/images/header/tel_icon.png");
           }
 
           a {

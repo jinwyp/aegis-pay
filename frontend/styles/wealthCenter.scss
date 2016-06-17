@@ -6,12 +6,12 @@
   .wealthCenterTop{
     width:100%;
     height:698px;
-    background: url("/static//images/wealth/wealthBanner.png") no-repeat center;
+    background: url("#{$assetPath}/images/wealth/wealthBanner.png") no-repeat center;
     text-align:center;
     .wealthLogo{
       width:130px;
       height:60px;
-      background: url("/static//images/wealth/wealth-logo.png") no-repeat center;
+      background: url("#{$assetPath}/images/wealth/wealth-logo.png") no-repeat center;
       display:inline-block;
       margin-top:110px;
     }
@@ -53,7 +53,7 @@
               display:inline-block;
               width:50px;
               height:50px;
-              background-image: url("/static//images/wealth/wealth-ico.png");
+              background-image: url("#{$assetPath}/images/wealth/wealth-ico.png");
             }
             .trade{
              background-position:5px 11px;
@@ -122,7 +122,7 @@
                 width:50px;
                 height:50px;
                 display:inline-block;
-                background-image: url("/static//images/wealth/wealth-ico.png");
+                background-image: url("#{$assetPath}/images/wealth/wealth-ico.png");
                 background-repeat:no-repeat;
                 margin-top:25px;
               }
@@ -175,7 +175,7 @@
         margin-right:5px;
       }
       .check{
-        background: url("/static//images/wealth/check.png") no-repeat center;
+        background: url("#{$assetPath}/images/wealth/check.png") no-repeat center;
       }
       span{
         text-decoration:underline;

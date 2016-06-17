@@ -1,3 +1,7 @@
+$assetPath : "/static";
+
+
+
 $color_body_bg: #f5f5f5;
 $color_main_bg: #fff;
 $color_text_white: #fff;
@@ -59,8 +63,8 @@ $size_font_big: 30px;
 $line-height-base: 1.428571429; // 20/14
 
 $font_family: Microsoft YaHei;
-$bgUrl: "/static//images/sprite_ico.png";
-$bgShadow: "/static//images/gradualLine.png";
+$bgUrl: "#{$assetPath}/images/sprite_ico.png";
+$bgShadow: "#{$assetPath}/images/gradualLine.png";
 $ffYh: "\5FAE\8F6F\96C5\9ED1";
 $ffSt: '\5B8B\4F53';
 $ffArial: 'Arial';
