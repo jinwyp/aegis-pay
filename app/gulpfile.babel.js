@@ -181,6 +181,7 @@ gulp.task('clean', () => {
     del.sync(['dist/**/*']);
 });
 
+gulp.task('frontend', ['clean', 'images', 'sass', 'javascript', 'watch']);
 gulp.task('server', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon']);
 gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon', 'browser-sync']);
 gulp.task('build', ['clean', 'images', 'sass', 'javascript']);
