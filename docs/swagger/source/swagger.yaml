@@ -10,6 +10,8 @@ schemes:
 - "http"
 produces:
 - "application/json"
+tags:
+  financial
 paths:
   /financial/order/details:
     post:
