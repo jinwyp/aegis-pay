@@ -3,7 +3,8 @@
     <ul>
         <% accountSideBar.sideBarList.forEach(function(obj, ind){ %>
         <li class="<% if(ind+1 == accountSideBar.current){%>current<%} %>">
-            <a class="navBar" href="<%= obj.listLink %>"><%= obj.listName %></a>
+            <a class="navBar" href="<%= obj.listLink %>"><%= obj.listName %><em class="ico_triangle"></em></a>
+
             <% if(obj.secListName != ''){ %>
             <dl>
                 <dd class="<% if(ind+1 == accountSideBar.secCurrent){%>current<%} %>" ><a href=""><%= obj.secListName.waitSettle %>&nbsp;<%= waitSettleNum %></a></dd>

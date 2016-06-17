@@ -6,6 +6,7 @@
   border:1px solid #e8e8e8;
   margin-right:10px;
   float:left;
+  padding: 10px;
   ul{
     padding-top:10px;
     li{
@@ -21,7 +22,19 @@
         &:hover{
           color:#00b7ec;
           cursor: pointer;
+          .ico_triangle{
+            background-position: -148px -542px;
+          }
         }
+      }
+      .ico_triangle{
+        display: inline-block;
+        width: 9px;
+        height: 15px;
+        background: url("/dist/images/sprite_ico.png") no-repeat -195px -542px;
+        float: right;
+        margin-top: 12px;
+
       }
     }
     dl{
