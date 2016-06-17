@@ -82,6 +82,7 @@ gulp.task('sass', ['sprite'], () =>
 gulp.task('sprite', function () {
     var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
         imgName:  distPaths.imagesSprites ,
+        imgPath: '/dist/images/sprite/auto-sprite.png',
         cssName:  distPaths.imagesSpritesScss ,
         cssFormat:  'scss'
     }));

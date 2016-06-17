@@ -145,7 +145,7 @@ module.exports = function (app) {
     }
 
     app.locals.phoneFormat = function (phone) {
-        return _.toString(phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$2");
+        return _.toString(phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$3");
     }
 
 /**
