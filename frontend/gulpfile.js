@@ -1,19 +1,19 @@
 'use strict';
 
-import gulp from 'gulp';
-import del from 'del';
-import spritesmith from 'gulp.spritesmith';
-import browserSync from 'browser-sync';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import nodemon from  'nodemon';
+var gulp = require('gulp');
+var del = require( 'del');
+var spritesmith = require( 'gulp.spritesmith');
+var browserSync = require( 'browser-sync');
+var gulpLoadPlugins = require( 'gulp-load-plugins');
+var nodemon = require(  'nodemon');
 
 var bs  = browserSync.create();
 var reload  = bs.reload;
-const plugins = gulpLoadPlugins();
+var plugins = gulpLoadPlugins();
 
 
 
-const sourcePaths = {
+var sourcePaths = {
     "html"               : "../backend/views/**/*",
     "javascript"               : "scripts/**/*.js",
     "custom_components_styles" : "custom_components/**/*.scss",
@@ -24,7 +24,7 @@ const sourcePaths = {
     "scss"                     : 'styles/**/*.scss'
 };
 
-const distPaths = {
+var distPaths = {
     "javascript"        : "dist/scripts",
     "custom_components" : "dist/custom_components",
     "components"        : "dist/components",
@@ -38,37 +38,37 @@ const distPaths = {
 
 
 // Lint JavaScript
-gulp.task('jslint', () =>
+gulp.task('jslint', function() {
     gulp.src(sourcePaths.javascript)
         .pipe(plugins.eslint())
         .pipe(plugins.eslint.format())
         .pipe(plugins.if(!browserSync.active, plugins.eslint.failOnError()))
-);
+});
 
 
 // Optimize images
-gulp.task('images', () =>
+gulp.task('images', function() {
     gulp.src(sourcePaths.images)
-         //.pipe(plugins.imagemin({
-         //  progressive: true,
-         //  interlaced: true
-         //}))
+    //.pipe(plugins.imagemin({
+    //  progressive: true,
+    //  interlaced: true
+    //}))
         .pipe(gulp.dest(distPaths.images))
         .pipe(plugins.size({title : 'Images'}))
-);
+});
 
 
 // Compile and automatically prefix stylesheets
-gulp.task('sass', ['sprite'], () =>
+gulp.task('sass', ['sprite'], function() {
     gulp.src(sourcePaths.scss)
         .pipe(plugins.newer({
-            dest: distPaths.css,
-            ext: '.css'
+            dest : distPaths.css,
+            ext  : '.css'
         }))
         .pipe(plugins.sass({
-            precision : 10,
-            outputStyle: 'compact',
-            errLogToConsole: true
+            precision       : 10,
+            outputStyle     : 'compact',
+            errLogToConsole : true
         }).on('error', plugins.sass.logError))
         //.pipe(plugins.autoprefixer({
         //    browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
@@ -76,7 +76,7 @@ gulp.task('sass', ['sprite'], () =>
         //}))
         .pipe(plugins.size({title : 'CSS Styles'}))
         .pipe(gulp.dest(distPaths.css))
-);
+});
 
 
 gulp.task('sprite', function () {
@@ -90,12 +90,12 @@ gulp.task('sprite', function () {
 });
 
 
-gulp.task('components', () =>
+gulp.task('components', function() {
     gulp.src(sourcePaths.components)
         .pipe(gulp.dest(distPaths.components))
-);
+});
 
-gulp.task('custom_components', () => {
+gulp.task('custom_components', function() {
     gulp.src(sourcePaths.custom_components_styles)
         .pipe(plugins.newer({
             dest: distPaths.custom_components,
@@ -112,12 +112,12 @@ gulp.task('custom_components', () => {
 
 
 
-gulp.task('javascript', ['jslint', 'components', 'custom_components'], () =>
+gulp.task('javascript', ['jslint', 'components', 'custom_components'], function() {
     gulp.src(sourcePaths.javascript).pipe(gulp.dest(distPaths.javascript))
-);
+});
 
 
-gulp.task('watch', () => {
+gulp.task('watch', function() {
     gulp.watch(sourcePaths.javascript, ['javascript']);
     gulp.watch(sourcePaths.images, ['images']);
     gulp.watch(sourcePaths.scss, ['sass']);
@@ -138,18 +138,18 @@ gulp.task('nodemon', function (cb) {
         ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
         // watch core server file(s) that require server restart on change
          watch: ['../backend/**/*.js']
-    }).on('start', () => {
+    }).on('start', function() {
         // ensure start only got called once
         if (!called) {
             called = true;
             cb();
         }
-    }).on('restart', () => {
+    }).on('restart', function() {
         setTimeout(function () {
             reload({ stream: false });
         }, 3000);
         console.log('---------- nodemon 重启服务器成功 ---------- ');
-    }).on('quit', () => {
+    }).on('quit', function() {
         console.log('---------- Exiting the process ---------- ');
         process.exit();
     });
@@ -177,7 +177,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('clean', () => {
+gulp.task('clean', function() {
     del.sync(['dist/**/*']);
 });
 
