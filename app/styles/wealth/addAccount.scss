@@ -157,7 +157,7 @@ $dark:#000000;
 					right:20px;
 					width:12px;
 					height:8px;
-					background:url('/dist/images/wealth/arrow.png') no-repeat center;
+					background:url('/static//images/wealth/arrow.png') no-repeat center;
 				}
 			}
 		}
@@ -176,7 +176,7 @@ $dark:#000000;
 		border-top:2px solid $blue1;
 		.figure-caption{
 			@include height(60px);
-			background:$blue2 url('/dist/images/wealth/bank_card_icon.png') no-repeat 24px 20px;
+			background:$blue2 url('/static//images/wealth/bank_card_icon.png') no-repeat 24px 20px;
 			padding-left:64px;
 			color:$blue1;
 			@include fontSize(24px);
@@ -211,7 +211,7 @@ $dark:#000000;
 			}
 			.add-bank-btn{
 				padding-left:32px;
-				background:url('/dist/images/wealth/bank_add.png') no-repeat left center;
+				background:url('/static//images/wealth/bank_add.png') no-repeat left center;
 				color:$blue1;
 				@include fontSize(18px);
 				@include fontWeight;
