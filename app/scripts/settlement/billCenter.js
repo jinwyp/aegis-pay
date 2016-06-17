@@ -16,7 +16,6 @@ require(['jquery','bootstrap'],function($){
                 $(this).children(".triangle").removeClass("ico_triangle_down").addClass("ico_triangle_right");
             }
         }
-        return false;
     })
 
 

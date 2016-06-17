@@ -23,7 +23,7 @@ exports.billCenter = function (req, res, next) {
         sideBarList : [
             {
                 listName : '发票管理',
-                listLink : '',
+                listLink : 'javascript:void(0);',
                 secList  :[
                     {
                         secListName:"全部发票",
