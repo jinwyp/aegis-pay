@@ -56,12 +56,16 @@ exports.orderId = function(orderId, next){
 exports.captchaType = function(captchaType, next){
     if (!captchaType || typeof captchaType !== 'string' || !validator.isLength(captchaType, { min: 2, max: 50})  ) {
         return throw409(code.captcha.typeWrong.code, code.captcha.typeWrong.message, code.captcha.typeWrong.field, next);
+    }else{
+        isFunction(next) && next();
     }
 };
 
 exports.captchaText = function(captchaText, next){
     if (!captchaText || typeof captchaText !== 'string' || !validator.isLength(captchaText, { min: 6, max: 10})) {
         return throw409(code.captcha.textWrong.code, code.captcha.textWrong.message, code.captcha.textWrong.field, next);
+    }else{
+        isFunction(next) && next();
     }
 };
 
@@ -73,6 +77,8 @@ exports.captchaNotMatch = function(next){
 exports.smsText = function(smsText, next){
     if (!smsText || typeof smsText !== 'string' || !validator.isLength(smsText, { min: 6, max: 6})) {
         return throw409(code.sms.textWrong.code, code.sms.textWrong.message, code.sms.textWrong.field, next);
+    }else{
+        isFunction(next) && next();
     }
 };
 
