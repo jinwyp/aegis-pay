@@ -79,6 +79,7 @@ exports.getOrderDetail = function (req, res, next) {
 
 
 exports.printDetail = function (req, res, next) {
+    //todo 
     request({url : 'http://localhost:7777/getOrderDetail'}, function (err, data) {
         if (err) return next(err);
         if (data) {

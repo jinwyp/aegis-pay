@@ -7,6 +7,8 @@ mysql_dir=$(cd $script_dir/../docker-mysql; pwd);
 redis_dir=$(cd $script_dir/../docker-redis-pay; pwd);
 nginx_dir=$(cd $script_dir/../docker-nginx; pwd);
 service_dir=$(cd $script_dir/../aegis-service; pwd);
+files_dir=$(cd $script_dir/../files; pwd);
+logs_dir=$(cd $script_dir/logs; pwd);
 
 eval $(docker-machine env testing);
 
@@ -22,11 +24,14 @@ cd $script_dir;   make clean;
 # 启动测试
 cd $script_dir;
 echo "启动测试...";
-mkdir -p files;
+mkdir -p logs ../files/{upload,upload_tmp_member};
 docker run -it --rm --name aegis-pay-dev \
   --net aegis-bridge --ip ${aegis_pay_ip} \
+  --restart=always \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
+  -v ${files_dir}/:/app/files \
+  -v ${logs_dir}:/app/aegis-member/logs \
   -e MOCK=false \
   -e DEBUG=true \
   -e MODE=dev \
