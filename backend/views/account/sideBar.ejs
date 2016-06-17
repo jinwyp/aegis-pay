@@ -3,7 +3,7 @@
     <ul>
         <% accountSideBar.sideBarList.forEach(function(obj, ind){ %>
         <li class="<% if(ind+1 == accountSideBar.current){%>current<%} %>">
-            <a class="navBar" href="<%= obj.listLink %>"><%= obj.listName %><em class="ico_triangle"></em></a>
+            <a class="navBar" href="<%= obj.listLink %>"><%= obj.listName %><em class="triangle ico_triangle_<% if(obj.secList != ''){ %>down<%}else{%>right<%}%>"></em></a>
 
             <% if(obj.secList != ''){ %>
             <dl>

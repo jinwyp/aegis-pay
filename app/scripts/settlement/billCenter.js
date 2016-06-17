@@ -5,15 +5,20 @@
 
 require(['jquery','bootstrap'],function($){
     //sideBar切换
-    // var lis=$(".sideBar li")
-    // for(i=0;i<lis.length;i++){
-        // alert(lis.length)
-        $(".sideBar li").click(function(e){
-            if(e.target.find("dl")){
-                e.find("dl").hide();
+
+    $(".sideBar li a").click(function(){
+        var dl = $(this).siblings('dl');
+        if( dl.length>0){
+            dl.toggle();
+            if(dl.css("display") == "block"){
+                $(this).children(".triangle").removeClass("ico_triangle_right").addClass("ico_triangle_down");
+            }else{
+                $(this).children(".triangle").removeClass("ico_triangle_down").addClass("ico_triangle_right");
             }
-        })
-    // }
+        }
+        return false;
+    })
+
 
 
 

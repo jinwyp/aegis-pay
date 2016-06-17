@@ -22,18 +22,31 @@
         &:hover{
           color:#00b7ec;
           cursor: pointer;
-          .ico_triangle{
+          .ico_triangle_down{
+            background-position: -239px -542px;
+          }
+          .ico_triangle_right{
             background-position: -148px -542px;
           }
         }
       }
-      .ico_triangle{
+      .ico_triangle_right{
         display: inline-block;
         width: 9px;
         height: 15px;
         background: url("/dist/images/sprite_ico.png") no-repeat -195px -542px;
         float: right;
         margin-top: 12px;
+
+      }
+      .ico_triangle_down{
+        display: inline-block;
+        width: 15px;
+        height: 9px;
+        background: url("/dist/images/sprite_ico.png") no-repeat -284px -542px;
+        float: right;
+        margin-top: 12px;
+
       }
     }
     dl{

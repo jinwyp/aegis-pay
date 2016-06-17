@@ -21,6 +21,22 @@ billCenterPersist.get('/settlement/billCenter').reply(200,
                 "account"      :"和略电子商务有限公司",
                 "settleStatus" :0,
 
+            },
+            {
+                "money"        : 2345645,
+                "changeNumber" :2345,
+                "settleDate"   :'2016.05.10',
+                "account"      :"和略电子商务有限公司",
+                "settleStatus" :1,
+
+            },
+            {
+                "money"        : 2345645,
+                "changeNumber" :2345,
+                "settleDate"   :'2016.05.10',
+                "account"      :"和略电子商务有限公司",
+                "settleStatus" :0,
+
             }
 
         ],
