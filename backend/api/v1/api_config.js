@@ -103,7 +103,7 @@ var api_config = {
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     //开票中心
     billCenter : host + 'settlement/billCenter',
-    billSetting : host + 'settlement/billSetting'
+    billSetting : host + 'settlement/billSetting',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
