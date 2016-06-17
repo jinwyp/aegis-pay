@@ -1,0 +1,25 @@
+@keyframes spin { from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1) rotate(360deg); } }
+
+@-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); } }
+
+.compactUpload { border-top: 1px dashed #ddd; padding-top: 20px; }
+
+.compactUpload .uploadWrapper { overflow: hidden; }
+
+.compactUpload .uploadWrapper label { font-size: 16px; font-weight: normal; line-height: 27px; vertical-align: middle; }
+
+.compactUpload .uploadWrapper label i { color: red; }
+
+.compactUpload .uploadWrapper .btn_upload { vertical-align: middle; }
+
+.compactUpload .btn_gray { margin-right: 10px; margin-left: 90px; }
+
+.compactUpload .tip { color: #999; overflow: hidden; margin-left: 90px; line-height: 24px; margin-top: 3px; margin-bottom: 25px; }
+
+.compactUpload .tip span { color: #ff6e0f; }
+
+.compactUpload .tip label, .compactUpload .tip ul { float: left; }
+
+.compactUpload .tip-error { display: none; margin-left: 90px; font-size: 12px; }

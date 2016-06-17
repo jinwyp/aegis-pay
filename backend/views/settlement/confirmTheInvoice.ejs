@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/confirmTheInvoice.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/confirmTheInvoice.css">
 </head>
 
 <body>
@@ -97,7 +97,7 @@
             </div>
             <div class="plateMain clearfix">
                 <div class="fl">
-                    <img src="/dist/images/compact/invoiceTemplate.jpg" alt=""/>
+                    <img src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt=""/>
                     <p>客户开票信息表</p>
                     <a href="" class="iBtn iBtn_down">
                         <i class="iBtn_down_icn"></i>下载附件
@@ -130,7 +130,7 @@
 
 <%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>
-<script src="/dist/scripts/settlement/confirmTheInvoice.js"></script>
+<script src="<%= staticPath %>/scripts/settlement/confirmTheInvoice.js"></script>
 
 </body>
 </html>

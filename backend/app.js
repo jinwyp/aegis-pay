@@ -34,7 +34,7 @@ var ejs              = require('ejs');
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir  = path.join(__dirname, '../app/dist');
+var staticDir  = path.join(__dirname, '../frontend/dist');
 // var fileStatic = path.join(__dirname,   '../../files/static');
 //
 var fileStatic = config.sysFileDir;
@@ -66,7 +66,7 @@ if (config.debug) {
 require('./libs/ejshelper')(app);
 
 // 静态资源
-app.use('/dist', express.static(staticDir));
+app.use('/static', express.static(staticDir));
 app.use('/files',express.static(fileStatic));
 
 // 支付下载文件目录
@@ -136,7 +136,8 @@ if (!config.debug) {
 
 // set static, dynamic helpers
 _.extend(app.locals, {
-    config : config
+    config : config,
+    staticPath : '/static'
 });
 
 

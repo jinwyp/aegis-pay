@@ -1,0 +1,81 @@
+.float-left { float: left; }
+
+.float-right { float: right; }
+
+.display-none { display: none; }
+
+.relative { position: relative; }
+
+.text-center { text-align: center; }
+
+.vertical-align { vertical-align: middle; }
+
+.padding-bottom-30 { padding-bottom: 30px; }
+
+.orange-color { color: #ff0000; }
+
+.font-size-18 { font-size: 18px; }
+
+.padding-left-20 { padding-left: 20px; }
+
+.padding-top-8 { padding-top: 8px; }
+
+.add-account { width: 1000px; margin: 0 auto; padding-bottom: 50px; padding-left: 20px; padding-right: 20px; background: #fff; }
+
+.add-account .header { margin-bottom: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid #e4e4e4; }
+
+.add-account .header .figure { line-height: 20px; }
+
+.add-account .header .figure dl { overflow: hidden; }
+
+.add-account .header .figure dl dt, .add-account .header .figure dl dd { display: inline-block; font-size: 12px; vertical-align: middle; }
+
+.add-account .header .figure dl dt { height: 18px; border: 2px solid #01b7ec; }
+
+.add-account .header .figure dl dd { color: #666666; }
+
+.add-account .header .figure dl dd span { padding-left: 10px; padding-right: 10px; color: #333333; font-size: 16px; font-weight: bolder; }
+
+.add-account .header .float-right { height: 30px; padding-top: 5px; }
+
+.add-account .header .float-right span { margin-top: -1px; vertical-align: middle; }
+
+.add-account .header .float-right p { cursor: pointer; }
+
+.add-account .header .float-right .tool-tips { position: absolute; top: 32px; right: 10px; z-index: 10; width: 230px; padding: 16px; border: 1px solid #01b7ec; background: #eff9ff; color: #333333; }
+
+.add-account .header .float-right .tool-tips dt { color: #01b7ec; line-height: 36px; font-size: 14px; }
+
+.add-account .header .float-right .tool-tips dd { line-height: 24px; }
+
+.add-account .header .float-right .tool-tips span { position: absolute; top: -7px; right: 20px; width: 12px; height: 8px; background: url("/static//images/wealth/arrow.png") no-repeat center; }
+
+.add-account .main-content { margin-right: -66px; }
+
+.add-account .figure-wrap { display: inline-block; width: 450px; margin-right: 60px; border: 1px solid #e4e4e4; border-top: 2px solid #01b7ec; }
+
+.add-account .figure-wrap.display-none { display: none; }
+
+.add-account .figure-wrap .figure-caption { height: 60px; background: #eff9ff url("/static//images/wealth/bank_card_icon.png") no-repeat 24px 20px; padding-left: 64px; color: #01b7ec; font-size: 24px; line-height: 60px; }
+
+.add-account .figure-wrap .figure-caption span { float: right; margin-right: 10px; margin-top: 20px; font-size: 14px; line-height: 20px; color: #01b7ec; cursor: pointer; }
+
+.add-account .figure-wrap .figure-content { overflow: hidden; min-height: 250px; font-size: 14px; }
+
+.add-account .figure-wrap .figure-content dt, .add-account .figure-wrap .figure-content dd { display: inline-block; padding-top: 10px; padding-bottom: 10px; }
+
+.add-account .figure-wrap .figure-content dt { width: 40%; text-align: right; color: #999999; }
+
+.add-account .figure-wrap .figure-content dd { width: 58%; color: #333333; text-indent: 34px; }
+
+.add-account .figure-wrap .figure-content .add-bank-btn { padding-left: 32px; background: url("/static//images/wealth/bank_add.png") no-repeat left center; color: #01b7ec; font-size: 18px; font-weight: bolder; line-height: 250px; }
+
+.add-account .modal-body-customer { padding: 34px 0; }
+
+.add-account .modal-body-customer .para-style { padding: 15px 0 30px 0; color: #333333; font-size: 14px; line-height: 40px; font-weight: bolder; }
+
+.add-account .modal-body-customer .control-label { font-size: 16px; }
+
+.add-account .modal-body-customer .forget-password { font-size: 14px; line-height: 30px; }
+
+.add-account .modal-body-customer input { color: #999999; }

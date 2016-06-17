@@ -1,0 +1,15 @@
+{
+  "name": "avalon",
+  "homepage": "https://github.com/RubyLouvre/avalon",
+  "version": "2.0.7",
+  "_release": "2.0.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.7",
+    "commit": "b90144729cdb180ef50ecab0960c3cacc0d26e9b"
+  },
+  "_source": "https://github.com/RubyLouvre/avalon.git",
+  "_target": "^2.0.7",
+  "_originalSource": "avalon",
+  "_direct": true
+}

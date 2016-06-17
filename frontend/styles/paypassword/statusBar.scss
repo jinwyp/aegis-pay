@@ -1,0 +1,32 @@
+.statusBar{
+    $bgUrl: "/static//images/sprite_ico.png";
+    height:auto; padding: 0; margin: 20px auto 0; background-color: #fff; text-align: center;
+    .statusMain {
+        margin-top: 18px; padding: 0; font-size: 0;
+        .statusStep{
+            width:266px; display: inline-block; vertical-align: top; position: relative;
+            .statusHr{
+                position:absolute; top:18px; z-index:2;
+                height:4px; background: #b8b8b8;
+                width: 100%; display: block;
+            }
+            .stepName{
+                margin-top:38px; display: block; text-align: center; height: 26px;
+                line-height: 26px; font-size: 14px; color: #333;
+            }
+            .statusDot{
+                left:50%; margin-left:-13px; width: 26px; height: 26px; display: block; position: absolute; z-index: 3; top: 6px;
+                background: url($bgUrl) no-repeat -63px -176px; color: #ffffff; text-align: center; font: lighter 16px/30px 'arial';
+            }
+            .stepDate {
+              display: block; text-align: center; height: 22px; line-height: 22px; font-size: 12px; color: #a0a0a0;
+            }
+            &.step_1 .statusHr{ left:125px; }
+            &.step_last .statusHr{ right:125px; z-index:1; }
+            &.step_done .statusHr{ background: #6ad3f1;}
+            &.step_done .statusDot {
+              background-position: -3px -176px;
+            }
+        }
+    }
+}

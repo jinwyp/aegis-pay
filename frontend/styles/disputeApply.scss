@@ -1,0 +1,84 @@
+@import './global.scss';
+
+#disputeApply{
+  background: #f5f5f5;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  .disputeApplyWrap{
+    width: 1000px;
+    padding: 30px;
+    margin: 0 auto;
+    background: #fff;
+  }
+//  货品详情
+  .disputeApplyWrap .disputeApplyTit{font-size: 18px;color:#333;border-bottom: 1px solid #d9d9d9;padding-bottom: 15px;}
+  .disputeApplyWrap .disputeApplyTit span{display: inline-block;border-left:2px solid #31b9e6;padding-left: 10px;}
+  .disputeApplyWrap .disputeStatus{margin: 18px 0;height:48px;background: url("/static//images/dispute/statusPic.png") no-repeat 0px 0px;}
+  .disputeApplyWrap .tableStatus{margin-bottom: 20px;}
+  .disputeApplyWrap .tableStatus .tableTit{display: table;color:#999;font-size: 12px;text-align: center;}
+  .disputeApplyWrap .tableStatus .tableTit > div{display: table-cell;height: 40px;background: #f5f5f5;vertical-align: middle;}
+  .disputeApplyWrap .tableStatus div.goodsName{width: 380px;}
+  .disputeApplyWrap .tableStatus div.price{width: 106px;}
+  .disputeApplyWrap .tableStatus div.amount{width: 90px;}
+  .disputeApplyWrap .tableStatus div.totalPrice{width: 90px;}
+  .disputeApplyWrap .tableStatus div.havePaid{width: 140px;}
+  .disputeApplyWrap .tableStatus div.orderStatus{width: 125px;}
+
+  .disputeApplyWrap .tableStatus .tableCon{display: table;border-collapse: collapse;margin-bottom: 20px;}
+  .disputeApplyWrap .tableStatus .tableCon > div{border: 1px solid #e8e8e8;border-top: none;display: table-cell;vertical-align: middle;text-align: center;}
+  .disputeApplyWrap .tableStatus .goodsCon{padding-left: 20px;padding-top: 22px;padding-bottom: 20px;}
+  .disputeApplyWrap .tableStatus .goodsCon .goodsTit{font-size: 16px;margin-bottom: 18px;text-align: left;}
+  .disputeApplyWrap .tableStatus .goodsCon .goodsTit span{display: inline-block;background: #ff6e27;width: 16px;height: 16px;color:#fff;margin-right:10px;font-size: 12px;vertical-align: middle;text-align: center;border-radius: 2px;line-height: 15px;position: relative;top: -1px;}
+  .disputeApplyWrap .tableStatus .goodsCon .goodsDetail{font-size: 12px;width: 100%;text-align: left;}
+  .disputeApplyWrap .tableStatus .goodsCon .goodsDetail label{color:#999;font-weight: normal;}
+  .disputeApplyWrap .tableStatus .goodsCon .goodsDetail li{float: left;width: 50%;margin-bottom: 10px;}
+
+  .disputeApplyWrap .tableStatus .tableCon div{font-size: 14px;}
+  .disputeApplyWrap .tableStatus .tableCon .havePaid{font-size: 16px;}
+  .disputeApplyWrap .tableStatus .tableCon .orderStatus .unShift{color:#ff0000;}
+
+//  订单摘要
+  //  左半部分
+  .orderSummary{width :100%;display: table;}
+  .orderSummary > div{display: table-cell}
+  .orderSummary .summaryL{background:#f5f5f5;border: 1px solid #d9d9d9;font-size: 12px;padding: 20px;width: 240px;}
+  .orderSummary .summaryL .summaryLTit{font-size: 16px;color:#333;margin-bottom: 15px;}
+  .orderSummary .summaryL p{color:#333;font-size: 12px;text-align: left;margin-bottom: 10px;}
+  .orderSummary .summaryL p label{color:#999;font-weight: normal;}
+  .orderSummary .summaryL p.searchDetail{margin-top: 15px;}
+  .orderSummary .summaryL p a {color:#037191;}
+  .orderSummary .summaryL .summaryLAdditional {padding-top: 20px;border-top: 1px dotted #d8d8d8;margin-top: 30px;}
+
+  //  右半部分
+  .orderSummary .rightCon{padding-left: 28px;padding-top: 50px;font-size: 12px;color:#333;}
+  .orderSummary .rightCon .conList{margin-bottom: 15px;position: relative}
+  .orderSummary .rightCon .mb0{margin-bottom: 0px;}
+  .orderSummary .rightCon .conList span{font-weight: normal}
+  .orderSummary .rightCon .conList span em{font-weight: normal;color:#ff0000;}
+  .orderSummary .rightCon .conList span em.hid{visibility: hidden;}
+  .orderSummary .rightCon .conList label{margin-right: 15px;font-weight: normal;cursor: pointer;}
+  .orderSummary .rightCon .conList textarea{width: 537px;height:90px;resize: none;border:1px solid #e8e8e8;padding: 8px;vertical-align: top;}
+  .orderSummary .rightCon .conList .leftTxt{position:absolute;right: 35px;bottom: 5px;color:#666;}
+  .orderSummary .rightCon .conList .leftTxt span{color:#ff6e27;}
+  .orderSummary .rightCon .conList .uploadInfo{display: inline-block;width: 537px;vertical-align: top;border-bottom: 1px dotted #e0e0e0;margin-left: 35px;padding-bottom: 12px;}
+  .orderSummary .rightCon .conList .uploadInfo span{color:#ff6e27;}
+  .orderSummary .rightCon .confirmSubmit{background: #01b7ec;text-align: center;color:#fff;border-radius: 2px;font-size: 16px;display: block;width: 140px;height: 40px;line-height: 40px;margin-top: 10px;margin-left: 106px;}
+  .orderSummary .rightCon .confirmSubmit:hover{text-decoration: none;opacity: .8;}
+  .orderSummary .rightCon .errorMsg{font-size: 12px;color:#ff0000;padding-left: 107px;height: 20px;}
+
+   //  上传文件样式
+  .orderSummary .rightCon .conList .disputeuploadWrap{padding-left: 107px;}
+  .orderSummary .rightCon .conList .addImg{width: 152px;height: 152px;background: #f5f5f5;text-align: center;font-size: 14px;color:#999;cursor: pointer;display: inline-block;}
+  .orderSummary .fileStyle{display:none;}
+  .orderSummary .rightCon .conList .addImg img{margin-top: 38px;margin-bottom: 10px;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .fileList{display: inline-block;vertical-align: top;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview{width: 152px;height: 152px;display: inline-block;text-align: center;margin-right: 20px;margin-bottom: 10px;position: relative;vertical-align: top;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview img{width: 150px;height: 150px;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview:hover{border: 1px solid #00b6ef;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview:hover .modifyFile{display: block;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile {display:none;width:100%;;height: 34px;padding:0px 10px;position: absolute;bottom: 0;left:0;font-size: 14px;text-align: center;line-height: 34px;background: url("/static//images/dispute/blackBg.png") repeat;}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile a{width:50%;color:#fff;display: inline-block}
+  .orderSummary .rightCon .conList .disputeuploadWrap .preview .modifyFile a:hover{color:#01b7ec;}
+
+}
