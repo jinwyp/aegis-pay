@@ -16,16 +16,19 @@
                 <% include sideBar  %>
                 <div class="content">
                     <table>
-                        <tr>
-                            <td class="noticeAccount">
-                                <h2><%= noticeInfo.operation %></h2>
-                                <p>附属账户: <span>尾号<%= noticeInfo.account %></span></p>
-                                <p>金额: <span><%= formatMoney(noticeInfo.money,2) %>元</span></p>
-                            </td>
-                            <td>
-                                <% include ../global/order/statusBar %>
-                            </td>
-                        </tr>
+                        <% for(var i=0;i<noticeInfo.length;i++){%>
+                            <tr>
+                                <td class="noticeAccount">
+                                    <h2><%= noticeInfo[i].operation %></h2>
+                                    <p>附属账户: <span>尾号<%= noticeInfo[i].account %></span></p>
+                                    <p>金额: <span><%= formatMoney(noticeInfo[i].money,2) %>元</span></p>
+                                </td>
+                                <td>
+                                    <% var statusObj = statusArr[i]%>
+                                    <% include ../global/order/statusBar %>
+                                </td>
+                            </tr>
+                        <%}%>
                     </table>
                 </div>
             </div>
