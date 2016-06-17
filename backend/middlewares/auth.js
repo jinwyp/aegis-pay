@@ -60,7 +60,7 @@ exports.passport = function (req, res, next) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
         if (!req.cookies[config.passport.cookieName]) {
-            res.redirect(config.passport.member + '/login?gotoURL=' + gotoURL + '&from=' + config.domain);
+            res.redirect(config.passport.member + '/login?gotoURL=' + encodeURIComponent(gotoURL) + '&from=' + config.domain);
         } else {
             request.post(config.passport.member + '/auth', {body: {
                 data : {
@@ -76,7 +76,7 @@ exports.passport = function (req, res, next) {
                     req.session.user = res.locals.user = auth.user;
                     return next();
                 } else {
-                    res.redirect(config.passport.member + '/login' + '?gotoURL=' + gotoURL + "&from=" + config.domain);
+                    res.redirect(config.passport.member + '/login' + '?gotoURL=' + encodeURIComponent(gotoURL) + "&from=" + config.domain);
                 }
             });
         }
