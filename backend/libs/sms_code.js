@@ -75,7 +75,7 @@ var cacheGet = function(userInfo, validTime){
                     return resolve(result);
                 }
             }
-            if(hourTime>=3000){
+            if(hourTime>=3){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
