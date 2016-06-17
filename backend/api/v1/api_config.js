@@ -101,7 +101,8 @@ var api_config = {
     // 忘记密码 － 重置密码 - 提交
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     //开票中心
-    billCenter : host + 'settlement/billCenter'
+    billCenter : host + 'settlement/billCenter',
+    billSetting : host + 'settlement/billSetting'
 
 };
 

@@ -22,21 +22,23 @@ var confirmDeliveryController = require('../../controllers/confirmDelivery');
 var subHeaderController       = require('../../controllers/subHeader');
 var orderCloseControl         = require('../../controllers/order/orderClose');                      // 关闭订单 模块(控制文件路径)
 var settlementFormControl     = require('../../controllers/settlement/settlementForm');             // 结算单开具页面 模块(控制文件路径)
-var confirmTheInvoiceControl  = require('../../controllers/settlement/confirmTheInvoice');          // 结算单.确认开票
-var sellerDeliveryController  = require('../../controllers/sellerDelivery');
-var returnDetailController    = require('../../controllers/returnDetail');
+var billCenter      = require('../../controllers/settlement/billCenter');
+var billSetting      = require('../../controllers/settlement/billSetting');
 
 var disputeApply    = require('../../controllers/disputeApply');   //纠纷申请
+var confirmTheInvoiceControl  = require('../../controllers/settlement/confirmTheInvoice');          // 结算单.确认开票
+var sellerDeliveryController  = require('../../controllers/sellerDelivery');
+
+var returnDetailController    = require('../../controllers/returnDetail');
 var disputeComplete = require('../../controllers/disputeComplete');   //纠纷申请完成页面
 var disputeDetail   = require('../../controllers/disputeDetail');     //纠纷详情页
+var signCtrl        = require('../../controllers/sign');                                                 //支付模块
 var confirmComplete = require('../../controllers/confirmComplete'); //确认完成页面
 var payCtl          = require('../../controllers/pay');
-var signCtrl        = require('../../controllers/sign');                                                 //支付模块
 var wealthCenter    = require('../../controllers/wealth/wealthCenter');       //财富管理
 var financialHome   = require('../../controllers/wealth/financialHome');       //财富管理
 var accountSetting  = require('../../controllers/accountSetting');       //账户设置
 var notice          = require('../../controllers/notice');       //账户设置消息提醒
-var billCenter      = require('../../controllers/settlement/billCenter');
 var paypasswordCtl = require('../../controllers/paypassword/index');    // paypassword
 
 
@@ -58,6 +60,7 @@ router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);
 router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo);              // 结算单.确认开票 页面路由
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               // 结算单.开票备注 页面路由
 router.get('/settlement/billCenter', billCenter.billCenter);    //结算管理发票中心
+router.get('/settlement/billSetting', billSetting.billSetting);    //结算管理开票设置
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);

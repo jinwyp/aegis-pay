@@ -11,14 +11,14 @@ var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
 
 // 处理业务逻辑
-exports.billCenter = function (req, res, next) {
+exports.billSetting = function (req, res, next) {
 
     //头部
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
 
     var accountSideBar = {
-        current : "1",
+        current : "2",
         secCurrent:'',
         sideBarList : [
             {
@@ -37,7 +37,7 @@ exports.billCenter = function (req, res, next) {
         ]
     };
 
-    request({url : api_config.billCenter}, function (err, data) {
+    request({url : api_config.billSetting}, function (err, data) {
         if (err) return next(err);
 
         if(data) {
@@ -56,7 +56,7 @@ exports.billCenter = function (req, res, next) {
 
             };
             //渲染页面
-            return res.render('settlement/billCenter', content);
+            return res.render('settlement/billSetting', content);
         }
     })
 

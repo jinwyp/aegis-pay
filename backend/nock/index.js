@@ -18,3 +18,4 @@ require('./paypassword');
 require('./account/accountSetting');
 require('./account/notice');
 require('./settlement/billCenter');
+require('./settlement/billSetting');

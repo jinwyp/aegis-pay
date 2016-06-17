@@ -31,6 +31,7 @@
           td{
             height: 94px;
             text-align: center;
+            font-size: 14px;
             border-bottom:1px dotted #e8e8e8;
             div.btn{
               width: 90px;
@@ -47,6 +48,13 @@
                 border-radius: 2px;
 
               }
+            }
+            input.btn{
+              font-size: 12px;
+              width: 50px;
+              height: 24px;
+              line-height: 10px;
+              margin-right: 8px;
             }
 
           }
