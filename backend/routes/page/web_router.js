@@ -41,6 +41,7 @@ var accountSetting  = require('../../controllers/accountSetting');       //账�
 var notice          = require('../../controllers/notice');       //账户设置消息提醒
 var paypasswordCtl = require('../../controllers/paypassword/index');    // paypassword
 
+var wealthAccount = require('../../controllers/wealth/wealthAccount');  // 账户通
 
 router.get('/demo', demoController.demo);                                                       // 添加路由
 router.get('/', siteController.home);
@@ -80,7 +81,7 @@ router.get('/wealth/financialDetails', financialHome.financialDetails);    //财
 
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
 router.get('/account/notice', notice.notice);    //账户设置消息提醒
-
+router.get('/wealth/addAccount', wealthAccount.addAccount);  // 账户通初始化
 
 
 
@@ -92,9 +93,10 @@ router.get('/pay/success', payCtl.success);
 
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
-router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhone);
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);
-router.get('/ucenter/paypassword/fg/success', paypasswordCtl.forgetSuccess);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess);
+router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);

@@ -1,0 +1,297 @@
+---
+swagger: "2.0"
+info:
+  description: "Pay API"
+  version: "1.0.0"
+  title: "Pay API"
+host: "api.Pay.com"
+basePath: "/v1"
+schemes:
+- "http"
+produces:
+- "application/json"
+tags:
+  financial
+paths:
+  /financial/order/details:
+    post:
+      tags:
+      - "财务管理中心 收支明细"
+      summary: "获取收支明细数据列表, 并带有查询字段"
+      description: "财务管理中心 收支明细 列表数据。 并带有查询字段"
+      operationId: "financialOrderDetails"
+      parameters:
+      - name: "tradeType"
+        in: "formData"
+        description: "交易类型 摘要 :  提现 / 采购 / 销售"
+        required: false
+        type: "string"
+        format: "string"
+      - name: "orderDateFrom"
+        in: "formData"
+        description: "交易时间开始"
+        required: false
+        type: "number"
+        format: "double"
+      - name: "orderDateTo"
+        in: "formData"
+        description: "交易时间截至"
+        required: false
+        type: "number"
+        format: "double"
+      - name: "orderStatus"
+        in: "formData"
+        description: "交易状态 : 交易流水号 / 订单号/ 对方账号名称"
+        required: false
+        type: "string"
+        format: "string"
+      responses:
+        200:
+          description: "An array 返回数组"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Estimates"
+  /estimates/time:
+    get:
+      tags:
+      - "Estimates"
+      summary: "Time Estimates"
+      description: "The Time Estimates endpoint returns ETAs for all products offered\
+        \ at a given location, with the responses expressed as integers in seconds.\
+        \ We recommend that this endpoint be called every minute to provide the most\
+        \ accurate, up-to-date ETAs."
+      operationId: "estimatesTimeGET"
+      parameters:
+      - name: "start_latitude"
+        in: "query"
+        description: "Latitude component of start location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "start_longitude"
+        in: "query"
+        description: "Longitude component of start location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "customer_uuid"
+        in: "query"
+        description: "Unique customer identifier to be used for experience customization."
+        required: false
+        type: "string"
+        format: "uuid"
+      - name: "product_id"
+        in: "query"
+        description: "Unique identifier representing a specific product for a given\
+          \ latitude & longitude."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "An array of products"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Estimates"
+  /history:
+    get:
+      tags:
+      - "User"
+      summary: "User Activity"
+      description: "The User Activity endpoint returns data about a user's lifetime\
+        \ activity with Uber. The response will include pickup locations and times,\
+        \ dropoff locations and times, the distance of past requests, and information\
+        \ about which products were requested.<br><br>The history array in the response\
+        \ will have a maximum length based on the limit parameter. The response value\
+        \ count may exceed limit, therefore subsequent API requests may be necessary."
+      operationId: "historyGET"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Offset the list of returned results by this amount. Default\
+          \ is zero."
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "Number of items to retrieve. Default is 5, maximum is 100."
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "History information for the given user"
+          schema:
+            $ref: "#/definitions/Activities"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "User"
+  /me:
+    get:
+      tags:
+      - "User"
+      summary: "User Profile"
+      description: "The User Profile endpoint returns information about the Uber user\
+        \ that has authorized with the application."
+      operationId: "meGET"
+      parameters: []
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/Profile"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "User"
+  /products:
+    get:
+      tags:
+      - "Products"
+      summary: "Product Types"
+      description: "The Products endpoint returns information about the *Uber* products\n\
+        offered at a given location. The response includes the display name\nand other\
+        \ details about each product, and lists the products in the\nproper display\
+        \ order.\n"
+      operationId: "productsGET"
+      parameters:
+      - name: "latitude"
+        in: "query"
+        description: "Latitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "longitude"
+        in: "query"
+        description: "Longitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "An array of products"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Products"
+definitions:
+  Product:
+    type: "object"
+    properties:
+      product_id:
+        type: "string"
+        description: "Unique identifier representing a specific product for a given\
+          \ latitude & longitude. For example, uberX in San Francisco will have a\
+          \ different product_id than uberX in Los Angeles."
+      description:
+        type: "string"
+        description: "Description of product."
+      display_name:
+        type: "string"
+        description: "Display name of product."
+      capacity:
+        type: "string"
+        description: "Capacity of product. For example, 4 people."
+      image:
+        type: "string"
+        description: "Image URL representing the product."
+  Order:
+    type: "object"
+    properties:
+      date:
+        type: "string"
+        description: "2016-05-12"
+      orderNo:
+        type: "string"
+        description: "123456789012345678"
+      amoumt:
+        type: "number"
+        description: "1000000000"
+      account:
+        type: "number"
+        description: "12345678"
+      tradeType:
+        type: "string"
+        description: "提现"
+      toPersonAccount:
+        type: "number"
+        description: "Lower bound of the estimated price."
+      toPersonAccountName:
+        type: "string"
+        description: "和略电子商务公司"
+      toPersonBankName:
+        type: "string"
+        description: "中国银行"
+  Profile:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+        description: "First name of the Uber user."
+      last_name:
+        type: "string"
+        description: "Last name of the Uber user."
+      email:
+        type: "string"
+        description: "Email address of the Uber user"
+      picture:
+        type: "string"
+        description: "Image URL of the Uber user."
+      promo_code:
+        type: "string"
+        description: "Promo code of the Uber user."
+  Activity:
+    type: "object"
+    properties:
+      uuid:
+        type: "string"
+        description: "Unique identifier for the activity"
+  Activities:
+    type: "object"
+    properties:
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "Position in pagination."
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "Number of items to retrieve (100 max)."
+      count:
+        type: "integer"
+        format: "int32"
+        description: "Total number of items available."
+      history:
+        type: "array"
+        items:
+          $ref: "#/definitions/Activity"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"

@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/demo.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/demo.css">
 </head>
 
 <body>
@@ -62,7 +62,7 @@
         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="请输入" /></td>
         <td><input type="text" class="iIpt iIpt_sm" value="输入状态" placeholder="请输入" /></td>
         <td><input type="text" class="iIpt iIpt_sm iIpt_err" value="输入错误" placeholder="" /></td>
-        <td></td>
+        <td><input type="text" class="iIpt iIpt_sm iIpt_date" value="" placeholder="选择时间" /></td>
         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="禁用状态" disabled /></td>
         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="只读状态" readonly /></td>
     </tr>
@@ -376,7 +376,7 @@
 
 <%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>
-<script src="/dist/scripts/demo.js"></script>
+<script src="<%= staticPath %>/scripts/demo.js"></script>
 
 </body>
 </html>
