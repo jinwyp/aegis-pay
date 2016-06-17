@@ -5,7 +5,7 @@
 var path = require('path');
 
 var config = {
-
+    port     : 3001, // 程序运行的端口
     domain   : 'pay-local.yimei180.com', // 域名
     homepage : 'http://pay-local.yimei180.com:3001',
 

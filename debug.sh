@@ -14,6 +14,8 @@ eval $(docker-machine env testing);
 
 nginx_ip=`get_vm_ip`;
 
+echo $nginx_ip;
+
 # 启动基础镜像
 cd $redis_dir;    make start;
 cd $mysql_dir;    make start;
@@ -27,14 +29,15 @@ echo "启动测试...";
 mkdir -p logs ../files/{upload,upload_tmp_member};
 docker run -it --rm --name aegis-pay-dev \
   --net aegis-bridge --ip ${aegis_pay_ip} \
-  --restart=always \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
   -v ${files_dir}/:/app/files \
   -v ${logs_dir}:/app/aegis-member/logs \
+  -e NGINX_IP=$nginx_ip \
   -e MOCK=false \
   -e DEBUG=true \
   -e MODE=dev \
-  -e NGINX_IP=$nginx_ip \
   -e FILES_DIR=$script_dir/../files \
   ubuntu-1404 /debug_run
+
+#
