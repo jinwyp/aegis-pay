@@ -61,22 +61,22 @@ exports.passport = function (req, res, next) {
 
         if (!req.cookies[config.passport.cookieName]) {
             res.redirect(config.passport.member + '/login?gotoURL=' + encodeURIComponent(gotoURL) + '&from=' + config.domain);
+            return;
         } else {
-            request.post(config.passport.member + '/auth', {body: {
-                data : {
-                    passport : req.cookies[config.passport.cookieName]
-                }
-            }, json:true}, function (err, auth) {
+            request.post(config.member_address + '/auth', {form: {
+                passport : req.cookies[config.passport.cookieName]
+            }}, function (err, auth) {
                 "use strict";
                 if (err) {
                     return next(err);
                 }
-                var auth = auth.body;
-                if (auth.success) {
-                    req.session.user = res.locals.user = auth.user;
+                var auth =  JSON.parse(auth.body);
+                if (auth.id) {
+                    req.session.user = res.locals.user = auth;
                     return next();
                 } else {
                     res.redirect(config.passport.member + '/login' + '?gotoURL=' + encodeURIComponent(gotoURL) + "&from=" + config.domain);
+                    return;
                 }
             });
         }
