@@ -26,6 +26,8 @@ app 目录下：
 }
 ```
 
+- css 中路径使用配置 [interpolation docs](http://stackoverflow.com/questions/8608498/have-a-variable-in-images-path-in-sass)
+
 ## 启动
 
 - 进入app 目录 运行 npm start 或 gulp sync  直接使用nodemon启动nodejs服务器和自动刷新浏览器功能, 并启动Mock数据功能  http://localhost:4000
