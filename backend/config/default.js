@@ -18,7 +18,7 @@ var config = {
     https    : false,
     domain   : 'pay-local.yimei180.com',
     homepage : 'http://pay-local.yimei180.com:3000',
-    port     : 3000, // 程序运行的端口
+    port     : 3001, // 程序运行的端口
 
     session_secret   : 'this_is_yimeis_secret_key_node_redis__cache_long_',
     auth_cookie_name : 'signed_cookie_username',
