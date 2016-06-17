@@ -11,7 +11,7 @@ var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
 
 // 处理业务逻辑
-exports.settlementManagement = function (req, res, next) {
+exports.billCenter = function (req, res, next) {
 
     //头部
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
@@ -37,7 +37,7 @@ exports.settlementManagement = function (req, res, next) {
         ]
     };
 
-    request({url : api_config.settlementManagement}, function (err, data) {
+    request({url : api_config.billCenter}, function (err, data) {
         if (err) return next(err);
 
         if(data) {
@@ -56,7 +56,7 @@ exports.settlementManagement = function (req, res, next) {
 
             };
             //渲染页面
-            return res.render('wealth/settlementManagement', content);
+            return res.render('settlement/billCenter', content);
         }
     })
 

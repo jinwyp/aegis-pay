@@ -1,9 +1,9 @@
 var nock = require('nock');
 var API  = require('../../api/v1/api_config');
-var settlementManagement = nock(API.host).log(console.log);
-var settlementManagementPersist = nock(API.host).log(console.log).persist();
+var billCenter = nock(API.host).log(console.log);
+var billCenterPersist = nock(API.host).log(console.log).persist();
 
-settlementManagementPersist.get('/wealth/settlementManagement').reply(200,
+billCenterPersist.get('/settlement/billCenter').reply(200,
     {
         "settleInfo":[
             {
@@ -30,4 +30,4 @@ settlementManagementPersist.get('/wealth/settlementManagement').reply(200,
 
     })
 
-module.exports = settlementManagement;
+module.exports = billCenter;
