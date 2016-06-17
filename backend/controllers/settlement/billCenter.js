@@ -18,21 +18,31 @@ exports.billCenter = function (req, res, next) {
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
 
     var accountSideBar = {
-        current : "1",
-        secCurrent:'',
+        current : "",
+        secCurrent:'1',
         sideBarList : [
             {
-                listName : '全部发票',
+                listName : '发票管理',
                 listLink : 'billCenter',
-                secListName  :{
-                    waitSettle:"待开票",
-                    hadSettle:"已开票"
-                }
+                secList  :[
+                    {
+                        secListName:"全部发票",
+                        secListLink:""
+                     },
+                    {
+                        secListName:'待开票' ,
+                        secListLink:""
+                    },
+                    {
+                        secListName:'已开票',
+                        secListLink:""
+                    }
+                ]
             },
             {
                 listName : '开票设置',
                 listLink : 'billSetting',
-                secListName:''
+                secList:''
             }
         ]
     };
@@ -50,6 +60,7 @@ exports.billCenter = function (req, res, next) {
                     secondTab: secondTab
                 },
                 accountSideBar: accountSideBar,
+                allSettleNum:12,
                 waitSettleNum: 8,
                 hadSettleNum: 4,
                 "settleInfo":source.settleInfo

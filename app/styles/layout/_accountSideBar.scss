@@ -34,7 +34,6 @@
         background: url("/dist/images/sprite_ico.png") no-repeat -195px -542px;
         float: right;
         margin-top: 12px;
-
       }
     }
     dl{
@@ -54,6 +53,9 @@
     .current{
       a.navBar{
         color:#00b7ec;
+        .ico_triangle{
+          background-position: -148px -542px;
+        }
       }
     }
   }

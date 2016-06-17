@@ -75,24 +75,7 @@ exports.notice = function (req, res, next) {
         }
 
     ];
-    // var statusObj = {
-    //     step     : 2,
-    //     total    : 3,
-    //     stepList : [
-    //         {
-    //             stepName : '退款发往银行',
-    //             stepDate : '2016-05-11 01:02:36'
-    //         },
-    //         {
-    //             stepName : '银行受理',
-    //             stepDate : '2016-05-12 01:02:36'
-    //         },
-    //         {
-    //             stepName : '银行已入账',
-    //             stepDate : '2016-05-13 01:02:36'
-    //         }
-    //     ]
-    // // };
+    
     // sideBar
     var accountSideBar = {
         current : "2",
@@ -100,12 +83,12 @@ exports.notice = function (req, res, next) {
             {
                 listName : '基本信息',
                 listLink : 'accountSetting',
-                secListName:''
+                secList:''
             },
             {
                 listName : '消息提醒',
                 listLink : 'notice',
-                secListName:''
+                secList:''
             }
         ]
     };

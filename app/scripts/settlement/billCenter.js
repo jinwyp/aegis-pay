@@ -4,6 +4,19 @@
 
 
 require(['jquery','bootstrap'],function($){
+    //sideBar切换
+    // var lis=$(".sideBar li")
+    // for(i=0;i<lis.length;i++){
+        // alert(lis.length)
+        $(".sideBar li").click(function(e){
+            if(e.target.find("dl")){
+                e.find("dl").hide();
+            }
+        })
+    // }
+
+
+
     //未认证弹出框
     $("#settle").click(function(){
         $(".modal_1").modal();

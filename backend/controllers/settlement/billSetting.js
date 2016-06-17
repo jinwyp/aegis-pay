@@ -22,17 +22,27 @@ exports.billSetting = function (req, res, next) {
         secCurrent:'',
         sideBarList : [
             {
-                listName : '全部发票',
+                listName : '发票管理',
                 listLink : 'billCenter',
-                secListName  :{
-                    waitSettle:"待开票",
-                    hadSettle:"已开票"
-                }
+                secList  :[
+                    {
+                        secListName:"全部发票",
+                        secListLink:""
+                    },
+                    {
+                        secListName:'待开票' ,
+                        secListLink:""
+                    },
+                    {
+                        secListName:'已开票',
+                        secListLink:""
+                    }
+                ]
             },
             {
                 listName : '开票设置',
                 listLink : 'billSetting',
-                secListName:''
+                secList:''
             }
         ]
     };
