@@ -9,11 +9,11 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js --watch api --watch controllers"
+    "start": "nodemon index.js --watch source --watch index.js"
   },
-  "dependencies": {
-    "connect": "^3.2.0",
-    "js-yaml": "^3.3.0",
-    "swagger-tools": "0.10.1"
+  "devDependencies": {
+    "bootprint": "*",
+    "bootprint-openapi": "*",
+    "nodemon" : "*"
   }
 }
