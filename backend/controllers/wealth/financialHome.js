@@ -26,6 +26,12 @@ exports.financialHome = function (req, res, next) {
 
 
 
+
+
+
+
+
+
 exports.financialDetails = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 2;
@@ -36,7 +42,21 @@ exports.financialDetails = function (req, res, next) {
         tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
-        }
+        },
+
+        accoutNumber : '1234567890',
+        
+        formSelectOrderCategory:[
+            {id:'1', value:'1', text:'提现'},
+            {id:'2', value:'2', text:'采购'},
+            {id:'3', value:'3', text:'销售'}
+        ],
+        formSelectOrderSearchType:[
+            {id:'1', value:'1', text:'交易流水号'},
+            {id:'2', value:'2', text:'对方账户名称'},
+            {id:'3', value:'3', text:'订单号'}
+        ]
+        
     };
 
     res.render('wealth/financialDetails',content);
