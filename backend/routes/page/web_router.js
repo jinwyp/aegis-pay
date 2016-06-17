@@ -53,15 +53,13 @@ router.get('/footer', footerController.footer);
 router.get('/getOrderDetail', orderController.getOrderDetail);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 
-router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                  // 结算单 页面路由
-router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo);                // 结算单.确认开票 页面路由
-
-
+router.get('/order/orderClose', orderCloseControl.orderInfo);                                   // 关闭 订单路由
+router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                // 结算单 页面路由
+router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo);              // 结算单.确认开票 页面路由
+router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               // 结算单.开票备注 页面路由
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
-router.get('/order/orderClose', orderCloseControl.orderInfo);                                     // 关闭 订单路由
-
 router.get('/return', returnDetailController.returnDetail);
 
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
@@ -88,9 +86,10 @@ router.get('/pay/success', payCtl.success);
 
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
-router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhone);
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);
-router.get('/ucenter/paypassword/fg/success', paypasswordCtl.forgetSuccess);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess);
+router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);

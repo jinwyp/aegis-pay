@@ -15,6 +15,8 @@ var disputeCancel     = require('../../controllers/disputeDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 
+var financialApi    = require('../../api/v1/financialDetails');
+
 // demo
 router.get('/user', siteController.user);
 router.get('/test-cache', siteController.test_cache);
@@ -43,9 +45,16 @@ router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));
 router.post('/validImgcode', captcha.verifyMiddleware('_ccapimgtxt_pay'), sms.sendCode);
 router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
-
 router.post('/paypassword/forget/valid', sms.verifyMiddleware(), payPasswordApi.forgetValid);
 router.post('/paypassword/forget/submit', payPasswordApi.forgetSubmit);
+router.post('/paypassword/modify/valid', sms.verifyMiddleware(), payPasswordApi.modifyValid);
+router.post('/paypassword/modify/submit', payPasswordApi.modifySubmit);
+
+
+
+router.post('/financial/order/details', financialApi.financialDetailsApi);
+
+
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

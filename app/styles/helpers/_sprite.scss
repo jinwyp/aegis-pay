@@ -53,6 +53,21 @@
   background: url($bgUrl) no-repeat -501px -177px;
 }
 
+//手机
+.icn_phone {
+  display: inline-block;
+  width: 12px;
+  height: 17px;
+  background: #CCCCCC url($bgUrl) no-repeat -48px -542px;
+}
+//电话
+.icn_tel {
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  background: #CCCCCC url($bgUrl) no-repeat -96px -542px;
+}
+
 //向上
 .icn_caretUp {
   display: inline-block;
@@ -164,6 +179,13 @@
   height: 14px;
   background: url($bgUrl) no-repeat 1px -542px;
 }
+//日历2
+.icn_date_l {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url($bgUrl) no-repeat -577px -713px;
+}
 
 //支付正常
 .icn_payCircle {
@@ -205,6 +227,27 @@
   background: url($bgUrl) no-repeat -383px -291px;
 }
 
+// 折叠.右
+.icn_fold {
+  display: inline-block;
+  width: 9px;
+  height: 15px;
+  background: #CCCCCC url($bgUrl) no-repeat -195px -542px;
+  &:hover, &.hover {
+    background: #CCCCCC url($bgUrl) no-repeat -148px -542px;
+  }
+}
+// 展开.下
+.icn_spread {
+  display: inline-block;
+  width: 15px;
+  height: 9px;
+  background: #CCCCCC url($bgUrl) no-repeat -239px -542px;
+  &:hover, &.hover {
+    background: #CCCCCC url($bgUrl) no-repeat -284px -542px;
+  }
+}
+
 //圆点 亮
 .icn_roundLight {
   display: inline-block;
@@ -239,7 +282,7 @@
 .icn_arrowSmallLeft {
   @extend .icn_arrowSmall;
   background: url($bgUrl) no-repeat -10px -83px;
-  &:hover {
+  &:hover, &.hover {
     background: #01b7ec url($bgUrl) no-repeat -162px -83px;
   }
 }
@@ -247,7 +290,7 @@
 .icn_arrowSmallRight {
   @extend .icn_arrowSmall;
   background: url($bgUrl) no-repeat -87px -83px;
-  &:hover {
+  &:hover, &.hover {
     background: #01b7ec url($bgUrl) no-repeat -239px -83px;
   }
 }
@@ -262,7 +305,7 @@
 .icn_arrowBigLeft {
   @extend .icn_arrowBig;
   background: url($bgUrl) no-repeat -311px -73px;
-  &:hover {
+  &:hover, &.hover {
     background: url($bgUrl) no-repeat -471px -73px;
   }
 }
@@ -270,7 +313,7 @@
 .icn_arrowBigRight {
   @extend .icn_arrowBig;
   background: url($bgUrl) no-repeat -391px -73px;
-  &:hover {
+  &:hover, &.hover {
     background: url($bgUrl) no-repeat -551px -73px;
   }
 }

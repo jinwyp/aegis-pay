@@ -32,7 +32,7 @@ define(['jquery'],function($){
             }
         })
         // click submit
-        $('#setBtn').click(function(){
+        self.els.$submit.click(function(){
             if($(this).hasClass('disable')) return;
             if(!self.els.$pass1.val()){
                 self.els.$pass1.focus();
@@ -58,13 +58,13 @@ define(['jquery'],function($){
       submit: function(){
         var self = this;
         var params = $('#forgetSet').serialize();
-        $('#setBtn').addClass('disable');
+        self.els.$submit.addClass('disable');
         $.post('/api/paypassword/forget/submit', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
             location.href = '/ucenter/paypassword/fg/success';
           }else{
-              $('#setBtn').removeClass('disable');
+              self.els.$submit.removeClass('disable');
               self.els.$passFormatErr.text('请重置支付密码').show();
               self.els.$passDiffErr.text('请重置支付密码').show();
           }
