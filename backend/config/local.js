@@ -13,7 +13,8 @@ var config = {
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',
         cookieName : 'passport'
-    }
+    },
+    member_address: 'http://127.0.0.1:3000'
 };
 
 module.exports = config;

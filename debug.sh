@@ -12,9 +12,9 @@ logs_dir=$(cd $script_dir/logs; pwd);
 
 eval $(docker-machine env testing);
 
-nginx_ip=`get_vm_ip`;
+#nginx_ip=`get_vm_ip`;
 
-echo $nginx_ip;
+#echo $nginx_ip;
 
 # 启动基础镜像
 cd $redis_dir;    make start;
@@ -33,11 +33,10 @@ docker run -it --rm --name aegis-pay-dev \
   -v ${script_dir}/debug_run:/debug_run \
   -v ${files_dir}/:/app/files \
   -v ${logs_dir}:/app/aegis-member/logs \
-  -e NGINX_IP=$nginx_ip \
   -e MOCK=false \
   -e DEBUG=true \
   -e MODE=dev \
   -e FILES_DIR=$script_dir/../files \
   ubuntu-1404 /debug_run
 
-#
+#-e NGINX_IP=$nginx_ip \
