@@ -25,8 +25,8 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
         init : function(){
             var $formSelectOrderCategory = $('[name=orderCategory]');
             var $formSelectOrderSearchType = $('[name=orderSearchType]');
-            var $formDateFrom = $('.orderDateFrom');
-            var $formDateTo = $('.orderDateTo');
+            var $formDateFrom = $('.orderDateFrom').pickadate({format:'yyyy-mm-dd', max:true});
+            var $formDateTo = $('.orderDateTo').pickadate({min:1});
 
 
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
@@ -41,8 +41,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             });
 
 
-            $formDateFrom.pickadate({format:'yyyy-mm-dd', max:true});
-            $formDateTo.pickadate({min:1});
 
 
             //avalon.config({debug: false})
@@ -50,11 +48,20 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText: "",
+                orderDateFrom : '',
+                orderDateTo : '',
                 orderList: [],
-                searchOrder : function(){
-                    searchQuery.orderSearchType = this.orderSearchText;
+                searchOrder : function(event){
+                    event.preventDefault();
+                    searchQuery.orderSearchText = vm.orderSearchText;
+                    searchQuery.orderDateFrom = vm.orderDateFrom;
+                    searchQuery.orderDateTo = vm.orderDateTo;
 
                     console.log(searchQuery);
+                    console.log($formDateFrom.get('value'), $('.orderDateFrom').val());
+
+
+                    app.getFinancialDetailsApi(searchQuery);
                 }
             });
             //avalon.scan(document.body)

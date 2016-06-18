@@ -31,6 +31,7 @@ var distPaths = {
     "images"            : "dist/images",
     "imagesSprites"     : "images/sprite/auto-sprite.png",
     "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
+    "imagesSpritesScssReferringPath" : "/static/images/sprite/auto-sprite.png",
     "css"               : "dist/styles",
     "browserSyncWatchFiles" : [sourcePaths.html, "dist/scripts/**/*.js", "dist/styles/**/*.css"]
 };
@@ -54,17 +55,16 @@ gulp.task('images', function() {
     //  interlaced: true
     //}))
         .pipe(gulp.dest(distPaths.images))
-        .pipe(plugins.size({title : 'Images'}))
 });
 
 
 // Compile and automatically prefix stylesheets
 gulp.task('sass', ['sprite'], function() {
     gulp.src(sourcePaths.scss)
-        .pipe(plugins.newer({
-            dest : distPaths.css,
-            ext  : '.css'
-        }))
+        //.pipe(plugins.newer({
+        //    dest : distPaths.css,
+        //    ext  : '.css'
+        //}))
         .pipe(plugins.sass({
             precision       : 10,
             outputStyle     : 'compact',
@@ -74,7 +74,6 @@ gulp.task('sass', ['sprite'], function() {
         //    browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
         //    cascade: false
         //}))
-        .pipe(plugins.size({title : 'CSS Styles'}))
         .pipe(gulp.dest(distPaths.css))
 });
 
@@ -82,9 +81,11 @@ gulp.task('sass', ['sprite'], function() {
 gulp.task('sprite', function () {
     var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
         imgName:  distPaths.imagesSprites ,
-        imgPath: '/dist/images/sprite/auto-sprite.png',
+        imgPath: distPaths.imagesSpritesScssReferringPath,
         cssName:  distPaths.imagesSpritesScss ,
-        cssFormat:  'scss'
+        cssFormat:  'scss',
+        algorithm : 'alt-diagonal',
+        padding: 20
     }));
     return spriteData.pipe(gulp.dest(''));
 });
@@ -97,14 +98,13 @@ gulp.task('components', function() {
 
 gulp.task('custom_components', function() {
     gulp.src(sourcePaths.custom_components_styles)
-        .pipe(plugins.newer({
-            dest: distPaths.custom_components,
-            ext: '.css'
-        }))
+        //.pipe(plugins.newer({
+        //    dest: distPaths.custom_components,
+        //    ext: '.css'
+        //}))
         .pipe(plugins.sass({
             precision : 10
         }).on('error', plugins.sass.logError))
-        .pipe(plugins.size({title : 'Custom_components'}))
         .pipe(gulp.dest(distPaths.custom_components));
 
     gulp.src(sourcePaths.custom_components_js).pipe(gulp.dest(distPaths.custom_components))
@@ -118,11 +118,11 @@ gulp.task('javascript', ['jslint', 'components', 'custom_components'], function(
 
 
 gulp.task('watch', function() {
-    gulp.watch(sourcePaths.javascript, ['javascript']);
-    gulp.watch(sourcePaths.images, ['images']);
     gulp.watch(sourcePaths.scss, ['sass']);
+    gulp.watch(sourcePaths.javascript, ['javascript']);
     gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
     gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
+    gulp.watch(sourcePaths.images, ['images']);
 });
 
 
@@ -181,9 +181,9 @@ gulp.task('clean', function() {
     del.sync(['dist/**/*']);
 });
 
-gulp.task('frontend', ['clean', 'images', 'sass', 'javascript', 'watch']);
-gulp.task('server', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon']);
-gulp.task('sync', ['clean', 'images', 'sass', 'javascript', 'watch', 'nodemon', 'browser-sync']);
-gulp.task('build', ['clean', 'images', 'sass', 'javascript']);
+gulp.task('frontend', ['clean', 'sass', 'javascript', 'images', 'watch']);
+gulp.task('server', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon']);
+gulp.task('sync', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon', 'browser-sync']);
+gulp.task('build', ['clean', 'sass', 'javascript', 'images']);
 
 gulp.task('default', ['sync']);

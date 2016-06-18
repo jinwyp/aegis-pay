@@ -285,7 +285,8 @@
 
         .input-date{
           width: 110px;
-          background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          @include sprite($icon-calendar-gray);
         }
 
         .input-box {
