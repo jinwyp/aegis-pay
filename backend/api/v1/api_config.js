@@ -110,7 +110,9 @@ var api_config = {
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
-    financialDetails : host + 'financial/order/details'
+    financialDetails : host + 'financial/order/details',
+
+    drawcash: host + '/account/withDrawCash'
 
 };
 
