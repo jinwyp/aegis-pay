@@ -47,19 +47,18 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             //avalon.config({loader: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
-                orderSearchText: "",
-                orderDateFrom : '',
-                orderDateTo : '',
-                orderList: [],
+                orderSearchText  : "",
+                orderDateFrom    : '',
+                orderDateTo      : '',
+                orderCurrentPage : '',
+                orderList        : [],
                 searchOrder : function(event){
                     event.preventDefault();
                     searchQuery.orderSearchText = vm.orderSearchText;
-                    searchQuery.orderDateFrom = vm.orderDateFrom;
-                    searchQuery.orderDateTo = vm.orderDateTo;
+                    searchQuery.orderDateFrom = $formDateFrom.val();
+                    searchQuery.orderDateTo = $formDateTo.val();
 
                     console.log(searchQuery);
-                    console.log($formDateFrom.get('value'), $('.orderDateFrom').val());
-
 
                     app.getFinancialDetailsApi(searchQuery);
                 }
