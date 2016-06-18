@@ -99,11 +99,11 @@
 
                         </table>
 
-                        <nav>
-                            <ul class="pagination">
-                                <li>
+                        <nav class="pagination-financial">
+                            <ul class="pagination pageno">
+                                <li class="first-page">
                                     <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
+                                        <span aria-hidden="true">< 上一页</span>
                                     </a>
                                 </li>
                                 <li><a href="#">1</a></li>
@@ -111,13 +111,21 @@
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
-                                <li>
+                                <li first-page>
                                     <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
+                                        <span aria-hidden="true">下一页 ></span>
                                     </a>
                                 </li>
                             </ul>
+
+                            <div class="jump-to-page">
+                                <span>共55页, 到第</span>
+                                <input type="text" class="" placeholder="" ms-duplex="@orderCurrentPage">
+                                <span>页</span>
+                                <button class="iBtn pagination-button">确定</button>
+                            </div>
                         </nav>
+
                     </div>
 
 

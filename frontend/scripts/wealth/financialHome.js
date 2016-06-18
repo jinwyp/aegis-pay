@@ -47,10 +47,11 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             //avalon.config({loader: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
-                orderSearchText: "",
-                orderDateFrom : '',
-                orderDateTo : '',
-                orderList: [],
+                orderSearchText  : "",
+                orderDateFrom    : '',
+                orderDateTo      : '',
+                orderCurrentPage : '',
+                orderList        : [],
                 searchOrder : function(event){
                     event.preventDefault();
                     searchQuery.orderSearchText = vm.orderSearchText;
