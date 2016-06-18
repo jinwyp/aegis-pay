@@ -1,6 +1,6 @@
 @import '../helpers/_variables.scss';
-@import '#{$assetPath}/components/flexslider/flexslider.css';
-@import '#{$assetPath}/components/lightbox2#{$assetPath}/css/lightbox.min.css';
+@import url('#{$assetPath}/components/flexslider/flexslider.css');
+@import url('#{$assetPath}/components/lightbox2/dist/css/lightbox.min.css');
 
 .compactReadme{
   border: 1px dashed $color_readme_border;
