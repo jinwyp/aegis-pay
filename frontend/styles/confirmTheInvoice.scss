@@ -1,19 +1,160 @@
 @import './global.scss';
 @import './Plugins/message.scss';
+@import './Plugins/fancySelect.scss';
 
 
-/* 结算单.确认开票 页面 *********************************************** */
-.doubtInlet {
-  display: inline-block;
-  height: 28px;
-  color: #333333;
-  font-size: 12px;
-  font-family: $ffSt;
-  line-height: 18px;
+
+
+/* 结算.确认开票 页面 --------------------------- */
+#addInvoiceMain {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  //border: 1px dashed #000000;
+  
+  .table {
+    tbody > tr > th {
+      line-height: 30px;
+    }
+  }
+}
+
+#upInvoiceMain {
+  .sidebarDownFile {
+    width: 416px;
+    height: 416px;
+    padding: 20px 0 20px 20px;
+    border-left: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    background: #f5f5f5;
+    
+    h3 {
+      padding-top: 15px;
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+      color: #333333;
+    }
+  }
+  .sidebarUpFile {
+    width: 524px;
+    height: 416px;
+
+    .upFileHandle {
+      height: 280px;
+      padding-top: 40px;
+      border-left: 1px solid #e8e8e8;
+      border-right: 1px solid #e8e8e8;
+      text-align: center;
+    }
+    .upFileHint {
+      height: 136px;
+      padding: 15px 20px;
+      background: #fffaf7;
+      border: 1px dashed #fecdb3;
+    }
+    .upFileHint_tit {
+      height: 34px;
+      font-size: 16px;
+      line-height:26px;
+      color: #333333;
+    }
+    .upFileHint_con {
+      font-size: 12px;
+      line-height: 24px;
+      color: #b6b4b3;
+    }
+  }
+}
+
+
+
+/* 备注.开票信息 页面 --------------------------- */
+#viewInvoiceInfo {
+  width: 460px;
+  padding-top: 16px;
+  padding-bottom: 10px;
+
+  .table {
+    tbody > tr {
+      font-size: 14px;
+      
+      th {
+        line-height: 30px;
+        color: #999999;
+      }
+      td {
+        line-height: 30px;
+        color: #333333;
+      }
+    }
+  }
+}
+
+
+#viewInvoiceThumbnail {
+  width: 480px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .invoiceImgTit {
+    line-height: 22px;
+    display: block;
+    padding: 8px 0;
+  }
+
+
+  .thumbnailBox {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background: #f5f5f5;
+  }
+  .thumbnailPic {
+    position: relative;
+    width: 380px;
+    height: 262px;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+
+    .clickLarger {
+      position: absolute;
+      width: 82px;
+      height: 24px;
+      right: 1px;
+      bottom: 1px;
+      z-index: 12;
+      color: #FFFFFF;
+      font-size: 12px;
+      line-height: 24px;
+      text-indent: 20px;
+      background: #333333 url($bgUrl) no-repeat -545px -173px;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+    }
+
+    img {
+      width: 377px;
+      height: 260px;
+    }
+  }
+  .thumbnailName {
+    height: 40px;
+    padding-top: 8px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  
+}
+
+#viewInvoicePlate {
+  border-bottom: 1px dashed #DDDDDD;
 }
 
 
 
 
 
-/* 备注.开票信息 页面 --------------------------- */
+
+

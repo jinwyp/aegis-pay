@@ -4,6 +4,7 @@
 var request = require('request');
 var api_config = require('../../api/v1/api_config');
 var logger     = require("../../libs/logger");
+ var uuid = require('node-uuid');
 
 exports.drawCash = function(req,res,next){
     var firstTab  = req.query.firstTab || 2;
@@ -11,8 +12,14 @@ exports.drawCash = function(req,res,next){
 
     request(api_config.drawcash, function (err, resp) {
         if (err) return next(err);
-
         if (resp.success){
+
+            //如果没有绑定取现银行卡
+            if(!replyData.bankAccount||replyData.bankAccount=='') {
+                res.render();
+                return;
+            }
+
             var replyData = JSON.parse(resp.body);
             var content = {
                 balanceMoney:   replyData.balanceMoney,
@@ -21,11 +28,13 @@ exports.drawCash = function(req,res,next){
                 pageTitle:     "财务管理中心 - 账户通 - 提现",
                 headerTit:     "财务管理中心 - 账户通 - 提现",
                 tabObj:        {
-                                    firstTab : firstTab,
-                                    secondTab : secondTab
-                                }
+                    firstTab : firstTab,
+                    secondTab : secondTab
+                },
+                cashToken: uuid.v1()                //生成一个随机的token
             };
             res.render('drawCash/drawCash',content);
         }
     });
 };
+
