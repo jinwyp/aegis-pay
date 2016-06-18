@@ -32,18 +32,12 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 /* remember to define focus styles! */
-:focus {
-  outline: 0;
-}
+:focus {outline: 0;}
 
 /* remember to highlight inserts somehow! */
-ins {
-  text-decoration: none;
-}
+ins { text-decoration: none;}
 
-del {
-  text-decoration: line-through;
-}
+del { text-decoration: line-through;}
 
 /* tables still need 'cellspacing="0"' in the markup */
 table {
@@ -61,13 +55,9 @@ table, th, td {
   vertical-align: middle;
 }
 
-em, i {
-  font-style: normal;
-}
+em, i { font-style: normal;}
 
-a {
-  text-decoration: none;
-}
+a { text-decoration: none;}
 
 /* Remove annoying border on linked images. */
 a img {
@@ -76,9 +66,7 @@ a img {
 }
 
 /* Remember to define your own focus styles! */
-:focus {
-  outline: 0;
-}
+:focus { outline: 0;}
 
 a:link,
 a:focus {
@@ -102,95 +90,34 @@ a:hover {
   float: left;
   display: inline;
 }
-
 .fr {
   float: right;
   display: inline;
 }
-
-.txt_r {
-  text-align: right;
-}
-
-.txt_l {
-  text-align: left;
-}
-
-.txt_c {
-  text-align: center;
-}
-
-.va_top {
-  vertical-align: top;
-}
-
-.va_btm {
-  vertical-align: bottom;
-}
-
-.va_mid {
-  vertical-align: middle;
-}
-
-.mt10 {
-  margin-top: 10px
-}
-
-.mt20 {
-  margin-top: 20px
-}
-
-.mt30 {
-  margin-top: 30px
-}
-
-.mt150 {
-  margin-top: 150px
-}
-
-.mt220 {
-  margin-top: 220px
-}
-
-.ml10 {
-  margin-left: 10px;
-}
-
-.ml20 {
-  margin-left: 20px;
-}
-
-.pad_10 {
-  padding: 10px;
-}
-
-.pad_15 {
-  padding: 15px;
-}
-
-.pad_20 {
-  padding: 20px;
-}
-
-.pad_30 {
-  padding: 30px;
-}
-
-.ff_yh {
-  font-family: $ffYh;
-}
-
-.ff_st {
-  font-family: $ffSt;
-}
-
-.ff_arial {
-  font-family: $ffArial;
-}
-
-.bright {
-  color: #ff8553;
-}
+.txt_r { text-align: right; }
+.txt_l { text-align: left; }
+.txt_c { text-align: center; }
+.va_top { vertical-align: top; }
+.va_btm { vertical-align: bottom; }
+.va_mid { vertical-align: middle; }
+.mt10 { margin-top: 10px }
+.mt20 { margin-top: 20px }
+.mt30 { margin-top: 30px }
+.mt150 { margin-top: 150px }
+.mt220 { margin-top: 220px }
+.ml10 { margin-left: 10px; }
+.ml20 { margin-left: 20px; }
+.pad_10 { padding: 10px; }
+.pad_15 { padding: 15px;}
+.pad_20 { padding: 20px;}
+.pad_30 { padding: 30px; }
+.lih_16 {line-height: 16px;}
+.lih_18 {line-height: 18px;}
+.lih_30 {line-height: 30px;}
+.ff_yh { font-family: $ffYh;}
+.ff_st { font-family: $ffSt;}
+.ff_arial { font-family: $ffArial;}
+.bright { color: #ff8553; }
 
 .require {
   display: inline-block;
@@ -210,15 +137,12 @@ a:hover {
   height: 0 !important;
 }
 
-.clearfix:after {
-  clear: both;
-}
+.clearfix:after { clear: both;}
 
 /* IE 6/7 */
 .clearfix {
   *zoom: 1;
 }
-
 .clear {
   clear: both;
   display: block;
