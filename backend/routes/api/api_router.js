@@ -15,7 +15,7 @@ var disputeApply      = require('../../controllers/disputeApply');
 var disputeCancel     = require('../../controllers/disputeDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
-var bindingBankAccount = require('./controllers/wealth/bindingBankAccount');
+var bindingBankAccount = require('../../controllers/wealth/bindingBankAccount');
 
 
 var financialApi    = require('../../api/v1/financialDetails');
