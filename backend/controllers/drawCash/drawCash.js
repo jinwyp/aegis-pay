@@ -6,9 +6,27 @@ var api_config = require('../../api/v1/api_config');
 var logger     = require("../../libs/logger");
  var uuid = require('node-uuid');
 
-exports.drawCash = function(req,res,next){
+
+exports.drawCashUnbind = function(req,res,next){
+    // 提现账户未绑定
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
+    var content = {
+        pageTitle : "财务管理中心 - 账户通 - 提现",
+        headerTit : "财务管理中心 - 账户通 - 提现",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        },
+        status:2
+    };
+    res.render('drawCash/drawCashUnbind',content);
+}
+exports.drawCash = function(req,res,next){
+    // 提现已绑定
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 1;
+ 
 
     request(api_config.drawcash, function (err, resp) {
         if (err) return next(err);
@@ -41,17 +59,35 @@ exports.drawCash = function(req,res,next){
     });
 };
  
- exports.drawCashConfirm = function (req, res, next) {
-     var firstTab  = req.query.firstTab || 2;
-     var secondTab = req.query.secondTab || 1;
-     var cashToken = req.body.cashToken;
 
-     if(cashToken != req.session.cashToken) {
+exports.drawCashCheck = function(req,res,next){
+    // 提现 确认信息
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 1;
+    var content = {
+        pageTitle : "财务管理中心 - 账户通 - 提现",
+        headerTit : "财务管理中心 - 账户通 - 提现",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        },
+        status:2
+    };
+    res.render('drawCash/drawCashCheck',content);
+}
 
-     }
-
-
-
-
- };
-
+exports.drawCashStatus = function(req,res,next){
+    // 提现 申请状态
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 1;
+    var content = {
+        pageTitle : "财务管理中心 - 账户通 - 提现",
+        headerTit : "财务管理中心 - 账户通 - 提现",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        },
+        status:2
+    };
+    res.render('drawCash/drawCashStatus',content);
+}

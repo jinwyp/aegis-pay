@@ -14,29 +14,25 @@
 
 <div id="financial-body">
 	<div class="financial-main draw-cash">
-		<div class="figure-wrap" id="drawCash">
+		<div class="figure-wrap" id="drawCashConfirm">
 			<div class="figure-caption">
-				<span>账户余额：<strong><i id="balancePrice">50,000,000.00</i>元</strong></span>
+				<span>确认信息</span>
 				<a href="#">提现记录</a>
 			</div>
 			<div class="figure-content">
 				<form action="" class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>	
-						<div class="col-sm-4 select-bank">
-							<ul>
-								<li class="active"><input type="radio" checked/>  中信银行：尾号***5689</li>
-							</ul>
+						<label class="col-sm-5 control-label">选择银行卡：</label>	
+						<div class="col-sm-4 txt-strong">
+							<p class="para-name">公司全称公司全称公司全称</p>
+							<p class="para-bank">中信银行:********7423</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-5 control-label">提现金额：</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control"  placeholder="请输入金额" id="drawCashTxt">
-							<p class="padding-top-8 password-info" id="errorTxt">每笔限额<span class="text-primary">5千万</span>元，提现<span class="text-primary">3</span>次</p>
-							<p class="padding-top-8 password-info text-danger display-none" id="drawCashErr">金额输入有误，请重新输入</p>
+						<div class="col-sm-4 padding-top-6 font-size-18">
+							30,000,000.00 元
 						</div>
-						<div class="float-left padding-top-8">元</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-5 control-label">到账时间：</label>
@@ -45,13 +41,28 @@
 							<p class="font-size-12 color-gray2">当日16：00以后提款且金额超过<span class="text-primary">5千万</span>可能出现系统延迟</p>
 						</div>
 					</div>
-					<div  class="form-group padding-top-8">
-						<div class="col-sm-4 col-sm-offset-5">
-							<input type="button" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">		
-							<span id="errorMsg" class="text-danger display-none"></span>
-						</div>
-					</div>
 				</form>
+				<div class="zhifu">
+					<form action="" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">易煤网支付密码</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="confirmTxt">
+								<p class="padding-top-8 password-info text-danger display-none" id="confirmErr">请输入6-20位数字或英文字母或下划线</p>
+							</div>
+							<div class="col-sm-2 forget-password padding-top-6">
+								<a href="#">忘记密码</a>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-5 col-sm-4">
+								<input type="button" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
+								<a href="#" class="margin-left-10">返回上一步</a>
+							</div>
+							<p id="errorMsg" class="col-sm-offset-5 col-sm-4 text-danger padding-top-8"></p>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 		<input type="hidden" name="cashToken"/>
