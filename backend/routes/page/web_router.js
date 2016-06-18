@@ -85,6 +85,7 @@ router.get('/account/notice', notice.notice);    //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);  // 账户通初始化
 
 router.get('/drawCash', drawCash.drawCash);  // 提现
+router.get('/drawCashConfirm', drawCash.drawCashConfirm);  // 提现
 
 
 

@@ -13,14 +13,17 @@ exports.drawCash = function(req,res,next){
     request(api_config.drawcash, function (err, resp) {
         if (err) return next(err);
         if (resp.success){
-
+            var replyData = JSON.parse(resp.body);
             //如果没有绑定取现银行卡
             if(!replyData.bankAccount||replyData.bankAccount=='') {
                 res.render();
                 return;
             }
 
-            var replyData = JSON.parse(resp.body);
+            //在session中的token
+            var cashToken = uuid.v1();
+            req.session.cashToken = cashToken;
+
             var content = {
                 balanceMoney:   replyData.balanceMoney,
                 bankAccount:    replyData.bankAccount,
@@ -31,10 +34,24 @@ exports.drawCash = function(req,res,next){
                     firstTab : firstTab,
                     secondTab : secondTab
                 },
-                cashToken: uuid.v1()                //生成一个随机的token
+                cashToken: cashToken
             };
             res.render('drawCash/drawCash',content);
         }
     });
 };
+ 
+ exports.drawCashConfirm = function (req, res, next) {
+     var firstTab  = req.query.firstTab || 2;
+     var secondTab = req.query.secondTab || 1;
+     var cashToken = req.body.cashToken;
+
+     if(cashToken != req.session.cashToken) {
+
+     }
+
+
+
+
+ };
 
