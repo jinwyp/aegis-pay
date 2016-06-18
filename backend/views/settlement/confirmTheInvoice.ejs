@@ -3,9 +3,7 @@
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/confirmTheInvoice.css">
 </head>
-
 <body>
-
 <%- include ../global/header/header %>
 <%- include ../global/header/subHeader %>
 
@@ -21,53 +19,53 @@
                 <h3 class="headLeft fl"><%= subTitle %></h3>
                 <!--<p class="headContent">居中标题</p>-->
                 <p class="headRight">
-                    <span class="doubtInlet">
+                    <span class="subTitle_hint">
                         <s class="require">*</s> 为必填项目
                     </span>
                 </p>
             </div>
-            <div class="plateMain">
-                <table class="table">
+            <div class="plateMain" id="addInvoiceMain">
+                <table class="table tab_nBor">
                     <tbody>
                     <tr>
-                        <td class="txt_r" width="358">公司名称：</td>
-                        <td width="340"><span class="s">和略电子商务有限公司</span></td>
+                        <th class="txt_r" width="358">公司名称：</th>
+                        <td width="340"><span class="lih_30">和略电子商务有限公司</span></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>公司地址：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司地址：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>公司电话：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司电话：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>公司传真：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司传真：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>纳税人识别号：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>纳税人识别号：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>开户银行：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>开户银行：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>开户银行账号：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>开户银行账号：</th>
                         <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="txt_r"><s class="require">*</s>发票类型：</td>
+                        <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
                         <td>
-                            <select name="reasonId" id="reasonId" class="ipt inp-sel">
+                            <select name="reasonId" id="reasonId" style="display: none">
                                 <option value="--">选择发票类型</option>
                                 <option value="555">增值税专用发票</option>
                                 <option value="666">企业</option>
@@ -78,35 +76,59 @@
                     </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
 
         <!-- 上传开票附件 板块-->
-        <div id="upInvoicePlate" class="plateBox">
-            <div class="plateHead .borSolid">
-                <!--<span class="prefix"></span>-->
-                <h3 class="headLeft fl"><s class="require">*</s> 上传开票信息</h3>
-                <p class="fl">( 请先下载样板，然后拍照上传 )</p>
-                <!--<p class="headContent">居中标题</p>-->
-                <!--<p class="headRight">-->
-                    <!--<span class="doubtInlet">-->
-                        <!--<s class="require">*</s> 为必填项目-->
-                    <!--</span>-->
-                <!--</p>-->
+        <div id="upInvoicePlate" class="plateBox mt20">
+            <div class="plateHead borSolid">
+                <h3 class="headLeft">
+                    <s class="require lih_16">*</s>上传开票信息
+                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="" class="a">下载样板</a>，然后拍照上传 )</p>
+                </h3>
             </div>
-            <div class="plateMain clearfix">
-                <div class="fl">
-                    <img src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt=""/>
-                    <p>客户开票信息表</p>
-                    <a href="" class="iBtn iBtn_down">
-                        <i class="iBtn_down_icn"></i>下载附件
-                    </a>
-
+            <div class="plateMain clearfix" id="upInvoiceMain">
+                <div class="sidebarDownFile fl">
+                    <img src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                    <h3>客户开票信息表</h3>
+                    <p class="txt_c">
+                        <br/>
+                        <a href="" class="iBtn iBtn_down">
+                            <i class="iBtn_down_icn"></i>下载附件
+                        </a>
+                    </p>
                 </div>
-                <div class="fr">
 
+                <div class="sidebarUpFile fl">
+                    <div class="upFileHandle">
 
+                        <!-- 块型附件-->
+                        <div class="fileBlockBox">
+                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
+                            <div class="fileBlockBox_body">
+                                <img class="fileViewImg" src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <div class="operateFileBox">
+                                    <a href="" class="fileLinkBtn">修改</a>
+                                    <a href="" class="fileLinkBtn">删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fileBlockBox">
+                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
+                            <div class="fileBlockBox_body blockUpload">
+                                <span class="btnUploadIcon"></span>
+                                <span class="labUploadStr">上传证件</span>
+                                <input class="iptBlockFile" data-url="/api/upload-file" type="file" name="files">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upFileHint">
+                        <h4 class="upFileHint_tit">注意事项</h4>
+                        <p class="upFileHint_con">1. 请左侧<span class="bright">按照样版</span>上传相关的扫描件/照片，确保清晰度，证件内容完整且<span class="bright">加盖贵公司公章</span> <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="bright">或财务专用章</span>。 <br/>
+                            2. 上传文件格式：<span class="bright">jpg、png</span>.文件大小：<span class="bright">小于400k</span> <br/>
+                        </p>
+                    </div>
                 </div>
             </div>
 
