@@ -26,9 +26,9 @@
                 </ul>
             </div>
             <div class="header-center border-right">
-                <div class="useraccount"><span class="label fs-14">易煤网资金账号：</span>8749723947239</div>
+                <div class="useraccount"><span class="label fs-14">易煤网资金账号：</span><%= finance.userFundAccount %></div>
                 <div class="center-operate">
-                    <span class="balance">余额：<span class="orange">0.00元</span></span>
+                    <span class="balance">余额：<span class="orange"><%= formatMoney(finance.balanceMoney,2) %>元</span></span>
                     <span class="look">查看</span>
                     <span class="btn-option mr-10">提现</span>
                     <span class="btn-option recharge mr-10">充值</span>
@@ -40,10 +40,17 @@
                     <span class="fs-24 ml-10 account-color">银行账户</span>
                     <span class="manage-color">管理</span>
                 </div>
+                <% if(finance.cashBankAccount==null){ %>
                 <div class="bank-add">
                     <span class="add-icon"></span>
                     <span class="label-add">添加银行账户</span>
                 </div>
+                <% }else{ %>
+                <div class="bank-info">
+                    <div class="label-content"><%= finance.cashBankName %></div>
+                    <div class="label-content"><%= finance.cashBankAccount %></div>
+                </div>
+                <% } %>
             </div>
         </div>
         <!-- 充值提示框-->
@@ -65,38 +72,27 @@
                 <li class="separator"></li>
                 <li><a>交易回执</a></li>
             </ul>
+            <a class="record-all">查看所有交易记录&gt;&gt;</a>
         </div>
         <div class="financial-center">
             <div class="record-div">
             <table class="record-table">
+                <% if(recordList.typeof != "undefined"){%>
+                <%for(var i=0;i<recordList.length;i++){%>
                 <tr>
-                    <td width="60">2016-05-12</td>
-                    <td width="150">测试文本</td>
-                    <td width="100">+2000.00</td>
-                    <td width="100">交易成功</td>
-                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                    <td width="60"><%= recordList[i].createTime %></td>
+                    <td width="150"><%= recordList[i].typeName %></td>
+                    <td width="100">+<%= recordList[i].totalMoney %></td>
+                    <% if(recordList[i].status=="WaitPayment"){ %>
+                    <td width="100" class="orange"><%= recordList[i].statusName %></td>
+                    <td width="80"><span class="iBtn iBtn_xs iBtn_no btn-pay">付款</span></td>
+                    <% }else{ %>
+                    <td width="100"><%= recordList[i].statusName %></td>
+                    <td width="80"><a>详情</a></td>
+                    <% } %>
                 </tr>
-                <tr>
-                    <td width="60">2016-05-12</td>
-                    <td width="150">测试文本</td>
-                    <td width="100">+2000.00</td>
-                    <td width="100">交易成功</td>
-                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
-                </tr>
-                <tr>
-                    <td width="60">2016-05-12</td>
-                    <td width="150">测试文本</td>
-                    <td width="100">+2000.00</td>
-                    <td width="100">交易成功</td>
-                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
-                </tr>
-                <tr>
-                    <td width="60">2016-05-12</td>
-                    <td width="150">测试文本</td>
-                    <td width="100">+2000.00</td>
-                    <td width="100">交易成功</td>
-                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
-                </tr>
+                <% } %>
+                <% } %>
             </table>
             </div>
         </div>

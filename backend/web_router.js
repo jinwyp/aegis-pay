@@ -72,6 +72,7 @@ router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
 router.get('/wealth/financialHome', financialHome.financialHome);    //财务管理中心 账户管理
+router.get('/wealth/financialTransaction', financialHome.financialTransaction);    //财务管理中心 账户管理
 router.get('/wealth/financialDetails', financialHome.financialDetails);    //财务管理中心 交易明细
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
 router.get('/account/notice', notice.notice);    //账户设置消息提醒

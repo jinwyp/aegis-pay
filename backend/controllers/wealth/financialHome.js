@@ -16,32 +16,27 @@ exports.financialHome = function (req, res, next) {
     request(api_config.financialCenterHome, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
-        if (data&&data.success) {
-            var source  = JSON.parse(data.body);
-            var content = {
-                pageTitle : "财务管理中心",
-                headerTit : "财务管理中心",
-                tabObj : {
-                    firstTab : firstTab,
-                    secondTab : secondTab
-                },
-                finance:source.data.finance,
-                recordList:source.data.recordList
-            };
-            //渲染页面
-            res.render('wealth/financialCenterHome',content);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "财务管理中心",
+                    headerTit: "财务管理中心",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    finance: source.data.finance,
+                    recordList: source.data.recordList
+                };
+                //渲染页面
+                res.render('wealth/financialCenterHome', content);
+            }
         }
 
     });
 };
-
-
-
-
-
-
-
-
 
 exports.financialDetails = function (req, res, next) {
 
