@@ -75,7 +75,7 @@ var cacheGet = function(userInfo, validTime){
                     return resolve(result);
                 }
             }
-            if(hourTime>=300){
+            if(hourTime>=3){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
@@ -204,8 +204,5 @@ exports.verifyMiddleware = function () {
                 }).catch(next)
             }
         });
-
-
-
     }
 };

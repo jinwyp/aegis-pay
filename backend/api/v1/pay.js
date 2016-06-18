@@ -1,9 +1,8 @@
 var request    = require('request');
 var _ = require('lodash');
-
+var cache = require('../../libs/cache');
 var checker    = require('../../libs/datachecker');
 var api_config = require('./api_config');
-
 
 exports.submit = function (req, res, next) {
 
