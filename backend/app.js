@@ -71,22 +71,11 @@ app.use('/files',express.static(fileStatic));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
-    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/'
-    var options = {
-        root: __dirname + '/views/' + path,
-        dotfiles: 'deny',
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true
-        }
-    };
-
+    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/';
     var fileName = req.params.name;
-    res.sendFile(fileName, options, function (err) {
-        if (err) {
-            next(err);
-        }
-    });
+    var filePath = __dirname + '/views/' + path + fileName;
+
+    res.download(filePath, fileName);
 });
 
 
