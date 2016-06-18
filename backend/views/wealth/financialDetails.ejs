@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
 </head>
 
 <body>
@@ -12,58 +12,115 @@
 <div id="financial-body">
     <div class="financial-main">
 
-        <div class="row financial-details">
+        <div class="row financial-details ms-controller" ms-controller="financialDetailsController">
             <form class="form-inline">
-                <div class="form-row">
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">订单分类:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                <div class="form-row" >
+                    <div class="form-group form-search indexHigh">
+                        <label class="col-sm-4 control-label" for="orderCategory">摘要:</label>
+                        <select name="orderCategory" id="orderCategory" class="">
+                            <option value="0">全部</option>
+                            <% formSelectOrderCategory.forEach(function(order){ %>
+                            <option value="<%= order.value %>"><%= order.text %></option>
+                            <% }) %>
                         </select>
                     </div>
 
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易时间:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
-                        </select>
+                    <div class="form-group form-search form-search-big">
+                        <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd"/>
+                        </div>
+                        <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row ">
                     <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                        <label class="col-sm-4 control-label" for="orderSearchType">交易状态:</label>
+                        <select name="orderSearchType" id="orderSearchType" class="">
+                            <option value="0">全部</option>
+                            <% formSelectOrderSearchType.forEach(function(order){ %>
+                            <option value="<%= order.value %>"><%= order.text %></option>
+                            <% }) %>
                         </select>
                     </div>
-
-                    <div class="form-group form-search">
-                        <label class="sr-only" for="exampleInputEmail3">交易编号</label>
-                        <input type="text" class="form-control inputselect inputbox" id="exampleInputName2" placeholder="请输入编号号码">
+                    <div class="form-group form-search form-search-big">
+                        <label class="sr-only" for="orderSearchText">交易状态</label>
+                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易状态" ms-duplex="@orderSearchText">
                     </div>
 
-                    <button type="submit" class="iBtn iBtn_sm iBtn_yes">查询</button>
+                    <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
                 </div>
-
-
 
             </form>
+
+            <div class="row table-box">
+                <div class="list-title">
+                    <span class="record-title">易煤网资金账户号:</span>
+                    <span class="record-no"><%= accoutNumber %></span>
+
+                    <span class="record-download iBtn iBtn_down iBtn_xs">
+                        <i class="iBtn_down_icn"></i>下载收支明细
+                    </span>
+                </div>
+                <div class="">
+                    <div class="record-div">
+                        <table class="table financeDetailTable">
+                            <tr>
+                                <th >交易日期</th>
+                                <th >交易流水号</th>
+                                <th >金额</th>
+                                <th >账户余额</th>
+                                <th >交易类型</th>
+                                <th >对方账号</th>
+                                <th >对方账号名称</th>
+                                <th >对方开户行</th>
+                                <th >操作</th>
+                            </tr>
+
+
+                            <tr ms-for='(key, order) in @orderList'>
+                                <td >{{order.date}}</td>
+                                <td >{{order.orderNo}}</td>
+                                <td >{{order.amoumt}}</td>
+                                <td >{{order.account}}</td>
+                                <td >{{order.tradeType}}</td>
+                                <td >{{order.toPersonAccount}}</td>
+                                <td >{{order.toPersonAccountName}}</td>
+                                <td >{{order.toPersonBankName}}</td>
+                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
+                            </tr>
+
+                        </table>
+
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
 
 
@@ -74,8 +131,8 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/dist/scripts/header/financialHeader.js"></script>
-<script src="/dist/scripts/wealth/financialHome.js"></script>
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/wealth/financialHome.js"></script>
 
 </body>
 </html>

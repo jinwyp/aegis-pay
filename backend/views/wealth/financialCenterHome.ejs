@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <div class="financial-header">
             <div class="header-left border-right">
                 <div class="username">姓名全称</div>
-                <div class="companyname">和略电子商务(上海)有限公司</div>
+                <div class="companyname"><%= finance.companyName %></div>
                 <div class="occupation"><span class="label">职务：</span>会计</div>
                 <ul>
                     <li><span class="label">消息：</span><span>0</span>0</li>
@@ -70,32 +70,32 @@
             <div class="record-div">
             <table class="record-table">
                 <tr>
-                    <td width="100">2016-05-12</td>
+                    <td width="60">2016-05-12</td>
                     <td width="150">测试文本</td>
                     <td width="100">+2000.00</td>
                     <td width="100">交易成功</td>
-                    <td width="100"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
                 </tr>
                 <tr>
-                    <td width="100">2016-05-12</td>
+                    <td width="60">2016-05-12</td>
                     <td width="150">测试文本</td>
                     <td width="100">+2000.00</td>
                     <td width="100">交易成功</td>
-                    <td width="100"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
                 </tr>
                 <tr>
-                    <td width="100">2016-05-12</td>
+                    <td width="60">2016-05-12</td>
                     <td width="150">测试文本</td>
                     <td width="100">+2000.00</td>
                     <td width="100">交易成功</td>
-                    <td width="100"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
                 </tr>
                 <tr>
-                    <td width="100">2016-05-12</td>
+                    <td width="60">2016-05-12</td>
                     <td width="150">测试文本</td>
                     <td width="100">+2000.00</td>
                     <td width="100">交易成功</td>
-                    <td width="100"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
+                    <td width="80"><span class="iBtn iBtn_sm iBtn_no">付款</span></td>
                 </tr>
             </table>
             </div>
@@ -107,8 +107,8 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/dist/scripts/header/financialHeader.js"></script>
-<script src="/dist/scripts/wealth/financialHome.js"></script>
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/wealth/financialHome.js"></script>
 
 </body>
 </html>

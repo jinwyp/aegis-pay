@@ -1,0 +1,78 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="/dist/styles/billCenter.css">
+</head>
+
+<body>
+<%- include ../global/modal/modal  %>
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+<div id="settlementManagement">
+    <div class="settlementManagement">
+        <div class="wrap clearfix">
+            <% include ../account/sideBar  %>
+            <div class="content">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>交易流水号</th>
+                        <th>金额</th>
+                        <th>结算时间</th>
+                        <th>对方账号名称</th>
+                        <th>开票状态</th>
+                        <th class="last">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% if(settleInfo.length>0){ %>
+                        <% for(i=0;i<settleInfo.length;i++){ %>
+                        <tr>
+                            <td><%= settleInfo[i].changeNumber %></td>
+                            <td><%= settleInfo[i].money %></td>
+                            <td><%= settleInfo[i].settleDate %></td>
+                            <td><%= settleInfo[i].account %></td>
+                            <% if(settleInfo[i].settleStatus == 1){ %>
+                                <td>已开票</td>
+                                <td>
+                                    <div class="btn"></div>
+                                    <a href="">查看详情</a>
+                                </td>
+                            <%}else{%>
+                                <td>待开票</td>
+                                <td>
+                                    <div class="btn" id="settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
+                                    <a href="">查看详情</a>
+                                </td>
+                            <%}%>
+
+                        </tr>
+                        <%}%>
+                    <%}else{%>
+                        <tr>
+                            <td colspan="6" class="noInfo">
+                                <div>
+                                    无开票信息,请先&nbsp;&nbsp;&nbsp; <a href="#">新增开票信息</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <%}%>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+
+<script src="/dist/scripts/settlement/billCenter.js"></script>
+</body>
+</html>

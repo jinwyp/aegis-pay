@@ -1,0 +1,362 @@
+@import './global.scss';
+@import './components/_modal.scss';
+@import './Plugins/fancySelect.scss';
+@import './components/_datePicker.scss';
+
+
+
+#financial-body{
+  background-color: $color_body_bg;
+  padding: $main_margintop 0 $main_marginbottom 0;
+  .financial-main{
+    width: $main_width;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    .financial-header > div{
+      float: left;
+    }
+    .financial-header{
+      border: 1px solid #e4e4e4;
+      height: 160px;
+      background-color: $color_main_bg;
+      color: $color_font;
+      .label{  color: $color_tip_font;padding: 0;  }
+      .fs-14{  font-size: 14px;  }
+      .border-right{  border-right: 1px solid #e4e4e4;  }
+      .header-left{
+        width: 294px;
+        height: inherit;
+        padding: 20px 20px;
+        font-size: 12px;
+        .username{  font-size: 18px; }
+        .companyname{  margin-top: 10px; }
+        .occupation{  margin-top: 10px; }
+        ul{
+          margin-top: 25px;
+          li{  float:left;  }
+          li.separator{
+            height: 14px;
+            margin: 2px 14px;
+            border-left: 1px solid #e4e4e4;
+          }
+        }
+      }
+      .mr-40{  margin-right: 40px;  }
+      .mr-10{  margin-right: 10px;  }
+      .ml-10{  margin-left: 10px;  }
+      .ml-20{  margin-left: 20px;  }
+      .header-center{
+        width: 410px;
+        height: inherit;
+        vertical-align: top;
+        padding: 20px 20px;
+        font-size: 14px;
+        .useraccount{
+          border-bottom: 1px dotted #e4e4e4;
+          padding: 5px 0 19px 0;
+        }
+        .center-operate{
+          margin-top: 46px;
+          .balance{
+            font-size: 20px;
+            vertical-align: middle;
+            float: left;
+            .orange{ color: $money_orange; }
+          }
+          .btn-option{
+            cursor: pointer;
+            padding: 3px 12px;
+            color: $color_text_white;
+            background-color: $btn_orange_color;
+            border-radius: 2px;
+            float: right;
+            margin-top: 2px;
+            &:hover{
+              background-color: $btn_orange_color_hover;
+            }
+          }
+          .look{
+            color: $color_manage_text;float: right;margin-top: 4px;cursor: pointer;
+          }
+        }
+      }
+      .header-right{
+        width: 294px;
+        height: inherit;
+        vertical-align: top;
+        .fs-24{  font-size: 24px; }
+        .bank-card{
+          line-height: 60px;
+          background-color: #eff9ff;
+          .bank-icon{
+            display: inline-block;
+            width: 24px;
+            height: 18px;
+            background: url("#{$assetPath}/images/wealth/bank_card_icon.png");
+          }
+          .account-color{  color: $color_a_hover;  }
+          .manage-color{  color: $color_manage_text;float: right;  margin-right: 20px;  }
+        }
+        .bank-add {
+          text-align: center;
+          margin-top: 34px;
+          .add-icon {
+            background: url("#{$assetPath}/images/wealth/bank_add.png");
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            vertical-align: middle;
+          }
+          .label-add {
+            font-size: 18px;
+            color: $color_manage_text;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .list-title{
+      margin-top: 20px;
+      margin-bottom: 6px;
+      .record-title{  font-size: 20px;  color: $color_font; }
+      .record-ul {
+        display: inline-block;
+        width: 300px;
+        margin-left: 40px;
+        font-size: 14px;
+        vertical-align: middle;
+        li {  float: left;  cursor: pointer;  }
+        li a{
+          color: $color_manage_text;
+          text-decoration: none;
+          &:hover{
+            color: $color_a_hover;
+          }
+        }
+        li.separator{
+          height: 14px;
+          margin: 2px 14px;
+          border-left: 1px solid #a5a5a5;
+        }
+      }
+    }
+    .financial-center{
+      z-index: 1;
+      background-color: $color_text_white;
+      //height: 500px;
+      margin-top: 0px;
+      border-top: 2px solid $color_a_hover;
+      .record-div{
+        padding-bottom: 20px;
+        .record-table{
+          width: 960px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-bottom: 20px;
+          tr{
+            line-height: 60px;
+            border-bottom: 1px dotted $color_border;
+            &:hover{
+              background-color: $tr_hover_color;
+            }
+            td{
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    .bubble-hidden{ display: none; }
+    .bubble{
+      width: 270px;
+      z-index: 99;
+      position: absolute;
+      top: 154px;
+      left: 525px;
+      .bubble-body::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -8px;
+        left: 24px;
+        z-index: 8;
+        overflow: hidden;
+        border-style: solid;
+        border-width: 0 8px 7px;
+        border-color: transparent transparent #c5dde8;
+        -webkit-transition: all .4s ease 0s;
+        -moz-transition: all .4s ease 0s;
+        -o-transition: all .4s ease 0s;
+        transition: all .4s ease 0s;
+      }
+      .bubble-body::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -7px;
+        left: 24px;
+        z-index: 9;
+        overflow: hidden;
+        border-style: solid;
+        border-width: 0 8px 7px;
+        border-color: transparent transparent #f6fcfe;
+        -webkit-transition: all .4s ease 0s;
+        -moz-transition: all .4s ease 0s;
+        -o-transition: all .4s ease 0s;
+        transition: all .4s ease 0s;
+      }
+      .bubble-body {
+        border: 1px solid #c5dde8;
+        background-color: #f6fcfe;
+        color: $color_title_text;
+        font-size: 12px;
+        padding: 20px;
+        position: relative;
+        .close {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+        .color-hint {  color: $color_manage_text;  }
+        .bubble-title {  font-size: 14px;  }
+        .mt-12 {  margin-top: 12px;  }
+      }
+    }
+
+
+
+
+
+
+
+
+
+    .financial-details{
+      margin: 10px 0px;
+      padding: 8px 0px;
+
+      background-color: #fff;
+
+      .indexHigh{
+        ul{
+          z-index:99
+        }
+      }
+
+      .form-row{
+        margin: 10px 5px;
+      }
+
+      .form-search {
+        width: 255px;
+
+        label {
+          font-size: $size_font_normal;
+          color: $color_text_gray;
+          padding-top:7px;
+          padding-right: 2px;
+          margin-right: -10px
+        }
+
+        .label-timefrom{
+          width:70px;
+        }
+        .label-timeto{
+          width:30px;
+          margin-left: -15px;
+        }
+
+        .input-text {
+          font-size: $size_font_normal;
+          color: $color_text_select_gray;
+          width: 170px;
+          height:28px;
+          border-radius:0px;
+          border: 0px;
+          outline: 1px solid $color_border_input_gray;
+          box-shadow: none;
+          //-webkit-appearance: none;
+        }
+
+        .input-date{
+          width: 110px;
+          //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          @include sprite($icon-calendar-gray);
+        }
+
+        .input-box {
+          width: 364px;
+        }
+      }
+
+      .form-search-big{
+        width: 400px;
+      }
+      .table-box{
+        padding: 5px 35px;
+      }
+      .record-title{
+        font-size: $size_font_middle;
+        color: $color_text_select_gray;
+      }
+      .record-no{
+        font-size: $size_font_pageTitle;
+      }
+      .record-download{
+        margin-left: 610px;
+        padding: 2px 10px;
+
+        .iBtn_down_icn{
+          margin-top :1px;
+          margin-left :0px;
+          padding: 2px 7px;
+        }
+      }
+
+      .financeDetailTable{
+        width: 970px;
+        th {
+          color: $color_text_table_th_gray;
+          background-color: $color_bg_table_th_gray;
+          text-align: center;
+          border-top:0px
+        }
+
+        tr {
+          border-bottom: 1px dotted $color_border;
+
+          &:hover{
+            background-color: $tr_hover_color;
+          }
+        }
+        td{
+          padding:20px 1px;
+          text-align: center;
+          font-size: $size_font_middle;
+          color: #323333;
+          vertical-align: middle;
+          border-top: 0px dotted $color_border;
+        }
+
+        .table_btn {
+          padding: 1px 10px;
+          height: 25px;
+          min-width: 60px;
+        }
+      }
+
+
+    }
+
+
+
+
+  }
+}
+
+

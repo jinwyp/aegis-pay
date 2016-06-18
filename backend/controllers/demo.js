@@ -18,6 +18,7 @@ exports.demo = function (req, res, next) {
 
 	// 异步调取Java数据
 	request(apiHost + 'listData', function (err, data) {
+
 		if (err) return next (err);
 
 		if (data && data.body) {

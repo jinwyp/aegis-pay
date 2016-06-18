@@ -32,6 +32,31 @@ exports.forgetSubmit= function (req, res, next) {
         if (err) return next(err);
         var result = data.body;
         if (result) {
+            if(result.success){
+                cache.set('payPassword:'+req.session.user.id+':forgetset', 'true', 180);
+            }
+            return res.json(result);
+        }
+    })
+};
+
+// valid phone
+exports.modifyValid = function (req, res, next) {
+    cache.set('payPassword:'+req.session.user.id+':modifyvalid', 'true', 180);
+    return res.json({'success':true});
+};
+
+exports.modifySubmit= function (req, res, next) {
+    var body = req.body;
+    var params = _.assign({}, { userId: req.session.user.id, }, body);
+
+    request.post(api_config.paypasswordModifySubmit, {body:params, json:true}, function (err, data) {
+        if (err) return next(err);
+        var result = data.body;
+        if (result) {
+            if(result.success){
+                cache.set('payPassword:'+req.session.user.id+':modifyset', 'true', 180);
+            }
             return res.json(result);
         }
     })

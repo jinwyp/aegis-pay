@@ -39,7 +39,9 @@ var config = {
     // 上传文件的临时目录
 	files_root:  '/app',
     upload_tmp: '/files/upload_tmp_pay',
-    upload:     '/files/upload'
+    upload:     '/files/upload',
+    member_address: 'http://10.100.20.3:3000',
+    rest_address: 'http://10.100.30.1:8888'
 };
 
 
