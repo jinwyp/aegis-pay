@@ -37,10 +37,10 @@
                         <th>邮箱地址：</th>
                         <% if(accountInfo.email ==''){%>
                             <td class="red">您的邮箱尚未绑定</td>
-                            <td><a href="#" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
+                            <td><a href="<%=memberUrl%>/account/bindEmail" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
                         <%}else{%>
                             <td><%= accountInfo.email %></td>
-                            <td><a href="#" class="iBtn iBtn_xs iBtn_no">修改</a></td>
+                            <td><a href="<%=memberUrl%>/account/editEmail" class="iBtn iBtn_xs iBtn_no">修改</a></td>
                         <%}%>
                     </tr>
                     <tr>
