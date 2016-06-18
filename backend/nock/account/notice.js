@@ -5,12 +5,25 @@ var noticePersist = nock(API.host).log(console.log).persist();
 
 noticePersist.get('/account/notice').reply(200,
     {
-        "noticeInfo":
+        "noticeInfo":[
             {
-            "operation"     : "退款到附属账户",
-            "account"       : "99009",
-            "money"        : 2345655645
-        }
+                "operation"     : "退款到附属账户11",
+                "account"       : "99009",
+                "money"        : 2345645
+            },
+            {
+                "operation"     : "充值到附属账户22",
+                "account"       : "92329",
+                "money"        : 125215
+            },
+            {
+                "operation"     : "充值到附属账户33",
+                "account"       : "12343125",
+                "money"        : 1235235
+            }
+        ],
+        
+
 
 
     })

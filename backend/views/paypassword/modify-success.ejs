@@ -1,0 +1,28 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/paypassword.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper forgetSet">
+    <% var statusObj = {step:3, total:3, stepList: [{stepName:'校验手机号码', stepDate:''}, {stepName:'修改支付密码', stepDate:''}, {stepName:'修改成功', stepDate:''}]} %>
+    <%- include ./statusBar %>
+    <div class="contentWrapper">
+        <h5><i class='icon_ok'></i>支付密码修改成功</h5>
+        <p>界面将在5秒后自动关闭, 并前往 <a href=''>安全设置></a></p>
+    </div>
+    <%- include ./tip %>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
+
+</body>
+</html>

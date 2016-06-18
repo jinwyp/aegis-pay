@@ -83,13 +83,9 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
+    financialCenterHome : host + 'account/finance/center',
 
-    // 获取用户资金账号
-    fetchFundAccount: host + 'account/fund/payPwd',
-    // 获取支付手机号
-    fetchPayPhone: host + 'account/fund/payPwd/forget/first',
-    // 忘记密码 － 验证身份 － 下一步
-    paypasswordForgetValid: host + 'paypassword/forget/valid',
+    
     /**
      * 账户设置
      * method: get
@@ -97,10 +93,25 @@ var api_config = {
      */
     accountSetting : host + 'account/accountSetting',
     notice : host + 'account/notice',
+
+    // 获取用户资金账号
+    fetchFundAccount: host + 'account/fund/payPwd',
+    // 获取支付手机号
+    fetchPayPhone: host + 'account/fund/payPwd/forget/first',
+    // 忘记密码 - 验证身份 - 下一步
     paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
     // 忘记密码 － 重置密码 - 提交
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
 
+    //开票中心
+    billCenter : host + 'settlement/billCenter',
+    billSetting : host + 'settlement/billSetting',
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
+    // 记得密码 - 修改密码 - 提交
+    paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
+
+    financialDetails : host + 'financial/order/details',
+    
     bindingBankAccount : host + 'wealth/bindingBankAccount',
     bindingSuccess : host + 'wealth/bindingSuccess'
 };

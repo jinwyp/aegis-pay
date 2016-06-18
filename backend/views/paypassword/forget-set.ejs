@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/paypassword.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/paypassword.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         </li>
         <li>
           <label>设置新支付密码：</label><input type="password" placeholder='设置新支付密码' value="">
-          <p class='tip-msg'><i class='icon_tip'></i>6-16位字符（字母、数字、符号），区分大小写</p>
+          <p class='tip-msg'><i class='icon_blue_tip'></i>6-16位字符（字母、数字、符号），区分大小写</p>
           <p class='tip-error'></p>
         </li>
         <li>
@@ -37,7 +37,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/paypassword/forget.js"></script>
+<script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
 
 </body>
 </html>

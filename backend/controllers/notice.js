@@ -18,35 +18,77 @@ exports.notice = function (req, res, next) {
     var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
 
     //  数据模拟
-    var statusObj = {
-        step     : 2,
-        total    : 3,
-        stepList : [
-            {
-                stepName : '退款发往银行',
-                stepDate : '2016-05-11 01:02:36'
-            },
-            {
-                stepName : '银行受理',
-                stepDate : '2016-05-12 01:02:36'
-            },
-            {
-                stepName : '银行已入账',
-                stepDate : '2016-05-13 01:02:36'
-            }
-        ]
-    };
+    var statusArr = [
+        {
+            step     : 1,
+            total    : 3,
+            stepList : [
+                {
+                    stepName : '退款发往银行',
+                    stepDate : '2016-05-11 01:02:36'
+                },
+                {
+                    stepName : '银行受理',
+                    stepDate : '2016-05-12 01:02:36'
+                },
+                {
+                    stepName : '银行已入账',
+                    stepDate : '2016-05-13 01:02:36'
+                }
+            ]
+        },
+        {
+            step     : 2,
+            total    : 3,
+            stepList : [
+                {
+                    stepName : '退款发往银行',
+                    stepDate : '2016-05-11 01:02:36'
+                },
+                {
+                    stepName : '银行受理',
+                    stepDate : '2016-05-12 01:02:36'
+                },
+                {
+                    stepName : '银行已入账',
+                    stepDate : '2016-05-13 01:02:36'
+                }
+            ]
+        },
+        {
+            step     : 3,
+            total    : 3,
+            stepList : [
+                {
+                    stepName : '退款发往银行',
+                    stepDate : '2016-05-11 01:02:36'
+                },
+                {
+                    stepName : '银行受理',
+                    stepDate : '2016-05-12 01:02:36'
+                },
+                {
+                    stepName : '银行已入账',
+                    stepDate : '2016-05-13 01:02:36'
+                }
+            ]
+        }
+
+    ];
+    
     // sideBar
     var accountSideBar = {
         current : "2",
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : 'accountSetting'
+                listLink : 'accountSetting',
+                secList:''
             },
             {
                 listName : '消息提醒',
-                listLink : 'notice'
+                listLink : 'notice',
+                secList:''
             }
         ]
     };
@@ -58,7 +100,7 @@ exports.notice = function (req, res, next) {
                 headerTit      : "消息提醒",
                 pageTitle      : "消息提醒",
                 accountSideBar : accountSideBar,
-                statusObj      : statusObj,
+                statusArr      : statusArr,
                 tabObj         : {
                     firstTab   : firstTab,
                     secondTab  : secondTab

@@ -1,0 +1,115 @@
+@import './global.scss';
+@import './layout/_statusBar.scss';
+@import './Plugins/message.scss';
+@import './Plugins/reasonsReturnPlate.scss';
+@import './Plugins/settlementInfoPlate.scss';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#listBox {
+    width: 300px;
+    height: 100px;
+    border: 1px solid #0000cc;
+    border-spacing: 0;
+    background-color: #DDDDDD;
+
+    th, td {
+        padding: 3px;
+        border: 1px dashed #009900;
+        border-spacing: 0;
+    }
+}
+
+.demoList {
+    margin: 20px 10px;
+    width: 300px;
+    float: left;
+
+}
+
+/* ---------------------------------------------------------------------------------------------------------------- */
+.icnList {
+    height: 90px;
+    padding: 15px;
+    background: #ffffff;
+
+    .icnBox {
+        display: inline;
+        float: left;
+        padding: 8px;
+        margin-right: 5px;
+        text-align: center;
+        border: 1px dashed #CCCCCC;
+    }
+    .describe {
+        display: block;
+        padding-top: 4px;
+        font-size: 12px;
+        height: 18px;
+        line-height: 18px;
+        color: #333333;
+    }
+}
+
+
+
+/* 按钮组 ----------------------------------------------- */
+.btnBoxList {
+    width: 1400px;
+    th {
+        background: #f5f5f5;
+        font-family: $ffSt;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+    }
+    td,th {
+        padding: 6px 8px;
+        border: 1px dashed #CCCCCC;
+    }
+}
+
+/* 操作提示框 ------------- */
+.option_info_icn {
+    display: block;
+    margin: 25px auto;
+}
+.option_info {
+    font-size: 18px;
+    text-align: center;
+    color: #666666;
+    line-height: 26px;
+}
+.option_warn {
+    padding-top: 8px;
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+    line-height: 22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+@import '../helpers/_variables.scss';
+@import url('#{$assetPath}/components/flexslider/flexslider.css');
+@import url('#{$assetPath}/components/lightbox2/dist/css/lightbox.min.css');
+
+.compactReadme{
+  border: 1px dashed $color_readme_border;
+  background:$color_readme_bg;
+  color: $color_readme_font; padding:10px; margin-top:20px;
+  dt, dd{
+    line-height: 24px;
+  }
+}
+.compactContainer{
+  margin-top:38px;
+  .blockTitle{
+    .btn_download{
+      float:right;
+      &:hover{
+        text-decoration: none; color:#333;
+      }
+    }
+  }
+  .carousel{
+    position:relative;
+    height:246px; overflow:hidden; border:none; margin:40px 0 20px;
+    .custom-controls-container{ display:none; }
+    .flex-viewport{ width:820px; margin-left:65px; height:246px;}
+    .custom-navigation{
+      a{
+        position:absolute; display:inline-block; *display: inline; zoom:1; top:56px;
+        width:36px; height:100px; background: #f5f5f5 url('#{$assetPath}/images/sprite.png') no-repeat;
+        &:focus{ outline:none; }
+        &:hover{ background-color:#01b7ec; }
+        &.flex-disabled, &.flex-disabled:hover{ background-color:#f5f5f5; }
+        &.flex-prev{
+          left:0; background-position:-219px -617px;
+          &.flex-disabled{
+            background-position:-64px -617px;
+          }
+        }
+        &.flex-next{
+          right:0; background-position:-144px -617px;
+          &.flex-disabled{
+            background-position:0 -617px;
+          }
+        }
+      }
+    }
+    .slides{
+      .item{
+        position:relative; float:left; width:148px; height:210px; border:1px solid #ccc; text-align:center;
+        margin-right:20px; cursor:pointer;
+        a{
+          display: block; height:210px; overflow:hidden;
+          .scaleView{
+            display:none; margin:0;
+            position:absolute; z-index:2; bottom:0; right:0; height:22px; line-height: 22px; color:#fff;
+            padding:0 10px 0 2px;
+            .pngbg{
+              position:absolute;; top:0; left:0; width:100%; height:22px; background: #000; opacity:0.2;
+              filter:alpha(opacity=20); z-index:-1;
+            }
+            .icon_glass{ vertical-align: top;}
+          }
+          &:hover{
+            .scaleView{ display:block; }
+          }
+        }
+        img{ display:inline-block; *display:inline; zoom:1;  }
+        .currentIndex{ line-height:34px; font-size:16px; }
+      }
+    }
+  }
+  .generating{
+    height:295px; line-height: 295px; text-align: center;
+  }
+}
+
+#cancelSignModel{
+  .icon_confirm{ margin:0 auto;}
+  h4{
+    font-size:18px; color:#666;
+  }
+  .modal-body{
+    text-align:center; padding:15px 40px;
+    p{ color:#999; margin:0; }
+  }
+}

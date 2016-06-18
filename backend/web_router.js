@@ -94,8 +94,10 @@ router.get('/pay/success', payCtl.success);
 
 // paypassword
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);
-router.get('/ucenter/paypassword/fg/vl', paypasswordCtl.validCard);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhone);
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess);
+router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);
 
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);

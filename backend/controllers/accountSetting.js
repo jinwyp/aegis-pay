@@ -22,11 +22,13 @@ exports.accountSetting = function (req, res, next) {
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : 'accountSetting'
+                listLink : 'accountSetting',
+                secList:''
             },
             {
                 listName : '消息提醒',
-                listLink : 'notice'
+                listLink : 'notice',
+                secList:''
             }
         ]
     };

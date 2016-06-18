@@ -11,7 +11,7 @@ backend 目录下：
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
-- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install ccap
+- !!注意: ccap 模块因为部署的问题在package.json中被移除 需要手动安装 npm install -g ccap
 
 ## 安装依赖 前端
 app 目录下：
@@ -25,6 +25,10 @@ app 目录下：
   @include sprite($icon-emailxxx); //图片文件名
 }
 ```
+
+- css 中路径使用配置 例如 background: url("#{$assetPath}/images/gradualLine.png") repeat-x center bottom; [interpolation docs](http://stackoverflow.com/questions/8608498/have-a-variable-in-images-path-in-sass)
+- html 模版中路径使用配置  例如 <script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
+
 
 ## 启动
 
