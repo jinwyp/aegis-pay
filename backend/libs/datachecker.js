@@ -73,6 +73,8 @@ exports.captchaNotMatch = function(next){
 exports.smsText = function(smsText, next){
     if (!smsText || typeof smsText !== 'string' || !validator.isLength(smsText, { min: 6, max: 6})) {
         return throw409(code.sms.textWrong.code, code.sms.textWrong.message, code.sms.textWrong.field, next);
+    }else{
+        isFunction(next) && next();
     }
 };
 

@@ -1,0 +1,46 @@
+@import './layout/_statusBar.scss';
+@import './Plugins/fancySelect.scss';
+@import './Plugins/ccapimg-modal.scss';
+#bindingSuccess{
+  background: #f6f6f6;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  .bindingSuccessWrap{
+    width:1200px;
+    margin: 0 auto;
+    padding:20px 30px;
+    background: #fff;
+
+    .bindingSuccessInfoWrap{background:#f3fcff;padding-left:160px;padding-top:48px;padding-bottom: 48px;}
+    .bindingSuccessInfoWrap .bindingMainCon{font-size:18px;color:#333;margin-bottom: 20px;position: relative}
+    .bindingSuccessInfoWrap .successIcon{display: inline-block;width: 60px;height: 60px;background: url("/dist/images/sprite_ico.png") no-repeat -383px -291px;position: absolute;left:-88px;top:12px;}
+    .bindingSuccessInfoWrap .bindingMainCon span.bindingSuc{color:#1aaa6b;font-size: 24px;}
+    .bindingSuccessInfoWrap span.colorOrange{color:#ff6e27;}
+    .bindingSuccessInfoWrap .bindingsubCon{margin-bottom: 10px;}
+    .bindingSuccessInfoWrap p.bindingsubCon{color:#999;font-size: 12px;}
+    .bindingSuccessInfoWrap p{margin-bottom:10px;color:#999;}
+    .bindingSuccessInfoWrap a{color:#037191;}
+    .bindingSuccessInfoWrap a.cancel{background:url("/dist/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
+    .bindingSuccessInfoWrap a.cancel:hover{text-decoration: none;opacity: .8;}
+    .bindingSuccessInfoWrap span.logoBlue{color:#00b7ec;vertical-align: middle;}
+
+    //绑定确认样式
+    .bindingConfirmTit{font-size: 24px;}
+    .bankConfirmWrap{margin-top: 30px;}
+    .bankConfirmWrap .bankConfirmTit{font-size:18px;color:#333;margin-bottom: 10px;}
+    .bankConfirmWrap .bankConfirmTit span{border-left:2px solid #00b6ef;padding-left:10px}
+    .bankConfirmWrap .bankConfirmCon{border:1px solid #e8e8e8;padding-bottom: 45px;}
+    .bankConfirmWrap .bankConfirmCon ul{padding-left:290px;font-size: 14px;color:#333;padding-top:60px;padding-bottom: 30px;}
+    .bankConfirmWrap .bankConfirmCon ul li{margin-bottom: 18px;}
+    .bankConfirmWrap .bankConfirmCon ul li label{font-weight:normal;min-width: 115px;text-align: left;color:#999;}
+    .bankConfirmWrap .bankConfirmCon ul li input{width:300px;height:40px;padding-left:5px;border:1px solid #ccc;}
+    .bankConfirmWrap .bankConfirmCon ul li input:focus{border:1px solid #00b6ef;}
+    .bankConfirmWrap .bankConfirmCon ul li p{font-size: 12px;color: #666;padding-left:113px;padding-top:8px;}
+    .bankConfirmWrap .bankConfirmCon ul li p i{display: inline-block;width: 15px;height: 15px;background: url("/dist/images/sprite_ico.png") no-repeat -8px -216px;  vertical-align: top;  margin-right: 2px;}
+    .bankConfirmWrap .bankConfirmCon ul li p span{color: #01b7ec;}
+    .bankConfirmWrap .bankConfirmCon p.errorMsg{color:#ff0000;font-size: 12px;padding-left:404px;padding-bottom: 5px;}
+    .bankConfirmWrap .bindingConfirmSubmit{background: #01b7ec;margin-left:403px;display: inline-block;width:180px;height:40px;color:#fff;line-height: 40px;font-size: 16px;text-align: center;border-radius:2px;}
+    .bankConfirmWrap .bindingConfirmSubmit:hover{text-decoration: none;opacity:.8;}
+  }
+}

@@ -1,6 +1,6 @@
 @import './layout/_statusBar.scss';
 @import './Plugins/fancySelect.scss';
-
+@import './Plugins/ccapimg-modal.scss';
 #bindingBankAccount{
   background: #f6f6f6;
   padding-top: 20px;
@@ -43,8 +43,10 @@
     .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput:focus{border: 1px solid #00b7ec}
 
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap{position: relative;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:5px;top:5px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap i{display: inline-block;width:20px;height:20px;background: url("/dist/images/sprite_ico.png") no-repeat -26px -213px;vertical-align: middle;visibility:hidden;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;cursor:pointer;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:29px;top:5px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown:hover{text-decoration: none;opacity: .8;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .disable{font-size: 12px;}
     .accountInfoWrap .btnWrap{padding-left: 326px;padding-top: 50px;}
     .accountInfoWrap .btnWrap .haveRead{margin-right: 10px;}
     .accountInfoWrap .btnWrap label{font-weight:normal;}

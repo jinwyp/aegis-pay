@@ -75,7 +75,7 @@ var cacheGet = function(userInfo, validTime){
                     return resolve(result);
                 }
             }
-            if(hourTime>=3){
+            if(hourTime>=300){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
@@ -194,16 +194,18 @@ exports.verifyMiddleware = function () {
         checker.smsText(req.body.sms_code, function(err){
             if(err){
                 return res.json(result);
+            }else{
+                cacheGet(userInfo, true).then(function(data){
+                    if(data && data.sms && (data.sms === sms)){
+                        return next();
+                    }else{
+                        return res.json(result);
+                    }
+                }).catch(next)
             }
         });
 
-        cacheGet(userInfo, true).then(function(data){
-            if(data && data.sms && (data.sms === sms)){
-                return next();
-            }else{
-                return res.json(result);
-            }
-        }).catch(next)
+
 
     }
 };

@@ -2,7 +2,17 @@
 * 页面脚本
 * */
 
-requirejs(['jquery', 'bootstrap','jquery.fancySelect'], function($){
+require.config({
+    paths: {
+        sms_code: 'pay/blocks/sms_code',
+        pay: 'pay/blocks/pay'
+    }
+});
+
+requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], function($,sms_code,pay){
+
+    sms_code.init();
+    pay.init();
 
     var bindingBankAccount={
 
@@ -65,7 +75,11 @@ requirejs(['jquery', 'bootstrap','jquery.fancySelect'], function($){
 
             //企业对公账户
             if(account==""){
-                $(".account").find(".errorMsg").text("请填写开户行支行名称");
+                $(".account").find(".errorMsg").text("请填写企业对公账户");
+                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                return;
+            }else if(isNaN(account)){
+                $(".account").find(".errorMsg").text("企业对公账户只能是数字");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return;
             }else{
@@ -110,11 +124,39 @@ requirejs(['jquery', 'bootstrap','jquery.fancySelect'], function($){
             $("#vertifyCode").on('blur', function() {
                 that.Verify();
             });
+
+            // 验证码判断
+
+            $("#vertifyCode").on("input",function(){
+                var codeVal=$(this).val();
+                $.ajax({
+                    url:'/api/verifyCode',
+                    type:'POST',
+                    data:{'sms_code': codeVal},
+                    success:function(data){
+                        if(data.success){
+                            $(".successIcon").css({visibility:"visible"});
+                            $(".vertifyCode .errorMsg").text('');
+                        }else{
+                            if(data.errType && (data.errType=='sms_code')){
+                                $(".vertifyCode .errorMsg").text('校验码错误');
+                                $(".successIcon").css({visibility:"hidden"});
+                                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                                return false;
+                            }
+                        }
+                    }
+
+                })
+            })
         },
+
         "submit" : function(){
             var that=this
             $("#submitInfo").on("click",function(){
                 that.Verify();
+                // 跳转
+                // location.href=''
             })
         }
     }

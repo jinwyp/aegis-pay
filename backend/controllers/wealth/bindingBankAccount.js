@@ -39,29 +39,73 @@ exports.bindingBankAccount = function (req, res, next) {
     request({url : url}, function (err, data) {
 
         if (err) return next(err);
-
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是data----------------------------' + data.body);
-
         if (data){
-
             var source  = JSON.parse(data.body);
-            var content = {
-                pageTitle   : "绑定银行账户",
-                statusObj   : statusObj
-            };
-            logger.debug('获取到的结果是content----------------------------' + content);
-
-            //渲染页面,指定模板&数据
+            var content=_.assign({}, {pageTitle: "绑定银行账户",statusObj: statusObj}, source);
             res.render('wealth/bindingBankAccount', content);
         }
-
     });
+};
 
-    // 异步调取Java数据
-    //request(apiHost + 'listData', function(err, data) {
-    //	// 渲染页面,指定模板&数据
-    //	res.render('header/header', {listData: JSON.parse(data.body)});			// 指定模板路径 渲染
-    //});
+exports.verifyCode = function (req, res, next) {
+    var data={
+        success:true
+    }
+    res.send(data);
+};
 
+
+
+
+
+
+
+exports.bindingSuccess = function (req, res, next) {
+
+    // 订单状态 数据模拟
+    var statusObj = {
+        step     : 2,
+        total    : 4,
+        stepList : [
+            {
+                stepName : '填写账户信息',
+                stepDate : ''
+            },
+            {
+                stepName : '银行汇款',
+                stepDate : ''
+            },
+            {
+                stepName : '确认银行汇款',
+                stepDate : ''
+            },
+            {
+                stepName : '添加成功',
+                stepDate : ''
+            }
+        ]
+    };
+
+    var url = api_config.bindingSuccess;
+    request({url : url}, function (err, data) {
+
+        if (err) return next(err);
+        if (data){
+            var source  = JSON.parse(data.body);
+            var content=_.assign({}, {pageTitle: "绑定银行账户",statusObj: statusObj}, source);
+            res.render('wealth/bindingSuccess', content);
+        }
+    });
+};
+// 汇款金额校验
+exports.remittance = function (req, res, next) {
+    var data={
+        success:true
+        // error:'',
+        // errorCode:'1007',
+        // data: {
+        //
+        // }
+    }
+    res.send(data);
 };

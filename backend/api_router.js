@@ -13,6 +13,7 @@ var confirmComplete = require('./controllers/confirmComplete');
 var disputeApply = require('./controllers/disputeApply');
 var disputeCancel = require('./controllers/disputeDetail');
 var payApi          = require('./api/v1/pay');
+var bindingBankAccount = require('./controllers/wealth/bindingBankAccount');
 
 
 
@@ -49,6 +50,9 @@ router.post('/pay/submit', sms.verifyMiddleware(), payApi.submit);
 
 router.post('/paypassword/forget/valid', sms.verifyMiddleware(), paypasswordApi.forgetValid);
 router.post('/paypassword/forget/submit', paypasswordApi.forgetSubmit);
+router.post('/verifyCode', sms.verifyMiddleware(), bindingBankAccount.verifyCode);   //验证码确认
+
+router.post('/account/fund/bankCard/verify/submit',bindingBankAccount.remittance); //汇款金额确认
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
