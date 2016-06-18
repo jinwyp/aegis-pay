@@ -42,6 +42,7 @@ var notice          = require('../../controllers/notice');       //账户设置�
 var paypasswordCtl = require('../../controllers/paypassword/index');    // paypassword
 
 var wealthAccount = require('../../controllers/wealth/wealthAccount');  // 账户通
+var drawCash = require('../../controllers/drawCash/drawCash');
 
 router.get('/demo', demoController.demo);                                                       // 添加路由
 router.get('/', siteController.home);
@@ -82,6 +83,7 @@ router.get('/wealth/financialDetails', financialHome.financialDetails);    //财
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
 router.get('/account/notice', notice.notice);    //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);  // 账户通初始化
+router.get('/drawCash', drawCash.drawCash);  // 提现
 
 
 

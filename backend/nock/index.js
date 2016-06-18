@@ -21,3 +21,4 @@ require('./settlement/billCenter');
 require('./settlement/billSetting');
 
 require('./wealth/financialDetails');
+require('./account/financialCenterHome');

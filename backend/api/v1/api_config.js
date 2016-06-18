@@ -1,8 +1,9 @@
 // @flow
 
 // api
+var config = require('../../config');
 
-var host = 'http://service.yimei180.com/';
+var host = config.rest_address;
 
 var api_config = {
     host          : host,
@@ -83,6 +84,7 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
+    financialCenterHome : host + 'account/finance/center',
 
     
     /**
