@@ -287,11 +287,14 @@
           width: 110px;
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
-
+          @include sprite-image($icon-calendar-gray);
+          @include sprite-position($icon-calendar-gray);
         }
         .input-date-icon{
-          margin-left: 92px;
-          padding: 23px 10px 0px 10px;
+          top: 6px;
+          right: 10px;
+          position: absolute;
+          padding: 0px 10px 0px 10px;
           line-height: 15px;
           @include sprite($icon-calendar-gray);
         }
