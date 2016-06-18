@@ -23,5 +23,33 @@
         input.time{ width: 150px;  background: url("/dist/images/sprite_ico.png") no-repeat 125px -535px; }
       }
     }
+    .transaction-div{
+      padding-bottom: 30px;
+      //margin-bottom: 30px;
+      .transaction-table{
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+        thead tr{
+          background-color: $color_bg_table_th_gray;
+          line-height: 36px;
+          th{  text-align: center;  }
+        }
+        tbody tr{
+          border-bottom: 1px dotted $color_border;
+          &:hover{  background-color: $tr_hover_color;  }
+          td{  text-align: center; padding: 6px 0;  }
+          td.coal-target,td.order-number > div{
+            text-align: left;
+            padding: 0 20px;
+            .label{
+              color: $color_tip_font;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
   }
 }

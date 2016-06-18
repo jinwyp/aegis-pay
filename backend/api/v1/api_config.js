@@ -83,6 +83,7 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
+    financialCenterHome : host + 'account/finance/center',
 
     // 获取用户资金账号
     fetchFundAccount: host + 'account/fund/payPwd',
