@@ -25,6 +25,17 @@ input[type="text"]{
   @import './pay/pay.scss';
   // 付款成功页
   @import './pay/success.scss';
+  &.openAccount{
+      text-align: center; padding: 110px 0;
+      h5{
+          font-size:$size_font_pageTitle; padding: 20px 0 40px;
+      }
+      .btn_blue{
+          &:hover{
+              color:#fff; text-decoration: none;
+          }
+      }
+  }
 }
 @import './Plugins/ccapimg-modal.scss';
 
