@@ -57,8 +57,9 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     searchQuery.orderDateFrom = vm.orderDateFrom;
                     searchQuery.orderDateTo = vm.orderDateTo;
 
-                    console.log(searchQuery, $formDateFrom.get();
-                    console.log( $formDateFrom.get();
+                    console.log(searchQuery);
+                    console.log($formDateFrom.get('value'), $('.orderDateFrom').val());
+
 
                     app.getFinancialDetailsApi(searchQuery);
                 }
