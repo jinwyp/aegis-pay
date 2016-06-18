@@ -5,7 +5,20 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = '/api';			                            // API域名
+
+    var $reasonId = $('[name=reasonId]');           //原因ID
+
+    // 绑定 下拉框插件
+    $reasonId.fancySelect().on('change.fs', function() {
+        $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
+        console.log(this.value);
+        $subBtn.prop('disabled', $.trim(this.value)==='--');
+    });
+
+
+
+
+    var apiHost = '/api',			                            // API域名
         uId = getUrlParam('id'),
         uType = getUrlParam('type'),
         uStatus = getUrlParam('status');
