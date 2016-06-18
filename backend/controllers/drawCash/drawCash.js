@@ -14,7 +14,8 @@ exports.drawCash = function(req,res,next){
         tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
-        }
+        },
+        status:2
     };
     res.render('drawCash/drawCash',content);
 }
