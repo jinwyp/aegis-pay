@@ -1,8 +1,9 @@
 // @flow
 
 // api
+var config = require('../../config');
 
-var host = 'http://service.yimei180.com/';
+var host = config.rest_address;
 
 var api_config = {
     host          : host,
