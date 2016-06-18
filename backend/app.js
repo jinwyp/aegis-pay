@@ -75,7 +75,11 @@ app.use('/download/:path?/:name', function(req, res, next){
     var fileName = req.params.name;
     var filePath = __dirname + '/views/' + path + fileName;
 
-    res.download(filePath, fileName);
+    res.download(filePath, fileName, function(err){
+        if(err){
+            return next();
+        }
+    });
 });
 
 
