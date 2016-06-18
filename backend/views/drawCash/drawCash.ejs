@@ -1,0 +1,32 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/addAccount.css">
+    
+</head>
+	
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+
+<div id="financial-body">
+	<div class="financial-main draw-cash">
+		提现页面
+	</div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/drawCash/drawCash.js"></script>
+
+</body>
+</html>
+
+
+
