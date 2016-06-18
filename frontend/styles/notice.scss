@@ -1,0 +1,61 @@
+@import './global.scss';
+@import './components/_modal.scss';
+@import './layout/_accountSideBar.scss';
+@import './layout/_statusBar.scss';
+
+#notice{
+  .notice{
+    background:#f6f6f6;
+    padding:30px 0 100px 0;
+    .wrap{
+      width:1200px;
+      margin:0 auto;
+
+      .content{
+        border:1px solid $color_border;
+        float:right;
+        width:1070px;
+        background:#fff;
+        padding:0 20px;
+        table{
+          width:100%;
+          font-size:14px;
+          tr{
+            height:148px;
+            border-bottom:1px solid $color_border;
+            .noticeAccount{
+              width:300px;
+              padding-left:72px;
+              h2{
+                font-size:18px;
+                line-height:34px;
+              }
+              p{
+                font-size:14px;
+                color:#999;
+                line-height:34px;
+                span{
+                  color:#000;
+                }
+              }
+            }
+          }
+          tr:last-child{
+            border-bottom:none;
+          }
+          .noBorder{
+            border-bottom:none;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.statusBar{
+  width:auto!important;
+  .statusMain{
+    padding-top:10px;
+  }
+}

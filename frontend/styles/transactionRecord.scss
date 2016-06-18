@@ -1,0 +1,27 @@
+@import './global.scss';
+@import './Plugins/fancySelect.scss';
+
+#transaction-body{
+  background-color: $color_body_bg;
+  padding: $main_margintop 0 $main_marginbottom 0;
+  .transaction-main{
+    width: $main_width;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color_main_bg;
+    .search-div{
+      font-size: 12px;
+      color: $color_font;
+      padding: 20px 0;
+      div.trigger{  height: 32px;  }
+      select{  display: none;  }
+      .mt-20{ margin-top:20px; }
+      .search-row > span{ margin: 0 20px; }
+      .row-one{ z-index: 10;  position: relative; }
+      .row-two{ z-index: 1;  position: relative; }
+      .search-row{
+        input.time{ width: 150px;  background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 125px -535px; }
+      }
+    }
+  }
+}

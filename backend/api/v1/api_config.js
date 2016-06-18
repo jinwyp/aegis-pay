@@ -83,6 +83,8 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
+
+    
     /**
      * 账户设置
      * method: get
@@ -98,6 +100,10 @@ var api_config = {
     // 忘记密码 - 验证身份 - 下一步
     paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
     // 忘记密码 － 重置密码 - 提交
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
+    //开票中心
+    billCenter : host + 'settlement/billCenter',
+    billSetting : host + 'settlement/billSetting',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',

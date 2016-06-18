@@ -14,7 +14,12 @@ var details = [
     {date:'2016-05-17', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
     {date:'2016-05-18', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
     {date:'2016-05-19', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-20', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'}
+    {date:'2016-05-20', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
+    {date:'2016-05-21', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
+    {date:'2016-05-22', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
+    {date:'2016-05-23', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
+    {date:'2016-05-24', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
+    {date:'2016-05-25', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'}
 ];
 
 
