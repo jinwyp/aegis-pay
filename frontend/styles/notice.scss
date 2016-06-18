@@ -40,6 +40,9 @@
               }
             }
           }
+          tr:last-child{
+            border-bottom:none;
+          }
           .noBorder{
             border-bottom:none;
           }

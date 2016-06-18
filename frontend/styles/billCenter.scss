@@ -1,0 +1,67 @@
+@import './global.scss';
+@import './components/_modal.scss';
+@import './layout/_accountSideBar.scss';
+
+
+#settlementManagement{
+  .settlementManagement{
+    background:#f6f6f6;
+    padding:30px 0 100px 0;
+    .wrap{
+      width:1200px;
+      margin:0 auto;
+      .content{
+        width:1070px;
+        float: right;
+        padding: 18px;
+        background: #ffffff;
+        border:1px solid #e8e8e8;
+        table {
+          width: 100%;
+          tr {
+            &:hover {
+              background-color: #effafd;
+            }
+            th {
+              height: 36px;
+              line-height: 36px;
+              background-color: #f5f5f5;
+              text-align: center;
+            }
+            th.last {
+              width: 210px;
+            }
+            td {
+              height: 94px;
+              text-align: center;
+              font-size: 14px;
+              border-bottom: 1px dotted #e8e8e8;
+              div.btn {
+                width: 90px;
+                height: 24px;
+                margin-right: 20px;
+                padding: 0;
+
+              }
+
+            }
+            .noInfo {
+              height: 440px;
+              font-size: 18px;
+              border: none;
+              a {
+                width: 140px;
+                height: 40px;
+                display: inline-block;
+                color: #ffffff;
+                background-color: #01b7ec;
+                line-height: 40px;
+                border-radius: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
