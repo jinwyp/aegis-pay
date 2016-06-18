@@ -31,7 +31,8 @@ var api_config = {
      * 付款页面, 页面展示数据
      * method: get
      * params: {orderId: 1, userId: 121, type:1}
-     * response: {success: true,	error:'', errorCode: '',
+     * errorCode: 1001 资金账户未开通
+     * response: {success: true,	error:'', errorCode: '1001',
 	 *							data: {
 							    	order: {
 								        id
@@ -86,7 +87,7 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
 
-    
+
     /**
      * 账户设置
      * method: get

@@ -65,7 +65,7 @@
                     <span class="record-title">易煤网资金账户号:</span>
                     <span class="record-no"><%= accoutNumber %></span>
 
-                    <span class="record-download iBtn iBtn_down iBtn_xs">
+                    <span class="record-download iBtn iBtn_down iBtn_xs" data-toggle="modal" data-target="#downloadExcel">
                         <i class="iBtn_down_icn"></i>下载收支明细
                     </span>
                 </div>
@@ -133,6 +133,48 @@
             </div>
 
         </div>
+
+
+
+        <!-- 操作提示信息: 模态框-->
+        <div class="modal fade" id="downloadExcel" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <div class="modal-content mt150 financial-details">
+                    <div class="modal-header">
+                        <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                        <h4 class="modal-title">请设置下载条件</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="form-inline">
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易时间:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
+                                    </div>
+                                    <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row ">
+                                <button class="iBtn iBtn_sm iBtn_yes " >下载EXCEL</button>
+                                <button class="iBtn iBtn_sm iBtn_yes " >下载PDF</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!--<div class="modal-footer txt_c"></div>-->
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+
+
+
 
 
     </div>
