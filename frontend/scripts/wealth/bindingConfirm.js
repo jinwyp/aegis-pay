@@ -14,9 +14,14 @@ requirejs(['jquery'], function($,sms_code,pay){
             url:'/api/account/fund/bankCard/verify/submit',
             type:'POST',
             data:{userId:"250",confirmMoney:remittance},
-            success:function(){
+            success:function(data){
                 if(data.success){
-                    alert("Asd")
+                    console.log("success");
+                    $(".errorMsg").text("");
+                }else{
+                    if(data.errorCode="1007"){
+                        $(".errorMsg").text("汇款金额不能为空");
+                    }
                 }
             }
         });

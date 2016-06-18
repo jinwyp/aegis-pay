@@ -86,26 +86,19 @@ exports.bindingSuccess = function (req, res, next) {
         ]
     };
 
-    var url = api_config.bindingSuccess;
-    request({url : url}, function (err, data) {
 
-        if (err) return next(err);
-        if (data){
-            var source  = JSON.parse(data.body);
-            var content=_.assign({}, {pageTitle: "绑定银行账户",statusObj: statusObj}, source);
-            res.render('wealth/bindingSuccess', content);
-        }
-    });
+
+        res.render('wealth/bindingSuccess', {pageTitle: "绑定银行账户",statusObj: statusObj});
+
 };
 // 汇款金额校验
 exports.remittance = function (req, res, next) {
     var data={
-        success:true
-        // error:'',
-        // errorCode:'1007',
-        // data: {
-        //
-        // }
+        success:false
+        errorCode:'1007',
+        data: {
+
+        }
     }
     res.send(data);
 };
