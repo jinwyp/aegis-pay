@@ -101,7 +101,26 @@
 
                 <div class="sidebarUpFile fl">
                     <div class="upFileHandle">
-                        开票信息（加盖章）
+
+                        <!-- 块型附件-->
+                        <div class="fileBlockBox">
+                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
+                            <div class="fileBlockBox_body">
+                                <img class="fileViewImg" src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <div class="operateFileBox">
+                                    <a href="" class="fileLinkBtn">修改</a>
+                                    <a href="" class="fileLinkBtn">删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fileBlockBox">
+                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
+                            <div class="fileBlockBox_body blockUpload">
+                                <span class="btnUploadIcon"></span>
+                                <span class="labUploadStr">上传证件</span>
+                                <input class="iptBlockFile" data-url="/api/upload-file" type="file" name="files">
+                            </div>
+                        </div>
                     </div>
                     <div class="upFileHint">
                         <h4 class="upFileHint_tit">注意事项</h4>

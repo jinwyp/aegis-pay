@@ -17,67 +17,66 @@
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">确认开票信息</h3>
-                <!--<p class="headContent">居中标题</p>-->
-                <!--<p class="headRight">-->
-                    <!--<span class="doubtInlet">-->
-                        <!--<s class="require">*</s> 为必填项目-->
-                    <!--</span>-->
-                <!--</p>-->
             </div>
-            <div class="plateMain">
-                <table class="table tab_nBor">
-                    <tbody>
-                    <tr>
-                        <td class="txt_r" width="200">公司名称：</td>
-                        <td width="340">
-                            <span class="a">和略电子商务有限公司</span>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司地址：</td>
-                        <td><span class="a">公司地址</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司电话：</td>
-                        <td><span class="a">公司电话</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司传真：</td>
-                        <td><span class="a">公司传真</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">纳税人识别号：</td>
-                        <td><span class="a">纳税人识别号</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">开户银行：</td>
-                        <td><span class="a">开户银行</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">开户银行账号：</td>
-                        <td><span class="a">开户银行账号</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">发票类型：</td>
-                        <td><span class="a">发票类型</span>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="plateMain clearfix">
+                <div class="fl" id="viewInvoiceInfo">
+                    <table class="table tab_nBor">
+                        <tbody>
+                        <tr>
+                            <th class="txt_r" width="130">公司名称：</th>
+                            <td width="340">
+                                <span class="a">和略电子商务有限公司</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司地址：</th>
+                            <td><span class="a">公司地址</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司电话：</th>
+                            <td><span class="a">公司电话</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司传真：</th>
+                            <td><span class="a">公司传真</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">纳税人识别号：</th>
+                            <td><span class="a">纳税人识别号</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">开户银行：</th>
+                            <td><span class="a">开户银行</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">开户银行账号：</th>
+                            <td><span class="a">开户银行账号</span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">发票类型：</th>
+                            <td><span class="a">发票类型</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="fr" id="viewInvoiceThumbnail">
+                    <h2 class="invoiceImgTit">开票信息表： </h2>
+
+                    <div class="thumbnailBox">
+                        <div class="thumbnailPic">
+                            <img class="" src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板">
+                            <span class="clickLarger">点击放大</span>
+                        </div>
+                        <p class="thumbnailName">客户开票信息表</p>
+                    </div>
+                </div>
 
             </div>
         </div>
 
         <!-- 发票备注 板块-->
-        <div id="InvoicePlate" class="plateBox">
+        <div id="InvoicePlate" class="plateBox mt20">
             <!-- 发票备注-->
             <div class="plateHead .borSolid">
                 <h3 class="headLeft fl"> 对“发票备注”内容是否有明确的要求？</h3>
@@ -90,7 +89,7 @@
             </div>
 
             <!-- 特殊备注-->
-            <div class="plateHead .borSolid">
+            <div class="plateHead mt20">
                 <h3 class="headLeft fl"> 其他特殊要求</h3>
             </div>
             <div class="plateMain">
@@ -107,7 +106,6 @@
                 <input type="button" class="iBtn iBtn_yes ml20" value="确认">
             </div>
         </div>
-
 
     </div>
 </div>
