@@ -20,7 +20,10 @@ requirejs(['jquery'], function($,sms_code,pay){
                     $(".errorMsg").text("");
                 }else{
                     if(data.errorCode="1007"){
-                        $(".errorMsg").text("汇款金额不能为空");
+                        $(".errorMsg").text("汇款金额有误,请重新输入");
+                    }
+                    if(data.errorCode="1008"){
+                        $(".errorMsg").text("汇款金额输入错误2次,请重新更换银行卡认证");
                     }
                 }
             }

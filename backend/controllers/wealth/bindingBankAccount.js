@@ -94,11 +94,8 @@ exports.bindingSuccess = function (req, res, next) {
 // 汇款金额校验
 exports.remittance = function (req, res, next) {
     var data={
-        success:false
-        errorCode:'1007',
-        data: {
-
-        }
+        success:true,
+        errorCode:'1008'
     }
     res.send(data);
 };

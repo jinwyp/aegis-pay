@@ -39,7 +39,7 @@
     .bankConfirmWrap .bankConfirmCon ul li p{font-size: 12px;color: #666;padding-left:113px;padding-top:8px;}
     .bankConfirmWrap .bankConfirmCon ul li p i{display: inline-block;width: 15px;height: 15px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -8px -216px;  vertical-align: top;  margin-right: 2px;}
     .bankConfirmWrap .bankConfirmCon ul li p span{color: #01b7ec;}
-    .bankConfirmWrap .bankConfirmCon p.errorMsg{color:#ff0000;font-size: 12px;padding-left:404px;padding-bottom: 5px;}
+    .bankConfirmWrap .bankConfirmCon p.errorMsg{color:#ff0000;font-size: 12px;padding-left:404px;padding-bottom: 5px;height:22px;}
     .bankConfirmWrap .bindingConfirmSubmit{background: #01b7ec;margin-left:403px;display: inline-block;width:180px;height:40px;color:#fff;line-height: 40px;font-size: 16px;text-align: center;border-radius:2px;}
     .bankConfirmWrap .bindingConfirmSubmit:hover{text-decoration: none;opacity:.8;}
   }
