@@ -7,6 +7,11 @@ var config = {
     domain   : 'pay-staging.yimei180.com',   // 域名
     homepage : 'https://pay-staging.yimei180.com',
 
+    passport: {
+        member: 'https://member-staging.yimei180.com',
+        cookieName: 'passport'
+    },
+
     redis      : {
         host : '10.100.10.2',
         port : '6379',
