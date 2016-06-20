@@ -183,9 +183,34 @@
     }
 
 
+-----------------------------------------------------------
+标题:开票信息  查看板块
+
+    样式引入:
+    @import './Plugins/InvoiceInfoViewPlate.scss';
+
+    模板引入:
+    <%- include ../Plugins/InvoiceInfoViewPlate %>
+
+    模板数据:
+    {
+        ........
+    }
+
 
 -----------------------------------------------------------
+标题:开票信息  备注板块
 
+    样式引入:
+    @import './Plugins/InvoiceInfoViewPlate.scss';
+
+    模板引入:
+    <%- include ../Plugins/InvoiceRemarksPlate %>
+
+    模板数据:
+    {
+        ........
+    }
 
 
 -----------------------------------------------------------

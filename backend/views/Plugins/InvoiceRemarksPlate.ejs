@@ -1,0 +1,47 @@
+<!-- 发票备注 板块-->
+<div id="InvoiceRemarksPlate" class="plateBox mt20">
+    <form action="" method="post">
+        <!-- 发票备注-->
+        <div class="plateHead .borSolid">
+            <h3 class="headLeft fl"> 对“发票备注”内容是否有明确的要求？</h3>
+        </div>
+        <div class="plateMain">
+            <div class="txtAreaBox">
+                <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
+                <% if(editable !="false" ){ %>
+                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如果对“发票备注”内容有明确要求，请详细填写" ></textarea>
+                <%}else{%>
+                    <textarea class="disabled_textarea" name="remarks" disabled>备注</textarea>
+                <%}%>
+            </div>
+        </div>
+
+        <!-- 特殊备注-->
+        <div class="plateHead mt20">
+            <h3 class="headLeft fl"> 其他特殊要求</h3>
+        </div>
+        <div class="plateMain">
+            <div class="txtAreaBox">
+                <% if(editable !="false" ){ %>
+                <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
+                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如有其他特殊要求，请详细填写" <% if(editable =="false" ){ %>disabled="disabled" <%}%> >备注...</textarea>
+                <%}else{%>
+                    <textarea class="disabled_textarea" name="remarks" disabled>备注</textarea>
+                <%}%>
+            </div>
+        </div>
+
+        <!-- 操作按钮-->
+        <% if(editable !="false" ){ %>
+
+            <div class="plateMain txt_c">
+                <br/><br/>
+                <input type="button" class="iBtn iBtn_def" value="取消">
+                <input type="button" class="iBtn iBtn_yes ml20" value="确认">
+            </div>
+
+        <%}else{%>
+
+        <%}%>
+    </form>
+</div>
