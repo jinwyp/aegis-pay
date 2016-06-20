@@ -152,11 +152,11 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
         },
 
         "submit" : function(){
-            var that=this
+            var that=this;
             $("#submitInfo").on("click",function(){
                 that.Verify();
                 // 跳转
-                // location.href=''
+                location.href='/wealth/bindingSuccess'
             })
         }
     }

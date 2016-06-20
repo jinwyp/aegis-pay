@@ -5,6 +5,7 @@
   background: #f6f6f6;
   padding-top: 20px;
   padding-bottom: 30px;
+  min-height: 800px;
 
   .bindingSuccessWrap{
     width:1200px;
@@ -31,7 +32,7 @@
     .bankConfirmWrap .bankConfirmTit{font-size:18px;color:#333;margin-bottom: 10px;}
     .bankConfirmWrap .bankConfirmTit span{border-left:2px solid #00b6ef;padding-left:10px}
     .bankConfirmWrap .bankConfirmCon{border:1px solid #e8e8e8;padding-bottom: 45px;}
-    .bankConfirmWrap .bankConfirmCon ul{padding-left:290px;font-size: 14px;color:#333;padding-top:60px;padding-bottom: 30px;}
+    .bankConfirmWrap .bankConfirmCon ul{padding-left:290px;font-size: 14px;color:#333;padding-top:60px;padding-bottom: 10px;}
     .bankConfirmWrap .bankConfirmCon ul li{margin-bottom: 18px;}
     .bankConfirmWrap .bankConfirmCon ul li label{font-weight:normal;min-width: 115px;text-align: left;color:#999;}
     .bankConfirmWrap .bankConfirmCon ul li input{width:300px;height:40px;padding-left:5px;border:1px solid #ccc;}
@@ -42,5 +43,25 @@
     .bankConfirmWrap .bankConfirmCon p.errorMsg{color:#ff0000;font-size: 12px;padding-left:404px;padding-bottom: 5px;height:22px;}
     .bankConfirmWrap .bindingConfirmSubmit{background: #01b7ec;margin-left:403px;display: inline-block;width:180px;height:40px;color:#fff;line-height: 40px;font-size: 16px;text-align: center;border-radius:2px;}
     .bankConfirmWrap .bindingConfirmSubmit:hover{text-decoration: none;opacity:.8;}
+  }
+  //账户添加失败
+  .accountError{
+    display: none;
+    background:#f3fcff;text-align:center;padding-top:48px;padding-bottom: 48px;font-size: 24px;color:#333;
+    p{margin-bottom: 15px;}
+    p span{color:#ff0000;}
+    a.rebinding{width:180px;height:40px;background:#00b6ef;line-height: 40px;color:#fff;font-size:18px;text-align: center;display: inline-block;border-radius:2px;}
+    a.rebinding:hover{text-decoration: none;opacity: .8;}
+  }
+  //账户添加成功
+  .accountSuccess{
+    display:none;
+    background:#f3fcff;text-align:center;padding-top:48px;padding-bottom: 48px;font-size: 24px;color:#333;
+    p{margin-bottom: 15px;}
+    >*{display: inline-block}
+    i.successIcon {display: inline-block;vertical-align: top;position: relative;top:10px;right:10px;width: 60px;  height: 60px;  background: url("/static/images/sprite_ico.png") no-repeat -383px -291px; }
+    p span{color:#1aaa6b;}
+    a.withdraw{width:180px;height:40px;background:#00b6ef;line-height: 40px;color:#fff;font-size:18px;text-align: center;display: inline-block;border-radius:2px;}
+    a.withdraw:hover{text-decoration: none;opacity: .8;}
   }
 }

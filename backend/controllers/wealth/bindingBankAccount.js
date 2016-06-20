@@ -87,8 +87,18 @@ exports.bindingSuccess = function (req, res, next) {
     };
 
 
+    var url = api_config.bindingSuccess;
+    var userId=req.session.user.id
+    request({url : url}, function (err, data) {
 
-        res.render('wealth/bindingSuccess', {pageTitle: "绑定银行账户",statusObj: statusObj});
+        if (err) return next(err);
+        if (data){
+            var source  = JSON.parse(data.body);
+            var content=_.assign({}, {pageTitle: "绑定银行账户",statusObj: statusObj,userId:userId}, source);
+            res.render('wealth/bindingSuccess', content);
+        }
+    });
+
 
 };
 // 汇款金额校验

@@ -12,45 +12,70 @@
     <div id="bindingSuccess">
         <div class="bindingSuccessWrap">
             <% include ../global/order/statusBar %>
-            <!--绑定成功页面-->
-            <div class="bindingSuccessInfoWrap">
-                <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">提交成功。</span>3个工作内将向*****账户（尾号7776）汇入一笔1元以下的确认金额。</p>
-                <p class="bindingMainCon">通过<span class="colorOrange">网银</span>或<span class="colorOrange">银行柜台</span>查看该银行卡的收支明细，正确输入这笔金额后才能通过认证。</p>
-                <p class="bindingsubCon">如果您已收到该笔汇款，没有确认成功，可能是由于信息没有及时同步，请再次输入</p>
-                <p class="bindingsubCon">如果您没有收到该笔汇款，请及时联系我们的客服人员：<span class="colorOrange">400-960-1180</span></p>
-            </div>
-            <!--绑定成功页面结束-->
-            <!--绑定账户确认页面-->
-            <div class="bindingSuccessInfoWrap">
-                <p class="bindingMainCon bindingConfirmTit">当前状态：<span class="bindingSuc">易煤网已向*****银行卡（尾号8777）汇入一笔1元以下的确认金额。</span></p>
-                <p class="bindingsubCon">请查询银行收支明细，输入银行卡内来自易煤网汇入的1元以下的金额完成认证，</p>
-                <p class="bindingsubCon">金额确认<span class="colorOrange">有效期为1个月</span>，未在有效期内确认金额，<span class="colorOrange">需重新进行企业认证</span>。</p>
-            </div>
-            <div class="bankConfirmWrap">
-                <div class="bankConfirmTit"><span>银行汇款</span></div>
-                <div class="bankConfirmCon">
-                    <ul>
-                        <li>
-                            <label for="">开户行：</label>注册公司名称
-                        </li>
-                        <li>
-                            <label for="">银行卡号：</label>3289 2983 2932 9029
-                        </li>
-                        <li>
-                            <label for="">开户名称：</label>北京银行上海分行
-                        </li>
-                        <li>
-                            <label for="">银行汇款金额：</label><input type="text" maxlength="10" placeholder="汇款金额为0.01-0.99元区间" id="remittance"> 元
-                            <p><i></i>金额输入<span class="strengthTxt">错误2次</span>，需<span class="strengthTxt">重新更换银行卡</span>认证</p>
-                        </li>
-                    </ul>
-                    <p class="errorMsg"></p>
-                    <a href="javascript:void(0)" class="bindingConfirmSubmit" id="bindingConfirmSubmit">确认</a>
+            <!--判断是否打钱-->
+            <% if(userAccount.status==1){%>
+                <!--绑定成功页面-->
+                <div class="bindingSuccessInfoWrap">
+                    <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">提交成功。</span>3个工作内将向*****账户（尾号<%= subFour(userAccount.userFundAccount)%>）汇入一笔1元以下的确认金额。</p>
+                    <p class="bindingMainCon">通过<span class="colorOrange">网银</span>或<span class="colorOrange">银行柜台</span>查看该银行卡的收支明细，正确输入这笔金额后才能通过认证。</p>
+                    <p class="bindingsubCon">如果您已收到该笔汇款，没有确认成功，可能是由于信息没有及时同步，请再次输入</p>
+                    <p class="bindingsubCon">如果您没有收到该笔汇款，请及时联系我们的客服人员：<span class="colorOrange">400-960-1180</span></p>
                 </div>
-            </div>
-            <!--绑定账户确认页面结束-->
+                <!--绑定成功页面结束-->
+            <%}%>
+            <% if(userAccount.status==2){%>
+                <!--绑定账户确认页面-->
+                <div class="bindingSuccessInfoWrap">
+                    <p class="bindingMainCon bindingConfirmTit">当前状态：<span class="bindingSuc">易煤网已向*****银行卡（尾号<%= subFour(userAccount.userFundAccount)%>）汇入一笔1元以下的确认金额。</span></p>
+                    <p class="bindingsubCon">请查询银行收支明细，输入银行卡内来自易煤网汇入的1元以下的金额完成认证，</p>
+                    <p class="bindingsubCon">金额确认<span class="colorOrange">有效期为1个月</span>，未在有效期内确认金额，<span class="colorOrange">需重新进行企业认证</span>。</p>
+                </div>
+                <div class="bankConfirmWrap">
+                    <div class="bankConfirmTit"><span>银行汇款</span></div>
+                    <div class="bankConfirmCon">
+                        <ul>
+                            <li>
+                                <label for="">开户行：</label><%=userAccount.userFundBankName%>
+                            </li>
+                            <li>
+                                <label for="">银行卡号：</label><%= blankFour(userAccount.userFundAccount)%>
+                            </li>
+                            <li>
+                                <label for="">开户名称：</label><%=userAccount.userCompanyName%>
+                            </li>
+                            <li>
+                                <label for="">银行汇款金额：</label><input type="text" maxlength="10" placeholder="汇款金额为0.01-0.99元区间" id="remittance"> 元
+                                <p><i></i>金额输入<span class="strengthTxt">错误3次</span>，需<span class="strengthTxt">重新更换银行卡</span>认证</p>
+                            </li>
+                        </ul>
+                        <p class="errorMsg"></p>
+                        <a href="javascript:void(0)" class="bindingConfirmSubmit" id="bindingConfirmSubmit">确认</a>
+                    </div>
+                </div>
+                <!--绑定账户确认页面结束-->
+                <!--确认金额错误页面-->
+                <div class="accountError">
+                    <p>因为您的出金账户汇款金额<span>核对不正确</span>已满三次</p>
+                    <p>导致<span>账户添加失败</span>,请重新绑定银行账号</p>
+                    <a href="javascript:void(0)" class="rebinding">重新绑定银行账号</a>
+                </div>
+                <!--确认金额错误页面结束-->
+                <!--确认金额成功页面-->
+                <div class="accountSuccess">
+                    <i class="successIcon"></i>
+                    <div>
+                        <p>出金账户已<span>添加成功</span></p>
+                        <p>您可以进行<span>提现操作</span></p>
+                        <a href="javascript:void(0)" class="withdraw">立即提现</a>
+                    </div>
+                </div>
+                <!--确认金额成功页面结束-->
+            <%}%>
+
+
         </div>
     </div>
+<input type="hidden" value=<%= userId%>>
 <!--验证码弹窗-->
 <%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
 <%- include ../global/footer/footer %>

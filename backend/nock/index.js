@@ -27,3 +27,4 @@ require('./wealth/financialDetails');
 require('./account/financialCenterHome');
 
 require('./wealth/bindingBankAccount');
+require('./wealth/bindingSuccess');

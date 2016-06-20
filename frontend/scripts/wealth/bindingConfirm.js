@@ -9,6 +9,12 @@ requirejs(['jquery'], function($,sms_code,pay){
         }else{
             $(".errorMsg").text("");
         }
+        if(isNaN(remittance)){
+            $(".errorMsg").text("请输入数字");
+            return;
+        }else{
+            $(".errorMsg").text("");
+        }
 
         $.ajax({
             url:'/api/account/fund/bankCard/verify/submit',
@@ -16,14 +22,17 @@ requirejs(['jquery'], function($,sms_code,pay){
             data:{userId:"250",confirmMoney:remittance},
             success:function(data){
                 if(data.success){
-                    console.log("success");
                     $(".errorMsg").text("");
+                    $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
+                    $(".accountSuccess").show();
                 }else{
                     if(data.errorCode="1007"){
                         $(".errorMsg").text("汇款金额有误,请重新输入");
                     }
                     if(data.errorCode="1008"){
-                        $(".errorMsg").text("汇款金额输入错误2次,请重新更换银行卡认证");
+                        // 汇款金额核对次数超过3次
+                        $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
+                        $(".accountError").show();
                     }
                 }
             }
