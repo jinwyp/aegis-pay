@@ -8,6 +8,10 @@ var config = {
     https    : true,
     domain   : 'pay.yimei180.com', // 域名
     homepage : 'https://pay.yimei180.com',
+    passport: {
+        member: 'https://member.yimei180.com',
+        cookieName: 'passport'
+    },
 
     redis      : {
         host : process.env.REDIS_HOST,   // 这个应该不是这个地址

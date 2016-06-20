@@ -1,8 +1,9 @@
 // @flow
 
 // api
+var config = require('../../config');
 
-var host = 'http://service.yimei180.com/';
+var host = config.rest_address;
 
 var api_config = {
     host          : host,
@@ -30,7 +31,8 @@ var api_config = {
      * 付款页面, 页面展示数据
      * method: get
      * params: {orderId: 1, userId: 121, type:1}
-     * response: {success: true,	error:'', errorCode: '',
+     * errorCode: 1001 资金账户未开通
+     * response: {success: true,	error:'', errorCode: '1001',
 	 *							data: {
 							    	order: {
 								        id
@@ -83,8 +85,9 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
+    financialCenterHome : host + 'account/finance/center',
 
-    
+
     /**
      * 账户设置
      * method: get
@@ -108,7 +111,9 @@ var api_config = {
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
-    financialDetails : host + 'financial/order/details'
+    financialDetails : host + 'financial/order/details',
+
+    drawcash: host + '/account/withDrawCash'
 
 };
 

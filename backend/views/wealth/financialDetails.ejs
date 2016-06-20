@@ -28,11 +28,14 @@
                     <div class="form-group form-search form-search-big">
                         <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易时间:</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd" value="" />
+
+                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd"/>
+                            <!--<span class="input-date-icon" ></span>-->
                         </div>
                         <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" value="" />
+                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" />
+                            <!--<span class="input-date-icon" ></span>-->
                         </div>
                     </div>
                 </div>
@@ -49,7 +52,7 @@
                     </div>
                     <div class="form-group form-search form-search-big">
                         <label class="sr-only" for="orderSearchText">交易状态</label>
-                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易状态" ms-duplext="@orderSearchText">
+                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易状态" ms-duplex="@orderSearchText">
                     </div>
 
                     <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
@@ -62,7 +65,7 @@
                     <span class="record-title">易煤网资金账户号:</span>
                     <span class="record-no"><%= accoutNumber %></span>
 
-                    <span class="record-download iBtn iBtn_down iBtn_xs">
+                    <span class="record-download iBtn iBtn_down iBtn_xs" data-toggle="modal" data-target="#downloadExcel">
                         <i class="iBtn_down_icn"></i>下载收支明细
                     </span>
                 </div>
@@ -96,11 +99,11 @@
 
                         </table>
 
-                        <nav>
-                            <ul class="pagination">
-                                <li>
+                        <nav class="pagination-financial">
+                            <ul class="pagination pageno">
+                                <li class="first-page">
                                     <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
+                                        <span aria-hidden="true">< 上一页</span>
                                     </a>
                                 </li>
                                 <li><a href="#">1</a></li>
@@ -108,13 +111,21 @@
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
-                                <li>
+                                <li first-page>
                                     <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
+                                        <span aria-hidden="true">下一页 ></span>
                                     </a>
                                 </li>
                             </ul>
+
+                            <div class="jump-to-page">
+                                <span>共55页, 到第</span>
+                                <input type="text" class="" placeholder="" ms-duplex="@orderCurrentPage">
+                                <span>页</span>
+                                <button class="iBtn pagination-button">确定</button>
+                            </div>
                         </nav>
+
                     </div>
 
 
@@ -122,6 +133,48 @@
             </div>
 
         </div>
+
+
+
+        <!-- 操作提示信息: 模态框-->
+        <div class="modal fade" id="downloadExcel" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <div class="modal-content mt150 financial-details">
+                    <div class="modal-header">
+                        <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                        <h4 class="modal-title">请设置下载条件</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="form-inline">
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易时间:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
+                                    </div>
+                                    <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row ">
+                                <button class="iBtn iBtn_sm iBtn_yes " >下载EXCEL</button>
+                                <button class="iBtn iBtn_sm iBtn_yes " >下载PDF</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!--<div class="modal-footer txt_c"></div>-->
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+
+
+
 
 
     </div>

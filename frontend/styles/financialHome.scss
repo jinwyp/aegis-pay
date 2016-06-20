@@ -2,6 +2,7 @@
 @import './components/_modal.scss';
 @import './Plugins/fancySelect.scss';
 @import './components/_datePicker.scss';
+@import './components/pagination_finalcial.scss';
 
 
 
@@ -285,7 +286,18 @@
 
         .input-date{
           width: 110px;
-          background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          background: #fff;
+          @include sprite-image($icon-calendar-gray);
+          @include sprite-position( #fff $icon-calendar-gray -296px -63px);
+        }
+        .input-date-icon{
+          top: 6px;
+          right: 10px;
+          position: absolute;
+          padding: 0px 10px 0px 10px;
+          line-height: 15px;
+          @include sprite($icon-calendar-gray);
         }
 
         .input-box {
