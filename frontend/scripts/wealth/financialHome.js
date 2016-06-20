@@ -19,7 +19,8 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
         orderDateFrom : '',
         orderDateTo : '',
         orderSearchType : '',
-        orderSearchText : ''
+        orderSearchText : '',
+        currentPage : 1
     };
     var app = {
         init : function(){
@@ -60,8 +61,15 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 orderSearchText  : "",
                 orderDateFrom    : '',
                 orderDateTo      : '',
-                orderCurrentPage : '',
+                orderEllipsisLeft : false,
+                orderEllipsisRight : false,
+                orderCurrentPage : 1,
                 orderList        : [],
+                orderListTotalPages : 1,
+                orderListTotalPagesArray : [],
+                orderListTotalPagesArrayLeft : [],
+                orderListTotalPagesArrayRight : [],
+
                 searchOrder : function(event){
                     event.preventDefault();
                     searchQuery.orderSearchText = vm.orderSearchText;
@@ -70,30 +78,119 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
                     console.log(searchQuery);
 
+                    app.getFinancialDetailsCountApi(searchQuery)
+                    app.getFinancialDetailsApi(searchQuery);
+                },
+
+                changePagination : function(pageNo, event){
+                    var tempNo = Number(pageNo);
+                    if (tempNo < 1){
+                        tempNo = 1
+                    }else if (tempNo > vm.orderListTotalPages){
+                        tempNo = vm.orderListTotalPages
+                    }
+
+                    event.preventDefault();
+                    searchQuery.currentPage = tempNo;
+                    vm.orderCurrentPage = tempNo;
+                    app.showPagination();
                     app.getFinancialDetailsApi(searchQuery);
                 }
             });
+
+
             //avalon.scan(document.body)
         },
 
         getFinancialDetailsApi : function(params){
-            params = params || {};
+            var params1 = $.extend({}, params);
 
             $.ajax({
-                url:"/api/financial/order/details",
-                method:"POST",
-                data:params,
+                url    : "/api/financial/order/details",
+                method : "POST",
+                data   : params1,
                 success:function(data){
 
                     vm.orderList = data;
                 }
             })
+        },
+
+        getFinancialDetailsCountApi : function(params){
+            var params2 = $.extend({}, params, {count:true});
+
+            $.ajax({
+                url    : "/api/financial/order/details",
+                method : "POST",
+                data   : params2,
+                success:function(data){
+
+                    vm.orderListTotalPages = Math.ceil(data.count );
+                    app.showPagination();
+                }
+            })
+        },
+
+        showPagination : function () {
+            vm.orderListTotalPagesArrayLeft = [];
+            vm.orderListTotalPagesArrayRight = [];
+            vm.orderListTotalPagesArray = [];
+
+            vm.orderEllipsisLeft = false;
+            vm.orderEllipsisRight = false;
+
+            for (var i=1; i<= vm.orderListTotalPages; i++){
+
+                if (vm.orderListTotalPages <= 8){
+                    vm.orderListTotalPagesArray.push({value:i});
+                }else{
+
+                    if ( i <= 2 ){
+                        vm.orderListTotalPagesArrayLeft.push({value:i});
+                    }
+
+                    if ( i >= vm.orderListTotalPages - 1 ){
+                        vm.orderListTotalPagesArrayRight.push({value:i});
+                    }
+
+                    if (i>2 && i < vm.orderListTotalPages - 1){
+                        if (vm.orderCurrentPage <=4 && i <=5){
+                            vm.orderEllipsisRight = true;
+                            vm.orderListTotalPagesArray.push({value:i});
+                        }
+
+                        if ( vm.orderCurrentPage > 4 && vm.orderCurrentPage < vm.orderListTotalPages - 3) {
+                            vm.orderEllipsisLeft = true;
+                            vm.orderEllipsisRight = true;
+
+                            if ( i > vm.orderCurrentPage -2 && i < vm.orderCurrentPage + 2){
+                                vm.orderListTotalPagesArray.push({value:i});
+                            }
+                        }
+
+                        if ( vm.orderCurrentPage >= vm.orderListTotalPages - 3 && i >= vm.orderListTotalPages - 4) {
+                            vm.orderEllipsisLeft = true;
+                            vm.orderListTotalPagesArray.push({value:i});
+                        }
+                    }
+
+
+
+
+
+
+
+                }
+
+            }
         }
     };
 
     $( document ).ready( function() {
         app.init();
-        app.getFinancialDetailsApi()
+        app.getFinancialDetailsCountApi()
+        app.getFinancialDetailsApi();
+
     });
 
 
