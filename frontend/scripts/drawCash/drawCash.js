@@ -36,19 +36,8 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				errorMsg.hide();
 				var val = drawCashTxt.val();
 				var flag = checkHandler(val);
-				if( flag ){
-					$.ajax({
-						url:'#',
-						method:'POST',
-						data:{},
-						success:function(response){
-							if( response.status ){
-
-							}else{
-								errorMsg.text(response.errorMsg).show();
-							}
-						}
-					})
+				if( !flag ){
+					return false;
 				}
 			});
 			function checkHandler(val){
@@ -96,19 +85,8 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				errorMsg.hide();
 				var val = confirmTxt.val();
 				var flag = checkHandler(val);
-				if( flag ){
-					$.ajax({
-						url:'#',
-						method:'POST',
-						data:{},
-						success:function(response){
-							if( response.status ){
-
-							}else{
-								errorMsg.text(response.errorMsg).show();
-							}
-						}
-					})
+				if( !flag ){
+					return false;
 				}
 			});
 			function checkHandler(val){

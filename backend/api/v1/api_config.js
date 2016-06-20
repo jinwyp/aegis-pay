@@ -79,6 +79,7 @@ var api_config = {
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
+    settleDetails : host + 'settlement',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
@@ -111,7 +112,10 @@ var api_config = {
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
-    financialDetails : host + 'financial/order/details'
+    financialDetails : host + 'financial/order/details',
+
+    drawcash: host + 'account/withDrawCash',
+    drawcashSubmit: host + 'account/DrawCash'
 
 };
 

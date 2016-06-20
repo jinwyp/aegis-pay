@@ -1,0 +1,77 @@
+<!-- 添加开票信息 板块 -->
+<div id="InvoiceInfoViewPlate" class="plateBox bor_btm">
+    <div class="plateHead borSolid">
+        <span class="prefix"></span>
+        <h3 class="headLeft fl">确认开票信息</h3>
+    </div>
+    <div class="plateMain clearfix">
+        <div class="fl" id="InvoiceInfoBox">
+            <table class="table tab_nBor">
+                <tbody>
+                <tr>
+                    <th class="txt_r" width="130">公司名称：</th>
+                    <td width="340">
+                        <span class="a">和略电子商务有限公司</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="txt_r">公司地址：</th>
+                    <td><span class="a">公司地址</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">公司电话：</th>
+                    <td><span class="a">公司电话</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">公司传真：</th>
+                    <td><span class="a">公司传真</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">纳税人识别号：</th>
+                    <td><span class="a">纳税人识别号</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">开户银行：</th>
+                    <td><span class="a">开户银行</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">开户银行账号：</th>
+                    <td><span class="a">开户银行账号</span></td>
+                </tr>
+                <tr>
+                    <th class="txt_r">发票类型：</th>
+                    <td><span class="a">发票类型</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fr" id="InvoiceThumbnail">
+            <h2 class="invoiceImgTit">开票信息表： </h2>
+
+            <div class="thumbnailBox">
+                <div class="thumbnailPic"  data-toggle="modal" data-target="#operationInfoModal">
+                    <img class="" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板">
+                    <span class="clickLarger">点击放大</span>
+                </div>
+                <p class="thumbnailName">客户开票信息表</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框.开户信息表 -->
+<div class="modal fade" id="operationInfoModal" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content mt150 ">
+            <!--<div class="modal-header">-->
+            <!--<span class="close" data-dismiss="modal" aria-label="Close"></span>-->
+            <!--<h4 class="modal-title">客户开票信息表</h4>-->
+            <!--</div>-->
+            <div class="modal-body invoiceInfoPic_md">
+                <span class="icn_cross close" data-dismiss="modal" aria-label="Close"></span>
+                <img class="" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息表">
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </div>
+</div>
