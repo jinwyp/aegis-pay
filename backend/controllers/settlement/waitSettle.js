@@ -11,7 +11,7 @@ var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
 
 // 处理业务逻辑
-exports.billCenter = function (req, res, next) {
+exports.waitSettle = function (req, res, next) {
 
     //头部
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
@@ -19,7 +19,7 @@ exports.billCenter = function (req, res, next) {
 
     var accountSideBar = {
         current : "",
-        secCurrent:'1',
+        secCurrent:'2',
         sideBarList : [
             {
                 listName : '发票管理',
@@ -67,7 +67,7 @@ exports.billCenter = function (req, res, next) {
 
             };
             //渲染页面
-            return res.render('settlement/billCenter', content);
+            return res.render('settlement/waitSettle', content);
         }
     })
 
