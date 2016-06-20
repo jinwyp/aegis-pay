@@ -33,7 +33,6 @@ exports.financialDetailsApi = function (req, res, next) {
         if (err) return next(err);
 
         var result = data.body;
-        console.log(result.data.length)
         if (data && result.success) {
             if (body.count){
                 return res.json({count:result.data.length});
