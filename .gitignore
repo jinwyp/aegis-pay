@@ -11,6 +11,9 @@ app/dist/
 .tmp/
 *.log
 files
+frontend/images/sprite/auto-sprite.png
+frontend/styles/helpers/_auto_sprite.scss
+
 
 
 
