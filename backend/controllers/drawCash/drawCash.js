@@ -62,6 +62,7 @@ exports.drawCashCheck = function(req,res,next){
     res.setHeader('Cache-Control', 'no-store, must-revalidate');
     res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
     // 提现 确认信息
+    
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
     var content;
@@ -83,7 +84,7 @@ exports.drawCashCheck = function(req,res,next){
     var confirmToken = uuid.v1();
     req.session.confirmToken = confirmToken;
 
-     content = {
+    content = {
          confirmToken:   confirmToken,
          companyName:    companyName,
          cash:           cash,
@@ -108,6 +109,7 @@ exports.drawCashStatus = function(req,res,next){
     var password = req.body.password;
     var confirmToken = req.body.confirmToken;
     var cash = req.body.cash;
+    var userId = req.session.user.id;
     //todo 校验金额和密码
 
     //confirmToken不相同
@@ -116,18 +118,34 @@ exports.drawCashStatus = function(req,res,next){
         next(new UnauthenticatedAccessError());
         return;
     }
-
-    //后天提现??
-    
-
-    var content = {
-        pageTitle : "财务管理中心 - 账户通 - 提现",
-        headerTit : "财务管理中心 - 账户通 - 提现",
-        tabObj : {
-            firstTab : firstTab,
-            secondTab : secondTab
+    request({
+        url:api_config.drawcashSubmit,
+        qs:{
+            cash:       cash,
+            userId:     userId,
+            password:   password
+            },
+        method: 'GET'
         },
-        status:2
-    };
-    res.render('drawCash/drawCashStatus',content);
-}
+        function(err,response,body){
+            if(err){return next(err);}
+            if(!body.success){
+              //todo 错误页面
+            }else{
+                //提现成功后,显示成功页面,并且删除session中的值,防止回退.
+                delete req.session.confirmToken;
+                delete req.session.cashToken;
+
+                var content = {
+                    pageTitle : "财务管理中心 - 账户通 - 提现",
+                    headerTit : "财务管理中心 - 账户通 - 提现",
+                    tabObj : {
+                        firstTab : firstTab,
+                        secondTab : secondTab
+                    },
+                    status:2
+                };
+                res.render('drawCash/drawCashStatus',content);
+            }
+        });
+};

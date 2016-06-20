@@ -16,23 +16,23 @@
 	<div class="financial-main draw-cash">
 		<div class="figure-wrap" id="drawCash">
 			<div class="figure-caption">
-				<span>账户余额：<strong><i id="balancePrice">50,000,000.00</i>元</strong></span>
+				<span>账户余额：<strong><i id="balancePrice"><%= balanceMoney %></i>元</strong></span>
 				<a href="#">提现记录</a>
 			</div>
 			<div class="figure-content">
-				<form action="" class="form-horizontal">
+				<form action="/drawCashCheck" method="post" class="form-horizontal">
 					<div class="form-group">
 						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>	
 						<div class="col-sm-4 select-bank">
 							<ul>
-								<li class="active"><input type="radio" checked/>  中信银行：尾号***5689</li>
+								<li class="active"><input type="radio" checked/>  <%= bankName %>：尾号 <%= bankAccount %></li>
 							</ul>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-5 control-label">提现金额：</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control"  placeholder="请输入金额" id="drawCashTxt">
+							<input type="text" class="form-control"  placeholder="请输入金额" id="drawCashTxt" name="cash">
 							<p class="padding-top-8 password-info" id="errorTxt">每笔限额<span class="text-primary">5千万</span>元，提现<span class="text-primary">3</span>次</p>
 							<p class="padding-top-8 password-info text-danger display-none" id="drawCashErr">金额输入有误，请重新输入</p>
 						</div>
@@ -47,14 +47,16 @@
 					</div>
 					<div  class="form-group padding-top-8">
 						<div class="col-sm-4 col-sm-offset-5">
-							<input type="button" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">		
+							<input type="submit" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">		
 							<span id="errorMsg" class="text-danger display-none"></span>
 						</div>
 					</div>
+					<input type="hidden" name="bankName" value="<%= bankName %>"/>
+					<input type="hidden" name="bankAccount" value="<%= bankAccount %>"/>
+					<input type="hidden" name="cashToken" value="<%= cashToken %>"/>
 				</form>
 			</div>
 		</div>
-		<input type="hidden" name="cashToken"/>
 	</div>
 </div>
 

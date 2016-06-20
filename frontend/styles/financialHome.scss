@@ -1,5 +1,4 @@
 @import './global.scss';
-@import './components/_modal.scss';
 @import './Plugins/fancySelect.scss';
 @import './components/_datePicker.scss';
 @import './components/pagination_finalcial.scss';
@@ -238,6 +237,7 @@
 
 
     .financial-details{
+
       margin: 10px 0px;
       padding: 8px 0px;
 
@@ -289,7 +289,7 @@
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray -296px -63px);
+          @include sprite-position( #fff $icon-calendar-gray -504px -63px);
         }
         .input-date-icon{
           top: 6px;
@@ -354,20 +354,36 @@
           border-top: 0px dotted $color_border;
         }
 
-        .table_btn {
-          padding: 1px 10px;
-          height: 25px;
-          min-width: 60px;
-        }
+
       }
 
-
     }
-
-
-
 
   }
 }
 
+.button_pdf {
+  @include sprite( $icon-download-pdf);
+}
+
+.button_xls {
+  @include sprite($icon-download-xls);
+
+}
+.button_pdf, .button_xls {
+  background-color: #fff;
+  border: none;
+  padding-top: 100px;
+  margin: 10px 20px 0px 20px;
+  width: 100px;
+  height:85px;
+
+  span{
+    margin-left: -12px;
+  }
+}
+
+.button-margin{
+  margin-left: 16px;
+}
 

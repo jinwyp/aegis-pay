@@ -1,10 +1,15 @@
 
 .pagination-financial {
-  padding-left: 180px;
+  padding-left: 160px;
   .pageno{
     float: left;
     margin: 10px;
     li {
+      .active {
+        background-color: $color_button_hover_blue;
+        color: #fff;
+      }
+
       a {
         font-size: $size_font_middle;
         color: $color_text_gray;
@@ -35,9 +40,10 @@
     color: $color_text_select_gray;
 
     input {
-      width: 50px;
+      width: 37px;
       margin: 0px 6px;
-      padding: 3px 18px;
+      padding: 3px 5px;
+      text-align: center;
     }
 
     .pagination-button{
