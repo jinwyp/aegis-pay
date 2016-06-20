@@ -1,0 +1,28 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/pay.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+
+<div class="mainWrapper openAccount">
+    <p class='icn_warningMax'></p>
+    <h5>您尚未开通资金账户，请先开通。</h5>
+    <a href='/ucenter/open-fund-account' class='btn_blue'>立即开通</a>
+</div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/pay/index.js"></script>
+
+</body>
+</html>

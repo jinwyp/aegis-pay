@@ -1,0 +1,37 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/drawCash/drawCash.css">
+    
+</head>
+	
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+
+<div id="financial-body">
+	<div class="financial-main draw-cash">
+		<div class="figure-wrap" id="unBindAccount">
+			<div class="reasonsReturn mt20 unbind-account">
+				<span class="unbind-span"><strong>尚未绑定银行账户</strong>请先<a href="#" class="link-btn">绑定银行账户</a></span>
+				<p><strong id="dealLine">15s</strong>后跳转 <a href="#">绑定账户页面</a></p>
+			</div> 
+		</div>
+	</div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/drawCash/drawCash.js"></script>
+
+</body>
+</html>
+
+
+

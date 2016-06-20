@@ -83,8 +83,10 @@ router.get('/wealth/financialDetails', financialHome.financialDetails);    //财
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
 router.get('/account/notice', notice.notice);    //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);  // 账户通初始化
-router.get('/drawCash', drawCash.drawCash);  // 提现
 
+router.get('/drawCash', drawCash.drawCash);  // 提现已绑定
+router.post('/drawCashCheck', drawCash.drawCashCheck);  // 提现确认信息
+router.post('/drawCashStatus', drawCash.drawCashStatus);  // 提现确认信息
 
 
 router.get('/compact', compactController.compact);
