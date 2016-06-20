@@ -106,7 +106,48 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
 
         // 操作按钮板块
         operationBtnPlate: function() {
+            var $btnSubSettlement = $('#btnSubSettlement'),         //开具结算
+                $btnSubAuditing = $('#btnSubAuditing'),             //确认审核
+                $btnSubReason = $('#btnSubReason');                 //审核退回.第一次
 
+
+
+            $btnSubAuditing.click(function() {
+                var param = {
+                    version: 123,
+                    sellerId: '213',
+                    orderId: '210000',
+                    settleAmount: 222,      // 结算吨数
+                    harbourDues: '',        //港务费
+                    settleMoney: '',        //结算金额
+                    remarks: '',            //备注
+                    files: [                //补充协议列表
+                        {name: 'name', path: 'xx.jpg'}
+                    ]
+                };
+
+                $.post({
+                    url: apiHost + '/settlement/sellerSubmit',
+                    data: param,        //$("#closeForm").serialize(),
+                    success: function(data){
+                        if(data.success) {
+                            $('.modal .close').click();
+                            message({
+                                type: 'done',
+                                title: '完成：',
+                                detail: '确认审核 操作成功'
+                            });
+                            console.log('');
+                        } else {
+                            message({
+                                type: 'done',
+                                title: '完成：',
+                                detail: '操作失败!!'
+                            });
+                        }
+                    }
+                });
+            });
         },
 
         // 初始化

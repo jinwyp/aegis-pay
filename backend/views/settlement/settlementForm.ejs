@@ -177,9 +177,9 @@
             <p>&nbsp;</p>
             <% if(isOperate_buy) { %>
             <input type="button" class="iBtn iBtn_no" value="提出异议" data-toggle="modal" data-target="#reasonsReturnModal" />
-            <input type="button" class="iBtn iBtn_yes ml20" value="确认结算">
+            <input type="button" id="btnSubAuditing" class="iBtn iBtn_yes ml20" value="确认结算">
             <% } else {%>
-            <input type="button" class="iBtn iBtn_yes ml20" value="确认">
+            <input type="button" id="btnSubSettlement" class="iBtn iBtn_yes ml20" value="确认">
             <% } %>
             <p>&nbsp;</p>
         </div>
@@ -208,7 +208,7 @@
             </div>
             <p class="txt_c">
                 <input type="button" class="iBtn iBtn_def" value="取消" data-dismiss="modal" />
-                <input type="button" class="iBtn iBtn_yes ml20" value="确认" />
+                <input type="button" id="btnSubReason" class="iBtn iBtn_yes ml20" value="确认" />
                 <br/><br/><br/>
             </p>
             <!--<div class="modal-footer txt_c"></div>-->

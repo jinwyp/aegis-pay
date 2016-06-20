@@ -58,68 +58,84 @@ exports.orderSettlement = function (req, res, next) {
 
 
 
+
+
+
+
+
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 
-// API路由: 卖家.查看结算单 --------- http://localhost:3001/api/settlement/sellerView
+// API路由: 卖家.查看结算单 --------- http://localhost:3001/api/settlement/sellerView?id=110000
 var sellerView = exports.sellerView = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '卖家.查看结算单'
+	var url = apiHost.host + 'settlement/sellerView?orderId='+ orderId +'&sellerId='+ userId;
+	request(url, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '待结算.卖家开具结算单 11111111';
+			replyData.subTitle = '开具结算单.s';
+			replyData.userType = 'sell';
+
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
-
-
-    //
-	//var req_id = req.query.id;
-	//req.userId = req.session.user.id;
-    //
-	//// 异步调取Java数据
-	//var url = apiHost.host + 'settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
-	//request(url, function (err, data) {
-	//	if (err) return next(err);
-    //
-	//	if (data && data.body){
-	//		var replyData = JSON.parse(data.body);
-	//		return res.send(replyData);
-	//	}else{
-	//		return next(new Error('Nock error!'))
-	//	}
-	//});
-
+	});
 };
 
 
-// API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit
-exports.sellerSubmit = function (req, res, next) {
+// API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit?id=210000
+var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
+	var req_id = req.query.id,
+		userId = req.session.user.id;
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '卖家.提交结算单'
+	var url = apiHost.host + 'settlement/sellerSubmit';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待结算.卖家开具结算单 11111111';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
+	});
 };
 
 
 // API路由: 买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersView
-exports.buyersView = function (req, res, next) {
+var buyersView = exports.buyersView = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '买家.查看结算单'
+	var url = apiHost.host + 'settlement/buyersView?orderId='+ orderId +'&userId='+ userId;
+	request(url, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '待审核.买家审核结算单 2222222222';
+			replyData.subTitle = '开具结算单.s';
+			replyData.userType = 'sell';
+
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
+	});
 };
 
 
 // API路由: 买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersReturn
-exports.buyersReturn = function (req, res, next) {
+var buyersReturn = exports.buyersReturn = function (req, res, next) {
 
 	// 静态数据
 	var testObj = {
@@ -132,7 +148,7 @@ exports.buyersReturn = function (req, res, next) {
 
 
 // API路由: 买家.修改退回原因 --------- http://localhost:3001/api/settlement/buyersEditReason
-exports.buyersEditReason = function (req, res, next) {
+var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 
 	// 静态数据
 	var testObj = {
@@ -145,7 +161,7 @@ exports.buyersEditReason = function (req, res, next) {
 
 
 // API路由: 买家.结算审核通过 --------- http://localhost:3001/api/settlement/buyersAuditing
-exports.buyersAuditing = function (req, res, next) {
+var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 
 	// 静态数据
 	var testObj = {
@@ -158,7 +174,7 @@ exports.buyersAuditing = function (req, res, next) {
 
 
 // API路由: 下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint
-exports.downPrint = function (req, res, next) {
+var downPrint = exports.downPrint = function (req, res, next) {
 
 	// 静态数据
 	var testObj = {

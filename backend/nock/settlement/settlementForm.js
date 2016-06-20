@@ -12,9 +12,9 @@
 	 WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
 	 WaitWriteReceipt	 	审核通过.待卖家开发票(_)  */
 
-var API  = require('../../api/v1/api_config');              // 接口路径配置
+var API  = require('../../api/v1/api_config');              				// 接口路径配置
 var nock = require('nock');
-var nkScope = nock(API.host).log(console.log);		        // 执行一次
+var nkScope = nock(API.host).log(console.log);		        				// 执行一次
 var nkScopePersist = nock(API.host).log(console.log).persist();		        // 执行多次
 
 
@@ -31,7 +31,7 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'1
 	});
 
 // 待审核_卖:WaitVerifySettle
-nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'210000'})
+nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'110000'})
 	.reply(200, {
 		headerTit: '待审核.卖家查看结算单 121212121212',
 		subTitle: '查看结算单.s',
@@ -74,10 +74,83 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'32
 		}
 	});
 
+
+
+
+
+
+
+
+
+
+
+
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+// API路由: 卖家.查看结算单 (待结算_卖:WaitSettleAccounts  待审核_卖:WaitVerifySettle)
+nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true,
+		data: {
+			order: {
+				id: 110000,
+				version: 2314231,
+				orderNO: '82793847398',
+				contractNO: '82793847398FGHJKL',
+				confirmDeliveryTime: '2016-06-20 16:11:48',		//确认提货时间
+				confirmSettleTime: '2016-06-20 16:11:48',		//结算时间
+				paymentTime: '2016-06-20 16:11:48',				//付款时间
+				harbour: '上海港',					//港口
+				coalType: '动力煤',					//煤种
+				amount: 3000,						//合同吨位
+				status: 'WaitSettleAccounts',		//状态
+				statusName: '待结算',
+				totalMoney: 1000,					//货品金额
+				settleMoney: 900,					//总结算金额
+				tailMoney: 100,						//应补款
+				refundMoney: 0,						//应退款
+				remarks: '备注信息',
+				buyerCompanyName: '购方公司',
+				sellerCompanyName: '销方公司asldfjlasf'
+			}
+		}
+	});
 
 
+// API路由: 卖家.提交结算单 (待结算_卖:WaitSettleAccounts  or  结算被退回_卖:ReturnedSettleAccounts)
+nkScopePersist.post('/settlement/sellerSubmit')//.query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true
+	});
 
+
+//API路由: 买家.查看结算单 ()
+nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true,
+		data: {
+			order: {
+				id: 110000,
+				version: 2314231,
+				orderNO: '82793847398',
+				contractNO: '82793847398FGHJKL',
+				confirmDeliveryTime: '2016-06-20 16:11:48',		//确认提货时间
+				confirmSettleTime: '2016-06-20 16:11:48',		//结算时间
+				paymentTime: '2016-06-20 16:11:48',				//付款时间
+				harbour: '上海港',					//港口
+				coalType: '动力煤',					//煤种
+				amount: 3000,						//合同吨位
+				status: 'WaitSettleAccounts',		//状态
+				statusName: '待结算',
+				totalMoney: 1000,					//货品金额
+				settleMoney: 900,					//总结算金额
+				tailMoney: 100,						//应补款
+				refundMoney: 0,						//应退款
+				remarks: '备注信息',
+				buyerCompanyName: '购方公司',
+				sellerCompanyName: '销方公司asldfjlasf'
+			}
+		}
+	});
 
 
 module.exports = nkScopePersist;
