@@ -1,0 +1,46 @@
+<!--settlementInfo-->
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/settlementInfo.css">
+</head>
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+<!-- 以下.内容部分 -->
+<div class="containerWrap">
+    <div class="bodyWrap" id="settlementInfo">
+
+        <!--<div id="doubtPlate" class="plateBox">-->
+            <!--<div class="plateHead borSolid">-->
+                <!--<span class="prefix"></span>-->
+                <!--<h3 class="headLeft fl">开票详情</h3>-->
+                <!--<a href="#" class="downLoad">下载开票资料</a>-->
+            <!--</div>-->
+            <!--<div class="plateMain">-->
+
+
+            <!--</div>-->
+        <!--</div>-->
+
+        <%- include ../Plugins/InvoiceInfoViewPlate %>
+
+    </div>
+</div>
+
+
+
+
+
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+<script src="<%= staticPath %>/scripts/settlement/settleDetails.js"></script>
+
+</body>
+</html>
+
+
+
