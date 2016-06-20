@@ -6,15 +6,23 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'bootstrap'],
 
     var transactionRecord={
         "datepicker" : function(){
-            $(document).on("click",".startDate",function(){
-                $(".startDate").each(function(i, item){
-                    $(item).pickadate({}).pickadate('picker').set("max", [new Date($.now() + 86400000)]);
-                });
-            });
-            $(document).on("click",".endDate",function(){
-                $(".endDate").each(function(i, item){
-                    $(item).pickadate({}).pickadate('picker').set("max", [new Date($.now() + 86400000)]);
-                });
+            var pickerStart, pickerEnd,
+                day_1=86400000,
+                startObj=$(".startDate"),
+                endObj=$(".endDate");
+            pickerStart=startObj.pickadate({}).pickadate('picker');
+            pickerEnd=endObj.pickadate({}).pickadate('picker');
+            pickerStart.set("disable", [{ from: [1970,1,1] }]);
+            pickerEnd.set("disable", [{ from: [1970,1,1]}]);
+
+            startObj.on("change",function(){
+                if(new Date(startObj.val()).getTime() > new Date(endObj.val()).getTime()){
+                    endObj.val("");
+                }
+                pickerEnd.set("enable", true);
+                pickerEnd.set("disable", [
+                    { from: [1970,1,1], to:  new Date(new Date(startObj.val()).getTime()-day_1)}
+                ]);
             });
         },
         "initContentInput": function () {

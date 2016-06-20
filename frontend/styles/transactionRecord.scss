@@ -5,6 +5,14 @@
 #transaction-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
+  a {
+    color: $color_manage_text;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $color_a_hover;
+    }
+  }
   .transaction-main{
     width: $main_width;
     margin-left: auto;
@@ -53,12 +61,22 @@
         tbody tr{
           border-bottom: 1px dotted $color_border;
           &:hover{  background-color: $tr_hover_color;  }
-          td{  text-align: center; padding: 6px 0;  }
-          td.coal-target,td.order-number > div{
+          td{
+            text-align: center;
+            padding: 8px 0;
+            .btn-option{ margin-right: 16px; }
+          }
+          td.coal-target > div{
             text-align: left;
-            padding: 0px 20px;
+            padding: 4px 0 4px 20px;
             .label{  color: $color_tip_font;  padding: 0;  }
           }
+          td.order-number > div{
+            text-align: left;
+            padding: 4px 0 4px 20px;
+            .label{  color: $color_tip_font;  padding: 0;  }
+          }
+          //div.title{ width: 250px; }
         }
       }
     }
