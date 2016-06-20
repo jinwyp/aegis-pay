@@ -82,7 +82,7 @@
                 <tr>
                     <td width="60"><%= recordList[i].createTime %></td>
                     <td width="150"><%= recordList[i].typeName %></td>
-                    <td width="100">+<%= recordList[i].totalMoney %></td>
+                    <td width="100"><% if(recordList[i].typeName=="采购"){ %>-<% }else{ %>+<% } %><%= recordList[i].totalMoney %></td>
                     <% if(recordList[i].status=="WaitPayment"){ %>
                     <td width="100" class="orange"><%= recordList[i].statusName %></td>
                     <td width="80"><span class="iBtn iBtn_xs iBtn_no btn-pay">付款</span></td>

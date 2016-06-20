@@ -1,5 +1,6 @@
 @import './global.scss';
 @import './Plugins/fancySelect.scss';
+@import "./components/_datePicker.scss";
 
 #transaction-body{
   background-color: $color_body_bg;
@@ -14,13 +15,26 @@
       color: $color_font;
       padding: 20px 0;
       div.trigger{  height: 32px;  }
-      select{  display: none;  }
+      select{  display: none;color: $color_font;  }
+      div.trigger{  color: $color_font;  }
       .mt-20{ margin-top:20px; }
-      .search-row > span{ margin: 0 20px; }
       .row-one{ z-index: 10;  position: relative; }
       .row-two{ z-index: 1;  position: relative; }
+      .search-row > span{ margin: 0 10px 0 20px; vertical-align: middle;}
       .search-row{
-        input.time{ width: 150px;  background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 125px -535px; }
+        div.time{width: 132px;display: inline-block;position: relative;}
+        input{vertical-align: middle; font-size: 12px;}
+        .startDate,.endDate{
+          margin-left: -1px;
+          padding-left: 10px;
+          color: $color_font;
+          width: 130px;
+          background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 108px -534px;
+        }
+        span.to{margin: 0 10px 0 7px;}
+        .ml-40{ margin-left: 40px; }
+        .record-number{width: 300px;}
+        .disabled-bg{ background-color: #f8f8f8; }
       }
     }
     .transaction-div{
@@ -42,11 +56,8 @@
           td{  text-align: center; padding: 6px 0;  }
           td.coal-target,td.order-number > div{
             text-align: left;
-            padding: 0 20px;
-            .label{
-              color: $color_tip_font;
-              padding: 0;
-            }
+            padding: 0px 20px;
+            .label{  color: $color_tip_font;  padding: 0;  }
           }
         }
       }
