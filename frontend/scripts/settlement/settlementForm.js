@@ -15,7 +15,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = '/api';			                            // API域名
+    var apiHost = '/api',			                            // API域名
         uId = getUrlParam('id'),
         uType = getUrlParam('type'),
         uStatus = getUrlParam('status');

@@ -28,11 +28,14 @@
                     <div class="form-group form-search form-search-big">
                         <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易时间:</label>
                         <div class="col-sm-4">
+
                             <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd"/>
+                            <!--<span class="input-date-icon" ></span>-->
                         </div>
                         <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" />
+                            <!--<span class="input-date-icon" ></span>-->
                         </div>
                     </div>
                 </div>
@@ -60,9 +63,9 @@
             <div class="row table-box">
                 <div class="list-title">
                     <span class="record-title">易煤网资金账户号:</span>
-                    <span class="record-no"><%= accoutNumber %></span>
+                    <span class="record-no"><%= accountNumber %></span>
 
-                    <span class="record-download iBtn iBtn_down iBtn_xs">
+                    <span class="record-download iBtn iBtn_down iBtn_xs" data-toggle="modal" data-target="#downloadExcel">
                         <i class="iBtn_down_icn"></i>下载收支明细
                     </span>
                 </div>
@@ -91,30 +94,52 @@
                                 <td >{{order.toPersonAccount}}</td>
                                 <td >{{order.toPersonAccountName}}</td>
                                 <td >{{order.toPersonBankName}}</td>
-                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
+                                <td ><span class="iBtn iBtn_xs iBtn_no">打印回执</span></td>
                             </tr>
 
                         </table>
 
-                        <nav>
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
+                        <nav class="pagination-financial">
+                            <ul class="pagination pageno">
+                                <li class="first-page">
+                                    <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')">
+                                        <span aria-hidden="true" >< 上一页</span>
                                     </a>
                                 </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+                                <li ms-visible='@orderEllipsisLeft'>
+                                    <a >...</a>
+                                </li>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArray'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
+                                <li ms-visible='@orderEllipsisRight'>
+                                    <a >...</a>
+                                </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayRight'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
+                                <li first-page>
+                                    <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)">
+                                        <span aria-hidden="true">下一页 ></span>
                                     </a>
                                 </li>
                             </ul>
+
+                            <div class="jump-to-page">
+                                <span>共 {{@orderListTotalPages}}页, 到第</span>
+                                <input type="text" placeholder="" ms-duplex="@orderCurrentPage">
+                                <span>页</span>
+                                <button class="iBtn pagination-button" ms-click="@changePagination(page.value, $event)">确定</button>
+                            </div>
                         </nav>
+
                     </div>
 
 
@@ -122,6 +147,65 @@
             </div>
 
         </div>
+
+
+
+        <!-- 操作提示信息: 模态框-->
+        <div class="modal fade" id="downloadExcel" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <div class="modal-content mt150 financial-details">
+                    <div class="modal-header">
+                        <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                        <h4 class="modal-title">请设置下载条件</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="form-inline">
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易时间:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
+                                    </div>
+                                    <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">文件格式:</label>
+                                    <div class="col-sm-4">
+                                        <button class="button_pdf" > <span>PDF格式下载</span></button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="button_xls" ><span>Excel格式下载</span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-row  ">-->
+                                <!--<div class="form-group form-search form-search-big">-->
+                                    <!--<label class="col-sm-4 control-label sr-only" >下载</label>-->
+                                    <!--<div class="col-sm-4">-->
+                                        <!--<button class="iBtn iBtn_sm iBtn_yes button-margin" >确认下载</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+
+                        </form>
+                    </div>
+                    <!--<div class="modal-footer txt_c"></div>-->
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+
+
+
 
 
     </div>

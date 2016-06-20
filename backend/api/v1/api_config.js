@@ -31,7 +31,8 @@ var api_config = {
      * 付款页面, 页面展示数据
      * method: get
      * params: {orderId: 1, userId: 121, type:1}
-     * response: {success: true,	error:'', errorCode: '',
+     * errorCode: 1001 资金账户未开通
+     * response: {success: true,	error:'', errorCode: '1001',
 	 *							data: {
 							    	order: {
 								        id
@@ -78,6 +79,7 @@ var api_config = {
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
+    settleDetails : host + 'settlement',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
@@ -86,7 +88,7 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
 
-    
+
     /**
      * 账户设置
      * method: get
@@ -112,9 +114,10 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'financial/order/details',
-    
     bindingBankAccount : host + 'wealth/bindingBankAccount',
-    bindingSuccess : host + 'wealth/bindingSuccess'
+    bindingSuccess : host + 'wealth/bindingSuccess',
+    drawcash: host + 'account/withDrawCash',
+    drawcashSubmit: host + 'account/DrawCash'
 };
 
 module.exports = api_config;

@@ -195,7 +195,7 @@ $dark:#000000;
 		}
 		.figure-content{
 			@include overFlow;
-			min-height:250px;
+			padding:20px 0; 
 			@include fontSize(14px);
 			dt,dd{
 				@include displayInlineBlock;
@@ -217,7 +217,7 @@ $dark:#000000;
 				color:$blue1;
 				@include fontSize(18px);
 				@include fontWeight;
-				line-height:250px;
+				line-height:200px;
 			}
 		}
 	}

@@ -9,6 +9,7 @@ var checker    = require('../../libs/datachecker');
 var api_config = require('./api_config');
 
 
+
 exports.financialDetailsApi = function (req, res, next) {
 
     //checker.orderId(req.body.orderCategory);
@@ -23,17 +24,21 @@ exports.financialDetailsApi = function (req, res, next) {
 
     var body = req.body;
     console.log(body);
-    
-    //var params = _.assign({}, {type: 1, userId: req.session.user.id}, body);
+
+    var params = Object.assign({}, {userId: req.session.user.id}, body);
+
     var url = api_config.financialDetails;
-    request.post(url, {body: {}, json:true}, function (err, data) {
+    request.post(url, {body: params, json:true}, function (err, data) {
 
         if (err) return next(err);
 
         var result = data.body;
-
         if (data && result.success) {
-            return res.json(result);
+            if (body.count){
+                return res.json({count:result.data.length});
+            }else{
+                return res.json(result.data);
+            }
         }else {
             result.errType = 'orderError';
             return res.json(result);
@@ -41,3 +46,5 @@ exports.financialDetailsApi = function (req, res, next) {
     })
 
 };
+
+

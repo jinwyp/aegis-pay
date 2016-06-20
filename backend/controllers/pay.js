@@ -34,14 +34,12 @@ exports.page = function (req, res, next) {
             var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
             request(api_config.payPage + query, function (err, data) {
                 if (err) return next(err);
-
-                return res.render('pay/index', _.assign({},
-                    {
-                        headerTit : '支付货款',
-                        pageTitle : '支付货款'
-                    },
-                    {"user" : {"phone" : userInfo.securephone}},
-                    JSON.parse(data.body).data));
+                var result = JSON.parse(data.body);
+                var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款' },
+                                            {"user" : {"phone" : userInfo.securephone}},
+                                            result.data);
+                var view = (result.errorCode===1001) ? 'pay/open-account' : 'pay/index';
+                return res.render(view, pageData);
             })
     //    }else{
     //         res.redirect('/getOrderDetail?orderId=' + req.query.orderId);
