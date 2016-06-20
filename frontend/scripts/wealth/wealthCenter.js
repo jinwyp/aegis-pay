@@ -30,6 +30,10 @@ require(['jquery','bootstrap'],function($){
         }
     })
 
+    $("#agreement").click(function () {
+        $(".modal_agreement").modal();
+    })
+
 });
 
 

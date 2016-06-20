@@ -109,6 +109,7 @@ exports.drawCashStatus = function(req,res,next){
     var password = req.body.password;
     var confirmToken = req.body.confirmToken;
     var cash = req.body.cash;
+    var userId = req.session.user.id;
     //todo 校验金额和密码
 
     //confirmToken不相同
@@ -117,23 +118,34 @@ exports.drawCashStatus = function(req,res,next){
         next(new UnauthenticatedAccessError());
         return;
     }
-    request(api_config.drawcash,function(err,response){
-        if(err){return next(err);}
-        if(response.pwd != password){
-            // 支付密码验证
-            logger.error(req.ip+" drawCash token error");
-            next(new UnauthenticatedAccessError());
-        }else{
-            var content = {
-                pageTitle : "财务管理中心 - 账户通 - 提现",
-                headerTit : "财务管理中心 - 账户通 - 提现",
-                tabObj : {
-                    firstTab : firstTab,
-                    secondTab : secondTab
-                },
-                status:2
-            };
-            res.render('drawCash/drawCashStatus',content);
-        }
-    });    
-}
+    request({
+        url:api_config.drawcashSubmit,
+        qs:{
+            cash:       cash,
+            userId:     userId,
+            password:   password
+            },
+        method: 'GET'
+        },
+        function(err,response,body){
+            if(err){return next(err);}
+            if(!body.success){
+              //todo 错误页面
+            }else{
+                //提现成功后,显示成功页面,并且删除session中的值,防止回退.
+                delete req.session.confirmToken;
+                delete req.session.cashToken;
+
+                var content = {
+                    pageTitle : "财务管理中心 - 账户通 - 提现",
+                    headerTit : "财务管理中心 - 账户通 - 提现",
+                    tabObj : {
+                        firstTab : firstTab,
+                        secondTab : secondTab
+                    },
+                    status:2
+                };
+                res.render('drawCash/drawCashStatus',content);
+            }
+        });
+};
