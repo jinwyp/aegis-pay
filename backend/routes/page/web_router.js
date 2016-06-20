@@ -26,6 +26,7 @@ var billCenter      = require('../../controllers/settlement/billCenter');
 var billSetting      = require('../../controllers/settlement/billSetting');
 var waitSettle      = require('../../controllers/settlement/waitSettle');
 var hadSettle      = require('../../controllers/settlement/hadSettle');
+var settleDetails      = require('../../controllers/settlement/settleDetails');
 
 var disputeApply    = require('../../controllers/disputeApply');   //纠纷申请
 var confirmTheInvoiceControl  = require('../../controllers/settlement/confirmTheInvoice');          // 结算单.确认开票
@@ -67,6 +68,7 @@ router.get('/settlement/billCenter', billCenter.billCenter);    //结算管理�
 router.get('/settlement/billSetting', billSetting.billSetting);    //结算管理开票设置
 router.get('/settlement/waitSettle', waitSettle.waitSettle);    //结算管理开票设置
 router.get('/settlement/hadSettle', hadSettle.hadSettle);    //结算管理开票设置
+router.get('/settlement/settleDetails', settleDetails.settleDetails);    //结算管理发票查看详情
 
 router.get('/orderTest', orderController.orderTest);
 router.get('/printDetail', orderController.printDetail);
