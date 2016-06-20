@@ -113,7 +113,7 @@ var api_config = {
 
     financialDetails : host + 'financial/order/details',
 
-    drawcash: host + '/account/withDrawCash'
+    drawcash: host + 'account/withDrawCash'
 
 };
 

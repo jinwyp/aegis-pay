@@ -62,6 +62,7 @@ exports.drawCashCheck = function(req,res,next){
     res.setHeader('Cache-Control', 'no-store, must-revalidate');
     res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
     // 提现 确认信息
+    
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
     var content;
@@ -83,7 +84,7 @@ exports.drawCashCheck = function(req,res,next){
     var confirmToken = uuid.v1();
     req.session.confirmToken = confirmToken;
 
-     content = {
+    content = {
          confirmToken:   confirmToken,
          companyName:    companyName,
          cash:           cash,
@@ -116,18 +117,23 @@ exports.drawCashStatus = function(req,res,next){
         next(new UnauthenticatedAccessError());
         return;
     }
-
-    //后天提现??
-    
-
-    var content = {
-        pageTitle : "财务管理中心 - 账户通 - 提现",
-        headerTit : "财务管理中心 - 账户通 - 提现",
-        tabObj : {
-            firstTab : firstTab,
-            secondTab : secondTab
-        },
-        status:2
-    };
-    res.render('drawCash/drawCashStatus',content);
+    request(api_config.drawcash,function(err,response){
+        if(err){return next(err);}
+        if(response.pwd != password){
+            // 支付密码验证
+            logger.error(req.ip+" drawCash token error");
+            next(new UnauthenticatedAccessError());
+        }else{
+            var content = {
+                pageTitle : "财务管理中心 - 账户通 - 提现",
+                headerTit : "财务管理中心 - 账户通 - 提现",
+                tabObj : {
+                    firstTab : firstTab,
+                    secondTab : secondTab
+                },
+                status:2
+            };
+            res.render('drawCash/drawCashStatus',content);
+        }
+    });    
 }
