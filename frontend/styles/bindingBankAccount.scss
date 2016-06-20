@@ -18,6 +18,12 @@
     .accountInfoWrap .accountInfoUl{margin-left: 170px;}
     //初始化下拉框
     .accountInfoWrap .accountInfoUl div.fancy-select{width:auto;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi{position: relative;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList{display:none;position: absolute;width:300px;height:150px;border:1px solid #ccc;top:40px;left:154px;z-index:99;overflow-y:scroll;font-size: 14px;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList{border-bottom:1px solid #ccc;padding:5px 0;padding-left:10px;color:#666;background:#fff;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList:hover{background: #f3fcff;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .borderNone{border:none;}
+
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{border-bottom:1px solid #e4e4e4;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}
     .accountInfoWrap .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}

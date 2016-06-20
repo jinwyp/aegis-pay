@@ -13,7 +13,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
 
     sms_code.init();
     pay.init();
-
+    var finalResult
     var bindingBankAccount={
 
         "init" : function(){
@@ -22,7 +22,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             this.changeSelect(),
             this.submit();
         },
-        initFancySelectListener: function() {
+        "initFancySelectListener": function() {
             $("select").fancySelect().on("change.fs", function() {
                 $(this).trigger("change.$");
             })
@@ -40,7 +40,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(bankCode==""){
                 $(".bankName").find(".errorMsg").text("开户行不能为空");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else{
                 $(".bankName").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
@@ -49,7 +49,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(provinceCode==""){
                 $(".region").find(".errorMsg").text("请选择省份");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else{
                 $(".region").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
@@ -58,7 +58,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(cityCode==""){
                 $(".region").find(".errorMsg").text("请选择城市");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else{
                 $(".region").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
@@ -67,7 +67,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(childBankName==""){
                 $(".childBankName").find(".errorMsg").text("请填写开户行支行名称");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else{
                 $(".childBankName").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
@@ -77,11 +77,16 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(account==""){
                 $(".account").find(".errorMsg").text("请填写企业对公账户");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else if(isNaN(account)){
                 $(".account").find(".errorMsg").text("企业对公账户只能是数字");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
+            }else if(account.length>25)
+            {
+                $(".account").find(".errorMsg").text("企业对公账户不能大于25位");
+                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                return false;
             }else{
                 $(".account").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
@@ -90,19 +95,28 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             if(vertifyCode==""){
                 $(".vertifyCode").find(".errorMsg").text("请填写验证码");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return;
+                return false;
             }else{
                 $(".vertifyCode").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
             }
-            // 同意协议
-            if(!$("#haveRead").prop("checked")){
-                $('.submitTotal').find(".errorMsg").text("请阅读《易煤网出金服务协议》并同意");
-                return;
+            if(!finalResult){
+                $(".vertifyCode").find(".errorMsg").text("校验码错误");
+                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                return false;
             }else{
+                $(".vertifyCode").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
             }
-
+            return true;
+        },
+        "checkVCode": function(){
+            var vertifyCode=$("#vertifyCode").val();
+            return  $.ajax({
+                url: '/api/verifyCode',
+                type: 'POST',
+                data: {'sms_code': vertifyCode}
+            });
         },
         "changeSelect" : function(){
             var that=this
@@ -124,39 +138,51 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
             $("#vertifyCode").on('blur', function() {
                 that.Verify();
             });
-
-            // 验证码判断
-
-            $("#vertifyCode").on("input",function(){
-                var codeVal=$(this).val();
-                $.ajax({
-                    url:'/api/verifyCode',
-                    type:'POST',
-                    data:{'sms_code': codeVal},
-                    success:function(data){
-                        if(data.success){
-                            $(".successIcon").css({visibility:"visible"});
-                            $(".vertifyCode .errorMsg").text('');
-                        }else{
-                            if(data.errType && (data.errType=='sms_code')){
-                                $(".vertifyCode .errorMsg").text('校验码错误');
-                                $(".successIcon").css({visibility:"hidden"});
-                                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                                return false;
-                            }
+            $("#childBankName").on("click",function(){
+                $(".childBankList").show();
+            });
+            $("#vertifyCode").on('blur', function() {
+                var vertifyCode=$("#vertifyCode").val();
+                that.checkVCode().done(function(data){
+                    if (data.success) {
+                        $(".successIcon").css({visibility: "visible"});
+                        $(".vertifyCode .errorMsg").text('');
+                        finalResult = true;
+                    } else {
+                        if (data.errType && (data.errType == 'sms_code')) {
+                            finalResult = false;
+                            $(".vertifyCode .errorMsg").text('校验码错误');
+                            $(".successIcon").css({visibility: "hidden"});
+                            $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                            return false;
                         }
                     }
+                });
+            });
 
-                })
+            $(document).on("click",function(e){
+                if(e.target.className!="accountInfoInput" && e.target.className!="accountInfoInput"){
+                    $(".childBankList").hide();
+                }
+            });
+            // 开户行支行选择
+            $(document).on("click",".bankNameList",function(){
+                $("#childBankName").val($(this).text())
             })
         },
 
         "submit" : function(){
             var that=this;
             $("#submitInfo").on("click",function(){
-                that.Verify();
+                var flag = that.Verify();
+                if(flag){
                 // 跳转
-                location.href='/wealth/bindingSuccess'
+                    if(finalResult!="undefined" && finalResult){
+                        // 跳转
+                        location.href='/wealth/bindingSuccess';
+                    }
+                }
+
             })
         }
     }
