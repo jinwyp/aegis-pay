@@ -94,7 +94,7 @@
                                 <td >{{order.toPersonAccount}}</td>
                                 <td >{{order.toPersonAccountName}}</td>
                                 <td >{{order.toPersonBankName}}</td>
-                                <td ><span class="iBtn iBtn_sm iBtn_no table_btn">打印回执</span></td>
+                                <td ><span class="iBtn iBtn_xs iBtn_no">打印回执</span></td>
                             </tr>
 
                         </table>
@@ -175,10 +175,27 @@
                                 </div>
                             </div>
 
-                            <div class="form-row ">
-                                <button class="iBtn iBtn_sm iBtn_yes " >下载EXCEL</button>
-                                <button class="iBtn iBtn_sm iBtn_yes " >下载PDF</button>
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">文件格式:</label>
+                                    <div class="col-sm-4">
+                                        <button class="button_pdf" > <span>PDF格式下载</span></button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="button_xls" ><span>Excel格式下载</span></button>
+                                    </div>
+                                </div>
                             </div>
+
+                            <!--<div class="form-row  ">-->
+                                <!--<div class="form-group form-search form-search-big">-->
+                                    <!--<label class="col-sm-4 control-label sr-only" >下载</label>-->
+                                    <!--<div class="col-sm-4">-->
+                                        <!--<button class="iBtn iBtn_sm iBtn_yes button-margin" >确认下载</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
 
                         </form>
                     </div>
