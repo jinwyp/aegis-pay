@@ -1,0 +1,32 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/openFundAccount.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper openFundAccount wait">
+    <% var statusObj = {step:2, total:3, stepList: [{stepName:'设置密码', stepDate:''}, {stepName:'开通银行附属账户', stepDate:''}, {stepName:'成功', stepDate:''}]} %>
+    <%- include ../paypassword/statusBar %>
+    <div class="stepWrapper">
+        <span class='pointer'><i></i></span>
+        <span class='glyphicon glyphicon-refresh-animate-slow'><em class='icon-big-loading'></em></span>
+        <h5>当前申请状态： <span>已提交</span></h5>
+        <p>
+            中信银行系统正在给您开通附属账户，<span>请耐心等待2分钟……</span>
+        </p>
+    </div>
+</div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/wealth/openFundAccount.js"></script>
+
+</body>
+</html>

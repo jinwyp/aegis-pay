@@ -16,6 +16,7 @@ var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 
 var financialApi    = require('../../api/v1/financialDetails');
+var fundAccountApi = require('../../api/v1/fundaccount');
 
 // demo
 router.get('/user', siteController.user);
@@ -50,7 +51,9 @@ router.post('/paypassword/forget/submit', payPasswordApi.forgetSubmit);
 router.post('/paypassword/modify/valid', sms.verifyMiddleware(), payPasswordApi.modifyValid);
 router.post('/paypassword/modify/submit', payPasswordApi.modifySubmit);
 
-
+// open fund account - next
+router.post('/open-fund-account', sms.verifyMiddleware(), fundAccountApi.openFundAccount);
+router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpenStatus);
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
 

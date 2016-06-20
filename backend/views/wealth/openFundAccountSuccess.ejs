@@ -1,0 +1,37 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/openFundAccount.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper openFundAccount success">
+    <% var statusObj = {step:3, total:3, stepList: [{stepName:'设置密码', stepDate:''}, {stepName:'开通银行附属账户', stepDate:''}, {stepName:'成功', stepDate:''}]} %>
+    <%- include ../paypassword/statusBar %>
+    <div class="contentWrapper">
+        <h5><i class='icon_ok'></i>账户开通成功</h5>
+    </div>
+    <h5 class='pageTitle'><span></span>易煤网资金账户</h5>
+    <div class="fundAccountInfo">
+        <ul>
+            <li><label>账户名称：</label><%= userAcccount.accountName %></li>
+            <li><label>开户行：</label><%= userAcccount.accountBank %></li>
+            <li><label>账户号：</label><%= fundAccountFormat(userAcccount.account) %></li>
+            <li><label>账户类型：</label><%= userAcccount.accountType %></li>
+        </ul>
+        <a href="#" class='btn_blue'>开始使用</a>
+    </div>
+</div>
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/wealth/openFundAccount.js"></script>
+
+</body>
+</html>
