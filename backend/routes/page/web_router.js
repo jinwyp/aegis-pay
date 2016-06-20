@@ -91,8 +91,8 @@ router.get('/account/notice', notice.notice);    //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);  // 账户通初始化
 
 router.get('/drawCash', drawCash.drawCash);  // 提现已绑定
-router.get('/drawCashCheck', drawCash.drawCashCheck);  // 提现确认信息
-router.get('/drawCashStatus', drawCash.drawCashStatus);  // 提现确认信息
+router.post('/drawCashCheck', drawCash.drawCashCheck);  // 提现确认信息
+router.post('/drawCashStatus', drawCash.drawCashStatus);  // 提现确认信息
 
 
 router.get('/compact', compactController.compact);

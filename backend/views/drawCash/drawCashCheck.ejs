@@ -24,14 +24,14 @@
 					<div class="form-group">
 						<label class="col-sm-5 control-label">选择银行卡：</label>	
 						<div class="col-sm-4 txt-strong">
-							<p class="para-name">公司全称公司全称公司全称</p>
-							<p class="para-bank">中信银行:********7423</p>
+							<p class="para-name"><%= companyName %></p>
+							<p class="para-bank"><%= bankName %>:<%=bankAccount %></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-5 control-label">提现金额：</label>
 						<div class="col-sm-4 padding-top-6 font-size-18">
-							30,000,000.00 元
+							<%= cash %> 元
 						</div>
 					</div>
 					<div class="form-group">
@@ -43,11 +43,11 @@
 					</div>
 				</form>
 				<div class="zhifu">
-					<form action="" class="form-horizontal">
+					<form action="/drawCashStatus" method="post" class="form-horizontal">
 						<div class="form-group">
 							<label class="col-sm-5 control-label">易煤网支付密码</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" id="confirmTxt">
+								<input type="text" class="form-control" id="confirmTxt" name="password">
 								<p class="padding-top-8 password-info text-danger display-none" id="confirmErr">请输入6-20位数字或英文字母或下划线</p>
 							</div>
 							<div class="col-sm-2 forget-password padding-top-6">
@@ -56,16 +56,16 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-4">
-								<input type="button" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
+								<input type="submit" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
 								<a href="#" class="margin-left-10">返回上一步</a>
 							</div>
 							<p id="errorMsg" class="col-sm-offset-5 col-sm-4 text-danger padding-top-8"></p>
 						</div>
+						<input type="hidden" name="confirmToken" value="<%= confirmToken %>"/>
 					</form>
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="cashToken"/>
 	</div>
 </div>
 
