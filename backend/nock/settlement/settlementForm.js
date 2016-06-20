@@ -85,6 +85,8 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'32
 
 
 
+
+
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 // API路由: 卖家.查看结算单 (待结算_卖:WaitSettleAccounts  待审核_卖:WaitVerifySettle)
 nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'110000'})
