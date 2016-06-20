@@ -50,6 +50,7 @@
 					<dd>18038337787</dd>
 				</dl>
 			</div>
+			<% if( status ){ %>
 			<div class="figure-wrap">
 				<div class="figure-caption">公司银行账户
 					<span id="delBankBtn">删除</span>
@@ -67,12 +68,14 @@
 					<dd>18038337787</dd>
 				</dl>
 			</div>
+			<% }else{ %>
 			<div class="figure-wrap">
 				<div class="figure-caption">公司银行账户</div>
 				<div class="figure-content text-center">
-					<a class="add-bank-btn" href="#">添加银行账户</a>
+					<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
 				</div>
 			</div>
+			<% } %>
 		</div>
 		<div class="modal fade" id="delBankModal">
 			<div class="modal-dialog modal-pl">

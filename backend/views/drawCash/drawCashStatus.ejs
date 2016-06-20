@@ -1,0 +1,67 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/drawCash/drawCash.css">
+    
+</head>
+	
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+
+<div id="financial-body">
+	<div class="financial-main draw-cash">
+		<div class="figure-wrap" id="drawCashConfirm">
+			<div class="figure-caption">
+				<span>提现申请</span>
+				<a href="#">提现记录</a>
+			</div>
+			<div class="reasonsReturn mt20">
+				<span class="icn_successMax"></span>
+				<span><strong>提现申请已提交</strong>等待银行处理...</span>
+			</div> 
+			<div class="statusBar">
+    			<ul class="statusMain status_2">
+			        <li class="statusMax step_1">
+		                <span class="statusHr"></span>
+		                <span class="statusDot">1</span>
+		                <span class="stepName">提现申请</span>
+		                <span class="stepDate">1970-01-01 08:00:02</span>
+		            </li>
+                	<li class="statusMax step_2">
+		                <span class="statusHr"></span>
+		                <span class="statusDot">2</span>
+		                <span class="stepName">银行处理</span>
+		                <span class="stepDate">1970-01-01 08:00:02</span>
+		            </li>
+			        <li class="statusMax step_5">
+			            <span class="statusHr"></span>
+		                <span class="statusDot">3</span>
+		                <span class="stepName">提现成功</span>
+		                <span class="stepDate">1970-01-01 08:00:02</span>
+		            </li>
+		      	</ul>
+			</div>
+			<ol class="list">
+				<li>您可 <a href="#" class="continue-btn">继续提现</a></li>
+				<li>或者返回 <a href="#">财务管理中心</a></li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/drawCash/drawCash.js"></script>
+
+</body>
+</html>
+
+
+

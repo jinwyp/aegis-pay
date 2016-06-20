@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/billCenter.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/billCenter.css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                             <%}else{%>
                                 <td>待开票</td>
                                 <td>
-                                    <div class="btn" id="settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
+                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
                                     <a href="">查看详情</a>
                                 </td>
                             <%}%>
@@ -73,6 +73,6 @@
 <%- include ../global/includehead/bottomscript %>
 
 
-<script src="/dist/scripts/settlement/billCenter.js"></script>
+<script src="<%= staticPath %>/scripts/settlement/billCenter.js"></script>
 </body>
 </html>
