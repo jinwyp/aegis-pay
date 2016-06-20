@@ -63,7 +63,7 @@
             <div class="row table-box">
                 <div class="list-title">
                     <span class="record-title">易煤网资金账户号:</span>
-                    <span class="record-no"><%= accoutNumber %></span>
+                    <span class="record-no"><%= accountNumber %></span>
 
                     <span class="record-download iBtn iBtn_down iBtn_xs" data-toggle="modal" data-target="#downloadExcel">
                         <i class="iBtn_down_icn"></i>下载收支明细
@@ -102,27 +102,41 @@
                         <nav class="pagination-financial">
                             <ul class="pagination pageno">
                                 <li class="first-page">
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">< 上一页</span>
+                                    <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')">
+                                        <span aria-hidden="true" >< 上一页</span>
                                     </a>
                                 </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+                                <li ms-visible='@orderEllipsisLeft'>
+                                    <a >...</a>
+                                </li>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArray'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
+                                <li ms-visible='@orderEllipsisRight'>
+                                    <a >...</a>
+                                </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayRight'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
                                 <li first-page>
-                                    <a href="#" aria-label="Next">
+                                    <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)">
                                         <span aria-hidden="true">下一页 ></span>
                                     </a>
                                 </li>
                             </ul>
 
                             <div class="jump-to-page">
-                                <span>共55页, 到第</span>
-                                <input type="text" class="" placeholder="" ms-duplex="@orderCurrentPage">
+                                <span>共 {{@orderListTotalPages}}页, 到第</span>
+                                <input type="text" placeholder="" ms-duplex="@orderCurrentPage">
                                 <span>页</span>
-                                <button class="iBtn pagination-button">确定</button>
+                                <button class="iBtn pagination-button" ms-click="@changePagination(page.value, $event)">确定</button>
                             </div>
                         </nav>
 

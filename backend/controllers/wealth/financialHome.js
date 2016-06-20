@@ -55,7 +55,7 @@ exports.financialDetails = function (req, res, next) {
             secondTab : secondTab
         },
 
-        accoutNumber : '1234567890',
+        accountNumber : '1234567890',
         
         formSelectOrderCategory:[
             {id:'1', value:'1', text:'提现'},
