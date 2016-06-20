@@ -19,6 +19,11 @@ exports.settleDetails = function (req, res, next) {
             var content = {
                 pageTitle: "结算管理",
                 headerTit: "结算管理",
+                userType: 'buy',     //用户类型: buy, sell
+                editable:"false",
+                order: {
+                    status: 'ReturnedSettleAccounts'
+                }
 
                 //"settleInfo":source.settleInfo
 
