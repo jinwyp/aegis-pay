@@ -25,6 +25,7 @@
                 </p>
             </div>
             <div class="plateMain" id="addInvoiceMain">
+                <form action="#" method="post" id="invoiceForm">
                 <table class="table tab_nBor">
                     <tbody>
                     <tr>
@@ -34,48 +35,74 @@
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司地址：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司电话：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="companyPhone" name="companyPhone" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司电话">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司传真：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="companyFax" name="companyFax" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司传真">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>纳税人识别号：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="identificationNumber" name="identificationNumber" maxlength="20" class="iIpt iIpt_sm" value="" placeholder="15,17,18或者20位纳税人识别号">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>开户银行：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>开户银行账号：</th>
-                        <td><input type="text" class="iIpt iIpt_sm" value="" placeholder="正常状态"></td>
+                        <td>
+                            <input type="text" id="bankAccount" name="bankAccount" maxlength="25" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
                         <td>
-                            <select name="reasonId" id="reasonId" style="display: none">
-                                <option value="--">选择发票类型</option>
-                                <option value="555">增值税专用发票</option>
-                                <option value="666">企业</option>
-                                <option value="777">个人</option>
+                            <select name="type" id="type" style="display: none">
+                                <option value="">选择发票类型</option>
+                                <option value="1">增值税专用发票</option>
+                                <option value="2">企业</option>
+                                <option value="3">个人</option>
                             </select>
+                            <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
+
+                    <!--<input type="hidden" id="templetUrl" name="templetUrl">-->
+                    <input type="type" id="templetUrl" name="templetUrl" value="">
+
+                    <div class="totalError"></div>
+
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
 
@@ -84,7 +111,7 @@
             <div class="plateHead borSolid">
                 <h3 class="headLeft">
                     <s class="require lih_16">*</s>上传开票信息
-                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="" class="a">下载样板</a>，然后拍照上传 )</p>
+                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="/download/invoiceTemplate.jpg" class="a">下载样板</a>，然后拍照上传 )</p>
                 </h3>
             </div>
             <div class="plateMain clearfix" id="upInvoiceMain">
@@ -93,7 +120,7 @@
                     <h3>客户开票信息表</h3>
                     <p class="txt_c">
                         <br/>
-                        <a href="" class="iBtn iBtn_down">
+                        <a href="/download/invoiceTemplate.jpg" class="iBtn iBtn_down">
                             <i class="iBtn_down_icn"></i>下载附件
                         </a>
                     </p>
@@ -135,8 +162,8 @@
             <!-- 操作按钮-->
             <div class="plateMain txt_c">
                 <br/><br/>
-                <input type="button" class="iBtn iBtn_def" value="取消">
-                <input type="button" class="iBtn iBtn_yes ml20" value="确认">
+                <input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">
+                <input type="button" id="submitBtn" class="iBtn iBtn_yes ml20" value="确认">
             </div>
 
         </div>

@@ -1,0 +1,73 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/contractList.css">
+</head>
+
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+<div id="contract-body">
+    <div class="contract-main">
+        <form action="/finance/transaction/list" method="get">
+        <div class="search-div">
+                <span>交易时间:</span>
+                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=startDate%>"/></div>
+                <span class="to">至</span>
+                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
+                <span>交易编号:</span>
+                <select name="type" id="searchType">
+                    <option value="0">全部</option>
+                    <option value="1" <%if(type==1){ %>selected<% } %>>订单编号</option>
+                    <option value="2" <%if(type==2){ %>selected<% } %>>合同编号</option>
+                    <option value="3" <%if(type==3){ %>selected<% } %>>流水号</option>
+                    <option value="4" <%if(type==4){ %>selected<% } %>>公司名称</option>
+                </select>
+                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=content%>"/>
+                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
+        </div>
+        </form>
+        <div class="contract-div">
+            <table class="transaction-table">
+                <thead>
+                <tr>
+                    <th width="130">交易时间</th>
+                    <th width="100">订单号</th>
+                    <th width="100">付款流水号</th>
+                    <th width="160">对方公司</th>
+                    <th width="160">结算吨数(吨)</th>
+                    <th width="160">结算金额(元)</th>
+                    <th width="160">状态</th>
+                    <th width="140">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for(var i in contractList){%>
+                <tr class="line">
+                    <td width="130"><%=contractList[i].signContractTime%></td>
+                    <td width="100"><%=contractList[i].orderNO%></td>
+                    <td width="160"><%=contractList[i].contractNO%></td>
+                    <td width="120"><%=contractList[i].sellerCompanyName%></td>
+                    <td width="120"><%=contractList[i].sellerCompanyName%></td>
+                    <td width="120"><%=contractList[i].sellerCompanyName%></td>
+                    <td width="120"><%=contractList[i].sellerCompanyName%></td>
+                    <td width="140">
+                        <!--<input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>-->
+                        <a href="http://pay-local.yimei180.com:3000/compactDetail?orderId=11111">查看详情</a></td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/wealth/transactionRecord.js"></script>
+
+</body>
+</html>

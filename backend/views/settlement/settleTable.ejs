@@ -4,8 +4,6 @@
     <link rel="stylesheet" href="<%= staticPath %>/styles/settleDetails.css">
 </head>
 <body>
-<%- include ../global/header/header %>
-<%- include ../global/header/subHeader %>
 
 
 <!-- 以下.内容部分 -->
@@ -16,12 +14,7 @@
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">开票详情</h3>
-                <% if(typeof htmlpath != 'undefined') { %>
-                    <p class="headRight"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
-                <% }else {%>
-                    <p class="headRight"><a href="#" class="downLoad">下载开票资料</a></p>
-                    <input type='hidden' name='nohtmlpath' />
-                <% } %>
+                <a href="#" class="downLoad">下载开票资料</a>
             </div>
             <div class="plateMain">
                 <!-- 结算单信息 板块-->
@@ -38,22 +31,12 @@
         <%- include ../Plugins/InvoiceRemarksPlate %>
 
         <p class="mt20"></p>
-        <p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>
+        <a href="#" class="downLoad">下载开票资料</a>
         <p class="mt20"></p>
     </div>
 </div>
 
 
 
-
-
-
-<%- include ../global/footer/footer %>
-<%- include ../global/includehead/bottomscript %>
-<script src="<%= staticPath %>/scripts/settlement/settleDetails.js"></script>
-
 </body>
 </html>
-
-
-

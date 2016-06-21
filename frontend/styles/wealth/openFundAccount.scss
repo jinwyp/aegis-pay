@@ -1,0 +1,121 @@
+@import '../global.scss';
+@import '../components/_common.scss';
+@import '../paypassword/statusBar.scss';
+@import '../Plugins/ccapimg-modal.scss';
+
+
+body{ background-color: $color_body_bg; font-size:$size_font_middle; font-family: $font_family;}
+
+input[type="text"],input[type="password"]{
+    width:298px; height:38px; line-height: 38px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
+}
+a.btn_blue{
+    &:hover{ color:#fff; text-decoration: none;}
+}
+#imgcodeModal{
+    input[type="text"],input[type="password"]{
+        width:220px; height:34px; line-height: 34px;
+    }
+}
+.mainWrapper{
+  width: $main_width; margin:$main_margintop auto $main_marginbottom; padding:10px 38px 65px;
+  background-color:$color_main_bg;
+  .pageTitle{
+      em{
+          margin-left:20px; font-size:$size_font_normal; color:$color_title_text;
+          i{
+              color:$color_orange;
+          }
+      }
+  }
+  &.openFundAccount{
+      .stepWrapper{
+          border:1px solid $color_border_gray; position:relative; padding:25px;
+          .pointer, .pointer i{
+              position: absolute; top:-20px; left:186px;
+              display: inline-block; *display: inline; zoom:1;
+              width:0; height:0; border-width:10px; border-color:transparent transparent $color_border_gray transparent; border-style:solid;
+          }
+          .pointer i{
+              position:absolute; left:-10px; top:-9px;
+              border-color:transparent transparent #fff transparent;
+          }
+          .valid{
+              margin: 40px 0 40px 190px;
+              li{
+                  margin-top:20px;
+              }
+              label{
+                  font-size: $size_font_middle; font-weight: normal; width:70px;
+              }
+              .tip-msg, .tip-error{
+                  margin-left:75px; margin-top:3px; font-size:$size_font_normal;
+              }
+              .icon-secure-tip{
+                  vertical-align: top;
+                  margin:1px 5px 0 0;
+              }
+              .smsWrapper{
+                  display: inline-block; *display: inline; zoom:1; margin-left:5px;
+                  width:298px; border:1px solid $color_border_gray;
+                  input[type='text']{
+                      width:178px; border:none; margin:0;
+                  }
+              }
+          }
+      }
+      #nextBtn{ margin-left:268px; }
+  }
+
+  &.wait{
+      .stepWrapper{
+          text-align: center;
+          h5{
+              font-size:$size_font_big_num;
+              span{
+                  color:$color_green;
+              }
+          }
+          p{
+              font-size:$size_font_normal; color:$color_gray; line-height: 60px;
+              span{ color:$color_orange; }
+          }
+          .pointer{
+              left:452px;
+          }
+      }
+  }
+  &.success{
+      .contentWrapper{
+          background: $color_lightblue; height:190px; text-align: center; line-height: 190px;
+          margin-bottom:30px;
+          h5{
+              font-size:$size_font_big_num; display: inline-block; *display: inline; zoom:1;
+              .icon_ok{
+                  vertical-align: middle; margin-right:5px;
+              }
+          }
+      }
+      .btn_blue{
+          margin:0 0 30px 300px;
+          &:hover{ color:#fff; text-decoration: none; }
+      }
+      .fundAccountInfo{
+          border:1px solid $color_border_gray;
+          ul{
+              margin:30px 0 30px 300px;  line-height: 36px;
+              label{
+                  width:100px; color:$color_gray; font-weight:normal;
+              }
+          }
+      }
+      .pageTitle{
+          border:none; margin-bottom:5px;
+      }
+  }
+}
+.glyphicon-refresh-animate-slow{
+    margin:30px 0;
+    animation: spin 2.5s infinite linear;
+    -webkit-animation: spin2 2.5s infinite linear;
+}

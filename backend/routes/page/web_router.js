@@ -83,9 +83,14 @@ router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
 router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);    //财富管理
-router.get('/wealth/financialHome', financialHome.financialHome);    //财务管理中心 账户管理
-router.get('/wealth/financialTranaction', financialHome.financialTransaction);    //财务管理中心 账户管理
+router.get('/wealth/financialHome', financialHome.financialHome);    //财务管理中心 首页
 router.get('/wealth/financialDetails', financialHome.financialDetails);    //财务管理中心 交易明细
+router.get('/wealth/financialTransaction', financialHome.financialTransaction);    //财务管理中心 交易记录
+router.get('/wealth/financialContract', financialHome.financialContract);    //财务管理中心 合同管理
+router.get('/wealth/financialSettlement', financialHome.financialSettlement);    //财务管理中心 结算管理
+router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
+router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);
+router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);
 
 
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置

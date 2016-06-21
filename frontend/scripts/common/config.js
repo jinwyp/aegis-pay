@@ -71,6 +71,6 @@ require.config({
       ],
       exports: "avalon"
     }
-
   }
-})
+});
+
