@@ -32,6 +32,7 @@ exports.invoiceInfo = function (req, res, next) {
 			var replyData = JSON.parse(data.body);
 			replyData.pageTitle = '结算_确认开票信息';
 			replyData.headerTit = replyData.headerTit;
+			replyData.templetUrl = true;
 			return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 
 		});
