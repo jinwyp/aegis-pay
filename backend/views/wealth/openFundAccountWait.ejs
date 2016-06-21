@@ -26,6 +26,31 @@
 
 <%- include ../global/includehead/bottomscript %>
 
+<div class="container modalPublic">
+    <div class="row clearfix">
+        <div class="modal_2 modal fade" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title" id="modal_title_2">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="bg_img attention" id="modalImg_2"></div>
+                            <div class="modalInfo">
+                                <span id="modalInfo_2" >开通账户失败，请稍后重试！</span>
+                            </div>
+                            <div class="buttons">
+                                <a href="/wealth/open-fund-account" class='btn_blue'>确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="<%= staticPath %>/scripts/wealth/openFundAccount.js"></script>
 
 </body>

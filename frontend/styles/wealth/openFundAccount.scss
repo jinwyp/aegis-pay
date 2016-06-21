@@ -9,6 +9,9 @@ body{ background-color: $color_body_bg; font-size:$size_font_middle; font-family
 input[type="text"],input[type="password"]{
     width:298px; height:38px; line-height: 38px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
 }
+a.btn_blue{
+    &:hover{ color:#fff; text-decoration: none;}
+}
 #imgcodeModal{
     input[type="text"],input[type="password"]{
         width:220px; height:34px; line-height: 34px;
@@ -63,6 +66,7 @@ input[type="text"],input[type="password"]{
       }
       #nextBtn{ margin-left:268px; }
   }
+
   &.wait{
       .stepWrapper{
           text-align: center;
@@ -83,16 +87,30 @@ input[type="text"],input[type="password"]{
   }
   &.success{
       .contentWrapper{
-          background: $color_lightblue; height:190px; text-align: center;
+          background: $color_lightblue; height:190px; text-align: center; line-height: 190px;
+          margin-bottom:30px;
           h5{
-              font-size:$size_font_big_num;
+              font-size:$size_font_big_num; display: inline-block; *display: inline; zoom:1;
               .icon_ok{
-                  vertical-align: middle;
+                  vertical-align: middle; margin-right:5px;
               }
           }
       }
       .btn_blue{
+          margin:0 0 30px 300px;
           &:hover{ color:#fff; text-decoration: none; }
+      }
+      .fundAccountInfo{
+          border:1px solid $color_border_gray;
+          ul{
+              margin:30px 0 30px 300px;  line-height: 36px;
+              label{
+                  width:100px; color:$color_gray; font-weight:normal;
+              }
+          }
+      }
+      .pageTitle{
+          border:none; margin-bottom:5px;
       }
   }
 }

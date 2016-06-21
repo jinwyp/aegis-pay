@@ -17,7 +17,7 @@ fundAccountPersist
         }
     }}
     if(times>=3){
-        result.data.success = 1;
+        result.data.success = 3;
         times = 0;
     }
     return result;

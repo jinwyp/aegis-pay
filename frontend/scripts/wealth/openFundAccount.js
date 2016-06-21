@@ -6,7 +6,10 @@ require(['jquery', 'pay.smscode'], function($, smscode){
                     if(result.success){
                         location.href = '/wealth/open-fund-account/success';
                     }else{
-                        console.log('err')
+                        $('.modal_2').modal();
+                        $('.modal_2').on('hide.bs.modal', function(){
+                            location.href = '/wealth/open-fund-account';
+                        })
                     }
                 });
                 return;
