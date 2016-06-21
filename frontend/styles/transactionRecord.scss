@@ -1,9 +1,18 @@
 @import './global.scss';
 @import './Plugins/fancySelect.scss';
+@import "./components/_datePicker.scss";
 
 #transaction-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
+  a {
+    color: $color_manage_text;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $color_a_hover;
+    }
+  }
   .transaction-main{
     width: $main_width;
     margin-left: auto;
@@ -13,19 +22,30 @@
       font-size: 12px;
       color: $color_font;
       padding: 20px 0;
-      div.trigger{  height: 32px;  }
-      select{  display: none;  }
+      div.trigger{  height: 32px;color: $color_font;  }
+      select{  display: none;color: $color_font;  }
       .mt-20{ margin-top:20px; }
-      .search-row > span{ margin: 0 20px; }
       .row-one{ z-index: 10;  position: relative; }
       .row-two{ z-index: 1;  position: relative; }
+      .search-row > span{ margin: 0 10px 0 20px; vertical-align: middle;}
       .search-row{
-        input.time{ width: 150px;  background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 125px -535px; }
+        div.time{width: 132px;display: inline-block;position: relative;}
+        input{vertical-align: middle; font-size: 12px;}
+        .startDate,.endDate{
+          margin-left: -1px;
+          padding-left: 10px;
+          color: $color_font;
+          width: 130px;
+          background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 108px -534px;
+        }
+        span.to{margin: 0 10px 0 7px;}
+        .ml-40{ margin-left: 40px; }
+        .record-number{width: 300px;}
+        .disabled-bg{ background-color: #f8f8f8; }
       }
     }
     .transaction-div{
       padding-bottom: 30px;
-      //margin-bottom: 30px;
       .transaction-table{
         width: 960px;
         margin-left: auto;
@@ -39,14 +59,20 @@
         tbody tr{
           border-bottom: 1px dotted $color_border;
           &:hover{  background-color: $tr_hover_color;  }
-          td{  text-align: center; padding: 6px 0;  }
-          td.coal-target,td.order-number > div{
+          td{
+            text-align: center;
+            padding: 8px 0;
+            .btn-option{ margin-right: 16px; }
+          }
+          td.coal-target > div{
             text-align: left;
-            padding: 0 20px;
-            .label{
-              color: $color_tip_font;
-              padding: 0;
-            }
+            padding: 4px 0 4px 20px;
+            .label{  color: $color_tip_font;  padding: 0;  }
+          }
+          td.order-number > div{
+            text-align: left;
+            padding: 4px 0 4px 20px;
+            .label{  color: $color_tip_font;  padding: 0;  }
           }
         }
       }

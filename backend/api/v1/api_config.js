@@ -87,6 +87,9 @@ var api_config = {
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
+    financialTransaction : host + 'finance/transaction/list',
+    contractList : host + 'account/finance/contract/list',
+    settlementList : host + 'account/finance/settlement/list',
 
 
     /**
@@ -137,7 +140,10 @@ var api_config = {
     fetchOpenStatus: host + 'account/fund/create/checkStatus',
 
     drawcash: host + 'account/withDrawCash',
-    drawcashSubmit: host + 'account/DrawCash'
+    drawcashSubmit: host + 'account/DrawCash',
+
+    fundinfo: host + 'account/fund/info'
+
 };
 
 module.exports = api_config;

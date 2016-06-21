@@ -3,7 +3,6 @@
 */
  var request = require('request');
  var api_config = require('../../api/v1/api_config');
- var logger     = require("../../libs/logger");
  var uuid = require('node-uuid');
  var UnauthenticatedAccessError = require('../../errors/UnauthenticatedAccessError');
  var logger = require('../../libs/logger');

@@ -16,32 +16,27 @@ exports.financialHome = function (req, res, next) {
     request(api_config.financialCenterHome, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
-        if (data&&data.success) {
-            var source  = JSON.parse(data.body);
-            var content = {
-                pageTitle : "财务管理中心",
-                headerTit : "财务管理中心",
-                tabObj : {
-                    firstTab : firstTab,
-                    secondTab : secondTab
-                },
-                finance:source.data.finance,
-                recordList:source.data.recordList
-            };
-            //渲染页面
-            res.render('wealth/financialCenterHome',content);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "财务管理中心",
+                    headerTit: "财务管理中心",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    finance: source.data.finance,
+                    recordList: source.data.recordList
+                };
+                //渲染页面
+                res.render('wealth/financialCenterHome', content);
+            }
         }
 
     });
 };
-
-
-
-
-
-
-
-
 
 exports.financialDetails = function (req, res, next) {
 
@@ -77,15 +72,97 @@ exports.financialTransaction = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
-    var content = {
-        pageTitle : "财务管理中心 - 交易明细",
-        headerTit : "财务管理中心 - 交易明细",
-        tabObj : {
-            firstTab : firstTab,
-            secondTab : secondTab
+    request(api_config.financialTransaction, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的错误是----------------------------' + err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "财务管理中心",
+                    headerTit: "财务管理中心",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    type: source.data.transactionRecord.type,
+                    startDate: source.data.transactionRecord.startDate,
+                    endDate: source.data.transactionRecord.endDate,
+                    status: source.data.transactionRecord.status,
+                    searchType: source.data.transactionRecord.searchType,
+                    content: source.data.transactionRecord.content,
+                    statusList: source.data.transactionRecord.statusList,
+                    recordList: source.data.transactionRecord.list
+                };
+                //渲染页面
+                res.render('wealth/transactionRecord',content);
+            }
         }
-    };
+    });
+};
 
-    res.render('wealth/transactionRecord',content);
+exports.financialContract = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 3;
+    var secondTab = req.query.secondTab || 1;
+    request(api_config.contractList, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的错误是----------------------------' + err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "合同管理",
+                    headerTit: "合同管理",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    startDate: source.data.contract.startDate,
+                    endDate: source.data.contract.endDate,
+                    type: source.data.contract.type,
+                    content: source.data.contract.content,
+                    contractList: source.data.contract.list
+                };
+                //渲染页面
+                res.render('wealth/contractList',content);
+            }
+        }
+    });
+
+};
+
+exports.financialSettlement = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 3;
+    var secondTab = req.query.secondTab || 1;
+    request(api_config.settlementList, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的错误是----------------------------' + err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "结算管理",
+                    headerTit: "结算管理",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    startDate: source.data.contract.startDate,
+                    endDate: source.data.contract.endDate,
+                    type: source.data.contract.type,
+                    content: source.data.contract.content,
+                    contractList: source.data.contract.list
+                };
+                //渲染页面
+                res.render('wealth/settlementList',content);
+            }
+        }
+    });
+
 };
 
