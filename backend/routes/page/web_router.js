@@ -67,6 +67,7 @@ router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               // 结算单.开票备注 页面路由
 router.get('/settlement/billCenter', billCenter.billCenter);    //结算管理发票中心
 router.get('/settlement/billSetting', billSetting.billSetting);    //结算管理开票设置
+router.post('/settlement/billDelete', billSetting.billDelete);    //结算管理开票设置删除按钮
 router.get('/settlement/waitSettle', waitSettle.waitSettle);    //结算管理开票设置
 router.get('/settlement/hadSettle', hadSettle.hadSettle);    //结算管理开票设置
 router.get('/settlement/settleDetails', settleDetails.settleDetails);    //结算管理发票查看详情
