@@ -23,7 +23,7 @@
   }
 }
 
-.btn_blue, .btn_gray, .btn_blue_small,.btn_respond{
+.btn_blue, .btn_gray, .btn_blue_small,.btn_respond, .btn_gray_small{
   display:inline-block; *display:inline; zoom:1;
   width:140px; height:40px; line-height: 40px; text-align:center;
   color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
@@ -38,9 +38,12 @@
 .btn_gray{
   background: $color_btn_gray;
 }
-.btn_blue_small{
+.btn_blue_small, .btn_gray_small{
   display:inline-block; *display:inline; zoom:1;
   height:32px; line-height: 32px; font-size:$size_font_middle; width:110px;
+}
+.btn_gray_small{
+    background-color:$color_btn_gray; color:#fff;
 }
 
 
@@ -162,4 +165,8 @@
 .icon-secure-tip{
     display:inline-block; *display:inline; zoom:1; vertical-align: middle;
     @include sprite($secure-tip);
+}
+.icon-big-loading{
+    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+    @include sprite($big-loading);
 }

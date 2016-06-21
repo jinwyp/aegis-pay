@@ -5,6 +5,8 @@
   width: 18px;
   height: 18px;
   background: url($bgUrl) no-repeat -122px -177px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
   &:hover {
     background: url($bgUrl) no-repeat -170px -178px;
   }

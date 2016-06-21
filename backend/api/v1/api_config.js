@@ -87,6 +87,9 @@ var api_config = {
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
+    financialTransaction : host + 'finance/transaction/list',
+    contractList : host + 'account/finance/contract/list',
+    settlementList : host + 'account/finance/settlement/list',
 
 
     /**
@@ -113,6 +116,28 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'financial/order/details',
+
+    // open fund account
+    openFundAccount: host + 'account/fund/create',
+    /** fetch status
+     * params: {userId}
+     * response:
+     {
+       success:
+       error:
+       errorCode:
+       data {
+           success: (备注)   // 1： 开通成功，2： 正在开通中，继续请求 3： 开通失败，不再需要请求
+           userAcccount{
+                  accountName: 账户名称
+                  accountBank: 开户行
+                  account:  账户号
+                  accountType: 账户类型
+         }
+       }
+    }
+     */
+    fetchOpenStatus: host + 'account/fund/create/checkStatus',
 
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash',

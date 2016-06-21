@@ -8,7 +8,6 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
             $('#signCompact input[name="version"]').val($(data).find('input[name="version"]').val());
             $('.compactContainer').replaceWith(data);
             $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
-            $('').remove();
             self.flexslider();
             self.lightbox();
           })
