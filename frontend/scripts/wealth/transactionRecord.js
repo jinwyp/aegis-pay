@@ -67,7 +67,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'bootstrap'],
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
-    $('[name=searchType]').fancySelect().on('change.fs', function() {
+    $('#searchType').fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');
         console.log(this.value);
         //$subBtn.prop('disabled', $.trim(this.value)==='--');

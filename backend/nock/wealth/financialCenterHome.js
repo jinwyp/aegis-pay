@@ -171,4 +171,165 @@ financialCenterHomePersist
         }
     });
 
+financialCenterHomePersist
+    .get('/finance/transaction/list')
+    .reply(200,
+    {
+        success:true,
+        error:"fdsfsdfsdfs",
+        data:{
+            transactionRecord:{
+                type : 2,
+                startDate : "2016-06-18",
+                endDate : "2016-06-19",
+                status : "WaitVerifyDeliveryGoods",
+                searchType : 4,
+                content : "fsadfafas",
+                count:4,
+                pagesize:10,
+                page:1,
+                totalPage:1,
+                list: [
+                    {
+                        "createTime": "2016-06-18",
+                        "type": "1",
+                        "typeName": "采购",
+                        "deliveryProvince": "上海市",
+                        "deliveryPlace": "黄浦港",
+                        "otherHarbour": null,
+                        "coalType": "coalType",
+                        "brandName": "brandName",
+                        "NCV": 1000,
+                        "NCV02": 2000,
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "paymentTransaction": "paymentTransaction",
+                        "tailMoneyTransaction": null,
+                        "refundMoneyTransaction": "refundMoneyTransaction",
+                        "totalMoney": 1300.00,
+                        "status": "status",
+                        "statusName": "statusName"
+                    },
+                    {
+                        "createTime": "2016-06-18",
+                        "type": "1",
+                        "typeName": "采购",
+                        "deliveryProvince": "deliveryProvince",
+                        "deliveryPlace": "deliveryPlace",
+                        "otherHarbour": "otherHarbour",
+                        "coalType": "coalType",
+                        "brandName": "brandName",
+                        "NCV": 2000,
+                        "NCV02": 3000,
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "paymentTransaction": "paymentTransaction",
+                        "tailMoneyTransaction": "tailMoneyTransaction",
+                        "refundMoneyTransaction": "refundMoneyTransaction",
+                        "totalMoney": 1300.00,
+                        "status": "status",
+                        "statusName": "statusName"
+                    },
+                    {
+                        "createTime": "2016-06-18",
+                        "type": "1",
+                        "typeName": "采购",
+                        "deliveryProvince": "deliveryProvince",
+                        "deliveryPlace": "deliveryPlace",
+                        "otherHarbour": "otherHarbour",
+                        "coalType": "coalType",
+                        "brandName": "brandName",
+                        "NCV": 3000,
+                        "NCV02": 4000,
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "paymentTransaction": "paymentTransaction",
+                        "tailMoneyTransaction": "tailMoneyTransaction",
+                        "refundMoneyTransaction": "refundMoneyTransaction",
+                        "totalMoney": 1300.00,
+                        "status": "status",
+                        "statusName": "statusName"
+                    },
+                    {
+                        "createTime": "2016-06-18",
+                        "type": "1",
+                        "typeName": "采购",
+                        "deliveryProvince": "deliveryProvince",
+                        "deliveryPlace": "deliveryPlace",
+                        "otherHarbour": "otherHarbour",
+                        "coalType": "coalType",
+                        "brandName": "brandName",
+                        "NCV": 4000,
+                        "NCV02": 5000,
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "paymentTransaction": "paymentTransaction",
+                        "tailMoneyTransaction": "tailMoneyTransaction",
+                        "refundMoneyTransaction": "refundMoneyTransaction",
+                        "totalMoney": 1300.00,
+                        "status": "status",
+                        "statusName": "statusName"
+                    }
+                ],
+                statusList:{
+                    WaitSignContract:"待签合同",
+                    WaitPayment:"待付款",
+                    WaitConfirmDelivery:"待确认提货",
+                    ReturnedDeliveryGoods:"提货被退回",
+                    WaitVerifyDeliveryGoods:"待审核提货"
+                }
+            }
+        }
+    });
+
+financialCenterHomePersist
+    .get('/account/finance/contract/list')
+    .reply(200,
+    {
+        success:true,
+        error:"fdsfsdfsdfs",
+        data:{
+            contract:{
+                startDate : "2016-06-20",
+                endDate : "2016-06-21",
+                type : 1,
+                content : "合同管理",
+                count:4,
+                pagesize:10,
+                page:1,
+                totalPage:1,
+                list: [
+                    {
+                        orderId:1,
+                        signContractTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        contractNO: "contractNO",
+                        sellerCompanyName: "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    }
+                ]
+            }
+        }
+    });
+
 module.exports = financialCenterHomePersist;

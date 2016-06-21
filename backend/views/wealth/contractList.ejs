@@ -19,12 +19,12 @@
                 <span class="to">至</span>
                 <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
                 <span>交易编号:</span>
-                <select name="searchType" id="searchType">
+                <select name="type" id="searchType">
                     <option value="0">全部</option>
-                    <option value="1" <%if(searchType==1){ %>selected<% } %>>订单编号</option>
-                    <option value="2" <%if(searchType==2){ %>selected<% } %>>合同编号</option>
-                    <option value="3" <%if(searchType==3){ %>selected<% } %>>流水号</option>
-                    <option value="4" <%if(searchType==4){ %>selected<% } %>>公司名称</option>
+                    <option value="1" <%if(type==1){ %>selected<% } %>>订单编号</option>
+                    <option value="2" <%if(type==2){ %>selected<% } %>>合同编号</option>
+                    <option value="3" <%if(type==3){ %>selected<% } %>>流水号</option>
+                    <option value="4" <%if(type==4){ %>selected<% } %>>公司名称</option>
                 </select>
                 <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=content%>"/>
                 <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
@@ -43,12 +43,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for(var i in recordList){%>
+                <%for(var i in contractList){%>
                 <tr class="line">
-                    <td width="130"><%=recordList[i].createTime%></td>
-                    <td width="100"><%=recordList[i].typeName%></td>
-                    <td width="160"><%=recordList[i].totalMoney%></td>
-                    <td width="120"><%=recordList[i].statusName%></td>
+                    <td width="130"><%=contractList[i].signContractTime%></td>
+                    <td width="100"><%=contractList[i].orderNO%></td>
+                    <td width="160"><%=contractList[i].contractNO%></td>
+                    <td width="120"><%=contractList[i].sellerCompanyName%></td>
                     <td width="140">
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
                         <a href="http://pay-local.yimei180.com:3000/compactDetail?orderId=11111">查看详情</a></td>
