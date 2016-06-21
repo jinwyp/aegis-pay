@@ -58,6 +58,8 @@ exports.drawCash = function(req,res,next){
             res.render('drawCash/drawCash',content);
         } else {
             //todo 错误处理
+            logger.error(req.ip+" request drawCash error");
+            next(new UnauthenticatedAccessError());
         }
     });
 };
@@ -135,7 +137,9 @@ exports.drawCashStatus = function(req,res,next){
         function(err,response){
             if(err){return next(err);}
             var replyData = JSON.parse(response.body);
+            console.log(replyData);
             if(!replyData.success){
+
               //todo 错误页面
                 delete req.session.confirmToken;
                 delete req.session.cashToken;
@@ -150,6 +154,7 @@ exports.drawCashStatus = function(req,res,next){
                     status:2
                 };
                 res.render('drawCash/drawCashStatus',content);
+
             }else{
                 //提现成功后,显示成功页面,并且删除session中的值,防止回退.
                 delete req.session.confirmToken;
@@ -162,7 +167,7 @@ exports.drawCashStatus = function(req,res,next){
                         firstTab : firstTab,
                         secondTab : secondTab
                     },
-                    status:2
+                    status:5
                 };
                 res.render('drawCash/drawCashStatus',content);
             }
