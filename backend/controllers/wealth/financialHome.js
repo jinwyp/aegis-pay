@@ -80,8 +80,8 @@ exports.financialTransaction = function (req, res, next) {
             var source = JSON.parse(data.body);
             if(source.success) {
                 var content = {
-                    pageTitle: "财务管理中心",
-                    headerTit: "财务管理中心",
+                    pageTitle: "交易管理",
+                    headerTit: "交易管理",
                     tabObj: {
                         firstTab: firstTab,
                         secondTab: secondTab
