@@ -79,7 +79,7 @@ var api_config = {
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
-    settleDetails : host + 'settlement',
+    settleDetails : host + 'settlement/settleDetails',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
@@ -140,7 +140,10 @@ var api_config = {
     fetchOpenStatus: host + 'account/fund/create/checkStatus',
 
     drawcash: host + 'account/withDrawCash',
-    drawcashSubmit: host + 'account/DrawCash'
+    drawcashSubmit: host + 'account/DrawCash',
+
+    fundinfo: host + 'account/fund/info'
+
 };
 
 module.exports = api_config;

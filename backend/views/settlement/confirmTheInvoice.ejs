@@ -130,24 +130,40 @@
                     <div class="upFileHandle">
 
                         <!-- 块型附件-->
+
                         <div class="fileBlockBox">
                             <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
-                            <div class="fileBlockBox_body">
+                            <% if(templetUrl){ %>
+                            <div class="fileBlockBox_body fBox_1" style="display: block">
                                 <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
                                 <div class="operateFileBox">
-                                    <a href="" class="fileLinkBtn">修改</a>
-                                    <a href="" class="fileLinkBtn">删除</a>
+                                    <a href="javascript:;" class="fileLinkBtn">修改</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <input class="iptEditFile" id="tempEdit" type="file" name="files">
                                 </div>
                             </div>
-                        </div>
-                        <div class="fileBlockBox">
-                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
-                            <div class="fileBlockBox_body blockUpload">
+                            <div class="fileBlockBox_body blockUpload fBox_2" style="display: none">
                                 <span class="btnUploadIcon"></span>
                                 <span class="labUploadStr">上传证件</span>
-                                <input class="iptBlockFile" data-url="/api/upload-file" type="file" name="files">
+                                <input class="iptBlockFile" id="tempAdd" type="file" name="files">
                             </div>
+                            <% }else{ %>
+                            <div class="fileBlockBox_body fBox_1" style="display: none">
+                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <div class="operateFileBox">
+                                    <a href="javascript:;" class="fileLinkBtn">修改</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <input class="iptEditFile" id="tempEdit" type="file" name="files">
+                                </div>
+                            </div>
+                            <div class="fileBlockBox_body blockUpload fBox_2" style="display: block">
+                                <span class="btnUploadIcon"></span>
+                                <span class="labUploadStr">上传证件</span>
+                                <input class="iptBlockFile" id="tempAdd" type="file" name="files">
+                            </div>
+                            <% } %>
                         </div>
+                        <input type="hidden" id="fileId"/>
                     </div>
                     <div class="upFileHint">
                         <h4 class="upFileHint_tit">注意事项</h4>

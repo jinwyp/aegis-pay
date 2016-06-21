@@ -3,7 +3,6 @@
 */
  var request = require('request');
  var api_config = require('../../api/v1/api_config');
- var logger     = require("../../libs/logger");
  var uuid = require('node-uuid');
  var UnauthenticatedAccessError = require('../../errors/UnauthenticatedAccessError');
  var logger = require('../../libs/logger');
@@ -138,6 +137,19 @@ exports.drawCashStatus = function(req,res,next){
             var replyData = JSON.parse(response.body);
             if(!replyData.success){
               //todo 错误页面
+                delete req.session.confirmToken;
+                delete req.session.cashToken;
+
+                var content = {
+                    pageTitle : "财务管理中心 - 账户通 - 提现",
+                    headerTit : "财务管理中心 - 账户通 - 提现",
+                    tabObj : {
+                        firstTab : firstTab,
+                        secondTab : secondTab
+                    },
+                    status:2
+                };
+                res.render('drawCash/drawCashStatus',content);
             }else{
                 //提现成功后,显示成功页面,并且删除session中的值,防止回退.
                 delete req.session.confirmToken;

@@ -27,6 +27,20 @@ cd $script_dir;   make clean;
 cd $script_dir;
 echo "启动测试...";
 mkdir -p logs ../files/{upload,upload_tmp_member};
+
+echo "docker run -it --rm --name aegis-pay-dev \
+  --net aegis-bridge --ip ${aegis_pay_ip} \
+  -v ${script_dir}:/app \
+  -v ${script_dir}/debug_run:/debug_run \
+  -v ${files_dir}/:/app/files \
+  -v ${logs_dir}:/app/aegis-member/logs \
+  -e MOCK=false \
+  -e DEBUG=true \
+  -e MODE=dev \
+  -e FILES_DIR=$script_dir/../files \
+  ubuntu-1404 /debug_run"
+
+
 docker run -it --rm --name aegis-pay-dev \
   --net aegis-bridge --ip ${aegis_pay_ip} \
   -v ${script_dir}:/app \
