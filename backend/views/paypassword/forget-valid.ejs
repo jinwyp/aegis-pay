@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/paypassword.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/paypassword.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
       <ul class='valid'>
         <%- include ../../custom_components/ccapimg-modal/form-part %>
         <li>
-          <label>注册号（社会统一代码证号）：</label><input type="text" name="cardID" placeholder='请输入填写营业执照号码' value="">
+          <label>注册号（社会统一代码证号）：</label><input type="text" name="companyUniqueCode" placeholder='请输入填写营业执照号码' value="">
           <p class='tip-msg'>填写您注册易煤网时填写的公司营业执照号码</p>
           <p class='tip-error'></p>
         </li>
@@ -24,6 +24,7 @@
           <input id='validBtn' class='btn_blue validBtn' type="button" value="下一步" />
       </p>
     </form>
+    <%- include ./tip %>
 </div>
 <%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
 
@@ -31,7 +32,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/paypassword/forget.js"></script>
+<script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
 
 </body>
 </html>

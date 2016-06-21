@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/returnDetail.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/returnDetail.css">
 </head>
 
 <body>
@@ -12,6 +12,7 @@
 
 <div id="returnDetail">
     <div class="sellerDeliveryWrap">
+        <%- include ../Plugins/reasonsReturnPlate %>
         <p class="containerTit"><span>买家提货数据</span></p>
         <div class="infoContainer">
             <div class="deliveryAmount">
@@ -134,7 +135,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/confirmDelivery/sellerDelivery.js"></script>
+<script src="<%= staticPath %>/scripts/return/returnDetail.js"></script>
 
 </body>
 </html>

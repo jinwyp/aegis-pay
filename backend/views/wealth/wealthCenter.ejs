@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/wealthCenter.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealthCenter.css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
         <div class="agreement">
             <input type="checkbox" name="checkbox" id="checkbox" checked />
             <label for="checkbox" class="checkbox check"></label>
-            同意并签署<span>《中信银行开通附属账户协议》</span>
+            同意并签署<span id="agreement">《中信银行开通附属账户协议》</span>
         </div>
 
         <div class="open-btn openAccount" >
@@ -52,11 +52,12 @@
 </div>
 
 
+<%- include agreement %>
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/wealth/wealthCenter.js"></script>
+<script src="<%= staticPath %>/scripts/wealth/wealthCenter.js"></script>
 
 </body>
 </html>

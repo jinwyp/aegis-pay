@@ -5,6 +5,8 @@
 
 
 var request = require('request');
+var api_config = require('../../api/v1/api_config');
+var cache = require('../../libs/cache');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 //var path = require('path');
 //var _ = require('lodash');
@@ -20,5 +22,56 @@ exports.wealthCenter = function (req, res, next) {
     };
         //渲染页面
         res.render('wealth/wealthCenter',content);
-    };
+};
 
+// 开通资金账户 - 设置密码&绑定手机号
+exports.openFundAccount = function (req, res, next) {
+
+    var pageData = {
+        pageTitle   : "开通易煤网资金账户",
+        headerTit   : "开通易煤网资金账户",
+        user: {
+            phone: req.session.user.telephone
+        }
+    };
+        //渲染页面
+        res.render('wealth/openFundAccount',pageData);
+};
+
+// 开通资金账户 - 设置密码&绑定手机号 - 等待开通
+exports.openFundAccountWait = function (req, res, next) {
+    var pageData = {
+        pageTitle   : "开通易煤网资金账户",
+        headerTit   : "开通易煤网资金账户"
+    };
+    res.render('wealth/openFundAccountWait',pageData);
+};
+
+// 开通资金账户 - 设置密码&绑定手机号 - 等待开通
+exports.openFundAccountSuccess = function (req, res, next) {
+    var pageData = {
+        pageTitle   : "开通易煤网资金账户",
+        headerTit   : "开通易煤网资金账户"
+    };
+    cache.get('openFundAccount:fundAccount_' + req.session.user.id, function(err, data){
+        if(!err && data){
+            pageData.userAcccount = data.userAcccount;
+            res.render('wealth/openFundAccountSuccess',pageData);
+        }else{
+            request.post(api_config.fetchOpenStatus, {body: {userId: req.session.user.id}, json:true}, function(err, data){
+                if(err) return next(err);
+                if(!err && data){
+                    var result = data.body;
+                    var status = result.data.success;
+                    if(status === 1){
+                        // 开通成功
+                        pageData.userAcccount = result.data.userAcccount;
+                        res.render('wealth/openFundAccountSuccess',pageData);
+                    }else{
+                        res.redirect('/wealth/open-fund-account');
+                    }
+                }
+            })
+        }
+    })
+};

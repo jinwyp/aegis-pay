@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
 </head>
 
 <body>
@@ -12,59 +12,200 @@
 <div id="financial-body">
     <div class="financial-main">
 
-        <div class="row financial-details">
+        <div class="row financial-details ms-controller" ms-controller="financialDetailsController">
             <form class="form-inline">
-                <div class="form-row">
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">订单分类:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                <div class="form-row" >
+                    <div class="form-group form-search indexHigh">
+                        <label class="col-sm-4 control-label" for="orderCategory">摘要:</label>
+                        <select name="orderCategory" id="orderCategory" class="">
+                            <option value="0">全部</option>
+                            <% formSelectOrderCategory.forEach(function(order){ %>
+                            <option value="<%= order.value %>"><%= order.text %></option>
+                            <% }) %>
                         </select>
                     </div>
 
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易时间:</label>
+                    <div class="form-group form-search form-search-big">
+                        <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易时间:</label>
+                        <div class="col-sm-4">
 
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
-                        </select>
+                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd"/>
+                            <!--<span class="input-date-icon" ></span>-->
+                        </div>
+                        <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" />
+                            <!--<span class="input-date-icon" ></span>-->
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row ">
                     <div class="form-group form-search">
-                        <label class="col-sm-3 control-label" for="orderCategory">交易状态:</label>
-
-                        <select class="form-control inputselect" id="orderCategory" >
-                            <option>全部</option>
-                            <option>2</option>
+                        <label class="col-sm-4 control-label" for="orderSearchType">交易状态:</label>
+                        <select name="orderSearchType" id="orderSearchType" class="">
+                            <option value="0">全部</option>
+                            <% formSelectOrderSearchType.forEach(function(order){ %>
+                            <option value="<%= order.value %>"><%= order.text %></option>
+                            <% }) %>
                         </select>
                     </div>
-
-                    <div class="form-group form-search">
-                        <label class="sr-only" for="exampleInputEmail3">交易编号</label>
-                        <input type="text" class="form-control inputselect inputbox" id="exampleInputName2" placeholder="请输入编号号码">
+                    <div class="form-group form-search form-search-big">
+                        <label class="sr-only" for="orderSearchText">交易状态</label>
+                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易状态" ms-duplex="@orderSearchText">
                     </div>
 
-                    <button type="submit" class="iBtn iBtn_sm iBtn_yes">查询</button>
+                    <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
                 </div>
-
-
 
             </form>
+
+            <div class="row table-box">
+                <div class="list-title">
+                    <span class="record-title">易煤网资金账户号:</span>
+                    <span class="record-no"><%= accountNumber %></span>
+
+                    <span class="record-download iBtn iBtn_down iBtn_xs" data-toggle="modal" data-target="#downloadExcel">
+                        <i class="iBtn_down_icn"></i>下载收支明细
+                    </span>
+                </div>
+                <div class="">
+                    <div class="record-div">
+                        <table class="table financeDetailTable">
+                            <tr>
+                                <th >交易日期</th>
+                                <th >交易流水号</th>
+                                <th >金额</th>
+                                <th >账户余额</th>
+                                <th >交易类型</th>
+                                <th >对方账号</th>
+                                <th >对方账号名称</th>
+                                <th >对方开户行</th>
+                                <th >操作</th>
+                            </tr>
+
+
+                            <tr ms-for='(key, order) in @orderList'>
+                                <td >{{order.date}}</td>
+                                <td >{{order.orderNo}}</td>
+                                <td >{{order.amoumt}}</td>
+                                <td >{{order.account}}</td>
+                                <td >{{order.tradeType}}</td>
+                                <td >{{order.toPersonAccount}}</td>
+                                <td >{{order.toPersonAccountName}}</td>
+                                <td >{{order.toPersonBankName}}</td>
+                                <td ><span class="iBtn iBtn_xs iBtn_no">打印回执</span></td>
+                            </tr>
+
+                        </table>
+
+                        <nav class="pagination-financial">
+                            <ul class="pagination pageno">
+                                <li class="first-page">
+                                    <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')">
+                                        <span aria-hidden="true" >< 上一页</span>
+                                    </a>
+                                </li>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+                                <li ms-visible='@orderEllipsisLeft'>
+                                    <a >...</a>
+                                </li>
+
+                                <li ms-for='(key, page) in @orderListTotalPagesArray'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
+                                <li ms-visible='@orderEllipsisRight'>
+                                    <a >...</a>
+                                </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayRight'>
+                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+                                </li>
+
+                                <li first-page>
+                                    <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)">
+                                        <span aria-hidden="true">下一页 ></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="jump-to-page">
+                                <span>共 {{@orderListTotalPages}}页, 到第</span>
+                                <input type="text" placeholder="" ms-duplex="@orderCurrentPage">
+                                <span>页</span>
+                                <button class="iBtn pagination-button" ms-click="@changePagination(page.value, $event)">确定</button>
+                            </div>
+                        </nav>
+
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
+
+
+
+        <!-- 操作提示信息: 模态框-->
+        <div class="modal fade" id="downloadExcel" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+
+                <div class="modal-content mt150 financial-details">
+                    <div class="modal-header">
+                        <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                        <h4 class="modal-title">请设置下载条件</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form class="form-inline" onsubmit="return false">
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易时间:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
+                                    </div>
+                                    <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row" >
+                                <div class="form-group form-search form-search-big">
+                                    <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">文件格式:</label>
+                                    <div class="col-sm-4">
+                                        <button class="button_pdf" onclick="window.open('/wealth/financialDetailsDownload?type=pdf', '_blank');"> <span>PDF格式下载</span></button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="button_xls" onclick="window.open('/wealth/financialDetailsDownload?type=excel', '_blank');"><span>Excel格式下载</span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-row  ">-->
+                                <!--<div class="form-group form-search form-search-big">-->
+                                    <!--<label class="col-sm-4 control-label sr-only" >下载</label>-->
+                                    <!--<div class="col-sm-4">-->
+                                        <!--<button class="iBtn iBtn_sm iBtn_yes button-margin" >确认下载</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+
+                        </form>
+                    </div>
+                    <!--<div class="modal-footer txt_c"></div>-->
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+
+
+
 
 
     </div>
@@ -74,8 +215,8 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/header/financialHeader.js"></script>
-<script src="/static/scripts/wealth/financialHome.js"></script>
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/wealth/financialHome.js"></script>
 
 </body>
 </html>

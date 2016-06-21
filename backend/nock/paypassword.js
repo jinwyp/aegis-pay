@@ -5,13 +5,16 @@ var _ = require('lodash');
 var paypasswordPersist = nock(API.host).persist();
 
 paypasswordPersist
-.post('/paypassword/forget/valid').reply(200, function(uri, requestBody){
-    if(requestBody.cardID.length<10){
+.post('/account/fund/payPwd/forget/next').reply(200, function(uri, requestBody){
+    if(requestBody.companyUniqueCode.length<10){
         return { 'success': false };
     }
     return {'success': true};
 })
-.get('/account/payPwd').reply(200, {'success':true, 'data':{'userFundAccount':23243435}})
-.get('/account/payPwd/forget/first').reply(200, {'success':true, 'data':{'payPhone':18623232323}})
+.get('/account/fund/payPwd').reply(200, {'success':true, 'data':{'userFundAccount':18623232323}})
+.get('/account/fund/payPwd/forget/first').reply(200, {'success':true, 'data':{'payPhone':18623232323}})
+.post('/account/fund/payPwd/forget/submit').reply(200, {'success':true})
+// errorCode: 1004 原支付密码错误
+.post('/account/fund/payPwd/rem/submit').reply(200, {'success':true, 'errorCode':1004})
 
 module.exports = paypasswordPersist;

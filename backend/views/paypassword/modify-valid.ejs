@@ -1,0 +1,33 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/paypassword.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper modifyValid">
+    <% var statusObj = {step:1, total:3, stepList: [{stepName:'校验手机号码', stepDate:''}, {stepName:'修改支付密码', stepDate:''}, {stepName:'修改成功', stepDate:''}]} %>
+    <%- include ./statusBar %>
+    <form method="post" id='modifyValid'>
+      <ul class='valid'>
+        <%- include ../../custom_components/ccapimg-modal/form-part %>
+      </ul>
+      <p>
+          <input id='validBtn' class='btn_blue validBtn' type="button" value="下一步" />
+      </p>
+    </form>
+    <%- include ./tip %>
+</div>
+<%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
+
+</body>
+</html>

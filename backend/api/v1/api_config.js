@@ -1,8 +1,9 @@
 // @flow
 
 // api
+var config = require('../../config');
 
-var host = 'http://service.yimei180.com/';
+var host = config.rest_address;
 
 var api_config = {
     host          : host,
@@ -30,7 +31,8 @@ var api_config = {
      * 付款页面, 页面展示数据
      * method: get
      * params: {orderId: 1, userId: 121, type:1}
-     * response: {success: true,	error:'', errorCode: '',
+     * errorCode: 1001 资金账户未开通
+     * response: {success: true,	error:'', errorCode: '1001',
 	 *							data: {
 							    	order: {
 								        id
@@ -77,19 +79,17 @@ var api_config = {
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
+    settleDetails : host + 'settlement/settleDetails',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
-
-    // 获取用户资金账号
-    fetchFundAccount: host + 'account/payPwd',
-    // 获取支付手机号
-    fetchPayPhone: host + 'account/payPwd/forget/first',
-    // 忘记密码 － 验证身份 － 下一步
-    paypasswordForgetValid: host + 'paypassword/forget/valid',
+    financialCenterHome : host + 'account/finance/center',
+    financialTransaction : host + 'finance/transaction/list',
+    contractList : host + 'account/finance/contract/list',
+    settlementList : host + 'account/finance/settlement/list',
 
 
     /**
@@ -98,7 +98,51 @@ var api_config = {
      *
      */
     accountSetting : host + 'account/accountSetting',
-    notice : host + 'account/notice'
+    notice : host + 'account/notice',
+
+    // 获取用户资金账号
+    fetchFundAccount: host + 'account/fund/payPwd',
+    // 获取支付手机号
+    fetchPayPhone: host + 'account/fund/payPwd/forget/first',
+    // 忘记密码 - 验证身份 - 下一步
+    paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
+    // 忘记密码 － 重置密码 - 提交
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
+    //开票中心
+    billCenter : host + 'settlement/billCenter',
+    billSetting : host + 'settlement/billSetting',
+    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
+    // 记得密码 - 修改密码 - 提交
+    paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
+
+    financialDetails : host + 'financial/order/details',
+
+    // open fund account
+    openFundAccount: host + 'account/fund/create',
+    /** fetch status
+     * params: {userId}
+     * response:
+     {
+       success:
+       error:
+       errorCode:
+       data {
+           success: (备注)   // 1： 开通成功，2： 正在开通中，继续请求 3： 开通失败，不再需要请求
+           userAcccount{
+                  accountName: 账户名称
+                  accountBank: 开户行
+                  account:  账户号
+                  accountType: 账户类型
+         }
+       }
+    }
+     */
+    fetchOpenStatus: host + 'account/fund/create/checkStatus',
+
+    drawcash: host + 'account/withDrawCash',
+    drawcashSubmit: host + 'account/DrawCash',
+
+    fundinfo: host + 'account/fund/info'
 
 };
 

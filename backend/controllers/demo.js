@@ -14,10 +14,11 @@ exports.demo = function (req, res, next) {
 	//		'title': '静态标题'
 	//	}
 	//};
-	//res.render('demo/demo', dataObj);			// 指定模板路径 渲染
+    //return res.send(dataObj);
 
 	// 异步调取Java数据
 	request(apiHost + 'listData', function (err, data) {
+
 		if (err) return next (err);
 
 		if (data && data.body) {

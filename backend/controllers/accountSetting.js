@@ -6,8 +6,8 @@
 
 var request = require('request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
-var path = require('path');
-var _ = require('lodash');
+// var path = require('path');
+// var _ = require('lodash');
 var api_config = require('../api/v1/api_config');
 var logger = require("../libs/logger");
 
@@ -22,11 +22,13 @@ exports.accountSetting = function (req, res, next) {
         sideBarList : [
             {
                 listName : '基本信息',
-                listLink : 'accountSetting'
+                listLink : 'accountSetting',
+                secList:''
             },
             {
                 listName : '消息提醒',
-                listLink : 'notice'
+                listLink : 'notice',
+                secList:''
             }
         ]
     };

@@ -1,0 +1,87 @@
+@import './global.scss';
+@import './Plugins/message.scss';
+@import './Plugins/fancySelect.scss';
+
+
+
+
+/* 结算.确认开票 页面 --------------------------- */
+#addInvoiceMain {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  z-index: 20;
+
+  .errorMsg {
+    color: #fc0d1b;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  .table {
+    tbody > tr > th {
+      line-height: 30px;
+    }
+  }
+}
+
+#upInvoiceMain {
+  .sidebarDownFile {
+    width: 416px;
+    height: 416px;
+    padding: 20px 0 20px 20px;
+    border-left: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    background: #f5f5f5;
+    
+    h3 {
+      padding-top: 15px;
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+      color: #333333;
+    }
+  }
+  .sidebarUpFile {
+    width: 524px;
+    height: 416px;
+
+    .upFileHandle {
+      height: 280px;
+      padding-top: 40px;
+      border-left: 1px solid #e8e8e8;
+      border-right: 1px solid #e8e8e8;
+      text-align: center;
+    }
+    .upFileHint {
+      height: 136px;
+      padding: 15px 20px;
+      background: #fffaf7;
+      border: 1px dashed #fecdb3;
+    }
+    .upFileHint_tit {
+      height: 34px;
+      font-size: 16px;
+      line-height:26px;
+      color: #333333;
+    }
+    .upFileHint_con {
+      font-size: 12px;
+      line-height: 24px;
+      color: #b6b4b3;
+    }
+  }
+}
+
+
+
+/* 备注.开票信息 页面 --------------------------- */
+@import './Plugins/InvoiceInfoViewPlate.scss';
+
+
+
+
+
+
+
+
+

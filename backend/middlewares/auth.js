@@ -38,49 +38,50 @@ exports.passport = function (req, res, next) {
         return next();
     }
 
-    if (process.env.NODE_ENV == 'local') {
-        req.session.user = res.locals.user = {
-            id           : 213,
-            securephone  : 18634343434,
-            nickname     : 'peach',
-            isactive     : true,
-            verifystatus : true,
-            qq           : 34343434,
-            telephone    : 18765656565,
-            clienttype   : 0,
-            email        : '12324@aa.com',
-            verifyuuid   : 'dkfi234',
-            userFrom     : 'userfrom',
-            traderid     : 'traderid'
-        };
-        return next();
-    }
+    // if (process.env.NODE_ENV == 'local') {
+    //     req.session.user = res.locals.user = {
+    //         id           : 213,
+    //         securephone  : 18634343434,
+    //         nickname     : 'peach',
+    //         isactive     : true,
+    //         verifystatus : true,
+    //         qq           : 34343434,
+    //         telephone    : 18765656565,
+    //         clienttype   : 0,
+    //         email        : '12324@aa.com',
+    //         verifyuuid   : 'dkfi234',
+    //         userFrom     : 'userfrom',
+    //         traderid     : 'traderid'
+    //     };
+    //     return next();
+    // }
 
     if (!req.session || !req.session.user) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
         if (!req.cookies[config.passport.cookieName]) {
-            res.redirect(config.passport.member + '/login?gotoURL=' + gotoURL + '&from=' + config.domain);
+            res.redirect(config.passport.member + '/login?gotoURL=' + encodeURIComponent(gotoURL) + '&from=' + config.domain);
+            return;
         } else {
-            request.post(config.passport.member + '/auth', {body: {
-                data : {
-                    passport : req.cookies[config.passport.cookieName]
-                }
-            }, json:true}, function (err, auth) {
+            request.post(config.member_address + '/auth', {form: {
+                passport : req.cookies[config.passport.cookieName]
+            }}, function (err, auth) {
                 "use strict";
                 if (err) {
                     return next(err);
                 }
-                var auth = auth.body;
-                if (auth.success) {
-                    req.session.user = res.locals.user = auth.user;
+                var auth =  JSON.parse(auth.body);
+                if (auth.id) {
+                    req.session.user = res.locals.user = auth;
                     return next();
                 } else {
-                    res.redirect(config.passport.member + '/login' + '?gotoURL=' + gotoURL + "&from=" + config.domain);
+                    res.redirect(config.passport.member + '/login' + '?gotoURL=' + encodeURIComponent(gotoURL) + "&from=" + config.domain);
+                    return;
                 }
             });
         }
     } else {
+        res.locals.user = req.session.user;
         return next();
     }
 };

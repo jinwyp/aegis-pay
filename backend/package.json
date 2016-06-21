@@ -9,11 +9,11 @@
     "web server"
   ],
   "engines": {
-    "node": "0.12.x"
+    "node": "5.9.x"
   },
   "scripts": {
     "test": "./run.sh -m",
-    "start": "./run.sh -m",
+    "start": "./run.sh",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "dependencies": {
@@ -28,7 +28,6 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.7.1",
     "csurf": "^1.9.0",
-    "data2xml": "^1.2.5",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
@@ -48,11 +47,11 @@
     "validator": "^5.3.0",
     "winston": "^2.2.0",
     "winston-daily-rotate-file": "^1.1.2",
+    "xlsx": "^0.8.0",
     "xmlbuilder": "^8.2.2",
     "xss": "^0.2.13"
   },
   "devDependencies": {
-    "del": "^2.2.0",
     "flow-bin": "^0.26.0",
     "istanbul": "*",
     "mocha": "^2.5.3",

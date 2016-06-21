@@ -1,0 +1,58 @@
+@import './global.scss';
+@import './components/_common.scss';
+@import './layout/_statusBar.scss';
+
+body{ background-color: $color_body_bg; font-size:$size_font_normal; font-family: $font_family;}
+
+#paymentHeader .headWrap .wrap1000 .menuList li.webNav{ width:auto; }
+#paymentHeader .headWrap .wrap1000 .menuList li .hideMenu{ width:auto; }
+
+input[type="text"]{
+    width:220px; height:34px; line-height: 34px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
+}
+
+.mainWrapper{
+  font-size:14px;
+  width: $main_width; margin:$main_margintop auto $main_marginbottom; padding:10px 25px 40px;
+  background-color:$color_main_bg;
+  .icon_cash, .icon_cash_disable{
+    vertical-align: middle; margin-right:6px;
+  }
+  .tip-msg, .tip-error{
+      margin-left:75px; font-size:$size_font_normal; line-height: 18px;
+  }
+  // 付款页面
+  @import './pay/pay.scss';
+  // 付款成功页
+  @import './pay/success.scss';
+  &.openAccount{
+      text-align: center; padding: 110px 0;
+      h5{
+          font-size:$size_font_pageTitle; padding: 20px 0 40px;
+      }
+      .btn_blue{
+          &:hover{
+              color:#fff; text-decoration: none;
+          }
+      }
+  }
+}
+@import './Plugins/ccapimg-modal.scss';
+
+#passErrModal{
+    .modal-body{
+        text-align:center; padding:25px 58px 0;
+        .big_gray{
+            margin-top:10px;
+        }
+    }
+    a.btn_respond{
+        &:hover{
+            color:#fff; text-decoration: none;
+        }
+    }
+    .tip-msg{
+        margin-top:10px;
+        i{ color:$color_blue;}
+    }
+}

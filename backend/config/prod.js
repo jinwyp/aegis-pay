@@ -2,14 +2,20 @@
  * config
  */
 var config = {
-
+    debug : false,
+    mock  : false,
+    
     https    : true,
     domain   : 'pay.yimei180.com', // 域名
     homepage : 'https://pay.yimei180.com',
+    passport: {
+        member: 'https://member.yimei180.com',
+        cookieName: 'passport'
+    },
 
     redis      : {
-        host : '10.0.10.2',   // 这个应该不是这个地址
-        port : '6379',
+        host : process.env.REDIS_HOST,   // 这个应该不是这个地址
+        port : process.env.REDIS_PORT,
         db   : 0
     }
 };

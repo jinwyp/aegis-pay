@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/orderClose.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/orderClose.css">
 </head>
 
 <body>
@@ -20,9 +20,17 @@
         <div class="plateBox">
             <div class="plateHead">
                 <span class="prefix"></span>
-                <h3 class="headLeft fl">交易关闭</h3>
+                <h3 class="headLeft fl">交易关闭
+                    <!--<s class="require lih_16">*</s>上传开票信息-->
+                    <!--<p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="" class="a">下载样板</a>，然后拍照上传 )</p>-->
+                </h3>
                 <!--<p class="headContent">居中标题</p>-->
-                <!--<p class="headRight">重要提示?</p>-->
+                <!--<p class="headRight">-->
+                    <!--<span class="doubtInlet">-->
+                    <!--<s class="require">*</s> 为必填项目-->
+                    <!--</span>-->
+                    <!--<a href="" class="doubtInlet">重要提示</a>-->
+                <!--</p>-->
             </div>
             <div class="plateMain borSolid clearfix">
                 <!-- 左侧-->
@@ -66,12 +74,12 @@
                 <!-- 右侧主体-->
                 <div class="mainWrap fr">
                     <form action="" name="closeForm" id="closeForm">
-                        <table class="formTab nBorTab">
+                        <table class="formTab tab_nBor">
                             <tbody>
                             <tr>
                                 <td width="70" class="txt_r"><s class="require">*</s>原因：</td>
                                 <td>
-                                    <select name="reasonId" id="reasonId" class="ipt inp-sel">
+                                    <select name="reasonId" id="reasonId" class="ipt inp-sel" style="display: none;">
                                         <option value="--">选择关闭原因</option>
                                         <% shutdownReasonList.forEach(function(obj){ %>
                                         <option value="<%= obj.sequence %>"><%= obj.name %></option>
@@ -139,7 +147,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/order/orderClose.js"></script>
+<script src="<%= staticPath %>/scripts/order/orderClose.js"></script>
 
 </body>
 </html>

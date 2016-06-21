@@ -1,0 +1,124 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/addAccount.css">
+    
+</head>
+	
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+
+<div id="financial-body">
+	<div class="financial-main add-account">
+		<div class="header">
+			<div class="float-right relative" id="info">
+				<p><span class="icn_doubt"></span>
+				绑定账户说明</p>
+				<div class="tool-tips display-none" id="toolTips">
+					<span></span>
+					<dl>
+						<dt>如何绑定账户？</dt>
+						<dd>所绑定账户为您的提现账户。</dd>
+						<dd>绑定后您可将易煤网资金账户中的资金进行提现。为保证提现安全，您只能绑定一个出金银行账户。如需更换账户，需将原账户解绑再重新绑定新账户后方可提现。</dd>	
+					</dl>
+				</div>
+			</div>
+			<div class="figure">
+				<dl>
+					<dt></dt>
+					<dd><span>公司账户</span>绑定银行账户，让交易更安全，让资金更高效</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="main-content">
+			<div class="figure-wrap">
+				<div class="figure-caption">易煤网资金账户</div>
+				<dl class="figure-content">
+					<dt>账户类型:</dt>
+					<dd><%= fundAccount.accountType %></dd>
+					<dt>银行开户名:</dt>
+					<dd><%= fundAccount.accountBankName %></dd>
+					<dt>账户号:</dt>
+					<dd><%= fundAccount.account %></dd>
+					<dt>开通时间:</dt>
+					<dd><%= fundAccount.createTime %></dd>
+					<dt>绑定手机号码:</dt>
+					<dd><%= fundAccount.payPhone %></dd>
+				</dl>
+			</div>
+			<% if( status ){ %>
+			<div class="figure-wrap">
+				<div class="figure-caption">公司银行账户
+					<span id="delBankBtn">删除</span>
+				</div>
+				<dl class="figure-content">
+					<dt>账户类型:</dt>
+					<dd><%= cashAccount.accountType %></dd>
+					<dt>银行开户名:</dt>
+					<dd><%= cashAccount.accountBankName %></dd>
+					<dt>账户号:</dt>
+					<dd><%= cashAccount.account %></dd>
+					<dt>开通时间:</dt>
+					<dd><%= cashAccount.createTime %></dd>
+					<dt>绑定手机号码:</dt>
+					<dd><%= cashAccount.payPhone %></dd>
+				</dl>
+			</div>
+			<% }else{ %>
+			<div class="figure-wrap">
+				<div class="figure-caption">公司银行账户</div>
+				<div class="figure-content text-center">
+					<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="modal fade" id="delBankModal">
+			<div class="modal-dialog modal-pl">
+				<div class="modal-content mt220">
+					<div class="modal-header">
+						<span class="close" data-dismiss="modal" aria-label="Close"></span>
+						<h4 class="modal-title">提示</h4>
+					</div>
+					<div class="modal-body modal-body-customer">
+						<p class="text-center font-size-18"><span class="icn_warningMax vertical-align"></span><span class="orange-color padding-left-20">删除银行账户</span>将<span class="orange-color">无法提现</span></p>
+						<p class="text-center para-style">为保证资金账户安全，请输入支付密码</p>
+						<form action="" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-5 control-label">易煤网支付密码</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="inputPwd">
+									<p class="padding-top-8 password-info text-danger display-none" id="errorTxt">请输入6-20位数字或英文字母或下划线</p>
+								</div>
+								<div class="col-sm-2 forget-password">
+									<a href="#">忘记密码</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="padding-bottom-30 text-center">
+	        			<input type="button" class="iBtn iBtn_def" value="取消" data-dismiss="modal">
+                		<input type="button" class="iBtn iBtn_yes ml20" value="确认" id="confirmBtn">
+	      			</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/header/financialHeader.js"></script>
+<script src="<%= staticPath %>/scripts/wealth/addAccount.js"></script>
+
+</body>
+</html>
+
+
+

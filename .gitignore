@@ -2,10 +2,18 @@ app/node_modules
 app/components
 backend/node_modules
 backend/log
+frontend/static/
+frontend/dist/
+frontend/node_modules
+frontend/components
 app/static/
+app/dist/
 .tmp/
 *.log
 files
+frontend/images/sprite/auto-sprite.png
+frontend/styles/helpers/_auto_sprite.scss
+
 
 
 
@@ -110,3 +118,13 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+frontend/zips/
+
+# ignore all config except basic!!!!
+backend/config/
+!backend/config/dev.js
+!backend/config/local.js
+!backend/config/staging.js
+!backend/config/prod.js
+!backend/config/default.js
+!backend/config/testing.js

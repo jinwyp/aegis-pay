@@ -1,0 +1,204 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/confirmTheInvoice.css">
+</head>
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+<!-- 以下.内容部分 -->
+<div class="containerWrap">
+    <div class="bodyWrap">
+
+        <!-- 添加开票信息 板块 -->
+        <div id="addInvoicePlate" class="plateBox">
+            <div class="plateHead borSolid">
+                <span class="prefix"></span>
+                <h3 class="headLeft fl"><%= subTitle %></h3>
+                <!--<p class="headContent">居中标题</p>-->
+                <p class="headRight">
+                    <span class="subTitle_hint">
+                        <s class="require">*</s> 为必填项目
+                    </span>
+                </p>
+            </div>
+            <div class="plateMain" id="addInvoiceMain">
+                <form action="#" method="post" id="invoiceForm">
+                <table class="table tab_nBor">
+                    <tbody>
+                    <tr>
+                        <th class="txt_r" width="358">公司名称：</th>
+                        <td width="340"><span class="lih_30">和略电子商务有限公司</span></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司地址：</th>
+                        <td>
+                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司电话：</th>
+                        <td>
+                            <input type="text" id="companyPhone" name="companyPhone" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司电话">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>公司传真：</th>
+                        <td>
+                            <input type="text" id="companyFax" name="companyFax" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司传真">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>纳税人识别号：</th>
+                        <td>
+                            <input type="text" id="identificationNumber" name="identificationNumber" maxlength="20" class="iIpt iIpt_sm" value="" placeholder="15,17,18或者20位纳税人识别号">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>开户银行：</th>
+                        <td>
+                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>开户银行账号：</th>
+                        <td>
+                            <input type="text" id="bankAccount" name="bankAccount" maxlength="25" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
+                        <td>
+                            <select name="type" id="type" style="display: none">
+                                <option value="">选择发票类型</option>
+                                <option value="1">增值税专用发票</option>
+                                <option value="2">企业</option>
+                                <option value="3">个人</option>
+                            </select>
+                            <div class="errorMsg"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                    <!--<input type="hidden" id="templetUrl" name="templetUrl">-->
+                    <input type="type" id="templetUrl" name="templetUrl" value="">
+
+                    <div class="totalError"></div>
+
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+
+        <!-- 上传开票附件 板块-->
+        <div id="upInvoicePlate" class="plateBox mt20">
+            <div class="plateHead borSolid">
+                <h3 class="headLeft">
+                    <s class="require lih_16">*</s>上传开票信息
+                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="/download/invoiceTemplate.jpg" class="a">下载样板</a>，然后拍照上传 )</p>
+                </h3>
+            </div>
+            <div class="plateMain clearfix" id="upInvoiceMain">
+                <div class="sidebarDownFile fl">
+                    <img src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                    <h3>客户开票信息表</h3>
+                    <p class="txt_c">
+                        <br/>
+                        <a href="/download/invoiceTemplate.jpg" class="iBtn iBtn_down">
+                            <i class="iBtn_down_icn"></i>下载附件
+                        </a>
+                    </p>
+                </div>
+
+                <div class="sidebarUpFile fl">
+                    <div class="upFileHandle">
+
+                        <!-- 块型附件-->
+
+                        <div class="fileBlockBox">
+                            <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
+                            <% if(templetUrl){ %>
+                            <div class="fileBlockBox_body fBox_1" style="display: block">
+                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <div class="operateFileBox">
+                                    <a href="javascript:;" class="fileLinkBtn">修改</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <input class="iptEditFile" id="tempEdit" type="file" name="files">
+                                </div>
+                            </div>
+                            <div class="fileBlockBox_body blockUpload fBox_2" style="display: none">
+                                <span class="btnUploadIcon"></span>
+                                <span class="labUploadStr">上传证件</span>
+                                <input class="iptBlockFile" id="tempAdd" type="file" name="files">
+                            </div>
+                            <% }else{ %>
+                            <div class="fileBlockBox_body fBox_1" style="display: none">
+                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <div class="operateFileBox">
+                                    <a href="javascript:;" class="fileLinkBtn">修改</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <input class="iptEditFile" id="tempEdit" type="file" name="files">
+                                </div>
+                            </div>
+                            <div class="fileBlockBox_body blockUpload fBox_2" style="display: block">
+                                <span class="btnUploadIcon"></span>
+                                <span class="labUploadStr">上传证件</span>
+                                <input class="iptBlockFile" id="tempAdd" type="file" name="files">
+                            </div>
+                            <% } %>
+                        </div>
+                        <input type="hidden" id="fileId"/>
+                    </div>
+                    <div class="upFileHint">
+                        <h4 class="upFileHint_tit">注意事项</h4>
+                        <p class="upFileHint_con">1. 请左侧<span class="bright">按照样版</span>上传相关的扫描件/照片，确保清晰度，证件内容完整且<span class="bright">加盖贵公司公章</span> <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="bright">或财务专用章</span>。 <br/>
+                            2. 上传文件格式：<span class="bright">jpg、png</span>.文件大小：<span class="bright">小于400k</span> <br/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作按钮-->
+            <div class="plateMain txt_c">
+                <br/><br/>
+                <input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">
+                <input type="button" id="submitBtn" class="iBtn iBtn_yes ml20" value="确认">
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+<script src="<%= staticPath %>/scripts/settlement/confirmTheInvoice.js"></script>
+
+</body>
+</html>
+
+
+

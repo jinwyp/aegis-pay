@@ -261,8 +261,12 @@ returnDetailPersist.get('/return').reply(200,
                 "second" : 50,
                 "nano" : 0,
                 "chronology" : {"id" : "ISO", "calendarType" : "iso8601"}
-            }
+            },
+
+            "status": 'ReturnedSettleAccounts'
+
         },
+        "userType": 'buy',
         "deliveryAmount" : "300",
         "indexList"      : [{
             "批次" : "1",

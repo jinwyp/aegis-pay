@@ -10,18 +10,24 @@ payPersist
   var ismatch = /mall\/order\/payment\?orderId=\d+&userId=\d+&type=1/.test(uri);
   return ismatch;
 }).reply(200, function(uri){
-  return {
-    "success": true,
-    "data": {"order": {
-                    "id": _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1],
-                    "version": 2,
-                    "sellerCompanyName":"易煤网",
-                    "sellerFundAccount": "8098098099897387",
-                    "totalMoney": 2000000000,
-                    "sellerBalanceMoney": 29889000900,
-                 }
-              }
-            }
+    var orderId = _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1];
+    var result = {
+      "success": true,
+      "errorCode": '',
+      "data": {"order": {
+                      "id": _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1],
+                      "version": 2,
+                      "sellerCompanyName":"易煤网",
+                      "sellerFundAccount": "8098098099897387",
+                      "totalMoney": 2000000000,
+                      "sellerBalanceMoney": 29889000900,
+                   }
+                }
+            };
+    if(orderId > 200000){
+        result.errorCode = 1001;
+    }
+    return result;
 })
 .post('/sendSMSCode').reply(200, {"success":true})
 // 1001  -- errCode , "您还没有开通易煤网资金账户"  -- error

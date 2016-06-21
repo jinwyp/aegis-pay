@@ -1,10 +1,10 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/static/styles/statusBar.css">
-    <link rel="stylesheet" href="/static/styles/sellerDelivery.css">
-    <link rel="stylesheet" href="/static/styles/orderUserInfo.css">
-    <link rel="stylesheet" href="/static/styles/orderTable.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/statusBar.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/sellerDelivery.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/orderUserInfo.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/orderTable.css">
 </head>
 
 <body>
@@ -158,7 +158,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="/static/scripts/confirmDelivery/sellerDelivery.js"></script>
+<script src="<%= staticPath %>/scripts/confirmDelivery/sellerDelivery.js"></script>
 
 </body>
 </html>

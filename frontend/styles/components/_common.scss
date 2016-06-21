@@ -1,0 +1,172 @@
+
+.pageTitle{
+  font-size:$size_font_pageTitle; color:#333; margin:0;
+  line-height: 36px; border-bottom:1px solid $color_border_gray;
+  span{ float:left; width:2px; height:18px; background: $color_blue; margin-top:9px; margin-right:10px; }
+}
+
+.blockTitle{
+  margin:0;
+  font-size:$size_font_blockTitle; line-height: 36px; border-bottom:1px dashed $color_border_block_gray;
+}
+
+.btn_download, .btn_upload{
+  height:25px; line-height: 25px; padding:0 6px; font-size:12px; color:$color_font;
+  text-decoration:none; border:1px solid #e4e4e4; @include border-radius(2px);
+  background: url('#{$assetPath}/images/btnbg.gif') repeat-x left top;
+  .icon_download, .icon_upload{
+    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+    width:18px; height:18px; background: url('#{$assetPath}/images/sprite_ico.png') no-repeat -550px -269px;
+  }
+  .icon_upload{
+    background-position:-550px -307px;
+  }
+}
+
+.btn_blue, .btn_gray, .btn_blue_small,.btn_respond, .btn_gray_small{
+  display:inline-block; *display:inline; zoom:1;
+  width:140px; height:40px; line-height: 40px; text-align:center;
+  color:#fff; font-size:$size_font_blockTitle; background:$color_btn_blue;
+  @include border-radius(2px); border:none;
+  &.disable{
+      background-color: $color_btn_gray; cursor:not-allowed;
+  }
+}
+.btn_respond{
+    width:auto; padding:0 15px;
+}
+.btn_gray{
+  background: $color_btn_gray;
+}
+.btn_blue_small, .btn_gray_small{
+  display:inline-block; *display:inline; zoom:1;
+  height:32px; line-height: 32px; font-size:$size_font_middle; width:110px;
+}
+.btn_gray_small{
+    background-color:$color_btn_gray; color:#fff;
+}
+
+
+
+// lightbox 样式调整
+.lightboxOverlay{ opacity:0.5; filter:alpha(opacity=50)};
+#lightbox {
+  .lb-outerContainer{ @include border-radius(2px); @include box-shadow(0px 0px 5px #333333); }
+  .lb-container{
+    padding: 40px 68px 56px;
+  }
+  .lb-nav a.lb-next, .lb-nav a.lb-prev{
+    opacity:1; filter:alpha(opacity=100);
+    position:absolute; left:0; top:50%; margin-top:-50px; width:66px; height:100px;
+    background:url('#{$assetPath}/images/sprite.png') no-repeat -292px -45px;
+    &:hover{
+      background-position: -452px -45px;
+    }
+  }
+  .lb-nav a.lb-next{
+    background-position: -372px -45px; right:0; left:auto;
+    &:hover{
+      background-position: -532px -45px;
+    }
+  }
+  .lb-close{
+    position:absolute; top:0; right:0; z-index:10;
+    width:30px; height:30px; background:#666 url('#{$assetPath}/images/sprite.png') no-repeat -116px -171px;
+    &:hover{
+      background-color:#333;
+      background-position: -164px -171px;
+    }
+  }
+  .lb-dataContainer{
+    height:30px; position:relative; bottom:40px;
+    .lb-details{ float:none; width:100%; text-align:center; }
+    .lb-data .lb-number{ color:#333; }
+  }
+}
+
+.tipModal, .confirmModal{
+  .modal-content{ @include box-shadow(none);}
+  .big_gray{font-size:$size_font_pageTitle; color:$color_gray;}
+  .modal-header{
+      height:50px; background:#f7f7f7; border-top:2px solid #00b7ec; border-bottom:1px solid #e4e4e4;
+      .modal-title{
+          font-size:$size_font_pageTitle; color:$color_gray;
+      }
+  }
+  .modal-dialog{ width:480px; padding:15px 26px; }
+  .modal-footer{
+    border-top:none; text-align: center; padding-bottom:20px;
+    .btn{
+      width:100px; height:36px; line-height: 36px; font-size:16px; margin-left:0; padding:0; color:#fff;
+      &:hover{ color:#fff; }
+    }
+  }
+}
+
+.confirmModal{
+    font-size: $size_font_middle;
+    .modal-title{
+        font-size:20px; color:$color_font; margin-top:-6px;
+    }
+    .modal-content{
+        label{ font-weight:normal; }
+    }
+}
+
+.icon_confirm{
+  display:block;
+  width:76px; height:88px; background:url(#{$assetPath}/images/sprite.png) no-repeat 0 -278px;
+}
+
+.color_orange{ color:$color_orange; }
+
+.icon_glass{
+  display:inline-block; *display:inline; zoom:1;
+  width:22px; height:22px; background: url(#{$assetPath}/images/sprite.png) no-repeat -549px -174px;
+}
+
+.glyphicon-refresh-animate{
+  animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+.icon_cash, .icon_cash_disable{
+  display: inline-block; *display:inline; zoom:1; width:32px; height:32px;
+  background:url(#{$assetPath}/images/sprite_ico.png) no-repeat -551px -599px;
+}
+.icon_cash_disable{
+  background-position:-551px -664px;
+}
+.icon_ok{
+    display: inline-block; *display:inline; zoom:1; width:70px; height:60px;
+    background:url(#{$assetPath}/images/sprite_ico.png) no-repeat -378px -292px;
+}
+.icon_warn{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:18px; vertical-align: middle;
+    background:url(#{$assetPath}/images/sprite_ico.png) no-repeat -552px -510px;
+}
+.icon_tip{
+    display: inline-block; *display:inline; zoom:1; width:18px; height:20px; vertical-align: middle;
+    background:url(#{$assetPath}/images/sprite_ico.png) no-repeat -550px -550px;
+}
+.tip-error{
+    color:$color_red;
+}
+.tip-msg{
+    color:$color_tip_font;
+}
+.icon_error{
+    display: inline-block; *display:inline; zoom:1; width:64px; height:64px; vertical-align: middle;
+    background:url(#{$assetPath}/images/sprite_ico.png) no-repeat -187px -291px;
+}
+.icon_recommend{
+    display: inline-block; *display:inline; zoom:1; width:16px; height:16px; vertical-align: middle; line-height: 15px;
+    font-size:$size_font_normal; color:$color_text_white; background: $color_orange; @include border-radius(1px);
+}
+.icon-secure-tip{
+    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+    @include sprite($secure-tip);
+}
+.icon-big-loading{
+    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+    @include sprite($big-loading);
+}

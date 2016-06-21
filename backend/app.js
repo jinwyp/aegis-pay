@@ -13,8 +13,7 @@ var config = require('./config');
 var path             = require('path');
 var express          = require('express');
 var session          = require('express-session');
-var webRouter        = require('./web_router');
-var apiRouter        = require('./api_router');
+var routes           = require('./routes');
 var auth             = require('./middlewares/auth');
 var RedisStore       = require('connect-redis')(session);
 var _                = require('lodash');
@@ -29,14 +28,13 @@ var cors             = require('cors');
 var renderMiddleware = require('./middlewares/render');
 var logger           = require("./libs/logger");
 var ejs              = require('ejs');
-var glob             = require('glob');
 
 
 
 // require('./common/ejsFiltersAddon')(require('ejs').filters);
 
 // 静态文件目录
-var staticDir  = path.join(__dirname, '../app/static');
+var staticDir  = path.join(__dirname, '../frontend/dist');
 // var fileStatic = path.join(__dirname,   '../../files/static');
 //
 var fileStatic = config.sysFileDir;
@@ -69,28 +67,20 @@ require('./libs/ejshelper')(app);
 
 // 静态资源
 app.use('/static', express.static(staticDir));
+app.use('/files',express.static(fileStatic));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
-    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/'
-    var options = {
-        root: __dirname + '/views/' + path,
-        dotfiles: 'deny',
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true
-        }
-    };
-
+    var path = req.params.path? ('download/' + req.params.path + '/') : 'download/';
     var fileName = req.params.name;
-    res.sendFile(fileName, options, function (err) {
-        if (err) {
-            next(err);
-        }
-    });
-})
+    var filePath = __dirname + '/views/' + path + fileName;
 
-// app.use(express.static(fileStatic));
+    res.download(filePath, fileName, function(err){
+        if(err) return next(err);
+    });
+});
+
+
 
 // 每日访问限制
 app.use(compression());
@@ -137,13 +127,17 @@ if (!config.debug) {
 
 // set static, dynamic helpers
 _.extend(app.locals, {
-    config : config
+    config : config,
+    staticPath : '/static'
 });
 
 
 app.use(function (req, res, next) {
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
+    app.locals.homepage = config.homepage;
+    //ToDo: app.locals.siteUrl = config.sitepage;
+    app.locals.memberUrl = config.passport.member;
     next();
 });
 
@@ -154,17 +148,10 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api', cors(), apiRouter);
-app.use('/', webRouter);
+app.use('/api', cors(), routes.api);
+app.use('/', routes.webPage);
+routes.autoLoaderControllers(app);
 
-var controllers = glob.sync('./controllers/**/*.js');
-
-controllers.forEach(function (controller) {
-    if(require(controller).init){
-        require(controller).init(app);
-        logger.info('auto init controller:'+controller);
-    }
-});
 
 app.use(errorhandler.PageNotFoundMiddleware);
 
