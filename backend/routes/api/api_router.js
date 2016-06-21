@@ -18,6 +18,8 @@ var payPasswordApi    = require('../../api/v1/paypassword');
 var financialApi    = require('../../api/v1/financialDetails');
 var fundAccountApi = require('../../api/v1/fundaccount');
 
+var settleDetailsApi = require('../../controllers/settlement/settleDetails');
+
 // demo
 router.get('/user', siteController.user);
 router.get('/test-cache', siteController.test_cache);
@@ -64,7 +66,8 @@ router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpe
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
 
-
+// generate settle
+router.get('/fetch-settle-html', settleDetailsApi.generate_settle);
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
