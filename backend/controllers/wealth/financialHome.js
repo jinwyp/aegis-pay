@@ -134,3 +134,35 @@ exports.financialContract = function (req, res, next) {
 
 };
 
+exports.financialSettlement = function (req, res, next) {
+
+    var firstTab  = req.query.firstTab || 3;
+    var secondTab = req.query.secondTab || 1;
+    request(api_config.settlementList, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的错误是----------------------------' + err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                var content = {
+                    pageTitle: "结算管理",
+                    headerTit: "结算管理",
+                    tabObj: {
+                        firstTab: firstTab,
+                        secondTab: secondTab
+                    },
+                    startDate: source.data.contract.startDate,
+                    endDate: source.data.contract.endDate,
+                    type: source.data.contract.type,
+                    content: source.data.contract.content,
+                    contractList: source.data.contract.list
+                };
+                //渲染页面
+                res.render('wealth/settlementList',content);
+            }
+        }
+    });
+
+};
+

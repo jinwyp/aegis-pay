@@ -332,4 +332,54 @@ financialCenterHomePersist
         }
     });
 
+financialCenterHomePersist
+    .get('/account/finance/settlement/list')
+    .reply(200,
+    {
+        success:true,
+        error:"fdsfsdfsdfs",
+        data:{
+            contract:{
+                startDate : "2016-06-20",
+                endDate : "2016-06-21",
+                type : 1,
+                content : "合同管理",
+                count:4,
+                pagesize:10,
+                page:1,
+                totalPage:1,
+                list: [
+                    {
+                        orderId:1,
+                        signContractTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        contractNO: "contractNO",
+                        sellerCompanyName: "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    },
+                    {
+                        orderId:1,
+                        "signContractTime": "2016-06-18",
+                        "orderNO": "orderNO",
+                        "contractNO": "contractNO",
+                        "sellerCompanyName": "对方公司名称"
+                    }
+                ]
+            }
+        }
+    });
+
 module.exports = financialCenterHomePersist;

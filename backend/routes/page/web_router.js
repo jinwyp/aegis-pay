@@ -85,6 +85,7 @@ router.get('/wealth/financialHome', financialHome.financialHome);    //财务管
 router.get('/wealth/financialDetails', financialHome.financialDetails);    //财务管理中心 交易明细
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);    //财务管理中心 交易记录
 router.get('/wealth/financialContract', financialHome.financialContract);    //财务管理中心 合同管理
+router.get('/wealth/financialSettlement', financialHome.financialSettlement);    //财务管理中心 结算管理
 
 
 router.get('/account/accountSetting', accountSetting.accountSetting);    //账户设置
