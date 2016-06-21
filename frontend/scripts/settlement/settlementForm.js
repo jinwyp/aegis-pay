@@ -110,32 +110,130 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
                 $btnSubAuditing = $('#btnSubAuditing'),             //确认审核
                 $btnSubReason = $('#btnSubReason');                 //审核退回.第一次
 
+            //卖家.提交结算单
+            //$btnSubSettlement.click(function() {
+            //    var param = {
+            //        version: 123,
+            //        sellerId: '213',
+            //        orderId: '210000',
+            //        settleAmount: 222,      // 结算吨数
+            //        harbourDues: '',        //港务费
+            //        settleMoney: '',        //结算金额
+            //        remarks: '',            //备注
+            //        files: [                //补充协议列表
+            //            {name: 'name', path: 'xx.jpg'}
+            //        ]
+            //    };
+            //
+            //    $.post({
+            //        url: apiHost + '/settlement/sellerSubmit',
+            //        data: param,        //$("#closeForm").serialize(),
+            //        success: function(data){
+            //            if(data.success) {
+            //                $('.modal .close').click();
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '确认审核 操作成功'
+            //                });
+            //                console.log('');
+            //            } else {
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '操作失败!!'
+            //                });
+            //            }
+            //        }
+            //    });
+            //});
+
+            //买家.退回结算单
+            //$btnSubReason.click(function() {
+            //    var param = {
+            //        version: 123,
+            //        userId: '213',
+            //        orderId: '210000',
+            //        reason: ''      // 退回原因
+            //    };
+            //
+            //    $.post({
+            //        url: apiHost + '/settlement/buyersReturn',
+            //        data: param,        //$("#closeForm").serialize(),
+            //        success: function(data){
+            //            if(data.success) {
+            //                $('.modal .close').click();
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '退回结算 操作成功1212'
+            //                });
+            //                console.log('');
+            //            } else {
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '操作失败!!'
+            //                });
+            //            }
+            //        }
+            //    });
+            //});
 
 
+            //审核不通过.买家.修改退回原因
+            //$btnSubAuditing.click(function() {
+            //    var param = {
+            //        version: 123,
+            //        userId: '213',
+            //        orderId: '320000',
+            //        reason: '修改.退回原因'      // 退回原因
+            //    };
+            //
+            //    $.post({
+            //        url: apiHost + '/settlement/buyersEditReason',
+            //        data: param,                  //$("#closeForm").serialize(),
+            //        success: function(data){
+            //            if(data.success) {
+            //                $('.modal .close').click();
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '审核不通过.买家.修改退回原因 操作成功'
+            //                });
+            //                console.log('');
+            //            } else {
+            //                message({
+            //                    type: 'done',
+            //                    title: '完成：',
+            //                    detail: '操作失败!!'
+            //                });
+            //            }
+            //        }
+            //    });
+            //});
+
+            //买家.审核通过
             $btnSubAuditing.click(function() {
                 var param = {
                     version: 123,
-                    sellerId: '213',
-                    orderId: '210000',
-                    settleAmount: 222,      // 结算吨数
-                    harbourDues: '',        //港务费
-                    settleMoney: '',        //结算金额
-                    remarks: '',            //备注
+                    userId: '213',
+                    orderId: '320000',
                     files: [                //补充协议列表
                         {name: 'name', path: 'xx.jpg'}
                     ]
                 };
 
                 $.post({
-                    url: apiHost + '/settlement/sellerSubmit',
-                    data: param,        //$("#closeForm").serialize(),
+                    url: apiHost + '/settlement/buyersAuditing',
+                    data: param,                  //$("#closeForm").serialize(),
                     success: function(data){
                         if(data.success) {
                             $('.modal .close').click();
                             message({
                                 type: 'done',
                                 title: '完成：',
-                                detail: '确认审核 操作成功'
+                                detail: '审核通过 操作成功'
                             });
                             console.log('');
                         } else {
@@ -148,6 +246,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
                     }
                 });
             });
+
         },
 
         // 初始化

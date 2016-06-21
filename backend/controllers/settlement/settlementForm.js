@@ -65,13 +65,18 @@ exports.orderSettlement = function (req, res, next) {
 
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 
-// API路由: 卖家.查看结算单 --------- http://localhost:3001/api/settlement/sellerView?id=110000
+// API路由: *卖家.查看结算单 --------- http://localhost:3001/api/settlement/sellerView?id=110000
 var sellerView = exports.sellerView = function (req, res, next) {
 	var orderId = req.query.id,
 		userId = req.session.user.id;
 
-	var url = apiHost.host + 'settlement/sellerView?orderId='+ orderId +'&sellerId='+ userId;
-	request(url, function (err, data) {
+	var param = {
+		orderId: orderId,
+		sellerId: userId
+	};
+
+	var url = apiHost.host + 'settlement/sellerView';
+	request(url, param, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
@@ -89,10 +94,10 @@ var sellerView = exports.sellerView = function (req, res, next) {
 };
 
 
-// API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit?id=210000
+// API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit
 var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
-	var req_id = req.query.id,
-		userId = req.session.user.id;
+	//var req_id = req.query.id,
+	//	userId = req.session.user.id;
 
 	var url = apiHost.host + 'settlement/sellerSubmit';
 	request.post(url, {body:req.body, json:true}, function (err, data) {
@@ -110,21 +115,26 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 };
 
 
-// API路由: 买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersView
+// API路由: *买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersView?id=220000
 var buyersView = exports.buyersView = function (req, res, next) {
 	var orderId = req.query.id,
 		userId = req.session.user.id;
 
-	var url = apiHost.host + 'settlement/buyersView?orderId='+ orderId +'&userId='+ userId;
-	request(url, function (err, data) {
+	var param = {
+		orderId: orderId,
+		userId: userId
+	};
+
+	var url = apiHost.host + 'settlement/buyersView';
+	request(url, param, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '待审核.买家审核结算单 2222222222';
-			replyData.subTitle = '开具结算单.s';
-			replyData.userType = 'sell';
+			replyData.subTitle = '审核结算单.b';
+			replyData.userType = 'buy';
 
 			return res.send(replyData);
 		}else{
@@ -134,53 +144,85 @@ var buyersView = exports.buyersView = function (req, res, next) {
 };
 
 
-// API路由: 买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersReturn
+// API路由: 买家.退回结算单 --------- http://localhost:3001/api/settlement/buyersReturn
 var buyersReturn = exports.buyersReturn = function (req, res, next) {
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '买家.退回结算单'
+	var url = apiHost.host + 'settlement/sellerSubmit';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待审核.买家退回结算单 220000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
+	});
 };
 
 
 // API路由: 买家.修改退回原因 --------- http://localhost:3001/api/settlement/buyersEditReason
 var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
+	var url = apiHost.host + 'settlement/buyersEditReason';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '买家.修改退回原因'
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '审核不通过.买家修改退回原因 320000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
+	});
 };
 
 
 // API路由: 买家.结算审核通过 --------- http://localhost:3001/api/settlement/buyersAuditing
 var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
+	var url = apiHost.host + 'settlement/buyersAuditing';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '买家.结算审核通过'
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待审核_买:WaitVerifySettle.买家.结算审核通过 220000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
-	};
-	return res.send(testObj);
+	});
 };
 
 
-// API路由: 下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint
+// API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint?id=110101
 var downPrint = exports.downPrint = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
 
-	// 静态数据
-	var testObj = {
-		'article': {
-			'title': '下载打印结算单'
-		}
+	var param = {
+		orderId: orderId,
+		sellerId: userId
 	};
-	return res.send(testObj);
+
+	var url = apiHost.host + 'settlement/downPrint';
+	request(url, param, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '打印下载结算单.9999';
+			replyData.subTitle = '打印下载结算单.s';
+			replyData.userType = 'sell';
+
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
 };
