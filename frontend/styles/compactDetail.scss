@@ -1,0 +1,36 @@
+@import './global.scss';
+
+#compact-body{
+  background-color: $color_body_bg;
+  padding: $main_margintop 0 $main_marginbottom 0;
+  .compact-main{
+    overflow: hidden;
+    width: $main_width;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color_main_bg;
+    .compact-title{
+      font-size:30px;margin-top: 60px;margin-bottom: 60px;
+    }
+    .content-div{
+      width: 860px;margin-left: auto;margin-right: auto;
+      .header-div{
+        border-bottom: 1px dotted #e4e4e4;padding-bottom: 10px;
+        .contract-date{ margin-left: 30%; }
+        .contract-address{  float: right; }
+      }
+      .bold-text{  font-weight: bold;  }
+      .user-info  p{
+        margin-top: 10px;
+        .ml-18{  margin-left: 18px; }
+      }
+      .compact-content{
+        margin-top: 20px;
+        p{ padding: 10px 0 4px 0;font-size: 14px; }
+        div{ padding: 4px 0 4px 0; }
+        .padding-10{ padding: 0 10px 0 10px; }
+        .under-line{ border-bottom: 1px solid black; }
+      }
+    }
+  }
+}
