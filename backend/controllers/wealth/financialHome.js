@@ -3,10 +3,12 @@
  *
  * */
 
-var request = require('request');
+var request    = require('request');
+var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
+var checker    = require('../../libs/datachecker');
 var logger     = require("../../libs/logger");
-
+var path = require('path');
 
 // 处理业务逻辑
 exports.financialHome = function (req, res, next) {
@@ -43,8 +45,8 @@ exports.financialDetails = function (req, res, next) {
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
-        pageTitle : "财务管理中心 - 交易明细",
-        headerTit : "财务管理中心 - 交易明细",
+        pageTitle : "财务管理中心 - 收支明细",
+        headerTit : "财务管理中心 - 收支明细",
         tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
@@ -67,6 +69,59 @@ exports.financialDetails = function (req, res, next) {
 
     res.render('wealth/financialDetails',content);
 };
+
+
+
+
+
+exports.financialDetailsToExcelAndPDF = function (req, res, next) {
+    //checker.orderId(req.body.orderDateFromDownload);
+    //checker.orderId(req.body.orderDateToDownload);
+
+    var body = req.body;
+    console.log(body);
+
+    options = {
+        savePath : './views/download/financialDetails/financialdetails.xlsx',
+        titleList : [
+            '交易日期',
+            '交易流水号',
+            '金额',
+            '账户余额',
+            '交易类型',
+            '对方账号',
+            '对方账号名称',
+            '对方开户行'
+        ],
+        propertyList : [],
+        dataList : []
+    };
+
+
+
+    var params = Object.assign({}, {userId: req.session.user.id}, body);
+
+    var url = api_config.financialDetails;
+    request.post(url, {body: params, json:true}, function (err, response, body) {
+
+        if (err) return next(err);
+
+        if (response.statusCode === 200 && body.success) {
+
+            options.dataList = body.data;
+
+            excel(options);
+            //return res.json(body.data);
+            return res.download(options.savePath);
+        }else {
+            return res.json([]);
+        }
+    });
+
+};
+
+
+
 
 exports.financialTransaction = function (req, res, next) {
 

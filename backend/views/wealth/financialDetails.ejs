@@ -161,7 +161,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-inline">
+                        <form class="form-inline" onsubmit="return false">
                             <div class="form-row" >
                                 <div class="form-group form-search form-search-big">
                                     <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易时间:</label>
@@ -179,10 +179,10 @@
                                 <div class="form-group form-search form-search-big">
                                     <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">文件格式:</label>
                                     <div class="col-sm-4">
-                                        <button class="button_pdf" > <span>PDF格式下载</span></button>
+                                        <button class="button_pdf" onclick="window.open('/wealth/financialDetailsDownload?type=pdf', '_blank');"> <span>PDF格式下载</span></button>
                                     </div>
                                     <div class="col-sm-4">
-                                        <button class="button_xls" ><span>Excel格式下载</span></button>
+                                        <button class="button_xls" onclick="window.open('/wealth/financialDetailsDownload?type=excel', '_blank');"><span>Excel格式下载</span></button>
                                     </div>
                                 </div>
                             </div>
