@@ -19,8 +19,6 @@ require('./account/accountSetting');
 require('./account/notice');
 require('./settlement/billCenter');
 require('./settlement/billSetting');
-
 require('./wealth/financialDetails');
-require('./account/financialCenterHome');
-
+require('./wealth/financialCenterHome');
 require('./wealth/fundaccount');
