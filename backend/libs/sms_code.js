@@ -194,16 +194,15 @@ exports.verifyMiddleware = function () {
         checker.smsText(req.body.sms_code, function(err){
             if(err){
                 return res.json(result);
+            }else{
+                cacheGet(userInfo, true).then(function(data){
+                    if(data && data.sms && (data.sms === sms)){
+                        return next();
+                    }else{
+                        return res.json(result);
+                    }
+                }).catch(next)
             }
         });
-
-        cacheGet(userInfo, true).then(function(data){
-            if(data && data.sms && (data.sms === sms)){
-                return next();
-            }else{
-                return res.json(result);
-            }
-        }).catch(next)
-
     }
 };

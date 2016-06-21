@@ -41,4 +41,14 @@
   width: 940px;
 }
 
+.tab_nBor {
+  border: none;
+
+  thead > tr > th,
+  thead > tr > td,
+  tbody > tr > th,
+  tbody > tr > td {
+    border: none;
+  }
+}
 // <<<<<<<<<<<<<<<<<<<<

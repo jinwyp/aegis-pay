@@ -1,13 +1,17 @@
 @import './global.scss';
-@import './components/_modal.scss';
 @import './Plugins/fancySelect.scss';
 @import './components/_datePicker.scss';
+@import './components/pagination_finalcial.scss';
 
 
 
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
   .financial-main{
     width: $main_width;
     margin-left: auto;
@@ -31,9 +35,10 @@
         font-size: 12px;
         .username{  font-size: 18px; }
         .companyname{  margin-top: 10px; }
-        .occupation{  margin-top: 10px; }
+        .occupation{  margin-top: 10px;display: none; }
         ul{
           margin-top: 25px;
+          display: none;
           li{  float:left;  }
           li.separator{
             height: 14px;
@@ -77,7 +82,7 @@
             }
           }
           .look{
-            color: $color_manage_text;float: right;margin-top: 4px;cursor: pointer;
+            color: $color_manage_text;float: right;margin-top: 5px;cursor: pointer;
           }
         }
       }
@@ -114,6 +119,15 @@
             vertical-align: middle;
           }
         }
+        div.bank-info {
+          text-align: center;
+          margin-top: 24px;
+          .label-content {
+            font-size: 18px;
+            color: $color_manage_text;
+            vertical-align: middle;
+          }
+        }
       }
     }
     .list-title{
@@ -140,6 +154,10 @@
           border-left: 1px solid #a5a5a5;
         }
       }
+      .record-all{
+        float: right;
+        margin-top: 13px;
+      }
     }
     .financial-center{
       z-index: 1;
@@ -163,6 +181,7 @@
             td{
               text-align: center;
             }
+            .orange{ color: $color_orange; }
           }
         }
       }
@@ -237,6 +256,7 @@
 
 
     .financial-details{
+
       margin: 10px 0px;
       padding: 8px 0px;
 
@@ -286,6 +306,16 @@
         .input-date{
           width: 110px;
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
+          background: #fff;
+          @include sprite-image($icon-calendar-gray);
+          @include sprite-position( #fff $icon-calendar-gray -504px -63px);
+        }
+        .input-date-icon{
+          top: 6px;
+          right: 10px;
+          position: absolute;
+          padding: 0px 10px 0px 10px;
+          line-height: 15px;
           @include sprite($icon-calendar-gray);
         }
 
@@ -343,20 +373,36 @@
           border-top: 0px dotted $color_border;
         }
 
-        .table_btn {
-          padding: 1px 10px;
-          height: 25px;
-          min-width: 60px;
-        }
+
       }
 
-
     }
-
-
-
 
   }
 }
 
+.button_pdf {
+  @include sprite( $icon-download-pdf);
+}
+
+.button_xls {
+  @include sprite($icon-download-xls);
+
+}
+.button_pdf, .button_xls {
+  background-color: #fff;
+  border: none;
+  padding-top: 100px;
+  margin: 10px 20px 0px 20px;
+  width: 100px;
+  height:85px;
+
+  span{
+    margin-left: -12px;
+  }
+}
+
+.button-margin{
+  margin-left: 16px;
+}
 

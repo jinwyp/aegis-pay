@@ -12,9 +12,6 @@ module.exports = function (app) {
      *
      * */
     app.locals.multiArgAppend = function (arg1, arg2, unit) {
-        //console.log("arg1=" + arg1 + "-----------" + "arg2=" + arg2);
-        //console.log("arg1===0:" + (arg1 == 0) + "-----------" + "arg2=0:" + (arg2 == 0));
-        //console.log("arg1===arg2:" + (arg1 == arg2));
         if (arg1 == 0 && arg2 == 0) {
             return "--";
         } else if (arg1 == arg2) {
@@ -181,4 +178,8 @@ module.exports = function (app) {
         }
         return format;
     };
+
+    app.locals.fundAccountFormat = function(account){
+        return account.replace(/(\d{4})(?=\d)/g,"$1 ");
+    }
 }

@@ -2,7 +2,7 @@
 <head>
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
-    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/addAccount.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/drawCash/drawCash.css">
     
 </head>
 	
@@ -14,7 +14,49 @@
 
 <div id="financial-body">
 	<div class="financial-main draw-cash">
-		提现页面
+		<div class="figure-wrap" id="drawCash">
+			<div class="figure-caption">
+				<span>账户余额：<strong><i id="balancePrice"><%= balanceMoney %></i>元</strong></span>
+				<a href="#">提现记录</a>
+			</div>
+			<div class="figure-content">
+				<form action="/drawCashCheck" method="post" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>	
+						<div class="col-sm-4 select-bank">
+							<ul>
+								<li class="active"><input type="radio" checked/>  <%= bankName %>：尾号 <%= bankAccount %></li>
+							</ul>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 control-label">提现金额：</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control"  placeholder="请输入金额" id="drawCashTxt" name="cash">
+							<p class="padding-top-8 password-info" id="errorTxt">每笔限额<span class="text-primary">5千万</span>元，提现<span class="text-primary">3</span>次</p>
+							<p class="padding-top-8 password-info text-danger display-none" id="drawCashErr">金额输入有误，请重新输入</p>
+						</div>
+						<div class="float-left padding-top-8">元</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 control-label">到账时间：</label>
+						<div class="col-sm-5 padding-top-8">
+							<p class="font-size-14 font-weight">公司账户最快<span class="text-primary">T+0</span>工作日到账</p>
+							<p class="font-size-12 color-gray2">当日16：00以后提款且金额超过<span class="text-primary">5千万</span>可能出现系统延迟</p>
+						</div>
+					</div>
+					<div  class="form-group padding-top-8">
+						<div class="col-sm-4 col-sm-offset-5">
+							<input type="submit" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">		
+							<span id="errorMsg" class="text-danger display-none"></span>
+						</div>
+					</div>
+					<input type="hidden" name="bankName" value="<%= bankName %>"/>
+					<input type="hidden" name="bankAccount" value="<%= bankAccount %>"/>
+					<input type="hidden" name="cashToken" value="<%= cashToken %>"/>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 

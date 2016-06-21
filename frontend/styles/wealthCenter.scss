@@ -1,6 +1,5 @@
 @import './global.scss';
-@import './components/_modal.scss';
-
+@import "agreement";
 
 #wealthCenterWrap{
   .wealthCenterTop{
@@ -180,6 +179,7 @@
       span{
         text-decoration:underline;
         color:#000;
+        cursor: pointer;
       }
     }
     .open-btn{

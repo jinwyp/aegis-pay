@@ -40,7 +40,9 @@ var config = {
 	files_root:  '/app',
     upload_tmp: '/files/upload_tmp_pay',
     upload:     '/files/upload',
-    member_address: 'http://10.100.20.3:3000'
+    download: __dirname + '/views/download',
+    member_address: 'http://10.100.20.3:3000',
+    rest_address: 'http://10.100.30.1:8888/'
 };
 
 

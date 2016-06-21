@@ -1,7 +1,7 @@
 <%- include ../global/includehead/doctype %>
 <head>
     <%- include ../global/includehead/head %>
-    <link rel="stylesheet" href="/dist/styles/billCenter.css">
+    <link rel="stylesheet" href="<%= staticPath %>/styles/billCenter.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                         <td>
                             <input type="button" value="修改" class="iBtn iBtn_xs iBtn_no">&nbsp;&nbsp;
                             <input type="button" value="删除" class="iBtn iBtn_xs iBtn_no">&nbsp;&nbsp;
-                            <a href="#">查看</a>
+                            <a href="settlementInfo">查看</a>
                         </td>
 
                     </tr>
@@ -42,7 +42,7 @@
                     <tr>
                         <td colspan="6" class="noInfo">
                             <div>
-                                无开票信息,请先&nbsp;&nbsp;&nbsp; <a href="#">新增开票信息</a>
+                                无开票信息,请先&nbsp;&nbsp;&nbsp; <a href="/settlement/confirmTheInvoice?type=2&id=110000" class="iBtn iBtn_yes">新增开票信息</a>
                             </div>
                         </td>
                     </tr>
@@ -60,6 +60,7 @@
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>
+<script src="<%= staticPath %>/scripts/settlement/billCenter.js"></script>
 
 
 </body>

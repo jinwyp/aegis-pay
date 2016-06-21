@@ -31,11 +31,11 @@ exports.billCenter = function (req, res, next) {
                      },
                     {
                         secListName:'待开票' ,
-                        secListLink:""
+                        secListLink:"waitSettle"
                     },
                     {
                         secListName:'已开票',
-                        secListLink:""
+                        secListLink:"hadSettle"
                     }
                 ]
             },

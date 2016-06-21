@@ -7,7 +7,7 @@ var captcha = require('../../libs/captcha');
 var siteController    = require('../../api/v1/site');
 var compactApi        = require('../../api/v1/compact');
 var orderCloseApi     = require('../../controllers/order/orderClose');                  // 关闭订单 模块(文件路径)
-var settlementFormApi = require('../../controllers/settlement/settlementForm');     // 结算单页面 模块(控制文件路径)
+var settlementFormApi = require('../../controllers/settlement/settlementForm');         // 结算单页面 模块(控制文件路径)
 var confirmDelivery   = require('../../api/v1/confirmDelivery');
 var confirmComplete   = require('../../controllers/confirmComplete');
 var disputeApply      = require('../../controllers/disputeApply');
@@ -16,6 +16,9 @@ var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 
 var financialApi    = require('../../api/v1/financialDetails');
+var fundAccountApi = require('../../api/v1/fundaccount');
+
+var settleDetailsApi = require('../../controllers/settlement/settleDetails');
 
 // demo
 router.get('/user', siteController.user);
@@ -31,9 +34,16 @@ router.post('/del-file', compactApi.delFile);
 router.post('/sign-compact', compactApi.signCompact);
 router.get('/generate_compact', compactApi.generate_compact);
 
-router.get('/order/orderInfo_api', orderCloseApi.orderInfo_api);				// 关闭订单: 订单信息Api
-router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				// 关闭订单: 提交关闭Api
-router.get('/settlement/sellerView', settlementFormApi.sellerView);             // 结算单: 查看结算单_卖家
+router.get('/order/orderInfo_api', orderCloseApi.orderInfo_api);				    // 关闭订单: 订单信息Api
+router.get('/order/closeOrder_api', orderCloseApi.closeOrder_api);				    // 关闭订单: 提交关闭Api (路由, 控制模块)
+router.get('/settlement/sellerView', settlementFormApi.sellerView);                 // 结算单: 卖家.查看结算单
+router.post('/settlement/sellerSubmit', settlementFormApi.sellerSubmit);            // 结算单: 卖家.提交结算单
+router.get('/settlement/buyersView', settlementFormApi.buyersView);                 // 结算单: 买家.查看结算单
+router.post('/settlement/buyersReturn', settlementFormApi.buyersReturn);            // 结算单: 买家.退回结算单
+router.post('/settlement/buyersEditReason', settlementFormApi.buyersEditReason);    // 结算单: 买家.修改退回原因
+router.post('/settlement/buyersAuditing', settlementFormApi.buyersAuditing);        // 结算单: 买家.结算审核通过
+router.get('/settlement/downPrint', settlementFormApi.downPrint);                   // 结算单: 下载打印结算单
+
 router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliveryIndex);
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 router.post('/disputeApply', disputeApply.dispute);
@@ -50,11 +60,14 @@ router.post('/paypassword/forget/submit', payPasswordApi.forgetSubmit);
 router.post('/paypassword/modify/valid', sms.verifyMiddleware(), payPasswordApi.modifyValid);
 router.post('/paypassword/modify/submit', payPasswordApi.modifySubmit);
 
-
+// open fund account - next
+router.post('/open-fund-account', sms.verifyMiddleware(), fundAccountApi.openFundAccount);
+router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpenStatus);
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
 
-
+// generate settle
+router.get('/fetch-settle-html', settleDetailsApi.generate_settle);
 
 router.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

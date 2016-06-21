@@ -5,14 +5,23 @@
  *
  * type: buy 1买家; sell 2卖家
  * status:
-	 WaitSettleAccounts	 	待结算.卖家开具结算单(卖)
-	 WaitVerifySettle	 	待审核.卖家编辑结算单(卖)
-	 WaitVerifySettle	 	待审核.买家审核结算单(买)
-	 ReturnedSettleAccounts	审核退回.卖家修改数据(卖)
-	 ReturnedSettleAccounts	审核退回.买家修改原因(买)
-	 WaitPayTailMoney	 	审核通过.待买家补款  (_)
-	 WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
-	 WaitWriteReceipt	 	审核通过.待卖家开发票(_)  */
+  	WaitSettleAccounts	 	待结算.卖家开具结算单(卖)
+  	WaitVerifySettle	 	待审核.卖家编辑结算单(卖)
+  	WaitVerifySettle	 	待审核.买家审核结算单(买)
+  	ReturnedSettleAccounts	审核退回.卖家修改数据(卖)
+  	ReturnedSettleAccounts	审核退回.买家修改原因(买)
+  	WaitPayTailMoney	 	审核通过.待买家补款  (_)
+  	WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
+  	WaitWriteReceipt	 	审核通过.待卖家开发票(_)
+
+	查看结算单:卖家 		settlement/sellerView 			../mall/order/seller/settle
+	提交结算单:卖家 		settlement/sellerSubmit 		../mall/order/seller/settle/submit
+	查看结算单:买家 		settlement/buyersView 			../mall/order/settle
+	退回结算单:买家 		settlement/buyersReturn 		../mall/order/settle/return ;
+	修改退回原因买家 		settlement/buyersEditReason 	../mall/order/settle/return/editreason ;
+	审核结算单:买家 		settlement/buyersAuditing 		../mall/order/settle/submit
+	下载打印结算单: 		settlement/downPrint 			..     */
+
 
 var request  = require('request');
 var checker  = require('../../libs/datachecker');			// 验证
@@ -50,21 +59,167 @@ exports.orderSettlement = function (req, res, next) {
 
 
 
-// API路由: 查看结算单_卖家 ------------------------------------
-exports.sellerView = function (req, res, next) {
 
-	var req_id = req.query.id;
 
-	//checker.orderId(req_id);
-	req.userId = req.session.user.id;
 
-	// 异步调取Java数据
-	var url = apiHost.host + 'settlement/sellerView?orderId='+ req_id +'&sellerId='+ req.userId;
-	request(url, function (err, data) {
+
+// +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+
+// API路由: *卖家.查看结算单 --------- http://localhost:3001/api/settlement/sellerView?id=110000
+var sellerView = exports.sellerView = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
+
+	var param = {
+		orderId: orderId,
+		sellerId: userId
+	};
+
+	var url = apiHost.host + 'settlement/sellerView';
+	request(url, param, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '待结算.卖家开具结算单 11111111';
+			replyData.subTitle = '开具结算单.s';
+			replyData.userType = 'sell';
+
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit
+var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
+	//var req_id = req.query.id,
+	//	userId = req.session.user.id;
+
+	var url = apiHost.host + 'settlement/sellerSubmit';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待结算.卖家开具结算单 11111111';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: *买家.查看结算单 --------- http://localhost:3001/api/settlement/buyersView?id=220000
+var buyersView = exports.buyersView = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
+
+	var param = {
+		orderId: orderId,
+		userId: userId
+	};
+
+	var url = apiHost.host + 'settlement/buyersView';
+	request(url, param, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '待审核.买家审核结算单 2222222222';
+			replyData.subTitle = '审核结算单.b';
+			replyData.userType = 'buy';
+
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: 买家.退回结算单 --------- http://localhost:3001/api/settlement/buyersReturn
+var buyersReturn = exports.buyersReturn = function (req, res, next) {
+
+	var url = apiHost.host + 'settlement/sellerSubmit';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待审核.买家退回结算单 220000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: 买家.修改退回原因 --------- http://localhost:3001/api/settlement/buyersEditReason
+var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
+	var url = apiHost.host + 'settlement/buyersEditReason';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '审核不通过.买家修改退回原因 320000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: 买家.结算审核通过 --------- http://localhost:3001/api/settlement/buyersAuditing
+var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
+	var url = apiHost.host + 'settlement/buyersAuditing';
+	request.post(url, {body:req.body, json:true}, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = data.body;
+
+			replyData.headerTit = '待审核_买:WaitVerifySettle.买家.结算审核通过 220000';
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+};
+
+
+// API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint?id=110101
+var downPrint = exports.downPrint = function (req, res, next) {
+	var orderId = req.query.id,
+		userId = req.session.user.id;
+
+	var param = {
+		orderId: orderId,
+		sellerId: userId
+	};
+
+	var url = apiHost.host + 'settlement/downPrint';
+	request(url, param, function (err, data) {
+		if (err) return next(err);
+
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+
+			replyData.headerTit = '打印下载结算单.9999';
+			replyData.subTitle = '打印下载结算单.s';
+			replyData.userType = 'sell';
+
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))

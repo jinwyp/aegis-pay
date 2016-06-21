@@ -3,9 +3,7 @@
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/confirmTheInvoice.css">
 </head>
-
 <body>
-
 <%- include ../global/header/header %>
 <%- include ../global/header/subHeader %>
 
@@ -14,102 +12,9 @@
 <div class="containerWrap">
     <div class="bodyWrap">
 
-        <!-- 添加开票信息 板块 -->
-        <div id="viewInvoicePlate" class="plateBox">
-            <div class="plateHead borSolid">
-                <span class="prefix"></span>
-                <h3 class="headLeft fl">确认开票信息</h3>
-                <!--<p class="headContent">居中标题</p>-->
-                <!--<p class="headRight">-->
-                    <!--<span class="doubtInlet">-->
-                        <!--<s class="require">*</s> 为必填项目-->
-                    <!--</span>-->
-                <!--</p>-->
-            </div>
-            <div class="plateMain">
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td class="txt_r" width="358">公司名称：</td>
-                        <td width="340">
-                            <span class="a">和略电子商务有限公司</span>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司地址：</td>
-                        <td><span class="a">公司地址</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司电话：</td>
-                        <td><span class="a">公司电话</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">公司传真：</td>
-                        <td><span class="a">公司传真</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">纳税人识别号：</td>
-                        <td><span class="a">纳税人识别号</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">开户银行：</td>
-                        <td><span class="a">开户银行</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">开户银行账号：</td>
-                        <td><span class="a">开户银行账号</span></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="txt_r">发票类型：</td>
-                        <td><span class="a">发票类型</span>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <%- include ../Plugins/InvoiceInfoViewPlate %>
 
-            </div>
-        </div>
-
-        <!-- 发票备注 板块-->
-        <div id="InvoicePlate" class="plateBox">
-            <!-- 发票备注-->
-            <div class="plateHead .borSolid">
-                <h3 class="headLeft fl"> 对“发票备注”内容是否有明确的要求？</h3>
-            </div>
-            <div class="plateMain">
-                <div class="txtAreaBox">
-                    <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
-                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如果对“发票备注”内容有明确要求，请详细填写"></textarea>
-                </div>
-            </div>
-
-            <!-- 特殊备注-->
-            <div class="plateHead .borSolid">
-                <h3 class="headLeft fl"> 其他特殊要求</h3>
-            </div>
-            <div class="plateMain">
-                <div class="txtAreaBox">
-                    <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
-                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如有其他特殊要求，请详细填写"></textarea>
-                </div>
-            </div>
-
-            <!-- 操作按钮-->
-            <div class="plateMain txt_c">
-                <br/><br/>
-                <input type="button" class="iBtn iBtn_def" value="取消">
-                <input type="button" class="iBtn iBtn_yes ml20" value="确认">
-            </div>
-        </div>
-
+        <%- include ../Plugins/InvoiceRemarksPlate %>
 
     </div>
 </div>

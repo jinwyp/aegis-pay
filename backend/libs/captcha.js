@@ -6,6 +6,7 @@ var ccap    = require('ccap');
 var checker = require('./datachecker');
 var cache   = require('./cache');
 var logger  = require("./logger");
+var co = require('co');
 
 /**
  * 生成图形验证码
@@ -74,26 +75,39 @@ exports.verifyMiddleware = function (type) {
         var captchaText = req.body.captchaText;
         var result = { "success" : false, "errType":"imgcode" };
 
-        var cb = function(err){
-            if(err){
-                return res.json(result);
-            }
-        }
+        var checkType = new Promise(function(resolve, reject){
+            checker.captchaType(type, function(err){
+                err && resolve(false);
+                !err && resolve(true);
+            })
+        })
 
-        checker.captchaType(type, cb); // _ccapimgtxt_pay
-        checker.captchaText(req.body.captchaText, cb);
+        var checkText = new Promise(function(resolve, reject){
+            checker.captchaText(req.body.captchaText, function(err){
+                err && resolve(false);
+                !err && resolve(true);
+            })
+        })
 
-        //cache.del('yimei180_sms_' + userInfo.id)
-        cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
-            if (err) return next(err);
+        co(function* (){
+            var checkTypeV = yield checkType;
+            var checkTextV = yield checkText;
+            if(checkTypeV && checkTypeV){
+                //cache.del('yimei180_sms_' + userInfo.id)
+                cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
+                    if (err) return next(err);
 
-            if (data && data === captchaText) {
-                return next();
-            } else {
-                //return checker.captchaNotMatch(next);
-
+                    if (data && data === captchaText) {
+                        return next();
+                    } else {
+                        return res.json(result);
+                    }
+                })
+            }else{
                 return res.json(result);
             }
         })
+
+
     }
 };

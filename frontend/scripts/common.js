@@ -1,3 +1,46 @@
+
+require(['jquery', 'bootstrap'],function($){
+	
+	/**
+	 * Common ajax error handler
+	 * This handler is not called for cross-domain script and cross-domain JSONP requests.
+	 */
+	$( document ).ajaxError(function(event, jqxhr, settings, exception) {
+		var xhrStatus = jqxhr.status;
+
+		var errorStatus = [400, 403, 404, 500];
+
+		if(xhrStatus == 401){
+			location.href = $("#sso").val() + "/login?gotoURL=" + encodeURIComponent(location.href);
+
+		} else if (xhrStatus == 409) {
+			// handle 409 error
+			// var message = JSON.parse(jqxhr.responseText).message;
+			// showServerError(xhrStatus, message);
+
+		} else if($.inArray(xhrStatus, errorStatus) >=0) {
+			showServerError(xhrStatus, "");  //handle errors in errorStatus
+		}else{
+
+		}
+	});
+
+	/** server ajax error msg */
+	var showServerError = function(status,message) {
+		var errorMsg = {
+			401: "请重新登录...",
+			403: "您没有权限访问该网页...",
+			404: "您访问的网页不存在...",
+			400: "参数传入错误，请稍后重试...",
+			500: "服务器出错，请稍后重试...",
+			409:  message
+		};
+		$("#server-error-msg").text(errorMsg[status]);
+		$('#modal-server-error').modal(true);
+	};
+});
+
+
 //数字转大写
 function switchTxt(n) {
 	if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))

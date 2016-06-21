@@ -34,7 +34,7 @@
         display: inline-block;
         width: 9px;
         height: 15px;
-        background: url("/dist/images/sprite_ico.png") no-repeat -195px -542px;
+        background: url($bgUrl) no-repeat -195px -542px;
         float: right;
         margin-top: 12px;
 
@@ -43,9 +43,9 @@
         display: inline-block;
         width: 15px;
         height: 9px;
-        background: url("/dist/images/sprite_ico.png") no-repeat -284px -542px;
+        background: url($bgUrl) no-repeat -284px -542px;
         float: right;
-        margin-top: 12px;
+        margin-top: 15px;
 
       }
     }
