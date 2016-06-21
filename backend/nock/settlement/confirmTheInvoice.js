@@ -15,9 +15,9 @@ var nkScopePersist = nock(API.host).log(console.log).persist();		// 执行多次
 
 // 页面数据.确认开票
 nkScopePersist.get('/settlement/invoiceInfo')
-	.query({type: 'sell', orderId:'110000'})
+	.query({userId: '213', orderId:'110000'})
 	.reply(200, {
-		headerTit: '结算单.获取开票信息 11111111',
+		headerTit: '结算单.获取开票信息 11111111234',
 		subTitle: '确认开票信息',
 		userType: 'sell',
 		order: {
