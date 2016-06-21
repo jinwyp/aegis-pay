@@ -26,7 +26,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 			var drawCashTxt = $('#drawCashTxt'),
 				drawCashErr = $('#drawCashErr'),
 				drawCashBtn = $('#drawCashBtn'),
-				balancePrice= $('#balancePrice').text(),
+				balancePrice= $('#balancePrice').html(),
 				errorMsg = $('#errorMsg');
 			drawCashTxt.on('blur',function(){
 				var val = $(this).val();
@@ -44,7 +44,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				if( !val ){
 					toggleError(false);
 					return false;
-				}else if( /^\d+$/.test(val) ){
+				}else if( /^\d+$/.test(val*1) ){
 					if( balancePrice && formatPrice(balancePrice)>= val ){
 						toggleError(true);
 						return true;
@@ -65,7 +65,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				}
 			}
 			function formatPrice(str){
-				return str.replace(/,/g,'');
+				return ((str+'').replace(/,/g,''))*1;
 			}
 		})($);
 

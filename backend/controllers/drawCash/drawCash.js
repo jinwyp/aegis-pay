@@ -27,7 +27,7 @@ exports.drawCash = function(req,res,next){
         var replyData = JSON.parse(resp.body);
         if (replyData.success){
             //如果没有绑定取现银行卡
-            if(!replyData.bankAccount||replyData.bankAccount=='') {
+            if(!replyData.data.bankAccount||replyData.data.bankAccount=='') {
                 var content = {
                     pageTitle : "财务管理中心 - 账户通 - 提现",
                     headerTit : "财务管理中心 - 账户通 - 提现",
@@ -45,9 +45,9 @@ exports.drawCash = function(req,res,next){
             req.session.cashToken = cashToken;
 
             var content = {
-                balanceMoney:   replyData.balanceMoney,
-                bankAccount:    replyData.bankAccount,
-                bankName:       replyData.bankName,
+                balanceMoney:   replyData.data.balanceMoney,
+                bankAccount:    replyData.data.bankAccount,
+                bankName:       replyData.data.bankName,
                 pageTitle:     "财务管理中心 - 账户通 - 提现",
                 headerTit:     "财务管理中心 - 账户通 - 提现",
                 tabObj:        {
