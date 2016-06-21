@@ -3,7 +3,7 @@
 */
 
 
-requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
+requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload'], function($, fancySelect, bootstrap, message, upload){
 
 
     var $reasonId = $('[name=reasonId]');           //原因ID
@@ -85,5 +85,67 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
         };
         return request.QueryString(param);
     }
+
+
+
+    /* ---附件交互---------------------------------------- */
+    var $tempAdd = $('#tempAdd'),
+        $tempEdit = $('#tempEdit'),
+        $tempDel = $('#tempDel'),
+        $fileId = $('#fileId'),
+        $fileViewImg = $('.fileViewImg'),
+        $fBox_1 = $('.fBox_1'),
+        $fBox_2 = $('.fBox_2');
+
+    //添加附件
+    $tempAdd.click(function() {
+        //var $tag = $(this);
+
+        upload.ajaxFileUpload($tempAdd, '', function(data) {
+            var fileObj = {};
+
+            if(data.success) {
+                $.each(data.attach, function(ind, file) {
+                    fileObj = file;
+                });
+                $fileViewImg.attr('src', fileObj.url);
+                $fileId.val(fileObj.url);
+                $fBox_1.show();
+                $fBox_2.hide();
+            }
+        });
+    });
+
+    //移除附件
+    $tempDel.click(function() {
+        upload.ajaxFileRemove($(this), '', function() {
+            $fBox_1.hide();
+            $fBox_2.show();
+            $fileViewImg.attr('src', '');
+        });
+    });
+
+    //修改附件
+    $tempEdit.click(function() {
+
+        upload.ajaxFileUpload($tempEdit, '', function(data) {
+            var fileObj = {};
+            if(data.success) {
+                $.each(data.attach, function(ind, file) {
+                    fileObj = file;
+                });
+                $fileViewImg.attr('src', fileObj.url);
+                $fileId.val(fileObj.url);
+            }
+        });
+    });
+
+
+
+
+
+
+
+
 
 });
