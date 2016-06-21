@@ -28,20 +28,19 @@ exports.financialDetailsApi = function (req, res, next) {
     var params = Object.assign({}, {userId: req.session.user.id}, body);
 
     var url = api_config.financialDetails;
-    request.post(url, {body: params, json:true}, function (err, data) {
+    request.post(url, {body: params, json:true}, function (err, response, body) {
 
         if (err) return next(err);
 
-        var result = data.body;
-        if (data && result.success) {
+        var result = response.body;
+        if (response && result.success) {
             if (body.count){
                 return res.json({count:result.data.length});
             }else{
                 return res.json(result.data);
             }
         }else {
-            result.errType = 'orderError';
-            return res.json(result);
+            return res.json([]);
         }
     })
 
