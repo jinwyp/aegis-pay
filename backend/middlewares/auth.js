@@ -81,6 +81,7 @@ exports.passport = function (req, res, next) {
             });
         }
     } else {
+        res.locals.user = req.session.user;
         return next();
     }
 };
