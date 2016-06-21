@@ -59,7 +59,7 @@ exports.drawCash = function(req,res,next){
         } else {
             //todo 错误处理
         }
-    });
+    }).on('error',next);
 };
  
 
