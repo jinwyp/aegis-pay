@@ -61,7 +61,7 @@ exports.drawCash = function(req,res,next){
             logger.error(req.ip+" request drawCash error");
             next(new UnauthenticatedAccessError());
         }
-    }).on('error',next);
+    });
 };
  
 
