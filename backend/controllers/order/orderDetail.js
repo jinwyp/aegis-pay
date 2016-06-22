@@ -10,9 +10,9 @@ var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
-    checker.orderId(req.query.orderId);
+    checker.id(req.query.id);
 
-    request({url : api_config.orderDetail + '?orderId=' + req.query.orderId}, function (err, data) {
+    request({url : api_config.orderDetail + '?orderId=' + req.query.id}, function (err, data) {
         if (err) return next(err);
         if (data) {
             var source = JSON.parse(data.body);
