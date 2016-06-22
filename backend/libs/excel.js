@@ -5,7 +5,8 @@
 var XLSX = require('xlsx');
 var path = require('path');
 
-var emptyExcelTemplate = path.join(__dirname , '../views/download/financialDetails/empty.xlsx');
+var config     = require('../config');
+var emptyExcelTemplate = path.join(config.download, '/financialDetails/empty.xlsx');
 
 
 function isFunction(fn) {
