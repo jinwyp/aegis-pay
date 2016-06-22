@@ -199,15 +199,11 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 }
             });
 
-            // var childBankNameList=[];
             $("#account").on('blur', function() {
                 that.Verify();
             });
             $("#vertifyCode").on('blur', function() {
                 that.Verify();
-            });
-            $("#childBankName").on("click",function(){
-                // $(".childBankList").show();
             });
             $("#vertifyCode").on('blur', function() {
                 var vertifyCode=$("#vertifyCode").val();
@@ -228,10 +224,6 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 });
             });
 
-            // 开户行支行选择
-            $(document).on("click",".bankNameList",function(){
-                $("#childBankName").val($(this).text())
-            })
         },
 
         "submit" : function(){
