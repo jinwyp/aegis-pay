@@ -42,53 +42,52 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         submitForm: function(that){
 
+            /**
+             * 各发票流程:
+             * 1. (结算) 确认开票信息： (参数: orderId)
+             * 新增发票(载入已有发票数据 userId orderId) —> 填写order备注 (userId, orderId) --> (结算)结算完成 /getOrderDetail?orderId=
+             *
+             * 2. 开票设置列表:	(参数:  无)
+             * 新增：新增发票	userId  —> 开票设置列表 /settlement/billSetting
+             * 修改：修改发票(载入已有发票数据) userId —> 开票设置列表 /settlement/billSetting
+             */
+
+            // set redirect url
+            var redirectUrl = "";
+            if ($.trim($("#orderId").val()) != "") {
+                redirectUrl = "/settlement/addInvoiceNotes"; //结算完成
+            } else {
+                redirectUrl = "/settlement/billSetting";     //开票设置列表
+            }
+
+            // validation
             // if( !that.validateForm()) {
-            //     return
+            //     return $("#totalError").val("请按提示信息修改错误");
             // }
 
             var param = $("#invoiceForm").serialize();
             $.post("/settlement/submitInvoice", param, function(data) {
-                if (data.success == true) {
-                    console.log('12345678903456789034567890');
-                //    redirect
+                if (data.success == false) {
+                    return $("#totalError").val(data.error);
                 }
+                $("#totalError").val("");
+                console.log('------------- submit success -------------');
+
+                //    redirect
+                location.href = redirectUrl;
 
             }).fail(function(jqXHR, textStatus, errorThrown){
                 if (jqXHR.status == 409) {
-                    // var errorCode = JSON.parse(jqXHR.responseText).errorCode;
+                    // ToDo: error handling
+                    var errorCode = JSON.parse(jqXHR.responseText).errorCode;
                     console.log('this is 409 ....');
+                    $("#totalError").val(errorCode);
                 }
             });
         }
     };
 
     invoiceApp.init();
-
-    // var $type = $('#type');           //原因ID
-
-    // var apiHost = '/api',			                            // API域名
-    //     uId = getUrlParam('id'),
-    //     uType = getUrlParam('type'),
-    //     uStatus = getUrlParam('status');
-
-
-    /**
-     * 获取URL参数值
-     * @param param 参数名
-     * @param hrefStr 指定Url, 可选
-     * @author wze
-     */
-    // function getUrlParam (param, hrefStr) {
-    //     var request = {
-    //         QueryString: function (val) {
-    //             var uri = hrefStr || window.location.search;
-    //             var re = new RegExp("" + val + "=([^&?]*)", "ig");
-    //             return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
-    //         }
-    //     };
-    //     return request.QueryString(param);
-    // }
-
 
 
     /* ---附件交互---------------------------------------- */
@@ -101,11 +100,18 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         $fBox_1 = $('.fBox_1'),
         $fBox_2 = $('.fBox_2');
 
+
+    //上传文件格式：jpg、png.文件大小：小于400k
+    function uploadWrapper ($ele, cb) {
+        // ToDo: 图片大小校验
+        upload.ajaxFileUpload($ele, {fileSize: 400, maxSize: 400, fileType: ["jpg", "jpeg", "png"]}, cb);
+    }
+
     //添加附件
     $tempAdd.click(function() {
         //var $tag = $(this);
 
-        upload.ajaxFileUpload($tempAdd, '', function(data) {
+        uploadWrapper ($tempAdd, function(data) {
             var fileObj = {};
 
             if(data.success) {
@@ -120,19 +126,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         });
     });
 
-    //移除附件
-    $tempDel.click(function() {
-        upload.ajaxFileRemove($(this), '', function() {
-            $fBox_1.hide();
-            $fBox_2.show();
-            $fileViewImg.attr('src', '');
-        });
-    });
-
     //修改附件
     $tempEdit.click(function() {
 
-        upload.ajaxFileUpload($tempEdit, '', function(data) {
+        uploadWrapper ($tempEdit, function(data) {
             var fileObj = {};
             if(data.success) {
                 $.each(data.attach, function(ind, file) {
@@ -144,12 +141,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         });
     });
 
-
-
-
-
-
-
-
+    //移除附件
+    $tempDel.click(function() {
+        upload.ajaxFileRemove($(this), '', function() {
+            $fBox_1.hide();
+            $fBox_2.show();
+            $fileViewImg.attr('src', '');
+        });
+    });
 
 });

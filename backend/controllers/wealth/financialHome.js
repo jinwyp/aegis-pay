@@ -2,18 +2,27 @@
  *财务管理中心(个人中心) 页面
  *
  * */
-var path       = require('path');
-var request    = require('request');
+var path    = require('path');
+var request = require('request');
+var ejs     = require('ejs');
+var pdf     = require('html-pdf');
 
 var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
 var checker    = require('../../libs/datachecker');
+
 var logger     = require("../../libs/logger");
 var utils      = require('../../libs/utils');
 var config     = require('../../config');
 
 var excelSavePath = path.join(config.files_root, config.upload, '/financial-details');
 utils.makeDir(excelSavePath);
+
+var pdfSavePath = path.join(config.files_root, config.upload, '/financial-details');
+var pdfHtmlTemplatePath = path.join(config.download, '/financialDetails/pdftemplate.ejs');
+
+
+
 
 
 
@@ -88,21 +97,6 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
     var getQuery = req.query;
 
-    var options = {
-        savePath : excelSavePath + '/financialdetails.xlsx',
-        titleList : [
-            '交易日期',
-            '交易流水号',
-            '金额',
-            '账户余额',
-            '交易类型',
-            '对方账号',
-            '对方账号名称',
-            '对方开户行'
-        ],
-        propertyList : [],
-        dataList : []
-    };
 
     if (getQuery.filetype){
 
@@ -116,11 +110,45 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
             if (response.statusCode === 200 && body.success) {
 
                 if (getQuery.filetype === 'excel'){
-                    options.dataList = body.data;
 
-                    excel(options);
+                    var excelOptions = {
+                        savePath : excelSavePath + '/financialdetails.xlsx',
+                        titleList : [
+                            '交易日期',
+                            '交易流水号',
+                            '金额',
+                            '账户余额',
+                            '交易类型',
+                            '对方账号',
+                            '对方账号名称',
+                            '对方开户行'
+                        ],
+                        propertyList : [],
+                        dataList : body.data
+                    };
+
+                    excel(excelOptions);
                     return res.download(options.savePath);
+                    
+                }else if (getQuery.filetype === 'pdf'){
+
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
+                        if (err) return next(err);
+                        
+                        var pdfOptions = {format : 'Letter'};
+                        var pdfFileName = pdfSavePath + '/financialdetails.pdf';
+
+                        pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+                            if (err) return next(err);
+
+                            return res.download(pdfFileName);
+                        });
+
+                    });
+                }else {
+                    return res.json([]);
                 }
+
 
             }else {
                 return res.json([]);
