@@ -17,9 +17,9 @@
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">开票详情</h3>
                 <% if(typeof htmlpath != 'undefined') { %>
-                <a href="<%= htmlpath %>" class="downLoad">下载开票资料</a>
+                    <p class="headRight"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
                 <% }else {%>
-                    <a href="#" class="downLoad">下载开票资料</a>
+                    <p class="headRight"><a href="#" class="downLoad">下载开票资料</a></p>
                     <input type='hidden' name='nohtmlpath' />
                 <% } %>
             </div>
@@ -38,7 +38,7 @@
         <%- include ../Plugins/InvoiceRemarksPlate %>
 
         <p class="mt20"></p>
-        <a href="#" class="downLoad">下载开票资料</a>
+        <p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>
         <p class="mt20"></p>
     </div>
 </div>
@@ -54,3 +54,6 @@
 
 </body>
 </html>
+
+
+

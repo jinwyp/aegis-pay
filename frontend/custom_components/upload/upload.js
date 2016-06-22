@@ -43,9 +43,9 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 			success: function(data){
 				callback && typeof callback === "function" && callback(data);
 
-				if(data.success){
-					$tag.parent().remove();
-				}
+				//if(data.success){
+				//	$tag.parent().remove();
+				//}
 			}
 		});
 	}

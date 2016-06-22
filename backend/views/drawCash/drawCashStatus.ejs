@@ -24,7 +24,7 @@
 				<span><strong>提现申请已提交</strong>等待银行处理...</span>
 			</div> 
 			<div class="statusBar">
-    			<ul class="statusMain status_2">
+    			<ul class="statusMain status_<%= status %>">
 			        <li class="statusMax step_1">
 		                <span class="statusHr"></span>
 		                <span class="statusDot">1</span>
@@ -46,8 +46,8 @@
 		      	</ul>
 			</div>
 			<ol class="list">
-				<li>您可 <a href="#" class="continue-btn">继续提现</a></li>
-				<li>或者返回 <a href="#">财务管理中心</a></li>
+				<li>您可 <a href="/drawCash" class="continue-btn">继续提现</a></li>
+				<li>或者返回 <a href="/wealth/financialHome">财务管理中心</a></li>
 			</ol>
 		</div>
 	</div>

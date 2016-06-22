@@ -11,7 +11,7 @@
   padding-bottom: 10px;
   z-index: 20;
 
-  .errorMsg {
+  .errorMsg, .totalError {
     color: #fc0d1b;
     font-size: 12px;
     margin-top: 4px;
@@ -76,4 +76,12 @@
 
 /* 备注.开票信息 页面 --------------------------- */
 @import './Plugins/InvoiceInfoViewPlate.scss';
+
+
+
+
+
+
+
+
 

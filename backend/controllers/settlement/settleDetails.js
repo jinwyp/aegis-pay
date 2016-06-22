@@ -19,7 +19,7 @@ exports.settleDetails = function (req, res, next) {
         if(data){
             return res.render('settlement/settleDetails', data);
         }else{
-            request({url : api_config.billCenter}, function (err, data) {
+            request({url : api_config.settleDetails}, function (err, data) {
                 if (err) return next(err);
 
                 if(data) {
@@ -31,9 +31,9 @@ exports.settleDetails = function (req, res, next) {
                         editable:"false",
                         order: {
                             status: 'ReturnedSettleAccounts'
-                        }
+                        },
 
-                        //"settleInfo":source.settleInfo
+                        "settleInfo":source.settleInfo
 
                     };
                     //渲染页面
