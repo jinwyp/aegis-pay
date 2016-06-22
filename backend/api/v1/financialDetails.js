@@ -22,22 +22,19 @@ exports.financialDetailsApi = function (req, res, next) {
     //checker.payPassword(req.body.skip);
 
 
-    var body = req.body;
-    console.log(body);
-
-    var params = Object.assign({}, {userId: req.session.user.id}, body);
+    var postBody = req.body;
+    var params = Object.assign({}, {userId: req.session.user.id}, postBody);
 
     var url = api_config.financialDetails;
     request.post(url, {body: params, json:true}, function (err, response, body) {
 
         if (err) return next(err);
 
-        var result = response.body;
-        if (response && result.success) {
-            if (body.count){
-                return res.json({count:result.data.length});
+        if (response.statusCode === 200 && body.success) {
+            if (postBody.count){
+                return res.json({count:body.data.length});
             }else{
-                return res.json(result.data);
+                return res.json(body.data);
             }
         }else {
             return res.json([]);
