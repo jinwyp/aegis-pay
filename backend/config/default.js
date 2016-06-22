@@ -32,10 +32,8 @@ var config = {
       member: 'https://member-local.yimei180.com:7777',
       cookieName: 'passport'
     },
-
-
-
-	app_root:  '/app',
+    logdir : '../logs/',
+	app_root: path.join(__dirname,'../'),
 	files_root:  '/app/files',   // 文件目录
     upload_tmp: '/upload_tmp_pay', // 上传文件的临时目录
     upload:     '/upload',         // 上传文件目录

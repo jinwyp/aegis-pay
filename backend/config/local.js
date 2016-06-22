@@ -9,7 +9,7 @@ var config = {
     domain   : 'pay-local.yimei180.com', // 域名
     homepage : 'http://pay-local.yimei180.com:3001',
 
-    app_root:  path.join(__dirname, '../../../'), 
+    app_root: path.join(__dirname,'../'),
     files_root : path.join(__dirname, '../../../files'), 
     
     passport   : {

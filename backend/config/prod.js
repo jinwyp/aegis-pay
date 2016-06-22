@@ -12,7 +12,7 @@ var config = {
         member: 'https://member.yimei180.com',
         cookieName: 'passport'
     },
-
+    logdir:'../logs/',
     redis      : {
         host : process.env.REDIS_HOST,   // 这个应该不是这个地址
         port : process.env.REDIS_PORT,

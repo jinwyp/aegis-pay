@@ -132,7 +132,7 @@ gulp.task('watch', function() {
 gulp.task('nodemon', function (cb) {
     var called = false;
     return nodemon({
-        // nodemon our expressjs server
+        nodeArgs: ['--debug'],
         script: '../backend/app.js',
         env: { 'MODE': 'local' , 'MOCK':true},
         ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
