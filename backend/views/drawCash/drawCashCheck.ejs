@@ -49,6 +49,9 @@
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="confirmTxt" name="password">
 								<p class="padding-top-8 password-info text-danger display-none" id="confirmErr">请输入6-20位数字或英文字母或下划线</p>
+								<% if(errMessage){%>
+									<p class="padding-top-8 password-info text-danger" id="errMessage"><%= errMessage %></p>
+								<% } %>
 							</div>
 							<div class="col-sm-2 forget-password padding-top-6">
 								<a href="#">忘记密码</a>
@@ -63,6 +66,10 @@
 						</div>
 						<input type="hidden" name="confirmToken" value="<%= confirmToken %>"/>
 						<input type="hidden" name="cash" value="<%= cash %>"/>
+						<input type="hidden" name="companyName" value="<%= companyName %>"/>
+						<input type="hidden" name="bankName" value="<%= bankName %>"/>
+						<input type="hidden" name="bankAccount" value="<%= bankAccount %>"/>
+						
 					</form>
 				</div>
 			</div>

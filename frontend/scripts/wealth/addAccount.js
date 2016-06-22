@@ -21,8 +21,10 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				inputPwd = $('#inputPwd'),
 				delBankModal = $('#delBankModal'),
 				delBankBtn = $('#delBankBtn'),
-				timer = null,
 				flag = false;
+			var hasAccountState = $('#hasAccountState'),
+				noAccountState = $('#noAccountState'),
+				delResponseErr = $('#delResponseErr');
 			delBankBtn.on('click',function(){
 				inputPwd.val('');
 				toggleError(true);
@@ -30,20 +32,33 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				return false;
 			});
 			confirmBtn.on('click',function(){
+				delResponseErr.hide();
 				var val = inputPwd.val();
 				flag = checkHandler(val);
 				if(flag){
-					delBankModal.modal('hide');
+					$.ajax({
+						url:'/accountDel',
+						method:'POST',
+						data:{
+							password:$('#inputPwd').val(),
+							bankName:$('#bankName').val(),
+							bankAccount:$('#bankAccount').val()
+						},
+						success:function(response){
+							if(response.success){
+								hasAccountState.hide();
+								noAccountState.css('display','inline-block');
+								delBankModal.modal('hide');			
+							}else{
+								delResponseErr.html(response.tryChance?response.tryChance:'').show();
+							}
+						}
+					})
 				}
 			});
-			inputPwd.on('keyup',function(e){
-				if(timer){
-					clearTimeout(timer);
-				}
+			inputPwd.on('blur',function(e){
 				var val = $(this).val();
-				timer = setTimeout(function(){
-					checkHandler(val);
-				},400);
+				checkHandler(val);
 			});
 			function checkHandler(val){
 				if(!val){

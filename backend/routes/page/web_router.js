@@ -105,6 +105,7 @@ router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSucc
 router.get('/account/accountSetting', accountSetting.accountSetting);                           //账户设置
 router.get('/account/notice', notice.notice);                                                   //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);                                     //账户通初始化
+router.post('/accountDel', wealthAccount.accountDel);                                     
 
 router.get('/drawCash', drawCash.drawCash);                                                     //提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //提现确认信息
