@@ -49,9 +49,6 @@
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="confirmTxt" name="password">
 								<p class="padding-top-8 password-info text-danger display-none" id="confirmErr">请输入6-20位数字或英文字母或下划线</p>
-								<% if(errMessage){%>
-									<p class="padding-top-8 password-info text-danger" id="errMessage"><%= errMessage %></p>
-								<% } %>
 							</div>
 							<div class="col-sm-2 forget-password padding-top-6">
 								<a href="#">忘记密码</a>
@@ -59,17 +56,14 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-4">
-								<input type="submit" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
+								<input type="button" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
 								<a href="/drawCash" class="margin-left-10">返回上一步</a>
 							</div>
 							<p id="errorMsg" class="col-sm-offset-5 col-sm-4 text-danger padding-top-8"></p>
 						</div>
-						<input type="hidden" name="confirmToken" value="<%= confirmToken %>"/>
-						<input type="hidden" name="cash" value="<%= cash %>"/>
-						<input type="hidden" name="companyName" value="<%= companyName %>"/>
-						<input type="hidden" name="bankName" value="<%= bankName %>"/>
-						<input type="hidden" name="bankAccount" value="<%= bankAccount %>"/>
-						
+						<input type="hidden" name="confirmToken" value="<%= confirmToken %>" id="confirmToken"/>
+						<input type="hidden" name="cash" value="<%= cash %>" id="cash" />
+						<input type="hidden" name="companyName" value="<%= companyName %>" id="companyName"/>
 					</form>
 				</div>
 			</div>

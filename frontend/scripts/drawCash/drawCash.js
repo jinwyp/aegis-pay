@@ -85,10 +85,9 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 			var confirmTxt = $('#confirmTxt'),
 				confirmBtn = $('#confirmBtn'),
 				confirmErr = $('#confirmErr'),
-				errorMsg = $('#errorMsg'),
-				errMessage = $('#errMessage');
+				errorMsg = $('#errorMsg');
 			confirmTxt.on('blur',function(){
-				errMessage.hide();
+				errorMsg.hide();
 				var val = $(this).val();
 				checkHandler(val);
 			});
@@ -98,6 +97,25 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				var flag = checkHandler(val);
 				if( !flag ){
 					return false;
+				}else{
+					$.ajax({
+						url:'/drawCashStatus',
+						method:'POST',
+						data:{
+							confirmToken:$('#confirmToken').val(),
+							cash:$('#cash').val(),
+							password:$('#confirmTxt').val() 
+						},
+						success:function(response){
+							if(response.fail){
+								if(replyData.data.type == 1){
+									errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会');
+								}else{
+									errorMsg.html(response.message);
+								}
+							}
+						}
+					})
 				}
 			});
 			function checkHandler(val){
