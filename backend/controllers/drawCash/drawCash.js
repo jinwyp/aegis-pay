@@ -102,7 +102,8 @@ exports.drawCashCheck = function(req,res,next){
          tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
-         }
+         },
+         errMessage:''
     };
     res.render('drawCash/drawCashCheck',content);
 }
@@ -117,7 +118,10 @@ exports.drawCashStatus = function(req,res,next){
     var confirmToken = req.body.confirmToken;
     var cash = req.body.cash;
     var userId = req.session.user.id;
-    //todo 校验金额和密码
+    
+    var companyName = req.body.companyName;
+    var bankAccount = req.body.bankAccount;
+    var bankName = req.body.bankName;
 
     //confirmToken不相同
     if(!confirmToken && confirmToken!=req.session.confirmToken) {
@@ -137,24 +141,38 @@ exports.drawCashStatus = function(req,res,next){
         function(err,response){
             if(err){return next(err);}
             var replyData = JSON.parse(response.body);
-            console.log(replyData);
+            console.dir(replyData)
             if(!replyData.success){
-
-              //todo 错误页面
-                delete req.session.confirmToken;
-                delete req.session.cashToken;
-
                 var content = {
-                    pageTitle : "财务管理中心 - 账户通 - 提现",
-                    headerTit : "财务管理中心 - 账户通 - 提现",
+                    confirmToken:   confirmToken,
+                    companyName:    companyName,
+                    cash:           cash,
+                    bankAccount:    bankAccount,
+                    bankName:       bankName,
+                    pageTitle :    "财务管理中心 - 账户通 - 提现",
+                    headerTit :     "财务管理中心 - 账户通 - 提现",
                     tabObj : {
                         firstTab : firstTab,
                         secondTab : secondTab
                     },
-                    status:2
+                    errMessage: '',
                 };
-                res.render('drawCash/drawCashStatus',content);
-
+                if( replyData.data.type == 1 ){
+                    content.errMessage = '密码错误,剩余提交次数还有'+replyData.data.message.times+'次';
+                    res.render('drawCash/drawCashCheck',content);
+                }else if( replyData.data.type == 2 ){
+                    content.errMessage = '银行错误';
+                    res.render('drawCash/drawCashCheck',content);
+                }else if(replyData.data.type == 3 ){
+                    content.errMessage = '其他错误';
+                    res.render('drawCash/drawCashCheck',content);
+                }else{
+                    delete req.session.confirmToken;
+                    delete req.session.cashToken;
+                    logger.error(req.ip+" drawCash token error");
+                    next(new UnauthenticatedAccessError());
+                    return;
+                }
             }else{
                 //提现成功后,显示成功页面,并且删除session中的值,防止回退.
                 delete req.session.confirmToken;

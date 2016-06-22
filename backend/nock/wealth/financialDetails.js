@@ -1,8 +1,8 @@
 var nock = require('nock');
 var API  = require('../../api/v1/api_config');
 
-var intercept        = nock(API.host);
-var interceptPersist = nock(API.host).log(console.log).persist();
+var intercept        = nock(API.host).log(console.log);
+var interceptPersist = nock(API.host).persist();
 
 
 var details = [

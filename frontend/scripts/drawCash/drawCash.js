@@ -85,8 +85,10 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 			var confirmTxt = $('#confirmTxt'),
 				confirmBtn = $('#confirmBtn'),
 				confirmErr = $('#confirmErr'),
-				errorMsg = $('#errorMsg');
+				errorMsg = $('#errorMsg'),
+				errMessage = $('#errMessage');
 			confirmTxt.on('blur',function(){
+				errMessage.hide();
 				var val = $(this).val();
 				checkHandler(val);
 			});

@@ -8,7 +8,7 @@ var convert    = require('../../libs/convert');
 var cache      = require('../../libs/cache');
 
 
-const uploadPath = config.sysFileDir + '/static/upload/';
+const uploadPath = config.files_root + '/static/upload/';
 
 
 exports.confirmDeliveryIndex = function (req, res, next) {
