@@ -7,13 +7,18 @@ var config = require('../config');
 var env          = process.env.NODE_ENV || "development";
 var utils    = require('./utils');
 
-var pathLog = path.join(__dirname, '../../logs');
-var filename = '../logs/' + env + '.log';
-var filenameDebug = '../logs/' + env + '-debug.log';
-var filenameInfo = '../logs/' + env + '-info.log';
-var filenameError = '../logs/' + env + '-error.log';
-utils.makeDir(pathLog);
 
+var pathLog = path.join(config.app_root, config.logdir);
+// var filename = config.logdir + env + '.log';
+var filenameDebug = config.logdir +  env+ '-debug.log';
+// var filenameInfo = config.logdir + env + '-info.log';
+var filenameError = config.logdir + env + '-error.log';
+
+console.log(filenameDebug);
+console.log(filenameError);
+console.log(pathLog);
+
+utils.makeDir(pathLog);
 
 
 var logger = new (winston.Logger)({
