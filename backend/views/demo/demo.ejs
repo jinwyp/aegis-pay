@@ -264,7 +264,7 @@
     <div class="fileBlockBox">
         <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>带头部标题</h3>
         <div class="fileBlockBox_body">
-            <img class="fileViewImg" src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+            <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
             <div class="operateFileBox">
                 <a href="" class="fileLinkBtn">修改</a>
                 <a href="" class="fileLinkBtn">删除</a>
@@ -281,12 +281,12 @@
     </div>
 
     <div class="fileBlockBox">
-        <div class="fileBlockBox_body">
-            <img class="fileViewImg" src="/dist/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+        <div class="fileBlockBox_body" >
+            <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
             <div class="operateFileBox">
                 <a href="javascript:;" class="fileLinkBtn">修改</a>
-                <a href="javascript:;" class="fileLinkBtn">删除</a>
-                <input class="iptBlockFile"  type="file" name="files">
+                <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="true">删除</a>
+                <input class="iptEditFile" id="tempEdit" type="file" name="files">
             </div>
         </div>
     </div>
