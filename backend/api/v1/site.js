@@ -12,7 +12,7 @@ var archiver = require('archiver');
 var fs =  require('fs');
 var path     = require('path');
 
-var __dirfiles = config.sysFileDir;
+var __dirfiles = config.file_path.root;
 
 exports.user = function (req, res, next) {
     //api代理，去请求java接口
@@ -134,7 +134,7 @@ exports.products = function (req, res, next) {
 
 // zip demo
 exports.zips = function(req, res, next){
-    convert.zipFile({path:[__dirfiles + '/static/images']}).then(function(val){
-        res.redirect('http://localhost:3000' + val.replace(__dirfiles+'/static', '/files'));
+    convert.zipFile({path:[__dirfiles + '/images']}).then(function(val){
+        res.redirect('http://localhost:3000' + val.replace(__dirfiles, '/files'));
     }).catch(next);
 }

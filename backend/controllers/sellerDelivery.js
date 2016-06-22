@@ -6,7 +6,7 @@ var request = require('request');
 var api_config = require('../api/v1/api_config');
 var cache      = require('../libs/cache');
 var config     = require('../config');
-var __dirfiles = config.sysFileDir;
+var __dirfiles = config.file_path.root;
 var logger     = require("../libs/logger");
 
 // 处理业务逻辑

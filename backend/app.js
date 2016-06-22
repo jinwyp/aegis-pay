@@ -37,7 +37,7 @@ var ejs              = require('ejs');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 // var fileStatic = path.join(__dirname,   '../../files/static');
 //
-var fileStatic = config.sysFileDir;
+var fileStatic = config.file_path.root;
 
 
 var app = express();

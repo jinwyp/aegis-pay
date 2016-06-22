@@ -53,7 +53,7 @@ exports.financialDetails = function (req, res, next) {
         },
 
         accountNumber : '1234567890',
-        
+
         formSelectOrderCategory:[
             {id:'1', value:'1', text:'提现'},
             {id:'2', value:'2', text:'采购'},
@@ -64,7 +64,7 @@ exports.financialDetails = function (req, res, next) {
             {id:'2', value:'2', text:'对方账户名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
-        
+
     };
 
     res.render('wealth/financialDetails',content);
@@ -102,7 +102,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
     var params = Object.assign({}, {userId: req.session.user.id}, body);
 
     var url = api_config.financialDetails;
-    request.post(url, {body: params, json:true}, function (err, response, body) {
+    request.post({url: url, form: params}, function (err, response, body) {
 
         if (err) return next(err);
 
@@ -220,4 +220,3 @@ exports.financialSettlement = function (req, res, next) {
     });
 
 };
-

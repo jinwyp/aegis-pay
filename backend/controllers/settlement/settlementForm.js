@@ -100,11 +100,11 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	//	userId = req.session.user.id;
 
 	var url = apiHost.host + 'settlement/sellerSubmit';
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post({url: url, form:req.body}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = data.body;
+			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '待结算.卖家开具结算单 11111111';
 			return res.send(replyData);
@@ -148,11 +148,11 @@ var buyersView = exports.buyersView = function (req, res, next) {
 var buyersReturn = exports.buyersReturn = function (req, res, next) {
 
 	var url = apiHost.host + 'settlement/sellerSubmit';
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post({url: url, form:req.body}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = data.body;
+			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '待审核.买家退回结算单 220000';
 			return res.send(replyData);
@@ -166,11 +166,11 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 // API路由: 买家.修改退回原因 --------- http://localhost:3001/api/settlement/buyersEditReason
 var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 	var url = apiHost.host + 'settlement/buyersEditReason';
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post({url: url, form:req.body}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = data.body;
+			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '审核不通过.买家修改退回原因 320000';
 			return res.send(replyData);
@@ -184,11 +184,11 @@ var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 // API路由: 买家.结算审核通过 --------- http://localhost:3001/api/settlement/buyersAuditing
 var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 	var url = apiHost.host + 'settlement/buyersAuditing';
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post({url: url, form:req.body}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = data.body;
+			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '待审核_买:WaitVerifySettle.买家.结算审核通过 220000';
 			return res.send(replyData);

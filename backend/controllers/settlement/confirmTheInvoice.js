@@ -47,7 +47,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 	if(!req_id) {
 		return res.json({success: false, error: '请输入订单编号!'});
 	}
-	
+
 	var url = apiHost.host + 'finance/receipt?orderId=' + req_id +'&userId=213';
 	// var url = apiHost.host + '/finance/receipt?orderId=' + req_id +'&userId=213';
 	// var url = apiHost.host + 'settlement/invoiceInfo?orderId=' + req_id +'&userId=213';
@@ -56,7 +56,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 
 	request.get(url, function (err, httpResponse, body) {
 		if (err) return next(err);
-		
+
 		var resBody = JSON.parse(body);
 		if (resBody.success == false) {
 			//ToDo: throw error: service error.
@@ -72,7 +72,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 			subTitle: '确认开票信息',
 			pageTitle: '结算_确认开票信息'
 		};
-		
+
 		Object.assign(replyData, resBody);
 
 		console.log('/* ---replyData---------------------------------------- */');
@@ -126,7 +126,7 @@ exports.submitInvoiceInfo = function (req, res, next) {
 	// });
 
 
-	request.post(url, {form: param}, function(err,httpResponse,body) {
+	request.post({url:url,form: param}, function(err,httpResponse,body) {
 		if (err) return next(err);
 		console.log("-------------- succ ---------------");
 	})

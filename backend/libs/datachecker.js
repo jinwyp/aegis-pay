@@ -48,9 +48,9 @@ function throw403 (code, message, field, isNext){
 
 
 exports.orderId = function(orderId, next){
-    if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) ) {
-        return throw409(code.order.orderIdWrong.code, code.order.orderIdWrong.message, code.order.orderIdWrong.field, next);
-    }
+    // if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) ) {
+    //     return throw409(code.order.orderIdWrong.code, code.order.orderIdWrong.message, code.order.orderIdWrong.field, next);
+    // }
 };
 
 exports.captchaType = function(captchaType, next){
