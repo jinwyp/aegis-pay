@@ -49,14 +49,27 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
 
     //未认证弹出框
     $(".sureSettle").click(function(){
-        $(".modal_1").modal();
-        $("#modalImg_1").addClass("yes").removeClass("attention");
-        $("#modalInfo_1").html("发票开具完成，已短信通知买家！");
-        $("#modalInfo_1").css({fontSize:"16px"});
+        $.ajax({
+            url:"/settlement/billDelete",
+            type: 'post',
+            success:function(data){
+                if(data.success){
+                    $(".modal_2").modal();
+                    $("#modalImg_2").addClass("yes").removeClass("attention");
+                    $("#modalInfo_2").html("发票开具完成，已短信通知买家！");
+                    $("#modalInfo_2").css({fontSize:"16px"});
+                    $("#md_ok_2").click(function(){
+                        $(".modal_2").modal("hide");
+                    })
+                }
+                else{
+
+                }
+            }
+        });
+
     });
-    $("#md_ok_1").click(function(){
-        location.href="/"
-    })
+
 
 
     $("#delete").click(function () {
