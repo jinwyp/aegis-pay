@@ -79,7 +79,7 @@ var api_config = {
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
-    settleDetails : host + 'settlement',
+    settleDetails : host + '/finance/receipt',
     orderCloseAPI : host + '/order/orderInfo_api',
     orderReturn : host + 'return',
     disputeApply : host + 'dispute/disputeApply',
@@ -87,6 +87,9 @@ var api_config = {
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
+    financialTransaction : host + 'finance/transaction/list',
+    contractList : host + 'account/finance/contract/list',
+    settlementList : host + 'account/finance/settlement/list',
 
 
     /**
@@ -105,10 +108,10 @@ var api_config = {
     paypasswordForgetValid: host + 'account/fund/payPwd/forget/next',
     // 忘记密码 － 重置密码 - 提交
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
-
     //开票中心
-    billCenter : host + 'settlement/billCenter',
-    billSetting : host + 'settlement/billSetting',
+    billCenter : host + '/finance/order/seller/receipt',
+    billSetting : host + '/finance/receipt',
+    billDelete : host + '/finance/receipt/delete',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
@@ -118,8 +121,34 @@ var api_config = {
     bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
     bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
     bindingSuccess : host + 'wealth/bindingSuccess',
+
+    // open fund account
+    openFundAccount: host + 'account/fund/create',
+    /** fetch status
+     * params: {userId}
+     * response:
+     {
+       success:
+       error:
+       errorCode:
+       data {
+           success: (备注)   // 1： 开通成功，2： 正在开通中，继续请求 3： 开通失败，不再需要请求
+           userAcccount{
+                  accountName: 账户名称
+                  accountBank: 开户行
+                  account:  账户号
+                  accountType: 账户类型
+         }
+       }
+    }
+     */
+    fetchOpenStatus: host + 'account/fund/create/checkStatus',
+
     drawcash: host + 'account/withDrawCash',
-    drawcashSubmit: host + 'account/DrawCash'
+    drawcashSubmit: host + 'account/DrawCash',
+
+    fundinfo: host + 'account/fund/info',
+
 };
 
 module.exports = api_config;

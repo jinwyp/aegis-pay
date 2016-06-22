@@ -1,0 +1,85 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/contractList.css">
+</head>
+
+<body>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+
+<div id="contract-body">
+    <div class="contract-main">
+        <form action="/finance/transaction/list" method="get">
+        <div class="search-div">
+                <span>交易时间:</span>
+                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=startDate%>"/></div>
+                <span class="to">至</span>
+                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
+                <span>交易编号:</span>
+                <select name="searchType" id="searchType">
+                    <option value="0">全部</option>
+                    <option value="1" <%if(searchType==1){ %>selected<% } %>>订单编号</option>
+                    <option value="2" <%if(searchType==2){ %>selected<% } %>>合同编号</option>
+                    <option value="3" <%if(searchType==3){ %>selected<% } %>>流水号</option>
+                    <option value="4" <%if(searchType==4){ %>selected<% } %>>公司名称</option>
+                </select>
+                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=content%>"/>
+                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
+        </div>
+        </form>
+        <div class="contract-div">
+            <table class="transaction-table">
+                <thead>
+                <tr>
+                    <th width="130">交易时间</th>
+                    <th width="100">订单号</th>
+                    <th width="100">付款流水号</th>
+                    <th width="160">对方公司</th>
+                    <th width="160">结算吨数(吨)</th>
+                    <th width="160">结算金额(元)</th>
+                    <th width="160">状态</th>
+                    <th width="140">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for(var i in settlementList){%>
+                <tr class="line">
+                    <td width="130"><%=settlementList[i].createTime%></td>
+                    <td width="100"><%=settlementList[i].orderNO%></td>
+                    <td width="160"><%=settlementList[i].transactionNO%></td>
+                    <td width="120"><%=settlementList[i].otherCompanyName%></td>
+                    <td width="120"><%=settlementList[i].settleAmount%></td>
+                    <td width="120"><%=settlementList[i].totalMoney%></td>
+                    <td width="120"><%=settlementList[i].statusName%></td>
+                    <td width="140">
+                        <%if(settlementList[i].status=="WaitSettleAccounts"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
+                        <%}else if(settlementList[i].status="WaitVerifySettle"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
+                        <%}else if(settlementList[i].status="ReturnedSettleAccounts"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
+                        <%}else if(settlementList[i].status="WaitPayTailMoney"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
+                        <%}else if(settlementList[i].status="WaitPayRefundMoney"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="去退款"/>
+                        <%}else if(settlementList[i].status="WaitImproveReceipt"){%>
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="完善开票信息"/>
+                        <%}%>
+                        <a href="http://pay-local.yimei180.com:3000/compactDetail?orderId=11111">查看详情</a></td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/wealth/transactionRecord.js"></script>
+
+</body>
+</html>

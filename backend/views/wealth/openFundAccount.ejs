@@ -1,0 +1,60 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/openFundAccount.css">
+</head>
+
+<body>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+<div class="mainWrapper openFundAccount create">
+    <% var statusObj = {step:1, total:3, stepList: [{stepName:'设置密码', stepDate:''}, {stepName:'开通银行附属账户', stepDate:''}, {stepName:'成功', stepDate:''}]} %>
+    <%- include ../paypassword/statusBar %>
+    <div class="stepWrapper">
+        <span class='pointer'><i></i></span>
+        <form class="" action="" method="post">
+            <h3 class="pageTitle"><span></span>设置支付密码<em>交易付款或信息变需输入，<i>不可与登录密码相同</i>，设置完成后请注意<i>保存密码</i>。</em></h3>
+            <ul class='valid'>
+              <li>
+                <label>支付密码：</label><input type="password" placeholder='请输入密码' value="">
+                <p class='tip-msg'><i class='icon-secure-tip'></i>6-16位字符（字母、数字、符号），区分大小写</p>
+                <p class='tip-error'></p>
+              </li>
+              <li>
+                <label>确认密码：</label><input type="password" name='payPassword' placeholder='再次输入密码' value="">
+                <p class='tip-error'></p>
+              </li>
+            </ul>
+            <h3 class="pageTitle"><span></span>绑定手机号码<em><i>账户变动或支付时</i>系统会给您发送确认验证码，保障资金安全。</em></h3>
+            <ul class='valid'>
+                <li>
+                    <label>手机号码：</label>
+                    <input type="text" name="payPhone" value="<%= user.phone %>">
+                    <p class='tip-error'></p>
+                </li>
+                <li>
+                  <label>校&nbsp;验&nbsp;码&nbsp;：</label>
+                  <div class='smsWrapper'>
+                      <input type="text" placeholder='请勿泄露' name="sms_code" value="">
+                      <span id='send_code' class='send_code btn_gray_small' data-toggle='modal' role='button' data-target='#imgcodeModal'>发送校验码</span>
+                  </div>
+                  <p class='tip-msg'></p>
+                  <p class='tip-error'></p>
+                </li>
+            </ul>
+            <input id='nextBtn' type="button" value="下一步" class="btn_blue" />
+        </form>
+    </div>
+</div>
+
+<%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/wealth/openFundAccount.js"></script>
+
+</body>
+</html>

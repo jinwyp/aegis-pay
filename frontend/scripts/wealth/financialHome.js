@@ -11,6 +11,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
     $(".close").click(function(){
         $(".bubble").addClass("bubble-hidden");
     });
+    //$(".btn-pay").click(function(){
+    //    //windown.open="/pay?orderId=100000&userId=123&type=1";
+    //    alert("32423423");
+    //});
+    $(".btn-pay").on("click", function(){
+        alert("32423423");
+    });
 
 
     var vm = {};

@@ -72,8 +72,11 @@ require.config({
       ]
     },
     avalon: {
+      deps: [
+        'jquery',
+      ],
       exports: "avalon"
     }
-
   }
-})
+});
+

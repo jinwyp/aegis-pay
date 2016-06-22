@@ -17,14 +17,12 @@ require('./dispute/disputeDetail');
 require('./paypassword');
 require('./account/accountSetting');
 require('./account/notice');
-
-
-
 require('./settlement/billCenter');
 require('./settlement/billSetting');
-
+require('./settlement/settleDetails');
 require('./wealth/financialDetails');
-require('./account/financialCenterHome');
+require('./wealth/financialCenterHome');
+require('./wealth/fundaccount');
 
 require('./wealth/bindingBankAccount');
 require('./wealth/bindingSuccess');

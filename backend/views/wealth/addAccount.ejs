@@ -39,15 +39,15 @@
 				<div class="figure-caption">易煤网资金账户</div>
 				<dl class="figure-content">
 					<dt>账户类型:</dt>
-					<dd>资金账户</dd>
+					<dd><%= fundAccount.accountType %></dd>
 					<dt>银行开户名:</dt>
-					<dd>上海市 静安区 易煤网支行</dd>
+					<dd><%= fundAccount.accountBankName %></dd>
 					<dt>账户号:</dt>
-					<dd>3298 9423 8409 8230 9</dd>
+					<dd><%= fundAccount.account %></dd>
 					<dt>开通时间:</dt>
-					<dd>2016.2.12</dd>
+					<dd><%= fundAccount.createTime %></dd>
 					<dt>绑定手机号码:</dt>
-					<dd>18038337787</dd>
+					<dd><%= fundAccount.payPhone %></dd>
 				</dl>
 			</div>
 			<% if( status ){ %>
@@ -57,15 +57,15 @@
 				</div>
 				<dl class="figure-content">
 					<dt>账户类型:</dt>
-					<dd>提现账户</dd>
+					<dd><%= cashAccount.accountType %></dd>
 					<dt>银行开户名:</dt>
-					<dd>上海市 静安区 易煤网支行</dd>
+					<dd><%= cashAccount.accountBankName %></dd>
 					<dt>账户号:</dt>
-					<dd>3298 9423 8409 8230 9</dd>
+					<dd><%= cashAccount.account %></dd>
 					<dt>开通时间:</dt>
-					<dd>2016.2.12</dd>
+					<dd><%= cashAccount.createTime %></dd>
 					<dt>绑定手机号码:</dt>
-					<dd>18038337787</dd>
+					<dd><%= cashAccount.payPhone %></dd>
 				</dl>
 			</div>
 			<% }else{ %>
