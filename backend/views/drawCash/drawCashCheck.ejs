@@ -23,7 +23,7 @@
 				<form action="" class="form-horizontal">
 					<div class="form-group">
 						<label class="col-sm-5 control-label">选择银行卡：</label>	
-						<div class="col-sm-4 txt-strong">
+						<div class="col-sm-5 txt-strong">
 							<p class="para-name"><%= companyName %></p>
 							<p class="para-bank"><%= bankName %>:<%=bankAccount %></p>
 						</div>
@@ -31,7 +31,7 @@
 					<div class="form-group">
 						<label class="col-sm-5 control-label">提现金额：</label>
 						<div class="col-sm-4 padding-top-6 font-size-18">
-							<%= cash %> 元
+							<%= formatMoney(cash*1) %> 元
 						</div>
 					</div>
 					<div class="form-group">
@@ -57,11 +57,12 @@
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-4">
 								<input type="submit" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
-								<a href="#" class="margin-left-10">返回上一步</a>
+								<a href="/drawCash" class="margin-left-10">返回上一步</a>
 							</div>
 							<p id="errorMsg" class="col-sm-offset-5 col-sm-4 text-danger padding-top-8"></p>
 						</div>
 						<input type="hidden" name="confirmToken" value="<%= confirmToken %>"/>
+						<input type="hidden" name="cash" value="<%= cash %>"/>
 					</form>
 				</div>
 			</div>

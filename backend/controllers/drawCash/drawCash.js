@@ -3,7 +3,6 @@
 */
  var request = require('request');
  var api_config = require('../../api/v1/api_config');
- var logger     = require("../../libs/logger");
  var uuid = require('node-uuid');
  var UnauthenticatedAccessError = require('../../errors/UnauthenticatedAccessError');
  var logger = require('../../libs/logger');
@@ -18,12 +17,16 @@ exports.drawCash = function(req,res,next){
     var secondTab = req.query.secondTab || 1;
  
 
-    request(api_config.drawcash, function (err, resp) {
+    request(api_config.drawcash, {
+        qs:{
+            userId:req.session.user.id
+        }
+    }, function (err, resp) {
         if (err) return next(err);
-        if (resp.success){
-            var replyData = JSON.parse(resp.body);
+        var replyData = JSON.parse(resp.body);
+        if (replyData.success){
             //如果没有绑定取现银行卡
-            if(!replyData.bankAccount||replyData.bankAccount=='') {
+            if(!replyData.data.bankAccount||replyData.data.bankAccount=='') {
                 var content = {
                     pageTitle : "财务管理中心 - 账户通 - 提现",
                     headerTit : "财务管理中心 - 账户通 - 提现",
@@ -41,9 +44,9 @@ exports.drawCash = function(req,res,next){
             req.session.cashToken = cashToken;
 
             var content = {
-                balanceMoney:   replyData.balanceMoney,
-                bankAccount:    replyData.bankAccount,
-                bankName:       replyData.bankName,
+                balanceMoney:   replyData.data.balanceMoney,
+                bankAccount:    replyData.data.bankAccount,
+                bankName:       replyData.data.bankName,
                 pageTitle:     "财务管理中心 - 账户通 - 提现",
                 headerTit:     "财务管理中心 - 账户通 - 提现",
                 tabObj:        {
@@ -53,6 +56,10 @@ exports.drawCash = function(req,res,next){
                 cashToken: cashToken
             };
             res.render('drawCash/drawCash',content);
+        } else {
+            //todo 错误处理
+            logger.error(req.ip+" request drawCash error");
+            next(new UnauthenticatedAccessError());
         }
     });
 };
@@ -127,10 +134,27 @@ exports.drawCashStatus = function(req,res,next){
             },
         method: 'GET'
         },
-        function(err,response,body){
+        function(err,response){
             if(err){return next(err);}
-            if(!body.success){
+            var replyData = JSON.parse(response.body);
+            console.log(replyData);
+            if(!replyData.success){
+
               //todo 错误页面
+                delete req.session.confirmToken;
+                delete req.session.cashToken;
+
+                var content = {
+                    pageTitle : "财务管理中心 - 账户通 - 提现",
+                    headerTit : "财务管理中心 - 账户通 - 提现",
+                    tabObj : {
+                        firstTab : firstTab,
+                        secondTab : secondTab
+                    },
+                    status:2
+                };
+                res.render('drawCash/drawCashStatus',content);
+
             }else{
                 //提现成功后,显示成功页面,并且删除session中的值,防止回退.
                 delete req.session.confirmToken;
@@ -143,7 +167,7 @@ exports.drawCashStatus = function(req,res,next){
                         firstTab : firstTab,
                         secondTab : secondTab
                     },
-                    status:2
+                    status:5
                 };
                 res.render('drawCash/drawCashStatus',content);
             }

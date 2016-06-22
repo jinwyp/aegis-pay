@@ -26,7 +26,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 			var drawCashTxt = $('#drawCashTxt'),
 				drawCashErr = $('#drawCashErr'),
 				drawCashBtn = $('#drawCashBtn'),
-				balancePrice= $('#balancePrice').text(),
+				balancePrice= $('#balancePrice').html(),
 				errorMsg = $('#errorMsg');
 			drawCashTxt.on('blur',function(){
 				var val = $(this).val();
@@ -44,17 +44,23 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				if( !val ){
 					toggleError(false);
 					return false;
-				}else if( /^\d+$/.test(val) ){
-					if( balancePrice && formatPrice(balancePrice)>= val ){
+				}else if(/[^\d|,|\.]/g.test(val) || !balancePrice){
+					toggleError(false);
+					return false;
+				}else{
+					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
+						var curVal = numToPrice(val);
+						if(isNaN(curVal)){
+							drawCashTxt.val('0');	
+						}else{
+							drawCashTxt.val( numToPrice(val) );	
+						}
 						toggleError(true);
 						return true;
 					}else{
 						toggleError(false);
 						return false;
 					}
-				}else{
-					toggleError(false);
-					return false;
 				}
 			}
 			function toggleError(flag){
@@ -64,9 +70,12 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 					drawCashErr.show();
 				}
 			}
-			function formatPrice(str){
-				return str.replace(/,/g,'');
+			function priceToNum(str){
+				return (str.replace(/,/g,''))*1;
 			}
+			function numToPrice(num){
+        		return ((num*1).toFixed(2)+'').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        	}
 		})($);
 
 		// 确认信息

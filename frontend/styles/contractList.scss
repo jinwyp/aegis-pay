@@ -1,0 +1,72 @@
+@import './global.scss';
+@import './Plugins/fancySelect.scss';
+@import "./components/_datePicker.scss";
+
+#contract-body{
+  background-color: $color_body_bg;
+  padding: $main_margintop 0 $main_marginbottom 0;
+  a {
+    color: $color_manage_text;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $color_a_hover;
+    }
+  }
+  .contract-main{
+    width: $main_width;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color_main_bg;
+    .search-div{
+      font-size: 12px;
+      color: $color_font;
+      padding: 20px 0;
+      vertical-align: middle;
+      input{vertical-align: middle; font-size: 12px;}
+      div.time {
+        width: 129px;
+        display: inline-block;
+        position: relative;
+      }
+      .startDate, .endDate {
+        margin-left: -1px;
+        padding-left: 10px;
+        color: $color_font;
+        width: 127px;
+        background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 104px -534px;
+      }
+      span{ margin: 0 10px 0 20px; vertical-align: middle;}
+      select{  display: none;color: $color_font;  }
+      div.fancy-select{width: 120px;}
+      span.to{margin: 0 10px 0 7px;}
+      div.trigger{  width: 120px;min-width:120px;height: 32px;color: $color_font;  }
+      .record-number{width: 200px;}
+      .disabled-bg{ background-color: #f8f8f8; }
+      .ml-40{ margin-left: 40px; }
+    }
+    .contract-div{
+      padding-bottom: 30px;
+      .transaction-table{
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+        thead tr{
+          background-color: $color_bg_table_th_gray;
+          line-height: 36px;
+          th{  text-align: center;  }
+        }
+        tbody tr{
+          border-bottom: 1px dotted $color_border;
+          &:hover{  background-color: $tr_hover_color;  }
+          td{
+            text-align: center;
+            padding: 24px 0;
+            .btn-option{ margin-right: 16px; }
+          }
+        }
+      }
+    }
+  }
+}

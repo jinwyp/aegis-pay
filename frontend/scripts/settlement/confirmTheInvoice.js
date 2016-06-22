@@ -5,68 +5,71 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload'], function($, fancySelect, bootstrap, message, upload){
 
-
-    var $reasonId = $('[name=reasonId]');           //原因ID
-
-    // 绑定 下拉框插件
-    $reasonId.fancySelect().on('change.fs', function() {
-        $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
-        console.log(this.value);
-        $subBtn.prop('disabled', $.trim(this.value)==='--');
-    });
-
-
-
-
-    var apiHost = '/api',			                            // API域名
-        uId = getUrlParam('id'),
-        uType = getUrlParam('type'),
-        uStatus = getUrlParam('status');
-
-
-    // 页面模块控制
-    var settlementForm = {
-
-        // 重要提示板块
-        doubtPlateHandle: function() {
-
-            var $embedBox = $('.embedBox'),                     // 提示框:嵌入
-                $doubtInlet = $('.doubtInlet'),                 // 提示框:触发按钮
-                $significantModal = $('#significantModal');     // 重要提示 模态框
-
-            // 鼠标经过 显/隐 提示框
-            $doubtInlet.hover(function() {
-                $embedBox.css('display', 'block');
-            });
-            $embedBox.hover(
-                function() {
-                    $embedBox.css('display', 'block');
-                },
-                function() {
-                    $embedBox.css('display', 'none');
-                }
-            );
-
-            // 买家& 待审核, 显示模态框
-            if($embedBox.attr('data-status') == 'WaitVerifySettle' && $embedBox.attr('data-type') == 'buy') {
-                var closeHtml = '<span class="icn_cross close" data-dismiss="modal" aria-label="Close"></span>';
-                $('.significantModalCon').html(closeHtml + $embedBox.html());
-                $significantModal.modal('show');          // 手动打开模态框 toggle show hide
-            }
+    var invoiceApp = {
+        init: function(){
+            var that = this;
+            $("select").fancySelect();
+            this.initFancySelectListener();
+            $("#submitBtn").click(function(){that.submitForm(that)});
         },
 
+        initFancySelectListener : function () {
+            this.fancySelect = $("select").fancySelect().on('change.fs', function() {
+                $(this).trigger('change.$');
+                invoiceApp.fancySelect.trigger("update");
+            }); // trigger the DOM's change event when changing FancySelect
+        },
+        validateCompanyAddress: function() {
+            var $companyAddress = $("#companyAddress"),
+                companyAddress = $.trim($companyAddress.val());
+            console.log(companyAddress.length);
+            if (companyAddress.length == 0 || companyAddress.length > 100) {
+                this.showErrMsg($companyAddress, "请输入合法的公司地址,最多为100个字");
+            } else if (true) {
+                this.showErrMsg($companyAddress, "公司地址最多为100个字");
+            }
+            return true;
+        },
 
-        // 初始化
-        init: function() {
-            this.doubtPlateHandle();
+        validateForm: function() {
+            this.validateCompanyAddress();
+            return false;
+        },
+
+        showErrMsg : function($ele, errMsg){
+            $ele.siblings(".errorMsg").text(errMsg);
+        },
+
+        submitForm: function(that){
+
+            // if( !that.validateForm()) {
+            //     return
+            // }
+
+            var param = $("#invoiceForm").serialize();
+            $.post("/settlement/submitInvoice", param, function(data) {
+                if (data.success == true) {
+                    console.log('12345678903456789034567890');
+                //    redirect
+                }
+
+            }).fail(function(jqXHR, textStatus, errorThrown){
+                if (jqXHR.status == 409) {
+                    // var errorCode = JSON.parse(jqXHR.responseText).errorCode;
+                    console.log('this is 409 ....');
+                }
+            });
         }
     };
 
+    invoiceApp.init();
 
+    // var $type = $('#type');           //原因ID
 
-    /* ---页面逻辑控制---------------------------------------- */
-    settlementForm.init();
-
+    // var apiHost = '/api',			                            // API域名
+    //     uId = getUrlParam('id'),
+    //     uType = getUrlParam('type'),
+    //     uStatus = getUrlParam('status');
 
 
     /**
@@ -75,16 +78,16 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
      * @param hrefStr 指定Url, 可选
      * @author wze
      */
-    function getUrlParam (param, hrefStr) {
-        var request = {
-            QueryString: function (val) {
-                var uri = hrefStr || window.location.search;
-                var re = new RegExp("" + val + "=([^&?]*)", "ig");
-                return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
-            }
-        };
-        return request.QueryString(param);
-    }
+    // function getUrlParam (param, hrefStr) {
+    //     var request = {
+    //         QueryString: function (val) {
+    //             var uri = hrefStr || window.location.search;
+    //             var re = new RegExp("" + val + "=([^&?]*)", "ig");
+    //             return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
+    //         }
+    //     };
+    //     return request.QueryString(param);
+    // }
 
 
 
@@ -92,7 +95,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     var $tempAdd = $('#tempAdd'),
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
-        $fileId = $('#fileId'),
+        // $fileId = $('#fileId'),
+        $fileId = $('#templetUrl'),
         $fileViewImg = $('.fileViewImg'),
         $fBox_1 = $('.fBox_1'),
         $fBox_2 = $('.fBox_2');
