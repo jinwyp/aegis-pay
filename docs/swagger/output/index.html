@@ -3,13 +3,13 @@
 <head>
     <link rel="stylesheet" href="main.css">
     <meta charset="UTF-8">
-    <title>账户管理API</title>
+    <title>财务管理中心 API</title>
 </head>
 <body>
 <div class="container">
-    <h1>账户管理API</h1>
+    <h1>财务管理中心 API</h1>
     <p class="sw-info-version">Version: <span>0.1</span></p>
-    <p><p>Pay API</p>
+    <p><p>财务管理中心 </p>
     </p>
     
     
@@ -33,8 +33,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="#operation--financial-order-details-post">POST /financial/order/details</a></td>
-                        <td><p>Add a new pet to the store</p>
+                        <td><a href="#operation--financial-payments-list-post">POST /financial/payments/list</a></td>
+                        <td><p>获取收支明细数据列表</p>
         </td>
                     </tr>
                 </tbody>
@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="#operation--financial-order-details-put">PUT /financial/order/details</a></td>
+                        <td><a href="#operation--financial-payments-list-put">PUT /financial/payments/list</a></td>
                         <td><p>Update an existing pet</p>
         </td>
                     </tr>
@@ -209,11 +209,11 @@
     <h2>Paths</h2>
     
         
-        <span id="path--financial-order-details"></span>
-            <div id="operation--financial-order-details-post" class="swagger--panel-operation-post panel">
+        <span id="path--financial-payments-list"></span>
+            <div id="operation--financial-payments-list-post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Add a new pet to the store</div>
-                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/financial/order/details</strong></h3>
+                    <div class="operation-summary">&#x83B7;&#x53D6;&#x6536;&#x652F;&#x660E;&#x7EC6;&#x6570;&#x636E;&#x5217;&#x8868;</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/financial/payments/list</strong></h3>
                         Tags:
                             <a href="#tag-financialDetails">financialDetails</a>
                 </div>
@@ -284,10 +284,10 @@
                             </table>
                         </section>
                 </div>
-            </div>    <div id="operation--financial-order-details-put" class="swagger--panel-operation-put panel">
+            </div>    <div id="operation--financial-payments-list-put" class="swagger--panel-operation-put panel">
                 <div class="panel-heading">
                     <div class="operation-summary">Update an existing pet</div>
-                    <h3 class="panel-title"><span class="operation-name">PUT</span> <strong>/financial/order/details</strong></h3>
+                    <h3 class="panel-title"><span class="operation-name">PUT</span> <strong>/financial/payments/list</strong></h3>
                         Tags:
                             <a href="#tag-pet">pet</a>
                 </div>
@@ -582,7 +582,7 @@
                                                     <div class="panel-body">
                                                             
                                                                             <section class="json-schema-array-items">
-                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Pet">Pet</a>
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Order">Order</a>
                                                                                 </span>
                                                                                 <span class="json-property-range" title="Value limits"></span>
                                                                                 
