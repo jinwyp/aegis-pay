@@ -137,9 +137,9 @@ exports.drawCashStatus = function(req,res,next){
         function(err,response){
             if(err){return next(err);}
             var replyData = JSON.parse(response.body);
-            console.log(replyData);
+            //console.log(replyData);
             if(!replyData.success){
-
+                //replyData.message
               //todo 错误页面
                 delete req.session.confirmToken;
                 delete req.session.cashToken;
@@ -147,6 +147,8 @@ exports.drawCashStatus = function(req,res,next){
                 var content = {
                     pageTitle : "财务管理中心 - 账户通 - 提现",
                     headerTit : "财务管理中心 - 账户通 - 提现",
+                    times :     replyData.data.message.times,
+                    errMessage: replyData.error,
                     tabObj : {
                         firstTab : firstTab,
                         secondTab : secondTab
