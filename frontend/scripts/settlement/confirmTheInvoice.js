@@ -42,21 +42,23 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         submitForm: function(that){
 
-            if( !that.validateForm()) {
-                return
-            }
+            // if( !that.validateForm()) {
+            //     return
+            // }
 
             var param = $("#invoiceForm").serialize();
-            $.post("", function() {
+            $.post("/settlement/submitInvoice", param, function(data) {
+                if (data.success == true) {
+                    console.log('12345678903456789034567890');
+                //    redirect
+                }
 
             }).fail(function(jqXHR, textStatus, errorThrown){
                 if (jqXHR.status == 409) {
-                    var errorCode = JSON.parse(jqXHR.responseText).errorCode;
+                    // var errorCode = JSON.parse(jqXHR.responseText).errorCode;
+                    console.log('this is 409 ....');
                 }
             });
-            // if (this.validateForm()) {
-                // $.post();
-            // }
         }
     };
 
@@ -93,7 +95,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     var $tempAdd = $('#tempAdd'),
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
-        $fileId = $('#fileId'),
+        // $fileId = $('#fileId'),
+        $fileId = $('#templetUrl'),
         $fileViewImg = $('.fileViewImg'),
         $fBox_1 = $('.fBox_1'),
         $fBox_2 = $('.fBox_2');
