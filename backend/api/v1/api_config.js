@@ -112,6 +112,7 @@ var api_config = {
     billCenter : host + '/finance/order/seller/receipt',
     billSetting : host + '/finance/receipt',
     billDelete : host + '/finance/receipt/delete',
+    receiveReceipt : host + '/mall/order/seller/notice/receiveReceipt',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
