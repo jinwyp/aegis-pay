@@ -107,12 +107,14 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 							password:$('#confirmTxt').val() 
 						},
 						success:function(response){
-							if(response.fail){
-								if(replyData.data.type == 1){
-									errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会');
+							if(!response.success){
+								if(response.data && response.data.type && response.data.type == 1){
+									errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
 								}else{
-									errorMsg.html(response.message);
+									errorMsg.html(response.error).show();
 								}
+							}else{
+								window.location.href = '/cashSuccess';
 							}
 						}
 					})

@@ -110,6 +110,7 @@ router.post('/accountDel', wealthAccount.accountDel);
 router.get('/drawCash', drawCash.drawCash);                                                     //提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //提现确认信息
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //提现确认信息
+router.get('/cashSuccess', drawCash.cashSuccess);
 
 
 router.get('/compact', compactController.compact);

@@ -45,12 +45,16 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 							bankAccount:$('#bankAccount').val()
 						},
 						success:function(response){
-							if(response.success){
+							if(!response.success){
+								if(response.data && response.data.type && response.data.type == 1){
+									delResponseErr.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+								}else{
+									delResponseErr.html(response.error).show();
+								}
+							}else{
 								hasAccountState.hide();
 								noAccountState.css('display','inline-block');
-								delBankModal.modal('hide');			
-							}else{
-								delResponseErr.html(response.tryChance?response.tryChance:'').show();
+								delBankModal.modal('hide');
 							}
 						}
 					})
