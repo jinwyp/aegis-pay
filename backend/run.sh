@@ -13,7 +13,7 @@ export FILES_DIR=$parent_dir/../files;
 
 
 if [[ "x$custom" = "x-m" ]]; then
-	MOCK=true;
+	export MOCK=true;
 	export MODE="local";
 else
 	if [[ "x$custom" = "x" ]]; then
@@ -22,7 +22,6 @@ else
 	    export MODE=$custom;
     fi
 fi
-
 
 
 
