@@ -1,6 +1,6 @@
 @import './global.scss';
 @import './layout/_accountSideBar.scss';
-
+@import "./components/_datePicker.scss";
 
 #settlementManagement{
   .settlementManagement{
@@ -15,7 +15,7 @@
         padding: 18px;
         background: #ffffff;
         border:1px solid #e8e8e8;
-        table {
+        table.billList {
           width: 100%;
           tr {
             &:hover {
@@ -60,5 +60,31 @@
         }
       }
     }
+  }
+}
+#billSearch{
+  font-size: 12px;
+  color: $color_font;
+  padding:0 0 20px 0;
+  vertical-align: middle;
+  input{vertical-align: middle; font-size: 12px;}
+  span.bill{
+    margin-left: 30px;
+  }
+  .time{
+    display: inline-block;
+    position: relative;
+    .startDate, .endDate {
+      margin-left: -1px;
+      padding-left: 10px;
+      color: $color_font;
+      width: 127px;
+      background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 104px -534px;
+    }
+  }
+  .billNumber{
+    width: 359px;
+    height: 32px;
+    padding-left: 10px;
   }
 }
