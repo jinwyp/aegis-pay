@@ -38,8 +38,10 @@
                         <% if(obj.status != "WaitWriteReceipt"){ %>
                         <td>已开票</td>
                         <td>
+
                             <div class="btn"></div>
                             <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
+
                         </td>
                         <%}else{%>
                         <td>待开票</td>

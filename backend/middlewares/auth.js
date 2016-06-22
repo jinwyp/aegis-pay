@@ -56,6 +56,7 @@ exports.passport = function (req, res, next) {
         return next();
     }
 
+
     if (!req.session || !req.session.user) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
