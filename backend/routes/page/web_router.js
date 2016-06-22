@@ -64,11 +64,13 @@ router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭 订单路由
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单 页面路由
-router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);           //结算单.确认(添加)开票
-router.get('/settlement/updateTheInvoice', confirmTheInvoiceControl.updateInvoiceInfo);         //结算单.修改开票
-router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单.提交开票
-router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);              //结算单.确认开票 页面路由
+
+
+router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);              // 结算单.确认(添加)开票
+// router.get('/settlement/updateTheInvoice', confirmTheInvoiceControl.updateInvoiceInfo);            // 结算单.修改开票
+router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);               // 结算单.提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单.开票备注 页面路由
+
 router.get('/settlement/billCenter', billCenter.billCenter);                                    //结算管理发票中心
 router.get('/settlement/billSetting', billSetting.billSetting);                                 //结算管理开票设置
 router.post('/settlement/billDelete', billSetting.billDelete);                                  //结算管理开票设置删除按钮
@@ -111,6 +113,7 @@ router.post('/accountDel', wealthAccount.accountDel);
 router.get('/drawCash', drawCash.drawCash);                                                     //提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //提现确认信息
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //提现确认信息
+router.get('/cashSuccess', drawCash.cashSuccess);
 
 
 router.get('/compact', compactController.compact);

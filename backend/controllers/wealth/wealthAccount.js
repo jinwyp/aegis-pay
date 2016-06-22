@@ -52,27 +52,18 @@ exports.addAccount = function(req,res,next){
 
 exports.accountDel = function(req,res,next){
     // 删除银行账户功能
-    var firstTab  = req.query.firstTab || 2;
-    var secondTab = req.query.secondTab || 1;
+
     var password = req.body.password;
-    var bankAccount = req.body.bankAccount;
-    var bankName = req.body.bankName;
-    
-    request(api_config.drawcash,{
+
+    request(api_config.checkFundPassword,{
         qs:{
             userId:req.session.user.id,
-            password:password,
-            bankAccount:bankAccount,
-            bankName:bankName
+            payPassword:password
         }
     },function(err,resp){
         if (err) return next(err);
         var replyData = JSON.parse(resp.body);
-        if( replyData.success ){
-            res.json({success:true,tryChance:'3'});
-        }else{
-            res.json({success:false,tryChance:'1'});
-        }
+        res.json(replyData);
     });       
 }
 
