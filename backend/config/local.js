@@ -21,6 +21,8 @@ var config = {
         pdf         : path.join(__dirname, '../views/download/pdf')
     },
 
+    app_root: path.join(__dirname,'../'),
+
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',
         cookieName : 'passport'

@@ -11,6 +11,7 @@ var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var config     = require('../config');
 
+
 var __dirfiles = config.file_path.root;
 
 

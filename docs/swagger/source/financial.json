@@ -1,42 +1,33 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Pay API",
+    "description": "财务管理中心 ",
     "version": "0.1",
-    "title": "账户管理API",
+    "title": "财务管理中心 API",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "email": "wangyupeng@yimei180.com"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
   "host": "localhost",
-  "basePath": "/v1",
+  "basePath": "/api/vi",
   "tags": [
     {
       "name": "financialDetails",
-      "description": "财务管理 收支明细",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://swagger.io"
-      }
+      "description": "财务管理 收支明细"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/financial/order/details": {
+    "/financial/payments/list": {
       "post": {
         "tags": [
           "financialDetails"
         ],
-        "summary": "Add a new pet to the store",
-        "description": "",
-        "operationId": "addPet",
+        "summary": "获取收支明细数据列表",
+        "operationId": "postFinancialDetails",
         "consumes": [
           "application/json",
           "application/xml"
@@ -203,7 +194,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Pet"
+                "$ref": "#/definitions/Order"
               }
             }
           },

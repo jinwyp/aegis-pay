@@ -1,14 +1,14 @@
-var fs       = require('fs');
-var path     = require('path');
-var _        = require('lodash');
+var fs   = require('fs');
+var path = require('path');
+var _    = require('lodash');
 
 var archiver = require('archiver');
 var pdf      = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
-var ejs = require('ejs');
+var ejs      = require('ejs');
 var config   = require('../config');
 var utils    = require('./utils');
-var logger  = require("./logger");
+var logger   = require("./logger");
 
 var __dirfiles = config.file_path.root;
 var images_path = config.file_path.root + config.file_path.images + '/';

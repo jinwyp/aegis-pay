@@ -6,8 +6,9 @@ var request = require('request');
 var api_config = require('../api/v1/api_config');
 var cache      = require('../libs/cache');
 var config     = require('../config');
-var __dirfiles = config.file_path.root;
 var logger     = require("../libs/logger");
+
+var zipFilePath = config.file_path.root;
 
 // 处理业务逻辑
 exports.sellerDelivery = function (req, res, next) {
@@ -16,8 +17,8 @@ exports.sellerDelivery = function (req, res, next) {
         var url = api_config.confirmDeliverySellerDelivery;
         request({url: url}, function (err, data) {
             if (err) return next(err);
-            var qualityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles + '/static', '/files');
-            var quantityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles + '/static', '/files');
+            var qualityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(zipFilePath + '/static', '/files');
+            var quantityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(zipFilePath + '/static', '/files');
             logger.debug('获取到的错误是----------------------------' + err);
             logger.debug('获取到的结果是data----------------------------' + data.body);
 

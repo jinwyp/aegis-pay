@@ -46,6 +46,9 @@ var config = {
         pdf         : path.join(__dirname, '../views/download/pdf')
     },
 
+    logdir : '../logs/',
+	app_root: path.join(__dirname,'../'),
+
     member_address: 'http://10.100.20.3:3000',
     rest_address: 'http://10.100.30.1:8888/'
 };

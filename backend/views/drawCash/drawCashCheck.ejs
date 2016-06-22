@@ -56,13 +56,14 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-5 col-sm-4">
-								<input type="submit" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
+								<input type="button" class="iBtn iBtn_yes" value="确认" id="confirmBtn"> 		
 								<a href="/drawCash" class="margin-left-10">返回上一步</a>
 							</div>
 							<p id="errorMsg" class="col-sm-offset-5 col-sm-4 text-danger padding-top-8"></p>
 						</div>
-						<input type="hidden" name="confirmToken" value="<%= confirmToken %>"/>
-						<input type="hidden" name="cash" value="<%= cash %>"/>
+						<input type="hidden" name="confirmToken" value="<%= confirmToken %>" id="confirmToken"/>
+						<input type="hidden" name="cash" value="<%= cash %>" id="cash" />
+						<input type="hidden" name="companyName" value="<%= companyName %>" id="companyName"/>
 					</form>
 				</div>
 			</div>
