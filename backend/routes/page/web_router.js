@@ -91,11 +91,12 @@ router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);                                  //财富管理 初始化
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心 首页
-router.get('/wealth/financialDetails', financialHome.financialDetails);                         //财务管理中心 交易明细
+router.get('/wealth/financialDetails', financialHome.financialDetails);                         //财务管理中心 收支明细
+router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //财务管理中心 收支明细 下载
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);                 //财务管理中心 交易记录
 router.get('/wealth/financialContract', financialHome.financialContract);                       //财务管理中心 合同管理
 router.get('/wealth/financialSettlement', financialHome.financialSettlement);                   //财务管理中心 结算管理
-router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //财务管理中心 交易明细 下载
+
 
 router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);
