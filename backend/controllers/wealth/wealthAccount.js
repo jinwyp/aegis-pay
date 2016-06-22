@@ -32,15 +32,18 @@ exports.addAccount = function(req,res,next){
             var cashAccount = replyData.data.cashAccount;
             //有银行卡绑定的情况下
             if(cashAccount.companyName && cashAccount.companyName.length>1) {
-                content.status=1;
+                content.status = 1;
                 content.cashAccount = cashAccount;
             } else {
-                content.status=0;
+                content.status = 0;
                 content.cashAccount = undefined;
             }
+
             res.render('wealth/addAccount',content);
         } else {
-            //todo 错误处理
+            logger.error(req.ip+" request fundAccount failed");
+            next(new UnauthenticatedAccessError());
+            return;
         }
     });
 };

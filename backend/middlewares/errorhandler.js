@@ -150,7 +150,7 @@ process.on('uncaughtException', function(error){
         newError = error;
     }
 
-    logger.error('5XX UncaughtException: ', JSON.stringify(newError, null, 4));
+    logger.error('5XX UncaughtException: ', newError);
 
     process.exit(1);
 });

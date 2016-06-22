@@ -339,10 +339,10 @@ financialCenterHomePersist
         success:true,
         error:"fdsfsdfsdfs",
         data:{
-            contract:{
+            settleOrder:{
                 startDate : "2016-06-20",
                 endDate : "2016-06-21",
-                type : 1,
+                searchType : 1,
                 content : "合同管理",
                 count:4,
                 pagesize:10,
@@ -351,31 +351,69 @@ financialCenterHomePersist
                 list: [
                     {
                         orderId:1,
-                        signContractTime: "2016-06-18",
+                        createTime: "2016-06-18",
                         orderNO: "orderNO",
-                        contractNO: "contractNO",
-                        sellerCompanyName: "对方公司名称"
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "WaitSettleAccounts",
+                        statusName: "待结算"
                     },
                     {
                         orderId:1,
-                        "signContractTime": "2016-06-18",
-                        "orderNO": "orderNO",
-                        "contractNO": "contractNO",
-                        "sellerCompanyName": "对方公司名称"
+                        createTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "WaitVerifySettle",
+                        statusName: "待审核结算"
                     },
                     {
                         orderId:1,
-                        "signContractTime": "2016-06-18",
-                        "orderNO": "orderNO",
-                        "contractNO": "contractNO",
-                        "sellerCompanyName": "对方公司名称"
+                        createTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "ReturnedSettleAccounts",
+                        statusName: "结算被退回"
                     },
                     {
                         orderId:1,
-                        "signContractTime": "2016-06-18",
-                        "orderNO": "orderNO",
-                        "contractNO": "contractNO",
-                        "sellerCompanyName": "对方公司名称"
+                        createTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "WaitPayTailMoney",
+                        statusName: "待付补款"
+                    },
+                    {
+                        orderId:1,
+                        createTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "WaitPayRefundMoney",
+                        statusName: "代付退款"
+                    },
+                    {
+                        orderId:1,
+                        createTime: "2016-06-18",
+                        orderNO: "orderNO",
+                        transactionNO: "transactionNO",
+                        otherCompanyName: "对方公司名称",
+                        settleAmount: 3000,
+                        totalMoney: 20000.00,
+                        status: "WaitImproveReceipt",
+                        statusName: "待完善开票信息"
                     }
                 ]
             }
