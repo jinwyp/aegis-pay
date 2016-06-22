@@ -30,13 +30,13 @@
                     <tbody>
                     <tr>
                         <th class="txt_r" width="358">公司名称：</th>
-                        <td width="340"><span class="lih_30">和略电子商务有限公司</span></td>
+                        <td width="340"><span class="lih_30"><%=data.companyName%></span></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司地址：</th>
                         <td>
-                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="" placeholder="正常状态">
+                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="<%=data.receipt && data.receipt.companyAddress ? data.receipt.companyAddress:"" %>" placeholder="正常状态">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -44,7 +44,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司电话：</th>
                         <td>
-                            <input type="text" id="companyPhone" name="companyPhone" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司电话">
+                            <input type="text" id="companyPhone" name="companyPhone" class="iIpt iIpt_sm" maxlength="15" value="<%=data.receipt && data.receipt.companyPhone ? data.receipt.companyPhone:"" %>" placeholder="请输入公司电话">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -52,7 +52,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司传真：</th>
                         <td>
-                            <input type="text" id="companyFax" name="companyFax" class="iIpt iIpt_sm" maxlength="15" value="" placeholder="请输入公司传真">
+                            <input type="text" id="companyFax" name="companyFax" class="iIpt iIpt_sm" maxlength="15" value="<%=data.receipt && data.receipt.companyFax ? data.receipt.companyFax:"" %>" placeholder="请输入公司传真">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -60,7 +60,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>纳税人识别号：</th>
                         <td>
-                            <input type="text" id="identificationNumber" name="identificationNumber" maxlength="20" class="iIpt iIpt_sm" value="" placeholder="15,17,18或者20位纳税人识别号">
+                            <input type="text" id="identificationNumber" name="identificationNumber" maxlength="20" class="iIpt iIpt_sm" value="<%=data.receipt && data.receipt.identificationNumber ? data.receipt.identificationNumber:"" %>" placeholder="15,17,18或者20位纳税人识别号">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -68,7 +68,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>开户银行：</th>
                         <td>
-                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="<%=data.receipt && data.receipt.bankNam ? data.receipt.bankNam:"" %>" placeholder="请输入开户银行">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -76,7 +76,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>开户银行账号：</th>
                         <td>
-                            <input type="text" id="bankAccount" name="bankAccount" maxlength="25" class="iIpt iIpt_sm" value="" placeholder="正常状态">
+                            <input type="text" id="bankAccount" name="bankAccount" maxlength="25" class="iIpt iIpt_sm" value="<%=data.receipt && data.receipt.bankAccount ? data.receipt.bankAccount:"" %>" placeholder="请输入开户银行账号">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -85,20 +85,27 @@
                         <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
                         <td>
                             <select name="type" id="type" style="display: none">
-                                <option value="">选择发票类型</option>
-                                <option value="1">增值税专用发票</option>
-                                <option value="2">企业</option>
-                                <option value="3">个人</option>
+                                <% for (receiptType of data.receiptTypeList) {%>
+                                <option value="<%=receiptType.sequence%>"><%=receiptType.name%></option>
+                                <%}%>
+                                <!--<option value="">选择发票类型</option>-->
+                                <!--<option value="1">增值税专用发票</option>-->
+                                <!--<option value="2">企业</option>-->
+                                <!--<option value="3">个人</option>-->
                             </select>
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
 
-                    <!--<input type="hidden" id="templetUrl" name="templetUrl">-->
-                    <input type="type" id="templetUrl" name="templetUrl" value="">
-
-                    <div class="totalError"></div>
+                    <tr>
+                        <th class="txt_r"></th>
+                        <td>
+                            <input type="hidden" id="templetUrl" name="templetUrl" value="<%=data.receipt && data.receipt.templetUrl ? data.receipt.templetUrl:"" %>">
+                            <div class="totalError"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -133,12 +140,12 @@
 
                         <div class="fileBlockBox">
                             <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
-                            <% if(templetUrl){ %>
+                            <% if(data.receipt && data.receipt.templetUrl){ %>
                             <div class="fileBlockBox_body fBox_1" style="display: block">
-                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息"/>
                                 <div class="operateFileBox">
                                     <a href="javascript:;" class="fileLinkBtn">修改</a>
-                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= data.receipt.templetUrl %>">删除</a>
                                     <input class="iptEditFile" id="tempEdit" type="file" name="files">
                                 </div>
                             </div>
@@ -149,10 +156,10 @@
                             </div>
                             <% }else{ %>
                             <div class="fileBlockBox_body fBox_1" style="display: none">
-                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
+                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息"/>
                                 <div class="operateFileBox">
                                     <a href="javascript:;" class="fileLinkBtn">修改</a>
-                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= templetUrl %>">删除</a>
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= data.receipt && data.receipt.templetUrl %>">删除</a>
                                     <input class="iptEditFile" id="tempEdit" type="file" name="files">
                                 </div>
                             </div>
@@ -163,7 +170,7 @@
                             </div>
                             <% } %>
                         </div>
-                        <input type="hidden" id="fileId"/>
+                        <!--<input type="hidden" id="fileId"/>-->
                     </div>
                     <div class="upFileHint">
                         <h4 class="upFileHint_tit">注意事项</h4>

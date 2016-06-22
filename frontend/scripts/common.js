@@ -4,6 +4,7 @@ require(['jquery', 'bootstrap'],function($){
 	/**
 	 * Common ajax error handler
 	 * This handler is not called for cross-domain script and cross-domain JSONP requests.
+	 * Created by enoy on 6/20/16.
 	 */
 	$( document ).ajaxError(function(event, jqxhr, settings, exception) {
 		var xhrStatus = jqxhr.status;
