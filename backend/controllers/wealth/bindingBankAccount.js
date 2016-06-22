@@ -36,7 +36,7 @@ exports.bindingBankAccount = function (req, res, next) {
 
     // 静态数据
      var url = api_config.bindingBankAccount+"?userId=15";
-    var userId=req.session.user.id
+    var userId=req.session.user.id;
     request.get({
         url : url,
         userId:15
@@ -107,12 +107,30 @@ exports.childBankName = function (req, res, next) {
 
 };
 
-exports.childBankNameSubmit = function (req, res, next) {
+// 提交按钮
+exports.bindingBankAccountSubmit = function (req, res, next) {
+    var body = req.body;
+    var url = api_config.bindingBankAccountSubmit;
+    var userId=req.session.user.id;
 
-    var data={
-        success:true
-    }
-    res.send(data);
+    var formData = {
+        "userId" : userId,
+        "childBankCode" :req.body.childBankCode,
+        "bankAccount" : req.body.bankAccount
+    };
+    request.post({
+        form:formData,
+        url : url
+    }, function (err, data, body) {
+        if (err) return next(err);
+
+        var resultJson = JSON.parse(body);
+        if (resultJson.success){
+            return res.send(resultJson);
+        }else{
+            return res.send(resultJson);
+        }
+    });
 };
 
 
@@ -149,12 +167,17 @@ exports.bindingSuccess = function (req, res, next) {
 
     var url = api_config.bindingSuccess;
     var userId=req.session.user.id
-    request({url : url}, function (err, data) {
+    request({url : url+"?userId="+userId}, function (err, data) {
 
         if (err) return next(err);
         if (data){
             var source  = JSON.parse(data.body);
-            var content=_.assign({}, {pageTitle: "绑定银行账户",statusObj: statusObj,userId:userId}, source);
+            var content={
+                userId:userId,
+                pageTitle: "绑定银行账户",
+                statusObj: statusObj,
+                userAccount:source.data.userAccount
+            };
             res.render('wealth/bindingSuccess', content);
         }
     });
@@ -163,9 +186,21 @@ exports.bindingSuccess = function (req, res, next) {
 };
 // 汇款金额校验
 exports.remittance = function (req, res, next) {
-    var data={
-        success:true,
-        errorCode:'1008'
+    var body = req.body;
+    var url = api_config.remittance;
+    var userId=req.session.user.id;
+
+    var formData = {
+        userId:userId,
+        confirmMoney:req.body.confirmMoney
     };
-    res.send(data);
+    request.post({
+        form:formData,
+        url : url
+    }, function (err, data, body) {
+        if (err) return next(err);
+        var resultJson = JSON.parse(body);
+        console.log(body+"???????????????????")
+        return res.send(resultJson);
+    });
 };

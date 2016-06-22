@@ -53,7 +53,7 @@ var api_config = {
      * method: post
      * params: {phone: 18611111111, message: '343434'}
      */
-    sendSMSCode   : host + 'sendSMSCode',
+    sendSMSCode   : host + 'sendSMS',
     // user can send sms again after 120s
     smsResend: 120,
 
@@ -120,7 +120,9 @@ var api_config = {
     bindingBankAccount : host + '/account/fund/bankCard/add',
     bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
     bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
-    bindingSuccess : host + 'wealth/bindingSuccess',
+    bindingSuccess : host + 'account/fund/bankCard/verify',
+    bindingBankAccountSubmit : host + 'account/fund/bankCard/add/submit',
+    remittance:host+ 'account/fund/bankCard/verify/submit',
 
     // open fund account
     openFundAccount: host + 'account/fund/create',

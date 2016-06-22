@@ -74,7 +74,7 @@ router.get('/bank/loadBankSiteCities',bindingBankAccount.cityList);   //城市�
 
 router.post('/bank/bindingBankAccountChildBankName',bindingBankAccount.childBankName);   //开户行支行名称检索
 
-router.post('/account/fund/bankCard/add/submit',bindingBankAccount.childBankNameSubmit);   //绑定银行卡提交
+router.post('/account/fund/bankCard/add/submit',bindingBankAccount.bindingBankAccountSubmit);   //绑定银行卡提交
 
 
 // generate settle

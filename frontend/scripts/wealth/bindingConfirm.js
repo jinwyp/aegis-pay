@@ -26,10 +26,10 @@ requirejs(['jquery'], function($,sms_code,pay){
                     $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
                     $(".accountSuccess").show();
                 }else{
-                    if(data.errorCode="1007"){
+                    if(data.errorCode=="1007"){
                         $(".errorMsg").text("汇款金额有误,请重新输入");
                     }
-                    if(data.errorCode="1008"){
+                    if(data.errorCode=="1008"){
                         // 汇款金额核对次数超过3次
                         $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
                         $(".accountError").show();

@@ -75,7 +75,7 @@ var cacheGet = function(userInfo, validTime){
                     return resolve(result);
                 }
             }
-            if(hourTime>=3){
+            if(hourTime>=30){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
@@ -150,7 +150,9 @@ exports.sendCode = function (req, res, next) {
 
         var sms    = data.sms || generate_code(smsType);
         var params = {
-            "phone" : userInfo.phone,
+            // "phone" : req.session.user.payPhone,
+            //暂时写死
+            "phone" : "15618177577",
             "message" : sms
         };
 

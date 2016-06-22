@@ -32,12 +32,12 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
             })
         },
         "Verify" : function(){
-                var bankCode=$("#bankCode").val(),
-            provinceCode=$("#provinceCode").val(),
-                cityCode=$("#cityCode").val(),
-                childBankName=$("#childBankName").val(),
-                    account=$("#account").val(),
-                    vertifyCode=$("#vertifyCode").val();
+                var bankCode=$.trim($("#bankCode").val()),
+            provinceCode=$.trim($("#provinceCode").val()),
+                cityCode=$.trim($("#cityCode").val()),
+                childBankName=$.trim($("#childBankName").val()),
+                    account=$.trim($("#account").val()),
+                    vertifyCode=$.trim($("#vertifyCode").val());
 
 
             // 开户行校验
@@ -63,16 +63,10 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 $(".childBankName").find(".errorMsg").text("请填写开户行支行名称");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
-            }else if($("#childBankName").attr("data-selectdata")==""){
-                $(".childBankName").find(".errorMsg").text("请输入关键字，在下拉结果中选择开户银行支行名称");
-                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return false;
-            }
-            else{
+            } else{
                 $(".childBankName").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
             }
-
             //企业对公账户
             if(account==""){
                 $(".account").find(".errorMsg").text("请填写企业对公账户");
@@ -195,7 +189,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                     }
                 });
             $("#childBankName").change(function(){
-                $("#childBankName").attr("data-selectData","")
+                $("#childBankName").attr("data-selectData","");
             });
 
             $("#childBankName").autocomplete({
@@ -234,11 +228,6 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 });
             });
 
-            $(document).on("click",function(e){
-                if(e.target.className!="accountInfoInput" && e.target.className!="accountInfoInput"){
-                    $(".childBankList").hide();
-                }
-            });
             // 开户行支行选择
             $(document).on("click",".bankNameList",function(){
                 $("#childBankName").val($(this).text())
@@ -250,10 +239,14 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
             $("#submitInfo").on("click",function(){
                 var flag = that.Verify();
                 if(flag){
-                // 跳转
+                // 开户行支行名称code
+                    if($("#childBankName").attr("data-selectdata")==""){
+                        $(".childBankName").find(".errorMsg").text("请输入关键字，在下拉结果中选择开户银行支行名称");
+                        $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                        return false;
+                    }
                     if(finalResult!="undefined" && finalResult){
-                        // 跳转
-                        location.href='/wealth/bindingSuccess';
+
                         $.ajax({
                             url:'/api/account/fund/bankCard/add/submit',
                             type:'POST',
@@ -264,7 +257,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                             },
                             success : function(data){
                                 if(data.success){
-                                    alert("Asda")
+                                    location.href='/wealth/bindingSuccess?userId='+$("#userId").val();
                                 }
                             }
                         })

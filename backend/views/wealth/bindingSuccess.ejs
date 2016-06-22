@@ -12,7 +12,7 @@
     <div id="bindingSuccess">
         <div class="bindingSuccessWrap">
             <% include ../global/order/statusBar %>
-            <!--判断是否打钱-->
+            <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4被删除,5错误3次以上)-->
             <% if(userAccount.status==1){%>
                 <!--绑定成功页面-->
                 <div class="bindingSuccessInfoWrap">
@@ -35,13 +35,13 @@
                     <div class="bankConfirmCon">
                         <ul>
                             <li>
-                                <label for="">开户行：</label><%=userAccount.userFundBankName%>
+                                <label for="">开户行：</label><%=userAccount.cashBankOpenName%>
                             </li>
                             <li>
                                 <label for="">银行卡号：</label><%= blankFour(userAccount.userFundAccount)%>
                             </li>
                             <li>
-                                <label for="">开户名称：</label><%=userAccount.userCompanyName%>
+                                <label for="">开户名称：</label><%=userAccount.userName%>
                             </li>
                             <li>
                                 <label for="">银行汇款金额：</label><input type="text" maxlength="10" placeholder="汇款金额为0.01-0.99元区间" id="remittance"> 元
@@ -57,7 +57,7 @@
                 <div class="accountError">
                     <p>因为您的出金账户汇款金额<span>核对不正确</span>已满三次</p>
                     <p>导致<span>账户添加失败</span>,请重新绑定银行账号</p>
-                    <a href="javascript:void(0)" class="rebinding">重新绑定银行账号</a>
+                    <a href="/wealth/bindingBankAccount" class="rebinding">重新绑定银行账号</a>
                 </div>
                 <!--确认金额错误页面结束-->
                 <!--确认金额成功页面-->
@@ -71,7 +71,25 @@
                 </div>
                 <!--确认金额成功页面结束-->
             <%}%>
-
+            <% if(userAccount.status==3){%>
+                <div class="bindingSuccessInfoWrap">
+                    <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">您已绑定银行账户，不能重复绑定</span></p>
+                    <p class="bindingsubCon">已经绑定的账号不可以重复绑定</p>
+                </div>
+            <%}%>
+            <% if(userAccount.status==4){%>
+            <div class="accountError" style="display: block">
+                <p>因为您的出金账户汇款金额<span>核对不正确</span>已满三次</p>
+                <p>导致<span>账户添加失败</span>,请重新绑定银行账号</p>
+                <a href="/wealth/bindingBankAccount" class="rebinding">重新绑定银行账号</a>
+            </div>
+            <%}%>
+            <% if(userAccount.status==5){%>
+                <div class="accountError" style="display: block">
+                    <p><span>您没有绑定账户</span>，请绑定银行账户</p>
+                    <a href="/wealth/bindingBankAccount" class="rebinding">绑定账户</a>
+                </div>
+            <%}%>
 
         </div>
     </div>
