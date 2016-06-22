@@ -17,7 +17,7 @@
         <div class="accountInfoTit"><span>填写账户信息</span></div>
         <div class="accountInfoWrap">
             <ul class="accountInfoUl">
-                <li class="accountInfoLi"><label><span>*</span>开户名称 :</label>注册公司名称</li>
+                <li class="accountInfoLi"><label><span>*</span>开户名称 :</label><%= companyName%></li>
                 <li class="accountInfoLi bankName">
                     <label><span>*</span>开户行 :</label>
                     <select name="bankCode" id="bankCode">
@@ -33,18 +33,15 @@
                     <div class="accountInfoChoise">
                         <select name="provinceCode" id="provinceCode" >
                             <option value="">请输入省份</option>
-                            <% for(var i in proviceList){%>
-                            <option value=<%= proviceList[i].provinceCode%>><%= proviceList[i].provinceName%></option>
+                            <% for(var i in provinceList){%>
+                                <option value=<%= provinceList[i].provinceCode%>><%= provinceList[i].provinceName%></option>
                             <%}%>
                         </select>
                         <span class="unit">省</span>
                     </div>
                     <div class="accountInfoChoise">
                         <select name="cityCode" id="cityCode">
-                            <option value="">请输入市</option>
-                            <option value="北京">北京市</option>
-                            <option value="上海">北京市1</option>
-                            <option value="广东">北京市2</option>
+                            <option value="">请选择市</option>
                         </select>
                         <span class="unit">市</span>
                     </div>
@@ -57,11 +54,7 @@
                     <p><i></i>找不到所在支行? 请选所在地区的<span class="strengthTxt">上一级支行</span></p>
                     <p class="errorMsg"></p>
                     <div class="childBankList">
-                        <div class="bankNameList">1111111111111</div>
-                        <div class="bankNameList">2222222222</div>
-                        <div class="bankNameList">3333</div>
-                        <div class="bankNameList">4444</div>
-                        <div class="bankNameList borderNone">55555</div>
+                        <!--<div class="bankNameList borderNone">55555</div>-->
                     </div>
                 </li>
                 <li class="accountInfoLi account">
@@ -71,7 +64,7 @@
                 </li>
                 <li class="accountInfoLi">
                     <label>手机号码 :</label>
-                    <input type="text" class="accountInfoInput" placeholder="请输入11位手机号码" value="13045105222" disabled>
+                    <input type="text" class="accountInfoInput" placeholder="请输入11位手机号码" value=<%= payPhone%> disabled>
                     <p class="errorMsg"></p>
                 </li>
                 <li class="accountInfoLi vertifyCode">
@@ -94,6 +87,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value=<%= userId%> id="userId"/>
 </div>
 <!--验证码弹窗-->
 <%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>

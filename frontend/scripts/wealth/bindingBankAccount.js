@@ -9,7 +9,7 @@ require.config({
     }
 });
 
-requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], function($,sms_code,pay){
+requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code,pay){
 
     sms_code.init();
     pay.init();
@@ -17,6 +17,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
     var bindingBankAccount={
 
         "init" : function(){
+
             $("select").fancySelect();
             this.initFancySelectListener(),
             this.changeSelect(),
@@ -25,6 +26,9 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
         "initFancySelectListener": function() {
             $("select").fancySelect().on("change.fs", function() {
                 $(this).trigger("change.$");
+            });
+            $("select").change(function () {
+                $(this).trigger("update.fs");
             })
         },
         "Verify" : function(){
@@ -54,21 +58,17 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
                 $(".region").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
             }
-            //市
-            if(cityCode==""){
-                $(".region").find(".errorMsg").text("请选择城市");
-                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                return false;
-            }else{
-                $(".region").find(".errorMsg").text("");
-                $('.submitTotal').find(".errorMsg").text("");
-            }
             //开户行支行
             if(childBankName==""){
                 $(".childBankName").find(".errorMsg").text("请填写开户行支行名称");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
-            }else{
+            }else if($("#childBankName").attr("data-selectdata")==""){
+                $(".childBankName").find(".errorMsg").text("请输入关键字，在下拉结果中选择开户银行支行名称");
+                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                return false;
+            }
+            else{
                 $(".childBankName").find(".errorMsg").text("");
                 $('.submitTotal').find(".errorMsg").text("");
             }
@@ -118,20 +118,94 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
                 data: {'sms_code': vertifyCode}
             });
         },
+        "provinceCode": function(){
+            var provinceCode= $("#provinceCode").val();
+            return $.ajax({
+                url: '/api/bank/loadBankSiteCities/?province='+$("#provinceCode").val(),
+                type:"GET"
+            });
+        },
+        "childBankName":function(){
+            var childBankName= $("#childBankName").val();
+            return $.ajax({
+                url: '/api/bank/bindingBankAccountChildBankName?cityCode='+$("#cityCode").val()+'&bankCode='+$("#bankCode").val(),
+                type:"POST",
+                data:{childBankName:$("#childBankName").val()}
+            });
+        },
         "changeSelect" : function(){
             var that=this
             $("#bankCode").on('change', function() {
                 that.Verify();
             });
             $("#provinceCode").on('change', function() {
-                that.Verify();
+                $("#cityCode").html('');
+                that.provinceCode().done(function(data){
+                    data.cityList.forEach(function(value,i){
+                        $("#cityCode").append('<option value='+data.cityList[i].cityCode+'>'+data.cityList[i].cityName+'</option>')
+                    });
+                    $("#cityCode").trigger("update.fs");
+                });
             });
-            $("#cityCode").on('change', function() {
-                that.Verify();
+            var childBankNameList=[];
+            var childBankIndex = [];
+            var timer = null;
+            // ie8以下数组indexof不兼容
+            if (!Array.prototype.indexOf){
+                // ie8 新增 indexOf 方法
+                Array.prototype.indexOf = function(elt){
+                    var len = this.length >>> 0;
+                    var from = Number(arguments[1]) || 0;
+                    from = (from < 0)
+                        ? Math.ceil(from)
+                        : Math.floor(from);
+                    if (from < 0)
+                        from += len;
+                    for (; from < len; from++)
+                    {
+                        if (from in this &&
+                            this[from] === elt)
+                            return from;
+                    }
+                    return -1;
+                };
+            }
+
+                $("#childBankName").on('input', function(e) {
+                    if($("#bankCode").val()!="" && $("#cityCode").val()!="") {
+                        if (timer) {
+                            clearTimeout(timer);
+                        }
+                        timer = setTimeout(function () {
+
+                            that.childBankName().done(function (data) {
+                                data.childBankName.forEach(function (value, i) {
+                                    if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
+                                        childBankIndex.push(data.childBankName[i].childBankCode);
+                                        childBankNameList.push({
+                                            value: data.childBankName[i].childBankName,
+                                            data: data.childBankName[i].childBankCode
+                                        })
+                                    }
+
+                                });
+                            });
+
+                        }, 400);
+                    }
+                });
+            $("#childBankName").change(function(){
+                $("#childBankName").attr("data-selectData","")
             });
-            $("#childBankName").on('blur', function() {
-                that.Verify();
+
+            $("#childBankName").autocomplete({
+                lookup:childBankNameList,
+                onSelect: function (suggestion) {
+                    $("#childBankName").attr("data-selectData",suggestion.data)
+                }
             });
+
+            // var childBankNameList=[];
             $("#account").on('blur', function() {
                 that.Verify();
             });
@@ -139,7 +213,7 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
                 that.Verify();
             });
             $("#childBankName").on("click",function(){
-                $(".childBankList").show();
+                // $(".childBankList").show();
             });
             $("#vertifyCode").on('blur', function() {
                 var vertifyCode=$("#vertifyCode").val();
@@ -180,6 +254,20 @@ requirejs(['jquery','pay.smscode','pay','bootstrap','jquery.fancySelect'], funct
                     if(finalResult!="undefined" && finalResult){
                         // 跳转
                         location.href='/wealth/bindingSuccess';
+                        $.ajax({
+                            url:'/api/account/fund/bankCard/add/submit',
+                            type:'POST',
+                            data:{
+                                "userId" : $("#userId").val(),
+                                "childBankCode" : $("#childBankName").attr("data-selectdata"),
+                                "bankAccount" : $("#account").val()
+                            },
+                            success : function(data){
+                                if(data.success){
+                                    alert("Asda")
+                                }
+                            }
+                        })
                     }
                 }
 
