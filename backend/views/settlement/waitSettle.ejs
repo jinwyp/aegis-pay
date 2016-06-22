@@ -26,33 +26,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% if(settleInfo.length>0){ %>
-                    <% for(i=0;i<settleInfo.length;i++){ %>
-                    <% if(settleInfo[i].settleStatus != 1){ %>
-                    <tr>
-                        <td><%= settleInfo[i].changeNumber %></td>
-                        <td><%= settleInfo[i].money %></td>
-                        <td><%= settleInfo[i].settleDate %></td>
-                        <td><%= settleInfo[i].account %></td>
-                        <td>待开票</td>
-                        <td>
-                            <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
-                            <a href="settleDetails">查看详情</a>
-                        </td>
 
-
-                    </tr>
+                    <% if(receiptOrder.type==1){ %>
+                    <% if(receiptOrder.list.length>0){ %>
+                        <% for(i=0;i<receiptOrder.list.length;i++){ %>
+                            <% var obj = receiptOrder.list[i] %>
+                            <tr>
+                                <td><%= obj.transactionNO %></td>
+                                <td><%= formatMoney(obj.totalMoney ,2)%></td>
+                                <td><%= obj.settleAccountTime %></td>
+                                <td><%= obj.otherCompanyName %></td>
+                                <td>待开票</td>
+                                <td>
+                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
+                                    <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
+                                </td>
+\
+                            </tr>
+                        <%}%>
                     <%}else{%>
+                        <tr>
+                            <td colspan="6" class="noInfo">
+                                <div>
+                                    您目前没有待开发票
+                                </div>
+                            </td>
+                        </tr>
                     <%}%>
-                    <%}%>
-                    <%}else{%>
-                    <tr>
-                        <td colspan="6" class="noInfo">
-                            <div>
-                                无开票信息,请先&nbsp;&nbsp;&nbsp; <a href="/settlement/confirmTheInvoice?type=2&id=110000" class="iBtn iBtn_yes">新增开票信息</a>
-                            </div>
-                        </td>
-                    </tr>
                     <%}%>
 
                     </tbody>

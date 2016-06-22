@@ -135,8 +135,9 @@ exports.financialTransaction = function (req, res, next) {
             var source = JSON.parse(data.body);
             if(source.success) {
                 var content = {
-                    pageTitle: "财务管理中心",
-                    headerTit: "财务管理中心",
+                    pageTitle: "交易管理",
+                    headerTit: "交易管理",
+
                     tabObj: {
                         firstTab: firstTab,
                         secondTab: secondTab
@@ -207,11 +208,13 @@ exports.financialSettlement = function (req, res, next) {
                         firstTab: firstTab,
                         secondTab: secondTab
                     },
-                    startDate: source.data.contract.startDate,
-                    endDate: source.data.contract.endDate,
-                    type: source.data.contract.type,
-                    content: source.data.contract.content,
-                    contractList: source.data.contract.list
+
+                    startDate: source.data.settleOrder.startDate,
+                    endDate: source.data.settleOrder.endDate,
+                    searchType: source.data.settleOrder.type,
+                    content: source.data.settleOrder.content,
+                    settlementList: source.data.settleOrder.list
+
                 };
                 //渲染页面
                 res.render('wealth/settlementList',content);

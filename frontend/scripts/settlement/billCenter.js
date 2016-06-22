@@ -22,16 +22,32 @@ require(['jquery','bootstrap'],function($){
 
 
     //未认证弹出框
-    $(".settle").click(function(){
+    $(".sureSettle").click(function(){
         $(".modal_1").modal();
         $("#modalImg_1").addClass("yes").removeClass("attention");
-        $("#modalInfo_1").html("短信通知买家开票?");
+        $("#modalInfo_1").html("发票开具完成，已短信通知买家！");
         $("#modalInfo_1").css({fontSize:"16px"});
     });
     $("#md_ok_1").click(function(){
         location.href="/"
     })
 
+
+    $("#delete").click(function () {
+        $.ajax({
+            url:"/settlement/billDelete",
+            type: 'post',
+            success:function(data){
+                if(data.success){
+                    location.reload();
+                }
+                else{
+
+                }
+            }
+        });
+    })
+    
 
 });
 
