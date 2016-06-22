@@ -33,6 +33,21 @@ require(['jquery','bootstrap'],function($){
     })
 
 
+    $("#delete").click(function () {
+        $.ajax({
+            url:"/settlement/billDelete",
+            type: 'post',
+            success:function(data){
+                if(data.success){
+                    location.reload();
+                }
+                else{
+
+                }
+            }
+        });
+    })
+
 });
 
 

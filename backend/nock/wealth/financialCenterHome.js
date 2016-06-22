@@ -355,7 +355,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "WaitSettleAccounts",
                         statusName: "待结算"
@@ -366,7 +366,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "WaitVerifySettle",
                         statusName: "待审核结算"
@@ -377,7 +377,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "ReturnedSettleAccounts",
                         statusName: "结算被退回"
@@ -388,7 +388,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "WaitPayTailMoney",
                         statusName: "待付补款"
@@ -399,7 +399,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "WaitPayRefundMoney",
                         statusName: "代付退款"
@@ -410,7 +410,7 @@ financialCenterHomePersist
                         orderNO: "orderNO",
                         transactionNO: "transactionNO",
                         otherCompanyName: "对方公司名称",
-                        amount: 3000,
+                        settleAmount: 3000,
                         totalMoney: 20000.00,
                         status: "WaitImproveReceipt",
                         statusName: "待完善开票信息"

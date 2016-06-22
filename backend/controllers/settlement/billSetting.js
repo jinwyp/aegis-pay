@@ -13,6 +13,8 @@ var api_config = require('../../api/v1/api_config');
 // 处理业务逻辑
 exports.billSetting = function (req, res, next) {
 
+
+    var userId = req.session.user.id;
     //头部
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
@@ -47,7 +49,7 @@ exports.billSetting = function (req, res, next) {
         ]
     };
 
-    request({url : api_config.billSetting}, function (err, data) {
+    request({url : api_config.billSetting+"?userId="+15}, function (err, data) {
         if (err) return next(err);
 
         if(data) {
@@ -62,7 +64,7 @@ exports.billSetting = function (req, res, next) {
                 accountSideBar: accountSideBar,
                 waitSettleNum: 8,
                 hadSettleNum: 4,
-                "settleInfo":source.settleInfo
+                receipt:source.data.receipt
 
             };
             //渲染页面
@@ -72,3 +74,16 @@ exports.billSetting = function (req, res, next) {
 
 };
 
+
+exports.billDelete = function (req, res, next) {
+    request({url : api_config.billDelete+"?userId="+15}, function (err, data) {
+        if (err) return next(err);
+        var replayDate = JSON.parse(data.body);
+        if(replayDate.success) {
+            res.json({success:true});
+            
+        }else{
+            res.json({success:false});
+        }
+    })
+}

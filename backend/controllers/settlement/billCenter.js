@@ -13,6 +13,8 @@ var api_config = require('../../api/v1/api_config');
 // 处理业务逻辑
 exports.billCenter = function (req, res, next) {
 
+    var userId = req.session.user.id;
+
     //头部
     var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
     var secondTab=req.query.secondTab==undefined?2:req.query.secondTab;
@@ -47,8 +49,11 @@ exports.billCenter = function (req, res, next) {
         ]
     };
 
-    request({url : api_config.billCenter}, function (err, data) {
+    request({url : api_config.billCenter+'?userId=' + 15}, function (err, data) {
+
         if (err) return next(err);
+
+
 
         if(data) {
             var source = JSON.parse(data.body);
@@ -63,7 +68,8 @@ exports.billCenter = function (req, res, next) {
                 allSettleNum:12,
                 waitSettleNum: 8,
                 hadSettleNum: 4,
-                "settleInfo":source.settleInfo
+                // "settleInfo":source.settleInfo
+                receiptOrder:source.data.receiptOrder
 
             };
             //渲染页面
