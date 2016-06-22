@@ -114,7 +114,9 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'financial/order/details',
-    bindingBankAccount : host + 'wealth/bindingBankAccount',
+    bindingBankAccount : host + '/account/fund/bankCard/add',
+    bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
+    bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
     bindingSuccess : host + 'wealth/bindingSuccess',
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash'

@@ -66,6 +66,12 @@ router.post('/account/fund/bankCard/verify/submit',bindingBankAccount.remittance
 router.post('/financial/order/details', financialApi.financialDetailsApi);
 router.post('/verifyCode', sms.verifyMiddleware(), bindingBankAccount.verifyCode);   //验证码确认
 
+router.get('/bank/loadBankSiteCities',bindingBankAccount.cityList);   //城市下拉确认
+
+router.post('/bank/bindingBankAccountChildBankName',bindingBankAccount.childBankName);   //开户行支行名称检索
+
+router.post('/account/fund/bankCard/add/submit',bindingBankAccount.childBankNameSubmit);   //绑定银行卡提交
+
 
 
 
