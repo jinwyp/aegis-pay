@@ -12,9 +12,14 @@
 <div class="containerWrap">
     <div class="bodyWrap">
 
+        <form id="invoiceNotesForm" action="#" method="post">
         <%- include ../Plugins/InvoiceInfoViewPlate %>
 
         <%- include ../Plugins/InvoiceRemarksPlate %>
+
+            <input type="text" id="version" name="version" value="<%= data.version? data.version : "" %>">
+            <input type="text" id="orderId" name="orderId" value="<%= data.orderId? data.orderId : "" %>">
+        </form>
 
     </div>
 </div>
