@@ -30,7 +30,7 @@
         "operationId": "postFinancialDetails",
         "consumes": [
           "application/json",
-          "application/xml"
+          "application/x-www-form-urlencoded"
         ],
         "produces": [
           "application/xml",
@@ -38,75 +38,103 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "Pet object that needs to be added to the store",
+            "name": "pageNo",
+            "in": "formData",
+            "description": "第几页",
+            "required": false,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "userId",
+            "in": "formData",
+            "description": "用户ID",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Pet"
+            "type": "integer",
+            "minLength": 2,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "startDate",
+            "in": "formData",
+            "description": "开始时间",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "formData",
+            "description": "结束时间",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tradeType",
+            "in": "formData",
+            "description": "交易类型",
+            "required": false,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "enum": [
+                "提现",
+                "采购",
+                "销售"
+              ],
+              "default": "提现"
             }
+          },
+          {
+            "name": "searchType",
+            "in": "formData",
+            "description": "搜索类型",
+            "required": false,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "enum": [
+                "交易流水号",
+                "对方账户名称",
+                "订单号"
+              ],
+              "default": "交易流水号"
+            }
+          },
+          {
+            "name": "userFundAccount",
+            "in": "formData",
+            "description": "用户资金账号",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
-          "405": {
+          "200": {
+            "description": "收支明细列表",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Order"
+              }
+            }
+          },
+          "409": {
             "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Update an existing pet",
-        "description": "",
-        "operationId": "updatePet",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Pet object that needs to be added to the store",
-            "required": true,
+          },
+          "default": {
+            "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Pet"
+              "$ref": "#/definitions/ErrorModel"
             }
           }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        }
       }
+
     },
     "/pet/findByStatus": {
       "get": {
@@ -682,54 +710,45 @@
       }
     }
   },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    },
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
-    }
-  },
   "definitions": {
     "Order": {
       "type": "object",
       "properties": {
-        "id": {
+        "orderNo": {
+          "description": "交易流水号",
           "type": "integer",
           "format": "int64"
         },
-        "petId": {
+        "date": {
+          "description": "交易时间",
           "type": "integer",
           "format": "int64"
         },
-        "quantity": {
+        "amoumt": {
+          "description": "金额",
           "type": "integer",
           "format": "int32"
         },
-        "shipDate": {
-          "type": "string",
-          "format": "date-time"
+        "account": {
+          "description": "账户余额",
+          "type": "integer",
+          "format": "int64"
         },
-        "status": {
+        "tradeType": {
+          "description": "交易类型",
           "type": "string",
-          "description": "Order Status",
           "enum": [
-            "placed",
-            "approved",
-            "delivered"
+            "提现",
+            "销售"
           ]
         },
-        "complete": {
-          "type": "boolean",
-          "default": false
+        "toPersonAccount": {
+          "description": "对方账号",
+          "type": "string"
+        },
+        "toPersonAccountName": {
+          "description": "对方账号名称",
+          "type": "string"
         }
       },
       "xml": {
