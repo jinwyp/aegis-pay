@@ -38,7 +38,7 @@ exports.passport = function (req, res, next) {
         return next();
     }
 
-    if (process.env.NODE_ENV == 'local'||process.env.NODE_ENV=='self') {
+    if (process.env.NODE_ENV == 'local') {
         req.session.user = res.locals.user = {
             id           : 213,
             securephone  : 18634343434,

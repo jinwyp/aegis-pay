@@ -91,11 +91,12 @@ router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);                                  //财富管理 初始化
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心 首页
-router.get('/wealth/financialDetails', financialHome.financialDetails);                         //财务管理中心 交易明细
+router.get('/wealth/financialDetails', financialHome.financialDetails);                         //财务管理中心 收支明细
+router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //财务管理中心 收支明细 下载
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);                 //财务管理中心 交易记录
 router.get('/wealth/financialContract', financialHome.financialContract);                       //财务管理中心 合同管理
 router.get('/wealth/financialSettlement', financialHome.financialSettlement);                   //财务管理中心 结算管理
-router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //财务管理中心 交易明细 下载
+
 
 router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);
@@ -105,10 +106,12 @@ router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSucc
 router.get('/account/accountSetting', accountSetting.accountSetting);                           //账户设置
 router.get('/account/notice', notice.notice);                                                   //账户设置消息提醒
 router.get('/wealth/addAccount', wealthAccount.addAccount);                                     //账户通初始化
+router.post('/accountDel', wealthAccount.accountDel);                                     
 
 router.get('/drawCash', drawCash.drawCash);                                                     //提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //提现确认信息
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //提现确认信息
+router.get('/cashSuccess', drawCash.cashSuccess);
 
 
 router.get('/compact', compactController.compact);

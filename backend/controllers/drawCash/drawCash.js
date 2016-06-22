@@ -102,7 +102,8 @@ exports.drawCashCheck = function(req,res,next){
          tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
-         }
+         },
+         errMessage:''
     };
     res.render('drawCash/drawCashCheck',content);
 }
@@ -111,14 +112,12 @@ exports.drawCashStatus = function(req,res,next){
     res.setHeader('Cache-Control', 'no-store, must-revalidate');
     res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
     // 提现 申请状态
-    var firstTab  = req.query.firstTab || 2;
-    var secondTab = req.query.secondTab || 1;
+
     var password = req.body.password;
     var confirmToken = req.body.confirmToken;
     var cash = req.body.cash;
     var userId = req.session.user.id;
-    //todo 校验金额和密码
-
+    
     //confirmToken不相同
     if(!confirmToken && confirmToken!=req.session.confirmToken) {
         logger.error(req.ip+" drawCash token error");
@@ -137,39 +136,31 @@ exports.drawCashStatus = function(req,res,next){
         function(err,response){
             if(err){return next(err);}
             var replyData = JSON.parse(response.body);
-            console.log(replyData);
-            if(!replyData.success){
 
-              //todo 错误页面
-                delete req.session.confirmToken;
-                delete req.session.cashToken;
-
-                var content = {
-                    pageTitle : "财务管理中心 - 账户通 - 提现",
-                    headerTit : "财务管理中心 - 账户通 - 提现",
-                    tabObj : {
-                        firstTab : firstTab,
-                        secondTab : secondTab
-                    },
-                    status:2
-                };
-                res.render('drawCash/drawCashStatus',content);
-
+            if(response.statusCode!=200||!replyData.success){
+                res.json(replyData);
             }else{
+                //res.json(replyData);
                 //提现成功后,显示成功页面,并且删除session中的值,防止回退.
                 delete req.session.confirmToken;
                 delete req.session.cashToken;
-
-                var content = {
-                    pageTitle : "财务管理中心 - 账户通 - 提现",
-                    headerTit : "财务管理中心 - 账户通 - 提现",
-                    tabObj : {
-                        firstTab : firstTab,
-                        secondTab : secondTab
-                    },
-                    status:5
-                };
-                res.render('drawCash/drawCashStatus',content);
+                res.json(replyData);
             }
         });
 };
+
+
+exports.cashSuccess = function(req,res,next){
+    var firstTab  = req.query.firstTab || 2;
+    var secondTab = req.query.secondTab || 1;
+     var content = {
+         pageTitle : "财务管理中心 - 账户通 - 提现",
+         headerTit : "财务管理中心 - 账户通 - 提现",
+         tabObj : {
+             firstTab : firstTab,
+             secondTab : secondTab
+         },
+         status:2
+     };
+     res.render('drawCash/drawCashStatus',content);
+ }

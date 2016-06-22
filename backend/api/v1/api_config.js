@@ -144,6 +144,7 @@ var api_config = {
     drawcashSubmit: host + 'account/DrawCash',
 
     fundinfo: host + 'account/fund/info',
+    checkFundPassword: host + 'account/fund/checkPayPwd'
 
 };
 

@@ -68,6 +68,8 @@ exports.billCenter = function (req, res, next) {
                 allSettleNum:12,
                 waitSettleNum: 8,
                 hadSettleNum: 4,
+                // startDate: source.data.contract.startDate,
+                // endDate: source.data.contract.endDate,
                 // "settleInfo":source.settleInfo
                 receiptOrder:source.data.receiptOrder
 

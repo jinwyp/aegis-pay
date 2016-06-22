@@ -1,16 +1,16 @@
-var fs       = require('fs');
-var path     = require('path');
-var _        = require('lodash');
+var fs   = require('fs');
+var path = require('path');
+var _    = require('lodash');
 
 var archiver = require('archiver');
 var pdf      = require('html-pdf');
 var PDFImage = require("pdf-image").PDFImage;
-var ejs = require('ejs');
+var ejs      = require('ejs');
 var config   = require('../config');
 var utils    = require('./utils');
-var logger  = require("./logger");
+var logger   = require("./logger");
 
-var __dirfiles = config.sysFileDir;
+var __dirfiles = config.files_root;
 
 
 exports.pdf2image = function (pdfpath, options) {
@@ -119,7 +119,7 @@ exports.ejs2html = function (data, ejspath, options) {
         } else {
             ejs.renderFile(ejspath, data, function (err, resulthtml) {
                 if (err) reject(err);
-
+                
                 if (resulthtml) {
                     fs.writeFile(htmlfile, resulthtml, 'utf-8', function (err) {
                         if (err) reject(err);

@@ -2,13 +2,30 @@
  *财务管理中心(个人中心) 页面
  *
  * */
+var path    = require('path');
+var request = require('request');
+var ejs     = require('ejs');
+var pdf     = require('html-pdf');
 
-var request    = require('request');
 var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
 var checker    = require('../../libs/datachecker');
+
 var logger     = require("../../libs/logger");
-var path = require('path');
+var utils      = require('../../libs/utils');
+var config     = require('../../config');
+
+var excelSavePath = path.join(config.files_root, config.upload, '/financial-details');
+utils.makeDir(excelSavePath);
+
+var pdfSavePath = path.join(config.files_root, config.upload, '/financial-details');
+var pdfHtmlTemplatePath = path.join(config.download, '/financialDetails/pdftemplate.ejs');
+
+
+
+
+
+
 
 // 处理业务逻辑
 exports.financialHome = function (req, res, next) {
@@ -41,7 +58,6 @@ exports.financialHome = function (req, res, next) {
 };
 
 exports.financialDetails = function (req, res, next) {
-
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
@@ -74,49 +90,74 @@ exports.financialDetails = function (req, res, next) {
 
 
 
+
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
     //checker.orderId(req.body.orderDateFromDownload);
     //checker.orderId(req.body.orderDateToDownload);
 
-    var body = req.body;
-    console.log(body);
-
-    options = {
-        savePath : './views/download/financialDetails/financialdetails.xlsx',
-        titleList : [
-            '交易日期',
-            '交易流水号',
-            '金额',
-            '账户余额',
-            '交易类型',
-            '对方账号',
-            '对方账号名称',
-            '对方开户行'
-        ],
-        propertyList : [],
-        dataList : []
-    };
+    var getQuery = req.query;
 
 
+    if (getQuery.filetype){
 
-    var params = Object.assign({}, {userId: req.session.user.id}, body);
+        var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
 
-    var url = api_config.financialDetails;
-    request.post(url, {body: params, json:true}, function (err, response, body) {
+        var url = api_config.financialDetails;
+        request.post(url, {body: params, json:true}, function (err, response, body) {
 
-        if (err) return next(err);
+            if (err) return next(err);
 
-        if (response.statusCode === 200 && body.success) {
+            if (response.statusCode === 200 && body.success) {
 
-            options.dataList = body.data;
+                if (getQuery.filetype === 'excel'){
 
-            excel(options);
-            //return res.json(body.data);
-            return res.download(options.savePath);
-        }else {
-            return res.json([]);
-        }
-    });
+                    var excelOptions = {
+                        savePath : excelSavePath + '/financialdetails.xlsx',
+                        titleList : [
+                            '交易日期',
+                            '交易流水号',
+                            '金额',
+                            '账户余额',
+                            '交易类型',
+                            '对方账号',
+                            '对方账号名称',
+                            '对方开户行'
+                        ],
+                        propertyList : [],
+                        dataList : body.data
+                    };
+
+                    excel(excelOptions);
+                    return res.download(options.savePath);
+                    
+                }else if (getQuery.filetype === 'pdf'){
+
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
+                        if (err) return next(err);
+                        
+                        var pdfOptions = {format : 'Letter'};
+                        var pdfFileName = pdfSavePath + '/financialdetails.pdf';
+
+                        pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+                            if (err) return next(err);
+
+                            return res.download(pdfFileName);
+                        });
+
+                    });
+                }else {
+                    return res.json([]);
+                }
+
+
+            }else {
+                return res.json([]);
+            }
+        });
+    }else{
+        return res.json([]);
+    }
+
 
 };
 

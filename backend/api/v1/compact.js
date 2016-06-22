@@ -13,9 +13,9 @@ var cache   = require('../../libs/cache');
 var checker = require('../../libs/datachecker');
 
 
-const uploadPath = config.sysFileDir + '/upload/';
-const ejspath    = process.cwd() + '/views/global/compact.ejs';
-const uploadTmp = config.files_root+config.upload_tmp;
+const uploadPath = config.files_root + config.upload + '/';
+const ejsTemplatePath    = path.join(__dirname, '../../views/global/compact.ejs');
+const uploadTmp = config.files_root + config.upload_tmp;
 
 exports.uploadFile = function (req, res, next) {
     utils.makeDir(uploadTmp);
@@ -113,7 +113,7 @@ exports.generate_compact = function (req, res, next) {
             });
 
             if (data.success) {
-                convertData({data: data.data.compact}, ejspath, orderId).then(function (result) {
+                convertData({data: data.data.compact}, ejsTemplatePath, orderId).then(function (result) {
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {
