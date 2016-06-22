@@ -10,7 +10,7 @@ var config   = require('../config');
 var utils    = require('./utils');
 var logger  = require("./logger");
 
-var __dirfiles = config.sysFileDir;
+var __dirfiles = config.files_root;
 
 
 exports.pdf2image = function (pdfpath, options) {
