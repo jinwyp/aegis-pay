@@ -35,9 +35,7 @@ var ejs              = require('ejs');
 
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../frontend/dist');
-// var fileStatic = path.join(__dirname,   '../../files/static');
-//
-var fileStatic = config.sysFileDir;
+var fileStatic = config.files_root;
 
 
 var app = express();

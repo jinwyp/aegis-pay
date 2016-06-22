@@ -19,7 +19,9 @@ exports.settleDetails = function (req, res, next) {
         if(data){
             return res.render('settlement/settleDetails', data);
         }else{
+
             request({url : api_config.settleDetails}, {userId: user}, function (err, data) {
+
                 if (err) return next(err);
 
                 if(data) {
