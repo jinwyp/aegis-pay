@@ -137,6 +137,7 @@ exports.financialTransaction = function (req, res, next) {
                 var content = {
                     pageTitle: "交易管理",
                     headerTit: "交易管理",
+
                     tabObj: {
                         firstTab: firstTab,
                         secondTab: secondTab
@@ -207,11 +208,13 @@ exports.financialSettlement = function (req, res, next) {
                         firstTab: firstTab,
                         secondTab: secondTab
                     },
+
                     startDate: source.data.settleOrder.startDate,
                     endDate: source.data.settleOrder.endDate,
                     searchType: source.data.settleOrder.type,
                     content: source.data.settleOrder.content,
                     settlementList: source.data.settleOrder.list
+
                 };
                 //渲染页面
                 res.render('wealth/settlementList',content);

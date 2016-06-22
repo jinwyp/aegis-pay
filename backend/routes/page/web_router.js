@@ -61,12 +61,13 @@ router.get('/footer', footerController.footer);
 router.get('/getOrderDetail', orderController.getOrderDetail);                                  //订单详情
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);
 
+
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭 订单路由
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单 页面路由
 router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);           //结算单.确认(添加)开票
 router.get('/settlement/updateTheInvoice', confirmTheInvoiceControl.updateInvoiceInfo);         //结算单.修改开票
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单.提交开票
-router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.invoiceInfo);              //结算单.确认开票 页面路由
+router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);              //结算单.确认开票 页面路由
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单.开票备注 页面路由
 router.get('/settlement/billCenter', billCenter.billCenter);                                    //结算管理发票中心
 router.get('/settlement/billSetting', billSetting.billSetting);                                 //结算管理开票设置
@@ -78,6 +79,7 @@ router.get('/settlement/settlementInfo', settlementInfo.settlementInfo);        
 
 router.get('/orderTest', orderController.orderTest);                                            //打印订单测试接口
 router.get('/printDetail', orderController.printDetail);                                        //打印订单
+
 router.get('/return', returnDetailController.returnDetail);
 
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);
@@ -86,6 +88,7 @@ router.get('/dispute/disputeApply', disputeApply.disputeApply);
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);
 router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);
 
+
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);                                  //财富管理 初始化
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心 首页
 router.get('/wealth/financialDetails', financialHome.financialDetails);                         //财务管理中心 交易明细
@@ -93,6 +96,7 @@ router.get('/wealth/financialTransaction', financialHome.financialTransaction); 
 router.get('/wealth/financialContract', financialHome.financialContract);                       //财务管理中心 合同管理
 router.get('/wealth/financialSettlement', financialHome.financialSettlement);                   //财务管理中心 结算管理
 router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //财务管理中心 交易明细 下载
+
 router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);
