@@ -23,7 +23,6 @@ exports.financialDetailsApi = function (req, res, next) {
 
 
     var postBody = req.body;
-    console.log(postBody);
     var params = Object.assign({}, {userId: req.session.user.id}, postBody);
 
     var url = api_config.financialDetails;
