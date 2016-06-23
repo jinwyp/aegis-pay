@@ -85,7 +85,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
                     console.log(searchQuery);
 
-                    app.getFinancialDetailsCountApi(searchQuery)
                     app.getFinancialDetailsApi(searchQuery);
                 },
 
@@ -118,25 +117,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 data   : params1,
                 success:function(data){
 
-                    vm.orderList = data;
-                }
-            })
-        },
-
-        getFinancialDetailsCountApi : function(params){
-            var params2 = $.extend({}, params, {count:true});
-
-            $.ajax({
-                url    : "/api/financial/order/details",
-                method : "POST",
-                data   : params2,
-                success:function(data){
-
-                    vm.orderListTotalPages = Math.ceil(data.count );
+                    vm.orderList = data.list;
+                    vm.orderListTotalPages = Math.ceil(data.totalPage );
                     app.showPagination();
                 }
             })
         },
+
 
         showPagination : function () {
             vm.orderListTotalPagesArrayLeft = [];
@@ -181,12 +168,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                         }
                     }
 
-
-
-
-
-
-
                 }
 
             }
@@ -195,7 +176,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
     $( document ).ready( function() {
         app.init();
-        app.getFinancialDetailsCountApi()
         app.getFinancialDetailsApi();
 
     });

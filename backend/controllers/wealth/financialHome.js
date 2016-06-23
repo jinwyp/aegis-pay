@@ -57,6 +57,10 @@ exports.financialHome = function (req, res, next) {
     });
 };
 
+
+
+
+
 exports.financialDetails = function (req, res, next) {
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
@@ -68,22 +72,50 @@ exports.financialDetails = function (req, res, next) {
             secondTab : secondTab
         },
 
-        accountNumber : '1234567890',
+        userFundAccount : '1234567890',
 
         formSelectOrderCategory:[
-            {id:'1', value:'1', text:'提现'},
-            {id:'2', value:'2', text:'采购'},
-            {id:'3', value:'3', text:'销售'}
+            //{id:'1', value:'1', text:'提现'},
+            //{id:'2', value:'2', text:'采购'},
+            //{id:'3', value:'3', text:'销售'}
         ],
         formSelectOrderSearchType:[
-            {id:'1', value:'1', text:'交易流水号'},
-            {id:'2', value:'2', text:'对方账户名称'},
-            {id:'3', value:'3', text:'订单号'}
+            //{id:'1', value:'1', text:'交易流水号'},
+            //{id:'2', value:'2', text:'对方账户名称'},
+            //{id:'3', value:'3', text:'订单号'}
         ]
 
     };
 
-    res.render('wealth/financialDetails',content);
+    var url = api_config.financialDetails;
+    var formData = {
+        userId: req.session.user.id
+        //userId: 2719
+    };
+    request.post({url:url, form:formData, json:true}, function (err, response, body) {
+
+        if (err) return next(err);
+
+        if (response.statusCode === 200 && body.success) {
+
+            if (body.data.payments.typeList.length > 0){
+                body.data.payments.typeList.forEach(function(tradeType){
+                    content.formSelectOrderCategory.push({
+                        value : tradeType.sequence,
+                        text : tradeType.name
+                    })
+                })
+            }
+
+            content.userFundAccount = body.data.payments.userFundAccount;
+
+
+            return res.render('wealth/financialDetails',content);
+        }else {
+            return res.json([]);
+        }
+    })
+
 };
 
 

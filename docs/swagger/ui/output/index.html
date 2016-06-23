@@ -61,6 +61,11 @@
                         <td><p>确认已开发票</p>
         </td>
                     </tr>
+                    <tr>
+                        <td><a href="#operation--finance-receipt-delete-post">POST /finance/receipt/delete</a></td>
+                        <td><p>开票设置 删除公司抬头</p>
+        </td>
+                    </tr>
                 </tbody>
             </table>
             <h3 id="tag-pet" class="swagger-summary-tag">Tag: pet</h3>
@@ -318,6 +323,12 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><code class="lang-json">{<br>    &quot;<span class="hljs-attribute">data</span>&quot;: <span class="hljs-value">{<br>        &quot;<span class="hljs-attribute">receiptOrder</span>&quot;: <span class="hljs-value">{<br>            &quot;<span class="hljs-attribute">content</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">count</span>&quot;: <span class="hljs-value"><span class="hljs-number">3</span></span>,<br>            &quot;<span class="hljs-attribute">endDate</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;2016-01-10&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">indexNum</span>&quot;: <span class="hljs-value"><span class="hljs-number">0</span></span>,<br>            &quot;<span class="hljs-attribute">list</span>&quot;: <span class="hljs-value">[<br>                {<br>                    &quot;<span class="hljs-attribute">createTime</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>                    &quot;<span class="hljs-attribute">orderId</span>&quot;: <span class="hljs-value"><span class="hljs-number">3635</span></span>,<br>                    &quot;<span class="hljs-attribute">orderNO</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;ZY201606090002&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">otherCompanyName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x5185;&#x8499;&#x53E4;&#x539F;&#x7164;&#x6709;&#x9650;&#x516C;&#x53F8;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">settleAccountTime</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;2015-08-26 08:42:19&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">status</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;WaitReceiveReceipt&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">statusName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x5F85;&#x6536;&#x53D1;&#x7968;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">totalMoney</span>&quot;: <span class="hljs-value"><span class="hljs-number">16650</span></span>,<br>                    &quot;<span class="hljs-attribute">transactionNO</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;222222222&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">type</span>&quot;: <span class="hljs-value"><span class="hljs-number">1</span></span>,<br>                    &quot;<span class="hljs-attribute">typeName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x9500;&#x552E;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">version</span>&quot;: <span class="hljs-value"><span class="hljs-number">10</span><br>                </span>},<br>                {<br>                    &quot;<span class="hljs-attribute">createTime</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>                    &quot;<span class="hljs-attribute">orderId</span>&quot;: <span class="hljs-value"><span class="hljs-number">3636</span></span>,<br>                    &quot;<span class="hljs-attribute">orderNO</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;ZY201606090002&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">otherCompanyName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x5185;&#x8499;&#x53E4;&#x539F;&#x7164;&#x6709;&#x9650;&#x516C;&#x53F8;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">settleAccountTime</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;2015-08-26 09:20:26&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">status</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;WaitReceiveReceipt&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">statusName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x5F85;&#x6536;&#x53D1;&#x7968;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">totalMoney</span>&quot;: <span class="hljs-value"><span class="hljs-number">16650</span></span>,<br>                    &quot;<span class="hljs-attribute">transactionNO</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;123456789&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">type</span>&quot;: <span class="hljs-value"><span class="hljs-number">1</span></span>,<br>                    &quot;<span class="hljs-attribute">typeName</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;&#x9500;&#x552E;&quot;</span></span>,<br>                    &quot;<span class="hljs-attribute">version</span>&quot;: <span class="hljs-value"><span class="hljs-number">10</span><br>                </span>}<br>            ]</span>,<br>            &quot;<span class="hljs-attribute">openCount</span>&quot;: <span class="hljs-value"><span class="hljs-number">2</span></span>,<br>            &quot;<span class="hljs-attribute">page</span>&quot;: <span class="hljs-value"><span class="hljs-number">1</span></span>,<br>            &quot;<span class="hljs-attribute">pagesize</span>&quot;: <span class="hljs-value"><span class="hljs-number">10</span></span>,<br>            &quot;<span class="hljs-attribute">rowNum</span>&quot;: <span class="hljs-value"><span class="hljs-number">10</span></span>,<br>            &quot;<span class="hljs-attribute">searchContent</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>            &quot;<span class="hljs-attribute">startDate</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;2015-08-26&quot;</span></span>,<br>            &quot;<span class="hljs-attribute">status</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>            &quot;<span class="hljs-attribute">totalCount</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>            &quot;<span class="hljs-attribute">totalPage</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>            &quot;<span class="hljs-attribute">type</span>&quot;: <span class="hljs-value"><span class="hljs-literal">null</span></span>,<br>            &quot;<span class="hljs-attribute">userId</span>&quot;: <span class="hljs-value"><span class="hljs-number">2719</span></span>,<br>            &quot;<span class="hljs-attribute">waitCount</span>&quot;: <span class="hljs-value"><span class="hljs-number">1</span><br>        </span>}<br>    </span>}</span>,<br>    &quot;<span class="hljs-attribute">success</span>&quot;: <span class="hljs-value"><span class="hljs-literal">true</span><br></span>}
+                                            </code></pre>
+                                            
+                                                    </div>
                                                 
                                                 <div class="col-md-6 sw-response-model">
                                                 <div  class="panel panel-definition">
@@ -332,6 +343,129 @@
                                                                                     
                                                                                 </div>
                                                                             </section>    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-409">
+                                        409 Conflict
+                                    
+                                    </dt>
+                                    <dd class="sw-response-409">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Invalid input</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/ErrorResponse">ErrorResponse</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>500 错误 Unexpected error</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/ErrorResponse">ErrorResponse</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>    
+        <span id="path--finance-receipt-delete"></span>
+            <div id="operation--finance-receipt-delete-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary">&#x5F00;&#x7968;&#x8BBE;&#x7F6E; &#x5220;&#x9664;&#x516C;&#x53F8;&#x62AC;&#x5934;</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/finance/receipt/delete</strong></h3>
+                        Tags:
+                            <a href="#tag-billCenter">billCenter</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        
+                    </section>
+                        
+                            <section class="sw-request-body">
+                                
+                                    <p><span class="label label-default">application/json</span> <span class="label label-default">application/x-www-form-urlencoded</span> 
+                        </p>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                userId
+                                            <td><p>user ID</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (1 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                                <p><span class="label label-default">application/xml</span> <span class="label label-default">application/json</span> 
+                    </p>
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>发票设置 公司抬头 已删除</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/SuccessResponse">SuccessResponse</a>
+                                                    </div>
                                                 </div></div>
                                             
                                             </div>                </dd>
@@ -678,7 +812,7 @@
                                                 <div class="col-md-6 sw-response-model">
                                                 <div  class="panel panel-definition">
                                                     <div class="panel-body">
-                                                            
+                                                                <a class="json-schema-ref" href="#/definitions/SuccessResponse">SuccessResponse</a>
                                                     </div>
                                                 </div></div>
                                             
@@ -2196,7 +2330,7 @@
                                                     
                                                 </dt>
                                                 <dd>
-                                                    <p>出错信息  例如 Required int parameter &#39;orderId&#39; is not present</p>
+                                                    <p>出错信息  例如 Required int parameter &#39;orderId&#39; is not present  或 系统出错了,已经通知我们的团队,我们会尽快修复</p>
                                     
                                                     <div class="json-inner-schema">
                                                         
@@ -2461,32 +2595,6 @@
                                                 </dt>
                                                 <dd>
                                                     <p>成功 失败</p>
-                                    
-                                                    <div class="json-inner-schema">
-                                                        
-                                                    </div>
-                                                </dd>
-                                                <dt data-property-name="error">
-                                                    <span class="json-property-name">error:</span>
-                                                    <span class="json-property-type">string</span>
-                                                    <span class="json-property-range" title="Value limits"></span>
-                                                    
-                                                </dt>
-                                                <dd>
-                                                    <p>出错信息  例如 Required int parameter &#39;orderId&#39; is not present</p>
-                                    
-                                                    <div class="json-inner-schema">
-                                                        
-                                                    </div>
-                                                </dd>
-                                                <dt data-property-name="errorCode">
-                                                    <span class="json-property-name">errorCode:</span>
-                                                    <span class="json-property-type">string</span>
-                                                    <span class="json-property-range" title="Value limits"></span>
-                                                    
-                                                </dt>
-                                                <dd>
-                                                    <p>500</p>
                                     
                                                     <div class="json-inner-schema">
                                                         

@@ -21,24 +21,20 @@ exports.financialDetailsApi = function (req, res, next) {
     //checker.payPassword(req.body.limit);
     //checker.payPassword(req.body.skip);
 
-
     var postBody = req.body;
+
     var params = Object.assign({}, {userId: req.session.user.id}, postBody);
 
     var url = api_config.financialDetails;
-    request.post({url:url, form:params}, function (err, response, body) {
+    request.post({url:url, form:params, json:true}, function (err, response, body) {
 
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
-            if (postBody.count){
-                return res.json({count:body.data.length});
-            }else{
-                return res.json(body.data);
-            }
+            return res.json(body.data.payments);
         }else {
             return res.json([]);
         }
-    })
+    });
 
 };

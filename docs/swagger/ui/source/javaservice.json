@@ -125,6 +125,50 @@
               "items": {
                 "$ref": "#/definitions/Order"
               }
+            },
+            "example" : {
+              "success": true,
+              "data": {
+                "payments": {
+                  "page": 1,
+                  "pagesize": 10,
+                  "rowNum": 10,
+                  "totalCount": null,
+                  "totalPage": null,
+                  "list": [],
+                  "indexNum": 0,
+                  "count": 0,
+                  "userId": 2719,
+                  "type": null,
+                  "startDate": null,
+                  "endDate": null,
+                  "searchType": 0,
+                  "searchContent": null,
+                  "userFundAccount": "3110710001261001468",
+                  "typeList": [
+                    {
+                      "type": "paymentstypelist",
+                      "sequence": 1,
+                      "name": "充值"
+                    },
+                    {
+                      "type": "paymentstypelist",
+                      "sequence": 2,
+                      "name": "提现"
+                    },
+                    {
+                      "type": "paymentstypelist",
+                      "sequence": 3,
+                      "name": "销售"
+                    },
+                    {
+                      "type": "paymentstypelist",
+                      "sequence": 4,
+                      "name": "采购"
+                    }
+                  ]
+                }
+              }
             }
           },
           "409": {
@@ -138,7 +182,6 @@
           }
         }
       }
-
     },
 
     "/finance/order/seller/receipt": {
@@ -236,6 +279,61 @@
               "items": {
                 "$ref": "#/definitions/ReceiptOrder"
               }
+            },
+            "examples" : {
+              "application/json": {
+                "success": true,
+                "data": {
+                  "receiptOrder": {
+                    "page": 1,
+                    "pagesize": 10,
+                    "rowNum": 10,
+                    "totalCount": null,
+                    "totalPage": null,
+                    "list": [
+                      {
+                        "orderId": 3635,
+                        "version": 10,
+                        "type": 1,
+                        "typeName": "销售",
+                        "orderNO": "ZY201606090002",
+                        "transactionNO": "222222222",
+                        "totalMoney": 16650.00,
+                        "otherCompanyName": "内蒙古原煤有限公司",
+                        "status": "WaitReceiveReceipt",
+                        "statusName": "待收发票",
+                        "createTime": null,
+                        "settleAccountTime": "2015-08-26 08:42:19"
+                      },
+                      {
+                        "orderId": 3636,
+                        "version": 10,
+                        "type": 1,
+                        "typeName": "销售",
+                        "orderNO": "ZY201606090002",
+                        "transactionNO": "123456789",
+                        "totalMoney": 16650.00,
+                        "otherCompanyName": "内蒙古原煤有限公司",
+                        "status": "WaitReceiveReceipt",
+                        "statusName": "待收发票",
+                        "createTime": null,
+                        "settleAccountTime": "2015-08-26 09:20:26"
+                      }
+                    ],
+                    "indexNum": 0,
+                    "count": 3,
+                    "userId": 2719,
+                    "type": null,
+                    "status": null,
+                    "waitCount": 1,
+                    "openCount": 2,
+                    "startDate": "2015-08-26",
+                    "endDate": "2016-01-10",
+                    "content": "",
+                    "searchContent": null
+                  }
+                }
+              }
             }
           },
           "409": {
@@ -250,6 +348,7 @@
               "$ref": "#/definitions/ErrorResponse"
             }
           }
+
         }
       }
     },
@@ -297,9 +396,7 @@
           "200": {
             "description": "确认已开票",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/SuccessResponse"
-              }
+              "$ref": "#/definitions/SuccessResponse"
             }
           },
           "409": {
@@ -316,7 +413,57 @@
           }
         }
       }
+    },
 
+    "/finance/receipt/delete": {
+      "post": {
+        "tags": [
+          "billCenter"
+        ],
+        "summary": "开票设置 删除公司抬头",
+        "operationId": "billCenterReceiptDelete",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "formData",
+            "description": "user ID",
+            "required": true,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "发票设置 公司抬头 已删除",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "409": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "500 错误 Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
     },
 
     "/pet/findByStatus": {
@@ -894,9 +1041,6 @@
     }
   },
 
-
-
-
   "definitions": {
     "Order": {
       "type": "object",
@@ -979,7 +1123,6 @@
         }
       }
     },
-
     "ApiResponse": {
       "type": "object",
       "properties": {
@@ -995,26 +1138,15 @@
         }
       }
     },
-
-
     "SuccessResponse": {
       "type": "object",
       "properties": {
         "success": {
           "description": "成功 失败",
           "type": "boolean"
-        },
-        "error": {
-          "description": "出错信息  例如 Required int parameter 'orderId' is not present",
-          "type": "string"
-        },
-        "errorCode": {
-          "description": "500",
-          "type": "string"
         }
       }
     },
-
     "ErrorResponse": {
       "type": "object",
       "properties": {
@@ -1023,7 +1155,7 @@
           "type": "boolean"
         },
         "error": {
-          "description": "出错信息  例如 Required int parameter 'orderId' is not present",
+          "description": "出错信息  例如 Required int parameter 'orderId' is not present  或 系统出错了,已经通知我们的团队,我们会尽快修复",
           "type": "string"
         },
         "errorCode": {
