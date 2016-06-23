@@ -15,6 +15,10 @@
     {
       "name": "financialDetails",
       "description": "财务管理 收支明细"
+    },
+    {
+      "name": "billCenter",
+      "description": "结算管理 发票中心 "
     }
   ],
   "schemes": [
@@ -136,6 +140,107 @@
       }
 
     },
+
+    "/finance/order/seller/receipt": {
+      "post": {
+        "tags": [
+          "billCenter"
+        ],
+        "summary": "获取发票数据列表",
+        "operationId": "billCenter",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "第几页,用于分页",
+            "required": false,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "userId",
+            "in": "formData",
+            "description": "用户ID",
+            "required": true,
+            "type": "integer",
+            "minLength": 2,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "startDate",
+            "in": "formData",
+            "description": "开始时间",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "formData",
+            "description": "结束时间",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "交易类型 全部发票0,  待开票1, 已开票2",
+            "required": false,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "enum": [
+                1,
+                2
+              ],
+              "default": "0"
+            }
+          },
+          {
+            "name": "searchContent",
+            "in": "formData",
+            "description": "搜索的流水号",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "收支明细列表",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReceiptOrder"
+              }
+            }
+          },
+          "409": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+
+    },
+
+
     "/pet/findByStatus": {
       "get": {
         "tags": [
@@ -750,9 +855,6 @@
           "description": "对方账号名称",
           "type": "string"
         }
-      },
-      "xml": {
-        "name": "Order"
       }
     },
     "Category": {
