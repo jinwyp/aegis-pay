@@ -73,8 +73,9 @@ var api_config = {
      */
     orderProgress : host + 'mall/order/payment/success',
 
-    orderDetail : host + 'getOrderDetail',
-    confirmDelivery : host + 'confirmDelivery',
+    buyOrderDetail : host + 'mall/order',
+    sellOrderDetail : host + 'mall/seller/order',
+    confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
@@ -118,6 +119,12 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'financial/order/details',
+    bindingBankAccount : host + '/account/fund/bankCard/add',
+    bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
+    bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
+    bindingSuccess : host + 'account/fund/bankCard/verify',
+    bindingBankAccountSubmit : host + 'account/fund/bankCard/add/submit',
+    remittance:host+ 'account/fund/bankCard/verify/submit',
 
     // open fund account
     openFundAccount: host + 'account/fund/create',
@@ -143,9 +150,27 @@ var api_config = {
 
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash',
-
     fundinfo: host + 'account/fund/info',
-    checkFundPassword: host + 'account/fund/checkPayPwd'
+    checkFundPassword: host + 'account/fund/checkPayPwd',
+
+
+    sellerSubmit:       host + 'mall/order/seller/settle/submit',
+
+
+    /**
+     * 开具结算单 系列Api
+     * sellerView 卖家查看
+     * sellerSubmit 卖家提交
+     *
+     */
+    sellerView:         host + 'mall/order/seller/settle',
+    buyersView:         host + 'mall/order/settle',
+    buyersReturn:       host + 'mall/order/settle/return',
+    buyersEditReason:   host + 'mall/order/settle/return/editreason',
+    buyersAuditing:     host + 'mall/order/settle/submit',
+    downPrintSettle:    host + 'mall/order/print/settle'
+
+
 
 };
 

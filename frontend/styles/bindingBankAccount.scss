@@ -1,0 +1,90 @@
+@import './layout/_statusBar.scss';
+@import './Plugins/fancySelect.scss';
+@import './Plugins/ccapimg-modal.scss';
+#bindingBankAccount{
+  background: #f6f6f6;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  .bindingBankAccountWrap{
+    width:1000px;
+    margin: 0 auto;
+    padding:20px 30px;
+    background: #fff;
+
+    .accountInfoTit{color:#333;font-size: 18px;}
+    .accountInfoTit span{border-left:2px solid #00b6ef;padding-left:10px;}
+    .accountInfoWrap{margin-top:10px;border:1px solid #e8e8e8;padding: 40px;}
+    .accountInfoWrap .accountInfoUl{margin-left: 170px;}
+    //初始化下拉框
+    .accountInfoWrap .accountInfoUl div.fancy-select{width:auto;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi{position: relative;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList{display:none;position: absolute;width:300px;height:150px;background:#fff;border:1px solid #ccc;top:40px;left:154px;z-index:99;overflow-y:scroll;font-size: 14px;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList{border-bottom:1px solid #ccc;padding:5px 0;padding-left:5px;font-size:12px;color:#666;background:#fff;cursor:pointer;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList:hover{background: #f3fcff;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankList .borderNone{border:none;}
+
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{border-bottom:1px solid #e4e4e4;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}
+    .accountInfoWrap .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi{font-size:14px;color:#333;min-height: 35px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi label{font-weight:normal;display: inline-block;width:140px;text-align: right;margin-right: 10px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi label span{color:#ff6e0f;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi select{display:none;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger{line-height: 39px;width:300px;height: 40px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger::after{top:17px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{top:40px;width:300px;z-index: 99;height:170px;overflow-y:scroll;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi ul.options li{background: #fff;position: relative;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi >div{display: inline-block}
+
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise div.trigger::after{top:13px;right:10px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger{min-width: 112px;width:112px;height:32px;line-height: 31px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger::before{content:'';width:32px;height:32px;background: #f5f5f5;border-left:1px solid #ccc;position: absolute;right:0px;top:0px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise ul.options{top:32px;width:112px;min-width:112px;z-index: 99;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi span.unit{display: inline-block;width:34px;text-align: center;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p{font-size: 12px;color:#666;padding-top: 6px;margin-left: 110px;margin-left: 154px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p i{display: inline-block;width:15px;height:15px;background: url("/static/images/sprite_ico.png") no-repeat -281px -643px;vertical-align: top;margin-right: 2px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi p span.strengthTxt{color:#01b7ec;width:auto;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput{width:300px;height:40px;line-height: 40px;font-size:12px;padding-left:10px;border:1px solid #ccc;border-radius:2px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput:focus{border: 1px solid #00b7ec}
+
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap{position: relative;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap i{display: inline-block;width:20px;height:20px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -331px -643px;vertical-align: middle;visibility:hidden;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;cursor:pointer;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:29px;top:5px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown:hover{text-decoration: none;opacity: .8;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .disable{font-size: 12px;}
+    .accountInfoWrap .btnWrap{padding-left: 326px;padding-top: 50px;}
+    .accountInfoWrap .btnWrap .haveRead{margin-right: 10px;}
+    .accountInfoWrap .btnWrap label{font-weight:normal;}
+    .accountInfoWrap .btnWrap a.protocol{color:#007193;}
+    .accountInfoWrap .btnWrap a.protocol:hover{text-decoration: none;opacity: .8;}
+    .accountInfoWrap .btnWrap a.submitInfo{width:180px;height:40px;margin-top:10px;color:#fff;font-size: 16px;line-height: 40px;text-align:center;border-radius:2px;background: #00b6ef;display: block;}
+    .accountInfoWrap .btnWrap a.submitInfo:hover{text-decoration: none;opacity: .8;}
+
+
+
+  }
+
+}
+//autocomplete样式
+.autocomplete-suggestions {
+  border: 1px solid #e4e4e4; background: #fff; color: #333; overflow: auto;
+  box-sizing: border-box;
+  & strong { font-weight: normal; color: #00b7ec; }
+
+  .autocomplete-suggestion {
+    padding: 2px 5px; white-space: nowrap; overflow: hidden; background: #FFF;
+    border-bottom: 1px solid #e4e4e4;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-bottom: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .autocomplete-selected { background: #f5f5f5; color: #00b7ec;  box-sizing: border-box;}
+  .autocomplete-group { padding: 2px 5px; }
+  .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+}

@@ -81,6 +81,16 @@ module.exports = function (app) {
         return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
     }
 
+    //截取后四位银行卡号
+    app.locals.subFour = function (num) {
+        return num.substr((num.length-4));
+    }
+
+    //银行卡4位加空格
+    app.locals.blankFour = function (num) {
+        return num.replace(/(\d{4})/g, '$& ');
+    }
+
     //数字转大写
     app.locals.switchTxt = function (n) {
         if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
@@ -179,7 +189,12 @@ module.exports = function (app) {
         return format;
     };
 
-    app.locals.fundAccountFormat = function(account){
-        return account.replace(/(\d{4})(?=\d)/g,"$1 ");
+    app.locals.fundAccountFormat = function(account,flag){
+        if( flag ){
+            return account.replace(/(\d{4})(?=\d)/g,"<span>****</span> ");
+        }else{
+            return account.replace(/(\d{4})(?=\d)/g,"$1 ");    
+        }
+        
     }
 }

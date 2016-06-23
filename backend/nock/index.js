@@ -23,3 +23,6 @@ require('./settlement/settleDetails');
 require('./wealth/financialDetails');
 require('./wealth/financialCenterHome');
 require('./wealth/fundaccount');
+
+require('./wealth/bindingBankAccount');
+require('./wealth/bindingSuccess');
