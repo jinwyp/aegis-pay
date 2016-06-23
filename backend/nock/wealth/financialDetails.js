@@ -41,21 +41,68 @@ var details3 = [
 ];
 
 
+var result = {
+    "success": true,
+    "data": {
+        "payments": {
+            "page": 1,
+            "pagesize": 10,
+            "rowNum": 10,
+            "totalCount": null,
+            "totalPage": null,
+            "list": [],
+            "indexNum": 0,
+            "count": 0,
+            "userId": 2719,
+            "type": null,
+            "startDate": null,
+            "endDate": null,
+            "searchType": 0,
+            "searchContent": null,
+            "userFundAccount": "3110710001261001468",
+            "typeList": [
+                {
+                    "type": "paymentstypelist",
+                    "sequence": 1,
+                    "name": "充值"
+                },
+                {
+                    "type": "paymentstypelist",
+                    "sequence": 2,
+                    "name": "提现"
+                },
+                {
+                    "type": "paymentstypelist",
+                    "sequence": 3,
+                    "name": "销售"
+                },
+                {
+                    "type": "paymentstypelist",
+                    "sequence": 4,
+                    "name": "采购"
+                }
+            ]
+        }
+    }
+};
+
+result.data.payments.list = details;
+
 interceptPersist
 
 .post('/finance/payments/list', { orderCategory: '2' }).reply(200, {
     success:true,
     error:"",
-    data:details3
+    data:result
 })
 .post('/finance/payments/list', { orderCategory: '1' }).reply(200, {
     success : true,
-    data : details2
+    data : result
 })
 .post('/finance/payments/list', { userId: "2719" }).reply(200, {
     success:true,
     error:"",
-    data:details
+    data:result
 });
 
 module.exports = interceptPersist;
