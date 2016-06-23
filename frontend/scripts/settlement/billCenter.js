@@ -14,8 +14,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 endObj = $(".endDate");
             pickerStart = startObj.pickadate({}).pickadate('picker');
             pickerEnd = endObj.pickadate({}).pickadate('picker');
-            pickerStart.set("disable", [{from: [1970, 1, 1]}]);
-            pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
+            //pickerStart.set("disable", [{from: [1970, 1, 1]}]);
+            //pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
 
             startObj.on("change", function () {
                 if (new Date(startObj.val()).getTime() > new Date(endObj.val()).getTime()) {
