@@ -73,7 +73,8 @@ var api_config = {
      */
     orderProgress : host + 'mall/order/payment/success',
 
-    orderDetail : host + 'getOrderDetail',
+    buyOrderDetail : host + 'mall/order',
+    sellOrderDetail : host + 'mall/seller/order',
     confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',

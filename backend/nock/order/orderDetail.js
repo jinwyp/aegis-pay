@@ -211,9 +211,9 @@ var data = {
     }
 };
 
-orderDetail.get('/getOrderDetail').query({orderId:'100000'}).reply(200, data);
+orderDetailPersist.post('/mall/order').query({orderId:1}).reply(200, data);
 
-module.exports = orderDetail;
+module.exports = orderDetailPersist;
 
 
 
