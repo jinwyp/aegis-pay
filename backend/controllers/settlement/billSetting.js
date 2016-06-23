@@ -62,8 +62,6 @@ exports.billSetting = function (req, res, next) {
             ]
         };
 
-        if (err) return next(err);
-
         if(data) {
 
             var content = {
@@ -87,7 +85,14 @@ exports.billSetting = function (req, res, next) {
 
 exports.billDelete = function (req, res, next) {
     var user = req.session.user;
-    request({url : api_config.billDelete+"?userId="+user.id}, function (err, data) {
+    //post传userid
+    request({
+        url: api_config.billDelete, //URL to hit
+        method: 'POST',
+        //Lets post the following key/values as form
+        form: {
+            userId: user.id
+        }}, function (err, data) {
 
         if (err || data.statusCode != 200) {
             next(new SystemError());

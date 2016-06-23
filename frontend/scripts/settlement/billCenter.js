@@ -3,7 +3,7 @@
  * */
 
 
-require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
+require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
     //datePicker
     var transactionRecord= {
         "datepicker": function () {

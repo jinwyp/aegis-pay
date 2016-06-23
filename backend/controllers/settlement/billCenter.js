@@ -13,9 +13,14 @@ var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.billCenter = function (req, res, next) {
-
+    var startDate = req.query.startDate;
+    var endDate = req.query.endDate;
+    var content = req.query.content;
     var user = req.session.user;
-    request({url : api_config.billCenter+'?userId=' + user.id}, function (err, data) {
+    var type = req.query.type;
+
+    var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')+(content?'&content='+content:'')+(type?'&type='+type:'');
+    request({url : api_config.billCenter+queryString}, function (err, data) {
 
         if (err || data.statusCode != 200) {
             next(new SystemError());
