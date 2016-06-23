@@ -88,6 +88,11 @@ exports.passport = function (req, res, next) {
 
 // 获取支付手机
 exports.fetchPayPhone = function(req, res, next){
+
+    if (req.path.indexOf('setSSOCookie') >= 0) {
+        return next();
+    }
+    
     if(res.locals.user.phone){
         return next();
     }
