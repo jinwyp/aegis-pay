@@ -10,11 +10,15 @@ var logger     = require("../../libs/logger");
 
 // 处理业务逻辑
 exports.getOrderDetail = function (req, res, next) {
-    checker.id(req.query.id);
-
-    request({url : api_config.orderDetail + '?orderId=' + req.query.id}, function (err, data) {
+    request.post(
+        {
+            url : api_config.buyOrderDetail,
+            form: {orderId:req.query.orderId, userId:req.session.user.id}
+        },
+        function (err, data) {
         if (err) return next(err);
         if (data) {
+            logger.debug('orderDetail获取到的结果是----------------------------' + data.body);
             var source = JSON.parse(data.body);
             var step = 0;
             switch (source.data.order.status) {
@@ -69,7 +73,6 @@ exports.getOrderDetail = function (req, res, next) {
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order
             };
-            //logger.debug('orderDetail获取到的结果是----------------------------' + content);
             res.render('order/buyOrderDetail', content);
         } else {
             res.send(data.body);
