@@ -29,7 +29,7 @@ payPersist
     }
     return result;
 })
-.post('/sendSMSCode').reply(200, {"success":true})
+.post('/sendSMS').reply(200, {"success":true})
 // 1001  -- errCode , "您还没有开通易煤网资金账户"  -- error
 // UserFundAccount_NotOpen("1001", "您还没有开通易煤网资金账户"),
 // UserFundAccount_Opening("1002", "您的资金账户正在开通"),

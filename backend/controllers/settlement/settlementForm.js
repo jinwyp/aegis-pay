@@ -13,7 +13,6 @@
   	WaitPayTailMoney	 	审核通过.待买家补款  (_)
   	WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
   	WaitWriteReceipt	 	审核通过.待卖家开发票(_)
-
 	查看结算单:卖家 		settlement/sellerView 			../mall/order/seller/settle
 	提交结算单:卖家 		settlement/sellerSubmit 		../mall/order/seller/settle/submit
 	查看结算单:买家 		settlement/buyersView 			../mall/order/settle
@@ -243,5 +242,3 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 		}
 	});
 };
-
-

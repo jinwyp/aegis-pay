@@ -13,9 +13,10 @@ var cache   = require('../../libs/cache');
 var checker = require('../../libs/datachecker');
 
 
-const uploadPath = config.files_root + config.upload + '/';
-const ejsTemplatePath    = path.join(__dirname, '../../views/global/compact.ejs');
-const uploadTmp = config.files_root + config.upload_tmp;
+const uploadPath = config.file_path.root + config.file_path.upload + '/';
+const ejspath    = config.file_path.views +'/global/compact.ejs';
+const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
+const downloadPath = config.file_path.download;
 
 exports.uploadFile = function (req, res, next) {
     utils.makeDir(uploadTmp);
@@ -49,23 +50,28 @@ exports.delFile = function (req, res, next) {
 };
 
 // sign compact
-
 exports.signCompact = function (req, res, next) {
     var params     = req.body;
-    var newids     = _.map(params.file_id, function (id) {
-        return uploadPath + id;
+
+    var files = [];
+    if(typeof params.file_id === 'string'){
+        params.file_id = [params.file_id];
+        params.file_name = [params.file_name];
+    }
+    _.forEach(params.file_id, function(id, index){
+        files.push({'name': params.file_name[index], 'path':uploadPath + '/' + id});
     })
-    params.files = newids;
+
+    params.files = files;
     _.unset(params, 'file_id');
-    request.post(api_config.signCompact, {body:params, json:true}, function (err, data) {
+    _.unset(params, 'file_name');
+
+    request.post({url: api_config.signCompact, form:params, qsStringifyOptions:{allowDots:true}}, function (err, data) {
         if (!err && data) {
-            return res.send(data.body);
+            return res.send(JSON.parse(data.body));
         }
     })
 };
-
-
-
 
 
 
@@ -77,17 +83,17 @@ var convertData = function (compactdata, compactejs, orderId) {
     };
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
-        return convert.html2pdf(resultHtml.htmlpath)
+        return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
-        data.pdfpath = '/files/pdf/' + path.basename(resultPDF.pdfpath);
+        data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
     .then(function(resultImgs){
         resultImgs.imgs.forEach(function (img) {
             data.imgs.push('/files/images/' + path.basename(img));
         });
-        return data
+        return data;
     });
 
 };
@@ -96,7 +102,7 @@ var convertData = function (compactdata, compactejs, orderId) {
 
 // generate compact
 exports.generate_compact = function (req, res, next) {
-    checker.orderId(req.query.orderId);
+    // checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
     var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
 
@@ -109,11 +115,13 @@ exports.generate_compact = function (req, res, next) {
             var pageData = _.assign({}, {
                 'pageTitle' : '签订电子合同',
                 'orderId'   : orderId,
-                'headerTit' : '签订电子合同'
+                'headerTit' : '签订电子合同',
+                'version': '',
+                'imgs' : []
             });
 
             if (data.success) {
-                convertData({data: data.data.compact}, ejsTemplatePath, orderId).then(function (result) {
+                convertData({data: data.data.contract}, ejspath, orderId).then(function (result) {
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {

@@ -8,8 +8,8 @@ exports.init = function (app) {
 
 // 控制器Controller
 var newDemo = exports.newDemo = function (req, res, next) {
-    logger.info("accessing newdemo");
-    logger.error("erro");
+    logger.info("accessing newdemo 信息");
+    logger.error("erro错误测试");
     res.render('newdemo/newdemo',{
         courseName:'CS201',
         foo:'3',

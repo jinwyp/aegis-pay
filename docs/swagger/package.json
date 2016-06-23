@@ -9,11 +9,14 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js --watch source --watch index.js"
+    "start": "nodemon index.js --watch ui/source/* --watch index.js"
   },
   "devDependencies": {
+    "nodemon": "*"
+  },
+  "dependencies": {
     "bootprint": "*",
     "bootprint-openapi": "*",
-    "nodemon" : "*"
+    "node-static": "^0.7.7"
   }
 }
