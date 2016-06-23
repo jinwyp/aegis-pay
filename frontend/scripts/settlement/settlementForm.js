@@ -17,7 +17,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     var apiHost = '/api';			                            // API域名
 
-        // apiHost  = require('../../api/v1/api_config');       // 接口路径配置
 
     // 页面模块控制
     var settlementForm = {
@@ -151,7 +150,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
@@ -182,7 +181,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
@@ -195,9 +194,73 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             });
         },
 
+        // 开具结算 操作
+        issueSettleHandle: function() {
+
+            var $btnSubSettlement = $('#btnSubSettlement'),         //开具结算
+                $settleAmount = $('[name=ins_ettleAmount]'),        //总结算吨位
+                $harbourDues = $('[name=ins_harbourDues]'),         //港务费
+                $settleMoney = $('[name=ins_settleMoney]'),         //总结算金额
+                $remarks = $('[name=ins_remarks]'),                 //备注
+                $tailMoneyNum = $('.tailMoneyNum'),
+                $refundMoneyNum = $('.refundMoneyNum');
+
+
+            //卖家.提交结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            $btnSubSettlement.click(function() {
+                var $fileList = $('.supplyFileList .fileLab_del'),
+                arrFile = [];
+
+                // 表单验证 处理
+                if(formValidation()) {
+                    return false;
+                }
+
+                for(var i = 0, s = $fileList.length; i < s; i++) {
+                    arrFile.push({
+                        name: $fileList[i].getAttribute('data-name'),
+                        path: $fileList[i].getAttribute('data-id')
+                    });
+                }
+
+                var param = {
+                    version: '10',                 //$('[name=version]').val(),
+                    sellerId: '15',                // $('[name=userId]').val(),
+                    orderId: $('[name=orderId]').val(),
+                    settleAmount: $settleAmount.val(),
+                    harbourDues: $harbourDues.val(),
+                    settleMoney: $settleMoney.val(),
+                    remarks: $remarks.val(),
+                    files: arrFile
+                };
+
+                $.post({
+                    url: apiHost + '/settlement/sellerSubmit',
+                    data: param,
+                    success: function(data){
+                        if(data.success) {
+                            $('.modal .close').click();
+                            message({
+                                type: 'done',
+                                title: '完成：',
+                                detail: '确认审核 操作成功'
+                            });
+                            location.href = '/';            //TODO: 成功后调整首页
+                        } else {
+                            message({
+                                type: 'done',
+                                title: '完成：',
+                                detail: '操作失败!!'
+                            });
+                        }
+                    }
+                });
+            });
+        },
+
         // 审核退回 操作
         auditingReturnHandle: function() {
-            var $subReturnReason = $('#subReturnReason');                 //审核退回.第一次
+            var $subReturnReason = $('#subReturnReason');           //审核退回.第一次
 
 
             $subReturnReason.click(function() {
@@ -235,17 +298,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         },
 
-
         // 确认结算 操作
         auditingAdoptHandle: function() {
 
         },
-
-        // 开具结算 操作
-        issueSettleHandle: function() {
-
-        },
-
 
         // 操作按钮板块
         operationBtnPlate: function() {
@@ -336,6 +392,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         },
 
+
+
         // 初始化
         init: function() {
             this.doubtPlateHandle();
@@ -344,7 +402,9 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             this.clearPaymentHandle();
             this.supplyAgreementPlate();
             this.upSealPlatePlate();
+            this.issueSettleHandle();
             this.auditingReturnHandle();
+            this.auditingAdoptHandle();
             this.operationBtnPlate();
         }
     };
@@ -364,6 +424,59 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     //}
 
 
+    // 表单验证.开具结算
+    function formValidation() {
+        var results = false,
+
+            $settleAmount = $('[name=ins_ettleAmount]'),
+            $harbourDues = $('[name=ins_harbourDues]'),
+            $settleMoney = $('[name=ins_settleMoney]'),
+            $fileList = $('.supplyFileList .fileLab_del');
+
+        if(!$.trim($settleAmount.val()) ) {
+            isShowErrorBox($settleAmount, true, '结算吨位 不能为空!');
+            return results = true;
+        } else {
+            isShowErrorBox($settleAmount, false);
+        }
+
+        if(!$.trim($harbourDues.val()) ) {
+            isShowErrorBox($harbourDues, true, '港务费 不能为空!');
+            return results = true;
+        } else {
+            isShowErrorBox($harbourDues, false);
+        }
+
+        if(!$.trim($settleMoney.val()) ) {
+            isShowErrorBox($settleMoney, true, '总结算金额 不能为空!');
+            return results = true;
+        } else {
+            isShowErrorBox($settleMoney, false);
+        }
+
+        if($fileList.length < 1) {
+            message({
+                type: 'error',
+                title: '错误：',
+                detail: '请上传 补充协议文件!'
+            });
+            return results = true;
+        }
+
+        return results;
+    }
+
+    // 显示, 隐藏错误框
+    function isShowErrorBox($tag, show, errInfo) {
+        var $errBox = $tag.next('.errInfo');
+        errInfo = errInfo || '';
+
+        if(show) {
+            $errBox.html(errInfo).addClass('err');
+        } else {
+            $errBox.html(errInfo).removeClass('err');
+        }
+    }
 
     /**
      * 获取URL参数值

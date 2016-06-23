@@ -84,21 +84,21 @@
                     </span>
                     <% } %>
                     <div class="supplyFileList" style="display: inline-block">
-                        <% orderObj.contractFiles = orderObj.contractFiles ? orderObj.contractFiles : [] %>
-                        <% for(var x = 0, s = orderObj.contractFiles.length; x < s; x++ ){ %>
-                            <% var fileObj = orderObj.contractFiles[x]; %>
+                        <% data.files = data.files ? data.files : [] %>
+                        <% for(var x = 0, s = data.files.length; x < s; x++ ){ %>
+                            <% var fileObj = data.files[x]; %>
                             <% if(isSupply_sell && fileObj ){ %>
                             <!-- 卖家编辑附件 -->
                             <p class="fileLab">
                                 <span class="fileLab_name"><%=fileObj.name %></span>
-                                <span class="fileLab_del" data-id="<%=fileObj.path %>"></span>
+                                <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
                             </p>
                             <% } %>
                             <% if(isSupply_only && fileObj ){ %>
                             <!-- 卖家查看-->
                             <p class="fileLab only">
                                 <span class="fileLab_name"><%=fileObj.name %></span>
-                                <span class="fileLab_del" data-id="<%=fileObj.path %>"></span>
+                                <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
                             </p>
                             <% } %>
                         <% } %>
@@ -262,10 +262,15 @@
 
 
 
-<input type="hidden" name="orderStatus" data-status="<%= orderObj.status %>" />
+<input type="hidden" name="orderStatus" value="<%= orderObj.status %>" data-status="<%= orderObj.statusName %>" />
 <input type="hidden" name="orderId" value="<%= orderObj.id %>" />
-<%- include ../global/footer/footer %>
+<input type="hidden" name="userId" value="<%= orderObj.userId %>" />
+<input type="hidden" name="sellerId" value="<%= orderObj.sellerId %>" />
+<input type="hidden" name="version" value="<%= orderObj.version %>" />
 
+
+
+<%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>
 
 <script src="<%= staticPath %>/scripts/settlement/settlementForm.js"></script>

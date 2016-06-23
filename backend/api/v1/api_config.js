@@ -33,17 +33,17 @@ var api_config = {
      * params: {orderId: 1, userId: 121, type:1}
      * errorCode: 1001 资金账户未开通
      * response: {success: true,	error:'', errorCode: '1001',
-	 *							data: {
-							    	order: {
-								        id
-								        version
-								        sellerCompanyName:’卖家公司名称’,
-								        sellerFundAccount: ‘卖家资金账户’,
-								        totalMoney: 订单总金额,
-								        sellerBalanceMoney: 余额,
-								     }
-								 }
-							}
+            data: {
+                    order: {
+                        id
+                        version
+                        sellerCompanyName:’卖家公司名称’,
+                        sellerFundAccount: ‘卖家资金账户’,
+                        totalMoney: 订单总金额,
+                        sellerBalanceMoney: 余额,
+                    }
+                }
+            }
      */
     payPage       : host + 'mall/order/payment',
 
@@ -152,11 +152,16 @@ var api_config = {
 
     /**
      * 开具结算单 系列Api
-     * sellerView 卖家查看
-     * sellerSubmit 卖家提交
-     *
+     * sellerView       卖家查看
+     * sellerSubmit     卖家提交
+     * buyersView       买家查看
+     * buyersReturn     买家退回
+     * buyersEditReason     买家修改退回原因
+     * buyersAuditing       买家审核
+     * downPrintSettle      打印下载
      */
     sellerView:         host + 'mall/order/seller/settle',
+    sellerSubmit:       host + 'mall/order/seller/settle/submit',
     buyersView:         host + 'mall/order/settle',
     buyersReturn:       host + 'mall/order/settle/return',
     buyersEditReason:   host + 'mall/order/settle/return/editreason',
