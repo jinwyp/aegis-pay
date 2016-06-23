@@ -74,7 +74,7 @@ var api_config = {
     orderProgress : host + 'mall/order/payment/success',
 
     orderDetail : host + 'getOrderDetail',
-    confirmDelivery : host + 'confirmDelivery',
+    confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
     confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
     orderInfo : host + 'order/orderInfo',
@@ -118,6 +118,12 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'financial/order/details',
+    bindingBankAccount : host + '/account/fund/bankCard/add',
+    bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
+    bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
+    bindingSuccess : host + 'account/fund/bankCard/verify',
+    bindingBankAccountSubmit : host + 'account/fund/bankCard/add/submit',
+    remittance:host+ 'account/fund/bankCard/verify/submit',
 
     // open fund account
     openFundAccount: host + 'account/fund/create',

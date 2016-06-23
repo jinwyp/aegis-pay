@@ -42,6 +42,7 @@ var payCtl          = require('../../controllers/pay');
 var wealthCenter    = require('../../controllers/wealth/wealthCenter');                         //财富管理
 var financialHome   = require('../../controllers/wealth/financialHome');                        //财富管理
 var accountSetting  = require('../../controllers/accountSetting');                              //账户设置
+var bindingBankAccount = require('../../controllers/wealth/bindingBankAccount'); //绑定银行卡
 var notice          = require('../../controllers/notice');                                      //账户设置消息提醒
 var paypasswordCtl = require('../../controllers/paypassword/index');                            //paypassword
 
@@ -104,6 +105,8 @@ router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);
 
+router.get('/wealth/bindingBankAccount',bindingBankAccount.bindingBankAccount);
+router.get('/wealth/bindingSuccess',bindingBankAccount.bindingSuccess);
 
 router.get('/account/accountSetting', accountSetting.accountSetting);                           //账户设置
 router.get('/account/notice', notice.notice);                                                   //账户设置消息提醒
