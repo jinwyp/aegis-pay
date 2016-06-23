@@ -9,9 +9,9 @@
             <div class="txtAreaBox">
                 <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
                 <% if(editable !="false" ){ %>
-                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如果对“发票备注”内容有明确要求，请详细填写" ></textarea>
+                    <textarea class="txtArea .returnText" id="requirement" name="requirement" rows="7" maxlength="200" placeholder="如果对“发票备注”内容有明确要求，请详细填写" ></textarea>
                 <%}else{%>
-                    <textarea class="disabled_textarea" name="remarks" disabled>备注</textarea>
+                    <textarea class="disabled_textarea" id="requirement" name="requirement" disabled>备注</textarea>
                 <%}%>
             </div>
         </div>
@@ -24,9 +24,9 @@
             <div class="txtAreaBox">
                 <% if(editable !="false" ){ %>
                 <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
-                    <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="如有其他特殊要求，请详细填写" <% if(editable =="false" ){ %>disabled="disabled" <%}%> >备注...</textarea>
+                    <textarea class="txtArea .returnText" id="specialRequirement" name="specialRequirement" rows="7" maxlength="200" placeholder="如有其他特殊要求，请详细填写" <% if(editable =="false" ){ %>disabled="disabled" <%}%> ></textarea>
                 <%}else{%>
-                    <textarea class="disabled_textarea" name="remarks" disabled>备注</textarea>
+                    <textarea class="disabled_textarea" id="specialRequirement" name="specialRequirement" disabled>备注</textarea>
                 <%}%>
             </div>
         </div>
@@ -36,8 +36,8 @@
 
             <div class="plateMain txt_c">
                 <br/><br/>
-                <input type="button" class="iBtn iBtn_def" value="取消">
-                <input type="button" class="iBtn iBtn_yes ml20" value="确认">
+                <input type="button" id="cancelBtn" class="iBtn iBtn_def" value="取消">
+                <input type="button" id="submitInvoiceNoteBtn" class="iBtn iBtn_yes ml20" value="确认">
             </div>
 
         <%}else{%>

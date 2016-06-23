@@ -30,12 +30,10 @@ var logger           = require("./libs/logger");
 var ejs              = require('ejs');
 
 
-
-// require('./common/ejsFiltersAddon')(require('ejs').filters);
-
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../frontend/dist');
-var fileStatic = config.files_root;
+var fileStatic = config.file_path.root;
+
 
 
 var app = express();

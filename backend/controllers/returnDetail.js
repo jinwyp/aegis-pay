@@ -11,7 +11,8 @@ var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var config     = require('../config');
 
-var zipFilePath = config.files_root;
+
+var __dirfiles = config.file_path.root;
 
 
 // 处理业务逻辑
@@ -23,9 +24,9 @@ exports.returnDetail = function (req, res, next) {
 
         if (err) return next(err);
 
-        var qualityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(zipFilePath+'/static', '/files');
-        var quantityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(zipFilePath+'/static', '/files');
-        
+        var qualityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+        var quantityZip = req.protocol + '://' + req.hostname + ':' + config.port + zipurl.replace(__dirfiles+'/static', '/files');
+
         var url = api_config.orderReturn;
 
         request({url : url}, function (err, data) {
@@ -49,5 +50,3 @@ exports.returnDetail = function (req, res, next) {
     //});
 
 };
-
-

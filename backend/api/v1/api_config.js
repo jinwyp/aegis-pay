@@ -20,7 +20,7 @@ var api_config = {
      * method: post
      * params: {orderId: 1, userId:1, version: 1, files:'电子合同文件path'}
      */
-    signCompact   : host + 'mall/order/signcontract',
+    signCompact   : host + 'mall/order/signContract',
     /**
      * fetch未盖章电子合同
      * method: get
@@ -53,7 +53,7 @@ var api_config = {
      * method: post
      * params: {phone: 18611111111, message: '343434'}
      */
-    sendSMSCode   : host + 'sendSMSCode',
+    sendSMSCode   : host + 'sendSMS',
     // user can send sms again after 120s
     smsResend: 120,
 
