@@ -9,15 +9,19 @@ var request = require('request');
 var path = require('path');
 var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
+var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.billCenter = function (req, res, next) {
 
-    request({url : api_config.billCenter+'?userId=' + 15}, function (err, data) {
+    var user = req.session.user;
+    request({url : api_config.billCenter+'?userId=' + user.id}, function (err, data) {
 
-        if (err) return next(err);
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
 
-        var userId = req.session.user.id;
         var source = JSON.parse(data.body);
 
         //头部
@@ -79,7 +83,10 @@ exports.billCenter = function (req, res, next) {
 };
 
 exports.receiveReceipt = function (req, res, next) {
-    request({url : api_config.receiveReceipt+'?sellerId=' + 15+'&orderId=' + 3615}, function (err, data) {
+    var user = req.session.user;
+    var orderId = req.body.orderId;
+
+    request({url : api_config.receiveReceipt+'?sellerId=' + user.id +'&orderId=' + orderId}, function (err, data) {
 
         if (err) return next(err);
         var replayDate = JSON.parse(data.body);

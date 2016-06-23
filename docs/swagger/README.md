@@ -2,7 +2,7 @@
 
 ## 文档使用 swagger 编辑
 
-### 默认直接打开ui/output/index.html 就可以查看文档
+### 默认直接打开ui/output/index.html 就可以查看文档 , 另一种文档页面格式请看下面
 
 
 

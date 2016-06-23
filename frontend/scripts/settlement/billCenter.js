@@ -52,6 +52,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
         $.ajax({
             url:"/settlement/receiveReceipt",
             type: 'post',
+            data:{orderId:$(".sureSettle").attr("name")},
             success:function(data){
                 if(data.success){
                     $(".modal_2").modal();

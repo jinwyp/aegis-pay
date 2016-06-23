@@ -109,10 +109,10 @@ var api_config = {
     // 忘记密码 － 重置密码 - 提交
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     //开票中心
-    billCenter : host + '/finance/order/seller/receipt',
-    billSetting : host + '/finance/receipt',
-    billDelete : host + '/finance/receipt/delete',
-    receiveReceipt : host + '/mall/order/seller/notice/receiveReceipt',
+    billCenter : host + 'finance/order/seller/receipt',
+    billSetting : host + 'finance/receipt',
+    billDelete : host + 'finance/receipt/delete',
+    receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
@@ -149,9 +149,27 @@ var api_config = {
 
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash',
-
     fundinfo: host + 'account/fund/info',
-    checkFundPassword: host + 'account/fund/checkPayPwd'
+    checkFundPassword: host + 'account/fund/checkPayPwd',
+
+
+    sellerSubmit:       host + 'mall/order/seller/settle/submit',
+
+
+    /**
+     * 开具结算单 系列Api
+     * sellerView 卖家查看
+     * sellerSubmit 卖家提交
+     *
+     */
+    sellerView:         host + 'mall/order/seller/settle',
+    buyersView:         host + 'mall/order/settle',
+    buyersReturn:       host + 'mall/order/settle/return',
+    buyersEditReason:   host + 'mall/order/settle/return/editreason',
+    buyersAuditing:     host + 'mall/order/settle/submit',
+    downPrintSettle:    host + 'mall/order/print/settle'
+
+
 
 };
 
