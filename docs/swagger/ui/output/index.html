@@ -547,8 +547,25 @@
                                 <tbody>
                                         <tr>
                                             <td>
-                                                pageNo
-                                            <td><p>第几页</p>
+                                                userId
+                                            <td><p>用户ID 测试ID:2719</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (1 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                page
+                                            <td><p>第几页 用来分页</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">integer</span>
@@ -563,25 +580,24 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                userId
-                                            <td><p>用户ID</p>
+                                                pagesize
+                                            <td><p>每页显示条数</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">integer</span>
                                         <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
                                         
                                             <span class="json-property-range" title="String length limits">
-                                                    (2 to 1000 chars)
+                                                    (1 to 1000 chars)
                                             </span>
                                             </td>
                                             <td>
-                                                    <span class="json-property-required"></span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 startDate
-                                            <td><p>开始时间</p>
+                                            <td><p>开始时间 2015-08-26</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">string</span>
@@ -594,7 +610,7 @@
                                         <tr>
                                             <td>
                                                 endDate
-                                            <td><p>结束时间</p>
+                                            <td><p>结束时间 2017-08-26</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">string</span>
@@ -606,8 +622,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                tradeType
-                                            <td><p>交易类型</p>
+                                                type
+                                            <td><p>交易类型 充值1, 提现2, 销售3, 采购4</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">string</span>
@@ -632,8 +648,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                userFundAccount
-                                            <td><p>用户资金账号</p>
+                                                searchContent
+                                            <td><p>交易流水号 / 对方账户名称 / 订单号 文本</p>
                                         </td>
                                             <td>formData</td>
                                             <td><span class="json-property-type">string</span>
