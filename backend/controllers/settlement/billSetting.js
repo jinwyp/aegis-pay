@@ -72,7 +72,8 @@ exports.billSetting = function (req, res, next) {
                     secondTab: secondTab
                 },
                 accountSideBar: accountSideBar,
-                receiptOrder:source.data.receiptOrder
+                receiptOrder:source.data.receiptOrder,
+                receipt:source.data.receipt
 
             };
             //渲染页面
