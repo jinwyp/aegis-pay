@@ -50,8 +50,9 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
     //未认证弹出框
     $(".sureSettle").click(function(){
         $.ajax({
-            url:"/settlement/billDelete",
+            url:"/settlement/receiveReceipt",
             type: 'post',
+            data:{orderId:$(".sureSettle").attr("name")},
             success:function(data){
                 if(data.success){
                     $(".modal_2").modal();
@@ -60,6 +61,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
                     $("#modalInfo_2").css({fontSize:"16px"});
                     $("#md_ok_2").click(function(){
                         $(".modal_2").modal("hide");
+                        location.reload();
                     })
                 }
                 else{

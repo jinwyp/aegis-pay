@@ -44,7 +44,7 @@
                             <%}else{%>
                                 <td>待开票</td>
                                 <td>
-                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle"></div>
+                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle" name="<%= obj.orderId  %>"></div>
                                     <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
                                 </td>
                             <%}%>
@@ -63,6 +63,7 @@
 
                     </tbody>
                 </table>
+                <% include page %>
             </div>
         </div>
     </div>

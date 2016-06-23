@@ -18,7 +18,7 @@ var nkScope = nock(API.host).log(console.log);		        				// 执行一次
 var nkScopePersist = nock(API.host).log(console.log).persist();		        // 执行多次
 
 
-/* ****************** */
+
 // 待结算_卖:WaitSettleAccounts
 nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'110000'})
 	.reply(200, {
@@ -85,7 +85,13 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'2
 				settleMoney: 222,							//*结算金额
 				tailMoney: 0,								//*应补款
 				refundMoney: 0,								//*应退款
-				remarks: '说明11'
+				remarks: '说明11',
+
+				contractFiles: [
+					{name: '补充协议文件1', path: '/a/b/xy_1.jpg'},
+					{name: '补充协议文件2', path: '/a/b/xy_2.jpg'},
+					{name: '补充协议文件3', path: '/a/b/xy_3.jpg'}
+				]
 			}
 		}
 	});
@@ -150,19 +156,19 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'22
 				amount: 3000,								//合同吨位
 				price: 100, 								//合同单价
 				totalMoney: 1000,							//合同金额.付款金额
-				paymentTime: '2016-06-20 16:11:48',			//付款时间
+				paymentTime: '2016-06-20 13:13:13',			//付款时间
 
 				buyerCompanyName: '购方公司22',				//购方公司
 				sellerCompanyName: '销方公司22',				//销方公司
 				status: 'WaitVerifySettle',
 				statusName: '待审核',
-				sellerSettleTime: '2016-06-20 16:11:48',	//*结算单创建时间
+				sellerSettleTime: '2016-06-20 12:12:12',	//*结算单创建时间
 
 				settleAmount: 300,							//*结算吨数
 				harbourDues: 555,							//*港务费
-				settleMoney: 1000,							//*结算金额
-				tailMoney: 100,								//*应补款
-				refundMoney: 0,								//*应退款
+				settleMoney: 1200,							//*结算金额
+				tailMoney: 0,								//*应补款
+				refundMoney: 40,							//*应退款
 				remarks: '说明11',
 
 				currentTime: '2016-06-22 00:00:00'			//当前时间
@@ -211,10 +217,6 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'32
 		}
 	});
 
-/* ************* */
-
-
-
 
 
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
@@ -253,7 +255,6 @@ nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'11
 			}
 		}
 	});
-
 
 
 //API路由: *买家.查看结算单 (待审核_买:WaitVerifySettle)
@@ -310,8 +311,8 @@ nkScopePersist.get('/settlement/downPrint')
 				coalType: '动力煤',							//煤种
 				amount: 3000,								//合同吨位
 				price: 100, 								//合同单价
-				totalMoney: 1000,							//合同金额.付款金额
-				paymentTime: '2016-06-20 16:11:48',			//付款时间
+				totalMoney: 1000,							//合同金额.付款金额.已付金额
+				paymentTime: '2016-06-20 11:11:11',			//付款时间
 
 				buyerCompanyName: '购方公司',					//购方公司
 				sellerCompanyName: '销方公司',				//销方公司
@@ -321,14 +322,18 @@ nkScopePersist.get('/settlement/downPrint')
 
 				settleAmount: 300,							//*结算吨数
 				harbourDues: 555,							//*港务费
-				settleMoney: 1000,							//*结算金额
+				settleMoney: 1200,							//*实际结算金额
 				tailMoney: 100,								//*应补款
 				refundMoney: 0,								//*应退款
 				remarks: '说明33',
 
 				currentTime: '2016-06-22 00:00:00',			//当前时间
 				settleReturnTime: '2016-06-22 00:00:00',    //结算退回时间
-				returnReason: '结算退回原因 结算退回原因'
+				returnReason: '结算退回原因 结算退回原因 打印',
+
+				contractFiles: [
+					{name: '补充协议文件', path: '/a/b/d.jpg'}
+				]
 			}
 		}
 	});
@@ -351,7 +356,9 @@ nkScopePersist.post('/settlement/buyersReturn')//.query({sellerId: '213', orderI
 // API路由: 买家.修改退回原因 (审核被退回_买:ReturnedSettleAccounts )
 nkScopePersist.post('/settlement/buyersEditReason')//.query({sellerId: '213', orderId:'110000'})
 	.reply(200, {
-		success: true
+		success: true,
+		reason: '退回原因 已更新',
+		settleReasonTime: '2016-06-22 22:22:22'
 	});
 
 

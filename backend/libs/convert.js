@@ -10,12 +10,16 @@ var config   = require('../config');
 var utils    = require('./utils');
 var logger   = require("./logger");
 
-var __dirfiles = config.files_root;
+var __dirfiles = config.file_path.root;
+var images_path = config.file_path.root + config.file_path.images + '/';
+var html_path = config.file_path.root + config.file_path.html + '/';
+var pdf_path = config.file_path.pdf + '/';
+var zips_path = config.file_path.zips;
 
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
-    var imgpath          = options && options.imgpath || path.join(__dirfiles, 'images/');
+    var imgpath          = options && options.imgpath || images_path;
     var convertExtension = options && options.convertExtension || 'jpg';
 
     //if (!utils.isDirExistsSync(imgpath)) {
@@ -56,10 +60,10 @@ exports.pdf2image = function (pdfpath, options) {
 };
 
 
-exports.html2pdf = function (htmlpath, pdfname) {
+exports.html2pdf = function (htmlpath, options) {
 
-    var pdfname = pdfname || path.basename(htmlpath, '.html');
-    var pdfpath = path.join(__dirfiles, 'pdf/');
+    var pdfname = options.pdfname || path.basename(htmlpath, '.html');
+    var pdfpath = options.pdfpath || pdf_path;
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
 
@@ -107,7 +111,7 @@ exports.html2pdf = function (htmlpath, pdfname) {
 exports.ejs2html = function (data, ejspath, options) {
     var htmlname = options && options.htmlname || path.basename(ejspath, '.ejs');
 
-    var htmlpath = options && options.htmlpath || path.join(__dirfiles, 'html/');
+    var htmlpath = options && options.htmlpath || html_path;
     var htmlfile = htmlpath + htmlname + '.html';
 
     utils.makeDir(htmlpath);
@@ -119,7 +123,7 @@ exports.ejs2html = function (data, ejspath, options) {
         } else {
             ejs.renderFile(ejspath, data, function (err, resulthtml) {
                 if (err) reject(err);
-                
+
                 if (resulthtml) {
                     fs.writeFile(htmlfile, resulthtml, 'utf-8', function (err) {
                         if (err) reject(err);
@@ -160,7 +164,7 @@ exports.zipFile = function (options) {
             options.path = [options.path];
         }
 
-        self.default = {type : 'zip', output : path.join(__dirfiles, 'zips')};
+        self.default = {type : 'zip', output : zips_path};
 
         if (!options.zipname) {
             if (utils.isDirExistsSync(options.path[0])) {

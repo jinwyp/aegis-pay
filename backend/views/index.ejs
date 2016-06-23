@@ -38,8 +38,19 @@
         <li><a href="/settlement/settlementForm?type=1&id=220000" target="_blank">结算:待审核.买家审核结算单</a></li>
         <li><a href="/settlement/settlementForm?type=2&id=310000" target="_blank">结算:审核退回.卖家修改数据</a></li>
         <li><a href="/settlement/settlementForm?type=1&id=320000" target="_blank">结算:审核退回.买家修改退回原因</a></li>
-        <li><a href="/settlement/confirmTheInvoice?type=2&id=110000" target="_blank">结算.确认开票信息</a> >
-            <a href="/settlement/addInvoiceNotes?type=2&id=220000" target="_blank">结算.确认开票追加备注</a> </li>
+
+
+        <li><a href="/settlement/confirmTheInvoice" target="_blank">开票设置.确认开票信息(无orderId)</a> --&gt; 开票设置列表</li>
+        <li>
+            <a href="/settlement/confirmTheInvoice?orderId=110000" target="_blank">结算.确认开票信息(有orderId)</a> --&gt;
+            <a href="http://localhost:4000/settlement/addInvoiceNotes?orderId=110000" target="_blank">结算单.添加开票备注</a>
+        </li>
+        <li>
+            <a href="/settlement/confirmTheInvoice?orderId=220000" target="_blank">结算.确认开票信息(有orderId,无发票信息)</a> --&gt;
+            <a href="http://localhost:4000/settlement/addInvoiceNotes?orderId=110000" target="_blank">结算单.添加开票备注</a>
+        </li>
+        <li><a href="/settlement/addInvoiceNotes?orderId=110000" target="_blank">结算.确认开票追加备注</a> </li>
+        
         <li>结算管理--<a href="/settlement/billCenter">发票中心</a>--<a href="/settlement/settleDetails">查看及下载开票资料</a></li>
         <li><a href="/return?orderId=100000" target="_blank">退货详情页</a></li>
         <li><a href="/confirmDelivery/sellerDelivery" target="_blank">卖家审核提货</a> &gt; <a href="/confirmDelivery/confirmComplete">确认完成页面</a></li>

@@ -15,11 +15,11 @@ var logger     = require("../../libs/logger");
 var utils      = require('../../libs/utils');
 var config     = require('../../config');
 
-var excelSavePath = path.join(config.files_root, config.upload, '/financial-details');
+var excelSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
 utils.makeDir(excelSavePath);
 
-var pdfSavePath = path.join(config.files_root, config.upload, '/financial-details');
-var pdfHtmlTemplatePath = path.join(config.download, '/financialDetails/pdftemplate.ejs');
+var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
+var pdfHtmlTemplatePath = path.join(config.file_path.download, '/financialDetails/pdftemplate.ejs');
 
 
 
@@ -69,7 +69,7 @@ exports.financialDetails = function (req, res, next) {
         },
 
         accountNumber : '1234567890',
-        
+
         formSelectOrderCategory:[
             {id:'1', value:'1', text:'提现'},
             {id:'2', value:'2', text:'采购'},
@@ -80,7 +80,7 @@ exports.financialDetails = function (req, res, next) {
             {id:'2', value:'2', text:'对方账户名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
-        
+
     };
 
     res.render('wealth/financialDetails',content);
@@ -102,8 +102,8 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
         var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
 
-        var url = api_config.financialDetails;
-        request.post(url, {body: params, json:true}, function (err, response, body) {
+    var url = api_config.financialDetails;
+    request.post({url: url, form: params}, function (err, response, body) {
 
             if (err) return next(err);
 
@@ -129,12 +129,12 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
                     excel(excelOptions);
                     return res.download(options.savePath);
-                    
+
                 }else if (getQuery.filetype === 'pdf'){
 
                     ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
                         if (err) return next(err);
-                        
+
                         var pdfOptions = {format : 'Letter'};
                         var pdfFileName = pdfSavePath + '/financialdetails.pdf';
 
@@ -264,4 +264,3 @@ exports.financialSettlement = function (req, res, next) {
     });
 
 };
-

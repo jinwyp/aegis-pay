@@ -10,9 +10,9 @@ exports.forgetValid = function (req, res, next) {
     var body = req.body;
 
     var params = _.assign({}, { userId: req.session.user.id}, body);
-    request.post(api_config.paypasswordForgetValid, {body:params, json:true}, function (err, data) {
+    request.post({url: api_config.paypasswordForgetValid, form:params}, function (err, data) {
         if (err) return next(err);
-        var result = data.body;
+        var result = JSON.parse(data.body);
         if (data && result.success) {
             cache.set('payPassword:'+req.session.user.id+':forgetvalid', 'true', 180);
             return res.json(result);
@@ -28,9 +28,9 @@ exports.forgetSubmit= function (req, res, next) {
     var body = req.body;
     var params = _.assign({}, { userId: req.session.user.id, }, body);
 
-    request.post(api_config.paypasswordForgetSubmit, {body:params, json:true}, function (err, data) {
+    request.post({url:api_config.paypasswordForgetSubmit, form:params}, function (err, data) {
         if (err) return next(err);
-        var result = data.body;
+        var result = JSON.parse(data.body);
         if (result) {
             if(result.success){
                 cache.set('payPassword:'+req.session.user.id+':forgetset', 'true', 180);
@@ -50,9 +50,9 @@ exports.modifySubmit= function (req, res, next) {
     var body = req.body;
     var params = _.assign({}, { userId: req.session.user.id, }, body);
 
-    request.post(api_config.paypasswordModifySubmit, {body:params, json:true}, function (err, data) {
+    request.post({url:api_config.paypasswordModifySubmit, form:params}, function (err, data) {
         if (err) return next(err);
-        var result = data.body;
+        var result = JSON.parse(data.body);
         if (result) {
             if(result.success){
                 cache.set('payPassword:'+req.session.user.id+':modifyset', 'true', 180);

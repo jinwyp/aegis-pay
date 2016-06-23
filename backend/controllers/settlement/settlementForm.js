@@ -13,7 +13,6 @@
   	WaitPayTailMoney	 	审核通过.待买家补款  (_)
   	WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
   	WaitWriteReceipt	 	审核通过.待卖家开发票(_)
-
 	查看结算单:卖家 		settlement/sellerView 			../mall/order/seller/settle
 	提交结算单:卖家 		settlement/sellerSubmit 		../mall/order/seller/settle/submit
 	查看结算单:买家 		settlement/buyersView 			../mall/order/settle
@@ -139,9 +138,8 @@ var buyersView = exports.buyersView = function (req, res, next) {
 // API路由: *买家.查看结算单.已退回 --------- http://localhost:3001/api/settlement/buyersView?id=320000
 
 
-
 // API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint?id=110101
-var downPrint = exports.downPrint = function (req, res, next) {
+var downPrintSettle = exports.downPrintSettle = function (req, res, next) {
 	var orderId = req.query.id,
 		userId = req.session.user.id;
 
@@ -150,7 +148,7 @@ var downPrint = exports.downPrint = function (req, res, next) {
 		sellerId: userId
 	};
 
-	var url = apiHost.host + 'settlement/downPrint';
+	var url = apiHost.host + 'settlement/downPrintSettle';
 	request(url, param, function (err, data) {
 		if (err) return next(err);
 
@@ -212,6 +210,7 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 // API路由: 买家.修改退回原因 --------- http://localhost:3001/api/settlement/buyersEditReason
 var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 	var url = apiHost.host + 'settlement/buyersEditReason';
+	//var url = apiHost.buyersEditReason;
 	request.post(url, {body:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
 
@@ -243,5 +242,3 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 		}
 	});
 };
-
-

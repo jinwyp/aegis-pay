@@ -9,9 +9,20 @@ var config = {
     domain   : 'pay-local.yimei180.com', // 域名
     homepage : 'http://pay-local.yimei180.com:3001',
 
-    app_root:  path.join(__dirname, '../../../'), 
-    files_root : path.join(__dirname, '../../../files'), 
-    
+    file_path: {
+        root : path.join(__dirname, '../../../files'),
+        upload_tmp  : '/upload_tmp_pay',
+        upload      : '/upload',
+        html        : '/html',
+        images      : '/images',
+        views       : path.join(__dirname, '../views'),
+        download    : path.join(__dirname, '../views/download'),
+        zips        : path.join(__dirname, '../views/download/zips'),
+        pdf         : path.join(__dirname, '../views/download/pdf')
+    },
+
+    app_root: path.join(__dirname,'../'),
+
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',
         cookieName : 'passport'
@@ -21,4 +32,3 @@ var config = {
 };
 
 module.exports = config;
-

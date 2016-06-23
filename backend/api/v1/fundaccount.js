@@ -6,10 +6,10 @@ var api_config = require('./api_config');
 
 exports.openFundAccount = function(req, res, next){
     var params = _.assign({}, {userId: req.session.user.id}, req.body);
-    request.post(api_config.openFundAccount, {body: params, json:true}, function(err, data){
+    request.post({url: api_config.openFundAccount, form:params}, function(err, data){
         if(err) return next(err);
         if(!err && data){
-            var result = data.body;
+            var result = JSON.parse(data.body);
             res.json(result);
         }
     })
@@ -18,10 +18,10 @@ exports.openFundAccount = function(req, res, next){
 exports.fetchOpenStatus = function(req, res, next){
     var count = 0;
     var fetchStatusTimer = setInterval(function(){
-        request.post(api_config.fetchOpenStatus, {body: {userId: req.session.user.id}, json:true}, function(err, data){
+        request.post({url: api_config.fetchOpenStatus, form:{userId: req.session.user.id}}, function(err, data){
             if(err) return next(err);
             if(!err && data){
-                var result = data.body;
+                var result = JSON.parse(data.body);
                 var status = result.data.success;
                 if(status === 1){
                     // 开通成功

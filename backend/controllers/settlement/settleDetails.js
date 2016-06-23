@@ -10,7 +10,8 @@ var convert = require('../../libs/convert');
 var config = require('../../config');
 var cache = require('../../libs/cache');
 
-var tableEjs    = process.cwd() + '/views/settlement/settleTable.ejs';
+var tableEjs    = config.file_path.views + '/settlement/settleTable.ejs';
+var downloadPath = config.file_path.download;
 
 // 处理业务逻辑
 exports.settleDetails = function (req, res, next) {
@@ -65,7 +66,7 @@ exports.generate_settle = function (req, res, next) {
                     status: 'ReturnedSettleAccounts'
                 }
             };
-            convert.ejs2html(data, tableEjs, {pathname: 'settleDetails_'+req.query.orderId, htmlpath: config.download + '/'}).then(function(result){
+            convert.ejs2html(data, tableEjs, {pathname: 'settleDetails_'+req.query.orderId, htmlpath: downloadPath + '/'}).then(function(result){
                 var htmlpath = '/download/' + path.basename(result.htmlpath);
                 content.htmlpath = htmlpath;
                 cache.set('settleDetails:settleDetails_'+req.query.orderId, content);

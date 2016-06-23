@@ -58,10 +58,10 @@ exports.openFundAccountSuccess = function (req, res, next) {
             pageData.userAcccount = data.userAcccount;
             res.render('wealth/openFundAccountSuccess',pageData);
         }else{
-            request.post(api_config.fetchOpenStatus, {body: {userId: req.session.user.id}, json:true}, function(err, data){
+            request.post({url: api_config.fetchOpenStatus, form: {userId: req.session.user.id}}, function(err, data){
                 if(err) return next(err);
                 if(!err && data){
-                    var result = data.body;
+                    var result = JSON.parse(data.body);
                     var status = result.data.success;
                     if(status === 1){
                         // 开通成功

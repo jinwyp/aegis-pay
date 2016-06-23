@@ -33,13 +33,22 @@ var config = {
       cookieName: 'passport'
     },
 
+    // 文件目录配置
+    file_path: {
+        root        : '/app/files',
+        upload_tmp  : '/upload_tmp_pay',
+        upload      : '/upload',
+        html        : '/html',
+        images      : '/images',
+        views       : path.join(__dirname, '../views'),
+        download    : path.join(__dirname, '../views/download'),
+        zips        : path.join(__dirname, '../views/download/zips'),
+        pdf         : path.join(__dirname, '../views/download/pdf')
+    },
 
+    logdir : '../logs/',
+	app_root: path.join(__dirname,'../'),
 
-	app_root:  '/app',
-	files_root:  '/app/files',   // 文件目录
-    upload_tmp: '/upload_tmp_pay', // 上传文件的临时目录
-    upload:     '/upload',         // 上传文件目录
-    download: path.join(__dirname, '../views/download'),
     member_address: 'http://10.100.20.3:3000',
     rest_address: 'http://10.100.30.1:8888/'
 };

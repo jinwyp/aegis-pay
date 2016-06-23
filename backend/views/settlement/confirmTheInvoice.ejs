@@ -68,7 +68,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>开户银行：</th>
                         <td>
-                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="<%=data.receipt && data.receipt.bankNam ? data.receipt.bankNam:"" %>" placeholder="请输入开户银行">
+                            <input type="text" id="bankName" name="bankName" maxlength="50" class="iIpt iIpt_sm" value="<%=data.receipt && data.receipt.bankName ? data.receipt.bankName:"" %>" placeholder="请输入开户银行">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -142,7 +142,7 @@
                             <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
                             <% if(data.receipt && data.receipt.templetUrl){ %>
                             <div class="fileBlockBox_body fBox_1" style="display: block">
-                                <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息"/>
+                                <img class="fileViewImg" src="<%=data.receipt && data.receipt.templetUrl ? data.receipt.templetUrl:"" %>" alt="开票信息"/>
                                 <div class="operateFileBox">
                                     <a href="javascript:;" class="fileLinkBtn">修改</a>
                                     <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= data.receipt.templetUrl %>">删除</a>
@@ -170,7 +170,6 @@
                             </div>
                             <% } %>
                         </div>
-                        <!--<input type="hidden" id="fileId"/>-->
                     </div>
                     <div class="upFileHint">
                         <h4 class="upFileHint_tit">注意事项</h4>
@@ -188,6 +187,7 @@
                 <input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">
                 <input type="button" id="submitBtn" class="iBtn iBtn_yes ml20" value="确认">
             </div>
+            <input type="text" id="orderId" name="orderId" value="<%=data.orderId ? data.orderId : ""%>">
 
         </div>
 

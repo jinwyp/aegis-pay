@@ -1,6 +1,6 @@
 /* 现在的"路由"调用方法 ************************ */
 var router = require('express').Router();
-
+var logger = require('../libs/logger');
 exports.init = function (app) {
     app.use('/', router);
 };
@@ -8,6 +8,8 @@ exports.init = function (app) {
 
 // 控制器Controller
 var newDemo = exports.newDemo = function (req, res, next) {
+    logger.info("accessing newdemo 信息");
+    logger.error("erro错误测试");
     res.render('newdemo/newdemo',{
         courseName:'CS201',
         foo:'3',

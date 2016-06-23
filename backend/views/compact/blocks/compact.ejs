@@ -2,7 +2,7 @@
   <input type='hidden' name='needGenerate' value='<%= imgs.length %>' />
   <input type='hidden' name='version' value='<%= version %>'/>
   <% if(imgs.length>0){ %>
-  <h4 class='blockTitle'>合同内容详情（共<%= imgs.length %>页）<a class='btn_download' target='_blank' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
+  <h4 class='blockTitle'>合同内容详情（共<%= imgs.length %>页）<a class='btn_download' href='<%= pdfpath %>'><span class='icon_download'></span>下载合同</a></h4>
   <div id="compactImgs" class='flexslider carousel'>
   <!-- Carousel items -->
     <ul class="slides">

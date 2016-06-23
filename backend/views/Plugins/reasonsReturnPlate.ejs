@@ -26,17 +26,19 @@
                 <tr>
                     <td width="66">退回原因：</td>
                     <td>
-                        <span class="bright"><%= orderObj.returnReason %></span>
+                        <span class="bright labReturnReason"><%= orderObj.returnReason %></span>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><%= orderObj.settleReturnTime %></td>
+                    <td>
+                        <span class="labReturnTime"><%= orderObj.settleReturnTime %></span>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <input type="button" id="but123124" class="iBtn iBtn_sm iBtn_edit mt10" value="修改退回原因"/>
+                        <input type="button" id="btnTriggerEdit" class="iBtn iBtn_sm iBtn_edit mt10" value="修改退回原因"/>
                     </td>
                 </tr>
                 </tbody>
@@ -52,8 +54,8 @@
                     <td class="va_top" width="66">退回原因：</td>
                     <td>
                         <div class="txtAreaBox">
-                            <div class="dockDown">您还可以输入<span class="limitNum"><%= (200 - orderObj.returnReason.length) %></span>个字</div>
-                            <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason %></textarea>
+                            <div class="dockDown">您还可以输入<span class="limitNum reasonSize"><%= (200 - orderObj.returnReason.length) %></span>个字</div>
+                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason %></textarea>
                         </div>
                     </td>
                 </tr>
@@ -64,8 +66,8 @@
                 <tr>
                     <td></td>
                     <td class="txt_c">
-                        <input type="button" id="btn22222" class="iBtn iBtn_def" value="取消">
-                        <input type="button" id="btn33333" class="iBtn iBtn_yes ml20" value="确认"><br/><br/>
+                        <input type="button" id="btnCancelTrigger" class="iBtn iBtn_def" value="取消">
+                        <input type="button" id="subEditReason" class="iBtn iBtn_yes ml20" value="确认"><br/><br/>
                     </td>
                 </tr>
                 </tbody>

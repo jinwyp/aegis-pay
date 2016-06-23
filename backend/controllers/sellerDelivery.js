@@ -8,7 +8,7 @@ var cache      = require('../libs/cache');
 var config     = require('../config');
 var logger     = require("../libs/logger");
 
-var zipFilePath = config.files_root;
+var zipFilePath = config.file_path.root;
 
 // 处理业务逻辑
 exports.sellerDelivery = function (req, res, next) {

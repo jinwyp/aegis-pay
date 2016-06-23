@@ -26,7 +26,7 @@ exports.financialDetailsApi = function (req, res, next) {
     var params = Object.assign({}, {userId: req.session.user.id}, postBody);
 
     var url = api_config.financialDetails;
-    request.post(url, {body: params, json:true}, function (err, response, body) {
+    request.post({url:url, form:params}, function (err, response, body) {
 
         if (err) return next(err);
 
@@ -42,5 +42,3 @@ exports.financialDetailsApi = function (req, res, next) {
     })
 
 };
-
-

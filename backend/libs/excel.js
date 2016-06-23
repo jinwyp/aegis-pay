@@ -6,7 +6,7 @@ var XLSX = require('xlsx');
 var path = require('path');
 
 var config     = require('../config');
-var emptyExcelTemplate = path.join(config.download, '/financialDetails/empty.xlsx');
+var emptyExcelTemplate = path.join(config.file_path.download, '/financialDetails/empty.xlsx');
 
 
 function isFunction(fn) {
@@ -146,4 +146,3 @@ function excelExport (options, callback){
 
 
 module.exports = excelExport;
-
