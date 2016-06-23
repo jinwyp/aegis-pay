@@ -4,6 +4,7 @@
 
 
 require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
+
     //datePicker
     var transactionRecord= {
         "datepicker": function () {
@@ -26,9 +27,21 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 ]);
             });
         },
+        //sidebar
+        "sideBar":function(){
+            var type = $("#type").val();
+            if(!type){
+                $(".sideBar .dd_0").addClass("current");
+            }else if(type == 1){
+                $(".sideBar .dd_1").addClass("current");
+            }else if(type == 2){
+                $(".sideBar .dd_2").addClass("current");
+            }
+        }
     }
 
     transactionRecord.datepicker();
+    transactionRecord.sideBar();
 
     //sideBar切换
 

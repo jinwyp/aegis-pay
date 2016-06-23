@@ -22,8 +22,8 @@ var orderCloseControl         = require('../../controllers/order/orderClose');  
 var settlementFormControl     = require('../../controllers/settlement/settlementForm');         //结算单开具页面 模块(控制文件路径)
 var billCenter                = require('../../controllers/settlement/billCenter');
 var billSetting               = require('../../controllers/settlement/billSetting');
-var waitSettle                = require('../../controllers/settlement/waitSettle');
-var hadSettle                 = require('../../controllers/settlement/hadSettle');
+var waitSettle                = require('../../controllers/settlement/billCenter');
+var hadSettle                 = require('../../controllers/settlement/billCenter');
 var settleDetails             = require('../../controllers/settlement/settleDetails');
 var settlementInfo            = require('../../controllers/settlement/settlementInfo');
 var disputeApply              = require('../../controllers/disputeApply');                      //纠纷申请
@@ -135,8 +135,8 @@ router.get('/settlement/billCenter', billCenter.billCenter);                    
 router.get('/settlement/billSetting', billSetting.billSetting);                                 //结算管理－开票设置
 router.post('/settlement/billDelete', billSetting.billDelete);                                  //结算管理－开票设置删除按钮
 router.post('/settlement/receiveReceipt', billCenter.receiveReceipt);                           //结算页面－通知短信发送
-router.get('/settlement/waitSettle', waitSettle.waitSettle);                                    //结算管理－开票设置(代开票)
-router.get('/settlement/hadSettle', hadSettle.hadSettle);                                       //结算管理－开票设置(已开票)
+router.get('/settlement/waitSettle', billCenter.billCenter);                                    //结算管理－开票设置(代开票)
+router.get('/settlement/hadSettle', billCenter.billCenter);                                       //结算管理－开票设置(已开票)
 router.get('/settlement/settleDetails', settleDetails.settleDetails);                           //结算管理－发票查看详情
 router.get('/settlement/settlementInfo', settlementInfo.settlementInfo);                        //结算管理－发票设置查看详情
 

@@ -35,7 +35,7 @@ exports.billCenter = function (req, res, next) {
 
         var accountSideBar = {
             current : "",
-            secCurrent:'1',
+            secCurrent:type,
             sideBarList : [
                 {
                     listName : '发票管理',
@@ -81,7 +81,14 @@ exports.billCenter = function (req, res, next) {
 
             };
             //渲染页面
-            return res.render('settlement/billCenter', content);
+            //return res.render('settlement/billCenter', content);
+            if(!type){
+                return res.render('settlement/billCenter', content);
+            }else if(type == 1){
+                return res.render('settlement/waitSettle', content);
+            }else if(type == 2){
+                return res.render('settlement/hadSettle', content);
+            }
         }
     })
 
