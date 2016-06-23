@@ -9,11 +9,18 @@ var request = require('request');
 var path = require('path');
 var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
+var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.hadSettle = function (req, res, next) {
-    request({url : api_config.billCenter+'?userId=' + 15+'&type='+2}, function (err, data) {
-        var userId = req.session.user.id;
+    var user = req.session.user;
+    var type = req.query.type;
+    request({url : api_config.billCenter+'?userId=' + user.id+'&type='+type}, function (err, data) {
+
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
         var source = JSON.parse(data.body);
         //头部
         var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
@@ -34,13 +41,13 @@ exports.hadSettle = function (req, res, next) {
                         },
                         {
                             secListName:'待开票' ,
-                            secListLink:"waitSettle",
+                            secListLink:"waitSettle?type=1",
                             secListNum:source.data.receiptOrder.waitCount
 
                         },
                         {
                             secListName:'已开票',
-                            secListLink:"hadSettle",
+                            secListLink:"hadSettle?type=2",
                             secListNum:source.data.receiptOrder.openCount
                         }
                     ]

@@ -88,6 +88,11 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
             }
         });
     })
+
+
+    $("#submit").click(function(){
+        $("#billSearch").submit();
+    })
     
 
 });

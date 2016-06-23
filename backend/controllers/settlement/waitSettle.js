@@ -44,13 +44,13 @@ exports.waitSettle = function (req, res, next) {
                         },
                         {
                             secListName:'待开票' ,
-                            secListLink:"waitSettle",
+                            secListLink:"waitSettle?type=1",
                             secListNum:source.data.receiptOrder.waitCount
 
                         },
                         {
                             secListName:'已开票',
-                            secListLink:"hadSettle",
+                            secListLink:"hadSettle?type=2",
                             secListNum:source.data.receiptOrder.openCount
                         }
                     ]
