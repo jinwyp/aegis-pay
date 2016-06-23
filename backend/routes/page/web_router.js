@@ -135,5 +135,5 @@ router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, pay
 // setSSOCookie
 router.get('/setSSOCookie', signCtrl.setSSOCookie);
 router.get('/removeSSOCookie', signCtrl.removeSSOCookie);
-
+	
 module.exports = router;

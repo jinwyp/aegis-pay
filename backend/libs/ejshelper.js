@@ -189,7 +189,12 @@ module.exports = function (app) {
         return format;
     };
 
-    app.locals.fundAccountFormat = function(account){
-        return account.replace(/(\d{4})(?=\d)/g,"$1 ");
+    app.locals.fundAccountFormat = function(account,flag){
+        if( flag ){
+            return account.replace(/(\d{4})(?=\d)/g,"<span>****</span> ");
+        }else{
+            return account.replace(/(\d{4})(?=\d)/g,"$1 ");    
+        }
+        
     }
 }
