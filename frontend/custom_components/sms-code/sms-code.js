@@ -58,6 +58,9 @@ define(['jquery','bootstrap'],function($){
               }else{
                   // 短信发送失败
                   var $tiperror = $('.phone').parent().find('.tip-error');
+                  if($(".vertifyCode").length){
+                      var $tiperror=$(".vertifyCode").find(".errorMsg");
+                  }
                   $('#imgcodeModal').modal('hide');
                   switch(data.errType){
                     case 'sms':  //验证码发送失败

@@ -5,12 +5,8 @@
 </head>
 
 <body>
-
 <%- include ../global/header/header %>
-
 <%- include ../global/header/subHeader %>
-
-
 <div id="confirmDelivery">
     <div class="confirmDeliveryWrap">
         <% include ../global/order/statusBar %>
@@ -20,7 +16,7 @@
             <div class="banCon">
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
                 <div class="rightBan">
-                    <%if(deliveryAmount.typeof !="undefined"){%>
+                    <%if(typeof deliveryAmount !="undefined"){%>
                     <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>" />
                     <%}else{%>
                     <input type="text" class="amount" id="deliveryAmount" />
@@ -31,7 +27,7 @@
             <% if (sellInfo.pricingMethodId==1) {%>
             <p class="tableTit"><span>* </span>请填写检测结果</p>
 
-            <% if(indexDataList.typeof != "undefined"){%>
+            <% if(typeof indexDataList != "undefined"){%>
             <div class="banCon pb10">
                 <div class="tableWrap">
                     <!--判断批次总数，下面做判断用-->
@@ -256,7 +252,7 @@
                             <input class='fileupload' data-url='/api/upload-file' type="file" name="files">
                           </span>
                             <div class="files">
-                                <%if(qualityList.typeof !="undefined"){%>
+                                <%if(typeof qualityList !="undefined"){%>
                                 <%for (var i=0;i<qualityList.length;i++){%>
                                 <p class="file"><%= qualityList[i].name %>
                                     <span class="del"></span>
@@ -284,7 +280,7 @@
                             <input class='fileupload' data-url='/api/upload-file' type="file" name="files">
                           </span>
                             <div class="files">
-                                <%if(quantityList.typeof !="undefined"){%>
+                                <%if(typeof quantityList !="undefined"){%>
                                 <%for (var i=0;i<quantityList.length;i++){%>
                                 <p class="file"><%= quantityList[i].name %>
                                     <span class="del"></span>
@@ -319,8 +315,7 @@
                 </div>
             </div>
         </div>
-        <% include ../global/order/orderUserInfo %>
-        <% include ../global/order/orderTable %>
+
     </div>
 </div>
 
