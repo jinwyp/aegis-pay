@@ -13,9 +13,14 @@ var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.billCenter = function (req, res, next) {
-
+    var startDate = req.query.startDate;
+    var endDate = req.query.endDate;
+    var content = req.query.content;
     var user = req.session.user;
-    request({url : api_config.billCenter+'?userId=' + user.id}, function (err, data) {
+    var type = req.query.type;
+
+    var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')+(content?'&content='+content:'')+(type?'&type='+type:'');
+    request({url : api_config.billCenter+queryString}, function (err, data) {
 
         if (err || data.statusCode != 200) {
             next(new SystemError());
@@ -30,7 +35,7 @@ exports.billCenter = function (req, res, next) {
 
         var accountSideBar = {
             current : "",
-            secCurrent:'1',
+            secCurrent:type,
             sideBarList : [
                 {
                     listName : '发票管理',
@@ -43,13 +48,13 @@ exports.billCenter = function (req, res, next) {
                         },
                         {
                             secListName:'待开票' ,
-                            secListLink:"waitSettle",
+                            secListLink:"waitSettle?type=1",
                             secListNum:source.data.receiptOrder.waitCount
 
                         },
                         {
                             secListName:'已开票',
-                            secListLink:"hadSettle",
+                            secListLink:"hadSettle?type=2",
                             secListNum:source.data.receiptOrder.openCount
                         }
                     ]
@@ -76,7 +81,14 @@ exports.billCenter = function (req, res, next) {
 
             };
             //渲染页面
-            return res.render('settlement/billCenter', content);
+            //return res.render('settlement/billCenter', content);
+            if(!type){
+                return res.render('settlement/billCenter', content);
+            }else if(type == 1){
+                return res.render('settlement/waitSettle', content);
+            }else if(type == 2){
+                return res.render('settlement/hadSettle', content);
+            }
         }
     })
 

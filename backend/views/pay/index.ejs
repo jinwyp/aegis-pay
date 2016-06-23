@@ -18,12 +18,12 @@
         <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.totalMoney) %></i>元</span></li>
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.totalMoney) %>)</span></li>
       </ul>
-      <% if(order.sellerBalanceMoney>order.totalMoney) {%>
+      <% if(order.buyerBalanceMoney>order.totalMoney) {%>
       <ul class="buyer">
         <li><input type="radio" checked /></li>
         <li>
-          <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.sellerBalanceMoney) %>元</p>
-          <p>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</p>
+          <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
+          <p>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
         </li>
         <li>支付<span><%= formatMoney(order.totalMoney) %></span>元</li>
       </ul>
@@ -40,8 +40,8 @@
         <ul class="buyer noneBalance">
             <li><input type="radio" disabled /></li>
             <li>
-                <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.sellerBalanceMoney) %>元</p>
-                <p>(大写：<%= switchTxt(order.sellerBalanceMoney) %>)</p>
+                <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
+                <p>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
             </li>
         </ul>
         <dl class="tip-msg noneBalance">

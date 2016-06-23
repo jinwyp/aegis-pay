@@ -7,7 +7,7 @@
         </li>
 
         <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'>
-            <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
+            <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{receiptOrder.page}}</a>
         </li>
         <li ms-visible='@orderEllipsisLeft'>
             <a >...</a>

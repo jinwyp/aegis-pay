@@ -1,12 +1,13 @@
 define(['jquery','bootstrap'],function($){
   return {
-      init: function(){
+      init: function(customPhone){
         this.els = {
             $code: $('input[name="sms_code"]'),
             $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
             $codeTipMsg: $('input[name="sms_code"]').parent().find('.tip-msg'),
             $imgcodeTipErr: $('#imgcodeModal .tip-error')
         }
+        this.customPhone = customPhone || false;
         this.imgcode();
       },
       imgcode: function(){
@@ -34,7 +35,9 @@ define(['jquery','bootstrap'],function($){
     validImgcode: function(imgcode){
         var self = this;
         var $send_sms = $('#send_code');
-        $.post('/api/validImgcode', {'captchaText':imgcode}, function(data){
+        var params = {'captchaText':imgcode};
+        self.customPhone && (params.customPhone = $('input[name="'+ self.customPhone +'"]').val())
+        $.post('/api/validImgcode', params, function(data){
           if(data.success){
               $('#imgcodeModal').modal('hide');
               // 发送短信验证码成功
@@ -58,6 +61,9 @@ define(['jquery','bootstrap'],function($){
               }else{
                   // 短信发送失败
                   var $tiperror = $('.phone').parent().find('.tip-error');
+                  if($(".vertifyCode").length){
+                      var $tiperror=$(".vertifyCode").find(".errorMsg");
+                  }
                   $('#imgcodeModal').modal('hide');
                   switch(data.errType){
                     case 'sms':  //验证码发送失败

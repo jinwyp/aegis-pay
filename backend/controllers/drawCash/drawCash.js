@@ -136,7 +136,6 @@ exports.drawCashStatus = function(req,res,next){
         function(err,response){
             if(err){return next(err);}
             var replyData = JSON.parse(response.body);
-
             if(response.statusCode!=200||!replyData.success){
                 res.json(replyData);
             }else{
@@ -162,7 +161,7 @@ exports.cashSuccess = function(req,res,next){
         next(new UnauthenticatedAccessError());
         return;
     }
-
+    
     var content = {
         pageTitle : "财务管理中心 - 账户通 - 提现",
         headerTit : "财务管理中心 - 账户通 - 提现",

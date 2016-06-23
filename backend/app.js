@@ -31,6 +31,7 @@ var ejs              = require('ejs');
 
 
 // 静态文件目录
+var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
 
@@ -64,6 +65,7 @@ require('./libs/ejshelper')(app);
 // 静态资源
 app.use('/static', express.static(staticDir));
 app.use('/files',express.static(fileStatic));
+app.use('/docs',express.static(document));
 
 // 支付下载文件目录
 app.use('/download/:path?/:name', function(req, res, next){
@@ -104,6 +106,8 @@ app.use(session({
 
 // custom middleware
 app.use(auth.passport);
+
+app.use(auth.fetchPayPhone);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
