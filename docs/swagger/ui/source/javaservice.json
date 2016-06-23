@@ -169,6 +169,17 @@
             "maximum": 99999
           },
           {
+            "name": "pagesize",
+            "in": "formData",
+            "description": "每页显示条数",
+            "required": false,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
             "name": "userId",
             "in": "formData",
             "description": "用户ID",
@@ -196,29 +207,30 @@
           {
             "name": "type",
             "in": "formData",
-            "description": "交易类型 全部发票0,  待开票1, 已开票2",
+            "description": "开票状态 全部发票0, 待开票1, 已开票2",
             "required": false,
             "type": "string",
             "items": {
               "type": "string",
               "enum": [
+                "",
                 1,
                 2
               ],
-              "default": "0"
+              "default": ""
             }
           },
           {
-            "name": "searchContent",
+            "name": "content",
             "in": "formData",
-            "description": "搜索的流水号",
+            "description": "搜索的订单号",
             "required": false,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
           "200": {
-            "description": "收支明细列表",
+            "description": "发票列表",
             "schema": {
               "type": "array",
               "items": {
@@ -227,19 +239,85 @@
             }
           },
           "409": {
-            "description": "Invalid input"
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "default": {
-            "description": "Unexpected error",
+            "description": "500 错误 Unexpected error",
             "schema": {
-              "$ref": "#/definitions/ErrorModel"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/mall/order/seller/notice/receiveReceipt": {
+      "post": {
+        "tags": [
+          "billCenter"
+        ],
+        "summary": "确认已开发票",
+        "operationId": "billCenterReceiveReceipt",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerId",
+            "in": "formData",
+            "description": "seller ID",
+            "required": true,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "orderId",
+            "in": "formData",
+            "description": "order ID",
+            "required": true,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "确认已开票",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            }
+          },
+          "409": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "500 错误 Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
       }
 
     },
-
 
     "/pet/findByStatus": {
       "get": {
@@ -815,6 +893,10 @@
       }
     }
   },
+
+
+
+
   "definitions": {
     "Order": {
       "type": "object",
@@ -857,21 +939,47 @@
         }
       }
     },
-    "Category": {
+    "ReceiptOrder": {
       "type": "object",
       "properties": {
-        "id": {
+        "orderId": {
+          "description": "订单号 3634",
           "type": "integer",
           "format": "int64"
         },
-        "name": {
+        "totalMoney": {
+          "description": "金额 16650.00",
+          "type": "number",
+          "format": "float"
+        },
+        "settleAccountTime": {
+          "description": "交易时间 2015-08-25 21:32:56",
+          "type": "string",
+          "format": "date"
+        },
+        "otherCompanyName": {
+          "description": "对方账号名称 内蒙古原煤有限公司",
           "type": "string"
+        },
+        "status": {
+          "description": "交易状态 WaitWriteReceipt",
+          "type": "string",
+          "enum": [
+            "提现",
+            "销售"
+          ]
+        },
+        "statusName": {
+          "description": "交易状态 待卖家开发票 ",
+          "type": "string",
+          "enum": [
+            "提现",
+            "销售"
+          ]
         }
-      },
-      "xml": {
-        "name": "Category"
       }
     },
+
     "ApiResponse": {
       "type": "object",
       "properties": {
@@ -883,6 +991,43 @@
           "type": "string"
         },
         "message": {
+          "type": "string"
+        }
+      }
+    },
+
+
+    "SuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "description": "成功 失败",
+          "type": "boolean"
+        },
+        "error": {
+          "description": "出错信息  例如 Required int parameter 'orderId' is not present",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "500",
+          "type": "string"
+        }
+      }
+    },
+
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "description": "成功 失败",
+          "type": "boolean"
+        },
+        "error": {
+          "description": "出错信息  例如 Required int parameter 'orderId' is not present",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "500",
           "type": "string"
         }
       }
