@@ -42,7 +42,7 @@ router.get('/settlement/buyersView', settlementFormApi.buyersView);             
 router.post('/settlement/buyersReturn', settlementFormApi.buyersReturn);            // 结算单: 买家.退回结算单
 router.post('/settlement/buyersEditReason', settlementFormApi.buyersEditReason);    // 结算单: 买家.修改退回原因
 router.post('/settlement/buyersAuditing', settlementFormApi.buyersAuditing);        // 结算单: 买家.结算审核通过
-router.get('/settlement/downPrint', settlementFormApi.downPrint);                   // 结算单: 下载打印结算单
+router.get('/settlement/downPrintSettle', settlementFormApi.downPrintSettle);       // 结算单: 下载打印结算单
 
 router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliveryIndex);
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
