@@ -51,7 +51,7 @@
 				</dl>
 			</div>
 			<% if( status ){ %>
-			<div class="figure-wrap">
+			<div class="figure-wrap" id="hasAccountState">
 				<div class="figure-caption">公司银行账户
 					<span id="delBankBtn">删除</span>
 				</div>
@@ -67,6 +67,8 @@
 					<dt>绑定手机号码:</dt>
 					<dd><%= cashAccount.payPhone %></dd>
 				</dl>
+				<input type="hidden" id="bankName" value="<%= cashAccount.accountBankName %>" />
+				<input type="hidden" id="bankAccount" value="<%= cashAccount.account %>" />
 			</div>
 			<% }else{ %>
 			<div class="figure-wrap">
@@ -76,6 +78,12 @@
 				</div>
 			</div>
 			<% } %>
+			<div class="figure-wrap display-none" id="noAccountState">
+				<div class="figure-caption">公司银行账户</div>
+				<div class="figure-content text-center">
+					<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
+				</div>
+			</div>
 		</div>
 		<div class="modal fade" id="delBankModal">
 			<div class="modal-dialog modal-pl">
@@ -93,6 +101,7 @@
 								<div class="col-sm-4">
 									<input type="text" class="form-control" id="inputPwd">
 									<p class="padding-top-8 password-info text-danger display-none" id="errorTxt">请输入6-20位数字或英文字母或下划线</p>
+									<p class="padding-top-8 password-info text-danger display-none" id="delResponseErr"></p>
 								</div>
 								<div class="col-sm-2 forget-password">
 									<a href="#">忘记密码</a>

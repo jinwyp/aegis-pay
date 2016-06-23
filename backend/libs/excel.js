@@ -5,7 +5,8 @@
 var XLSX = require('xlsx');
 var path = require('path');
 
-var emptyExcelTemplate = path.join(__dirname , '../views/download/financialDetails/empty.xlsx');
+var config     = require('../config');
+var emptyExcelTemplate = path.join(config.file_path.download, '/financialDetails/empty.xlsx');
 
 
 function isFunction(fn) {
@@ -77,7 +78,7 @@ function generateSheet(worksheet, sourceDataList, titleLabelList, propertyList, 
 
     var range = {
         s:{ c:0, r:0},
-        e:{ c:100, r:10000}
+        e:{ c:30, r:1000}
     };
 
     if (total.column > range.e.c  ) range.e.c = total.column + 10;
@@ -145,4 +146,3 @@ function excelExport (options, callback){
 
 
 module.exports = excelExport;
-

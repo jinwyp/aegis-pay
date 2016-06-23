@@ -20,7 +20,7 @@ var api_config = {
      * method: post
      * params: {orderId: 1, userId:1, version: 1, files:'电子合同文件path'}
      */
-    signCompact   : host + 'mall/order/signcontract',
+    signCompact   : host + 'mall/order/signContract',
     /**
      * fetch未盖章电子合同
      * method: get
@@ -112,6 +112,7 @@ var api_config = {
     billCenter : host + '/finance/order/seller/receipt',
     billSetting : host + '/finance/receipt',
     billDelete : host + '/finance/receipt/delete',
+    receiveReceipt : host + '/mall/order/seller/notice/receiveReceipt',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
@@ -150,6 +151,7 @@ var api_config = {
     drawcashSubmit: host + 'account/DrawCash',
 
     fundinfo: host + 'account/fund/info',
+    checkFundPassword: host + 'account/fund/checkPayPwd'
 
 };
 

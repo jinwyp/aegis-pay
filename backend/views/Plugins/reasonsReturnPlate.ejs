@@ -1,7 +1,8 @@
 <!-- 退回原因提示框 板块 -->
-<% if(order.status == 'WaitVerifySettle' || order.status == 'ReturnedSettleAccounts') {%>
+<% var orderObj = data.order %>
+<% if(orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts') {%>
 <div id="reasonsReturnPlate">
-    <% if(userType == 'buy' && order.status == 'WaitVerifySettle'){ %>
+    <% if(userType == 'buy' && orderObj.status == 'WaitVerifySettle'){ %>
     <!-- 待审核.状态提示-->
     <div class="reasonsReturn mt20">
         <div class="reasonsReturn_back show">
@@ -15,7 +16,7 @@
     </div>
     <% } %>
 
-    <% if(userType == 'buy' && order.status == 'ReturnedSettleAccounts'){ %>
+    <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts'){ %>
     <div class="reasonsReturn mt20">
         <!-- 审核退回.查看原因-->
         <div class="reasonsReturn_view show">
@@ -25,12 +26,12 @@
                 <tr>
                     <td width="66">退回原因：</td>
                     <td>
-                        <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
+                        <span class="bright"><%= orderObj.returnReason %></span>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>2016-06-01 15:46:32</td>
+                    <td><%= orderObj.settleReturnTime %></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -51,14 +52,14 @@
                     <td class="va_top" width="66">退回原因：</td>
                     <td>
                         <div class="txtAreaBox">
-                            <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
-                            <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"></textarea>
+                            <div class="dockDown">您还可以输入<span class="limitNum"><%= (200 - orderObj.returnReason.length) %></span>个字</div>
+                            <textarea class="txtArea .returnText" name="remarks" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason %></textarea>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>2016-06-01 15:46:32</td>
+                    <td><%= orderObj.settleReturnTime %></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -73,7 +74,7 @@
     </div>
     <% } %>
 
-    <% if(userType == 'sell' && order.status == 'ReturnedSettleAccounts'){ %>
+    <% if(userType == 'sell' && orderObj.status == 'ReturnedSettleAccounts'){ %>
     <!-- 审核退回.卖家修改-->
     <div class="reasonsReturn againRefer mt20">
         <div class="reasonsReturn_view show">
@@ -83,12 +84,12 @@
                 <tr>
                     <td width="66">退回原因：</td>
                     <td>
-                        <span class="bright">符合国际化港口健康符合国际化港口健康符合国际化港口健康符合国际化港口健康。</span>
+                        <span class="bright"><%= orderObj.returnReason%></span>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>2016-06-01 15:46:32</td>
+                    <td><%= orderObj.settleReturnTime %></td>
                 </tr>
                 <tr>
                     <td> </td>

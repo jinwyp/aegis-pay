@@ -33,7 +33,7 @@ echo "docker run -it --rm --name aegis-pay-dev \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
   -v ${files_dir}/:/app/files \
-  -v ${logs_dir}:/app/aegis-member/logs \
+  -v ${logs_dir}:/app/aegis-pay/logs \
   -e MOCK=false \
   -e DEBUG=true \
   -e MODE=dev \
@@ -46,7 +46,7 @@ docker run -it --rm --name aegis-pay-dev \
   -v ${script_dir}:/app \
   -v ${script_dir}/debug_run:/debug_run \
   -v ${files_dir}/:/app/files \
-  -v ${logs_dir}:/app/aegis-member/logs \
+  -v ${logs_dir}:/app/aegis-pay/logs \
   -e MOCK=false \
   -e DEBUG=true \
   -e MODE=dev \

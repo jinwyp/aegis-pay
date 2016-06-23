@@ -14,7 +14,8 @@
         <div class="wrap clearfix">
             <% include ../account/sideBar  %>
             <div class="content">
-                <table>
+                <% include billSearch %>
+                <table class="billList">
                     <thead>
                     <tr>
                         <th>交易流水号</th>
@@ -32,22 +33,14 @@
                     <% var obj = receiptOrder.list[i] %>
                     <tr>
                         <td><%= obj.transactionNO %></td>
-                        <td><%= obj.totalMoney %></td>
+                        <td><%= formatMoney(obj.totalMoney ,2)%></td>
                         <td><%= obj.settleAccountTime %></td>
                         <td><%= obj.otherCompanyName %></td>
-                        <% if(obj.status != "WaitWriteReceipt"){ %>
                         <td>已开票</td>
                         <td>
-                            <div class="btn"></div>
                             <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
+
                         </td>
-                        <%}else{%>
-                        <td>待开票</td>
-                        <td>
-                            <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
-                            <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
-                        </td>
-                        <%}%>
 
                     </tr>
                     <%}%>
@@ -55,7 +48,7 @@
                     <tr>
                         <td colspan="6" class="noInfo">
                             <div>
-                                无开票信息,请先&nbsp;&nbsp;&nbsp; <a href="/settlement/confirmTheInvoice?type=2&id=110000" class="iBtn iBtn_yes">新增开票信息</a>
+                                您目前没有已开发票
                             </div>
                         </td>
                     </tr>
