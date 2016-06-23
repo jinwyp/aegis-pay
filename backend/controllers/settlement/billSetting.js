@@ -30,7 +30,7 @@ exports.billSetting = function (req, res, next) {
 
         var accountSideBar = {
             current : "2",
-            secCurrent:'',
+            secCurrent:type,
             sideBarList : [
                 {
                     listName : '发票管理',
@@ -72,7 +72,7 @@ exports.billSetting = function (req, res, next) {
                     secondTab: secondTab
                 },
                 accountSideBar: accountSideBar,
-                receipt:source.data.receipt
+                receiptOrder:source.data.receiptOrder
 
             };
             //渲染页面
