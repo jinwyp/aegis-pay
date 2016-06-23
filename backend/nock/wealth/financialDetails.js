@@ -43,16 +43,16 @@ var details3 = [
 
 interceptPersist
 
-//.post('/finance/payments/list', { orderCategory: '2' }).reply(200, {
-//    success:true,
-//    error:"",
-//    data:details3
-//})
-//.post('/finance/payments/list', { orderCategory: '1' }).reply(200, {
-//    success : true,
-//    data : details2
-//})
-.post('/finance/payments/list', { userId: "213" }).reply(200, {
+.post('/finance/payments/list', { orderCategory: '2' }).reply(200, {
+    success:true,
+    error:"",
+    data:details3
+})
+.post('/finance/payments/list', { orderCategory: '1' }).reply(200, {
+    success : true,
+    data : details2
+})
+.post('/finance/payments/list', { userId: "2719" }).reply(200, {
     success:true,
     error:"",
     data:details
