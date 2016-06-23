@@ -10,7 +10,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             var that = this;
             $("select").fancySelect();
             this.initFancySelectListener();
+
+            //结算单.获取开票信息
             $("#submitBtn").click(function(){that.submitForm(that)});
+
+            //结算单.添加开票备注
+            $("#cancelBtn").click(function(){ history.go(-1)});
+            $("#submitInvoiceNoteBtn").click(function(){ that.submitInvoiceNotesForm(that)});
         },
 
         initFancySelectListener : function () {
@@ -53,9 +59,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
              */
 
             // set redirect url
-            var redirectUrl = "";
-            if ($.trim($("#orderId").val()) != "") {
-                redirectUrl = "/settlement/addInvoiceNotes"; //结算完成
+            var redirectUrl = "",
+                orderId = $.trim($("#orderId").val());
+            if ( orderId != "") {
+                redirectUrl = "/settlement/addInvoiceNotes?orderId=" + orderId; //结算完成
             } else {
                 redirectUrl = "/settlement/billSetting";     //开票设置列表
             }
@@ -68,7 +75,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             var param = $("#invoiceForm").serialize();
             $.post("/settlement/submitInvoice", param, function(data) {
                 if (data.success == false) {
-                    return $("#totalError").val(data.error);
+                    return $("#totalError").val(data.message);
                 }
                 $("#totalError").val("");
                 console.log('------------- submit success -------------');
@@ -84,7 +91,34 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     $("#totalError").val(errorCode);
                 }
             });
+        },
+
+        // 结算单.添加开票备注form提交
+        submitInvoiceNotesForm : function (that) {
+            // that.
+            var requirement = $.trim($("#requirement").val()),
+                specialRequirement = $.trim($("#specialRequirement").val()),
+                version = $.trim($("#version").val()),
+                orderId = $.trim($("#orderId").val());
+
+            $.post("/settlement/submitInvoiceNotes",
+                {
+                    "requirement": requirement,
+                    "specialRequirement": specialRequirement,
+                    "version": version,
+                    "orderId": orderId
+                },
+                function (data) {
+                    if (data.success == false) {
+                        return $("#totalError").val(data.message);
+                    }
+                    $("#totalError").val("");
+                    location.href = "/getOrderDetail?orderId=" + orderId;
+                    console.log('------------- submit success -------------');
+                }
+            );
         }
+
     };
 
     invoiceApp.init();

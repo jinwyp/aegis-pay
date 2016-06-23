@@ -114,7 +114,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 									errorMsg.html(response.error).show();
 								}
 							}else{
-								window.location.href = '/cashSuccess';
+								$('#successForm').submit();
 							}
 						}
 					})

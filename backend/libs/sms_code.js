@@ -155,9 +155,7 @@ exports.sendCode = function (req, res, next) {
         };
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
             if (err) return next(err);
-
             var dataSMS = JSON.parse(data.body);
-
             dataSMS.time = api_config.smsResend;
 
             if (dataSMS.success) {

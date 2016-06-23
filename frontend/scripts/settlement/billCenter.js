@@ -3,7 +3,8 @@
  * */
 
 
-require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
+require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
+
     //datePicker
     var transactionRecord= {
         "datepicker": function () {
@@ -13,8 +14,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
                 endObj = $(".endDate");
             pickerStart = startObj.pickadate({}).pickadate('picker');
             pickerEnd = endObj.pickadate({}).pickadate('picker');
-            pickerStart.set("disable", [{from: [1970, 1, 1]}]);
-            pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
+            //pickerStart.set("disable", [{from: [1970, 1, 1]}]);
+            //pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
 
             startObj.on("change", function () {
                 if (new Date(startObj.val()).getTime() > new Date(endObj.val()).getTime()) {
@@ -26,9 +27,21 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
                 ]);
             });
         },
+        //sidebar
+        "sideBar":function(){
+            var type = $("#type").val();
+            if(!type){
+                $(".sideBar .dd_0").addClass("current");
+            }else if(type == 1){
+                $(".sideBar .dd_1").addClass("current");
+            }else if(type == 2){
+                $(".sideBar .dd_2").addClass("current");
+            }
+        }
     }
 
     transactionRecord.datepicker();
+    transactionRecord.sideBar();
 
     //sideBar切换
 
@@ -52,6 +65,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
         $.ajax({
             url:"/settlement/receiveReceipt",
             type: 'post',
+            data:{orderId:$(".sureSettle").attr("name")},
             success:function(data){
                 if(data.success){
                     $(".modal_2").modal();
@@ -86,6 +100,11 @@ require(['jquery','bootstrap','jQuery.fn.datePicker',],function($){
                 }
             }
         });
+    })
+
+
+    $("#submit").click(function(){
+        $("#billSearch").submit();
     })
     
 

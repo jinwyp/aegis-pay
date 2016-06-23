@@ -1,4 +1,4 @@
-<!-- 添加开票信息 板块 -->
+<% // 结算单.添加开票备注 %>
 <div id="InvoiceInfoViewPlate" class="plateBox bor_btm">
     <div class="plateHead borSolid">
         <span class="prefix"></span>
@@ -11,36 +11,36 @@
                 <tr>
                     <th class="txt_r" width="130">公司名称：</th>
                     <td width="340">
-                        <span class="a">和略电子商务有限公司</span>
+                        <span class="a"><%=data.receipt && data.receipt.companyName? data.receipt.companyName : ""%></span>
                     </td>
                 </tr>
                 <tr>
                     <th class="txt_r">公司地址：</th>
-                    <td><span class="a">公司地址</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.companyAddress? data.receipt.companyAddress : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">公司电话：</th>
-                    <td><span class="a">公司电话</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.companyPhone? data.receipt.companyPhone : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">公司传真：</th>
-                    <td><span class="a">公司传真</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.companyFax? data.receipt.companyFax : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">纳税人识别号：</th>
-                    <td><span class="a">纳税人识别号</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.identificationNumber? data.receipt.identificationNumber : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">开户银行：</th>
-                    <td><span class="a">开户银行</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.bankName? data.receipt.bankName : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">开户银行账号：</th>
-                    <td><span class="a">开户银行账号</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.bankAccount? data.receipt.bankAccount : ""%></span></td>
                 </tr>
                 <tr>
                     <th class="txt_r">发票类型：</th>
-                    <td><span class="a">发票类型</span></td>
+                    <td><span class="a"><%=data.receipt && data.receipt.typeName? data.receipt.typeName : ""%></span></td>
                 </tr>
                 </tbody>
             </table>
@@ -51,7 +51,7 @@
 
             <div class="thumbnailBox">
                 <div class="thumbnailPic"  data-toggle="modal" data-target="#operationInfoModal">
-                    <img class="" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板">
+                    <img class="" src="<%= data.receipt && data.receipt.templetUrl? data.receipt.templetUrl : ""%>" alt="发票样板">
                     <span class="clickLarger">点击放大</span>
                 </div>
                 <p class="thumbnailName">客户开票信息表</p>
@@ -69,7 +69,7 @@
             <!--</div>-->
             <div class="modal-body invoiceInfoPic_md">
                 <span class="icn_cross close" data-dismiss="modal" aria-label="Close"></span>
-                <img class="" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息表">
+                <img class="" src="<%= data.receipt && data.receipt.templetUrl? data.receipt.templetUrl : ""%>" alt="开票信息表">
                 <p>&nbsp;</p>
             </div>
         </div>
