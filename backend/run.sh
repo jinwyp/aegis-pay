@@ -11,11 +11,19 @@ export DEBUG=true;
 export MOCK=false;
 export FILES_DIR=$parent_dir/../files;
 
-if [[ "x$custom" = "x" ]]; then
+
+if [[ "x$custom" = "x-m" ]]; then
+	export MOCK=true;
 	export MODE="local";
 else
-	export MODE=$custom;
+	if [[ "x$custom" = "x" ]]; then
+	    export MODE="local";
+    else
+	    export MODE=$custom;
+    fi
 fi
+
+
 
 echo "---------------------------------------------------------------";
 echo "mode = $MODE";

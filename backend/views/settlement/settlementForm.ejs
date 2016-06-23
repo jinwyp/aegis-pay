@@ -14,6 +14,7 @@
 <!-- 以下.内容部分 -->
 <div class="containerWrap">
     <div class="bodyWrap">
+        <% var orderObj = data.order %>
 
         <!-- 重要提示 板块 -->
         <div id="doubtPlate" class="plateBox">
@@ -29,7 +30,7 @@
             </div>
             <div class="plateMain">
                 <!-- 提示框 板块 -->
-                <div class="embedBox" data-status="<%= order.status %>" data-type="<%= userType %>">
+                <div class="embedBox" data-status="<%= orderObj.status %>" data-type="<%= userType %>">
                     <div class="significantDoubt">
                         <h2 class="doubtTitle">重要提示：</h2>
                         <p class="entry">
@@ -60,13 +61,13 @@
 
 
         <!-- 补充协议文件 板块 -->
-        <% var isSupply_buy = (userType == 'buy' && (order.status == 'WaitVerifySettle' || order.status == 'ReturnedSettleAccounts')) %>
-        <% var isSupply_sell = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status == 'ReturnedSettleAccounts')) %>
-        <% var isSupply_only = (userType == 'sell' && order.status == 'WaitVerifySettle') %>
+        <% var isSupply_buy = (userType == 'buy' && (orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts')) %>
+        <% var isSupply_sell = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
+        <% var isSupply_only = (userType == 'sell' && orderObj.status == 'WaitVerifySettle') %>
         <div id="supplyAgreementPlate" class="fileOperation mt20">
             <div class="fileOperation_title fl">
                 <p class="fileTitle">
-                    <% if(isSupply_only || (userType == 'buy' && order.status == 'ReturnedSettleAccounts')) {%>
+                    <% if(isSupply_only || (userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts')) {%>
                     <span class="require">&nbsp;</span>
                     <% } else { %>
                     <span class="require">*</span>
@@ -79,26 +80,35 @@
                     <% if(isSupply_sell){ %>
                     <span class="iBtn iBtn_up">
                         <i class="iBtn_up_icn"></i>点击上传
-                        <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
+                        <input id="supplyFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                     </span>
+                    <% } %>
                     <div class="supplyFileList" style="display: inline-block">
-                        <p class="fileLab">
-                            <span class="fileLab_name">1234564768.JPG</span>
-                            <span class="fileLab_del" data-id="11"></span>
-                        </p>
+                        <% orderObj.contractFiles = orderObj.contractFiles ? orderObj.contractFiles : [] %>
+                        <% for(var x = 0, s = orderObj.contractFiles.length; x < s; x++ ){ %>
+                            <% var fileObj = orderObj.contractFiles[x]; %>
+                            <% if(isSupply_sell && fileObj ){ %>
+                            <!-- 卖家编辑附件 -->
+                            <p class="fileLab">
+                                <span class="fileLab_name"><%=fileObj.name %></span>
+                                <span class="fileLab_del" data-id="<%=fileObj.path %>"></span>
+                            </p>
+                            <% } %>
+                            <% if(isSupply_only && fileObj ){ %>
+                            <!-- 卖家查看-->
+                            <p class="fileLab only">
+                                <span class="fileLab_name"><%=fileObj.name %></span>
+                                <span class="fileLab_del" data-id="<%=fileObj.path %>"></span>
+                            </p>
+                            <% } %>
+                        <% } %>
+
+                        <% if(isSupply_buy){ %>
+                        <!-- 买家下载-->
+                        <a href="javascript:;" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
+                        <% } %>
                     </div>
-                    <% } %>
-                    <% if(isSupply_only){ %>
-                    <div class="supplyFileList" style="display: inline-block">
-                        <p class="fileLab only">
-                            <span class="fileLab_name">dfghjdhdfss.JPG</span>
-                            <span class="fileLab_del" data-id="22"></span>
-                        </p>
-                    </div>
-                    <% } %>
-                    <% if(isSupply_buy){ %>
-                    <a href="#dwonLink" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
-                    <% } %>
+
                 </div>
                 <p class="fileExplain bright">在审核时请详细查看文件。</p>
             </div>
@@ -106,28 +116,38 @@
 
 
         <!-- 清算货款信息 板块-->
-        <% if(userType == 'buy' && (order.status == 'WaitVerifySettle' || order.status == 'WaitSettleAccounts')) { %>
+        <% if(userType == 'buy' && (orderObj.status == 'WaitVerifySettle' || orderObj.status == 'WaitSettleAccounts')) { %>
         <div id="clearPaymentPlate" class="plateBox mt20">
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">清算货款确认</h3>
-                <!--<p class="headContent">居中标题</p>-->
-                <!--<p class="headRight">左侧标题</p>-->
             </div>
             <div class="plateMain">
-                <p class="liquidationTime">付款时间:  <span class="time">2016-03-30  12:20:10</span></p>
+                <p class="liquidationTime">付款时间:  <span class="time"><%= orderObj.paymentTime %></span></p>
                 <table class="liquidationGoods">
                     <tbody>
                     <tr>
                         <th>实际结算金额（元）</th>
                         <th>已付金额（元） </th>
-                        <th>应退余款金额（元）</th>
+                        <th>
+                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                            应补货款金额（元）
+                            <% }else{ %>
+                            应退余款金额（元）
+                            <% } %>
+                        </th>
                     </tr>
                     <tr>
-                        <td>100,000.00</td>
-                        <td>100,000.00</td>
+                        <td><%= orderObj.settleMoney %></td>
+                        <td><%= orderObj.totalMoney %></td>
                         <td>
-                            <span class="bright">100,000.00</span>
+                            <span class="bright">
+                                <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                                    <%= orderObj.tailMoney %>
+                                <% }else{ %>
+                                    <%= orderObj.refundMoney %>
+                                <% } %>
+                            </span>
                         </td>
                     </tr>
                     </tbody>
@@ -138,7 +158,7 @@
 
 
         <!-- 上传盖章结算单 板块 -->
-        <% if(userType == 'buy' && order.status == 'WaitVerifySettle') { %>
+        <% if(userType == 'buy' && orderObj.status == 'WaitVerifySettle') { %>
         <div id="upSealPlate" class="fileOperation mt20">
             <div class="fileOperation_title fl">
                 <p class="fileTitle">
@@ -149,13 +169,9 @@
                 <div class="fileList">
                      <span class="iBtn iBtn_up">
                         <i class="iBtn_up_icn"></i>点击上传
-                        <input id="upFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
+                        <input id="upSealFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                     </span>
                     <div class="upSealFileList" style="display: inline-block">
-                        <p class="fileLab">
-                            <span class="fileLab_name">1234564768.JPG</span>
-                            <span class="fileLab_del" data-id="11"></span>
-                        </p>
                     </div>
                 </div>
                 <p class="fileExplain ">
@@ -169,8 +185,8 @@
 
 
         <!-- 操作按钮 模块 -->
-        <% var isOperate_buy = (userType == 'buy' && order.status == 'WaitVerifySettle') %>
-        <% var isOperate_sell = (userType == 'sell' && (order.status == 'WaitSettleAccounts' || order.status == 'ReturnedSettleAccounts')) %>
+        <% var isOperate_buy = (userType == 'buy' && orderObj.status == 'WaitVerifySettle') %>
+        <% var isOperate_sell = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
         <% if(isOperate_buy || isOperate_sell) {%>
         <div id="operationBtnPlate" class="operationBox mt20">
             <p>&nbsp;</p>
@@ -187,13 +203,13 @@
 
     </div>
 </div>
-<input type="hidden" name="order.status" data-status="<%= order.status %>" />
+
 
 
 <!-- 结算单退回原因: 模态框-->
 <div class="modal fade" id="reasonsReturnModal" role="dialog">
     <div class="modal-dialog modal-pl" role="document">
-        <div class="modal-content mt220 ">
+        <div class="modal-content mt180 ">
             <div class="modal-header">
                 <span class="close" data-dismiss="modal" aria-label="Close"></span>
                 <h4 class="modal-title">提示</h4>
@@ -208,11 +224,10 @@
             </div>
             <p class="txt_c">
                 <input type="button" class="iBtn iBtn_def" value="取消" data-dismiss="modal" />
-                <input type="button" id="btnSubReason" class="iBtn iBtn_yes ml20" value="确认" />
+                <input type="button" id="subReturnReason" class="iBtn iBtn_yes ml20" value="确认" />
                 <br/><br/><br/>
             </p>
-            <!--<div class="modal-footer txt_c"></div>-->
-        </div><!-- /.modal-content -->
+        </div>
     </div>
 </div>
 
@@ -241,14 +256,14 @@
                 <p class="option_warn"><span class="bright">5S</span> 后自动关闭</p>
                 <p>&nbsp;</p>
             </div>
-            <!--<div class="modal-footer txt_c"></div>-->
-        </div><!-- /.modal-content -->
+        </div>
     </div>
 </div>
 
 
 
-
+<input type="hidden" name="orderStatus" data-status="<%= orderObj.status %>" />
+<input type="hidden" name="orderId" value="<%= orderObj.id %>" />
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>

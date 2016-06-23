@@ -2,10 +2,29 @@
  *财务管理中心(个人中心) 页面
  *
  * */
-
+var path    = require('path');
 var request = require('request');
+var ejs     = require('ejs');
+var pdf     = require('html-pdf');
+
+var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
+var checker    = require('../../libs/datachecker');
+
 var logger     = require("../../libs/logger");
+var utils      = require('../../libs/utils');
+var config     = require('../../config');
+
+var excelSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
+utils.makeDir(excelSavePath);
+
+var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
+var pdfHtmlTemplatePath = path.join(config.file_path.download, '/financialDetails/pdftemplate.ejs');
+
+
+
+
+
 
 
 // 处理业务逻辑
@@ -39,19 +58,18 @@ exports.financialHome = function (req, res, next) {
 };
 
 exports.financialDetails = function (req, res, next) {
-
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
-        pageTitle : "财务管理中心 - 交易明细",
-        headerTit : "财务管理中心 - 交易明细",
+        pageTitle : "财务管理中心 - 收支明细",
+        headerTit : "财务管理中心 - 收支明细",
         tabObj : {
             firstTab : firstTab,
             secondTab : secondTab
         },
 
         accountNumber : '1234567890',
-        
+
         formSelectOrderCategory:[
             {id:'1', value:'1', text:'提现'},
             {id:'2', value:'2', text:'采购'},
@@ -62,11 +80,89 @@ exports.financialDetails = function (req, res, next) {
             {id:'2', value:'2', text:'对方账户名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
-        
+
     };
 
     res.render('wealth/financialDetails',content);
 };
+
+
+
+
+
+
+exports.financialDetailsToExcelAndPDF = function (req, res, next) {
+    //checker.orderId(req.body.orderDateFromDownload);
+    //checker.orderId(req.body.orderDateToDownload);
+
+    var getQuery = req.query;
+
+
+    if (getQuery.filetype){
+
+        var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
+
+    var url = api_config.financialDetails;
+    request.post({url: url, form: params}, function (err, response, body) {
+
+            if (err) return next(err);
+
+            if (response.statusCode === 200 && body.success) {
+
+                if (getQuery.filetype === 'excel'){
+
+                    var excelOptions = {
+                        savePath : excelSavePath + '/financialdetails.xlsx',
+                        titleList : [
+                            '交易日期',
+                            '交易流水号',
+                            '金额',
+                            '账户余额',
+                            '交易类型',
+                            '对方账号',
+                            '对方账号名称',
+                            '对方开户行'
+                        ],
+                        propertyList : [],
+                        dataList : body.data
+                    };
+
+                    excel(excelOptions);
+                    return res.download(options.savePath);
+
+                }else if (getQuery.filetype === 'pdf'){
+
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
+                        if (err) return next(err);
+
+                        var pdfOptions = {format : 'Letter'};
+                        var pdfFileName = pdfSavePath + '/financialdetails.pdf';
+
+                        pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+                            if (err) return next(err);
+
+                            return res.download(pdfFileName);
+                        });
+
+                    });
+                }else {
+                    return res.json([]);
+                }
+
+
+            }else {
+                return res.json([]);
+            }
+        });
+    }else{
+        return res.json([]);
+    }
+
+
+};
+
+
+
 
 exports.financialTransaction = function (req, res, next) {
 
@@ -82,6 +178,7 @@ exports.financialTransaction = function (req, res, next) {
                 var content = {
                     pageTitle: "交易管理",
                     headerTit: "交易管理",
+
                     tabObj: {
                         firstTab: firstTab,
                         secondTab: secondTab
@@ -152,11 +249,13 @@ exports.financialSettlement = function (req, res, next) {
                         firstTab: firstTab,
                         secondTab: secondTab
                     },
-                    startDate: source.data.contract.startDate,
-                    endDate: source.data.contract.endDate,
-                    type: source.data.contract.type,
-                    content: source.data.contract.content,
-                    contractList: source.data.contract.list
+
+                    startDate: source.data.settleOrder.startDate,
+                    endDate: source.data.settleOrder.endDate,
+                    searchType: source.data.settleOrder.type,
+                    content: source.data.settleOrder.content,
+                    settlementList: source.data.settleOrder.list
+
                 };
                 //渲染页面
                 res.render('wealth/settlementList',content);
@@ -165,4 +264,3 @@ exports.financialSettlement = function (req, res, next) {
     });
 
 };
-

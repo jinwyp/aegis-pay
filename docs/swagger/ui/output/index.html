@@ -3,13 +3,13 @@
 <head>
     <link rel="stylesheet" href="main.css">
     <meta charset="UTF-8">
-    <title>账户管理API</title>
+    <title>财务管理中心 API</title>
 </head>
 <body>
 <div class="container">
-    <h1>账户管理API</h1>
+    <h1>财务管理中心 API</h1>
     <p class="sw-info-version">Version: <span>0.1</span></p>
-    <p><p>Pay API</p>
+    <p><p>财务管理中心 </p>
     </p>
     
     
@@ -33,8 +33,27 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="#operation--financial-order-details-post">POST /financial/order/details</a></td>
-                        <td><p>Add a new pet to the store</p>
+                        <td><a href="#operation--financial-payments-list-post">POST /financial/payments/list</a></td>
+                        <td><p>获取收支明细数据列表</p>
+        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 id="tag-billCenter" class="swagger-summary-tag">Tag: billCenter</h3>
+            <p>结算管理 发票中心 </p>
+        
+        
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--finance-order-seller-receipt-post">POST /finance/order/seller/receipt</a></td>
+                        <td><p>获取发票数据列表</p>
         </td>
                     </tr>
                 </tbody>
@@ -50,11 +69,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="#operation--financial-order-details-put">PUT /financial/order/details</a></td>
-                        <td><p>Update an existing pet</p>
-        </td>
-                    </tr>
                     <tr>
                         <td><a href="#operation--pet-findByStatus-get">GET /pet/findByStatus</a></td>
                         <td><p>Finds Pets by status</p>
@@ -143,79 +157,17 @@
         
     
     
-        <h2>Security</h2>
-    
-            <div id="security-definition-petstore_auth" class="panel panel-security-definition panel-security-definition-oauth2">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><span class="security-name">petstore_auth</span></h3>
-                    Type: oauth2
-                </div>
-                <div class="panel-body">                
-                    <section class="sw-security-properties">
-                        <dl>                
-                                <dt class="security-property-name">Flow:</dt>
-                                <dd class="security-property-type">
-                                    <div class="row">
-                                        <div class="col-md-12"><p>implicit</p></div>
-                                    </div>
-                                </dd>
-                                <dt class="security-property-name">AuthorizationUrl:</dt>
-                                <dd class="security-property-type">
-                                    <div class="row">
-                                        <div class="col-md-12"><p>http://</p></div>
-                                    </div>
-                                </dd>
-                                <dt class="security-property-name">Scopes:</dt>                                                        
-                                    <dd class="security-property-type">
-                                        <div class="row">
-                                            <div class="col-md-12"><strong>write:pets:</strong> modify pets in your account</div>
-                                        </div>
-                                    </dd>
-                                    <dd class="security-property-type">
-                                        <div class="row">
-                                            <div class="col-md-12"><strong>read:pets:</strong> read your pets</div>
-                                        </div>
-                                    </dd>
-                                <p>                        
-                        </dl>
-                    </section>                
-                </div>
-            </div>        
-            <div id="security-definition-api_key" class="panel panel-security-definition panel-security-definition-apiKey">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><span class="security-name">api_key</span></h3>
-                    Type: apiKey
-                </div>
-                <div class="panel-body">                
-                    <section class="sw-security-properties">
-                        <dl>                
-                                <dt class="security-property-name">Name:</dt>
-                                <dd class="security-property-type">
-                                    <div class="row">
-                                        <div class="col-md-12"><p>api_key</p></div>
-                                    </div>
-                                </dd>
-                                <dt class="security-property-name">In:</dt>
-                                <dd class="security-property-type">
-                                    <div class="row">
-                                        <div class="col-md-12"><p>header</p></div>
-                                    </div>
-                                </dd>
-                        </dl>
-                    </section>                
-                </div>
-            </div>        
     
     <h2>Paths</h2>
     
         
-        <span id="path--financial-order-details"></span>
-            <div id="operation--financial-order-details-post" class="swagger--panel-operation-post panel">
+        <span id="path--finance-order-seller-receipt"></span>
+            <div id="operation--finance-order-seller-receipt-post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Add a new pet to the store</div>
-                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/financial/order/details</strong></h3>
+                    <div class="operation-summary">&#x83B7;&#x53D6;&#x53D1;&#x7968;&#x6570;&#x636E;&#x5217;&#x8868;</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/finance/order/seller/receipt</strong></h3>
                         Tags:
-                            <a href="#tag-financialDetails">financialDetails</a>
+                            <a href="#tag-billCenter">billCenter</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
@@ -224,32 +176,149 @@
                         
                             <section class="sw-request-body">
                                 
-                                    <p><span class="label label-default">application/json</span> <span class="label label-default">application/xml</span> 
+                                    <p><span class="label label-default">application/json</span> <span class="label label-default">application/x-www-form-urlencoded</span> 
                         </p>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p><p>Pet object that needs to be added to the store</p>
-                        </p>
-                                            </div>
-                                            <div class="col-md-6 sw-request-model">
-                            <div  class="panel panel-definition">
-                                <div class="panel-body">
-                                            <a class="json-schema-ref" href="#/definitions/Pet">Pet</a>
-                                </div>
-                            </div></div>
-                                        </div>
                             </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                page
+                                            <td><p>第几页,用于分页</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (1 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                userId
+                                            <td><p>用户ID</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (2 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                startDate
+                                            <td><p>开始时间</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                endDate
+                                            <td><p>结束时间</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                type
+                                            <td><p>交易类型 全部发票0,  待开票1, 已开票2</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                searchContent
+                                            <td><p>搜索的流水号</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
                     
                         <section class="sw-responses">
                                 <p><span class="label label-default">application/xml</span> <span class="label label-default">application/json</span> 
                     </p>
                     
                             <dl>
-                                    <dt class="sw-response-405">
-                                        405 Method Not Allowed
+                                    <dt class="sw-response-200">
+                                        200 OK
                                     
                                     </dt>
-                                    <dd class="sw-response-405">
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>收支明细列表</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                                            <section class="json-schema-array-items">
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/ReceiptOrder">ReceiptOrder</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </section>    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-409">
+                                        409 Conflict
+                                    
+                                    </dt>
+                                    <dd class="sw-response-409">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <p>Invalid input</p>
@@ -262,34 +331,38 @@
                                             </div>
                                             
                                             </div>                </dd>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Unexpected error</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/ErrorModel">ErrorModel</a>
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
                             </dl>
                         </section>
-                        <section class="sw-request-security">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th class="sw-request-security-schema"></th>
-                                    <th class="sw-request-security-scopes"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                            <td><a href="#security-definition-petstore_auth">petstore_auth</a></td>
-                                            <td>
-                                                    write:pets
-                                                    , read:pets
-                                            </td>
-                                        </tr>
-                                </tbody>
-                            </table>
-                        </section>
                 </div>
-            </div>    <div id="operation--financial-order-details-put" class="swagger--panel-operation-put panel">
+            </div>    
+        <span id="path--financial-payments-list"></span>
+            <div id="operation--financial-payments-list-post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Update an existing pet</div>
-                    <h3 class="panel-title"><span class="operation-name">PUT</span> <strong>/financial/order/details</strong></h3>
+                    <div class="operation-summary">&#x83B7;&#x53D6;&#x6536;&#x652F;&#x660E;&#x7EC6;&#x6570;&#x636E;&#x5217;&#x8868;</div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/financial/payments/list</strong></h3>
                         Tags:
-                            <a href="#tag-pet">pet</a>
+                            <a href="#tag-financialDetails">financialDetails</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
@@ -298,35 +371,165 @@
                         
                             <section class="sw-request-body">
                                 
-                                    <p><span class="label label-default">application/json</span> <span class="label label-default">application/xml</span> 
+                                    <p><span class="label label-default">application/json</span> <span class="label label-default">application/x-www-form-urlencoded</span> 
                         </p>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p><p>Pet object that needs to be added to the store</p>
-                        </p>
-                                            </div>
-                                            <div class="col-md-6 sw-request-model">
-                            <div  class="panel panel-definition">
-                                <div class="panel-body">
-                                            <a class="json-schema-ref" href="#/definitions/Pet">Pet</a>
-                                </div>
-                            </div></div>
-                                        </div>
                             </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                pageNo
+                                            <td><p>第几页</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (1 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                userId
+                                            <td><p>用户ID</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">integer</span>
+                                        <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
+                                        
+                                            <span class="json-property-range" title="String length limits">
+                                                    (2 to 1000 chars)
+                                            </span>
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                startDate
+                                            <td><p>开始时间</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                endDate
+                                            <td><p>结束时间</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                tradeType
+                                            <td><p>交易类型</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                searchType
+                                            <td><p>搜索类型</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                userFundAccount
+                                            <td><p>用户资金账号</p>
+                                        </td>
+                                            <td>formData</td>
+                                            <td><span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
                     
                         <section class="sw-responses">
                                 <p><span class="label label-default">application/xml</span> <span class="label label-default">application/json</span> 
                     </p>
                     
                             <dl>
-                                    <dt class="sw-response-400">
-                                        400 Bad Request
+                                    <dt class="sw-response-200">
+                                        200 OK
                                     
                                     </dt>
-                                    <dd class="sw-response-400">
+                                    <dd class="sw-response-200">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <p>Invalid ID supplied</p>
+                                                    <p>收支明细列表</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                                            <section class="json-schema-array-items">
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Order">Order</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </section>    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-409">
+                                        409 Conflict
+                                    
+                                    </dt>
+                                    <dd class="sw-response-409">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Invalid input</p>
                                             
                                                 </div>
                                             </div>
@@ -336,60 +539,28 @@
                                             </div>
                                             
                                             </div>                </dd>
-                                    <dt class="sw-response-404">
-                                        404 Not Found
+                                    <dt class="sw-response-default">
+                                        default 
                                     
                                     </dt>
-                                    <dd class="sw-response-404">
+                                    <dd class="sw-response-default">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <p>Pet not found</p>
+                                                    <p>Unexpected error</p>
                                             
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 
                                                 <div class="col-md-6 sw-response-model">
-                                            </div>
-                                            
-                                            </div>                </dd>
-                                    <dt class="sw-response-405">
-                                        405 Method Not Allowed
-                                    
-                                    </dt>
-                                    <dd class="sw-response-405">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p>Validation exception</p>
-                                            
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                
-                                                <div class="col-md-6 sw-response-model">
-                                            </div>
+                                                <div  class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                                <a class="json-schema-ref" href="#/definitions/ErrorModel">ErrorModel</a>
+                                                    </div>
+                                                </div></div>
                                             
                                             </div>                </dd>
                             </dl>
-                        </section>
-                        <section class="sw-request-security">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th class="sw-request-security-schema"></th>
-                                    <th class="sw-request-security-scopes"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                            <td><a href="#security-definition-petstore_auth">petstore_auth</a></td>
-                                            <td>
-                                                    write:pets
-                                                    , read:pets
-                                            </td>
-                                        </tr>
-                                </tbody>
-                            </table>
                         </section>
                 </div>
             </div>    
@@ -582,7 +753,7 @@
                                                     <div class="panel-body">
                                                             
                                                                             <section class="json-schema-array-items">
-                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Pet">Pet</a>
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Order">Order</a>
                                                                                 </span>
                                                                                 <span class="json-property-range" title="Value limits"></span>
                                                                                 
@@ -1881,62 +2052,64 @@
                             
                                     <section class="json-schema-properties">
                                         <dl>
-                                                <dt data-property-name="id">
-                                                    <span class="json-property-name">id:</span>
+                                                <dt data-property-name="orderNo">
+                                                    <span class="json-property-name">orderNo:</span>
                                                     <span class="json-property-type">integer</span>    <span class="json-property-format">(int64)</span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>交易流水号</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
                                                 </dd>
-                                                <dt data-property-name="petId">
-                                                    <span class="json-property-name">petId:</span>
+                                                <dt data-property-name="date">
+                                                    <span class="json-property-name">date:</span>
                                                     <span class="json-property-type">integer</span>    <span class="json-property-format">(int64)</span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>交易时间</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
                                                 </dd>
-                                                <dt data-property-name="quantity">
-                                                    <span class="json-property-name">quantity:</span>
+                                                <dt data-property-name="amoumt">
+                                                    <span class="json-property-name">amoumt:</span>
                                                     <span class="json-property-type">integer</span>    <span class="json-property-format">(int32)</span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>金额</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
                                                 </dd>
-                                                <dt data-property-name="shipDate">
-                                                    <span class="json-property-name">shipDate:</span>
-                                                    <span class="json-property-type">string</span>    <span class="json-property-format">(date-time)</span>
+                                                <dt data-property-name="account">
+                                                    <span class="json-property-name">account:</span>
+                                                    <span class="json-property-type">integer</span>    <span class="json-property-format">(int64)</span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>账户余额</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
                                                 </dd>
-                                                <dt data-property-name="status">
-                                                    <span class="json-property-name">status:</span>
+                                                <dt data-property-name="tradeType">
+                                                    <span class="json-property-name">tradeType:</span>
                                                     <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
-                                                                    <span class="json-property-enum-item">placed</span>
+                                                                    <span class="json-property-enum-item">提现</span>
                                                                 ,
-                                                                    <span class="json-property-enum-item">approved</span>
-                                                                ,
-                                                                    <span class="json-property-enum-item">delivered</span>
+                                                                    <span class="json-property-enum-item">销售</span>
                                                                 
                                                             }
                                                             </span>
@@ -1944,20 +2117,34 @@
                                                     
                                                 </dt>
                                                 <dd>
-                                                    <p>Order Status</p>
+                                                    <p>交易类型</p>
                                     
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
                                                 </dd>
-                                                <dt data-property-name="complete">
-                                                    <span class="json-property-name">complete:</span>
-                                                    <span class="json-property-type">boolean</span>
+                                                <dt data-property-name="toPersonAccount">
+                                                    <span class="json-property-name">toPersonAccount:</span>
+                                                    <span class="json-property-type">string</span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
                                                 <dd>
+                                                    <p>对方账号</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="toPersonAccountName">
+                                                    <span class="json-property-name">toPersonAccountName:</span>
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
                                                     
+                                                </dt>
+                                                <dd>
+                                                    <p>对方账号名称</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>

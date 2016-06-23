@@ -30,8 +30,9 @@ require.config({
     'message': 'Plugins/message',
     'html5shiv': '/static/components/html5shiv/static/html5shiv',
     'requirejs': '/static/components/requirejs/require',
+    "devbridge-autocomplete": "/static/components/devbridge-autocomplete/dist/jquery.autocomplete",
     'avalon': '/static/components/avalon/dist/avalon',
-    'pay.smscode': '../../static/custom_components/sms-code/sms-code'
+    'pay.smscode': '../../static/custom_components/sms-code/sms-code',
   },
   packages: [
 
@@ -47,6 +48,11 @@ require.config({
         'jquery'
       ],
       exports: 'flexslider'
+    },
+    "devbridge-autocomplete": {
+      deps: [
+        "jquery"
+      ]
     },
     lightbox: {
       deps: [

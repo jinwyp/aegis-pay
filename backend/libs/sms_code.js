@@ -150,15 +150,15 @@ exports.sendCode = function (req, res, next) {
 
         var sms    = data.sms || generate_code(smsType);
         var params = {
-            "phone" : userInfo.phone,
+            // "phone" : req.session.user.payPhone,
+            //暂时写死
+            "phone" : "15618177577",
             "message" : sms
         };
 
-        request.post(api_config.sendSMSCode, {body: params, json:true}, function (err, data) {
+        request.post({url:api_config.sendSMSCode, form: params},  function (err, data) {
             if (err) return next(err);
-
-            var dataSMS = data.body;
-
+            var dataSMS = JSON.parse(data.body);
             dataSMS.time = api_config.smsResend;
 
             if (dataSMS.success) {

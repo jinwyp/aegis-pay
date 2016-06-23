@@ -44,17 +44,23 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				if( !val ){
 					toggleError(false);
 					return false;
-				}else if( /^\d+$/.test(val*1) ){
-					if( balancePrice && formatPrice(balancePrice)>= val ){
+				}else if(/[^\d|,|\.]/g.test(val) || !balancePrice){
+					toggleError(false);
+					return false;
+				}else{
+					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
+						var curVal = numToPrice(val);
+						if(isNaN(curVal)){
+							drawCashTxt.val('0');	
+						}else{
+							drawCashTxt.val( numToPrice(val) );	
+						}
 						toggleError(true);
 						return true;
 					}else{
 						toggleError(false);
 						return false;
 					}
-				}else{
-					toggleError(false);
-					return false;
 				}
 			}
 			function toggleError(flag){
@@ -64,9 +70,12 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 					drawCashErr.show();
 				}
 			}
-			function formatPrice(str){
-				return ((str+'').replace(/,/g,''))*1;
+			function priceToNum(str){
+				return (str.replace(/,/g,''))*1;
 			}
+			function numToPrice(num){
+        		return ((num*1).toFixed(2)+'').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        	}
 		})($);
 
 		// 确认信息
@@ -78,6 +87,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				confirmErr = $('#confirmErr'),
 				errorMsg = $('#errorMsg');
 			confirmTxt.on('blur',function(){
+				errorMsg.hide();
 				var val = $(this).val();
 				checkHandler(val);
 			});
@@ -87,6 +97,27 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				var flag = checkHandler(val);
 				if( !flag ){
 					return false;
+				}else{
+					$.ajax({
+						url:'/drawCashStatus',
+						method:'POST',
+						data:{
+							confirmToken:$('#confirmToken').val(),
+							cash:$('#cash').val(),
+							password:$('#confirmTxt').val() 
+						},
+						success:function(response){
+							if(!response.success){
+								if(response.data && response.data.type && response.data.type == 1){
+									errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+								}else{
+									errorMsg.html(response.error).show();
+								}
+							}else{
+								$('#successForm').submit();
+							}
+						}
+					})
 				}
 			});
 			function checkHandler(val){

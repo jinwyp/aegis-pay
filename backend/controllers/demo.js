@@ -58,9 +58,42 @@ exports.demo = function (req, res, next) {
 				statusObj: statusObj,					//NODE端 数据模拟
 
                 userType: 'buy',                        //结算单 审核不通过.买家修改退回原因
-                order: {
-                    status: 'ReturnedSettleAccounts'
+                success: true,
+                data: {
+                    order: {
+                        id: 220000,
+                        version: 2314231,
+
+                        orderNO: '82793847398',						//订单编号
+                        contractNO: '82793847398FGHJKL',			//合同编号
+                        confirmDeliveryTime: '2016-06-20 16:11:48',	//确认提货时间
+                        confirmSettleTime: '2016-06-20 16:11:48',	//结算时间
+                        harbour: '上海港',							//港口
+                        coalType: '动力煤',							//煤种
+                        amount: 3000,								//合同吨位
+                        price: 100, 								//合同单价
+                        totalMoney: 1000,							//合同金额.付款金额
+                        paymentTime: '2016-06-20 16:11:48',			//付款时间
+
+                        buyerCompanyName: '购方公司11',				//购方公司
+                        sellerCompanyName: '销方公司22',				//销方公司
+                        status: 'WaitVerifySettle',
+                        statusName: '待结算',
+                        sellerSettleTime: '2016-06-20 16:11:48',	//*结算单创建时间
+
+                        settleAmount: 300,							//*结算吨数
+                        harbourDues: 555,							//*港务费
+                        settleMoney: 1000,							//*结算金额
+                        tailMoney: 100,								//*应补款
+                        refundMoney: 0,								//*应退款
+                        remarks: '说明33',
+
+                        currentTime: '2016-06-22 00:00:00',			//当前时间
+                        settleReturnTime: '2016-06-22 00:00:00',    //结算退回时间
+                        returnReason: '结算退回原因 结算退回原因'
+                    }
                 }
+
             };
 
 			// 渲染页面,指定模板&数据

@@ -16,8 +16,8 @@
 	<div class="financial-main draw-cash">
 		<div class="figure-wrap" id="drawCash">
 			<div class="figure-caption">
-				<span>账户余额：<strong><i id="balancePrice"><%= balanceMoney %></i>元</strong></span>
-				<a href="#">提现记录</a>
+				<span>账户余额：<strong><i id="balancePrice"><%= formatMoney(balanceMoney) %></i>元</strong></span>
+				<a href="/wealth/financialHome">提现记录</a>
 			</div>
 			<div class="figure-content">
 				<form action="/drawCashCheck" method="post" class="form-horizontal">
@@ -25,7 +25,9 @@
 						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>	
 						<div class="col-sm-4 select-bank">
 							<ul>
-								<li class="active"><input type="radio" checked/>  <%= bankName %>：尾号 <%= bankAccount %></li>
+								<li class="active"><input type="radio" checked/>  <%= bankName %>： 
+									<p class="padding-top-6">尾号：<%- fundAccountFormat(bankAccount,true) %></p>
+								</li>
 							</ul>
 						</div>
 					</div>

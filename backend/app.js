@@ -30,14 +30,10 @@ var logger           = require("./libs/logger");
 var ejs              = require('ejs');
 
 
-
-// require('./common/ejsFiltersAddon')(require('ejs').filters);
-
 // 静态文件目录
 var staticDir  = path.join(__dirname, '../frontend/dist');
-// var fileStatic = path.join(__dirname,   '../../files/static');
-//
-var fileStatic = config.sysFileDir;
+var fileStatic = config.file_path.root;
+
 
 
 var app = express();
@@ -51,14 +47,14 @@ app.set('view engine', 'ejs');
 app.enable('trust proxy');
 
 
-// Request logger 请求时间
+//日志
 app.use(morgan('dev'));
 
 
 if (config.debug) {
     logger.info('----- NodeJS Environment Config Variable: ');
     logger.info(config);
-    // Views 渲染时间
+    // 记录渲染时间
     app.use(renderMiddleware.render);
 }
 

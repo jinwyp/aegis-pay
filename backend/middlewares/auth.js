@@ -38,7 +38,7 @@ exports.passport = function (req, res, next) {
         return next();
     }
 
-    if (process.env.NODE_ENV == 'local') {
+ /*   if (process.env.NODE_ENV == 'local'||process.env.NODE_ENV=='self') {
         req.session.user = res.locals.user = {
             id           : 213,
             securephone  : 18634343434,
@@ -55,7 +55,7 @@ exports.passport = function (req, res, next) {
         };
         return next();
     }
-
+*/
     if (!req.session || !req.session.user) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
 
