@@ -109,7 +109,6 @@ exports.financialDetails = function (req, res, next) {
 
             content.userFundAccount = body.data.payments.userFundAccount;
 
-
             return res.render('wealth/financialDetails',content);
         }else {
             return res.json([]);

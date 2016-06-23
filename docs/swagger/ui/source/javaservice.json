@@ -42,9 +42,20 @@
         ],
         "parameters": [
           {
-            "name": "pageNo",
+            "name": "userId",
             "in": "formData",
-            "description": "第几页",
+            "description": "用户ID 测试ID:2719",
+            "required": true,
+            "type": "integer",
+            "minLength": 1,
+            "maxLength": 1000,
+            "minimum": 1,
+            "maximum": 99999
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "第几页 用来分页",
             "required": false,
             "type": "integer",
             "minLength": 1,
@@ -53,12 +64,12 @@
             "maximum": 99999
           },
           {
-            "name": "userId",
+            "name": "pagesize",
             "in": "formData",
-            "description": "用户ID",
-            "required": true,
+            "description": "每页显示条数",
+            "required": false,
             "type": "integer",
-            "minLength": 2,
+            "minLength": 1,
             "maxLength": 1000,
             "minimum": 1,
             "maximum": 99999
@@ -66,31 +77,32 @@
           {
             "name": "startDate",
             "in": "formData",
-            "description": "开始时间",
+            "description": "开始时间 2015-08-26",
             "required": false,
             "type": "string"
           },
           {
             "name": "endDate",
             "in": "formData",
-            "description": "结束时间",
+            "description": "结束时间 2017-08-26",
             "required": false,
             "type": "string"
           },
           {
-            "name": "tradeType",
+            "name": "type",
             "in": "formData",
-            "description": "交易类型",
+            "description": "交易类型 充值1, 提现2, 销售3, 采购4",
             "required": false,
             "type": "string",
             "items": {
               "type": "string",
               "enum": [
-                "提现",
-                "采购",
-                "销售"
+                "1",
+                "2",
+                "3",
+                "4"
               ],
-              "default": "提现"
+              "default": ""
             }
           },
           {
@@ -110,9 +122,9 @@
             }
           },
           {
-            "name": "userFundAccount",
+            "name": "searchContent",
             "in": "formData",
-            "description": "用户资金账号",
+            "description": "交易流水号 / 对方账户名称 / 订单号 文本",
             "required": false,
             "type": "string"
           }

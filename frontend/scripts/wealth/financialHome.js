@@ -44,16 +44,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderCategory = this.value;
-                console.log(this.value);
             });
             $formSelectOrderSearchType.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderSearchType = this.value;
-                console.log(this.value);
             });
 
             $('#downloadExcel').on('show.bs.modal', function (e) {
-                console.log( $formDateFrom.val());
                 console.log( $formDateTo.val());
                 console.log( $formDateTo.pickadate('picker').get());
 
@@ -62,7 +59,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             });
 
             //avalon.config({debug: false})
-            //avalon.config({loader: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : "",
