@@ -15,6 +15,10 @@
     {
       "name": "financialDetails",
       "description": "财务管理 收支明细"
+    },
+    {
+      "name": "financialDetails",
+      "description": "财务管理 收支明细"
     }
   ],
   "schemes": [
