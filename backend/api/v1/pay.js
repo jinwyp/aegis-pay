@@ -14,9 +14,7 @@ exports.submit = function (req, res, next) {
     var params = _.assign({}, {type: 1, userId: req.session.user.id}, body);
 
     request.post({url: api_config.paySubmit, form:params}, function (err, data) {
-
         if (err) return next(err);
-
         var result = JSON.parse(data.body);
 
         if (data && result.success) {

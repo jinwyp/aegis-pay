@@ -75,10 +75,10 @@ var cacheGet = function(userInfo, validTime){
                     return resolve(result);
                 }
             }
-            if(hourTime>=3){
+            if(hourTime>=300000){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
-            if(dayTime>=30){
+            if(dayTime>=300000){
                 result = {"readyToSend":false, "errType":"dayTimes"};
             }
 
@@ -150,10 +150,9 @@ exports.sendCode = function (req, res, next) {
 
         var sms    = data.sms || generate_code(smsType);
         var params = {
-            "phone" : userInfo.phone,
+            "phone" : req.body.customPhone || userInfo.securephone || userInfo.telephone,
             "message" : sms
         };
-
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
             if (err) return next(err);
 

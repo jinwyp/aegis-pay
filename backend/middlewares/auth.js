@@ -1,4 +1,5 @@
 var request = require('request');
+var api_config = require('../api/v1/api_config');
 
 var config                     = require('../config');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
@@ -59,7 +60,6 @@ exports.passport = function (req, res, next) {
 
     if (!req.session || !req.session.user) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
-
         if (!req.cookies[config.passport.cookieName]) {
             res.redirect(config.passport.member + '/login?gotoURL=' + encodeURIComponent(gotoURL) + '&from=' + config.domain);
             return;
@@ -86,3 +86,20 @@ exports.passport = function (req, res, next) {
         return next();
     }
 };
+
+// 获取支付手机
+exports.fetchPayPhone = function(req, res, next){
+    if(res.locals.user.phone){
+        return next();
+    }
+    request(api_config.fetchPayPhone+'?userId=' + req.session.user.id, function(err, data){
+        if(err) { return next(err);}
+        var data = JSON.parse(data.body);
+        if(data && data.success){
+            res.locals.user.phone = data.data.payPhone;
+            return next()
+        }else{
+            return next(data)
+        }
+    })
+}

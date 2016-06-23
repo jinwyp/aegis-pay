@@ -105,6 +105,8 @@ app.use(session({
 // custom middleware
 app.use(auth.passport);
 
+app.use(auth.fetchPayPhone);
+
 if (!config.debug) {
     app.use(function (req, res, next) {
         if (req.path.indexOf('/api') === -1) {

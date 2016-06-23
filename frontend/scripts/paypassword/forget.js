@@ -10,7 +10,7 @@ requirejs.config({
 require(['jquery'], function($){
     if($('.mainWrapper').hasClass('forgetValid')){
         require(['pay.smscode', 'forgetValid'], function(smscode, forgetValid){
-            smscode.init();
+            smscode.init('payPhone');
             forgetValid.init();
         })
     }
