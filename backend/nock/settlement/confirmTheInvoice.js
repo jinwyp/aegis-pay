@@ -59,19 +59,19 @@ nkScopePersist.get("/finance/receipt")
 // 	});
 
 // //有orderId, 无发票数据
-// nkScopePersist.get("/finance/receipt")
-// 	.query({userId: '213', orderId:'110000'})
-// 	.reply(200, {
-// 		success: true,
-// 		error: '错误',
-// 		errorCode: 30001,
-// 		data: {
-// 			orderId: 110000,
-// 			version: 123,
-// 			companyName: '公司名称',
-// 			receiptTypeList: [{sequence: 1, name:'增值税发票'}]
-// 		}
-// 	});
+nkScopePersist.get("/finance/receipt")
+	.query({userId: '213', orderId:'220000'})
+	.reply(200, {
+		success: true,
+		error: '错误',
+		errorCode: 30001,
+		data: {
+			orderId: 110000,
+			version: 123,
+			companyName: '公司名称',
+			receiptTypeList: [{sequence: 1, name:'增值税发票'}]
+		}
+	});
 
 //有orderId, 有发票数据
 nkScopePersist.get("/finance/receipt")
