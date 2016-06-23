@@ -7,4 +7,5 @@
     <input type="text" name="content" class="iIpt iIpt_sm record-number billNumber" id="billNumber" placeholder="请输入订单编号" value="<%=receiptOrder.content%>"/>
     <input type="hidden" name="type" value="<%=receiptOrder.type%>"/>
     <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submit">
+    <input type="hidden" value="<%= receiptOrder.type %>" id="type">
 </form>
