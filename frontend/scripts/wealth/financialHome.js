@@ -44,16 +44,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderCategory = this.value;
-                console.log(this.value);
             });
             $formSelectOrderSearchType.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderSearchType = this.value;
-                console.log(this.value);
             });
 
             $('#downloadExcel').on('show.bs.modal', function (e) {
-                console.log( $formDateFrom.val());
                 console.log( $formDateTo.val());
                 console.log( $formDateTo.pickadate('picker').get());
 
@@ -62,7 +59,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             });
 
             //avalon.config({debug: false})
-            //avalon.config({loader: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : "",
@@ -85,7 +81,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
                     console.log(searchQuery);
 
-                    app.getFinancialDetailsCountApi(searchQuery)
                     app.getFinancialDetailsApi(searchQuery);
                 },
 
@@ -118,25 +113,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 data   : params1,
                 success:function(data){
 
-                    vm.orderList = data;
-                }
-            })
-        },
-
-        getFinancialDetailsCountApi : function(params){
-            var params2 = $.extend({}, params, {count:true});
-
-            $.ajax({
-                url    : "/api/financial/order/details",
-                method : "POST",
-                data   : params2,
-                success:function(data){
-
-                    vm.orderListTotalPages = Math.ceil(data.count );
+                    vm.orderList = data.list;
+                    vm.orderListTotalPages = Math.ceil(data.totalPage );
                     app.showPagination();
                 }
             })
         },
+
 
         showPagination : function () {
             vm.orderListTotalPagesArrayLeft = [];
@@ -181,12 +164,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                         }
                     }
 
-
-
-
-
-
-
                 }
 
             }
@@ -195,7 +172,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
     $( document ).ready( function() {
         app.init();
-        app.getFinancialDetailsCountApi()
         app.getFinancialDetailsApi();
 
     });

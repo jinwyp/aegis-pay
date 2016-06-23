@@ -118,7 +118,7 @@ var api_config = {
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
-    financialDetails : host + 'financial/order/details',
+    financialDetails : host + 'finance/payments/list',
     bindingBankAccount : host + '/account/fund/bankCard/add',
     bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
     bindingBankAccountChildBankName : host + '/bank/loadChildBanks',
