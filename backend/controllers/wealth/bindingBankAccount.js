@@ -34,8 +34,7 @@ exports.bindingBankAccount = function (req, res, next) {
         ]
     };
 
-    // 静态数据
-     var url = api_config.bindingBankAccount+"?userId=15";
+    var url = api_config.bindingBankAccount+"?userId=15";
     var userId=req.session.user.id;
     request.get({
         url : url,
