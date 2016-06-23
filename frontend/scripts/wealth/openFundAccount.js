@@ -28,7 +28,7 @@ require(['jquery', 'pay.smscode'], function($, smscode){
             }
 
             this.bindEvent();
-            smscode.init();
+            smscode.init('payPhone');
         },
         bindEvent: function(){
             var self = this;
@@ -36,7 +36,7 @@ require(['jquery', 'pay.smscode'], function($, smscode){
             var eventValid = [
                 [['$pass1', /^(\w){6,20}$/], '$passFormatErr', '支付密码格式不正确！', 'blur'],
                 [['$pass2', '$pass1'], '$passDiffErr', '两次密码输入不一致！', 'blur'],
-                [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！', 'blur'],
+                // [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！', 'blur'],
             ];
             self.eventValidBind(eventValid);
 
@@ -52,6 +52,17 @@ require(['jquery', 'pay.smscode'], function($, smscode){
                                 ]
                 var noValid = self.submitValid(requiredValid);
                 !noValid && self.submit();
+            })
+
+            $('#send_code').on('click', function(e){
+                var payPhone = $('input[name="payPhone"]').val();
+                if(! /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/.test(payPhone)){
+                    self.els.$payPhoneErr.text('请输入有效的手机号！').show();
+                    self.els.$payPhone.focus();
+                }else{
+                    self.els.$payPhoneErr.hide();
+                    $('#imgcodeModal').modal();
+                }
             })
         },
         eventValidBind: function(eventValid){

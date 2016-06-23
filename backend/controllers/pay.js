@@ -26,33 +26,33 @@ var getOrderStatus = function(orderId){
 }
 
 exports.page = function (req, res, next) {
-    // getOrderStatus(req.query.orderId).then(function(step){
-        // if(step === 2){
-            checker.orderId(req.query.orderId);
-            var userInfo = req.session.user;
+        checker.orderId(req.query.orderId);
+        var userInfo = req.session.user;
 
-            var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
-            request(api_config.payPage + query, function (err, data) {
-                if (err) return next(err);
-                var result = JSON.parse(data.body);
+        var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
+        request(api_config.payPage + query, function (err, data) {
+            if (err) return next(err);
+            var result = JSON.parse(data.body);
+            if(result.errorCode === '1009'){
+                // 订单不处于支付状态
+                 res.redirect('/getOrderDetail?orderId=' + req.query.orderId);
+            }else{
                 var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款' },
-                                            {"user" : {"phone" : userInfo.securephone}},
                                             result.data);
-                var view = (result.errorCode===1001) ? 'pay/open-account' : 'pay/index';
+                // 未开通资金账号
+                var view = (result.errorCode==='1001') ? 'pay/open-account' : 'pay/index';
                 return res.render(view, pageData);
-            })
-    //    }else{
-    //         res.redirect('/getOrderDetail?orderId=' + req.query.orderId);
-    //     }
-    // }).catch(next)
+            }
+
+        })
 };
 
 
 exports.success = function (req, res, next) {
     // getOrderStatus(req.query.orderId).then(function(step){
         // if(step === 3){
-            var params = {orderId : req.query.orderId, userId: req.session.user.id, type:1};
-            request(api_config.orderProgress, params, function (err, data) {
+            var params = '?orderId=' + req.query.orderId + '&userId=' + req.session.user.id + '&type=1';
+            request(api_config.orderProgress + params, function (err, data) {
                 if (!err && data) {
                     var body = JSON.parse(data.body);
                     var data = body.data;

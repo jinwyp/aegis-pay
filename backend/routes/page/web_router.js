@@ -109,7 +109,7 @@ router.get('/drawCash', drawCash.drawCash);                                     
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //账户管理－账户通－提现确认信息
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
-router.get('/account/accountSetting', accountSetting.accountSetting);                           //账户设置
+router.get('/account/accountSetting', accountSetting.accountSetting);
 router.get('/account/notice', notice.notice);                                                   //账户设置－消息提醒
 router.get('/wealth/bindingBankAccount',bindingBankAccount.bindingBankAccount);                 //账户设置－绑定银行卡
 router.get('/wealth/bindingSuccess',bindingBankAccount.bindingSuccess);                         //账户设置－绑定银行卡成功
@@ -121,7 +121,7 @@ router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);          
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);                                 //重置密码页面(选择方式：是否记得密码)
-router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhone);           //修改或忘记密码身份验证
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhonePage);           //修改或忘记密码身份验证
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);//忘记密码－设置密码
 router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess);//重置密码成功
 router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);//修改密码－设置密码
@@ -141,7 +141,6 @@ router.get('/settlement/settleDetails', settleDetails.settleDetails);           
 router.get('/settlement/settlementInfo', settlementInfo.settlementInfo);                        //结算管理－发票设置查看详情
 
 //合同管理
-router.get('/wealth/financialContract', financialHome.financialContract);                       //合同管理
-
+router.get('/wealth/financialContract', financialHome.financialContract);
 
 module.exports = router;

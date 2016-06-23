@@ -5,7 +5,6 @@ var api_config     = require('../api/v1/api_config');
 exports.setSSOCookie = function(req, res, next){
     var passport = req.query.passport;
     var jsonpCallback = req.query.callback;
-
     res.cookie('passport', passport, {
         httpOnly: true,
         secure: config.https,

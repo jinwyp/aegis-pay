@@ -20,8 +20,14 @@ exports.openFundAccount = function(req, res, next){
 
 exports.fetchOpenStatus = function(req, res, next){
     var count = 0;
+    var postFlag = false;
     var fetchStatusTimer = setInterval(function(){
-        request.post(api_config.fetchOpenStatus, {body: {userId: req.session.user.id}, json:true}, function(err, data){
+        if(postFlag){
+            return ;
+        }
+        postFlag = true;
+        request.post({url: api_config.fetchOpenStatus, form:{userId: req.session.user.id}}, function(err, data){
+            postFlag = false;
             if(err) return next(err);
             if(!err && data){
                 var result = data.body;
@@ -29,7 +35,7 @@ exports.fetchOpenStatus = function(req, res, next){
                 if(status === 1){
                     // 开通成功
                     clearInterval(fetchStatusTimer);
-                    cache.set('openFundAccount:fundAccount_' + req.session.user.id, {userAcccount: result.data.userAcccount}, 180);
+                    cache.set('openFundAccount:fundAccount_' + req.session.user.id, {userAcccount: result.data.userAccount}, 180);
                     return res.json({'success':true});
                 }else if(status === 3){
                     // 开通失败

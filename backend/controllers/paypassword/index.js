@@ -10,7 +10,7 @@ var _getUserFundAccount = exports.getUserFundAccount = function(userId){
             if(!cerr && cdata){
                 return resolve(cdata);
             }else{
-                request(api_config.fetchFundAccount, {userId: userId}, function(err, data){
+                request(api_config.fetchFundAccount+'?userId=' + userId, function(err, data){
                     if(err) {return reject(err);}
                     var data = JSON.parse(data.body);
                     if(data && data.success){
@@ -80,10 +80,7 @@ exports.forgetSuccess = function(req, res, next){
     var pageData = {
         pageTitle : '安全设置 —— 设置支付密码',
         headerTit : '安全设置',
-        subHeaderTit: '设置支付密码',
-        // user: {
-        //     id: req.session.user.id
-        // }
+        subHeaderTit: '设置支付密码'
     };
     if(req.path.indexOf('modify') === -1){
         res.render('paypassword/forget-success', pageData);
@@ -93,28 +90,17 @@ exports.forgetSuccess = function(req, res, next){
 
 }
 
-exports.fetchPayPhone = function(req, res, next){
+exports.fetchPayPhonePage = function(req, res, next){
     var pageData = {
         pageTitle : '安全设置 —— 修改支付密码',
         headerTit : '安全设置',
-        subHeaderTit: '修改支付密码',
-        user: {
-            phone: req.session.user.securephone
-        }
+        subHeaderTit: '修改支付密码'
     };
-    request(api_config.fetchPayPhone, {userId: req.session.user.id}, function(err, data){
-        if(err) {return next(err);}
-        var data = JSON.parse(data.body);
-        if(data && data.success){
-            pageData.user.phone = data.data.payPhone;
-        }
-        if(req.path.indexOf('modify') === -1){
-            res.render('paypassword/forget-valid', pageData);
-        }else{
-            res.render('paypassword/modify-valid', pageData);
-        }
-
-    })
+    if(req.path.indexOf('modify') === -1){
+        res.render('paypassword/forget-valid', pageData);
+    }else{
+        res.render('paypassword/modify-valid', pageData);
+    }
 }
 
 exports.modifyReset = function(req, res, next){
