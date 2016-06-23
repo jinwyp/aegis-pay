@@ -5,7 +5,7 @@ var bp = require('bootprint').load(require('bootprint-openapi'));  // Load bootp
 var mergeOptions = {};
 
 bp.merge(mergeOptions) // Customize configuration, override any options
-    .build('./ui/source/financial.json', './ui/output')// Specify build source and target
+    .build('./ui/source/javaservice.json', './ui/output')// Specify build source and target
     .generate() // Generate swagger-documentation into "output" directory
     .done(console.log);
 
