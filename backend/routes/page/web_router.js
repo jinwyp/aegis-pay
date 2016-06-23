@@ -144,5 +144,4 @@ router.get('/settlement/settlementInfo', settlementInfo.settlementInfo);        
 router.get('/wealth/financialContract', financialHome.financialContract);                       //合同管理
 
 
-
 module.exports = router;

@@ -25,7 +25,7 @@
 						<label class="col-sm-5 control-label">选择银行卡：</label>	
 						<div class="col-sm-5 txt-strong">
 							<p class="para-name"><%= companyName %></p>
-							<p class="para-bank"><%= bankName %>:<%=bankAccount %></p>
+							<p class="para-bank"><%= bankName %>:<%-fundAccountFormat(bankAccount,true) %></p>
 						</div>
 					</div>
 					<div class="form-group">
@@ -65,7 +65,7 @@
 						<input type="hidden" name="cash" value="<%= cash %>" id="cash" />
 						<input type="hidden" name="companyName" value="<%= companyName %>" id="companyName"/>
 					</form>
-					<form method="post" active="/cashSuccess" class="display-none" id="successForm">
+					<form action="/cashSuccess" method="post" class="display-none" id="successForm">
 						<input type="hidden" name="confirmToken" value="<%= confirmToken %>" id="confirmToken"/>
 						<input type="submit" value="提交" />
 					</form>
