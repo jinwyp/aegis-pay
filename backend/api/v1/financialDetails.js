@@ -23,7 +23,7 @@ exports.financialDetailsApi = function (req, res, next) {
 
     var postBody = req.body;
 
-    var params = Object.assign({}, {userId: req.session.user.id}, postBody);
+    var params = Object.assign({}, {userId: 2719}, postBody);
 
     var url = api_config.financialDetails;
     request.post({url:url, form:params, json:true}, function (err, response, body) {
