@@ -142,8 +142,26 @@ var api_config = {
 
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash',
-
     fundinfo: host + 'account/fund/info',
+
+
+    sellerSubmit:       host + 'mall/order/seller/settle/submit',
+
+
+    /**
+     * 开具结算单 系列Api
+     * sellerView 卖家查看
+     * sellerSubmit 卖家提交
+     *
+     */
+    sellerView:         host + 'mall/order/seller/settle',
+    buyersView:         host + 'mall/order/settle',
+    buyersReturn:       host + 'mall/order/settle/return',
+    buyersEditReason:   host + 'mall/order/settle/return/editreason',
+    buyersAuditing:     host + 'mall/order/settle/submit',
+    downPrintSettle:    host + 'mall/order/print/settle'
+
+
 
 };
 
