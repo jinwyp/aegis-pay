@@ -153,14 +153,24 @@ exports.drawCashStatus = function(req,res,next){
 exports.cashSuccess = function(req,res,next){
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
-     var content = {
-         pageTitle : "财务管理中心 - 账户通 - 提现",
-         headerTit : "财务管理中心 - 账户通 - 提现",
-         tabObj : {
-             firstTab : firstTab,
-             secondTab : secondTab
-         },
-         status:2
-     };
-     res.render('drawCash/drawCashStatus',content);
+
+    var confirmToken = req.body.confirmToken;
+    
+    //confirmToken不相同
+    if(!confirmToken && confirmToken!=req.session.confirmToken) {
+        logger.error(req.ip+" drawCash status error");
+        next(new UnauthenticatedAccessError());
+        return;
+    }
+
+    var content = {
+        pageTitle : "财务管理中心 - 账户通 - 提现",
+        headerTit : "财务管理中心 - 账户通 - 提现",
+        tabObj : {
+            firstTab : firstTab,
+            secondTab : secondTab
+        },
+        status:2
+    };
+    res.render('drawCash/drawCashStatus',content);
  }

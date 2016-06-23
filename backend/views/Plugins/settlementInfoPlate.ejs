@@ -82,41 +82,29 @@
             <% if(isShowEdit_sj) {%>
             <tr>
                 <td class="billBox">
-                    <% if(orderObj.settleAmount) { %>
-                    <input type="text" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleAmount %>" />
-                    <% } %>
-                    <input type="text" class="billIpt" placeholder="0-100整数"/>
+                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
                     <span class="errInfo"></span>
                 </td>
                 <td class="billBox">
-                    <% if(orderObj.harbourDues) { %>
-                    <input type="text" class="billIpt" placeholder="0-100整数" value="<%= orderObj.harbourDues %>"/>
-                    <% } %>
-                    <input type="text" class="billIpt" placeholder="0-100整数"/>
+                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
                 <td class="billBox">
-                    <% if(orderObj.settleMoney) { %>
-                    <input type="text" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleMoney %>"/>
-                    <% } %>
-                    <input type="text" class="billIpt" placeholder="0-100整数"/>
+                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
                 <td>
                     <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                        <span class="tailMoneyNum"><%= orderObj.tailMoney %></span>
+                        <span class="tailMoneyNum"><%= orderObj.tailMoney || 0 %></span>
                     <% }else{ %>
-                        <span class="refundMoneyNum"><%= orderObj.refundMoney %></span>
+                        <span class="refundMoneyNum"><%= orderObj.refundMoney || 0 %></span>
                     <% } %>
                 </td>
             </tr>
             <tr>
                 <th>说明</th>
                 <td colspan="3" class="billBox">
-                    <% if(orderObj.remarks) { %>
-                    <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks %>"/>
-                    <% } %>
-                    <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写"/>
+                    <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
             </tr>
