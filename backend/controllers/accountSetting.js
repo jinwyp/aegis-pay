@@ -10,31 +10,42 @@ var request = require('request');
 // var _ = require('lodash');
 var api_config = require('../api/v1/api_config');
 var logger = require("../libs/logger");
+var SystemError = require('../errors/SystemError');
+
 
 // 处理业务逻辑
 exports.accountSetting = function (req, res, next) {
-    //头部
-    var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
-    var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
-    // sideBar
-    var accountSideBar = {
-        current : "1",
-        sideBarList : [
-            {
-                listName : '基本信息',
-                listLink : 'accountSetting',
-                secList:''
-            },
-            {
-                listName : '消息提醒',
-                listLink : 'notice',
-                secList:''
-            }
-        ]
-    };
 
-    request({url : api_config.accountSetting}, function (err, data) {
-        if(err) return next(err);
+    var user = req.session.user;
+
+
+    request({url : api_config.accountSetting+'?userId='+ user.id}, function (err, data) {
+
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
+        
+        //头部
+        var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
+        var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
+        // sideBar
+        var accountSideBar = {
+            current : 1,
+            sideBarList : [
+                {
+                    listName : '基本信息',
+                    listLink : 'accountSetting',
+                    secList:''
+                },
+                {
+                    listName : '消息提醒',
+                    listLink : 'notice',
+                    secList:''
+                }
+            ]
+        };
+        
         if(data){
             var source = JSON.parse(data.body);
             var content = {
@@ -45,10 +56,12 @@ exports.accountSetting = function (req, res, next) {
                     firstTab : firstTab,
                     secondTab : secondTab
                 },
-                'accountInfo'    :source.accountInfo
+                registerTime: source.data.registerTime,
+                fundStatus: source.data.fundStatus,
+                cashStatus: source.data.cashStatus
 
             };
-            logger.debug('获取到的结果是content----------------------------' + content);
+            logger.debug('获取到的结果是content----------------------------' ,content);
             //渲染页面
             return res.render('account/accountSetting',content);
         }

@@ -9,9 +9,6 @@ var config = {
     debug : true, // debug 为 true 时，用于本地调试
     mock  : process.env.MOCK === 'true' || process.env.MOCK === true ? true : false,
 
-    name        : 'NRient',
-    description : '',
-    keywords    : 'nodejs react redux webpack',
     site_logo   : '',
     site_icon   : '',
 
@@ -48,9 +45,7 @@ var config = {
         zips        : path.join(__dirname, '../views/download/zips'),
         pdf         : path.join(__dirname, '../views/download/pdf')
     },
-
-
-
+    
     member_address: 'http://10.100.20.3:3000',
     rest_address: 'http://10.100.30.1:8888/'
 };

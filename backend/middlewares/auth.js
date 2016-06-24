@@ -2,6 +2,7 @@ var request = require('request');
 var api_config = require('../api/v1/api_config');
 
 var config                     = require('../config');
+var SystemError                = require('../errors/SystemError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
 
 
@@ -108,7 +109,8 @@ exports.fetchPayPhone = function(req, res, next){
             res.locals.user.phone = data.data.payPhone;
             return next()
         }else{
-            return next(data)
+            return next(new SystemError(data.status, data.error));
+            // return next(data)
         }
     })
 }

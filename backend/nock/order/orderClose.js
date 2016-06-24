@@ -9,7 +9,8 @@ var nkOrderPersist = nock(API.host).log(console.log).persist();		        // 执�
 
 
 // 查询订单 (111, 代付款)
-nkOrderPersist.get('/order/orderInfo').query({orderId:'111000'})
+nkOrderPersist.get('/order/orderInfo')
+    //.query({orderId:'111000'})
     .reply(200, {
         order: {
             version: '111',

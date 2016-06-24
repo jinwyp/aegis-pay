@@ -81,7 +81,6 @@ exports.billCenter = function (req, res, next) {
 
             };
             //渲染页面
-            //return res.render('settlement/billCenter', content);
             if(!type){
                 return res.render('settlement/billCenter', content);
             }else if(type == 1){

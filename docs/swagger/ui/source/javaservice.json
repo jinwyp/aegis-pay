@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost",
-  "basePath": "/api/vi",
+  "basePath": "/api",
   "tags": [
     {
       "name": "financialDetails",
@@ -147,16 +147,56 @@
                   "rowNum": 10,
                   "totalCount": null,
                   "totalPage": null,
-                  "list": [],
+                  "list": [
+                    {
+                      "fundAccount": "3110710001261037605",
+                      "createTime": "092640",
+                      "createDate": "20160624",
+                      "transactionNO": "J0000000001094",
+                      "money": 3.00,
+                      "balanceMoney": 5.00,
+                      "remarks": "",
+                      "otherFundAccount": "3110710001261001470",
+                      "otherCompanyName": "资金初始化--上海念瞳半导体科技有限公司",
+                      "otherBankName": null,
+                      "printCode": "20160624105430228207"
+                    },
+                    {
+                      "fundAccount": "3110710001261037605",
+                      "createTime": "111042",
+                      "createDate": "20160624",
+                      "transactionNO": "J0000000001266",
+                      "money": 1.00,
+                      "balanceMoney": 6.00,
+                      "remarks": "heheheeh",
+                      "otherFundAccount": "3110710001261032452",
+                      "otherCompanyName": "测试1",
+                      "otherBankName": null,
+                      "printCode": "20160624111106777601"
+                    },
+                    {
+                      "fundAccount": "3110710001261037605",
+                      "createTime": "111042",
+                      "createDate": "20160624",
+                      "transactionNO": "J0000000001267",
+                      "money": 1.00,
+                      "balanceMoney": 7.00,
+                      "remarks": "heheheeh",
+                      "otherFundAccount": "3110710001261032452",
+                      "otherCompanyName": "测试1",
+                      "otherBankName": null,
+                      "printCode": "20160624111106752650"
+                    }
+                  ],
                   "indexNum": 0,
-                  "count": 0,
+                  "count": 3,
                   "userId": 2719,
                   "type": null,
-                  "startDate": null,
-                  "endDate": null,
+                  "startDate": "2015-08-26",
+                  "endDate": "2017-08-26",
                   "searchType": 0,
                   "searchContent": null,
-                  "userFundAccount": "3110710001261001468",
+                  "userFundAccount": "3110710001261037605",
                   "typeList": [
                     {
                       "type": "paymentstypelist",
@@ -197,7 +237,7 @@
     },
 
     "/finance/order/seller/receipt": {
-      "post": {
+      "get": {
         "tags": [
           "billCenter"
         ],
@@ -214,7 +254,7 @@
         "parameters": [
           {
             "name": "page",
-            "in": "formData",
+            "in": "query",
             "description": "第几页,用于分页",
             "required": false,
             "type": "integer",
@@ -225,7 +265,7 @@
           },
           {
             "name": "pagesize",
-            "in": "formData",
+            "in": "query",
             "description": "每页显示条数",
             "required": false,
             "type": "integer",
@@ -236,7 +276,7 @@
           },
           {
             "name": "userId",
-            "in": "formData",
+            "in": "query",
             "description": "用户ID",
             "required": true,
             "type": "integer",
@@ -247,21 +287,21 @@
           },
           {
             "name": "startDate",
-            "in": "formData",
+            "in": "query",
             "description": "开始时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "endDate",
-            "in": "formData",
+            "in": "query",
             "description": "结束时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "in": "formData",
+            "in": "query",
             "description": "开票状态 全部发票0, 待开票1, 已开票2",
             "required": false,
             "type": "string",
@@ -277,7 +317,7 @@
           },
           {
             "name": "content",
-            "in": "formData",
+            "in": "query",
             "description": "搜索的订单号",
             "required": false,
             "type": "integer"
