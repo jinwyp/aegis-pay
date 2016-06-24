@@ -45,9 +45,7 @@ var config = {
         zips        : path.join(__dirname, '../views/download/zips'),
         pdf         : path.join(__dirname, '../views/download/pdf')
     },
-
-
-
+    
     member_address: 'http://10.100.20.3:3000',
     rest_address: 'http://10.100.30.1:8888/'
 };
