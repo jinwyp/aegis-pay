@@ -15,7 +15,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload'], function($, fancySelect, bootstrap, message, upload){
 
-    var apiHost = '/api';			                            // API域名
+    var apiHost = '/api';	// API域名
 
 
     // 页面模块控制
@@ -114,11 +114,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 detail: '退回原因 已更新!'
                             });
 
-                            $('.labReturnReason').html(data.reason);
-                            $('.labReturnTime').html(data.settleReasonTime);
+                            $('.labReturnReason').html(data.data.reason);
+                            $('.labReturnTime').html(data.data.lastEditReasonTime);
 
                             setTimeout(function() {
-                                $btnCancelTrigger.click();      //location.href = '/';
+                                $btnCancelTrigger.click();      //location.href = '/settlement/settlementForm?type=1&id=3622';
                             }, 800);
                         } else {
                             message({

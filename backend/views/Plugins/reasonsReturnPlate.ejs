@@ -20,6 +20,7 @@
     <% } %>
 
     <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts'){ %>
+    <% orderObj.returnReason = orderObj.returnReason || ''%>
     <div class="reasonsReturn mt20">
         <!-- 审核退回.查看原因-->
         <div class="reasonsReturn_view show">
@@ -35,7 +36,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <span class="labReturnTime"><%= orderObj.settleReturnTime %></span>
+                        <span class="labReturnTime"><%= orderObj.lastEditReasonTime %></span>
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +65,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><%= orderObj.settleReturnTime %></td>
+                    <td><%= orderObj.lastEditReasonTime %></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -94,7 +95,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><%= orderObj.settleReturnTime %></td>
+                    <td><%= orderObj.lastEditReasonTime %></td>
                 </tr>
                 <tr>
                     <td> </td>

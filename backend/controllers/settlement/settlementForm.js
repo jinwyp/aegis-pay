@@ -58,7 +58,7 @@ exports.orderSettlement = function (req, res, next) {
 		}
 
 		// TODO: 本地 Nock
-		// apiUrl = apiHost.host + 'settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
+		//apiUrl = apiHost.host + 'settlement/settlementForm?orderId=' + req_id +'&type='+ typeArr[req_type];
 		request(apiUrl, function (err, data) {
 			if (err) return next(err);
 
@@ -82,14 +82,14 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	var url = apiHost.sellerSubmit;
 		//url = apiHost.host + 'settlement/sellerSubmit';			// TODO: 本地
 
-	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true}}, function (err, data) {
+	console.log('--------22222222222222222222222------------------');
+	console.log(req.body);
+	request.post({url:url, formData: req.body, qsStringifyOptions:{allowDots:true}}, function (err, data) {
 		if (err) return next(err);
-		console.log('=============sellersubmit=====================');
+		console.log('=============33333333333333333333333=====================');
 
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
-
-			replyData.headerTit = '待结算.卖家开具结算单 11111111';
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))
@@ -104,7 +104,7 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 	var url = apiHost.buyersReturn;
 		//url = apiHost.host + 'settlement/buyersReturn';			// TODO: 本地
 
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post(url, {formData:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
@@ -123,13 +123,11 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 	var url = apiHost.buyersEditReason;
 		//url = apiHost.host + 'settlement/buyersEditReason';			// TODO: 本地
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post(url, {formData:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
 			var replyData = data.body;
-
-			replyData.headerTit = '审核不通过.买家修改退回原因 320000';
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))
@@ -143,13 +141,11 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 	var url = apiHost.buyersAuditing;
 		//url = apiHost.host + 'settlement/buyersAuditing';			// TODO: 本地
 
-	request.post(url, {body:req.body, json:true}, function (err, data) {
+	request.post(url, {formData:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
 			var replyData = data.body;
-
-			replyData.headerTit = '待审核_买:WaitVerifySettle.买家.结算审核通过 220000';
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))

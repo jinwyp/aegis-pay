@@ -358,8 +358,9 @@ nkScopePersist.get('/settlement/downPrint')
 				refundMoney: 0,								//*应退款
 				remarks: '说明33',
 
-				deadlineTime: '2016-06-22 00:00:00',			//当前时间, 截止时间
+				deadlineTime: '2016-06-22 00:00:00',		//当前时间, 截止时间
 				settleReturnTime: '2016-06-22 00:00:00',    //结算退回时间
+				lastEditReasonTime: '2016-06-22 00:00:00',    //编辑原因回时间
 				returnReason: '结算退回原因 结算退回原因 打印',
 
 				files: [
