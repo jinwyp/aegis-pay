@@ -1,17 +1,20 @@
-<!-- 退回原因提示框 板块 -->
 <% var orderObj = data.order %>
 <% if(orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts') {%>
+<!-- 退回原因提示框 板块 -->
 <div id="reasonsReturnPlate">
     <% if(userType == 'buy' && orderObj.status == 'WaitVerifySettle'){ %>
     <!-- 待审核.状态提示-->
     <div class="reasonsReturn mt20">
         <div class="reasonsReturn_back show">
             <h2 class="returnTitle"><span class="statusLab">当前状态：</span>待确认结算</h2>
-            <p class="sf">您还有
-                <span class="bright Day">12</span>天
-                <span class="bright Hour">12</span>小时
-                <span class="bright Minute">12</span>分
-                <span class="bright Second">12</span>秒来确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。</p>
+            <p class="sf">
+                <!--您还有-->
+                <!--<span class="bright Day">12</span>天-->
+                <!--<span class="bright Hour">12</span>小时-->
+                <!--<span class="bright Minute">12</span>分-->
+                <!--<span class="bright Second">12</span>秒来-->
+                请在<span class="bright Day">12</span>天内
+                确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。</p>
         </div>
     </div>
     <% } %>

@@ -96,7 +96,6 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'2
 		}
 	});
 
-
 // 结算被退回_卖:ReturnedSettleAccounts
 nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'310000'})
 	.reply(200, {
@@ -137,7 +136,6 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'3
 		}
 	});
 
-
 // 待审核_买:WaitVerifySettle
 nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'220000'})
 	.reply(200, {
@@ -175,7 +173,6 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'22
 			}
 		}
 	});
-
 
 // 结算被退回_买:ReturnedSettleAccounts
 nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'320000'})
@@ -220,6 +217,42 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'buy', orderId:'32
 
 
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+// API路由: 卖家.提交结算单 (待结算_卖:WaitSettleAccounts  or  结算被退回_卖:ReturnedSettleAccounts)
+nkScopePersist.post('/settlement/sellerSubmit')
+	.reply(200, {
+		success: true
+	});
+
+// API路由: 买家.退回结算单 (待审核_买:WaitVerifySettle   )
+nkScopePersist.post('/settlement/buyersReturn')//.query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true
+	});
+
+// API路由: 买家.修改退回原因 (审核被退回_买:ReturnedSettleAccounts )
+nkScopePersist.post('/settlement/buyersEditReason')//.query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true,
+		reason: '退回原因 已更新',
+		settleReasonTime: '2016-06-22 22:22:22'
+	});
+
+// API路由: 买家.结算审核通过 (待审核_买:WaitVerifySettle )
+nkScopePersist.post('/settlement/buyersAuditing')//.query({sellerId: '213', orderId:'110000'})
+	.reply(200, {
+		success: true,
+		data: {
+			orderId: 123124,
+			version: 123,
+			result: false
+		}
+	});
+
+
+
+
+
+
 
 // API路由: *卖家.查看结算单 (待结算_卖:WaitSettleAccounts  待审核_卖:WaitVerifySettle)
 nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'110000'})
@@ -255,7 +288,6 @@ nkScopePersist.get('/settlement/sellerView').query({sellerId: '213', orderId:'11
 			}
 		}
 	});
-
 
 //API路由: *买家.查看结算单 (待审核_买:WaitVerifySettle)
 nkScopePersist.get('/settlement/buyersView')
@@ -293,7 +325,6 @@ nkScopePersist.get('/settlement/buyersView')
 		}
 	});
 
-
 // API路由: *下载打印结算单
 nkScopePersist.get('/settlement/downPrint')
 	.reply(200, {
@@ -327,7 +358,7 @@ nkScopePersist.get('/settlement/downPrint')
 				refundMoney: 0,								//*应退款
 				remarks: '说明33',
 
-				currentTime: '2016-06-22 00:00:00',			//当前时间
+				deadlineTime: '2016-06-22 00:00:00',			//当前时间, 截止时间
 				settleReturnTime: '2016-06-22 00:00:00',    //结算退回时间
 				returnReason: '结算退回原因 结算退回原因 打印',
 
@@ -338,40 +369,6 @@ nkScopePersist.get('/settlement/downPrint')
 		}
 	});
 
-
-// API路由: 卖家.提交结算单 (待结算_卖:WaitSettleAccounts  or  结算被退回_卖:ReturnedSettleAccounts)
-nkScopePersist.post('/settlement/sellerSubmit')
-	.reply(200, {
-		success: true
-	});
-
-
-// API路由: 买家.退回结算单 (待审核_买:WaitVerifySettle   )
-nkScopePersist.post('/settlement/buyersReturn')//.query({sellerId: '213', orderId:'110000'})
-	.reply(200, {
-		success: true
-	});
-
-
-// API路由: 买家.修改退回原因 (审核被退回_买:ReturnedSettleAccounts )
-nkScopePersist.post('/settlement/buyersEditReason')//.query({sellerId: '213', orderId:'110000'})
-	.reply(200, {
-		success: true,
-		reason: '退回原因 已更新',
-		settleReasonTime: '2016-06-22 22:22:22'
-	});
-
-
-// API路由: 买家.结算审核通过 (待审核_买:WaitVerifySettle )
-nkScopePersist.post('/settlement/buyersAuditing')//.query({sellerId: '213', orderId:'110000'})
-	.reply(200, {
-		success: true,
-		data: {
-			orderId: 123124,
-			version: 123,
-			result: false
-		}
-	});
 
 
 module.exports = nkScopePersist;
