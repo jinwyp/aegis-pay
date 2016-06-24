@@ -23,7 +23,8 @@ exports.financialDetailsApi = function (req, res, next) {
     var postBody = {
         userId : req.session.user.id,
         //userId :  2719,
-        page : req.body.currentPage || 1
+        page : req.body.currentPage || 1,
+        pagesize : 1
     };
 
     if (req.body.orderDateFrom) postBody.startDate = req.body.orderDateFrom;
