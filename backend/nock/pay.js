@@ -20,7 +20,7 @@ payPersist
                       "sellerCompanyName":"易煤网",
                       "sellerFundAccount": "8098098099897387",
                       "totalMoney": 2000000000,
-                      "sellerBalanceMoney": 29889000900,
+                      "buyerBalanceMoney": 29889000900,
                    }
                 }
             };

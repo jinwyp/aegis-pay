@@ -19,26 +19,30 @@ exports.financialDetailsApi = function (req, res, next) {
     //checker.payPassword(req.body.orderSearchText);
     //checker.payPassword(req.body.currentPage);
     //checker.payPassword(req.body.limit);
-    //checker.payPassword(req.body.skip);
 
+    var postBody = {
+        //userId : req.session.user.id,
+        userId :  2719,
+        page : req.body.currentPage || 1
+    };
 
-    var postBody = req.body;
-    var params = Object.assign({}, {userId: req.session.user.id}, postBody);
+    if (req.body.orderDateFrom) postBody.startDate = req.body.orderDateFrom;
+    if (req.body.orderDateTo) postBody.startDate = req.body.endDate;
+    if (req.body.orderCategory) postBody.type = req.body.orderCategory;
+    if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
+    if (req.body.orderSearchText) postBody.searchContent = req.body.orderSearchText;
+
 
     var url = api_config.financialDetails;
-    request.post({url:url, form:params}, function (err, response, body) {
+    request.post({url:url, form:params, json:true}, function (err, response, body) {
 
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
-            if (postBody.count){
-                return res.json({count:body.data.length});
-            }else{
-                return res.json(body.data);
-            }
+            return res.json(body.data.payments);
         }else {
             return res.json([]);
         }
-    })
+    });
 
 };

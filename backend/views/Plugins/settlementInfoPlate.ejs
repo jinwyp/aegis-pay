@@ -82,15 +82,15 @@
             <% if(isShowEdit_sj) {%>
             <tr>
                 <td class="billBox">
-                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
+                    <input type="number" class="billIpt" name="ins_ettleAmount" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
                     <span class="errInfo"></span>
                 </td>
                 <td class="billBox">
-                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
+                    <input type="number" class="billIpt" name="ins_harbourDues" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
                 <td class="billBox">
-                    <input type="number" class="billIpt" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
+                    <input type="number" class="billIpt" name="ins_settleMoney" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
                 <td>
@@ -104,7 +104,7 @@
             <tr>
                 <th>说明</th>
                 <td colspan="3" class="billBox">
-                    <input type="text" class="billIpt" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
+                    <input type="text" class="billIpt" name="ins_remarks" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
                     <span class="errInfo"></span>
                 </td>
             </tr>

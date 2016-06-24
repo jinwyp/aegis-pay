@@ -87,7 +87,7 @@ nkScopePersist.get('/settlement/settlementForm').query({type: 'sell', orderId:'2
 				refundMoney: 0,								//*应退款
 				remarks: '说明11',
 
-				contractFiles: [
+				files: [
 					{name: '补充协议文件1', path: '/a/b/xy_1.jpg'},
 					{name: '补充协议文件2', path: '/a/b/xy_2.jpg'},
 					{name: '补充协议文件3', path: '/a/b/xy_3.jpg'}
@@ -331,7 +331,7 @@ nkScopePersist.get('/settlement/downPrint')
 				settleReturnTime: '2016-06-22 00:00:00',    //结算退回时间
 				returnReason: '结算退回原因 结算退回原因 打印',
 
-				contractFiles: [
+				files: [
 					{name: '补充协议文件', path: '/a/b/d.jpg'}
 				]
 			}
