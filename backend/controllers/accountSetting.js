@@ -10,7 +10,7 @@ var request = require('request');
 // var _ = require('lodash');
 var api_config = require('../api/v1/api_config');
 var logger = require("../libs/logger");
-var SystemError = require('../../errors/SystemError');
+var SystemError = require('../errors/SystemError');
 
 
 // 处理业务逻辑
@@ -18,7 +18,8 @@ exports.accountSetting = function (req, res, next) {
 
     var user = req.session.user;
 
-    request({url : api_config.accountSetting}, function (err, data) {
+
+    request({url : api_config.accountSetting+'?userId='+ user.id}, function (err, data) {
 
         if (err || data.statusCode != 200) {
             next(new SystemError());
@@ -30,7 +31,7 @@ exports.accountSetting = function (req, res, next) {
         var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
         // sideBar
         var accountSideBar = {
-            current : "1",
+            current : 1,
             sideBarList : [
                 {
                     listName : '基本信息',
@@ -54,11 +55,13 @@ exports.accountSetting = function (req, res, next) {
                 tabObj : {
                     firstTab : firstTab,
                     secondTab : secondTab
-                }
-                //'accountInfo'    :source.accountInfo
+                },
+                registerTime: source.data.registerTime,
+                fundStatus: source.data.fundStatus,
+                cashStatus: source.data.cashStatus
 
             };
-            logger.debug('获取到的结果是content----------------------------' + content);
+            logger.debug('获取到的结果是content----------------------------' ,content);
             //渲染页面
             return res.render('account/accountSetting',content);
         }

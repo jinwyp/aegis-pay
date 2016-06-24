@@ -9,7 +9,7 @@ var request = require('request');
 var path = require('path');
 var _ = require('lodash');
 var api_config = require('../api/v1/api_config');
-var SystemError = require('../../errors/SystemError');
+var SystemError = require('../errors/SystemError');
 
 
 

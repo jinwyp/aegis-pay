@@ -57,9 +57,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         }
     })
 
-
-
-
+    
     //未认证弹出框
     $(".sureSettle").click(function(){
         $.ajax({
@@ -85,24 +83,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
 
     });
 
-
-
-    $("#delete").click(function () {
-        $.ajax({
-            url:"/settlement/billDelete",
-            type: 'post',
-            success:function(data){
-                if(data.success){
-                    location.reload();
-                }
-                else{
-
-                }
-            }
-        });
-    })
-
-
+    //搜索form表单提交
     $("#submit").click(function(){
         $("#billSearch").submit();
     })
