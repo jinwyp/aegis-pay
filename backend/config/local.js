@@ -26,7 +26,7 @@ var config = {
         cookieName : 'passport'
     },
     member_address: 'http://127.0.0.1:3000',
-    rest_address: 'http://127.0.0.1:8080/'
+    rest_address: 'http://127.0.0.1:9091/'
 };
 
 module.exports = config;

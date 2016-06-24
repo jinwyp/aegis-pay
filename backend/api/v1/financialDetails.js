@@ -21,8 +21,8 @@ exports.financialDetailsApi = function (req, res, next) {
     //checker.payPassword(req.body.limit);
 
     var postBody = {
-        //userId : req.session.user.id,
-        userId :  2719,
+        userId : req.session.user.id,
+        //userId :  2719,
         page : req.body.currentPage || 1
     };
 
@@ -34,7 +34,7 @@ exports.financialDetailsApi = function (req, res, next) {
 
 
     var url = api_config.financialDetails;
-    request.post({url:url, form:params, json:true}, function (err, response, body) {
+    request.post({url:url, form:postBody, json:true}, function (err, response, body) {
 
         if (err) return next(err);
 

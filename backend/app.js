@@ -104,6 +104,22 @@ app.use(session({
     saveUninitialized : true
 }));
 
+
+
+_.extend(app.locals, {
+    config : config,
+    staticPath : '/static',
+    homepage : config.homepage,
+    memberUrl : config.passport.member
+});
+
+app.use(function (req, res, next) {
+    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
+    next();
+});
+
+
 // custom middleware
 app.use(auth.passport);
 
@@ -125,21 +141,9 @@ if (!config.debug) {
 //   next(new Error('haha'))
 // });
 
-// set static, dynamic helpers
-_.extend(app.locals, {
-    config : config,
-    staticPath : '/static'
-});
 
 
-app.use(function (req, res, next) {
-    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
-    res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
-    app.locals.homepage = config.homepage;
-    //ToDo: app.locals.siteUrl = config.sitepage;
-    app.locals.memberUrl = config.passport.member;
-    next();
-});
+
 
 app.use(busboy({
     limits : {

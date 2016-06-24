@@ -2,6 +2,7 @@ var request = require('request');
 var api_config = require('../api/v1/api_config');
 
 var config                     = require('../config');
+var SystemError                = require('../errors/SystemError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
 
 
@@ -39,7 +40,7 @@ exports.passport = function (req, res, next) {
         return next();
     }
 
- /*   if (process.env.NODE_ENV == 'local'||process.env.NODE_ENV=='self') {
+    if (process.env.NODE_ENV == 'local') {
         req.session.user = res.locals.user = {
             id           : 213,
             securephone  : 18634343434,
@@ -56,7 +57,7 @@ exports.passport = function (req, res, next) {
         };
         return next();
     }
-*/
+
     if (!req.session || !req.session.user) {
         var gotoURL = req.protocol + '://' + req.headers.host + req.originalUrl;
         if (!req.cookies[config.passport.cookieName]) {
@@ -92,7 +93,12 @@ exports.fetchPayPhone = function(req, res, next){
     if (req.path.indexOf('setSSOCookie') >= 0) {
         return next();
     }
-    
+
+    if (process.env.NODE_ENV == 'local') {
+        res.locals.user.phone = '13030303030';
+        return next();
+    }
+
     if(res.locals.user.phone){
         return next();
     }
@@ -103,7 +109,8 @@ exports.fetchPayPhone = function(req, res, next){
             res.locals.user.phone = data.data.payPhone;
             return next()
         }else{
-            return next(data)
+            return next(new SystemError(data.status, data.error));
+            // return next(data)
         }
     })
 }

@@ -89,8 +89,8 @@ exports.financialDetails = function (req, res, next) {
 
     var url = api_config.financialDetails;
     var formData = {
-        //userId: req.session.user.id
-        userId: 2719
+        userId: req.session.user.id
+        //userId: 2719
     };
     request.post({url:url, form:formData, json:true}, function (err, response, body) {
 
