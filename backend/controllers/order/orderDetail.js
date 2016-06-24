@@ -18,7 +18,7 @@ exports.getOrderDetail = function (req, res, next) {
         function (err, data) {
         if (err) return next(err);
         if (data) {
-            logger.debug('orderDetail获取到的结果是----------------------------' + data.body);
+            logger.debug('orderDetail获取到的结果是-----------userId'+req.session.user.id+'-----------------' + data.body);
             var source = JSON.parse(data.body);
             var step = 0;
             switch (source.data.order.status) {

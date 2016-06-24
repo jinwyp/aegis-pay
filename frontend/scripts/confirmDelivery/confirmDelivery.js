@@ -89,10 +89,11 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                fileList.push($(this).val())
             });
             $("#qualityList").find($("input[name='file_id']")).each(function(){
-               qualityList.push($(this).val())
+               qualityList.push({file_id: $(this).val(), file_name: $(this).siblings('input[name="file_name"]').val()})
             });
+            console.log(qualityList)
             $("#quantityList").find($("input[name='file_id']")).each(function(){
-               quantityList.push($(this).val())
+               quantityList.push({file_id: $(this).val(), file_name: $(this).siblings('input[name="file_name"]').val()})
             });
 
             //提货数量

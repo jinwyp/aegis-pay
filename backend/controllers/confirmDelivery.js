@@ -48,7 +48,6 @@ exports.confirmDelivery = function (req, res, next) {
                     }
                 ]
             };
-            console.log("1"+source.data.order.createTime+"2"+source.data.order.signContractTime+"3"+source.data.order.paymentTime)
             var content={
                 userId:'15',
                 orderId:'3632',
@@ -68,5 +67,6 @@ exports.confirmDelivery = function (req, res, next) {
     });
 
 };
+
 
 
