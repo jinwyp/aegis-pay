@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="#operation--finance-order-seller-receipt-post">POST /finance/order/seller/receipt</a></td>
+                        <td><a href="#operation--finance-order-seller-receipt-get">GET /finance/order/seller/receipt</a></td>
                         <td><p>获取发票数据列表</p>
         </td>
                     </tr>
@@ -172,10 +172,10 @@
     
         
         <span id="path--finance-order-seller-receipt"></span>
-            <div id="operation--finance-order-seller-receipt-post" class="swagger--panel-operation-post panel">
+            <div id="operation--finance-order-seller-receipt-get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
                     <div class="operation-summary">&#x83B7;&#x53D6;&#x53D1;&#x7968;&#x6570;&#x636E;&#x5217;&#x8868;</div>
-                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/finance/order/seller/receipt</strong></h3>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/finance/order/seller/receipt</strong></h3>
                         Tags:
                             <a href="#tag-billCenter">billCenter</a>
                 </div>
@@ -206,7 +206,7 @@
                                                 page
                                             <td><p>第几页,用于分页</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">integer</span>
                                         <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
                                         
@@ -222,7 +222,7 @@
                                                 pagesize
                                             <td><p>每页显示条数</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">integer</span>
                                         <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
                                         
@@ -238,7 +238,7 @@
                                                 userId
                                             <td><p>用户ID</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">integer</span>
                                         <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 99999 }</span>
                                         
@@ -255,7 +255,7 @@
                                                 startDate
                                             <td><p>开始时间</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">string</span>
                                         <span class="json-property-range" title="Value limits"></span>
                                         
@@ -268,7 +268,7 @@
                                                 endDate
                                             <td><p>结束时间</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">string</span>
                                         <span class="json-property-range" title="Value limits"></span>
                                         
@@ -281,7 +281,7 @@
                                                 type
                                             <td><p>开票状态 全部发票0, 待开票1, 已开票2</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">string</span>
                                         <span class="json-property-range" title="Value limits"></span>
                                         
@@ -294,7 +294,7 @@
                                                 content
                                             <td><p>搜索的订单号</p>
                                         </td>
-                                            <td>formData</td>
+                                            <td>query</td>
                                             <td><span class="json-property-type">integer</span>
                                         <span class="json-property-range" title="Value limits"></span>
                                         

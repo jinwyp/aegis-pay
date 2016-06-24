@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost",
-  "basePath": "/api/vi",
+  "basePath": "/api",
   "tags": [
     {
       "name": "financialDetails",
@@ -197,7 +197,7 @@
     },
 
     "/finance/order/seller/receipt": {
-      "post": {
+      "get": {
         "tags": [
           "billCenter"
         ],
@@ -214,7 +214,7 @@
         "parameters": [
           {
             "name": "page",
-            "in": "formData",
+            "in": "query",
             "description": "第几页,用于分页",
             "required": false,
             "type": "integer",
@@ -225,7 +225,7 @@
           },
           {
             "name": "pagesize",
-            "in": "formData",
+            "in": "query",
             "description": "每页显示条数",
             "required": false,
             "type": "integer",
@@ -236,7 +236,7 @@
           },
           {
             "name": "userId",
-            "in": "formData",
+            "in": "query",
             "description": "用户ID",
             "required": true,
             "type": "integer",
@@ -247,21 +247,21 @@
           },
           {
             "name": "startDate",
-            "in": "formData",
+            "in": "query",
             "description": "开始时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "endDate",
-            "in": "formData",
+            "in": "query",
             "description": "结束时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "in": "formData",
+            "in": "query",
             "description": "开票状态 全部发票0, 待开票1, 已开票2",
             "required": false,
             "type": "string",
@@ -277,7 +277,7 @@
           },
           {
             "name": "content",
-            "in": "formData",
+            "in": "query",
             "description": "搜索的订单号",
             "required": false,
             "type": "integer"
