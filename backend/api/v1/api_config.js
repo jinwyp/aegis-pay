@@ -88,10 +88,10 @@ var api_config = {
     disputeComplete : host + 'dispute/disputeComplete',
     disputeDetail : host + 'dispute/disputeDetail',
     disputeComplete : host + 'dispute/disputeComplete',
-    financialCenterHome : host + 'account/finance/center',
+    financialCenterHome : host + 'finance/center',
     financialTransaction : host + 'finance/transaction/list',
-    contractList : host + 'account/finance/contract/list',
-    settlementList : host + 'account/finance/settlement/list',
+    contractList : host + 'finance/contract/list',
+    settlementList : host + '/finance/order/settle',
 
 
     /**

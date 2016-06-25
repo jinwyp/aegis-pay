@@ -21,9 +21,9 @@
                     <option value="2" <%if(type==2){ %>selected<% } %>>销售</option>
                 </select>
                 <span>交易时间:</span>
-                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=startDate%>"/></div>
+                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%= clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
-                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
+                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
                 <span>交易状态:</span>
                 <select name="status" id="status">
                     <% for(var i in statusList) { %>

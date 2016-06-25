@@ -155,6 +155,11 @@ module.exports = function (app) {
         return _.toString(phone).replace(/(\d{3})(\d{4})(\d{4})/, "$1****$3");
     }
 
+    app.locals.clearEmpty = function (str) {
+        return typeof str == 'undefined' ? '' :
+            (str == null || str == 'null' || str == "undefined") ? '':  str;
+    }
+
 /**
  * 日期格式化
  * params:
