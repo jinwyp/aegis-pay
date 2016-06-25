@@ -108,3 +108,31 @@ exports.billDelete = function (req, res, next) {
         }
     })
 }
+
+
+exports.billView = function (req, res, next) {
+    var user = req.session.user;
+    //post传userid
+    request({
+        url: api_config.billView, //URL to hit
+        method: 'GET',
+        //Lets post the following key/values as form
+        form: {
+            userId: user.id
+        }}, function (err, data) {
+
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
+        var replayDate = JSON.parse(data.body);
+        if(replayDate.success) {
+            res.json({success:true});
+
+        }else{
+            res.json({success:false});
+        }
+    })
+}
+
+

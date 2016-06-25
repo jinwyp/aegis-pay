@@ -37,11 +37,6 @@ exports.accountSetting = function (req, res, next) {
                     listName : '基本信息',
                     listLink : 'accountSetting',
                     secList:''
-                },
-                {
-                    listName : '消息提醒',
-                    listLink : 'notice',
-                    secList:''
                 }
             ]
         };

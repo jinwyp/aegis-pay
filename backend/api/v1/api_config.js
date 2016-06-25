@@ -99,8 +99,8 @@ var api_config = {
      * method: get
      *
      */
-    accountSetting : host + 'account/accountSetting',
-    notice : host + 'account/notice',
+    accountSetting : host + 'account/accountSetting',   //基本信息
+    //notice : host + 'account/notice',   //消息提醒暂时不做
 
     // 获取用户资金账号
     fetchFundAccount: host + 'account/fund/payPwd',
@@ -112,8 +112,10 @@ var api_config = {
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     //开票中心
     billCenter : host + 'finance/order/seller/receipt',
+    billCenterView : host + 'finance/order/seller/receipt/view',
     billSetting : host + 'finance/receipt',
     billDelete : host + 'finance/receipt/delete',
+    billView : host + 'finance/receipt/view',
     receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
