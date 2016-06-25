@@ -15,7 +15,7 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload'], function($, fancySelect, bootstrap, message, upload){
 
-    var apiHost = '/api';			                            // API域名
+    var apiHost = '/api';	// API域名
 
 
     // 页面模块控制
@@ -59,7 +59,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             var $btnTriggerEdit = $('#btnTriggerEdit'),         // 触发编辑框
                 $btnCancelTrigger = $('#btnCancelTrigger'),     // 取消编辑
                 $subEditReason = $('#subEditReason'),           // 提交修改
-                $inpReasonEdit = $('#inpReasonEdit'),           // 输入框
+                $reason = $('#inpReasonEdit'),                  // 输入框
                 $reasonsReturn_view = $('.reasonsReturn_view'),
                 $reasonsReturn_edit = $('.reasonsReturn_edit');
 
@@ -76,35 +76,35 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             });
 
             // 输入数量计算
-            $inpReasonEdit.keyup(function () {
+            $reason.keyup(function () {
                 var num = 200;
                 num = num - parseInt(this.value.length);
                 $('.reasonSize').html(num);
             });
 
-            // 提交修改. - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            // 提交修改. - - - - - - - - - - - - - - - - - - -
             $subEditReason.click(function() {
 
-                if( !$.trim($inpReasonEdit.val()) ) {
+                //表单验证
+                if(! $.trim($reason.val())) {
                     message({
                         type: 'error',
-                        title: '错误提示：',
-                        detail: '请填写 退回原因!'
+                        title: '错误：',
+                        detail: '请简要填写退回原因!'
                     });
                     return false;
                 }
 
-                //session.user.id;
                 var param = {
-                    version: 123,
-                    userId: '213',
-                    orderId: $('[name=orderId]').val(),
-                    reason: $inpReasonEdit.val()      // 退回原因
+                    version:    $('[name=version]').val(),
+                    userId:     '15',   //$('[name=userId]').val(),
+                    orderId:    $('[name=orderId]').val(),
+                    reason:     $reason.val()
                 };
 
                 $.post({
                     url: apiHost + '/settlement/buyersEditReason',
-                    data: param,                  //$("#closeForm").serialize(),
+                    data: param,
                     success: function(data){
                         if(data.success) {
                             $('.modal .close').click();
@@ -113,14 +113,18 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 title: '操作完成：',
                                 detail: '退回原因 已更新!'
                             });
-                            $btnCancelTrigger.click();
-                            $('.labReturnReason').html(data.reason);
-                            $('.labReturnTime').html(data.settleReasonTime);
+
+                            $('.labReturnReason').html(data.data.reason);
+                            $('.labReturnTime').html(data.data.lastEditReasonTime);
+
+                            setTimeout(function() {
+                                $btnCancelTrigger.click();      //location.href = '/settlement/settlementForm?type=1&id=3622';
+                            }, 800);
                         } else {
                             message({
-                                type: 'done',
-                                title: '完成：',
-                                detail: '操作失败!'
+                                type: 'error',
+                                title: '错误：',
+                                detail: '操作失败!!'
                             });
                         }
                     }
@@ -201,37 +205,29 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $settleAmount = $('[name=ins_ettleAmount]'),        //总结算吨位
                 $harbourDues = $('[name=ins_harbourDues]'),         //港务费
                 $settleMoney = $('[name=ins_settleMoney]'),         //总结算金额
-                $remarks = $('[name=ins_remarks]'),                 //备注
                 $tailMoneyNum = $('.tailMoneyNum'),
                 $refundMoneyNum = $('.refundMoneyNum');
 
+            //动态验证.及.补退款处理 - - - - - - - - - - - - - - - - - - - - - - - -
+            //
 
-            //卖家.提交结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            //卖家.开具结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - -
             $btnSubSettlement.click(function() {
-                var $fileList = $('.supplyFileList .fileLab_del'),
-                arrFile = [];
 
                 // 表单验证 处理
                 if(formValidation()) {
                     return false;
                 }
 
-                for(var i = 0, s = $fileList.length; i < s; i++) {
-                    arrFile.push({
-                        name: $fileList[i].getAttribute('data-name'),
-                        path: $fileList[i].getAttribute('data-id')
-                    });
-                }
-
                 var param = {
-                    version: '10',                 //$('[name=version]').val(),
-                    sellerId: '15',                // $('[name=userId]').val(),
-                    orderId: $('[name=orderId]').val(),
-                    settleAmount: $settleAmount.val(),
-                    harbourDues: $harbourDues.val(),
-                    settleMoney: $settleMoney.val(),
-                    remarks: $remarks.val(),
-                    files: arrFile
+                    version:        $('[name=version]').val(),
+                    sellerId:       '15',   //$('[name=sellerId]').val(),
+                    orderId:        $('[name=orderId]').val(),
+                    settleAmount:   $settleAmount.val(),
+                    harbourDues:    $harbourDues.val(),
+                    settleMoney:    $settleMoney.val(),
+                    remarks:        $('[name=ins_remarks]').val(),
+                    files:          fileListCollector($('.supplyFileList .fileLab_del') )
                 };
 
                 $.post({
@@ -239,17 +235,19 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     data: param,
                     success: function(data){
                         if(data.success) {
-                            $('.modal .close').click();
                             message({
                                 type: 'done',
                                 title: '完成：',
                                 detail: '确认审核 操作成功'
                             });
-                            location.href = '/';            //TODO: 成功后调整首页
+                            setTimeout(function() {
+                                location.href = '/';
+                            }, 1500);
+                            //$('#operationInfoModal').modal('show');     // 倒计时 提示框 hide
                         } else {
                             message({
-                                type: 'done',
-                                title: '完成：',
+                                type: 'error',
+                                title: '错误：',
                                 detail: '操作失败!!'
                             });
                         }
@@ -258,18 +256,36 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             });
         },
 
-        // 审核退回 操作
+        // 审核退回 操作(第一次)
         auditingReturnHandle: function() {
-            var $subReturnReason = $('#subReturnReason');           //审核退回.第一次
 
+            var $subReturnReason = $('#subReturnReason'),           //审核退回.第一次
+                $reason = $('#oneRemarks');                         //退回原因
+
+            // 输入数量计算
+            $reason.keyup(function () {
+                var num = 200;
+                num = num - parseInt(this.value.length);
+                $('.reasonSize_md').html(num);
+            });
 
             $subReturnReason.click(function() {
 
+                //表单验证
+                if(! $.trim($reason.val())) {
+                    message({
+                        type: 'error',
+                        title: '错误：',
+                        detail: '请简要填写退回原因!'
+                    });
+                    return false;
+                }
+
                 var param = {
-                    version: 123,
-                    userId: '213',
-                    orderId: '210000',
-                    reason: ''      // 退回原因
+                    version:    $('[name=version]').val(),
+                    userId:     '15',   //$('[name=userId]').val(),
+                    orderId:    $('[name=orderId]').val(),
+                    reason:     $reason.val()
                 };
 
                 $.post({
@@ -281,117 +297,70 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                             message({
                                 type: 'done',
                                 title: '完成：',
-                                detail: '退回结算 操作成功1212'
+                                detail: '退回结算 操作成功'
                             });
-                            console.log('');
+                            setTimeout(function() {
+                                location.href = '/';
+                            }, 1500);
                         } else {
                             message({
-                                type: 'done',
-                                title: '完成：',
+                                type: 'error',
+                                title: '错误：',
                                 detail: '操作失败!!'
                             });
                         }
                     }
                 });
-
             });
 
         },
 
-        // 确认结算 操作
+
+        // 确认结算 操作(审核通过)
         auditingAdoptHandle: function() {
+            var $btnSubAuditing = $('#btnSubAuditing');             //确认审核.通过
+
+
+            //买家.审核通过
+            $btnSubAuditing.click(function() {
+
+                // 表单验证 处理
+                if(auditingPassValidation()) {
+                    return false;
+                }
+
+                var param = {
+                    version:    $('[name=version]').val(),
+                    userId:     '15',   //$('[name=userId]').val(),
+                    orderId:    $('[name=orderId]').val(),
+                    files:      fileListCollector($('.upSealFileList .fileLab_del') )
+                };
+
+                $.post({
+                    url: apiHost + '/settlement/buyersAuditing',
+                    data: param,
+                    success: function(data){
+                        if(data.success) {
+                            message({
+                                type: 'done',
+                                title: '完成：',
+                                detail: '审核通过 操作成功'
+                            });
+                            setTimeout(function() {
+                                location.href = '/';
+                            }, 1500);
+                        } else {
+                            message({
+                                type: 'error',
+                                title: '错误：',
+                                detail: '操作失败!!'
+                            });
+                        }
+                    }
+                });
+            });
 
         },
-
-        // 操作按钮板块
-        operationBtnPlate: function() {
-            var $btnSubSettlement = $('#btnSubSettlement'),         //开具结算
-                $btnSubAuditing = $('#btnSubAuditing');             //确认审核
-
-
-            //$('.supplyFileList .fileLab_del')
-            //卖家.提交结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            //$btnSubSettlement.click(function() {
-            //    var param = {
-            //        version: 123,
-            //        sellerId: '213',
-            //        orderId: '210000',
-            //        settleAmount: 222,      // 结算吨数
-            //        harbourDues: '',        //港务费
-            //        settleMoney: '',        //结算金额
-            //        remarks: '',            //备注
-            //        files: [                //补充协议列表
-            //            {name: 'name', path: 'xx.jpg'}
-            //        ]
-            //    };
-            //
-            //    $.post({
-            //        url: apiHost + '/settlement/sellerSubmit',
-            //        data: param,        //$("#closeForm").serialize(),
-            //        success: function(data){
-            //            if(data.success) {
-            //                $('.modal .close').click();
-            //                message({
-            //                    type: 'done',
-            //                    title: '完成：',
-            //                    detail: '确认审核 操作成功'
-            //                });
-            //                console.log('');
-            //            } else {
-            //                message({
-            //                    type: 'done',
-            //                    title: '完成：',
-            //                    detail: '操作失败!!'
-            //                });
-            //            }
-            //        }
-            //    });
-            //});
-
-            //买家.退回结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            //$btnSubReason.click(function() {
-
-            //});
-
-
-
-
-            ////买家.审核通过
-            //$btnSubAuditing.click(function() {
-            //    var param = {
-            //        version: 123,
-            //        userId: '213',
-            //        orderId: '320000',
-            //        files: [                //补充协议列表
-            //            {name: 'name', path: 'xx.jpg'}
-            //        ]
-            //    };
-            //
-            //    $.post({
-            //        url: apiHost + '/settlement/buyersAuditing',
-            //        data: param,                  //$("#closeForm").serialize(),
-            //        success: function(data){
-            //            if(data.success) {
-            //                $('.modal .close').click();
-            //                message({
-            //                    type: 'done',
-            //                    title: '完成：',
-            //                    detail: '审核通过 操作成功'
-            //                });
-            //                console.log('');
-            //            } else {
-            //                message({
-            //                    type: 'done',
-            //                    title: '完成：',
-            //                    detail: '操作失败!!'
-            //                });
-            //            }
-            //        }
-            //    });
-            //});
-
-        },
-
 
 
         // 初始化
@@ -405,24 +374,28 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             this.issueSettleHandle();
             this.auditingReturnHandle();
             this.auditingAdoptHandle();
-            this.operationBtnPlate();
         }
     };
 
-
-
-    /* ---页面逻辑控制---------------------------------------- */
     settlementForm.init();
 
 
-    //---退回原因.板块-------------------
-    //var $reasonsReturnModal = $('#reasonsReturnModal');
-    //var $operationInfoModal = $('#operationInfoModal');
-    //if(true) {
-    //    //$reasonsReturnModal.modal('show');
-    //    //$operationInfoModal.modal('show');
-    //}
+    // 表单验证.审核通过
+    function auditingPassValidation() {
+        var results = false,
+            $fileList = $('.upSealFileList .fileLab_del');
 
+        if($fileList.length < 1) {
+            message({
+                type: 'error',
+                title: '错误：',
+                detail: '请上传 盖章结算单!'
+            });
+            return results = true;
+        }
+
+        return results;
+    }
 
     // 表单验证.开具结算
     function formValidation() {
@@ -477,6 +450,21 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             $errBox.html(errInfo).removeClass('err');
         }
     }
+
+    // 附件值采集(附件节点对象)
+    function fileListCollector($files) {
+        var arrFile = [];
+
+        $files = $files || [];
+        for(var i = 0, s = $files.length; i < s; i++) {
+            arrFile.push({
+                name: $files[i].getAttribute('data-name'),
+                path: $files[i].getAttribute('data-id')
+            });
+        }
+        return arrFile;
+    }
+
 
     /**
      * 获取URL参数值

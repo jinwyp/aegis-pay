@@ -80,20 +80,18 @@
                                 <th >交易类型</th>
                                 <th >对方账号</th>
                                 <th >对方账号名称</th>
-                                <th >对方开户行</th>
                                 <th >操作</th>
                             </tr>
 
 
                             <tr ms-for='(key, order) in @orderList'>
-                                <td >{{order.date}}</td>
-                                <td >{{order.orderNo}}</td>
-                                <td >{{order.amoumt}}</td>
-                                <td >{{order.account}}</td>
+                                <td >{{order.createDate  }}</td>
+                                <td >{{order.transactionNO}}</td>
+                                <td >{{order.money | number(2) }}</td>
+                                <td >{{order.balanceMoney | number(2)}}</td>
                                 <td >{{order.tradeType}}</td>
-                                <td >{{order.toPersonAccount}}</td>
-                                <td >{{order.toPersonAccountName}}</td>
-                                <td >{{order.toPersonBankName}}</td>
+                                <td >{{order.otherFundAccount}}</td>
+                                <td >{{order.otherCompanyName}}</td>
                                 <td ><span class="iBtn iBtn_xs iBtn_no">打印回执</span></td>
                             </tr>
 
@@ -101,7 +99,7 @@
 
                         <nav class="pagination-financial">
                             <ul class="pagination pageno">
-                                <li class="first-page">
+                                <li >
                                     <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')">
                                         <span aria-hidden="true" >< 上一页</span>
                                     </a>
@@ -114,9 +112,11 @@
                                     <a >...</a>
                                 </li>
 
+
                                 <li ms-for='(key, page) in @orderListTotalPagesArray'>
                                     <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
                                 </li>
+
 
                                 <li ms-visible='@orderEllipsisRight'>
                                     <a >...</a>
@@ -124,6 +124,7 @@
                                 <li ms-for='(key, page) in @orderListTotalPagesArrayRight'>
                                     <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
                                 </li>
+
 
                                 <li first-page>
                                     <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)">
@@ -134,9 +135,9 @@
 
                             <div class="jump-to-page">
                                 <span>共 {{@orderListTotalPages}}页, 到第</span>
-                                <input type="text" placeholder="" ms-duplex="@orderCurrentPage">
+                                <input type="text" placeholder="" ms-duplex="@orderInputCurrentPage">
                                 <span>页</span>
-                                <button class="iBtn pagination-button" ms-click="@changePagination(page.value, $event)">确定</button>
+                                <button class="iBtn pagination-button" ms-click="@changePagination(@orderInputCurrentPage, $event)">确定</button>
                             </div>
                         </nav>
 
@@ -203,9 +204,6 @@
                 </div><!-- /.modal-content -->
             </div>
         </div>
-
-
-
 
 
     </div>

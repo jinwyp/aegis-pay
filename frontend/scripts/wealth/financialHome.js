@@ -66,6 +66,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 orderDateTo      : '',
                 orderEllipsisLeft : false,
                 orderEllipsisRight : false,
+                orderInputCurrentPage : 1,
                 orderCurrentPage : 1,
                 orderList        : [],
                 orderListTotalPages : 1,
@@ -95,7 +96,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     event.preventDefault();
                     searchQuery.currentPage = tempNo;
                     vm.orderCurrentPage = tempNo;
-                    app.showPagination();
                     app.getFinancialDetailsApi(searchQuery);
                 }
             });
@@ -114,7 +114,8 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 success:function(data){
 
                     vm.orderList = data.list;
-                    vm.orderListTotalPages = Math.ceil(data.totalPage );
+                    vm.orderListTotalPages = Math.ceil(data.count / data.pagesize);
+
                     app.showPagination();
                 }
             })

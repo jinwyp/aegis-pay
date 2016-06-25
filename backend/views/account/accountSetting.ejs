@@ -19,27 +19,27 @@
                 <table>
                     <tr>
                         <th>真实姓名：</th>
-                        <td colspan="2"><%= accountInfo.name %></td>
+                        <td colspan="2"><%= user.companyName %></td>
                     </tr>
                     <tr>
                         <th>角色职务：</th>
-                        <td colspan="2"><%= accountInfo.work %></td>
+                        <td colspan="2">员工</td>
                     </tr>
                     <tr>
                         <th>手机号码：</th>
-                        <td colspan="2"><%= phoneFormat(accountInfo.phone)%></td>
+                        <td colspan="2"><%= phoneFormat(user.securephone) %></td>
                     </tr>
                     <tr>
                         <th>注册时间：</th>
-                        <td colspan="2"><%= accountInfo.registerDate %></td>
+                        <td colspan="2"><%= registerTime %></td>
                     </tr>
                     <tr>
                         <th>邮箱地址：</th>
-                        <% if(accountInfo.email ==''){%>
+                        <% if(!user.email){%>
                             <td class="red">您的邮箱尚未绑定</td>
                             <td><a href="<%=memberUrl%>/account/bindEmail" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
                         <%}else{%>
-                            <td><%= accountInfo.email %></td>
+                            <td><%= user.email %></td>
                             <td><a href="<%=memberUrl%>/account/editEmail" class="iBtn iBtn_xs iBtn_no">修改</a></td>
                         <%}%>
                     </tr>
@@ -50,13 +50,13 @@
                     </tr>
                     <tr class="noBorder">
                         <th>银行账户：</th>
-                        <% if(accountInfo.accountStatus =='1'){%>
+                        <% if(cashStatus == 0){%>
                             <td>尚未绑定出金账户</td>
                             <td><a href="#" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
-                        <%}else if(accountInfo.accountStatus =='2'){%>
+                        <%}else if(cashStatus == 1){%>
                             <td>银行账户等待确认汇款金额</td>
                             <td><a href="#" class="iBtn iBtn_xs iBtn_no">认证</a></td>
-                        <%}else if(accountInfo.accountStatus =='3'){%>
+                        <%}else if(cashStatus == 2){%>
                             <td>已绑定1张出金账户</td>
                             <td><a href="#" class="iBtn iBtn_xs iBtn_no">查看</a></td>
                         <%}%>

@@ -52,3 +52,47 @@ exports.confirmDeliveryIndex = function (req, res, next) {
     //	res.json()
     //})
 };
+// 提交按钮
+exports.confirmDeliverySubmit = function (req, res, next) {
+    var body = req.body;
+    var url = api_config.confirmDeliverySubmit;
+    var userId=req.session.user.id;
+
+    var formData = {
+        "userId" : userId,
+        "orderId":"250",
+        "version":"1",
+        "deliveryAmount":req.body.deliveryAmount,
+        "indexList":req.body.indexList,
+        "qualityList":req.body.qualityList,
+        "quantityList":req.body.quantityList
+    };
+
+    _.map(req.body.qualityList, function(val, index){
+        val.name = val.file_name;
+        val.path = uploadPath + val.file_id;
+        _.unset(val, 'file_id');
+        _.unset(val, 'file_name');
+    })
+    _.map(req.body.quantityList, function(val, index){
+        val.name = val.file_name;
+        val.path = uploadPath + val.file_id;
+        _.unset(val, 'file_id');
+        _.unset(val, 'file_name');
+    })
+    console.log('===============confrm========')
+    console.log(req.body)
+    var formData = _.assign({}, {userId: userId, orderId:'250', version:'1'}, req.body);
+    request.post({
+        form:formData,
+        url : url,
+        qsStringifyOptions:{allowDots:true}
+        
+    }, function (err, data, body) {
+        console.log(data)
+        if (err) return next(err);
+
+        var resultJson = JSON.parse(body);
+        return res.send(resultJson);
+    });
+};
