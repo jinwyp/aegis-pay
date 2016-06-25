@@ -14,7 +14,7 @@
     <div class="financial-main">
         <div class="financial-header">
             <div class="header-left border-right">
-                <div class="username">姓名全称</div>
+                <div class="username"><%= finance.companyName %></div>
                 <div class="companyname"><%= finance.companyName %></div>
                 <div class="occupation"><span class="label">职务：</span>会计</div>
                 <ul>
@@ -28,7 +28,7 @@
             <div class="header-center border-right">
                 <div class="useraccount"><span class="label fs-14">易煤网资金账号：</span><%= finance.userFundAccount %></div>
                 <div class="center-operate">
-                    <span class="balance">余额：<span class="orange"><%= formatMoney(finance.balanceMoney,2) %>元</span></span>
+                    <span class="balance">余额：<span class="orange"><%= formatMoney((finance.balanceMoney==null||finance.balanceMoney==undefined)==true? 0 : finance.balanceMoney)%>元</span></span>
                     <span class="look">查看</span>
                     <span class="btn-option mr-10">提现</span>
                     <span class="btn-option recharge mr-10">充值</span>
@@ -48,7 +48,7 @@
                 <% }else{ %>
                 <div class="bank-info">
                     <div class="label-content"><%= finance.cashBankName %></div>
-                    <div class="label-content"><%= finance.cashBankAccount %></div>
+                    <div class="label-content"><%= blankFour(finance.cashBankAccount) %></div>
                 </div>
                 <% } %>
             </div>

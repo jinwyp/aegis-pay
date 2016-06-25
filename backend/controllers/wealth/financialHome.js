@@ -29,10 +29,10 @@ var pdfHtmlTemplatePath = path.join(config.file_path.download, '/financialDetail
 
 // 处理业务逻辑
 exports.financialHome = function (req, res, next) {
-    var firstTab  = req.query.firstTab || 2;
+    var firstTab  = req.query.firstTab || 1;
     var secondTab = req.query.secondTab || 1;
-
-    request(api_config.financialCenterHome, function (err, data) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.financialCenterHome,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
         logger.debug('获取到的结果是----------------------------' + data.body);
@@ -50,7 +50,11 @@ exports.financialHome = function (req, res, next) {
                     recordList: source.data.recordList
                 };
                 //渲染页面
+                logger.debug('获取到的finance是----------------------------' + JSON.stringify(source.data.finance));
+                logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
                 res.render('wealth/financialCenterHome', content);
+            }else{
+                res.send(source.data.error);
             }
         }
 
@@ -199,7 +203,7 @@ exports.financialTransaction = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
-    request(api_config.financialTransaction, function (err, data) {
+    request.post({url:api_config.financialTransaction,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
         logger.debug('获取到的结果是----------------------------' + data.body);
@@ -234,7 +238,8 @@ exports.financialContract = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
-    request(api_config.contractList, function (err, data) {
+    logger.debug('获取到的userId是----------------------------' + req.session.user.id);
+    request.post({url:api_config.contractList,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
         logger.debug('获取到的结果是----------------------------' + data.body);
@@ -266,7 +271,7 @@ exports.financialSettlement = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
-    request(api_config.settlementList, function (err, data) {
+    request.post({url:api_config.settlementList,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
         logger.debug('获取到的结果是----------------------------' + data.body);

@@ -18,8 +18,11 @@ exports.getOrderDetail = function (req, res, next) {
         function (err, data) {
         if (err) return next(err);
         if (data) {
-            logger.debug('orderDetail获取到的结果是-----------userId'+req.session.user.id+'-----------------' + data.body);
             var source = JSON.parse(data.body);
+            logger.debug('userId-----------------'+req.session.user.id);
+            logger.debug('status-----------------'+source.data.order.status);
+            logger.debug('order-----------------'+JSON.stringify(source.data.order));
+            logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
             var step = 0;
             switch (source.data.order.status) {
                 case 'WaitSignContract':
@@ -35,7 +38,7 @@ exports.getOrderDetail = function (req, res, next) {
                 case 'ReturnedDeliveryGoods':
                     step = 4;
                     break;
-                case 'WaitReceiveReceipt':
+                    case 'WaitReceiveReceipt':
                     step = 5;
                     break;
             }
@@ -44,7 +47,7 @@ exports.getOrderDetail = function (req, res, next) {
                 stepList : [
                     {
                         stepName : '提交订单',
-                        stepDate : source.data.order.createtime == null ? "" : source.data.order.createtime
+                        stepDate : source.data.order.createTime == null ? "" : source.data.order.createTime
                     },
                     {
                         stepName : '签订合同',
