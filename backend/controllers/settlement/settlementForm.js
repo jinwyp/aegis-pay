@@ -12,14 +12,7 @@
   	ReturnedSettleAccounts	审核退回.买家修改原因(买)
   	WaitPayTailMoney	 	审核通过.待买家补款  (_)
   	WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
-  	WaitWriteReceipt	 	审核通过.待卖家开发票(_)
-	查看结算单:卖家 		settlement/sellerView 			../mall/order/seller/settle
-	提交结算单:卖家 		settlement/sellerSubmit 		../mall/order/seller/settle/submit
-	查看结算单:买家 		settlement/buyersView 			../mall/order/settle
-	退回结算单:买家 		settlement/buyersReturn 		../mall/order/settle/return ;
-	修改退回原因买家 		settlement/buyersEditReason 	../mall/order/settle/return/editreason ;
-	审核结算单:买家 		settlement/buyersAuditing 		../mall/order/settle/submit
-	下载打印结算单: 		settlement/downPrint 			../mall/order/print/settle     */
+  	WaitWriteReceipt	 	审核通过.待卖家开发票(_)	*/
 
 
 var request  = require('request');
@@ -82,12 +75,8 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	var url = apiHost.sellerSubmit;
 		//url = apiHost.host + 'settlement/sellerSubmit';			// TODO: 本地
 
-	console.log('--------22222222222222222222222------------------');
-	console.log(req.body);
-	request.post({url:url, formData: req.body, qsStringifyOptions:{allowDots:true}}, function (err, data) {
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		if (err) return next(err);
-		console.log('=============33333333333333333333333=====================');
-
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 			return res.send(replyData);
@@ -141,7 +130,7 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 	var url = apiHost.buyersAuditing;
 		//url = apiHost.host + 'settlement/buyersAuditing';			// TODO: 本地
 
-	request.post(url, {formData:req.body, json:true}, function (err, data) {
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
@@ -217,27 +206,20 @@ var buyersView = exports.buyersView = function (req, res, next) {
 	});
 };
 
-// API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrint?id=110101
+// API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrintSettle?orderId=3622
+// http://192.168.1.168:8888/mall/order/print/settle?orderId=3622&userId=15
 var downPrintSettle = exports.downPrintSettle = function (req, res, next) {
-	var orderId = req.query.id,
-		userId = req.session.user.id;
+	var url = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ 15;		//req.session.user.id
 
-	var param = {
-		orderId: orderId,
-		sellerId: userId
-	};
+	request(url, function (err, data) {
 
-	var url = apiHost.downPrintSettle;
-	request(url, param, function (err, data) {
 		if (err) return next(err);
-
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '打印下载结算单.9999';
 			replyData.subTitle = '打印下载结算单.s';
 			replyData.userType = 'sell';
-
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))

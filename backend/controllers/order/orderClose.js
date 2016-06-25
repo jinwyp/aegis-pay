@@ -9,19 +9,17 @@ var apiHost  = require('../../api/v1/api_config');          // 接口路径配�
 
 // 页面路由
 exports.orderInfo = function (req, res, next) {
-	var apiUrl = '',
-		req_id = req.query.id;
+	var apiUrl 	= '',
+		orderId = req.query.id,
+		userId 	= req.session.user.id;						//req.userId = req.session.user.id;		//checker.orderId(req_id);
 
-	//req.userId = req.session.user.id;
-	//checker.orderId(req_id);
-	if(!req_id) {
+	if(!orderId) {
 		res.send('<p>"请输入 订单编号!"</p>');
 	} else {
+		apiUrl = apiHost.orderCloseView + '?orderId='+ orderId +'&userId='+ 15;
+		//apiUrl = apiHost.host + 'order/orderInfo?orderId='+ req_id;			// TODO: 本地模拟
 
-		var url = apiHost.orderCloseView + '?orderId='+ req_id +'&userId='+ 15;
-		//var url = apiHost.host + 'order/orderInfo?orderId='+ req_id;			// TODO: 本地模拟
-
-		request(url, function (err, data) {
+		request(apiUrl, function (err, data) {
 			if (err) return next(err);
 
 			var replyData = {
@@ -30,9 +28,8 @@ exports.orderInfo = function (req, res, next) {
 			};
 
 			replyData.data = JSON.parse(data.body).data;
-			res.render('order/orderClose', replyData);							// 渲染页面,(指定模板, 数据)  *** 路径不能加加'/', 默认在views下
+			res.render('order/orderClose', replyData);		// 渲染页面,(指定模板, 数据)
 		});
-
 	}
 };
 
@@ -40,7 +37,7 @@ exports.orderInfo = function (req, res, next) {
 
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 
-// API路由: 关闭订单.查看信息 - - - - - - - - - - - - - - - - - - - - - - -
+// API路由: 查看订单信息 - - - - - - - - - - - - - - - - - - - - - - -
 exports.orderCloseView = function (req, res, next) {
 	var req_id = req.query.id;
 	var req_type = req.query.type;
@@ -60,18 +57,19 @@ exports.orderCloseView = function (req, res, next) {
 };
 
 
-// API路由: 关闭订单.提交关闭 - - - - - - - - - - - - - - - - - - - - - - -
+// API路由: 订单提交关闭 - - - - - - - - - - - - - - - - - - - - - - -
 exports.orderCloseSubmit = function(req, res, next) {
-	//checker.orderId(req.query.id);
+	var apiUrl = apiHost.orderCloseSubmit;				// 异步调取Java数据
+		//apiUrl = apiHost.host + 'order/orderCloseSubmit?orderId='+ req.query.id;
 
-	// 异步调取Java数据
-	var url = apiHost.host + 'order/orderCloseSubmit?orderId='+ req.query.id;
-	request(url, function (err, data) {
+	req.body.userId = 15;			// TODO: 测试 req.session.user.id;
+	request.post(apiUrl, {formData:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
-
-		if (data){
-			var replyData = JSON.parse(data.body);
-			return res.send(replyData);						// 发送Json数据
+		if (data && data.body){
+			var replyData = data.body;
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
 		}
 	});
 };

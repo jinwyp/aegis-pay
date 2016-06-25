@@ -58,7 +58,7 @@
                         <% } %>
                         <dl>
                             <dt>订单状态：</dt>
-                            <dd><span class="text_zt"><%= orderObj.status%></span></dd>
+                            <dd><span class="text_zt"><%= orderObj.statusName%></span></dd>
                         </dl>
                         <p class="term_hr"></p>
                         <dl>
@@ -68,8 +68,6 @@
                     </div>
 
                     <a href="#?Id=<%= orderObj.id %>" class="linkBtn">查看订单详情 <span class="ff_st">&gt;&gt;</span></a>
-                    <input type="hidden" name="id" value="<%= orderObj.id %>" placeholder="订单Id"/>
-                    <input type="hidden" name="version" value="<%= orderObj.version %>" placeholder="版本号"/>
                 </div>
                 <!-- 右侧主体-->
                 <div class="mainWrap fr">
@@ -79,9 +77,10 @@
                             <tr>
                                 <td width="70" class="txt_r"><s class="require">*</s>原因：</td>
                                 <td>
-                                    <select name="reasonId" id="reasonId" class="ipt inp-sel" style="display: none;">
+                                    <select name="reason" id="reason" class="ipt inp-sel" style="display: none;">
                                         <option value="--">选择关闭原因</option>
-                                        <% shutdownReasonList.forEach(function(obj){ %>
+                                        <% data.shutdownReasonList = data.shutdownReasonList || [] %>
+                                        <% data.shutdownReasonList.forEach(function(obj){ %>
                                         <option value="<%= obj.sequence %>"><%= obj.name %></option>
                                         <% }) %>
                                     </select>
@@ -100,9 +99,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-
-                                </td>
+                                <td> </td>
                                 <td>
                                     <input class="iBtn subBtn" type="button" value="确定" disabled
                                            data-toggle="modal" data-target="#orderModal" />
@@ -141,6 +138,8 @@
     </div>
 </div>
 
+<input type="hidden" name="id" value="<%= orderObj.id %>" placeholder="订单Id"/>
+<input type="hidden" name="version" value="<%= orderObj.version %>" placeholder="版本号"/>
 
 <%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>

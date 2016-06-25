@@ -15,7 +15,7 @@ var disputeCancel     = require('../../controllers/disputeDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 var bindingBankAccount = require('../../controllers/wealth/bindingBankAccount');
-
+var wealthCenter      = require('../../controllers/wealth/wealthCenter');                   //财富管理
 
 var financialApi    = require('../../api/v1/financialDetails');
 var fundAccountApi = require('../../api/v1/fundaccount');
@@ -37,7 +37,7 @@ router.post('/sign-compact', compactApi.signCompact);
 router.get('/generate_compact', compactApi.generate_compact);
 
 router.get('/order/orderCloseView', orderCloseApi.orderCloseView);				            // 关闭订单: 订单信息Api
-router.get('/order/orderCloseSubmit', orderCloseApi.orderCloseSubmit);			            // 关闭订单: 提交关闭Api (路由, 控制模块)
+router.post('/order/orderCloseSubmit', orderCloseApi.orderCloseSubmit);			            // 关闭订单: 提交关闭Api (路由, 控制模块)
 router.get('/settlement/sellerView', settlementFormApi.sellerView);                         // 结算单: 卖家.查看结算单
 router.post('/settlement/sellerSubmit', settlementFormApi.sellerSubmit);                    // 结算单: 卖家.提交结算单
 router.get('/settlement/buyersView', settlementFormApi.buyersView);                         // 结算单: 买家.查看结算单
@@ -50,7 +50,8 @@ router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeli
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 router.post('/disputeApply', disputeApply.dispute);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
-
+router.post('/disputeCancel', disputeCancel.disputeCancel);
+router.post('/wealth/checkUserCompany', wealthCenter.checkUserCompany);                                  //财富管理中心－初始化
 
 
 router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));

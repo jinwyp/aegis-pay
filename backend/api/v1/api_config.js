@@ -95,6 +95,13 @@ var api_config = {
 
 
     /**
+     * 财务管理
+     * checkUserCompany     检查用公司信息 审核情况
+     */
+    checkUserCompany:       host + 'checkUserCompanyStatus',
+
+
+    /**
      * 账户设置
      * method: get
      *
@@ -152,7 +159,6 @@ var api_config = {
     drawcashSubmit: host + 'account/DrawCash',
     fundinfo: host + 'account/fund/info',
     checkFundPassword: host + 'account/fund/checkPayPwd',
-    sellerSubmit:       host + 'mall/order/seller/settle/submit',
 
 
     /**
