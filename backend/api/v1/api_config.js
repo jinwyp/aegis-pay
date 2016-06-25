@@ -95,6 +95,13 @@ var api_config = {
 
 
     /**
+     * 财务管理
+     * checkUserCompany     检查用公司信息 审核情况
+     */
+    checkUserCompany:       host + 'checkUserCompanyStatus',
+
+
+    /**
      * 账户设置
      * method: get
      *
@@ -150,14 +157,10 @@ var api_config = {
     }
      */
     fetchOpenStatus: host + 'account/fund/create/checkStatus',
-
     drawcash: host + 'account/withDrawCash',
     drawcashSubmit: host + 'account/DrawCash',
     fundinfo: host + 'account/fund/info',
     checkFundPassword: host + 'account/fund/checkPayPwd',
-
-
-    sellerSubmit:       host + 'mall/order/seller/settle/submit',
 
 
     /**
@@ -174,10 +177,17 @@ var api_config = {
     sellerSubmit:       host + 'mall/order/seller/settle/submit',
     buyersView:         host + 'mall/order/settle',
     buyersReturn:       host + 'mall/order/settle/return',
-    buyersEditReason:   host + 'mall/order/settle/return/editreason',
+    buyersEditReason:   host + 'mall/order/settle/return/editReason',
     buyersAuditing:     host + 'mall/order/settle/submit',
-    downPrintSettle:    host + 'mall/order/print/settle'
+    downPrintSettle:    host + 'mall/order/print/settle',
 
+    /**
+     * 关闭订单 Api
+     * orderCloseView   查看订单信息
+     * orderCloseSubmit 提交关闭原因
+     */
+    orderCloseView:     host + 'mall/order/close',
+    orderCloseSubmit:   host + 'mall/order/close/submit'
 
 
 };

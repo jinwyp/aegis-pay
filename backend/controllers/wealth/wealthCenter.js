@@ -24,6 +24,32 @@ exports.wealthCenter = function (req, res, next) {
         res.render('wealth/wealthCenter',content);
 };
 
+// 检查用公司信息 审核情况
+// http://localhost:3001/api/wealth/checkUserCompany
+exports.checkUserCompany = function (req, res, next) {
+    var url = api_config.checkUserCompany;
+    //url = api_config.host + 'wealth/checkUserCompany';			// TODO: 本地
+
+    var param = {
+      userId : 15       // req.session.user.id;
+    };
+
+    request.post(url, {formData: param, json: true}, function (err, data) {
+
+        if (err) return next(err);
+        if (data && data.body){
+            var replyData = data.body;
+
+            replyData.headerTit = '后台返回数据__财务管理首页.检查公司信息';
+            return res.send(replyData);
+        }else{
+            return next(new Error('Nock error!'))
+        }
+    });
+};
+
+
+
 // 开通资金账户 - 设置密码&绑定手机号
 exports.openFundAccount = function (req, res, next) {
     var pageData = {

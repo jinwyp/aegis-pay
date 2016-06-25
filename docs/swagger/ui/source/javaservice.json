@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost",
-  "basePath": "/api/vi",
+  "basePath": "/api",
   "tags": [
     {
       "name": "financialDetails",
@@ -37,7 +37,6 @@
           "application/x-www-form-urlencoded"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
@@ -133,52 +132,139 @@
           "200": {
             "description": "收支明细列表",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Order"
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "data": {
+                  "type": "object",
+                  "properties" : {
+
+                    "payments" : {
+                      "type": "object",
+                      "properties" : {
+
+                        "page" : {
+                          "type": "number",
+                          "description": "当前是第几页"
+                        },
+                        "pagesize" : {
+                          "type": "number",
+                          "description": "每页多少条数据"
+                        },
+                        "count" : {
+                          "type": "number",
+                          "description": "共多少条数据"
+                        },
+                        "userFundAccount" : {
+                          "type": "string",
+                          "description": "易煤网资金账户号"
+                        },
+                        "typeList" : {
+                          "type": "array",
+                          "description": "易煤网资金账户号",
+                          "items": {
+                            "$ref": "#/definitions/PaymentOrderType"
+                          }
+                        },
+                        "list" : {
+                          "type": "array",
+                          "description": "收支明细列表",
+                          "items": {
+                            "$ref": "#/definitions/PaymentOrder"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
+
             },
             "example" : {
-              "success": true,
-              "data": {
-                "payments": {
-                  "page": 1,
-                  "pagesize": 10,
-                  "rowNum": 10,
-                  "totalCount": null,
-                  "totalPage": null,
-                  "list": [],
-                  "indexNum": 0,
-                  "count": 0,
-                  "userId": 2719,
-                  "type": null,
-                  "startDate": null,
-                  "endDate": null,
-                  "searchType": 0,
-                  "searchContent": null,
-                  "userFundAccount": "3110710001261001468",
-                  "typeList": [
-                    {
-                      "type": "paymentstypelist",
-                      "sequence": 1,
-                      "name": "充值"
-                    },
-                    {
-                      "type": "paymentstypelist",
-                      "sequence": 2,
-                      "name": "提现"
-                    },
-                    {
-                      "type": "paymentstypelist",
-                      "sequence": 3,
-                      "name": "销售"
-                    },
-                    {
-                      "type": "paymentstypelist",
-                      "sequence": 4,
-                      "name": "采购"
-                    }
-                  ]
+              "application/json": {
+                "success": true,
+                "data": {
+                  "payments": {
+                    "page": 1,
+                    "pagesize": 10,
+                    "rowNum": 10,
+                    "totalCount": null,
+                    "totalPage": null,
+                    "list": [
+                      {
+                        "fundAccount": "3110710001261037605",
+                        "createTime": "092640",
+                        "createDate": "20160624",
+                        "transactionNO": "J0000000001094",
+                        "money": 3.00,
+                        "balanceMoney": 5.00,
+                        "remarks": "",
+                        "otherFundAccount": "3110710001261001470",
+                        "otherCompanyName": "资金初始化--上海念瞳半导体科技有限公司",
+                        "otherBankName": null,
+                        "printCode": "20160624105430228207"
+                      },
+                      {
+                        "fundAccount": "3110710001261037605",
+                        "createTime": "111042",
+                        "createDate": "20160624",
+                        "transactionNO": "J0000000001266",
+                        "money": 1.00,
+                        "balanceMoney": 6.00,
+                        "remarks": "heheheeh",
+                        "otherFundAccount": "3110710001261032452",
+                        "otherCompanyName": "测试1",
+                        "otherBankName": null,
+                        "printCode": "20160624111106777601"
+                      },
+                      {
+                        "fundAccount": "3110710001261037605",
+                        "createTime": "111042",
+                        "createDate": "20160624",
+                        "transactionNO": "J0000000001267",
+                        "money": 1.00,
+                        "balanceMoney": 7.00,
+                        "remarks": "heheheeh",
+                        "otherFundAccount": "3110710001261032452",
+                        "otherCompanyName": "测试1",
+                        "otherBankName": null,
+                        "printCode": "20160624111106752650"
+                      }
+                    ],
+                    "indexNum": 0,
+                    "count": 3,
+                    "userId": 2719,
+                    "type": null,
+                    "startDate": "2015-08-26",
+                    "endDate": "2017-08-26",
+                    "searchType": 0,
+                    "searchContent": null,
+                    "userFundAccount": "3110710001261037605",
+                    "typeList": [
+                      {
+                        "type": "paymentstypelist",
+                        "sequence": 1,
+                        "name": "充值"
+                      },
+                      {
+                        "type": "paymentstypelist",
+                        "sequence": 2,
+                        "name": "提现"
+                      },
+                      {
+                        "type": "paymentstypelist",
+                        "sequence": 3,
+                        "name": "销售"
+                      },
+                      {
+                        "type": "paymentstypelist",
+                        "sequence": 4,
+                        "name": "采购"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -197,7 +283,7 @@
     },
 
     "/finance/order/seller/receipt": {
-      "post": {
+      "get": {
         "tags": [
           "billCenter"
         ],
@@ -208,13 +294,12 @@
           "application/x-www-form-urlencoded"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
             "name": "page",
-            "in": "formData",
+            "in": "query",
             "description": "第几页,用于分页",
             "required": false,
             "type": "integer",
@@ -225,7 +310,7 @@
           },
           {
             "name": "pagesize",
-            "in": "formData",
+            "in": "query",
             "description": "每页显示条数",
             "required": false,
             "type": "integer",
@@ -236,7 +321,7 @@
           },
           {
             "name": "userId",
-            "in": "formData",
+            "in": "query",
             "description": "用户ID",
             "required": true,
             "type": "integer",
@@ -247,21 +332,21 @@
           },
           {
             "name": "startDate",
-            "in": "formData",
+            "in": "query",
             "description": "开始时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "endDate",
-            "in": "formData",
+            "in": "query",
             "description": "结束时间",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "in": "formData",
+            "in": "query",
             "description": "开票状态 全部发票0, 待开票1, 已开票2",
             "required": false,
             "type": "string",
@@ -277,7 +362,7 @@
           },
           {
             "name": "content",
-            "in": "formData",
+            "in": "query",
             "description": "搜索的订单号",
             "required": false,
             "type": "integer"
@@ -377,7 +462,6 @@
           "application/x-www-form-urlencoded"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
@@ -439,7 +523,6 @@
           "application/x-www-form-urlencoded"
         ],
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
@@ -1053,26 +1136,61 @@
     }
   },
 
+
+
+
   "definitions": {
-    "Order": {
+    "PaymentOrderType": {
       "type": "object",
       "properties": {
-        "orderNo": {
+        "type": {
+          "description": "类型? paymentstypelist",
+          "type": "string"
+        },
+        "sequence": {
+          "description": "交易类型值 充值1, 提现2, 销售3, 采购4",
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "description": "交易类型名称",
+          "type": "string",
+          "enum": [
+            "充值",
+            "提现",
+            "销售",
+            "采购"
+          ]
+        },
+        "otherFundAccount": {
+          "description": "对方账号",
+          "type": "string"
+        },
+        "otherCompanyName": {
+          "description": "对方账号名称",
+          "type": "string"
+        }
+      }
+    },
+    "PaymentOrder": {
+      "type": "object",
+      "properties": {
+        "transactionNO": {
           "description": "交易流水号",
           "type": "integer",
           "format": "int64"
         },
-        "date": {
+        "createDate": {
           "description": "交易时间",
           "type": "integer",
           "format": "int64"
         },
-        "amoumt": {
+        "money": {
           "description": "金额",
           "type": "integer",
           "format": "int32"
         },
-        "account": {
+        "balanceMoney": {
           "description": "账户余额",
           "type": "integer",
           "format": "int64"
@@ -1081,15 +1199,17 @@
           "description": "交易类型",
           "type": "string",
           "enum": [
+            "充值",
             "提现",
-            "销售"
+            "销售",
+            "采购"
           ]
         },
-        "toPersonAccount": {
+        "otherFundAccount": {
           "description": "对方账号",
           "type": "string"
         },
-        "toPersonAccountName": {
+        "otherCompanyName": {
           "description": "对方账号名称",
           "type": "string"
         }
@@ -1135,21 +1255,7 @@
         }
       }
     },
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
+
     "SuccessResponse": {
       "type": "object",
       "properties": {

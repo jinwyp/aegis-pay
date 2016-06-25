@@ -11,7 +11,7 @@
 <%- include ../global/header/subHeader %>
 
 
-
+<% var orderObj = data.order %>
 <!-- 以下.内容部分 -->
 <div class="containerWrap">
     <div class="bodyWrap">
@@ -38,38 +38,36 @@
                     <div class="termBox">
                         <dl>
                             <dt>订单号：</dt>
-                            <dd><%= order.orderNO%></dd>
+                            <dd><%= orderObj.orderNO%></dd>
                         </dl>
-                        <% if(order.contractNO) {%>
+                        <% if(orderObj.contractNO) {%>
                         <dl>
                             <dt>合同编号：</dt>
-                            <dd><%= order.contractNO %></dd>
+                            <dd><%= orderObj.contractNO %></dd>
                         </dl>
                         <% } %>
                         <dl>
                             <dt>下单时间：</dt>
-                            <dd><%= order.createTime%></dd>
+                            <dd><%= orderObj.createTime%></dd>
                         </dl>
-                        <% if(order.payTime) {%>
+                        <% if(orderObj.payTime) {%>
                         <dl>
                             <dt>付款时间：</dt>
-                            <dd><%= order.payTime%></dd>
+                            <dd><%= orderObj.payTime%></dd>
                         </dl>
                         <% } %>
                         <dl>
                             <dt>订单状态：</dt>
-                            <dd><span class="text_zt"><%= order.status%></span></dd>
+                            <dd><span class="text_zt"><%= orderObj.statusName%></span></dd>
                         </dl>
                         <p class="term_hr"></p>
                         <dl>
                             <dt>货品金额：</dt>
-                            <dd><span class="text_je"><%= order.totalMoney%></span></dd>
+                            <dd><span class="text_je"><%= orderObj.totalMoney%></span></dd>
                         </dl>
                     </div>
 
-                    <a href="#?Id=<%= order.id %>" class="linkBtn">查看订单详情 <span class="ff_st">&gt;&gt;</span></a>
-                    <input type="hidden" name="id" value="<%= order.id %>" placeholder="订单Id"/>
-                    <input type="hidden" name="version" value="<%= order.version %>" placeholder="版本号"/>
+                    <a href="#?Id=<%= orderObj.id %>" class="linkBtn">查看订单详情 <span class="ff_st">&gt;&gt;</span></a>
                 </div>
                 <!-- 右侧主体-->
                 <div class="mainWrap fr">
@@ -79,9 +77,10 @@
                             <tr>
                                 <td width="70" class="txt_r"><s class="require">*</s>原因：</td>
                                 <td>
-                                    <select name="reasonId" id="reasonId" class="ipt inp-sel" style="display: none;">
+                                    <select name="reason" id="reason" class="ipt inp-sel" style="display: none;">
                                         <option value="--">选择关闭原因</option>
-                                        <% shutdownReasonList.forEach(function(obj){ %>
+                                        <% data.shutdownReasonList = data.shutdownReasonList || [] %>
+                                        <% data.shutdownReasonList.forEach(function(obj){ %>
                                         <option value="<%= obj.sequence %>"><%= obj.name %></option>
                                         <% }) %>
                                     </select>
@@ -100,9 +99,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-
-                                </td>
+                                <td> </td>
                                 <td>
                                     <input class="iBtn subBtn" type="button" value="确定" disabled
                                            data-toggle="modal" data-target="#orderModal" />
@@ -137,14 +134,14 @@
                 </div>
                 <p><br/><br/></p>
             </div>
-            <!--<div class="modal-footer txt_c"></div>-->
-        </div><!-- /.modal-content -->
+        </div>
     </div>
 </div>
 
+<input type="hidden" name="id" value="<%= orderObj.id %>" placeholder="订单Id"/>
+<input type="hidden" name="version" value="<%= orderObj.version %>" placeholder="版本号"/>
 
 <%- include ../global/footer/footer %>
-
 <%- include ../global/includehead/bottomscript %>
 
 <script src="<%= staticPath %>/scripts/order/orderClose.js"></script>

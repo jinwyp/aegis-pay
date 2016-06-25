@@ -5,18 +5,18 @@
 
 requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, fancySelect, bootstrap, message){
 
-    var apiHost = '/api';			                // API域名
-    var $reasonId = $('[name=reasonId]'),           //原因ID
-        $remarks = $('[name=remarks]'),             //备注
-        $limitNum = $('.limitNum'),                 //剩余字数
-        $subBtn = $('.subBtn'),                     //确认
-        $btnSubClose = $('#btnSubClose');           //确认提交
+    var apiHost = '/api';                           //API域名
+
+    var $reason =       $('[name=reason]'),         //原因ID
+        $remarks =      $('[name=remarks]'),        //备注
+        $limitNum =     $('.limitNum'),             //剩余字数
+        $subBtn =       $('.subBtn'),               //确认
+        $btnSubClose =  $('#btnSubClose');          //确认提交
 
 
     // 绑定 下拉框插件
-    $reasonId.fancySelect().on('change.fs', function() {
+    $reason.fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
-        console.log(this.value);
         $subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
@@ -31,19 +31,16 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
     // 确认提交
     $btnSubClose.click(function() {
 
-        // 请求参数 $("#closeForm").serialize()
         var param = {
-            userId: 'userId',
-            orderId: $('[name=id]').val(),
-            version: $('[name=version]').val(),
-            reasonId: $('[name=reasonId]').val(),
-            remarks: $('[name=remarks]').val()
+            orderId:    $('[name=id]').val(),
+            version:    $('[name=version]').val(),
+            reason:     $('[name=reason]').val(),
+            remarks:    $('[name=remarks]').val()
         };
-        console.dir(param);             // TODO: 打印参数
 
-        $.ajax({
-            url: apiHost + '/order/closeOrder_api',
-            data: param,        //$("#closeForm").serialize(),
+        $.post({
+            url: apiHost + '/order/orderCloseSubmit',
+            data: param,            //$("#closeForm").serialize()
             success: function(data){
                 if(data.success) {
                     $('.modal .close').click();
@@ -54,16 +51,18 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
                     });
                     setTimeout(function() {
                         location.href = '/';
-                    }, 3000);
+                    }, 1500);
                 } else {
                     message({
-                        type: 'done',
-                        title: '完成：',
+                        type: 'error',
+                        title: '错误：',
                         detail: '操作失败!!'
                     });
                 }
             }
         });
+
+
     });
 
 

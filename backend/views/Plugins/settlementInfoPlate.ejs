@@ -1,146 +1,145 @@
-<% var orderObj = data.order %>
+        <% var orderObj = data.order %>
+        <!-- 结算单信息 板块-->
+        <div id="settlementInfoPlate">
+            <!-- 结算信息 -->
+            <div class="mt20">
+                <h2 class="settlementTit">结算单</h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">订单号</th>
+                        <th width="230">合同编号</th>
+                        <th>确认提货时间</th>
+                        <th width="230">结算时间</th>
+                    </tr>
+                    <tr>
+                        <td><%= orderObj.orderNO %> </td>
+                        <td><%= orderObj.contractNO %> </td>
+                        <td><%= orderObj.confirmDeliveryTime %></td>
+                        <td><%= orderObj.sellerSettleTime %></td>
+                    </tr>
+                    <tr>
+                        <th>港口</th>
+                        <th>煤种</th>
+                        <th>合同吨位（吨）</th>
+                        <th>合同基准单价（元/吨）</th>
+                    </tr>
+                    <tr>
+                        <td><%= orderObj.harbour %> </td>
+                        <td><%= orderObj.coalType %> </td>
+                        <td><%= orderObj.amount %></td>
+                        <td><%= orderObj.price %></td>
+                    </tr>
+                    <tr>
+                        <th>合同金额（元）</th>
+                        <th>已付款金额（元）</th>
+                        <th>付款时间</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><%= orderObj.totalMoney %></td>
+                        <td><%= orderObj.totalMoney %> </td>
+                        <td><%= orderObj.paymentTime %></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 实际结算数据 -->
+            <div class="mt20">
+                <% var isShowEdit_sj = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
+                <h2 class="settlementTit">实际结算数据
+                    <% if(isShowEdit_sj) {%><span class="subEditTitle">(带 <s class="require">*</s>的为必填项)</span><%}%>
+                </h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            总结算吨位（吨）
+                        </th>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            港务费（元）
+                        </th>
+                        <th>
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            总结算金额（元）
+                        </th>
+                        <th width="230">
+                            <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
+                            <span class="giveChangeTit">
+                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                                应补货款金额（元）
+                            <% }else{ %>
+                                应退货款金额（元）
+                            <% } %>
+                            </span>
+                        </th>
+                    </tr>
 
-<!-- 结算单信息 板块-->
-<div id="settlementInfoPlate">
-    <!-- 结算信息 -->
-    <div class="mt20">
-        <h2 class="settlementTit">结算单</h2>
-        <table class="settlementTable">
-            <tbody>
-            <tr>
-                <th width="230">订单号</th>
-                <th width="230">合同编号</th>
-                <th>确认提货时间</th>
-                <th width="230">结算时间</th>
-            </tr>
-            <tr>
-                <td><%= orderObj.orderNO %> </td>
-                <td><%= orderObj.contractNO %> </td>
-                <td><%= orderObj.confirmDeliveryTime %></td>
-                <td><%= orderObj.confirmSettleTime %></td>
-            </tr>
-            <tr>
-                <th>港口</th>
-                <th>煤种</th>
-                <th>合同吨位（吨）</th>
-                <th>合同基准单价（元/吨）</th>
-            </tr>
-            <tr>
-                <td><%= orderObj.harbour %> </td>
-                <td><%= orderObj.coalType %> </td>
-                <td><%= orderObj.amount %></td>
-                <td><%= orderObj.price %></td>
-            </tr>
-            <tr>
-                <th>合同金额（元）</th>
-                <th>已付款金额（元）</th>
-                <th>付款时间</th>
-                <th>&nbsp;</th>
-            </tr>
-            <tr>
-                <td><%= orderObj.totalMoney %></td>
-                <td><%= orderObj.totalMoney %> </td>
-                <td><%= orderObj.paymentTime %></td>
-                <td>&nbsp;</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- 实际结算数据 -->
-    <div class="mt20">
-        <% var isShowEdit_sj = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
-        <h2 class="settlementTit">实际结算数据
-            <% if(isShowEdit_sj) {%><span class="subEditTitle">(带 <s class="require">*</s>的为必填项)</span><%}%>
-        </h2>
-        <table class="settlementTable">
-            <tbody>
-            <tr>
-                <th width="230">
-                    <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
-                    总结算吨位（吨）
-                </th>
-                <th width="230">
-                    <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
-                    港务费（元）
-                </th>
-                <th>
-                    <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
-                    总结算金额（元）
-                </th>
-                <th width="230">
-                    <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
-                    <span class="giveChangeTit">
-                    <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                        应补货款金额（元）
-                    <% }else{ %>
-                        应退货款金额（元）
+                    <% if(isShowEdit_sj) {%>
+                    <tr>
+                        <td class="billBox">
+                            <input type="number" class="billIpt" name="ins_ettleAmount" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
+                            <span class="errInfo"></span>
+                        </td>
+                        <td class="billBox">
+                            <input type="number" class="billIpt" name="ins_harbourDues" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
+                            <span class="errInfo"></span>
+                        </td>
+                        <td class="billBox">
+                            <input type="number" class="billIpt" name="ins_settleMoney" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
+                            <span class="errInfo"></span>
+                        </td>
+                        <td>
+                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                                <span class="tailMoneyNum"><%= orderObj.tailMoney || 0 %></span>
+                            <% }else{ %>
+                                <span class="refundMoneyNum"><%= orderObj.refundMoney || 0 %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>说明</th>
+                        <td colspan="3" class="billBox">
+                            <input type="text" class="billIpt" name="ins_remarks" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
+                            <span class="errInfo"></span>
+                        </td>
+                    </tr>
+
+                    <% } else { %>
+                    <tr>
+                        <td><%= orderObj.settleAmount %></td>
+                        <td><%= orderObj.harbourDues %></td>
+                        <td><%= orderObj.settleMoney %></td>
+                        <td>
+                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                                <span class="tailMoneyNum"><%= orderObj.tailMoney %></span>
+                            <% }else{ %>
+                                <span class="refundMoneyNum"><%= orderObj.refundMoney %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>说明</th>
+                        <td colspan="3"><%= orderObj.remarks %></td>
+                    </tr>
                     <% } %>
-                    </span>
-                </th>
-            </tr>
 
-            <% if(isShowEdit_sj) {%>
-            <tr>
-                <td class="billBox">
-                    <input type="number" class="billIpt" name="ins_ettleAmount" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
-                    <span class="errInfo"></span>
-                </td>
-                <td class="billBox">
-                    <input type="number" class="billIpt" name="ins_harbourDues" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
-                    <span class="errInfo"></span>
-                </td>
-                <td class="billBox">
-                    <input type="number" class="billIpt" name="ins_settleMoney" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
-                    <span class="errInfo"></span>
-                </td>
-                <td>
-                    <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                        <span class="tailMoneyNum"><%= orderObj.tailMoney || 0 %></span>
-                    <% }else{ %>
-                        <span class="refundMoneyNum"><%= orderObj.refundMoney || 0 %></span>
-                    <% } %>
-                </td>
-            </tr>
-            <tr>
-                <th>说明</th>
-                <td colspan="3" class="billBox">
-                    <input type="text" class="billIpt" name="ins_remarks" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
-                    <span class="errInfo"></span>
-                </td>
-            </tr>
-
-            <% } else { %>
-            <tr>
-                <td><%= orderObj.settleAmount %></td>
-                <td><%= orderObj.harbourDues %></td>
-                <td><%= orderObj.settleMoney %></td>
-                <td>
-                    <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                        <span class="tailMoneyNum"><%= orderObj.tailMoney %></span>
-                    <% }else{ %>
-                        <span class="refundMoneyNum"><%= orderObj.refundMoney %></span>
-                    <% } %>
-                </td>
-            </tr>
-            <tr>
-                <th>说明</th>
-                <td colspan="3"><%= orderObj.remarks %></td>
-            </tr>
-            <% } %>
-
-            <tr>
-                <th colspan="2">购方公司</th>
-                <th colspan="2">销方公司</th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <span><%= orderObj.buyerCompanyName %></span>
-                </td>
-                <td colspan="2">
-                    <span><%= orderObj.sellerCompanyName %></span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                    <tr>
+                        <th colspan="2">购方公司</th>
+                        <th colspan="2">销方公司</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span><%= orderObj.buyerCompanyName %></span>
+                        </td>
+                        <td colspan="2">
+                            <span><%= orderObj.sellerCompanyName %></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
