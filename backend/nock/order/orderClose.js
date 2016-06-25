@@ -68,15 +68,15 @@ nkOrderPersist.get('/order/orderInfo').query({orderId:'222000'})
 
 
 
-// 查询订单:接口 		http://localhost:3000/api/order/orderInfo_api?id=777&type=88
-nkOrder.get('/order/orderInfo_api').query({id:'222', type:'33'})
+// 查询订单:接口 		http://localhost:3000/api/order/orderCloseView?id=777&type=88
+nkOrder.get('/order/orderCloseView').query({id:'222', type:'33'})
     .reply(200, {data: '买家订单111111'});
 nkOrder.get('/order/orderInfo_api').query({id:'777', type:'88'})
     .reply(200, {data: '卖家订单222222'});
 
 
-// 关闭订单:接口 		http://localhost:3000/api/order/closeOrder_api
-nkOrder.get('/order/closeOrder_api').reply(200, {
+// 关闭订单:接口 		http://localhost:3000/api/order/orderCloseSubmit
+nkOrder.get('/order/orderCloseSubmit').reply(200, {
     success: false,
     error: '提交失败!',
     errorcode: 1

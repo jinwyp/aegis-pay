@@ -7,7 +7,6 @@
 <body>
 
 <%- include ../global/header/header %>
-
 <%- include ../global/header/subHeader %>
 
 
@@ -64,7 +63,7 @@
         <% var isSupply_buy = (userType == 'buy' && (orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts')) %>
         <% var isSupply_sell = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
         <% var isSupply_only = (userType == 'sell' && orderObj.status == 'WaitVerifySettle') %>
-        <div id="supplyAgreementPlate" class="fileOperation mt20">
+        <div id="supplyAgreementPlate" class="fileOperation mt20 clearfix">
             <div class="fileOperation_title fl">
                 <p class="fileTitle">
                     <% if(isSupply_only || (userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts')) {%>
@@ -77,13 +76,18 @@
             </div>
             <div class="fileOperation_body">
                 <div class="fileList">
-                    <% if(isSupply_sell){ %>
-                    <span class="iBtn iBtn_up">
-                        <i class="iBtn_up_icn"></i>点击上传
-                        <input id="supplyFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
-                    </span>
-                    <% } %>
                     <div class="supplyFileList" style="display: inline-block">
+                        <% if(isSupply_sell){ %>
+                        <span class="iBtn iBtn_up">
+                            <i class="iBtn_up_icn"></i>点击上传
+                            <input id="supplyFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
+                        </span>
+                        <% } %>
+                        <% if(userType == 'buy'){ %>
+                        <!-- 买家下载-->
+                        <a href="javascript:;" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
+                        <% } %>
+
                         <% data.files = data.files ? data.files : [] %>
                         <% for(var x = 0, s = data.files.length; x < s; x++ ){ %>
                             <% var fileObj = data.files[x]; %>
@@ -101,11 +105,6 @@
                                 <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
                             </p>
                             <% } %>
-                        <% } %>
-
-                        <% if(isSupply_buy){ %>
-                        <!-- 买家下载-->
-                        <a href="javascript:;" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
                         <% } %>
                     </div>
 
@@ -217,8 +216,8 @@
             <div class="modal-body">
                 <div class="pad_15">
                     <div class="txtAreaBox">
-                        <div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>
-                        <textarea class="txtArea .returnText" name="remarks" rows="10" maxlength="200" placeholder="请简要填写退回原因，限200个字"></textarea>
+                        <div class="dockDown">您还可以输入<span class="limitNum reasonSize_md">200</span>个字</div>
+                        <textarea class="txtArea .returnText" id="oneRemarks" rows="10" maxlength="200" placeholder="请简要填写退回原因，限200个字"></textarea>
                     </div>
                 </div>
             </div>
