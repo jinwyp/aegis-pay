@@ -2,6 +2,7 @@
 var router = require('express').Router();
 var logger = require('../libs/logger');
 var rq = require('request');
+require('request-debug')(rq);
 exports.init = function (app) {
     app.use('/', router);
 };
