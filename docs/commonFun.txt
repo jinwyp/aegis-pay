@@ -99,9 +99,8 @@
     2.模板引用
     <% include ../global/order/orderUserInfo %>
 
-    注：type的值为buy/sell
+    注：type的值为 buy/sell,
     res.render("compact/orderDetail", {"type":"sell","order":order});
-
 
 
 -----------------------------------------------------------
@@ -177,8 +176,12 @@
     模板数据:
     {
         userType: 'buy',     //用户类型: buy, sell
-        order: {
-            status: 'ReturnedSettleAccounts'
+        data: {
+            order: {
+                status: 'ReturnedSettleAccounts',
+                ...
+                ...
+            }
         }
     }
 

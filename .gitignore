@@ -13,6 +13,7 @@ app/dist/
 files
 frontend/images/sprite/auto-sprite.png
 frontend/styles/helpers/_auto_sprite.scss
+.vscode
 
 backend/views/download/*
 

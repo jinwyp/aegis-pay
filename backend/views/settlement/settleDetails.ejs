@@ -19,7 +19,7 @@
                 <% if(typeof htmlpath != 'undefined') { %>
                     <p class="headRight"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
                 <% }else {%>
-                    <p class="headRight"><a href="#" class="downLoad">下载开票资料</a></p>
+                    <p class="headRight"><a href="" class="downLoad">下载开票资料</a></p>
                     <input type='hidden' name='nohtmlpath' />
                 <% } %>
             </div>
@@ -38,7 +38,13 @@
         <%- include ../Plugins/InvoiceRemarksPlate %>
 
         <p class="mt20"></p>
+        <!--<p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>-->
+        <% if(typeof htmlpath != 'undefined') { %>
+        <p class="headRight txt_r"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
+        <% }else {%>
         <p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>
+        <input type='hidden' name='nohtmlpath' />
+        <% } %>
         <p class="mt20"></p>
     </div>
 </div>

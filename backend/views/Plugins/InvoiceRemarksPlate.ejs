@@ -11,7 +11,7 @@
                 <% if(editable !="false" ){ %>
                     <textarea class="txtArea .returnText" id="requirement" name="requirement" rows="7" maxlength="200" placeholder="如果对“发票备注”内容有明确要求，请详细填写" ></textarea>
                 <%}else{%>
-                    <textarea class="disabled_textarea" id="requirement" name="requirement" disabled>备注</textarea>
+                    <textarea class="disabled_textarea" id="requirement" name="requirement" disabled><%= data.orderReceiptRemarks.requirement%></textarea>
                 <%}%>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <!--<div class="dockDown">您还可以输入<span class="limitNum">200</span>个字</div>-->
                     <textarea class="txtArea .returnText" id="specialRequirement" name="specialRequirement" rows="7" maxlength="200" placeholder="如有其他特殊要求，请详细填写" <% if(editable =="false" ){ %>disabled="disabled" <%}%> ></textarea>
                 <%}else{%>
-                    <textarea class="disabled_textarea" id="specialRequirement" name="specialRequirement" disabled>备注</textarea>
+                    <textarea class="disabled_textarea" id="specialRequirement" name="specialRequirement" disabled><%= data.orderReceiptRemarks.specialRequirement%></textarea>
                 <%}%>
             </div>
         </div>

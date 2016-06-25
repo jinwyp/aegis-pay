@@ -9,20 +9,30 @@ var request = require('request');
 var path = require('path');
 var _ = require('lodash');
 var api_config = require('../../api/v1/api_config');
+var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.settlementInfo = function (req, res, next) {
-
-    request({url : api_config.billCenter}, function (err, data) {
-        if (err) return next(err);
+    var user = req.session.user;
+    request({url : api_config.billView+"?userId="+user.id}, function (err, data) {
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
 
         if(data) {
             var source = JSON.parse(data.body);
             var content = {
                 pageTitle: "结算管理",
-                headerTit: "结算管理"
+                headerTit: "结算管理",
+                data: {
+                    receipt:source.data.receipt
+                }
+
+
             };
             //渲染页面
+            console.log(data)
             return res.render('settlement/settlementInfo', content);
         }
     })

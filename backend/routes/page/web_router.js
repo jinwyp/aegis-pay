@@ -38,7 +38,7 @@ var payCtl                    = require('../../controllers/pay');
 var wealthCenter              = require('../../controllers/wealth/wealthCenter');               //财富管理
 var financialHome             = require('../../controllers/wealth/financialHome');              //财富管理
 var accountSetting            = require('../../controllers/accountSetting');                    //账户设置
-var notice                    = require('../../controllers/notice');                            //账户设置消息提醒
+//var notice                    = require('../../controllers/notice');                            //账户设置消息提醒
 var paypasswordCtl            = require('../../controllers/paypassword/index');                 //paypassword
 var wealthAccount             = require('../../controllers/wealth/wealthAccount');              //账户通
 var drawCash                  = require('../../controllers/drawCash/drawCash');
@@ -100,6 +100,9 @@ router.get('/return', returnDetailController.returnDetail);                     
 //=========================财富管理中心路由================================
 //首页
 router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);                                  //财富管理中心－初始化
+router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);                          //开通资金账户
+router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
+router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
 
 //账户管理
@@ -110,16 +113,12 @@ router.post('/drawCashCheck', drawCash.drawCashCheck);                          
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
 router.get('/account/accountSetting', accountSetting.accountSetting);
-router.get('/account/notice', notice.notice);                                                   //账户设置－消息提醒
+//router.get('/account/notice', notice.notice);                                                   //账户设置－消息提醒
 router.get('/wealth/bindingBankAccount',bindingBankAccount.bindingBankAccount);                 //账户设置－绑定银行卡
 router.get('/wealth/bindingSuccess',bindingBankAccount.bindingSuccess);                         //账户设置－绑定银行卡成功
 
 router.get('/wealth/financialDetails', financialHome.financialDetails);                         //账户管理-收支明细
 router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //账户管理-收支明细-下载
-
-router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);                          //开通资金账户
-router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
-router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);                                 //重置密码页面(选择方式：是否记得密码)
 router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhonePage);           //修改或忘记密码身份验证
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);//忘记密码－设置密码
@@ -134,6 +133,8 @@ router.get('/wealth/financialSettlement', financialHome.financialSettlement);   
 router.get('/settlement/billCenter', billCenter.billCenter);                                    //结算管理－发票中心
 router.get('/settlement/billSetting', billSetting.billSetting);                                 //结算管理－开票设置
 router.post('/settlement/billDelete', billSetting.billDelete);                                  //结算管理－开票设置删除按钮
+router.get('/settlement/billView', billSetting.billView);                                  //结算管理－开票设置删除按钮
+router.get('/settlement/billCenterView', billCenter.billCenterView);                                  //结算管理－开票设置删除按钮
 router.post('/settlement/receiveReceipt', billCenter.receiveReceipt);                           //结算页面－通知短信发送
 router.get('/settlement/waitSettle', billCenter.billCenter);                                    //结算管理－开票设置(代开票)
 router.get('/settlement/hadSettle', billCenter.billCenter);                                       //结算管理－开票设置(已开票)
