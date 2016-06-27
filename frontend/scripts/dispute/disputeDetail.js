@@ -12,13 +12,19 @@ require(['jquery','bootstrap'],function($,upload){
 
         $.ajax({
             url:"/api/disputeCancel",
-            data:{orderId:"10", version:"11", userId:"13"},
+            data:{
+                orderId:$("#orderId").val(),
+                version:$("#version").val(),
+                userId:$("#userId").val()
+            },
             type:'POST',
             success : function(data){
                 if(data.success){
                     //跳转个人中心买货列表页面
+                    location.href=''
                 }
             }
+
         })
     });
 });

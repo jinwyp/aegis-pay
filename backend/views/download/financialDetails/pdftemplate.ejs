@@ -22,14 +22,18 @@
 
             <% orderList.forEach(function(order){ %>
             <tr>
-                <td > <%= order.date %> </td>
-                <td ><%= order.orderNo %></td>
-                <td ><%= order.amoumt %></td>
-                <td ><%= order.account %></td>
-                <td ><%= order.tradeType %></td>
-                <td ><%= order.toPersonAccount %></td>
-                <td ><%= order.toPersonAccountName %></td>
-                <td ><%= order.toPersonBankName %></td>
+                <td><%= order.createDate %> </td>
+                <td><%= order.transactionNO %></td>
+                <td><%= order.money %></td>
+                <td><%= order.balanceMoney %></td>
+                <td>
+                    <% if(order.type==1){ %> 充值 <% } %>
+                    <% if(order.type==2){ %> 提现 <% } %>
+                    <% if(order.type==3){ %> 采购 <% } %>
+                    <% if(order.type==4){ %> 销售 <% } %>
+                </td>
+                <td><%= order.otherFundAccount %></td>
+                <td><%= order.otherCompanyName %></td>
             </tr>
 
             <% }); %>

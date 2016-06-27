@@ -24,7 +24,7 @@ exports.financialDetailsApi = function (req, res, next) {
         userId : req.session.user.id,
         //userId :  2719,
         page : req.body.currentPage || 1,
-        pagesize : 1
+        pagesize : 10
     };
 
     if (req.body.orderDateFrom) postBody.startDate = req.body.orderDateFrom;
@@ -41,6 +41,34 @@ exports.financialDetailsApi = function (req, res, next) {
 
         if (response.statusCode === 200 && body.success) {
             return res.json(body.data.payments);
+        }else {
+            return res.json([]);
+        }
+    });
+
+};
+
+
+exports.financialDetailsPrintApi = function (req, res, next) {
+
+    //checker.payPassword(req.query.fundAccount);
+    //checker.payPassword(req.query.printCode);
+
+    var getQuery = {
+        userId : req.session.user.id,
+        //userId :  2719,
+        fundAccount : req.query.fundAccount,
+        printCode : req.query.printCode
+    };
+
+
+    var url = api_config.financialDetailsPrint ;
+    request.get({url:url, qs:getQuery, json:true}, function (err, response, body) {
+
+        if (err) return next(err);
+
+        if (response.statusCode === 200 && body.success) {
+            return res.json(body);
         }else {
             return res.json([]);
         }
