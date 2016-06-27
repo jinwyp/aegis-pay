@@ -92,7 +92,7 @@
                                 <td >{{order.tradeType}}</td>
                                 <td >{{order.otherFundAccount}}</td>
                                 <td >{{order.otherCompanyName}}</td>
-                                <td ><span class="iBtn iBtn_xs iBtn_no">打印回执</span></td>
+                                <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
                             </tr>
 
                         </table>

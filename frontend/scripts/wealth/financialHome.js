@@ -97,6 +97,10 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     searchQuery.currentPage = tempNo;
                     vm.orderCurrentPage = tempNo;
                     app.getFinancialDetailsApi(searchQuery);
+                },
+                
+                printOrder : function (fundAccount, printCode) {
+                    app.getFinancialDetailsPrintApi(fundAccount, printCode);
                 }
             });
 
@@ -117,6 +121,23 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     vm.orderListTotalPages = Math.ceil(data.count / data.pagesize);
 
                     app.showPagination();
+                }
+            })
+        },
+
+        getFinancialDetailsPrintApi : function(fundAccount, printCode){
+            var url = '/api/financial/order/details/print?' + 'fundAccount=' + fundAccount + '&printCode=' + printCode;
+
+            $.ajax({
+                url    : url,
+                method : "GET",
+                dataType : "json",
+                success:function(data){
+                    if(data.success){
+                        alert('打印成功!')
+                    }else{
+                        alert('打印失败!')
+                    }
                 }
             })
         },

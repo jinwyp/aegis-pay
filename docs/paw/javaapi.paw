@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>551E075E-C102-4247-ABD7-721A5DAD55DF</UUID>
-        <nextObjectID>122</nextObjectID>
+        <nextObjectID>129</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -74,7 +74,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">3</attribute>
+        <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">开票中心-开票设置</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -104,7 +104,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[[["userId"],["2719"],true],[["page"],["1"],true],[["pagesize"],["10"],true],[["startDate"],["2015-08-26"],true],[["endDate"],["2017-08-26"],true],[["searchType"],[],false],[["searchContent"],[],false],[["type"],[],true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"userId\\":\\"2719\\",\\"page\\":\\"1\\",\\"pagesize\\":\\"10\\",\\"startDate\\":\\"2015-08-26\\",\\"endDate\\":\\"2017-08-26\\"\\/*,\\"searchType\\":\\"\\",\\"searchContent\\":\\"\\"*\\/,\\"type\\":\\"\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">财务管理-收支明细</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
@@ -116,7 +116,7 @@
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">host</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z122"></relationship>
-        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z105 z120"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z125 z105 z120"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z108">
         <attribute name="value" type="string"></attribute>
@@ -131,7 +131,7 @@
     <object type="LMENVIRONMENTVARIABLE" id="z109">
         <attribute name="uuid" type="string">B5003789-661F-4E06-8142-8568BF528AB5</attribute>
         <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string"></attribute>
+        <attribute name="name" type="string">content-type-form</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z116"></relationship>
         <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115"></relationship>
     </object>
@@ -165,7 +165,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[[["orderId"],["3634"],true],[["sellerId"],["2719"],true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">2</attribute>
+        <attribute name="order" type="int64">3</attribute>
         <attribute name="name" type="string">开票中心-发票列表-确认开票</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -181,7 +181,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[[["userId"],["2719"],true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">4</attribute>
+        <attribute name="order" type="int64">5</attribute>
         <attribute name="name" type="string">开票中心-开票设置 删除</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -192,10 +192,10 @@
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">Default Environment</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z116"></relationship>
-        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115"></relationship>
+        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115 z129"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLEVALUE" id="z115">
-        <attribute name="value" type="string"></attribute>
+        <attribute name="value" type="string">application/x-www-form-urlencoded</attribute>
         <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z114"></relationship>
         <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z109"></relationship>
     </object>
@@ -204,7 +204,7 @@
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">Header</attribute>
         <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z114"></relationship>
-        <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z109"></relationship>
+        <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z109 z128"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z117">
         <attribute name="value" type="string"></attribute>
@@ -233,7 +233,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"json":"{}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">1</attribute>
+        <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">开票中心-发票列表</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -255,7 +255,68 @@
         <attribute name="uuid" type="string">44ABFB91-C251-4788-8377-7A101B1B3DC3</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">HostUrl</attribute>
-        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z121 z118"></relationship>
+        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z126 z118 z121"></relationship>
         <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z107"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z123">
+        <attribute name="clientcertificate" type="string">[{"data":{"mode":0},"identifier":"com.luckymarmot.CertificateDynamicValue"}]</attribute>
+        <attribute name="uuid" type="string">AE944360-B4B7-4E2D-A814-353847A3BDAA</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"DD6B5687-D28B-40C1-9B4E-30B304A1DEF1"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/finance\\/payments\\/print?fundAccount=3110710001261037605\u2600printCode=20160623175612277120"]</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">GET</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[[["userId"],["2719"],true],[["page"],["1"],true],[["pagesize"],["10"],true],[["startDate"],["2015-08-26"],true],[["endDate"],["2017-08-26"],true],[["searchType"],[],false],[["searchContent"],[],false],[["type"],[],true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">财务管理-收支明细 打印</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z127 z124"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z124">
+        <attribute name="value" type="string">[{"data":{"environmentVariable":"B2FC6DA9-F8DC-422E-BF5C-494AB3A94BF3"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Content-Type</attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z123"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z125">
+        <attribute name="value" type="string">http://192.168.1.62:8888</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z126"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z107"></relationship>
+    </object>
+    <object type="LMENVIRONMENT" id="z126">
+        <attribute name="uuid" type="string">3C44401A-C3CB-4330-BE00-C17E2471FFC9</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">王琦Mac</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z122"></relationship>
+        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z125"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z127">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z123"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z128">
+        <attribute name="uuid" type="string">B2FC6DA9-F8DC-422E-BF5C-494AB3A94BF3</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">content-type-json</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z116"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z129"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z129">
+        <attribute name="value" type="string">application/json</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z114"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z128"></relationship>
     </object>
 </database>

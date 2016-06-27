@@ -69,6 +69,7 @@ router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpe
 router.post('/account/fund/bankCard/verify/submit',bindingBankAccount.remittance); //汇款金额确认
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
+router.get('/financial/order/details/print', financialApi.financialDetailsPrintApi);
 router.post('/verifyCode', sms.verifyMiddleware(), bindingBankAccount.verifyCode);   //验证码确认
 
 router.get('/bank/loadBankSiteCities',bindingBankAccount.cityList);   //城市下拉确认

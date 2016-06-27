@@ -47,3 +47,32 @@ exports.financialDetailsApi = function (req, res, next) {
     });
 
 };
+
+
+exports.financialDetailsPrintApi = function (req, res, next) {
+
+    //checker.payPassword(req.query.fundAccount);
+    //checker.payPassword(req.query.printCode);
+
+    var getQuery = {
+        userId : req.session.user.id,
+        //userId :  2719,
+        fundAccount : req.query.fundAccount,
+        printCode : req.query.printCode
+    };
+
+
+    var url = api_config.financialDetailsPrint ;
+    request.get({url:url, qs:getQuery, json:true}, function (err, response, body) {
+        console.log(err);
+        console.log(body);
+        if (err) return next(err);
+
+        if (response.statusCode === 200 && body.success) {
+            return res.json(body);
+        }else {
+            return res.json([]);
+        }
+    });
+
+};
