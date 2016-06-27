@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>551E075E-C102-4247-ABD7-721A5DAD55DF</UUID>
-        <nextObjectID>129</nextObjectID>
+        <nextObjectID>130</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -104,12 +104,12 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"userId\\":\\"2719\\",\\"page\\":\\"1\\",\\"pagesize\\":\\"10\\",\\"startDate\\":\\"2015-08-26\\",\\"endDate\\":\\"2017-08-26\\"\\/*,\\"searchType\\":\\"\\",\\"searchContent\\":\\"\\"*\\/,\\"type\\":\\"\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[[["userId"],["2719"],true],[["page"],["1"],true],[["pagesize"],["10"],true],[["startDate"],["2015-08-26"],true],[["endDate"],["2016-08-26"],true],[["searchType"],["1"],false],[["searchContent"],[],false],[["type"],["1"],false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">财务管理-收支明细</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z110"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z110 z130"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLE" id="z107">
         <attribute name="uuid" type="string">DD6B5687-D28B-40C1-9B4E-30B304A1DEF1</attribute>
@@ -136,9 +136,9 @@
         <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z110">
-        <attribute name="value" type="string"></attribute>
+        <attribute name="value" type="string">[{"data":{"environmentVariable":"B5003789-661F-4E06-8142-8568BF528AB5"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"}]</attribute>
         <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string"></attribute>
+        <attribute name="name" type="string">Content-Type</attribute>
         <attribute name="enabled" type="bool">1</attribute>
         <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
@@ -318,5 +318,15 @@
         <attribute name="value" type="string">application/json</attribute>
         <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z114"></relationship>
         <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z128"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z130">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z106"></relationship>
     </object>
 </database>
