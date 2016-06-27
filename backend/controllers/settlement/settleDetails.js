@@ -95,10 +95,7 @@ exports.generate_settle = function (req, res, next) {
             convert.ejs2html(content, tableEjs, {pathname: 'settleDetails_'+req.query.orderId, htmlpath: downloadPath + '/'}).then(function(result){
                 var htmlpath = '/download/' + path.basename(result.htmlpath);
                 content.htmlpath = htmlpath;
-                
                 cache.set('settleDetails:settleDetails_'+req.query.orderId, content);
-                console.log('=========htmlpath===============')
-                console.log(htmlpath)
                 return res.json({htmlpath:htmlpath});
 
             })
