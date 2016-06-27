@@ -75,6 +75,7 @@ router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDel
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由
+router.get('/settlement/settlementInfoDownload', settlementFormControl.settlementInfoDownload); //结算单－下载打印结算信息
 router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);           //结算单－确认(添加)开票
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
@@ -137,7 +138,7 @@ router.get('/settlement/billView', billSetting.billView);                       
 router.get('/settlement/billCenterView', billCenter.billCenterView);                                  //结算管理－开票设置删除按钮
 router.post('/settlement/receiveReceipt', billCenter.receiveReceipt);                           //结算页面－通知短信发送
 router.get('/settlement/waitSettle', billCenter.billCenter);                                    //结算管理－开票设置(代开票)
-router.get('/settlement/hadSettle', billCenter.billCenter);                                       //结算管理－开票设置(已开票)
+router.get('/settlement/hadSettle', billCenter.billCenter);                                     //结算管理－开票设置(已开票)
 router.get('/settlement/settleDetails', settleDetails.settleDetails);                           //结算管理－发票查看详情
 router.get('/settlement/settlementInfo', settlementInfo.settlementInfo);                        //结算管理－发票设置查看详情
 

@@ -33,7 +33,10 @@ var validationCode = {
 
     order : {
         orderIdWrong : {code:5001, message:'Field validation error, orderId length should be 6 - 100', field : "orderId"},
-        deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"}
+        deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"},
+
+        startDate : {code:5201, message:'Field validation error, start date wrong', field : "orderDateFromDownload"},
+        endDate : {code:5201, message:'Field validation error, end date wrong', field : "orderDateToDownload"}
     },
 
     captcha : {
@@ -48,6 +51,10 @@ var validationCode = {
         textWrong : {code:7002, message:'Field validation error, SMS text length should be 6 - 6', field : "sms_code"},
         notMatch : {code:7005, message:'Field validation error, SMS text not match', field : "sms_code"},
         expired : {code:7007, message:'Field validation error, SMS text expired', field : "sms_code"}
+    },
+
+    page : {
+        menuTabNumberWrong : {code:9001, message:'Field validation error, menu Tab number should be 1 - 20', field : "firstTab"},
     }
 };
 
