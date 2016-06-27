@@ -11,12 +11,12 @@ var apiHost  = require('../../api/v1/api_config');          // 接口路径配�
 exports.orderInfo = function (req, res, next) {
 	var apiUrl 	= '',
 		orderId = req.query.id,
-		userId 	= req.session.user.id;						//req.userId = req.session.user.id;		//checker.orderId(req_id);
+		userId 	= req.session.user.id;						//checker.orderId(req_id);
 
 	if(!orderId) {
 		res.send('<p>"请输入 订单编号!"</p>');
 	} else {
-		apiUrl = apiHost.orderCloseView + '?orderId='+ orderId +'&userId='+ 15;
+		apiUrl = apiHost.orderCloseView + '?orderId='+ orderId +'&userId='+ userId;
 		//apiUrl = apiHost.host + 'order/orderInfo?orderId='+ req_id;			// TODO: 本地模拟
 
 		request(apiUrl, function (err, data) {
@@ -62,7 +62,7 @@ exports.orderCloseSubmit = function(req, res, next) {
 	var apiUrl = apiHost.orderCloseSubmit;				// 异步调取Java数据
 		//apiUrl = apiHost.host + 'order/orderCloseSubmit?orderId='+ req.query.id;
 
-	req.body.userId = 15;			// TODO: 测试 req.session.user.id;
+	req.body.userId = req.session.user.id;
 	request.post(apiUrl, {formData:req.body, json:true}, function (err, data) {
 		if (err) return next(err);
 		if (data && data.body){

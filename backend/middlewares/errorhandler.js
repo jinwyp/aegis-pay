@@ -13,6 +13,8 @@ var logger = require('../libs/logger');
 var PageNotFoundError = require('../errors/PageNotFoundError');
 var SystemError = require('../errors/SystemError');
 
+var ValidationError = require('../errors/ValidationError');
+
 
 exports.PageNotFoundMiddleware = function(req, res, next) {
     next(new PageNotFoundError(404 , 'Page Not Found'));
@@ -24,7 +26,14 @@ exports.PageNotFoundMiddleware = function(req, res, next) {
 exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     var newErr = null;
 
-    if (typeof err.type === 'undefined'){
+    if(err.customType === 'service-request'){
+        switch(err.customCode){
+            case 409: 
+                newErr = new ValidationError(409, err.message, err);
+                break;
+        }
+        
+    }else if (typeof err.type === 'undefined'){
         newErr = new SystemError(500, err.message, err);
         newErr.stack = err.stack;
     }else{

@@ -19,14 +19,25 @@ var request  = require('request');
 var checker  = require('../../libs/datachecker');			// 验证
 var apiHost  = require('../../api/v1/api_config');          // 接口路径配置
 
+var path	= require('path');
+var config  = require('../../config');
+var utils   = require('../../libs/utils');
+var ejs     = require('ejs');
+var pdf     = require('html-pdf');
+var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
+var pdfHtmlTemplatePath = path.join(config.file_path.download, '/settlement/pdfTemplate.ejs');
+
+var typeArr = ['none', 'buy', 'sell'];						// 用户类型
+
+// include ../Plugins/settlementInfoPlate
+
 
 // 页面路由
 exports.orderSettlement = function (req, res, next) {
 
 	var apiUrl = '',
 		req_id = req.query.id,
-		req_type = req.query.type,
-		typeArr = ['none', 'buy', 'sell'];
+		req_type = req.query.type;
 
 	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
@@ -43,11 +54,11 @@ exports.orderSettlement = function (req, res, next) {
 		if(req_type == 1) {
 			replyData.subTitle = '结算单详情';
 			replyData.userType = 'buy';
-			apiUrl = apiHost.buyersView+ '?orderId='+ req_id +'&userId='+   15;
+			apiUrl = apiHost.buyersView+ '?orderId='+ req_id +'&userId='+   req.userId;
 		} else if(req_type == 2) {
 			replyData.subTitle = '开具结算单';
 			replyData.userType = 'sell';
-			apiUrl = apiHost.sellerView+ '?orderId='+ req_id +'&sellerId='+ 15;
+			apiUrl = apiHost.sellerView+ '?orderId='+ req_id +'&sellerId='+ req.userId;
 		}
 
 		// TODO: 本地 Nock
@@ -63,14 +74,57 @@ exports.orderSettlement = function (req, res, next) {
 };
 
 
+// 下载打印, 结算信息
+// /settlement/settlementInfoDownload?orderId=3622&userId=15
+exports.settlementInfoDownload = function (req, res, next) {
+	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
+
+	console.log('----111111111----------------------------------------------------------------');
+	console.log(apiUrl);
+
+	request(apiUrl, function (err, data) {
+
+		if (err) return next(err);
+		if (data && data.body){
+			var replyData = {
+				headerTit	: '下载打印结算单',
+				subTitle 	: '下载打印结算单',
+				userType 	: 'buy'
+			};
+			replyData.data = JSON.parse(data.body).data;
+
+			console.log('----333333333333333----------------------------------------------------------------');
+			console.log(replyData);
+			console.log(replyData.order.buyerCompanyName);
+			return res.send(replyData);
+
+			//ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
+			//	if (err) return next(err);
+			//	var pdfOptions = {format : 'Letter'};
+			//	var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
+            //
+			//	pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+			//		if (err) return next(err);
+			//		return res.download(pdfFileName);
+			//	});
+			//});
+
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
+
+};
+
+
 
 
 // +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 
 // API路由: 卖家.提交结算单 --------- http://localhost:3001/api/settlement/sellerSubmit
 var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
-	// var req_id = req.query.id,
-	// userId = req.session.user.id;  console.log(req.body)
+	// var req_id = req.query.id;
+	req.body.userId = req.session.user.id;
 
 	var url = apiHost.sellerSubmit;
 		//url = apiHost.host + 'settlement/sellerSubmit';			// TODO: 本地
@@ -209,10 +263,9 @@ var buyersView = exports.buyersView = function (req, res, next) {
 // API路由: *下载打印结算单 --------- http://localhost:3001/api/settlement/downPrintSettle?orderId=3622
 // http://192.168.1.168:8888/mall/order/print/settle?orderId=3622&userId=15
 var downPrintSettle = exports.downPrintSettle = function (req, res, next) {
-	var url = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ 15;		//req.session.user.id
+	var url = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
 	request(url, function (err, data) {
-
 		if (err) return next(err);
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);

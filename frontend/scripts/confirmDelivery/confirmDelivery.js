@@ -73,7 +73,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
          var temp=true;
 
          $("#submitBtn").on("click",function(){
-            var inputList=[];
+            var inputList= [];
             var fileList=[];
             //质量
             var qualityList=[];
@@ -81,9 +81,11 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             //数量
 
             for(var i=0;i<=$(".checkList").length;i++){
+               var obj = {};
                $(".checkList").eq(i).find("input").each(function(){
-                  inputList.push("indexList"+"["+i+"]"+"."+$(this).attr("name")+":"+$(this).val());
+                  obj[$(this).attr("name")] =$(this).val();
                })
+               inputList.push(obj)
             }
             $("input[name='file_id']").each(function(){
                fileList.push($(this).val())
@@ -91,7 +93,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             $("#qualityList").find($("input[name='file_id']")).each(function(){
                qualityList.push({file_id: $(this).val(), file_name: $(this).siblings('input[name="file_name"]').val()})
             });
-            console.log(qualityList)
+
             $("#quantityList").find($("input[name='file_id']")).each(function(){
                quantityList.push({file_id: $(this).val(), file_name: $(this).siblings('input[name="file_name"]').val()})
             });
@@ -147,17 +149,20 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                   url:'/api/confirmDelivery/confirmDeliveryIndex',
                   method:'POST',
                   data:{
-                     id:"250",
-                     version:"1",
+                     version:$("#version").val(),
                      deliveryAmount:$("#deliveryAmount").val(),
                      indexList:inputList,
                      qualityList:qualityList,
                      quantityList:quantityList,
-                     orderId:"1000000"
+                     orderId:$("#orderId").val()
                   },
                   success:function(data){
+                     if(data.success){
 
+                     }else{
+                     }
                   }
+
                });
          });
       }

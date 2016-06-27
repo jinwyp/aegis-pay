@@ -6,14 +6,9 @@
 </head>
 
 <body>
-
 <%- include ../global/header/header %>
 <%- include ../global/modal/modal %>
 <%- include ../global/header/subHeader %>
-
-
-
-
 <div id="disputeDetail">
     <div class="disputeDetailWrap">
         <div class="disputeDetailTit"><span>纠纷处理详情</span></div>
@@ -21,7 +16,7 @@
         <div class="disputeDetailInfoWrap">
             <div class="disputeInfoTit">当前订单状态：<b>纠纷等待双方协商处理</b></div>
             <p>1、如果您继续购买货品以，您可<a href="javascript:void(0)" class="cancel" id="disputeCancel">撤销纠纷处理</a></p>
-            <p>2、如果您需要补充或者修改纠纷处理申请，您可以<a href="/dispute/disputeApply?orderId=1&userId=2" class="modify"> 修改&gt;&gt; </a></p>
+            <p>2、如果您需要补充或者修改纠纷处理申请，您可以<a href="/dispute/disputeApply?orderId=<%= order.orderId %>&userId=<%= userId %>" class="modify"> 修改&gt;&gt; </a></p>
             <p>3、如果您在协商退款过程中有困难，可以致电：<span class="logoBlue">400-960-1180</span>，我们会派出专门的协调人员协助您。</p>
         </div>
         <div class="diputeTableWrap">
@@ -95,6 +90,9 @@
         <div class="amountsPayableName">( 人民币 : <%= switchTxt(order.totalMoney) %> )</div>
 
     </div>
+    <input type="hidden" value="<%= order.orderId%>" id="orderId" />
+    <input type="hidden" value="<%= order.version%>" id="version" />
+    <input type="hidden" value="<%= userId%>" id="userId" />
 </div>
 
 <%- include ../global/footer/footer %>

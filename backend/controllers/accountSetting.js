@@ -51,9 +51,9 @@ exports.accountSetting = function (req, res, next) {
                     firstTab : firstTab,
                     secondTab : secondTab
                 },
-                registerTime: source.data.registerTime,
-                fundStatus: source.data.fundStatus,
-                cashStatus: source.data.cashStatus
+                registerTime:   user.registertime,
+                fundStatus:     source.data.fundStatus,
+                cashStatus:     source.data.cashStatus
 
             };
             logger.debug('获取到的结果是content----------------------------' ,content);
