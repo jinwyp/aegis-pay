@@ -42,9 +42,9 @@
 
                 <div class="form-row ">
                     <div class="form-group form-search">
-                        <label class="col-sm-4 control-label" for="orderSearchType">交易状态:</label>
+                        <label class="col-sm-4 control-label" for="orderSearchType">类型:</label>
                         <select name="orderSearchType" id="orderSearchType" class="">
-                            <option value="0">全部</option>
+
                             <% formSelectOrderSearchType.forEach(function(order){ %>
                             <option value="<%= order.value %>"><%= order.text %></option>
                             <% }) %>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group form-search form-search-big">
                         <label class="sr-only" for="orderSearchText">交易状态</label>
-                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易状态" ms-duplex="@orderSearchText">
+                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易流水号" ms-duplex="@orderSearchText">
                     </div>
 
                     <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
@@ -89,7 +89,12 @@
                                 <td >{{order.transactionNO}}</td>
                                 <td >{{order.money | number(2) }}</td>
                                 <td >{{order.balanceMoney | number(2)}}</td>
-                                <td >{{order.tradeType}}</td>
+                                <td >
+                                    <span ms-visible="order.type==1">充值</span>
+                                    <span ms-visible="order.type==2">提现</span>
+                                    <span ms-visible="order.type==3">采购</span>
+                                    <span ms-visible="order.type==4">销售</span>
+                                </td>
                                 <td >{{order.otherFundAccount}}</td>
                                 <td >{{order.otherCompanyName}}</td>
                                 <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
@@ -99,47 +104,28 @@
 
                         <nav class="pagination-financial">
                             <ul class="pagination pageno">
-                                <li >
-                                    <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')">
-                                        <span aria-hidden="true" >< 上一页</span>
-                                    </a>
-                                </li>
+                                <li> <a href="" aria-label="Previous" ms-click="@changePagination(@orderCurrentPage-1, $event, '')"> <span aria-hidden="true" >< 上一页</span> </a> </li>
 
-                                <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'>
-                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
-                                </li>
-                                <li ms-visible='@orderEllipsisLeft'>
-                                    <a >...</a>
-                                </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayLeft'> <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a> </li>
+                                <li ms-visible='@orderEllipsisLeft'> <a >...</a> </li>
 
 
-                                <li ms-for='(key, page) in @orderListTotalPagesArray'>
-                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
-                                </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArray'> <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a> </li>
 
 
-                                <li ms-visible='@orderEllipsisRight'>
-                                    <a >...</a>
-                                </li>
-                                <li ms-for='(key, page) in @orderListTotalPagesArrayRight'>
-                                    <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a>
-                                </li>
+                                <li ms-visible='@orderEllipsisRight'> <a >...</a> </li>
+                                <li ms-for='(key, page) in @orderListTotalPagesArrayRight'> <a ms-class="{active : page.value == @orderCurrentPage}" ms-click="@changePagination(page.value, $event)">{{page.value}}</a> </li>
 
 
-                                <li first-page>
-                                    <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)">
-                                        <span aria-hidden="true">下一页 ></span>
-                                    </a>
-                                </li>
+                                <li> <a href="" aria-label="Next" ms-click="@changePagination(@orderCurrentPage+1, $event)"> <span aria-hidden="true">下一页 > </span> </a> </li>
                             </ul>
 
                             <div class="jump-to-page">
-                                <span>共 {{@orderListTotalPages}}页, 到第</span>
-                                <input type="text" placeholder="" ms-duplex="@orderInputCurrentPage">
-                                <span>页</span>
+                                <span>共 {{@orderListTotalPages}}页, 到第</span> <input type="text" placeholder="" ms-duplex="@orderInputCurrentPage"> <span>页</span>
                                 <button class="iBtn pagination-button" ms-click="@changePagination(@orderInputCurrentPage, $event)">确定</button>
                             </div>
                         </nav>
+
 
                     </div>
 
