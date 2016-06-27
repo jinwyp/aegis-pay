@@ -170,6 +170,7 @@ exports.printDetail = function (req, res, next) {
             if(source.success){
                 //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
                 var content = {
+                    headerTit  : "打印订单详情",
                     pageTitle  : "打印订单详情",
                     "sellInfo" : source.data.sellInfo,
                     "order"    : source.data.order

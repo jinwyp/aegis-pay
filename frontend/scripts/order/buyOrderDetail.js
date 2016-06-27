@@ -17,6 +17,6 @@ require(['jquery','jQuery.fn.datePicker'],function($){
         location.href='/closeTrade';
     });
     $(".btn-print").click(function(){
-        location.href='/printDetail?orderId='+$(this).data("value");
+        window.open('/printDetail?orderId='+$(this).data("value"));
     });
 });
