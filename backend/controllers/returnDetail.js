@@ -2,7 +2,7 @@
  * 业务控制 (模板 & 数据请求)
  * */
 
-var request = require('request');
+var request = require('../libs/request');
 var _       = require('lodash');
 
 var cache      = require('../libs/cache');

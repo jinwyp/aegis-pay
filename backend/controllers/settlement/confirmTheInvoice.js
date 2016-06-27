@@ -4,7 +4,7 @@
 
  */
 
-var request  = require('request');
+var request  = require('../../libs/request');
 var _ = require('lodash');
 var config = require('../../config');
 var SystemError = require('../../errors/SystemError');

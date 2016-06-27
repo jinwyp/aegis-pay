@@ -4,7 +4,7 @@
  * */
 
 
-var request = require('request');
+var request = require('../libs/request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 // var path = require('path');
 // var _ = require('lodash');

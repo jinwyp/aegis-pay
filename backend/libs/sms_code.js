@@ -1,4 +1,4 @@
-var request = require('request');
+var request = require('./request');
 var ccap    = require('ccap');
 var _       = require('lodash');
 

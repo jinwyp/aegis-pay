@@ -1,4 +1,4 @@
-var request    = require('request');
+var request    = require('../../libs/request');
 var api_config = require('./api_config');
 var _          = require('lodash');
 var fs         = require('fs');
@@ -67,6 +67,7 @@ exports.signCompact = function (req, res, next) {
     _.unset(params, 'file_name');
 
     request.post({url: api_config.signCompact, form:params, qsStringifyOptions:{allowDots:true}}, function (err, data) {
+        if(err){ return next(err); }
         if (!err && data) {
             return res.send(JSON.parse(data.body));
         }

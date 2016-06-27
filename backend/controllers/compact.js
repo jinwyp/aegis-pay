@@ -1,4 +1,4 @@
-var request = require('request');
+var request = require('../libs/request');
 var api_config = require('../api/v1/api_config');
 var logger     = require("../libs/logger");
 var cache   = require('../libs/cache');
@@ -11,7 +11,7 @@ exports.compact = function (req, res, next) {
     //checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
 
-    // cache.del('compacts[' + orderId + ']');
+    cache.del('compacts[' + orderId + ']');
     cache.get('compacts[' + orderId + ']', function (err, data) {
         if (err) return next(err);
         if (data) {
