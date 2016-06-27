@@ -79,6 +79,7 @@ var api_config = {
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
     confirmDeliverySellerDelivery : host + 'mall/order/seller/verifyDelivery',
     confirmDeliveryConfirmComplete : host + 'mall/order/seller/verifyDelivery/return',
+    returnDetailSubmit:host + 'mall/order/seller/verifyDelivery/return/editReason',
     sellerDeliveryReasonSubmit : host + 'mall/order/seller/verifyDelivery/return',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',

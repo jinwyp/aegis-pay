@@ -47,15 +47,14 @@ requirejs(['jquery', 'pay.upload', 'bootstrap', 'message'], function($, upload, 
 
                 //session.user.id;
                 var param = {
-                    version: 123,
-                    userId: '213',
-                    orderId: $('[name=orderId]').val(),
-                    reason: $inpReasonEdit.val()      // 退回原因
+                    sellerId: $("#userId").val(),
+                    orderId: $("#orderId").val(),
+                    returnReason: $inpReasonEdit.val()      // 退回原因
                 };
-
-                $.post({
-                    url: apiHost + '/settlement/buyersEditReason',
-                    data: param,                  //$("#closeForm").serialize(),
+                $.ajax({
+                    url: '/api/returnDetail/returnDetailSubmit',
+                    data: param,
+                    type: 'POST',
                     success: function(data){
                         if(data.success) {
                             $('.modal .close').click();
@@ -65,8 +64,9 @@ requirejs(['jquery', 'pay.upload', 'bootstrap', 'message'], function($, upload, 
                                 detail: '退回原因 已更新!'
                             });
                             $btnCancelTrigger.click();
-                            $('.labReturnReason').html(data.reason);
-                            $('.labReturnTime').html(data.settleReasonTime);
+                            $('.labReturnReason').html(data.data.returnReason);
+                            $('.labReturnTime').html(data.data.editDeliveryReasonTime);
+                            console.log(data)
                         } else {
                             message({
                                 type: 'done',
@@ -75,8 +75,8 @@ requirejs(['jquery', 'pay.upload', 'bootstrap', 'message'], function($, upload, 
                             });
                         }
                     }
-                });
-            });  
+                })
+            });
         },
         "init" : function(){
           this.modifyReasons();

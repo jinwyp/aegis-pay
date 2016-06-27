@@ -111,14 +111,14 @@
                 <div class="leftBan"><span>*</span>质量确认单</div>
                 <div class="rightBan">
                     <a href="<%= qualityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
-                    <p>共<span>200</span>个文件，请下载查看。</p>
+                    <p>共<span><%= qualityList.length%></span>个文件，请下载查看。</p>
                 </div>
             </div>
             <div class="downWrap">
                 <div class="leftBan"><span>*</span>数量确认单</div>
                 <div class="rightBan">
                     <a href="<%= quantityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
-                    <p>共<span>10</span>个文件，请下载查看。</p>
+                    <p>共<span><%= quantityList.length%></span>个文件，请下载查看。</p>
                 </div>
             </div>
         </div>
@@ -126,11 +126,12 @@
         <% include ../global/order/orderUserInfo %>
         <% include ../global/order/orderTable %>
 
-        <a href="javascript:void(0)" class="dlDetail"><i class="printer"></i>打印订单详情</a>
+        <a href="/printDetail" class="dlDetail"><i class="printer"></i>打印订单详情</a>
     </div>
 
 </div>
-
+<input type="hidden" value="<%= order.id%>" id="orderId" />
+<input type="hidden" value="<%= sellerId%>" id="userId" />
 
 
 <%- include ../global/footer/footer %>
