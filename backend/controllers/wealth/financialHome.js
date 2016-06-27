@@ -62,6 +62,9 @@ exports.financialHome = function (req, res, next) {
 
 
 exports.financialDetails = function (req, res, next) {
+    checker.menuTab(req.query.firstTab);
+    checker.menuTab(req.query.secondTab);
+    
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
@@ -85,7 +88,6 @@ exports.financialDetails = function (req, res, next) {
             {id:'2', value:'2', text:'对方账户名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
-
     };
 
 
@@ -130,63 +132,62 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
     var getQuery = req.query;
 
-
     if (getQuery.filetype){
 
         var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
 
-    var url = api_config.financialDetails;
-    request.post({url: url, form: params}, function (err, response, body) {
+        var url = api_config.financialDetails;
+        request.post({url: url, form: params}, function (err, response, body) {
 
-            if (err) return next(err);
+                if (err) return next(err);
 
-            if (response.statusCode === 200 && body.success) {
+                if (response.statusCode === 200 && body.success) {
 
-                if (getQuery.filetype === 'excel'){
+                    if (getQuery.filetype === 'excel'){
 
-                    var excelOptions = {
-                        savePath : excelSavePath + '/financialdetails.xlsx',
-                        titleList : [
-                            '交易日期',
-                            '交易流水号',
-                            '金额',
-                            '账户余额',
-                            '交易类型',
-                            '对方账号',
-                            '对方账号名称',
-                            '对方开户行'
-                        ],
-                        propertyList : [],
-                        dataList : body.data
-                    };
+                        var excelOptions = {
+                            savePath : excelSavePath + '/financialdetails.xlsx',
+                            titleList : [
+                                '交易日期',
+                                '交易流水号',
+                                '金额',
+                                '账户余额',
+                                '交易类型',
+                                '对方账号',
+                                '对方账号名称',
+                                '对方开户行'
+                            ],
+                            propertyList : [],
+                            dataList : body.data
+                        };
 
-                    excel(excelOptions);
-                    return res.download(options.savePath);
+                        excel(excelOptions);
+                        return res.download(options.savePath);
 
-                }else if (getQuery.filetype === 'pdf'){
+                    }else if (getQuery.filetype === 'pdf'){
 
-                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
-                        if (err) return next(err);
-
-                        var pdfOptions = {format : 'Letter'};
-                        var pdfFileName = pdfSavePath + '/financialdetails.pdf';
-
-                        pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+                        ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
                             if (err) return next(err);
 
-                            return res.download(pdfFileName);
-                        });
+                            var pdfOptions = {format : 'Letter'};
+                            var pdfFileName = pdfSavePath + '/financialdetails.pdf';
 
-                    });
+                            pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+                                if (err) return next(err);
+
+                                return res.download(pdfFileName);
+                            });
+
+                        });
+                    }else {
+                        return res.json([]);
+                    }
+
+
                 }else {
                     return res.json([]);
                 }
-
-
-            }else {
-                return res.json([]);
-            }
-        });
+            });
     }else{
         return res.json([]);
     }

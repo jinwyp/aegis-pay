@@ -48,6 +48,10 @@ var validationCode = {
         textWrong : {code:7002, message:'Field validation error, SMS text length should be 6 - 6', field : "sms_code"},
         notMatch : {code:7005, message:'Field validation error, SMS text not match', field : "sms_code"},
         expired : {code:7007, message:'Field validation error, SMS text expired', field : "sms_code"}
+    },
+
+    page : {
+        menuTabNumberWrong : {code:9001, message:'Field validation error, menu Tab number should be 1 - 20', field : "firstTab"},
     }
 };
 
