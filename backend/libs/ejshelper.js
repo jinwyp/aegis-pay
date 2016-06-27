@@ -12,7 +12,7 @@ module.exports = function (app) {
      *
      * */
     app.locals.multiArgAppend = function (arg1, arg2, unit) {
-        if (arg1 == 0 && arg2 == 0) {
+        if ((arg1 == 0 && arg2 == 0)||(arg1==undefined&&arg2==undefined)||(arg1==null&&arg2==undefined)) {
             return "--";
         } else if (arg1 == arg2) {
             return arg1 + " " + unit;
@@ -22,7 +22,7 @@ module.exports = function (app) {
     }
 
     app.locals.singleArgAppend = function (arg, unit) {
-        if (arg == 0) {
+        if (arg == 0||arg==undefined||arg==null) {
             return "--";
         } else {
             return arg + " " + unit
@@ -133,12 +133,14 @@ module.exports = function (app) {
         }
     };
 
-    app.locals.getString = function (arg1) {
-        if (arg1 == undefined || arg1 == null){
-            return '--';
-        } else {
-            return arg1;
-        }
+    app.locals.getStringVal = function (str) {
+        return typeof str == 'undefined' ? '' :
+            (str == null || str == 'null' || str == "undefined") ? '--':  str;
+    }
+
+    app.locals.clearEmpty = function (str) {
+        return typeof str == 'undefined' ? '' :
+            (str == null || str == 'null' || str == "undefined") ? '':  str;
     }
 
     app.locals.targetIsEmpty = function (arg1, arg2) {

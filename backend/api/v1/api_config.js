@@ -75,6 +75,7 @@ var api_config = {
 
     buyOrderDetail : host + 'mall/order',
     sellOrderDetail : host + 'mall/seller/order',
+    printOrderDetail : host + '/mall/order/print',
     confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
     confirmDeliverySellerDelivery : host + 'mall/order/seller/verifyDelivery',
@@ -91,10 +92,10 @@ var api_config = {
     disputeCancel:host+'/mall/order/dispute/cancel',
     disputeDetail : host + 'mall/order/dispute',
     disputeComplete : host + 'dispute/disputeComplete',
-    financialCenterHome : host + 'account/finance/center',
+    financialCenterHome : host + 'finance/center',
     financialTransaction : host + 'finance/transaction/list',
-    contractList : host + 'account/finance/contract/list',
-    settlementList : host + 'account/finance/settlement/list',
+    contractList : host + 'finance/contract/list',
+    settlementList : host + '/finance/order/settle',
 
 
     /**

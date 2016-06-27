@@ -14,7 +14,7 @@
     <div class="financial-main">
         <div class="financial-header">
             <div class="header-left border-right">
-                <div class="username">姓名全称</div>
+                <div class="username"><%= finance.companyName %></div>
                 <div class="companyname"><%= finance.companyName %></div>
                 <div class="occupation"><span class="label">职务：</span>会计</div>
                 <ul>
@@ -28,27 +28,27 @@
             <div class="header-center border-right">
                 <div class="useraccount"><span class="label fs-14">易煤网资金账号：</span><%= finance.userFundAccount %></div>
                 <div class="center-operate">
-                    <span class="balance">余额：<span class="orange"><%= formatMoney(finance.balanceMoney,2) %>元</span></span>
-                    <span class="look">查看</span>
-                    <span class="btn-option mr-10">提现</span>
-                    <span class="btn-option recharge mr-10">充值</span>
+                    <span class="balance">余额：<span class="orange"><%= formatMoney((finance.balanceMoney==null||finance.balanceMoney==undefined)==true? 0 : finance.balanceMoney)%>元</span></span>
+                    <a class="look">查看</a>
+                    <a class="btn-option mr-10">提现</a>
+                    <a class="btn-option recharge mr-10">充值</a>
                 </div>
             </div>
             <div class="header-right">
                 <div class="bank-card">
                     <span class="bank-icon ml-20"></span>
                     <span class="fs-24 ml-10 account-color">银行账户</span>
-                    <span class="manage-color">管理</span>
+                    <a class="manage-color">管理</a>
                 </div>
                 <% if(finance.cashBankAccount==null){ %>
                 <div class="bank-add">
-                    <span class="add-icon"></span>
-                    <span class="label-add">添加银行账户</span>
+                    <a class="add-icon"></a>
+                    <a class="label-add">添加银行账户</a>
                 </div>
                 <% }else{ %>
                 <div class="bank-info">
                     <div class="label-content"><%= finance.cashBankName %></div>
-                    <div class="label-content"><%= finance.cashBankAccount %></div>
+                    <div class="label-content"><%= blankFour(finance.cashBankAccount) %></div>
                 </div>
                 <% } %>
             </div>
@@ -88,7 +88,10 @@
                     <td width="80"><span class="iBtn iBtn_xs iBtn_no btn-pay">付款</span></td>
                     <% }else{ %>
                     <td width="100"><%= recordList[i].statusName %></td>
-                    <td width="80"><a>详情</a></td>
+                    <td width="80">
+                        <input type="button" class="iBtn iBtn_xs iBtn_no" value="测谁是谁试">
+                        <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                    </td>
                     <% } %>
                 </tr>
                 <% } %>
