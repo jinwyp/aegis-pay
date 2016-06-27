@@ -44,7 +44,7 @@ var details3 = [
 var result = {
     "payments": {
         "page": 1,
-        "pagesize": 10,
+        "pagesize": 1,
         "rowNum": 10,
         "totalCount": null,
         "totalPage": null,
@@ -61,7 +61,8 @@ var result = {
                 "otherCompanyName": "测试1",
                 "otherBankName": null,
                 "printCode": "20160624111106752611",
-                "orderId": null
+                "orderId": null,
+                "type" : 1
             },
             {
                 "fundAccount": "3110710001261037605",
@@ -75,7 +76,8 @@ var result = {
                 "otherCompanyName": "测试1",
                 "otherBankName": null,
                 "printCode": "20160624111106752650",
-                "orderId": "0"
+                "orderId": "0",
+                "type" : 1
             },
             {
                 "fundAccount": "3110710001261037605",
@@ -89,7 +91,8 @@ var result = {
                 "otherCompanyName": "资金初始化--上海念瞳半导体科技有限公司",
                 "otherBankName": null,
                 "printCode": "20160624105430228207",
-                "orderId": "3636"
+                "orderId": "3636",
+                "type" : 1
             },
             {
                 "fundAccount": "3110710001261037605",
@@ -103,7 +106,8 @@ var result = {
                 "otherCompanyName": "测试1",
                 "otherBankName": null,
                 "printCode": "20160624111106777601",
-                "orderId": "3635"
+                "orderId": "3635",
+                "type" : 1
             },
             {
                 "fundAccount": "3110710001261037605",
@@ -117,11 +121,72 @@ var result = {
                 "otherCompanyName": "测试1",
                 "otherBankName": null,
                 "printCode": "20160623175612277120",
-                "orderId": "3636"
+                "orderId": "3636",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001266",
+                "money": 1.00,
+                "balanceMoney": 6.00,
+                "remarks": "222222222",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106777601",
+                "orderId": "3635",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "174838",
+                "createDate": "20160623",
+                "transactionNO": "J0000000001206",
+                "money": 2.00,
+                "balanceMoney": 2.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160623175612277120",
+                "orderId": "3636",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001266",
+                "money": 1.00,
+                "balanceMoney": 6.00,
+                "remarks": "222222222",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106777601",
+                "orderId": "3635",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "174838",
+                "createDate": "20160623",
+                "transactionNO": "J0000000001206",
+                "money": 2.00,
+                "balanceMoney": 2.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160623175612277120",
+                "orderId": "3636",
+                "type" : 1
             }
         ],
         "indexNum": 0,
-        "count": 5,
+        "count": 20,
         "userId": 2719,
         "type": null,
         "startDate": null,
