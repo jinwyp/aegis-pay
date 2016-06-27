@@ -60,8 +60,8 @@ exports.confirmDeliverySubmit = function (req, res, next) {
 
     var formData = {
         "userId" : userId,
-        "orderId":"250",
-        "version":"1",
+        "orderId":req.body.deliveryAmount,
+        "version":req.body.version,
         "deliveryAmount":req.body.deliveryAmount,
         "indexList":req.body.indexList,
         "qualityList":req.body.qualityList,
@@ -80,7 +80,8 @@ exports.confirmDeliverySubmit = function (req, res, next) {
         _.unset(val, 'file_id');
         _.unset(val, 'file_name');
     })
-    console.log('===============confrm========')
+    console.log('===============confrm========');
+    console.log(formData)
     console.log(req.body)
     var formData = _.assign({}, {userId: userId, orderId:'250', version:'1'}, req.body);
     request.post({

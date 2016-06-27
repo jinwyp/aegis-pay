@@ -8,25 +8,32 @@ var api_config = require('../api/v1/api_config');
 var logger     = require("../libs/logger");
 
 exports.disputeDetail = function (req, res, next) {
+    var userId=req.session.user.id;
+    // 暂时写死
+    var url = api_config.disputeDetail+"?userId=15&orderId=3621";
 
-    var url = api_config.disputeDetail;
-    request({url : url}, function (err, data) {
+    var params = {
+        userId: req.session.user.id,
+        orderId: req.query.orderId
+    };
+
+    request(url, params, function (err, data) {
 
         if (err) return next(err);
 
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是data----------------------------' + data.body);
+        var source  = JSON.parse(data.body);
+        var content={
+            userId:userId,
+            orderId:"3621",
+            headerTit: "纠纷申请详情",
+            pageTitle: "纠纷申请详情",
+            sellInfo:source.data.sellInfo,
+            order:source.data.order
 
-        if (data) {
-            var source  = JSON.parse(data.body);
-            var content = _.assign({}, {headerTit: "纠纷申请详情",pageTitle: "纠纷申请详情"}, source);
-            logger.debug('获取到的结果是content----------------------------' + content);
-            //渲染页面,指定模板&数据
-            res.render('dispute/disputeDetail', content);
         }
+        res.render('dispute/disputeDetail', content);
 
     });
-
 };
 exports.disputeCancel = function (req, res, next) {
     var data={
@@ -34,4 +41,27 @@ exports.disputeCancel = function (req, res, next) {
     }
     res.send(data);
 }
+exports.disputeCancel = function (req, res, next) {
+    var body = req.body;
+    var url = api_config.disputeCancel;
+    var userId=req.session.user.id;
 
+    var formData = {
+        "userId" : userId,
+        "orderId": req.body.orderId,
+        "version" : req.body.version,
+        deliveryGoods:req.body.deliveryGoods,
+        returnGoods:req.body.returnGoods,
+        disputeRemarks:req.body.disputeRemarks,
+        imgList:req.body.imgList
+    };
+    request.post({
+        form:formData,
+        url : url
+    }, function (err, data, body) {
+        if (err) return next(err);
+
+        var resultJson = JSON.parse(body);
+        return res.send(resultJson);
+    });
+};
