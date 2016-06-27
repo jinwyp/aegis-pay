@@ -11,68 +11,85 @@
 
 <div id="contract-body">
     <div class="contract-main">
-        <form action="/finance/transaction/list" method="get">
-        <div class="search-div">
+        <form action="/wealth/financialSettlement" method="get">
+            <input type="hidden" name="firstTab" value="<%=clearEmpty(tabObj.firstTab)%>"/>
+            <input type="hidden" name="secondTab" value="<%=clearEmpty(tabObj.secondTab)%>"/>
+            <div class="search-div">
                 <span>交易时间:</span>
-                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=startDate%>"/></div>
+                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
-                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
-                <span>交易编号:</span>
+                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
 
+                <span>交易编号:</span>
                 <select name="searchType" id="searchType">
                     <option value="0">全部</option>
                     <option value="1" <%if(searchType==1){ %>selected<% } %>>订单编号</option>
                     <option value="2" <%if(searchType==2){ %>selected<% } %>>合同编号</option>
-                    <option value="3" <%if(searchType==3){ %>selected<% } %>>流水号</option>
-                    <option value="4" <%if(searchType==4){ %>selected<% } %>>公司名称</option>
+                    <option value="3" <%if(searchType==3){ %>selected<% } %>>付款流水号</option>
+                    <option value="4" <%if(searchType==4){ %>selected<% } %>>对方公司名称</option>
 
                 </select>
-                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=content%>"/>
+                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=clearEmpty(content)%>"/>
                 <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
-        </div>
+            </div>
         </form>
         <div class="contract-div">
             <table class="transaction-table">
                 <thead>
                 <tr>
                     <th width="130">交易时间</th>
-                    <th width="100">订单号</th>
+                    <th width="100">订单编号</th>
                     <th width="100">付款流水号</th>
                     <th width="160">对方公司</th>
                     <th width="160">结算吨数(吨)</th>
                     <th width="160">结算金额(元)</th>
-                    <th width="160">状态</th>
-                    <th width="140">操作</th>
+                    <th width="140">状态</th>
+                    <th width="100">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-
-                <%for(var i in settlementList){%>
+                <%if(typeof settlementList && settlementList.length>0){%>
+                    <%for(var i in settlementList){%>
                 <tr class="line">
                     <td width="130"><%=settlementList[i].createTime%></td>
                     <td width="100"><%=settlementList[i].orderNO%></td>
-                    <td width="160"><%=settlementList[i].transactionNO%></td>
-                    <td width="120"><%=settlementList[i].otherCompanyName%></td>
-                    <td width="120"><%=settlementList[i].settleAmount%></td>
-                    <td width="120"><%=settlementList[i].totalMoney%></td>
-                    <td width="120"><%=settlementList[i].statusName%></td>
-                    <td width="140">
-                        <%if(settlementList[i].status=="WaitSettleAccounts"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
-                        <%}else if(settlementList[i].status="WaitVerifySettle"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
-                        <%}else if(settlementList[i].status="ReturnedSettleAccounts"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
-                        <%}else if(settlementList[i].status="WaitPayTailMoney"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="下载"/>
-                        <%}else if(settlementList[i].status="WaitPayRefundMoney"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="去退款"/>
-                        <%}else if(settlementList[i].status="WaitImproveReceipt"){%>
-                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="完善开票信息"/>
+                    <td width="100"><%=settlementList[i].transactionNO%></td>
+                    <td width="160"><%=settlementList[i].otherCompanyName%></td>
+                    <td width="160"><%=settlementList[i].settleAmount%></td>
+                    <td width="160"><%=settlementList[i].totalMoney%></td>
+                    <td width="140"><%=settlementList[i].statusName%></td>
+                    <td width="100">
+                        <%if(settlementList[i].type==0){%>
+                            <%if(settlementList[i].status=="WaitSettleAccounts"){%>
+                            <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-confirmSettle mb-10" value="确认结算" data-value="<%=settlementList[i].id%>"/>
+                            <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
+                            <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-pay mb-10" value="补款" <%=settlementList[i].id%>/>
+                            <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
+                            <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-updateInfo mb-10" value="完善信息" <%=settlementList[i].id%>/>
+                            <%}%>
+                        <%}else if(settlementList[i].type=1){%>
+                            <%if(settlementList[i].status=="WaitSettleAccounts"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-settle mb-10" value="结算" <%=settlementList[i].id%>/>
+                            <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
+                            <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-updateSettle mb-10" value="修改结算" <%=settlementList[i].id%>/>
+                            <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
+                            <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-returnMoney mb-10" value="退款" <%=settlementList[i].id%>/>
+                            <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
+                            <%}%>
                         <%}%>
-
-                        <a href="http://pay-local.yimei180.com:3000/compactDetail?orderId=11111">查看详情</a></td>
+                        <a href="http://pay-local.yimei180.com:3001/getOrderDetail?orderId=<%=settlementList[i].id%>">查看详情</a>
+                    </td>
                 </tr>
+                <%}%>
+                <%}else{%>
+                    <tr>
+                        <td colspan="8" class="no-data">暂无符合条件的结算数据</td>
+                    </tr>
                 <%}%>
                 </tbody>
             </table>

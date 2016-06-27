@@ -253,40 +253,72 @@ exports.financialContract = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
+    var startDate = req.query.startDate;
+    var endDate = req.query.endDate;
+    var type = req.query.type;
+    var content = req.query.content;
     logger.debug('获取到的userId是----------------------------' + req.session.user.id);
-    request.post({url:api_config.contractList,form:{userId:req.session.user.id}}, function (err, data) {
-        if (err) return next(err);
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是----------------------------' + data.body);
-        if (data) {
-            var source = JSON.parse(data.body);
-            if(source.success) {
-                var content = {
-                    pageTitle: "合同管理",
-                    headerTit: "合同管理",
-                    tabObj: {
-                        firstTab: firstTab,
-                        secondTab: secondTab
-                    },
-                    startDate: source.data.contract.startDate,
-                    endDate: source.data.contract.endDate,
-                    type: source.data.contract.type,
-                    content: source.data.contract.content,
-                    contractList: source.data.contract.list
-                };
-                //渲染页面
-                res.render('wealth/contractList',content);
+    logger.debug("获取到的表单数据是：startDate=="+startDate+" endDate=="+endDate+" type=="+type+" content=="+content);
+    request.post(
+        {
+            url:api_config.contractList,
+            form: {
+                userId:req.session.user.id,
+                startDate:startDate,
+                endDate:endDate,
+                type:type,
+                content:content
+            }
+        },
+        function (err, data) {
+            if (err) return next(err);
+            logger.debug('获取到的错误是----------------------------' + err);
+            logger.debug('获取到的结果是----------------------------' + data.body);
+            if (data) {
+                var source = JSON.parse(data.body);
+                if(source.success) {
+                    var content = {
+                        pageTitle: "合同管理",
+                        headerTit: "合同管理",
+                        tabObj: {
+                            firstTab: firstTab,
+                            secondTab: secondTab
+                        },
+                        startDate: source.data.contract.startDate,
+                        endDate: source.data.contract.endDate,
+                        type: source.data.contract.type,
+                        content: source.data.contract.content,
+                        contractList: source.data.contract.list
+                    };
+                    //渲染页面
+                    res.render('wealth/contractList',content);
+                }
             }
         }
-    });
+    );
 
 };
 
 exports.financialSettlement = function (req, res, next) {
 
-    var firstTab  = req.query.firstTab || 3;
+    var firstTab  = req.query.firstTab || 4;
     var secondTab = req.query.secondTab || 1;
-    request.post({url:api_config.settlementList,form:{userId:req.session.user.id}}, function (err, data) {
+    var startDate = req.query.startDate;
+    var endDate = req.query.endDate;
+    var searchType = req.query.searchType;
+    var content = req.query.content;
+    request.post(
+        {
+            url:api_config.settlementList,
+            form: {
+                userId:req.session.user.id,
+                startDate:startDate,
+                endDate:endDate,
+                searchType:searchType,
+                content:content
+            }
+        }
+        , function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的错误是----------------------------' + err);
         logger.debug('获取到的结果是----------------------------' + data.body);
@@ -300,15 +332,14 @@ exports.financialSettlement = function (req, res, next) {
                         firstTab: firstTab,
                         secondTab: secondTab
                     },
-
                     startDate: source.data.settleOrder.startDate,
                     endDate: source.data.settleOrder.endDate,
-                    searchType: source.data.settleOrder.type,
+                    searchType: source.data.settleOrder.searchType,
                     content: source.data.settleOrder.content,
                     settlementList: source.data.settleOrder.list
-
                 };
                 //渲染页面
+                logger.debug('获取到的settlementList结果是----------------------------' + JSON.stringify(source.data.settleOrder.list));
                 res.render('wealth/settlementList',content);
             }
         }
