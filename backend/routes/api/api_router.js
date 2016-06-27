@@ -49,7 +49,7 @@ router.post('/settlement/buyersEditReason', settlementFormApi.buyersEditReason);
 router.post('/settlement/buyersAuditing', settlementFormApi.buyersAuditing);                // 结算单: 买家.结算审核通过
 router.get('/settlement/downPrintSettle', settlementFormApi.downPrintSettle);               // 结算单: 下载打印结算单
 
-router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliverySubmit,confirmDelivery.zipFile); //确认提货提交
+router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliverySubmit); //确认提货提交
 
 router.post('/sellerDelivery/reasonSubmit', sellerDelivery.reasonSubmit); //确认提货提交
 router.post('/returnDetail/returnDetailSubmit', returnDetail.returnDetailSubmit); //确认提货提交

@@ -12,7 +12,7 @@ var api_config = require('../api/v1/api_config');
 var config     = require('../config');
 
 
-var __dirfiles = config.file_path.root;
+var __download = config.file_path.download;
 
 
 // 处理业务逻辑
@@ -20,13 +20,14 @@ exports.returnDetail = function (req, res, next) {
 
     // checker.orderId(req.query.orderId);
 
-    cache.get('qualityZip_' + req.query.orderId, function (err, zipurl) {
-        // /Users/gaoleo/Downloads/Project/aegis-all/aegis-pay/files/static/zips/outDate.zip
+    cache.get('qZips_' + req.query.orderId, function (err, zipurl) {
+
         var userId = req.session.user.id;
         // 暂时写死
         var url = api_config.orderReturn + "?sellerId=15&orderId=3632";
-        var qualityZip = zipurl.replace(__dirfiles, '/files');
-        var quantityZip = zipurl.replace(__dirfiles, '/files');
+
+        var qualityZip = zipurl.qualityPath.replace(__download, '/download');
+        var quantityZip = zipurl.replace(__download, '/download');
         
         var params = {
             userId: req.session.user.id,
@@ -66,20 +67,12 @@ exports.returnDetailSubmit = function (req, res, next) {
     var body = req.body;
     var url = api_config.returnDetailSubmit;
     var userId=req.session.user.id;
-
-    console.log("11111111212312312312312312312312321312312312312")
-    // var formData = {
-    //     "sellerId" : userId,
-    //     "orderId" : res.body.orderId
-    //
-    // };
-    console.log(111+"~~~~~~~~~~~~~~~~~~~~~~")
+    
     request.post({
         form: req.body,
         url : url
     }, function (err, data, body) {
         if (err) return next(err);
-        console.log("@222222222222222222222")
         var resultJson = JSON.parse(body);
         return res.send(resultJson);
     });
