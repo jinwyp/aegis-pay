@@ -29,12 +29,14 @@ exports.wealthCenter = function (req, res, next) {
 exports.checkUserCompany = function (req, res, next) {
     var url = api_config.checkUserCompany;
     //url = api_config.host + 'wealth/checkUserCompany';			// TODO: 本地
+    var user = req.session.user;    // req.session.user.id;
+    // var param = {
+    //   userId : 15
+    // };
 
-    var param = {
-      userId : 15       // req.session.user.id;
-    };
-
-    request.post(url, {formData: param, json: true}, function (err, data) {
+    request.post(url, {qs:{
+        userId:user.id
+    }}, function (err, data) {
 
         if (err) return next(err);
         if (data && data.body){
