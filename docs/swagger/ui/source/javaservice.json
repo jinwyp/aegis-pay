@@ -282,6 +282,60 @@
       }
     },
 
+    "/finance/payments/print": {
+      "get": {
+        "tags": [
+          "financialDetails"
+        ],
+        "summary": "打印发票数据",
+        "operationId": "postFinancialDetailPrint",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fundAccount",
+            "in": "query",
+            "description": "账号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "printCode",
+            "in": "query",
+            "description": "打印码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "发票打印成功",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "409": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "500 错误 Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+
+        }
+      }
+    },
+
     "/finance/order/seller/receipt": {
       "get": {
         "tags": [
