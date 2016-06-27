@@ -12,18 +12,25 @@ var cache = require('../../libs/cache');
 
 var tableEjs    = config.file_path.views + '/settlement/settleTable.ejs';
 var downloadPath = config.file_path.download;
+var SystemError = require('../../errors/SystemError');
 
 // 处理业务逻辑
 exports.settleDetails = function (req, res, next) {
 
+    var user = req.session.user;
+    var orderId = req.query.orderId;
+    // cache.del('settleDetails:settleDetails_'+req.query.orderId)
     cache.get('settleDetails:settleDetails_'+req.query.orderId, function(err, data){
         if(data){
             return res.render('settlement/settleDetails', data);
         }else{
 
-            request({url : api_config.settleDetails}, {userId: user}, function (err, data) {
+            request({url : api_config.billCenterView+'?sellerId=' + user.id +'&orderId=' + orderId}, function (err, data) {
 
-                if (err) return next(err);
+                if (err || data.statusCode != 200) {
+                    next(new SystemError());
+                    return;
+                }
 
                 if(data) {
                     var source = JSON.parse(data.body);
@@ -35,8 +42,12 @@ exports.settleDetails = function (req, res, next) {
                         order: {
                             status: 'ReturnedSettleAccounts'
                         },
-
-                        "settleInfo":source.settleInfo
+                        receiptOrder:source.data.receiptOrder,
+                        data:{
+                            order:source.data.order,
+                            receipt:source.data.receipt,
+                            orderReceiptRemarks:source.data.orderReceiptRemarks
+                            }
 
                     };
                     //渲染页面
@@ -51,10 +62,16 @@ exports.settleDetails = function (req, res, next) {
 // 生成html
 exports.generate_settle = function (req, res, next) {
 
-
-    request({url : api_config.billCenter}, function (err, data) {
-        if (err) return next(err);
-
+    var user = req.session.user;
+    var orderId = req.query.orderId;
+    
+    request({url : api_config.billCenterView+'?sellerId=' + req.session.user.id +'&orderId=' + req.query.orderId}, function (err, data) {
+        
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
+        
         if(data) {
             var source = JSON.parse(data.body);
             var content = {
@@ -64,13 +81,22 @@ exports.generate_settle = function (req, res, next) {
                 editable:"false",
                 order: {
                     status: 'ReturnedSettleAccounts'
+                },
+                htmlpath:source.data.htmlpath,
+                receiptOrder:source.data.receiptOrder,
+                data:{
+                    order:source.data.order,
+                    receipt:source.data.receipt,
+                    orderReceiptRemarks:source.data.orderReceiptRemarks
                 }
             };
-            convert.ejs2html(data, tableEjs, {pathname: 'settleDetails_'+req.query.orderId, htmlpath: downloadPath + '/'}).then(function(result){
+            convert.ejs2html(content, tableEjs, {pathname: 'settleDetails_'+req.query.orderId, htmlpath: downloadPath + '/'}).then(function(result){
                 var htmlpath = '/download/' + path.basename(result.htmlpath);
                 content.htmlpath = htmlpath;
+                
                 cache.set('settleDetails:settleDetails_'+req.query.orderId, content);
                 return res.json({htmlpath:htmlpath});
+
             })
         }
     })

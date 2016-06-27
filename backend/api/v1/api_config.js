@@ -77,16 +77,19 @@ var api_config = {
     sellOrderDetail : host + 'mall/seller/order',
     confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
-    confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',
-    confirmDeliveryConfirmComplete : host + 'confirmDelivery/confirmComplete',
+    confirmDeliverySellerDelivery : host + 'mall/order/seller/verifyDelivery',
+    confirmDeliveryConfirmComplete : host + 'mall/order/seller/verifyDelivery/return',
+    returnDetailSubmit:host + 'mall/order/seller/verifyDelivery/return/editReason',
+    sellerDeliveryReasonSubmit : host + 'mall/order/seller/verifyDelivery/return',
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
     settleDetails : host + '/finance/receipt',
     orderCloseAPI : host + '/order/orderInfo_api',
-    orderReturn : host + 'return',
-    disputeApply : host + 'dispute/disputeApply',
-    disputeComplete : host + 'dispute/disputeComplete',
-    disputeDetail : host + 'dispute/disputeDetail',
+    orderReturn : host + '/mall/order/seller/verifyDelivery',
+    disputeApply : host + 'mall/order/dispute',
+    disputeApplySubmit : host+ 'mall/order/dispute/submit',
+    disputeCancel:host+'/mall/order/dispute/cancel',
+    disputeDetail : host + 'mall/order/dispute',
     disputeComplete : host + 'dispute/disputeComplete',
     financialCenterHome : host + 'account/finance/center',
     financialTransaction : host + 'finance/transaction/list',
@@ -106,8 +109,8 @@ var api_config = {
      * method: get
      *
      */
-    accountSetting : host + 'account/accountSetting',
-    notice : host + 'account/notice',
+    accountSetting : host + 'account/accountSetting',   //基本信息
+    //notice : host + 'account/notice',   //消息提醒暂时不做
 
     // 获取用户资金账号
     fetchFundAccount: host + 'account/fund/payPwd',
@@ -119,14 +122,17 @@ var api_config = {
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     //开票中心
     billCenter : host + 'finance/order/seller/receipt',
+    billCenterView : host + 'finance/order/seller/receipt/view',
     billSetting : host + 'finance/receipt',
     billDelete : host + 'finance/receipt/delete',
+    billView : host + 'finance/receipt/view',
     receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
     paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'finance/payments/list',
+    financialDetailsPrint : host + 'finance/payments/print',
     bindingBankAccount : host + '/account/fund/bankCard/add',
     bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
     bindingBankAccountChildBankName : host + '/bank/loadChildBanks',

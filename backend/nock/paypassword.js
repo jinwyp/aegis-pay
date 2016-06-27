@@ -11,7 +11,8 @@ paypasswordPersist
     }
     return {'success': true};
 })
-.get('/account/fund/payPwd').reply(200, {'success':true, 'data':{'userFundAccount':18623232323}})
+// .get('/account/fund/payPwd?userId=123').reply(200, {'success':true, 'data':{'userFundAccount':18623232323}})
+.get('/account/fund/payPwd?userId=213').reply(409, {'success':false, errorCode:409, error:'用户不存在', 'data':{'userFundAccount':18623232323}})
 .get('/account/fund/payPwd/forget/first').reply(200, {'success':true, 'data':{'payPhone':18623232323}})
 .post('/account/fund/payPwd/forget/submit').reply(200, {'success':true})
 // errorCode: 1004 原支付密码错误

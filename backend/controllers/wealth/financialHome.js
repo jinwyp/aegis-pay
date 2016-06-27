@@ -62,6 +62,9 @@ exports.financialHome = function (req, res, next) {
 
 
 exports.financialDetails = function (req, res, next) {
+    checker.menuTab(req.query.firstTab);
+    checker.menuTab(req.query.secondTab);
+
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
@@ -75,17 +78,18 @@ exports.financialDetails = function (req, res, next) {
         userFundAccount : '1234567890',
 
         formSelectOrderCategory:[
-            //{id:'1', value:'1', text:'提现'},
-            //{id:'2', value:'2', text:'采购'},
-            //{id:'3', value:'3', text:'销售'}
+            {id:'1', value:'1', text:'充值'},
+            {id:'2', value:'2', text:'提现'},
+            {id:'3', value:'3', text:'采购'},
+            {id:'4', value:'4', text:'销售'}
         ],
         formSelectOrderSearchType:[
-            //{id:'1', value:'1', text:'交易流水号'},
-            //{id:'2', value:'2', text:'对方账户名称'},
-            //{id:'3', value:'3', text:'订单号'}
+            {id:'1', value:'1', text:'交易流水号'},
+            {id:'2', value:'2', text:'对方账户名称'},
+            {id:'3', value:'3', text:'订单号'}
         ]
-
     };
+
 
     var url = api_config.financialDetails;
     var formData = {
@@ -98,14 +102,14 @@ exports.financialDetails = function (req, res, next) {
 
         if (response.statusCode === 200 && body.success) {
 
-            if (body.data.payments.typeList.length > 0){
-                body.data.payments.typeList.forEach(function(tradeType){
-                    content.formSelectOrderCategory.push({
-                        value : tradeType.sequence,
-                        text : tradeType.name
-                    })
-                })
-            }
+            //if (body.data.payments.typeList.length > 0){
+            //    body.data.payments.typeList.forEach(function(tradeType){
+            //        content.formSelectOrderCategory.push({
+            //            value : tradeType.sequence,
+            //            text : tradeType.name
+            //        })
+            //    })
+            //}
 
             content.userFundAccount = body.data.payments.userFundAccount;
 
@@ -123,24 +127,29 @@ exports.financialDetails = function (req, res, next) {
 
 
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
-    //checker.orderId(req.body.orderDateFromDownload);
-    //checker.orderId(req.body.orderDateToDownload);
-
-    var getQuery = req.query;
+    checker.paymentStartDate(req.query.orderDateFromDownload);
+    checker.paymentStartDate(req.query.orderDateToDownload);
 
 
-    if (getQuery.filetype){
+    if (req.query.filetype){
 
-        var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
+        var formData = {
+            userId: req.session.user.id
+            //userId: 2719
+        };
 
-    var url = api_config.financialDetails;
-    request.post({url: url, form: params}, function (err, response, body) {
+        if (req.query.orderDateFromDownload) formData.startDate = req.query.orderDateFromDownload;
+        if (req.query.orderDateToDownload) formData.endDate = req.query.orderDateToDownload
+
+        var url = api_config.financialDetails;
+
+        request.post({url: url, form: formData, json:true}, function (err, response, body) {
 
             if (err) return next(err);
 
             if (response.statusCode === 200 && body.success) {
 
-                if (getQuery.filetype === 'excel'){
+                if (req.query.filetype === 'excel'){
 
                     var excelOptions = {
                         savePath : excelSavePath + '/financialdetails.xlsx',
@@ -151,19 +160,26 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             '账户余额',
                             '交易类型',
                             '对方账号',
-                            '对方账号名称',
-                            '对方开户行'
+                            '对方账号名称'
                         ],
-                        propertyList : [],
-                        dataList : body.data
+                        propertyList : [
+                            'createDate',
+                            'transactionNO',
+                            'money',
+                            'balanceMoney',
+                            'type',
+                            'otherFundAccount',
+                            'otherCompanyName'
+                        ],
+                        dataList : body.data.payments.list
                     };
 
                     excel(excelOptions);
-                    return res.download(options.savePath);
+                    return res.download(excelOptions.savePath);
 
-                }else if (getQuery.filetype === 'pdf'){
+                }else if (req.query.filetype === 'pdf'){
 
-                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list}, function (err, resultHtml) {
                         if (err) return next(err);
 
                         var pdfOptions = {format : 'Letter'};
@@ -188,7 +204,6 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
     }else{
         return res.json([]);
     }
-
 
 };
 

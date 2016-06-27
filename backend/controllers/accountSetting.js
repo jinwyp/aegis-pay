@@ -37,11 +37,6 @@ exports.accountSetting = function (req, res, next) {
                     listName : '基本信息',
                     listLink : 'accountSetting',
                     secList:''
-                },
-                {
-                    listName : '消息提醒',
-                    listLink : 'notice',
-                    secList:''
                 }
             ]
         };
@@ -56,9 +51,9 @@ exports.accountSetting = function (req, res, next) {
                     firstTab : firstTab,
                     secondTab : secondTab
                 },
-                registerTime: source.data.registerTime,
-                fundStatus: source.data.fundStatus,
-                cashStatus: source.data.cashStatus
+                registerTime:   user.registertime,
+                fundStatus:     source.data.fundStatus,
+                cashStatus:     source.data.cashStatus
 
             };
             logger.debug('获取到的结果是content----------------------------' ,content);

@@ -51,8 +51,13 @@ compactPersist
 .post('/upload-file', {'path' : /.?/gi}).reply(200, {
     success : true
 })
-.post('/mall/order/signcontract').reply(200, {
-    success : true
+// .post('/mall/order/signcontract').reply(200, {
+//     success : true
+// })
+.post('/mall/order/signContract').reply(409, {
+    success : false,
+    statusCode: 409,
+    error: 'no files'
 })
 .post('/del-file').reply(200, {
     success : true

@@ -38,7 +38,7 @@
                         <td><%= obj.otherCompanyName %></td>
                         <td>已开票</td>
                         <td>
-                            <a href="settleDetails?id=<%=obj.orderId %>">查看详情</a>
+                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                         </td>
                     </tr>
                     <%}%>

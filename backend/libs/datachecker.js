@@ -47,6 +47,17 @@ function throw403 (code, message, field, isNext){
 
 
 
+
+exports.menuTab = function(tab, next){
+    if (tab){
+        if ( !validator.isInt(tab, { min: 1, max: 20}) ) {
+            return throw409(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
+        }
+    }
+
+};
+
+
 exports.orderId = function(orderId, next){
     // if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) ) {
     //     return throw409(code.order.orderIdWrong.code, code.order.orderIdWrong.message, code.order.orderIdWrong.field, next);
@@ -98,3 +109,14 @@ exports.deliveryAmount = function(deliveryAmount, next){
         return throw409(code.order.deliveryAmountWrong.code, code.order.deliveryAmountWrong.message, code.order.deliveryAmountWrong.field, next);
     }
 };
+
+
+exports.paymentStartDate = function(date, next){
+    if (date){
+        if ( !validator.isDate(date) ) {
+            return throw409(code.order.startDate.code, code.order.startDate.message, code.order.startDate.field, next);
+        }
+    }
+};
+
+

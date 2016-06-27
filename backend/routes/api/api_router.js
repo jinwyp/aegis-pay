@@ -15,6 +15,9 @@ var disputeCancel     = require('../../controllers/disputeDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 var bindingBankAccount = require('../../controllers/wealth/bindingBankAccount');
+var sellerDelivery   = require('../../controllers/sellerDelivery');
+var returnDetail = require('../../controllers/returnDetail');
+
 var wealthCenter      = require('../../controllers/wealth/wealthCenter');                   //财富管理
 
 var financialApi    = require('../../api/v1/financialDetails');
@@ -46,9 +49,16 @@ router.post('/settlement/buyersEditReason', settlementFormApi.buyersEditReason);
 router.post('/settlement/buyersAuditing', settlementFormApi.buyersAuditing);                // 结算单: 买家.结算审核通过
 router.get('/settlement/downPrintSettle', settlementFormApi.downPrintSettle);               // 结算单: 下载打印结算单
 
+router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliverySubmit,confirmDelivery.zipFile); //确认提货提交
+
+router.post('/sellerDelivery/reasonSubmit', sellerDelivery.reasonSubmit); //确认提货提交
+router.post('/returnDetail/returnDetailSubmit', returnDetail.returnDetailSubmit); //确认提货提交
+
+
 router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliverySubmit);    //确认提货提交
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
-router.post('/disputeApply', disputeApply.dispute);
+router.post('/disputeApply', disputeApply.disputeApply);
+router.post('/disputeApplySubmit', disputeApply.disputeApplySubmit);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
 router.post('/wealth/checkUserCompany', wealthCenter.checkUserCompany);                                  //财富管理中心－初始化
@@ -69,6 +79,7 @@ router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpe
 router.post('/account/fund/bankCard/verify/submit',bindingBankAccount.remittance); //汇款金额确认
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
+router.get('/financial/order/details/print', financialApi.financialDetailsPrintApi);
 router.post('/verifyCode', sms.verifyMiddleware(), bindingBankAccount.verifyCode);   //验证码确认
 
 router.get('/bank/loadBankSiteCities',bindingBankAccount.cityList);   //城市下拉确认
