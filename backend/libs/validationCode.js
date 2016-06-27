@@ -33,7 +33,10 @@ var validationCode = {
 
     order : {
         orderIdWrong : {code:5001, message:'Field validation error, orderId length should be 6 - 100', field : "orderId"},
-        deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"}
+        deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"},
+
+        startDate : {code:5201, message:'Field validation error, start date wrong', field : "orderDateFromDownload"},
+        endDate : {code:5201, message:'Field validation error, end date wrong', field : "orderDateToDownload"}
     },
 
     captcha : {

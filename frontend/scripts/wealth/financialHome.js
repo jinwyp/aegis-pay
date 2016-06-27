@@ -58,6 +58,15 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 $formDownloadDateTo.pickadate('picker').set('select', $formDateTo.val(), { format: 'yyyy-mm-dd' });
             });
 
+
+            $( ".button_pdf" ).click(function() {
+                window.open('/wealth/financialDetailsDownload?filetype=pdf&orderDateFromDownload=' + $formDownloadDateFrom.val() + '&orderDateToDownload=' + $formDownloadDateTo.val(), '_blank');
+            });
+
+            $( ".button_xls" ).click(function() {
+                window.open('/wealth/financialDetailsDownload?filetype=excel&orderDateFromDownload=' + $formDownloadDateFrom.val() + '&orderDateToDownload=' + $formDownloadDateTo.val(), '_blank');
+            });
+
             //avalon.config({debug: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
@@ -86,6 +95,8 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 },
 
                 changePagination : function(pageNo, event){
+                    event.preventDefault();
+
                     var tempNo = Number(pageNo);
                     if (tempNo < 1){
                         tempNo = 1
@@ -93,14 +104,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                         tempNo = vm.orderListTotalPages
                     }
 
-                    event.preventDefault();
                     searchQuery.currentPage = tempNo;
                     vm.orderCurrentPage = tempNo;
                     app.getFinancialDetailsApi(searchQuery);
                 },
                 
                 printOrder : function (fundAccount, printCode) {
-                    app.getFinancialDetailsPrintApi(fundAccount, printCode);
+                    app.getFinancialDetailPrintApi(fundAccount, printCode);
                 }
             });
 
@@ -125,7 +135,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             })
         },
 
-        getFinancialDetailsPrintApi : function(fundAccount, printCode){
+        getFinancialDetailPrintApi : function(fundAccount, printCode){
             var url = '/api/financial/order/details/print?' + 'fundAccount=' + fundAccount + '&printCode=' + printCode;
 
             $.ajax({

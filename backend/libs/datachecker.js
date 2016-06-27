@@ -49,9 +49,12 @@ function throw403 (code, message, field, isNext){
 
 
 exports.menuTab = function(tab, next){
-    if ( !validator.isInt(tab, { min: 1, max: 20}) ) {
-        return throw409(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
+    if (tab){
+        if ( !validator.isInt(tab, { min: 1, max: 20}) ) {
+            return throw409(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
+        }
     }
+
 };
 
 
@@ -107,5 +110,13 @@ exports.deliveryAmount = function(deliveryAmount, next){
     }
 };
 
+
+exports.paymentStartDate = function(date, next){
+    if (date){
+        if ( !validator.isDate(date) ) {
+            return throw409(code.order.startDate.code, code.order.startDate.message, code.order.startDate.field, next);
+        }
+    }
+};
 
 

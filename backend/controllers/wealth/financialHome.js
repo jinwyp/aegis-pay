@@ -64,7 +64,7 @@ exports.financialHome = function (req, res, next) {
 exports.financialDetails = function (req, res, next) {
     checker.menuTab(req.query.firstTab);
     checker.menuTab(req.query.secondTab);
-    
+
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
@@ -127,71 +127,83 @@ exports.financialDetails = function (req, res, next) {
 
 
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
-    //checker.orderId(req.body.orderDateFromDownload);
-    //checker.orderId(req.body.orderDateToDownload);
+    checker.paymentStartDate(req.query.orderDateFromDownload);
+    checker.paymentStartDate(req.query.orderDateToDownload);
 
-    var getQuery = req.query;
 
-    if (getQuery.filetype){
+    if (req.query.filetype){
 
-        var params = Object.assign({}, {userId: req.session.user.id}, getQuery);
+        var formData = {
+            userId: req.session.user.id
+            //userId: 2719
+        };
+
+        if (req.query.orderDateFromDownload) formData.startDate = req.query.orderDateFromDownload;
+        if (req.query.orderDateToDownload) formData.endDate = req.query.orderDateToDownload
 
         var url = api_config.financialDetails;
-        request.post({url: url, form: params}, function (err, response, body) {
 
-                if (err) return next(err);
+        request.post({url: url, form: formData, json:true}, function (err, response, body) {
 
-                if (response.statusCode === 200 && body.success) {
+            if (err) return next(err);
 
-                    if (getQuery.filetype === 'excel'){
+            if (response.statusCode === 200 && body.success) {
 
-                        var excelOptions = {
-                            savePath : excelSavePath + '/financialdetails.xlsx',
-                            titleList : [
-                                '交易日期',
-                                '交易流水号',
-                                '金额',
-                                '账户余额',
-                                '交易类型',
-                                '对方账号',
-                                '对方账号名称',
-                                '对方开户行'
-                            ],
-                            propertyList : [],
-                            dataList : body.data
-                        };
+                if (req.query.filetype === 'excel'){
 
-                        excel(excelOptions);
-                        return res.download(options.savePath);
+                    var excelOptions = {
+                        savePath : excelSavePath + '/financialdetails.xlsx',
+                        titleList : [
+                            '交易日期',
+                            '交易流水号',
+                            '金额',
+                            '账户余额',
+                            '交易类型',
+                            '对方账号',
+                            '对方账号名称'
+                        ],
+                        propertyList : [
+                            'createDate',
+                            'transactionNO',
+                            'money',
+                            'balanceMoney',
+                            'type',
+                            'otherFundAccount',
+                            'otherCompanyName'
+                        ],
+                        dataList : body.data.payments.list
+                    };
 
-                    }else if (getQuery.filetype === 'pdf'){
+                    excel(excelOptions);
+                    return res.download(excelOptions.savePath);
 
-                        ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data}, function (err, resultHtml) {
+                }else if (req.query.filetype === 'pdf'){
+
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list}, function (err, resultHtml) {
+                        if (err) return next(err);
+
+                        var pdfOptions = {format : 'Letter'};
+                        var pdfFileName = pdfSavePath + '/financialdetails.pdf';
+
+                        pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
                             if (err) return next(err);
 
-                            var pdfOptions = {format : 'Letter'};
-                            var pdfFileName = pdfSavePath + '/financialdetails.pdf';
-
-                            pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
-                                if (err) return next(err);
-
-                                return res.download(pdfFileName);
-                            });
-
+                            return res.download(pdfFileName);
                         });
-                    }else {
-                        return res.json([]);
-                    }
 
-
+                    });
                 }else {
                     return res.json([]);
                 }
-            });
+
+
+            }else {
+                return res.json([]);
+            }
+        });
     }else{
         return res.json([]);
     }
-
 
 };
 

@@ -24,8 +24,8 @@
             <tr>
                 <td><%= order.createDate %> </td>
                 <td><%= order.transactionNO %></td>
-                <td><%= formatDecimal(order.money) %></td>
-                <td><%= formatDecimal(order.balanceMoney) %></td>
+                <td><%= order.money %></td>
+                <td><%= order.balanceMoney %></td>
                 <td>
                     <% if(order.type==1){ %> 充值 <% } %>
                     <% if(order.type==2){ %> 提现 <% } %>
