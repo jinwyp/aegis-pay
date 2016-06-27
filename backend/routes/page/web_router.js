@@ -89,7 +89,9 @@ router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);              
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭订单路由
 
 //详情页面
-router.get('/getOrderDetail', orderController.getOrderDetail);                                  //买货订单详情页面路由
+//router.get('/getOrderDetail', orderController.getOrderDetail);                                //买货订单详情页面路由
+router.get('/getBuyOrderDetail', orderController.getBuyOrderDetail);                            //买货订单详情页面路由
+router.get('/getSellOrderDetail', orderController.getSellOrderDetail);                          //卖货订单详情页面路由
 router.get('/orderTest', orderController.orderTest);                                            //打印订单测试接口
 router.get('/printDetail', orderController.printDetail);                                        //打印订单
 router.get('/compactDetail', compactController.compactDetail);                                  //合同详情页面

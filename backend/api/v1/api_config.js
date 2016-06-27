@@ -75,6 +75,7 @@ var api_config = {
 
     buyOrderDetail : host + 'mall/order',
     sellOrderDetail : host + 'mall/seller/order',
+    printOrderDetail : host + '/mall/order/print',
     confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
     confirmDeliverySellerDelivery : host + 'confirmDelivery/sellerDelivery',

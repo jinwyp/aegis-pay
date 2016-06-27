@@ -16,4 +16,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     $(".btn-take-good").click(function(){
         location.href='/closeTrade';
     });
+    $(".btn-print").click(function(){
+        location.href='/printDetail?orderId='+$(this).data("value");
+    });
 });
