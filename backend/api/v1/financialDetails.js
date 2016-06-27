@@ -64,8 +64,7 @@ exports.financialDetailsPrintApi = function (req, res, next) {
 
     var url = api_config.financialDetailsPrint ;
     request.get({url:url, qs:getQuery, json:true}, function (err, response, body) {
-        console.log(err);
-        console.log(body);
+
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
