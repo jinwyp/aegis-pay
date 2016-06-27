@@ -79,36 +79,28 @@ exports.orderSettlement = function (req, res, next) {
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
-	console.log('----111111111----------------------------------------------------------------');
-	console.log(apiUrl);
-
 	request(apiUrl, function (err, data) {
-
 		if (err) return next(err);
 		if (data && data.body){
-			var replyData = {
-				headerTit	: '下载打印结算单',
-				subTitle 	: '下载打印结算单',
-				userType 	: 'buy'
-			};
-			replyData.data = JSON.parse(data.body).data;
+			var replyData = JSON.parse(data.body).data;
+				replyData.headerTit	= '下载打印结算单';
+				replyData.subTitle 	= '下载打印结算单';
+				replyData.userType 	= 'buy';
 
-			console.log('----333333333333333----------------------------------------------------------------');
+			console.log('----111111111----------------------------------------------------------------');
 			console.log(replyData);
-			console.log(replyData.order.buyerCompanyName);
-			return res.send(replyData);
 
-			//ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
-			//	if (err) return next(err);
-			//	var pdfOptions = {format : 'Letter'};
-			//	var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
-            //
-			//	pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
-			//		if (err) return next(err);
-			//		return res.download(pdfFileName);
-			//	});
-			//});
+			// 文件转换处理
+			ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
+				if (err) return next(err);
+				var pdfOptions = {format : 'Letter'};
+				var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
 
+				pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+					if (err) return next(err);
+					return res.download(pdfFileName);
+				});
+			});
 		}else{
 			return next(new Error('Nock error!'))
 		}
