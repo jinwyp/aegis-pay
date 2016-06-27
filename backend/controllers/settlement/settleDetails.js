@@ -10,7 +10,7 @@ var convert = require('../../libs/convert');
 var config = require('../../config');
 var cache = require('../../libs/cache');
 
-var tableEjs    = config.file_path.views + '/settlement/settleTable.ejs';
+var tableEjs    = config.file_path.views + '/settlement/settleTable.html';
 var downloadPath = config.file_path.download;
 var SystemError = require('../../errors/SystemError');
 
@@ -19,7 +19,7 @@ exports.settleDetails = function (req, res, next) {
 
     var user = req.session.user;
     var orderId = req.query.orderId;
-    // cache.del('settleDetails:settleDetails_'+req.query.orderId)
+    cache.del('settleDetails:settleDetails_'+req.query.orderId)
     cache.get('settleDetails:settleDetails_'+req.query.orderId, function(err, data){
         if(data){
             return res.render('settlement/settleDetails', data);
@@ -37,6 +37,7 @@ exports.settleDetails = function (req, res, next) {
                     var content = {
                         pageTitle: "结算管理",
                         headerTit: "结算管理",
+                        subTitle: "查看开票信息",
                         userType: 'buy',     //用户类型: buy, sell
                         editable:"false",
                         order: {
@@ -77,6 +78,7 @@ exports.generate_settle = function (req, res, next) {
             var content = {
                 pageTitle: "结算管理",
                 headerTit: "结算管理",
+                subTitle: "查看开票信息",
                 userType: 'buy',     //用户类型: buy, sell
                 editable:"false",
                 order: {
@@ -95,6 +97,8 @@ exports.generate_settle = function (req, res, next) {
                 content.htmlpath = htmlpath;
                 
                 cache.set('settleDetails:settleDetails_'+req.query.orderId, content);
+                console.log('=========htmlpath===============')
+                console.log(htmlpath)
                 return res.json({htmlpath:htmlpath});
 
             })

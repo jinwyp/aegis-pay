@@ -2,7 +2,8 @@
 <div id="InvoiceInfoViewPlate" class="plateBox bor_btm">
     <div class="plateHead borSolid">
         <span class="prefix"></span>
-        <h3 class="headLeft fl">确认开票信息</h3>
+        <%  var subTitle = subTitle || '查看开票信息' %>
+        <h3 class="headLeft fl"><%= subTitle %></h3>
     </div>
     <div class="plateMain clearfix">
         <div class="fl" id="InvoiceInfoBox">

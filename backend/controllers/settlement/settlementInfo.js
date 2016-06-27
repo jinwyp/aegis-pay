@@ -25,6 +25,7 @@ exports.settlementInfo = function (req, res, next) {
             var content = {
                 pageTitle: "结算管理",
                 headerTit: "结算管理",
+                subTitle: "查看开票信息",
                 data: {
                     receipt:source.data.receipt
                 }
