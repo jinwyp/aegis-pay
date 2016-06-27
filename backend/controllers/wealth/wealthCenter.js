@@ -31,7 +31,7 @@ exports.checkUserCompany = function (req, res, next) {
     //url = api_config.host + 'wealth/checkUserCompany';			// TODO: 本地
 
     var param = {
-      userId : 15       // req.session.user.id;
+      userId : req.session.user.id
     };
 
     request.post(url, {formData: param, json: true}, function (err, data) {
