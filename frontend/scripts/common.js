@@ -1,6 +1,7 @@
 
-require(['jquery', 'bootstrap'],function($){
-	
+require(['jquery', 'bootstrap', 'datachecker'],function($, bootstrap, datachecker){
+	// data validator
+	window.datachecker = datachecker;
 	/**
 	 * Common ajax error handler
 	 * This handler is not called for cross-domain script and cross-domain JSONP requests.

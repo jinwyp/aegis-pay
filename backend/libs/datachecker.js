@@ -51,7 +51,7 @@ function throw403 (code, message, field, isNext){
 exports.menuTab = function(tab, next){
     if (tab){
         if ( !validator.isInt(tab, { min: 1, max: 20}) ) {
-            return throw409(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
+            return throw400(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
         }
     }
 
@@ -59,9 +59,9 @@ exports.menuTab = function(tab, next){
 
 
 exports.orderId = function(orderId, next){
-    // if (!orderId || !validator.isLength(orderId, { min: 6, max: 100}) ) {
-    //     return throw400(code.order.orderIdWrong.code, code.order.orderIdWrong.message, code.order.orderIdWrong.field, next);
-    // }
+    if (!orderId || !/^[0-9]+$/.test(orderId) ) {
+        return throw400(code.order.orderIdWrong.code, code.order.orderIdWrong.message, code.order.orderIdWrong.field, next);
+    }
 };
 
 exports.captchaType = function(captchaType, next){
@@ -97,7 +97,7 @@ exports.smsText = function(smsText, next){
 
 
 exports.payPassword = function(password, next){
-    if (!password || typeof password !== 'string' || !validator.isLength(password, { min: 6, max: 20})) {
+    if (!password || typeof password !== 'string' || !validator.isLength(password, { min: 6, max: 16})) {
         return throw400(code.user.payPasswordWrong.code, code.user.payPasswordWrong.message, code.user.payPasswordWrong.field, next);
     }
 };

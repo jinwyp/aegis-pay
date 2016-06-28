@@ -12,8 +12,8 @@ define(['jquery'],function($){
         $('#validBtn').click(function(){
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val();
-            if(!sms_code){
-                self.els.$codeTipErr.text('请输入校验码').show();
+            if(!datachecker.smsText(sms_code)){
+                self.els.$codeTipErr.text('请输入有效的校验码').show();
                 self.els.$code.focus();
                 return;
             }

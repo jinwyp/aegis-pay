@@ -23,6 +23,7 @@ var path	= require('path');
 var utils   = require('../../libs/utils');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
+var config = require('../../config');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
 var pdfHtmlTemplatePath = path.join(config.file_path.download, '/settlement/pdfTemplate.ejs');
 
