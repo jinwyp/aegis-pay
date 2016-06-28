@@ -1,5 +1,4 @@
         <% var orderObj = data.order %>
-        <% var userType = userType || 'buy' %>
         <!-- 结算单信息 板块-->
         <div id="settlementInfoPlate">
             <!-- 结算信息 -->
@@ -46,6 +45,7 @@
                     </tbody>
                 </table>
             </div>
+
             <!-- 实际结算数据 -->
             <div class="mt20">
                 <% var isShowEdit_sj = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
@@ -110,6 +110,7 @@
                     </tr>
 
                     <% } else { %>
+
                     <tr>
                         <td><%= orderObj.settleAmount %></td>
                         <td><%= orderObj.harbourDues %></td>
