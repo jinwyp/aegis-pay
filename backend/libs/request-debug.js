@@ -1,4 +1,3 @@
-var clone = require('stringify-clone');
 var debugId = 0 ;
 var logger = require("./logger");
 
@@ -35,7 +34,7 @@ module.exports = exports = function(request, log) {
                         debugId : this._debugId,
                         uri     : this.uri.href,
                         method  : this.method,
-                        headers : clone(this.headers)
+                        headers : JSON.parse(JSON.stringify(this.headers))
                     }
                     if (this.body) {
                         data.body =  decodeURIComponent(this.body.toString('utf8'))
@@ -51,7 +50,7 @@ module.exports = exports = function(request, log) {
                         // cannot get body since no callback specified
                         log('response', {
                             debugId    : this._debugId,
-                            headers    : clone(res.headers),
+                            headers    :  clone(this.headers),
                             statusCode : res.statusCode
                         }, this)
                     }
@@ -60,7 +59,7 @@ module.exports = exports = function(request, log) {
                     if (this.callback) {
                         log('response', {
                             debugId    : this._debugId,
-                            headers    : clone(res.headers),
+                            headers    : clone(this.headers),
                             statusCode : res.statusCode,
                             body       : res.body
                         }, this)
@@ -94,6 +93,10 @@ module.exports = exports = function(request, log) {
             delete proto._initBeforeDebug
         }
     }
+}
+
+var clone =  function(val ){
+    return  JSON.parse(JSON.stringify(val)) ;
 }
 
 exports.log = function(type, data, r) {
