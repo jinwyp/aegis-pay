@@ -32,6 +32,7 @@
     "requirejs": "2.2.0",
     "pickadate": "^3.5.6",
     "devbridge-autocomplete": "^1.2.24",
-    "avalon": "^2.0.7"
+    "avalon": "^2.0.7",
+    "validator-js": "5.4.0"
   }
 }

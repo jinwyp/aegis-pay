@@ -2,7 +2,7 @@
 * 业务控制 (模板 & 数据请求)
 * */
 
-var request = require('request');
+var request = require('../libs/request');
 var apiHost = 'http://server.180.com/';			// 模拟域名
 
 
@@ -112,3 +112,8 @@ exports.demo = function (req, res, next) {
 
 };
 
+
+
+exports.test = function (req, res, next) {
+    res.render('test', {});				// 指定模板路径 渲染
+}

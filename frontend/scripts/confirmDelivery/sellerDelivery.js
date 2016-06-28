@@ -16,7 +16,7 @@ require(['jquery', 'bootstrap'],function($, upload){
             },
             success : function(data){
                 if(data.success){
-                    location.href='/return'
+                    location.href='/return?orderId='+$("#orderId").val()
                 }
             }
         })

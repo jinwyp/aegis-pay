@@ -13,7 +13,10 @@ var logger = require('../libs/logger');
 var PageNotFoundError = require('../errors/PageNotFoundError');
 var SystemError = require('../errors/SystemError');
 
-var ValidationError = require('../errors/ValidationError');
+var BusinessError = require('../errors/BusinessError');
+var MethodArgumentNotValidError = require('../errors/MethodArgumentNotValidError');
+var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
+var UnauthorizedAccessError = require('../errors/UnauthorizedAccessError');
 
 
 exports.PageNotFoundMiddleware = function(req, res, next) {
@@ -21,23 +24,42 @@ exports.PageNotFoundMiddleware = function(req, res, next) {
 };
 
 
-
+// 页面展示数据错误：500
+// ajax: 
+    // 提交数据错误：(409-》field:)
+    // 
 
 exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     var newErr = null;
 
     if(err.customType === 'service-request'){
         switch(err.customCode){
-            case 409: 
-                newErr = new ValidationError(409, err.message, err);
+            case 400: //参数错误
+                newErr = new MethodArgumentNotValidError(400, err.error || err.message || err.customMsg, err);
+                break;
+            case 401: //重新登录
+                newErr = new UnauthenticatedAccessError(401, err.error || err.message || err.customMsg, err);
+                break;
+            case 403: //没有权限访问
+                newErr = new UnauthorizedAccessError(403, err.error || err.message || err.customMsg, err);
+                break;
+            case 404: 
+                newErr = new PageNotFoundError(404, err.error || err.message || err.customMsg, err);
+                break;
+            case 409: //业务逻辑错误
+                newErr = new BusinessError(409, err.error || err.message || err.customMsg, err);
+                break;
+            default: 
+                newErr = new SystemError(err.customCode || 500, err.error || err.message || err.customMsg, err);
                 break;
         }
-        
-    }else if (typeof err.type === 'undefined'){
+    }
+
+    if ((typeof err.type === 'undefined') && !newErr){
         newErr = new SystemError(500, err.message, err);
         newErr.stack = err.stack;
     }else{
-        newErr = err;
+        newErr = newErr || err;
     }
 
 

@@ -2,7 +2,7 @@
  * 关闭订单页面
  * 业务控制 (模板 & 数据请求)
  * */
-var request = require('request');
+var request = require('../../libs/request');
 var checker    = require('../../libs/datachecker');			// 验证
 var apiHost  = require('../../api/v1/api_config');          // 接口路径配置
 

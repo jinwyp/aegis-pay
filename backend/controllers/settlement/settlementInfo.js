@@ -4,7 +4,7 @@
  * */
 
 
-var request = require('request');
+var request = require('../../libs/request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 var path = require('path');
 var _ = require('lodash');
@@ -25,6 +25,7 @@ exports.settlementInfo = function (req, res, next) {
             var content = {
                 pageTitle: "结算管理",
                 headerTit: "结算管理",
+                subTitle: "查看开票信息",
                 data: {
                     receipt:source.data.receipt
                 }

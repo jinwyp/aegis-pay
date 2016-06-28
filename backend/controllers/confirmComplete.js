@@ -4,7 +4,7 @@
 
 var path       = require('path');
 var _          = require('lodash');
-var request    = require('request');
+var request    = require('../libs/request');
 
 var api_config = require('../api/v1/api_config');
 var logger = require("../libs/logger");
@@ -39,9 +39,7 @@ exports.confirmComplete = function (req, res, next) {
         ]
     };
     
-    // 静态数据
-    //res.render('confirmDelivery/confirmDelivery',{"headerTit":"确认下单",statusObj: statusObj});			// 指定模板路径 渲染
-    var url = api_config.confirmDeliveryConfirmComplete;
+    var url = api_config.confirmDeliveryConfirmComplete+"orderId=3632&userId=15";
     request({url : url}, function (err, data) {
 
         if (err) return next(err);
@@ -56,13 +54,13 @@ exports.confirmComplete = function (req, res, next) {
                 pageTitle   : "确认完成页面",
                 type        : "sell",
                 statusObj   : statusObj,
-                "sellInfo"  : source.sellInfo,
-                "order"     : source.order,
+                "sellInfo"  : source.data.sellInfo,
+                "order"     : source.data.order,
                 "indexList" : source.indexList,
-                "deliveryAmount" : source.deliveryAmount,
-                "indexDataList" : source.indexDataList,
-                "qualityList" : source.qualityList,
-                "quantityList" : source.quantityList
+                "deliveryAmount" : source.data.deliveryAmount,
+                "indexDataList" : source.data.indexDataList,
+                "qualityList" : source.data.qualityList,
+                "quantityList" : source.data.quantityList
             };
 
             _.map(content.qualityList, function(val, index){
@@ -78,23 +76,4 @@ exports.confirmComplete = function (req, res, next) {
         }
 
     });
-
-    // 异步调取Java数据
-    //request(apiHost + 'listData', function(err, data) {
-    //	// 渲染页面,指定模板&数据
-    //	res.render('header/header', {listData: JSON.parse(data.body)});			// 指定模板路径 渲染
-    //});
-
 };
-
-
-
-
-
-exports.cp = function (req, res, next) {
-    var data={
-        success:true
-    }
-    res.send(data);
-}
-

@@ -3,7 +3,7 @@
  *
  * */
 var path    = require('path');
-var request = require('request');
+var request = require('../../libs/request');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
 

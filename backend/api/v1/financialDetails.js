@@ -3,7 +3,7 @@
  */
 
 
-var request    = require('request');
+var request    = require('../../libs/request');
 
 var checker    = require('../../libs/datachecker');
 var api_config = require('./api_config');

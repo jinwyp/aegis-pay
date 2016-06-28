@@ -16,7 +16,8 @@ var config = {
     passport: {
       member: 'https://member-dev.yimei180.com',
       cookieName: 'passport'
-    }
+    },
+    site_page: 'https://www-dev.yimei180.com'
 };
 
 module.exports = config;

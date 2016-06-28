@@ -15,8 +15,6 @@
     <% var tableIndex=indexList.length %>
     <div class="sellerDeliveryWrap">
         <%- include ../Plugins/reasonsReturnPlate %>
-
-
         <p class="containerTit"><span>买家提货数据</span></p>
         <div class="infoContainer">
             <div class="deliveryAmount">
@@ -126,7 +124,7 @@
         <% include ../global/order/orderUserInfo %>
         <% include ../global/order/orderTable %>
 
-        <a href="/printDetail" class="dlDetail"><i class="printer"></i>打印订单详情</a>
+        <a href="/printDetail?orderId=<%= order.id%>" class="dlDetail"><i class="printer"></i>打印订单详情</a>
     </div>
 
 </div>

@@ -14,7 +14,8 @@ define(['jquery'],function($){
         var self = this;
         // validate
         self.els.$pass1.on('blur', function(e){
-            var isMatch = /^(\w){6,20}$/.test(self.els.$pass1.val());
+            // var isMatch = /^(\w){6,20}$/.test(self.els.$pass1.val());
+            var isMatch = datachecker.payPassword(self.els.$pass1.val());
             if(!isMatch){
                 self.els.$pass1.focus();
                 self.els.$passFormatErr.text('支付密码格式不正确！').show();
@@ -34,12 +35,12 @@ define(['jquery'],function($){
         // click submit
         self.els.$submit.click(function(){
             if($(this).hasClass('disable')) return;
-            if(!self.els.$pass1.val()){
+            if(!datachecker.payPassword(self.els.$pass1.val())){
                 self.els.$pass1.focus();
                 self.els.$passFormatErr.text('请重置支付密码').show();
                 return;
             }
-            if(!self.els.$pass2.val()){
+            if(!datachecker.payPassword(self.els.$pass2.val())){
                 self.els.$pass2.focus();
                 self.els.$passDiffErr.text('请重置支付密码').show();
                 return;

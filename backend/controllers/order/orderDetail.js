@@ -2,7 +2,7 @@
  * 业务控制 (模板 & 数据请求)
  * */
 
-var request = require('request');
+var request = require('../../libs/request');
 
 var checker    = require('../../libs/datachecker');
 var api_config = require('../../api/v1/api_config');

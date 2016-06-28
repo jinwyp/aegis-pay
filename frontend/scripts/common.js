@@ -1,6 +1,7 @@
 
-require(['jquery', 'bootstrap'],function($){
-	
+require(['jquery', 'bootstrap', 'datachecker'],function($, bootstrap, datachecker){
+	// data validator
+	window.datachecker = datachecker;
 	/**
 	 * Common ajax error handler
 	 * This handler is not called for cross-domain script and cross-domain JSONP requests.
@@ -9,20 +10,15 @@ require(['jquery', 'bootstrap'],function($){
 	$( document ).ajaxError(function(event, jqxhr, settings, exception) {
 		var xhrStatus = jqxhr.status;
 
-		var errorStatus = [400, 403, 404, 500];
+		var errorStatus = [400, 409, 403, 404, 500];
 
 		if(xhrStatus == 401){
 			location.href = $("#sso").val() + "/login?gotoURL=" + encodeURIComponent(location.href);
-
-		} else if (xhrStatus == 409) {
-			// handle 409 error
-			// var message = JSON.parse(jqxhr.responseText).message;
-			// showServerError(xhrStatus, message);
-
 		} else if($.inArray(xhrStatus, errorStatus) >=0) {
-			showServerError(xhrStatus, "");  //handle errors in errorStatus
+			var msg = (xhrStatus == 409) ? (JSON.parse(jqxhr.responseText).message) : '';
+			showServerError(xhrStatus, msg);  //handle errors in errorStatus
 		}else{
-
+			showServerError(500, ""); 
 		}
 	});
 
@@ -30,11 +26,11 @@ require(['jquery', 'bootstrap'],function($){
 	var showServerError = function(status,message) {
 		var errorMsg = {
 			401: "请重新登录...",
-			403: "您没有权限访问该网页...",
-			404: "您访问的网页不存在...",
+			403: "您没有权限访问...",
+			404: "您请求的数据不存在...",
 			400: "参数传入错误，请稍后重试...",
 			500: "服务器出错，请稍后重试...",
-			409:  message
+			409:  message   //业务逻辑错误
 		};
 		$("#server-error-msg").text(errorMsg[status]);
 		$('#modal-server-error').modal(true);

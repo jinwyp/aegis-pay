@@ -2,7 +2,7 @@
  * 业务控制 (模板 & 数据请求)
  * */
 
-var request = require('request');
+var request = require('../libs/request');
 var apiHost = 'http://server.180.com/';			// 模拟域名
 var path = require('path');
 var _ = require('lodash');
@@ -13,13 +13,13 @@ var api_config = require('../api/v1/api_config');
 exports.disputeApply = function (req, res, next) {
     var userId=req.session.user.id;
     // 暂时写死
-    var url = api_config.disputeApply+"?userId=15&orderId=3621";
+
 
     var params = {
         userId: req.session.user.id,
         orderId: req.query.orderId
     };
-
+    var url = api_config.disputeApply+"?userId="+params.userId+"&orderId="+params.orderId;
     request(url, params, function (err, data) {
 
         if (err) return next(err);
@@ -31,12 +31,12 @@ exports.disputeApply = function (req, res, next) {
         // });
         var content={
             userId:userId,
-            orderId:"3621",
+            orderId:source.data.order.id,
             headerTit: "纠纷申请页面",
             pageTitle: "纠纷申请页面",
             sellInfo:source.data.sellInfo,
-            order:source.data.order
-
+            order:source.data.order,
+            files:source.data.files
         }
         res.render('dispute/disputeApply', content);
 
@@ -50,16 +50,17 @@ exports.disputeApplySubmit = function (req, res, next) {
 
     var formData = {
         "userId" : userId,
-        "orderId": "15",
+        "orderId": req.body.orderId,
         "version" : req.body.version,
         deliveryGoods:req.body.deliveryGoods,
         returnGoods:req.body.returnGoods,
         disputeRemarks:req.body.disputeRemarks,
-        imgList:req.body.imgList
+        files:req.body.files
     };
     request.post({
         form:formData,
-        url : url
+        url : url,
+        qsStringifyOptions:{allowDots:true}
     }, function (err, data, body) {
         if (err) return next(err);
 

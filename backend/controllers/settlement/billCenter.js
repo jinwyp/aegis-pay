@@ -4,7 +4,7 @@
  * */
 
 
-var request = require('request');
+var request = require('../../libs/request');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 var path = require('path');
 var _ = require('lodash');
@@ -18,8 +18,10 @@ exports.billCenter = function (req, res, next) {
     var content = req.query.content;
     var user = req.session.user;
     var type = req.query.type;
+    var page = req.query.page;
 
-    var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')+(content?'&content='+content:'')+(type?'&type='+type:'');
+    var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')
+        +(content?'&content='+content:'')+(type?'&type='+type:'')+(page && page>0?'&page='+page:'');
     request({url : api_config.billCenter+queryString}, function (err, data) {
 
         if (err || data.statusCode != 200) {
@@ -44,7 +46,7 @@ exports.billCenter = function (req, res, next) {
                         {
                             secListName:"全部发票",
                             secListLink:"billCenter",
-                            secListNum:source.data.receiptOrder.count
+                            secListNum:source.data.receiptOrder.allCount
                         },
                         {
                             secListName:'待开票' ,
@@ -80,8 +82,10 @@ exports.billCenter = function (req, res, next) {
                 receiptOrder:source.data.receiptOrder,
                 data: {
                     receipt:source.data.receipt
-                }
-
+                },
+                count:source.data.receiptOrder.count,
+                page:source.data.receiptOrder.page,
+                pagesize:source.data.receiptOrder.pagesize,
             };
             //渲染页面
             if(!type){

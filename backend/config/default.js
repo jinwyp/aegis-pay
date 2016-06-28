@@ -26,7 +26,7 @@ var config = {
         db   : 0
     },
     passport: {
-      member: 'https://member-local.yimei180.com:7777',
+      member: 'https://member-local.yimei180.com',
       cookieName: 'passport'
     },
 
@@ -47,7 +47,8 @@ var config = {
     },
     
     member_address: 'http://10.100.20.3:3000',
-    rest_address: 'http://10.100.30.1:8888/'
+    site_page: 'https://www.yimei180.com',
+    rest_address: 'http://10.100.30.1:8080/'
 };
 
 

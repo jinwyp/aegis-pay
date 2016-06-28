@@ -4,7 +4,7 @@
  * */
 
 
-var request = require('request');
+var request = require('../../libs/request');
 var api_config = require('../../api/v1/api_config');
 var cache = require('../../libs/cache');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
@@ -29,6 +29,8 @@ exports.wealthCenter = function (req, res, next) {
 exports.checkUserCompany = function (req, res, next) {
     var url = api_config.checkUserCompany;
     //url = api_config.host + 'wealth/checkUserCompany';			// TODO: 本地
+    var user = req.session.user;    // req.session.user.id;
+   
 
     var param = {
       userId : req.session.user.id
