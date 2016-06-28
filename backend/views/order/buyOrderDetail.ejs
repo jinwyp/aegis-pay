@@ -18,6 +18,7 @@
             <% include ../global/order/statusBar %>
 
             <div class="status-content">
+                <input type="hidden" id="orderId" value="<%=order.id%>" />
                 <div class="state-item fs-24"><span>当前订单状态：</span>
                     <% if(order.status=='WaitSignContract'){ %>
                     <span class="status">货物已下单，请及时签订电子合同</span>
@@ -37,7 +38,7 @@
                     <% } %>
                 </div>
                 <% if(order.status=='WaitSignContract'){ %>
-                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option btn-sign">签订合同</span></div>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-sign">签订合同</span></div>
                 <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，您可以&nbsp;<a class="btn-close">关闭交易</a></span></div>
                 <% }else if(order.status=='WaitPayment'){ %>
                 <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="btn-option btn-pay">付款</span></div>
@@ -65,7 +66,7 @@
             <% include ../global/order/orderTable %>
 
             <div class="btn-bottom">
-                <span class="btn-print" data-value="<%=order.id%>"><i class="btn-ico"></i>打印订单详情</span>
+                <span class="btn-print"><i class="btn-ico"></i>打印订单详情</span>
             </div>
         </div>
     </div>

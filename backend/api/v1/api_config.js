@@ -75,7 +75,13 @@ var api_config = {
 
     buyOrderDetail : host + 'mall/order',
     sellOrderDetail : host + 'mall/seller/order',
-    printOrderDetail : host + '/mall/order/print',
+    printOrderDetail : host + 'mall/order/print',
+
+    noticeReceiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
+    noticeSellerReturnMoney : host + 'mall/order/remindSeller/payRefundMoney',
+    noticeToDelivery : host + 'mall/order/remindBuyer/toDelivery',
+    noticeToSettle : host + 'mall/order/remindSeller/toSettle',
+
     confirmDelivery : host + 'mall/order/deliveryConfirm',
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
     confirmDeliverySellerDelivery : host + 'mall/order/seller/verifyDelivery',
