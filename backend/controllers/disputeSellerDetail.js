@@ -2,18 +2,18 @@
  * 业务控制 (模板 & 数据请求)
  * */
 
-var request = require('../libs/request');
+var request = require('request');
 var _       = require('lodash');
 var api_config = require('../api/v1/api_config');
 var logger     = require("../libs/logger");
 
-exports.disputeDetail = function (req, res, next) {
+exports.disputeSellerDetail = function (req, res, next) {
     var userId=req.session.user.id;
     var params = {
         userId: req.session.user.id,
         orderId: req.query.orderId
     };
-    var url = api_config.disputeDetail+"?userId="+params.userId+"&orderId="+params.orderId;
+    var url = api_config.disputeSellerDetail+"?userId="+params.userId+"&orderId="+params.orderId;
     request(url, params, function (err, data) {
         if (err) return next(err);
         var source  = JSON.parse(data.body);
@@ -25,11 +25,11 @@ exports.disputeDetail = function (req, res, next) {
             sellInfo:source.data.sellInfo,
             order:source.data.order
         };
-        res.render('dispute/disputeDetail', content);
+        res.render('dispute/disputeSellerDetail', content);
 
     });
 };
-exports.disputeCancel = function (req, res, next) {
+exports.disputeBackReason = function (req, res, next) {
     var body = req.body;
     var url = api_config.disputeCancel;
     var userId=req.session.user.id;

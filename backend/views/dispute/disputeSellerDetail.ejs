@@ -15,9 +15,7 @@
         <div class="disputeStatus"></div>
         <div class="disputeDetailInfoWrap">
             <div class="disputeInfoTit">当前订单状态：<b>纠纷等待双方协商处理</b></div>
-            <p>1、如果您继续购买货品以，您可<a href="javascript:void(0)" class="cancel" id="disputeCancel">撤销纠纷处理</a></p>
-            <p>2、如果您需要补充或者修改纠纷处理申请，您可以<a href="/dispute/disputeApply?orderId=<%= order.orderId %>&userId=<%= userId %>" class="modify"> 修改&gt;&gt; </a></p>
-            <p>3、如果您在协商退款过程中有困难，可以致电：<span class="logoBlue">400-960-1180</span>，我们会派出专门的协调人员协助您。</p>
+            <p>如果您已经协商好,请填写<a href="javascript:void(0)" class="cancel" id="disputeResult">纠纷处理结果</a></p>
         </div>
         <div class="diputeTableWrap">
             <div class="disputeBlock">
@@ -94,10 +92,30 @@
     <input type="hidden" value="<%= order.version%>" id="version" />
     <input type="hidden" value="<%= userId%>" id="userId" />
     <input type="hidden" value="<%= config.site_page%>" id="configUrl">
+    <div class="containerWrap">
+        <div class="row clearfix drop_modal">
+            <div id="disputeModal" class="modal fade in" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modalTit">退回原因<a href="javascript:void(0)" class="closeModal" data-dismiss="modal" aria-hidden="true" ></a></div>
+                    <div class="modalCon">
+                        <textarea name="" id="textInput" placeholder="请简要填写退回原因，限1000个字" maxlength="1000"></textarea>
+                    </div>
+                    <p class="errorMsg"></p>
+                    <div class="btnWrap">
+                        <a href="javascript:void(0)" class="btnCancel"  data-dismiss="modal" aria-hidden="true" >取消</a>
+                        <a href="javascript:void(0)" class="btnSubmit" id="btnSubmit">确认</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<input type="hidden" value=<%= order.orderId%> id="orderId" />
+<input type="hidden" value=<%= order.version%> id="version" />
+<input type="hidden" value=<%= userId%> id="sellerId" />
 
 <%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>
-<script type="application/javascript" src="<%= staticPath %>/scripts/dispute/disputeDetail.js"></script>
+<script type="application/javascript" src="<%= staticPath %>/scripts/dispute/disputeSellerDetail.js"></script>
 </body>
 </html>

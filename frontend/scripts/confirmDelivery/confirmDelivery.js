@@ -158,8 +158,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                   },
                   success:function(data){
                      if(data.success){
-
-                     }else{
+                        location.href='/getBuyOrderDetail'+$("#userId").val()+"&orderId="+$("#orderId").val()
                      }
                   }
 
