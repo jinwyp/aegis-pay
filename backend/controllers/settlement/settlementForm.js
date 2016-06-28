@@ -82,18 +82,15 @@ exports.settlementInfoDownload = function (req, res, next) {
 	request(apiUrl, function (err, data) {
 		if (err) return next(err);
 		if (data && data.body){
-			var replyData = JSON.parse(data.body).data;
+			var replyData = JSON.parse(data.body);
 				replyData.headerTit	= '下载打印结算单';
 				replyData.subTitle 	= '下载打印结算单';
 				replyData.userType 	= 'buy';
 
-			console.log('----111111111----------------------------------------------------------------');
-			console.log(replyData);
-
 			// 文件转换处理
-			ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
+			ejs.renderFile(pdfHtmlTemplatePath, replyData, function (err, resultHtml) {
 				if (err) return next(err);
-				var pdfOptions = {format : 'Letter'};
+				var pdfOptions = {width: '1000px', height: '1414px', orientation: 'portrait' };		// format : 'Letter'
 				var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
 
 				pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {

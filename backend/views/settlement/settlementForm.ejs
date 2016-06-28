@@ -33,7 +33,7 @@
                     <div class="significantDoubt">
                         <h2 class="doubtTitle">重要提示：</h2>
                         <p class="entry">
-                            1、本结算单由卖方出具，需经买方确认，请买方仔细核对结算单，如没有异议，请<a href="#" class="linkPrint">下载并打印该结算单</a>，将结算单加盖买方公章和财务章后寄至卖家；<br/>
+                            1、本结算单由卖方出具，需经买方确认，请买方仔细核对结算单，如没有异议，请<a href="/settlement/settlementInfoDownload?orderId=<%=orderObj.id%>&userId=<%=orderObj.userId%>" class="linkPrint">下载并打印该结算单</a>，将结算单加盖买方公章和财务章后寄至卖家；<br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如买方对结算单有异议的，请及时联系卖方。
                         </p>
                         <p class="entry">
@@ -175,7 +175,7 @@
                 </div>
                 <p class="fileExplain ">
                     提示：1.  请将结算单下载并加盖公章或财务章，
-                    <a href="#" class="linkPrint">《下载结算单》</a><br/>
+                    <a href="/settlement/settlementInfoDownload?orderId=<%=orderObj.id%>&userId=<%=orderObj.userId%>" class="linkPrint">《下载结算单》</a><br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     2.要求扫描件或者照片，大小<span class="bright">不超过5M</span>，如果多个文件，请压缩上传文件夹。</p>
             </div>
