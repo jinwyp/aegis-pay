@@ -1,5 +1,5 @@
 var request    = require('../../libs/request');
-var requestdebug = require('request-debug');
+// var requestdebug = require('request-debug');
 var _          = require('lodash');
 
 var api_config = require('./api_config');
@@ -11,7 +11,7 @@ var path       = require('path');
 
 var co = require('co');
 
-requestdebug(request);
+// requestdebug(request);
 
 const uploadPath = config.file_path.download + '/';
 
