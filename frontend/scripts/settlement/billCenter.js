@@ -84,10 +84,128 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
     });
 
     //搜索form表单提交
-    $("#submit").click(function(){
+    $("#submit").on("click",function(event,pageno){
+       // alert(pageno);
+        pageno = pageno || 1;
+        $("#page").val(pageno);
         $("#billSearch").submit();
-    })
-    
+    });
+
+   /* $( "#pagechange" ).on( "click", "a", function() {
+
+    });
+*/
+    var vm = {};
+
+    //分页相关
+    var app = {
+        init : function(){
+            vm = avalon.define({
+                $id: "billController",
+                billSearchText  : '',
+                billList        : [],
+                type            : undefined,
+
+                _currentPages : 1,
+                _totalPages : 10,
+                _inputCurrentPages : 1,
+                _pageArrayLeft : [],
+                _pageArrayRight : [],
+                _pageArrayMiddle : [],
+
+                _ellipsisLeft : false,
+                _ellipsisRight : false,
+
+                _changePage : function(pageNo, event){
+                    //event.preventDefault();
+                    var tempNo = Number(pageNo);
+                    //alert(pageNo);
+                    if (tempNo < 1){
+                        tempNo = 1
+                    }else if (tempNo > vm._totalPages){
+                        tempNo = vm._totalPages
+                    }
+
+                    vm._currentPages = tempNo;
+                    //$("#page").val(tempNo);
+                    $("#submit").trigger("click",[tempNo]);
+
+                    //alert(vm._currentPages);
+                },
+
+                _showPagination : function () {
+
+                    vm._pageArrayLeft = [];
+                    vm._pageArrayRight = [];
+                    vm._pageArrayMiddle = [];
+
+                    vm._ellipsisLeft = false;
+                    vm._ellipsisRight = false;
+
+                    var paginationShowNumberLimit = 8;
+                    var paginationLeftShowNumber = 2;
+                    var paginationRightShowNumber = 2;
+                    var paginationMiddleShowNumber = 3;
+
+                    var currentPageShowLeftNumber = paginationMiddleShowNumber + 1;
+                    var currentPageShowMiddleNumber = Math.ceil(paginationMiddleShowNumber / 2) ;
+
+                    for (var i=1; i<= vm._totalPages; i++){
+
+                        if (vm._totalPages <= paginationShowNumberLimit){
+                            vm._pageArrayMiddle.push({value:i});
+                        }else{
+
+                            //创建左部分的分页 例如 1,2
+                            if ( i <= paginationLeftShowNumber ){ vm._pageArrayLeft.push({value:i}); }
+
+                            //创建右部分的分页 例如 99,100
+                            if ( i >= vm._totalPages - (paginationRightShowNumber - 1) ){ vm._pageArrayRight.push({value:i}); }
+
+                            //创建中间部分的分页 例如 49,50,51
+                            if (i > paginationLeftShowNumber  && i < vm._totalPages - (paginationRightShowNumber - 1) ) {
+
+                                if (vm._currentPages <= currentPageShowLeftNumber && i <= (currentPageShowLeftNumber + 1) ) {
+                                    vm._ellipsisRight = true;
+                                    vm._pageArrayMiddle.push({value:i});
+                                }
+
+                                if ( vm._currentPages > currentPageShowLeftNumber && vm._currentPages < vm._totalPages - paginationMiddleShowNumber) {
+                                    vm._ellipsisLeft = true;
+                                    vm._ellipsisRight = true;
+
+                                    if ( i > vm._currentPages - currentPageShowMiddleNumber && i < vm._currentPages + currentPageShowMiddleNumber){
+                                        vm._pageArrayMiddle.push({value:i});
+                                    }
+                                }
+
+                                if ( vm._currentPages >= vm._totalPages - paginationMiddleShowNumber && i >= vm._totalPages - paginationMiddleShowNumber - 1) {
+                                    vm._ellipsisLeft = true;
+                                    vm._pageArrayMiddle.push({value:i});
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+
+        }
+
+    };
+
+    $( document ).ready( function() {
+        app.init();
+       // alert($("#count").val());
+       // alert($("#pagesize").val());
+        vm._totalPages = Math.ceil($("#count").val()/ $("#pagesize").val());
+      //  alert(vm._totalPages);
+        vm._currentPages = Number($("#page").val());
+        vm._showPagination();
+    });
+
+
+
 
 });
 
