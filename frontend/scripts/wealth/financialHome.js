@@ -70,18 +70,18 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             //avalon.config({debug: false})
             vm = avalon.define({
                 $id: "financialDetailsController",
-                orderSearchText  : "",
-                orderDateFrom    : '',
-                orderDateTo      : '',
-                orderEllipsisLeft : false,
-                orderEllipsisRight : false,
-                orderInputCurrentPage : 1,
-                orderCurrentPage : 1,
+                orderSearchText  : '',
                 orderList        : [],
-                orderListTotalPages : 1,
-                orderListTotalPagesArray : [],
-                orderListTotalPagesArrayLeft : [],
-                orderListTotalPagesArrayRight : [],
+
+                _currentPages : 1,
+                _totalPages : 10,
+                _inputCurrentPages : 1,
+                _pageArrayLeft : [],
+                _pageArrayRight : [],
+                _pageArrayMiddle : [],
+
+                _ellipsisLeft : false,
+                _ellipsisRight : false,
 
                 searchOrder : function(event){
                     event.preventDefault();
@@ -94,23 +94,79 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     app.getFinancialDetailsApi(searchQuery);
                 },
 
-                changePagination : function(pageNo, event){
-                    event.preventDefault();
-
-                    var tempNo = Number(pageNo);
-                    if (tempNo < 1){
-                        tempNo = 1
-                    }else if (tempNo > vm.orderListTotalPages){
-                        tempNo = vm.orderListTotalPages
-                    }
-
-                    searchQuery.currentPage = tempNo;
-                    vm.orderCurrentPage = tempNo;
-                    app.getFinancialDetailsApi(searchQuery);
-                },
-                
                 printOrder : function (fundAccount, printCode) {
                     app.getFinancialDetailPrintApi(fundAccount, printCode);
+                },
+
+
+                _changePage : function(pageNo, event){
+                    event.preventDefault();
+                    var tempNo = Number(pageNo);
+
+                    if (tempNo < 1){
+                        tempNo = 1
+                    }else if (tempNo > vm._totalPages){
+                        tempNo = vm._totalPages
+                    }
+
+                    vm._currentPages = tempNo;
+                    searchQuery.currentPage = tempNo;
+                    app.getFinancialDetailsApi(searchQuery);
+                },
+
+                _showPagination : function () {
+
+                    vm._pageArrayLeft = [];
+                    vm._pageArrayRight = [];
+                    vm._pageArrayMiddle = [];
+
+                    vm._ellipsisLeft = false;
+                    vm._ellipsisRight = false;
+
+                    var paginationShowNumberLimit = 8;
+                    var paginationLeftShowNumber = 2;
+                    var paginationRightShowNumber = 2;
+                    var paginationMiddleShowNumber = 3;
+
+                    var currentPageShowLeftNumber = paginationMiddleShowNumber + 1;
+                    var currentPageShowMiddleNumber = Math.ceil(paginationMiddleShowNumber / 2) ;
+
+                    for (var i=1; i<= vm._totalPages; i++){
+
+                        if (vm._totalPages <= paginationShowNumberLimit){
+                            vm._pageArrayMiddle.push({value:i});
+                        }else{
+
+                            //创建左部分的分页 例如 1,2
+                            if ( i <= paginationLeftShowNumber ){ vm._pageArrayLeft.push({value:i}); }
+
+                            //创建右部分的分页 例如 99,100
+                            if ( i >= vm._totalPages - (paginationRightShowNumber - 1) ){ vm._pageArrayRight.push({value:i}); }
+
+                            //创建中间部分的分页 例如 49,50,51
+                            if (i > paginationLeftShowNumber  && i < vm._totalPages - (paginationRightShowNumber - 1) ) {
+
+                                if (vm._currentPages <= currentPageShowLeftNumber && i <= (currentPageShowLeftNumber + 1) ) {
+                                    vm._ellipsisRight = true;
+                                    vm._pageArrayMiddle.push({value:i});
+                                }
+
+                                if ( vm._currentPages > currentPageShowLeftNumber && vm._currentPages < vm._totalPages - paginationMiddleShowNumber) {
+                                    vm._ellipsisLeft = true;
+                                    vm._ellipsisRight = true;
+
+                                    if ( i > vm._currentPages - currentPageShowMiddleNumber && i < vm._currentPages + currentPageShowMiddleNumber){
+                                        vm._pageArrayMiddle.push({value:i});
+                                    }
+                                }
+
+                                if ( vm._currentPages >= vm._totalPages - paginationMiddleShowNumber && i >= vm._totalPages - paginationMiddleShowNumber - 1) {
+                                    vm._ellipsisLeft = true;
+                                    vm._pageArrayMiddle.push({value:i});
+                                }
+                            }
+                        }
+                    }
                 }
             });
 
@@ -126,11 +182,9 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 method : "POST",
                 data   : params1,
                 success:function(data){
-
                     vm.orderList = data.list;
-                    vm.orderListTotalPages = Math.ceil(data.count / data.pagesize);
-
-                    app.showPagination();
+                    vm._totalPages = Math.ceil(data.count / data.pagesize);
+                    vm._showPagination()
                 }
             })
         },
@@ -150,62 +204,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     }
                 }
             })
-        },
-
-
-        showPagination : function () {
-            vm.orderListTotalPagesArrayLeft = [];
-            vm.orderListTotalPagesArrayRight = [];
-            vm.orderListTotalPagesArray = [];
-
-            vm.orderEllipsisLeft = false;
-            vm.orderEllipsisRight = false;
-
-            for (var i=1; i<= vm.orderListTotalPages; i++){
-
-                if (vm.orderListTotalPages <= 8){
-                    vm.orderListTotalPagesArray.push({value:i});
-                }else{
-
-                    if ( i <= 2 ){
-                        vm.orderListTotalPagesArrayLeft.push({value:i});
-                    }
-
-                    if ( i >= vm.orderListTotalPages - 1 ){
-                        vm.orderListTotalPagesArrayRight.push({value:i});
-                    }
-
-                    if (i>2 && i < vm.orderListTotalPages - 1){
-                        if (vm.orderCurrentPage <=4 && i <=5){
-                            vm.orderEllipsisRight = true;
-                            vm.orderListTotalPagesArray.push({value:i});
-                        }
-
-                        if ( vm.orderCurrentPage > 4 && vm.orderCurrentPage < vm.orderListTotalPages - 3) {
-                            vm.orderEllipsisLeft = true;
-                            vm.orderEllipsisRight = true;
-
-                            if ( i > vm.orderCurrentPage -2 && i < vm.orderCurrentPage + 2){
-                                vm.orderListTotalPagesArray.push({value:i});
-                            }
-                        }
-
-                        if ( vm.orderCurrentPage >= vm.orderListTotalPages - 3 && i >= vm.orderListTotalPages - 4) {
-                            vm.orderEllipsisLeft = true;
-                            vm.orderListTotalPagesArray.push({value:i});
-                        }
-                    }
-
-                }
-
-            }
         }
+
     };
 
     $( document ).ready( function() {
         app.init();
         app.getFinancialDetailsApi();
-
     });
 
 
