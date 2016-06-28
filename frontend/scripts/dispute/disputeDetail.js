@@ -21,7 +21,7 @@ require(['jquery','bootstrap'],function($,upload){
             success : function(data){
                 if(data.success){
                     //跳转个人中心买货列表页面
-                    location.href=''
+                    location.href=$("#configUrl").val()+'/account/order/buy'
                 }
             }
 

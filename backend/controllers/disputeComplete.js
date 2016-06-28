@@ -9,20 +9,26 @@ var logger     = require("../libs/logger");
 
 exports.disputeComplete = function (req, res, next) {
 
-    var url = api_config.disputeComplete;
-    request({url : url}, function (err, data) {
+    var sellerId=req.session.user.id;
+    var params = {
+        userId: req.session.user.id,
+        orderId: req.query.orderId
+    };
+    var url=api_config.disputeComplete+"?sellerId="+params.userId+"&orderId="+params.orderId;
+    request(url, params, function (err, data) {
 
         if (err) return next(err);
-        
 
-        if (data) {
-            var source  = JSON.parse(data.body);
-            var content = {
-                headerTit : "纠纷申请完成",
-                pageTitle : "纠纷申请完成"
-            };
-            res.render('dispute/disputeComplete', content);
+        var source  = JSON.parse(data.body);
+        var content={
+            userId:sellerId,
+            orderId:source.data.order.id,
+            headerTit: "纠纷申请页面",
+            pageTitle: "纠纷申请页面",
+            order:source.data.order,
+            files:source.data.files
         }
+        res.render('dispute/disputeComplete', content);
 
     });
 

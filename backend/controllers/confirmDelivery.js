@@ -17,7 +17,7 @@ exports.confirmDelivery = function (req, res, next) {
     var userId=req.session.user.id;
     request.get({
         url : url,
-        userId:'15',
+        userId:userId,
         orderId:'3632'
     }, function (err, data) {
         if (err) return next(err);

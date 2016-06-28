@@ -58,11 +58,11 @@
                 <div class="summaryL">
                     <p class="summaryLTit">订单摘要</p>
                     <p><label>订单号：</label><%=order.orderNO%></p>
-                    <p><label>下单时间：</label><%= getString(order.createtime) %></p>
-                    <p><label>签合同时间：</label><%= getString(order.signContractTime)%></p>
-                    <p><label>付款时间：</label><%= getString(order.paymentTime)%></p>
+                    <p><label>下单时间：</label><%= getStringVal(order.createTime) %></p>
+                    <p><label>签合同时间：</label><%= getStringVal(order.signContractTime)%></p>
+                    <p><label>付款时间：</label><%= getStringVal(order.paymentTime)%></p>
                     <p><label>订单状态：</label><span><%=order.statusName%></span></p>
-                    <p class="searchDetail"><a href="/getOrderDetail?orderId=<%= order.orderId%>">查看订单详情&gt;&gt;</a></p>
+                    <p class="searchDetail"><a href="/getBuyOrderDetail?orderId=<%= order.orderId%>&userId=<%= userId%>">查看订单详情&gt;&gt;</a></p>
                     <div class="summaryLAdditional">
                         <p><label>卖家：</label><%= order.sellerCompanyName%></p>
                         <p><label>联系人：</label><%= order.dealerName%></p>
@@ -130,12 +130,12 @@
                         <!-- 上传 -->
                         <div class="disputeuploadWrap">
                             <div class="fileList">
-                                <%if (order.imgList !=undefined){%>
-                                    <%for(var i=0;i<order.imgList.length;i++){%>
-                                        <div class="preview" data-id=<%= order.imgList[i].path %> data-name= <%=order.imgList[i].name%>>
-                                            <img src=<%= order.imgList[i].url %> >
+                                <%if (files !=undefined){%>
+                                    <%for(var i=0;i<files.length;i++){%>
+                                        <div class="preview" data-id=<%=files[i].path %> data-name= <%=files[i].name%>>
+                                            <img src=<%= files[i].path %> >
                                             <div class="modifyFile">
-                                                <a href="javascript:void(0)" class="modify" data-id=<%= order.imgList[i].path %> data-name=<%=order.imgList[i].name%>>修改</a><a href="javascript:void(0)" class="delete">删除</a>
+                                                <a href="javascript:void(0)" class="modify" data-id=<%= files[i].path %> data-name=<%=files[i].name%>>修改</a><a href="javascript:void(0)" class="delete">删除</a>
                                             </div>
                                         </div>
                                     <%}%>

@@ -34,11 +34,12 @@ exports.bindingBankAccount = function (req, res, next) {
         ]
     };
 
-    var url = api_config.bindingBankAccount+"?userId=15";
+
     var userId=req.session.user.id;
+    var url = api_config.bindingBankAccount+"?userId="+userId;
     request.get({
         url : url,
-        userId:15
+        userId:userId
     }, function (err, data) {
         if (err) return next(err);
         if (data){
@@ -199,7 +200,6 @@ exports.remittance = function (req, res, next) {
     }, function (err, data, body) {
         if (err) return next(err);
         var resultJson = JSON.parse(body);
-        console.log(body+"???????????????????")
         return res.send(resultJson);
     });
 };

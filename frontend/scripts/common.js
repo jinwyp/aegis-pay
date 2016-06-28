@@ -26,8 +26,8 @@ require(['jquery', 'bootstrap', 'datachecker'],function($, bootstrap, datachecke
 	var showServerError = function(status,message) {
 		var errorMsg = {
 			401: "请重新登录...",
-			403: "您没有权限访问该网页...",
-			404: "您访问的网页不存在...",
+			403: "您没有权限访问...",
+			404: "您请求的数据不存在...",
 			400: "参数传入错误，请稍后重试...",
 			500: "服务器出错，请稍后重试...",
 			409:  message   //业务逻辑错误

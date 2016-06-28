@@ -16,7 +16,8 @@ var config = {
         host : '10.100.10.2',
         port : '6379',
         db   : 0
-    }
+    },
+    site_page: 'https://www-staging.yimei180.com'
 };
 
 module.exports = config;
