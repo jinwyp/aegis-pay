@@ -149,7 +149,6 @@ exports.ejs2html = function (data, ejspath, options) {
  *
  */
 exports.zipFile = function (options) {
-    var self = this;
     return new Promise(function (resolve, reject) {
         if (!options || !options.path) {
             // throw new Error('zipFile needs param path');
@@ -164,36 +163,36 @@ exports.zipFile = function (options) {
             options.path = [options.path];
         }
 
-        self.default = {type : 'zip', output : zips_path};
+        var defaultOptions = {type : 'zip', output : zips_path};
 
         if (!options.zipname) {
             if (utils.isDirExistsSync(options.path[0])) {
-                self.default.zipname = _.last(_.split(options.path[0], path.sep)) + '.' + self.default.type;
+                defaultOptions.zipname = _.last(_.split(options.path[0], path.sep)) + '.' + defaultOptions.type;
             } else {
-                self.default.zipname = path.basename(options.path[0], path.extname(options.path[0])) + '.' + self.default.type;
+                defaultOptions.zipname = path.basename(options.path[0], path.extname(options.path[0])) + '.' + defaultOptions.type;
             }
         }
 
-        self.options = _.assign({}, self.default, options || {});
+        options = _.assign({}, defaultOptions, options || {});
 
-        utils.makeDir(self.options.output);
+        utils.makeDir(options.output);
 
-        var archive = archiver(self.options.type, {});
+        var archive = archiver(options.type, {});
 
-        var output = fs.createWriteStream(self.options.output + '/' + self.options.zipname);
+        var output = fs.createWriteStream(options.output + '/' + options.zipname);
 
         archive.on('error', reject);
 
         output.on('close', function () {
             logger.debug(archive.pointer() + ' total bytes');
             logger.debug('archiver has been finalized and the output file descriptor has closed.');
-            resolve(self.options.output + '/' + self.options.zipname);
+            resolve(options.output + '/' + options.zipname);
         });
 
 
         archive.pipe(output);
 
-        _.each(self.options.path, function (val) {
+        _.each(options.path, function (val) {
             if (utils.isDirExistsSync(val)) {
                 archive.directory(val, val.replace(val, ''));
             } else if (utils.isFileExistsSync(val)) {
