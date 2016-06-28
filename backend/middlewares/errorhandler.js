@@ -55,7 +55,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         }
     }
 
-    if ((typeof err.type === 'undefined') && (typeof newErr.type === 'undefined')){
+    if ((typeof err.type === 'undefined') && !newErr){
         newErr = new SystemError(500, err.message, err);
         newErr.stack = err.stack;
     }else{
