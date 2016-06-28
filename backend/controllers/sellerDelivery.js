@@ -19,12 +19,10 @@ exports.sellerDelivery = function (req, res, next) {
 
         var qualityZip = zipurl.qualityPath.replace(__download, '/download');
         var quantityZip = zipurl.quantityPath.replace(__download, '/download');
-
-
         request.get({
             url: url,
-            userId: '15',
-            orderId: '3632'
+            userId: sellerId,
+            orderId: req.query.orderId
         }, function (err, data) {
             if (err) return next(err);
             if (data) {
@@ -55,8 +53,8 @@ exports.sellerDelivery = function (req, res, next) {
                     ]
                 };
                 var content = {
-                    sellerId: '15',
-                    orderId: '3632',
+                    sellerId: sellerId,
+                    orderId: req.query.orderId,
                     headerTit: "确认提货页面",
                     pageTitle: "确认提货页面",
                     statusObj: statusObj,
