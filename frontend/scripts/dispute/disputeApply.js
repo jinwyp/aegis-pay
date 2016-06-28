@@ -142,20 +142,24 @@ require(['jquery','pay.upload'],function($,upload){
                 // 把图片插入数组
                 var imgList=[];
                 $(".fileList .preview").each(function(i,val){
-                    imgList.push("imgList"+"["+i+"]"+".path"+":"+$(this).data("id")+","+$(this).val()+"imgList"+"["+i+"]"+".name"+":"+$(this).data("name"));
+                    imgList.push("imgList"+"["+i+"]"+".path"+":"+$(this).children("img").attr("src")+","+$(this).val()+"imgList"+"["+i+"]"+".name"+":"+$(this).data("name"));
                 });
                 $.ajax({
-                    url : "/api/disputeApply",
+                    url : "/api/disputeApplySubmit",
                     data:{
-                        deliveryGoods:$('input:radio[name="delivery"]:checked').val(),
-                        returnGoods:$('input:radio[name="return"]:checked').val(),
-                        disputeRemarks:$("#disputeRemarks").val(),
-                        imgList:imgList
+                        "userId" : $("#userId").val(),
+                        "orderId": $("#orderId").val(),
+                        "version" : $("#version").val(),
+                        "deliveryGoods":$('input:radio[name="delivery"]:checked').val(),
+                        "returnGoods":$('input:radio[name="return"]:checked').val(),
+                        "disputeRemarks":$("#disputeRemarks").val(),
+                        "imgList":imgList
                     },
                     type:"POST",
                     success:function(data){
                         if(data.success){
                             // jump
+                            location.href='/dispute/disputeComplete'
                         }
 
                     }

@@ -42,51 +42,184 @@ var details3 = [
 
 
 var result = {
-    "success": true,
-    "data": {
-        "payments": {
-            "page": 1,
-            "pagesize": 10,
-            "rowNum": 10,
-            "totalCount": null,
-            "totalPage": null,
-            "list": [],
-            "indexNum": 0,
-            "count": 0,
-            "userId": 2719,
-            "type": null,
-            "startDate": null,
-            "endDate": null,
-            "searchType": 0,
-            "searchContent": null,
-            "userFundAccount": "3110710001261001468",
-            "typeList": [
-                {
-                    "type": "paymentstypelist",
-                    "sequence": 1,
-                    "name": "充值"
-                },
-                {
-                    "type": "paymentstypelist",
-                    "sequence": 2,
-                    "name": "提现"
-                },
-                {
-                    "type": "paymentstypelist",
-                    "sequence": 3,
-                    "name": "销售"
-                },
-                {
-                    "type": "paymentstypelist",
-                    "sequence": 4,
-                    "name": "采购"
-                }
-            ]
-        }
+    "payments": {
+        "page": 1,
+        "pagesize": 1,
+        "rowNum": 10,
+        "totalCount": null,
+        "totalPage": null,
+        "list": [
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111003",
+                "createDate": "20160627",
+                "transactionNO": "J0000000001268",
+                "money": 2.00,
+                "balanceMoney": 7.00,
+                "remarks": null,
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106752611",
+                "orderId": null,
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001267",
+                "money": 1.00,
+                "balanceMoney": 7.00,
+                "remarks": "weqwewqe trasactionNo:1111111111",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106752650",
+                "orderId": "0",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "092640",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001094",
+                "money": 3.00,
+                "balanceMoney": 5.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261001470",
+                "otherCompanyName": "资金初始化--上海念瞳半导体科技有限公司",
+                "otherBankName": null,
+                "printCode": "20160624105430228207",
+                "orderId": "3636",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001266",
+                "money": 1.00,
+                "balanceMoney": 6.00,
+                "remarks": "222222222",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106777601",
+                "orderId": "3635",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "174838",
+                "createDate": "20160623",
+                "transactionNO": "J0000000001206",
+                "money": 2.00,
+                "balanceMoney": 2.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160623175612277120",
+                "orderId": "3636",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001266",
+                "money": 1.00,
+                "balanceMoney": 6.00,
+                "remarks": "222222222",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106777601",
+                "orderId": "3635",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "174838",
+                "createDate": "20160623",
+                "transactionNO": "J0000000001206",
+                "money": 2.00,
+                "balanceMoney": 2.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160623175612277120",
+                "orderId": "3636",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "111042",
+                "createDate": "20160624",
+                "transactionNO": "J0000000001266",
+                "money": 1.00,
+                "balanceMoney": 6.00,
+                "remarks": "222222222",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160624111106777601",
+                "orderId": "3635",
+                "type" : 1
+            },
+            {
+                "fundAccount": "3110710001261037605",
+                "createTime": "174838",
+                "createDate": "20160623",
+                "transactionNO": "J0000000001206",
+                "money": 2.00,
+                "balanceMoney": 2.00,
+                "remarks": "123456789",
+                "otherFundAccount": "3110710001261032452",
+                "otherCompanyName": "测试1",
+                "otherBankName": null,
+                "printCode": "20160623175612277120",
+                "orderId": "3636",
+                "type" : 1
+            }
+        ],
+        "indexNum": 0,
+        "count": 20,
+        "userId": 2719,
+        "type": null,
+        "startDate": null,
+        "endDate": null,
+        "searchType": 0,
+        "searchContent": null,
+        "userFundAccount": "3110710001261037605",
+        "typeList": [
+            {
+                "type": "paymentstypelist",
+                "sequence": 1,
+                "name": "充值"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 2,
+                "name": "提现"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 3,
+                "name": "销售"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 4,
+                "name": "采购"
+            }
+        ],
+        "content": null
     }
 };
 
-result.data.payments.list = details;
 
 interceptPersist
 
@@ -100,6 +233,11 @@ interceptPersist
     data : result
 })
 .post('/finance/payments/list', { userId: "2719" }).reply(200, {
+    success:true,
+    error:"",
+    data:result
+})
+.post('/finance/payments/list', { userId: "213" }).reply(200, {
     success:true,
     error:"",
     data:result

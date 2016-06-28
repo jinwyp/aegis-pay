@@ -62,7 +62,7 @@
                     <p><label>签合同时间：</label><%= getString(order.signContractTime)%></p>
                     <p><label>付款时间：</label><%= getString(order.paymentTime)%></p>
                     <p><label>订单状态：</label><span><%=order.statusName%></span></p>
-                    <p class="searchDetail"><a href="">查看订单详情&gt;&gt;</a></p>
+                    <p class="searchDetail"><a href="/getOrderDetail?orderId=<%= order.orderId%>">查看订单详情&gt;&gt;</a></p>
                     <div class="summaryLAdditional">
                         <p><label>卖家：</label><%= order.sellerCompanyName%></p>
                         <p><label>联系人：</label><%= order.dealerName%></p>
@@ -152,6 +152,9 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value=<%= order.orderId%> id="orderId" />
+    <input type="hidden" value=<%= order.version%> id="version" />
+    <input type="hidden" value=<%= userId%> id="userId" />
 </div>
 
 <%- include ../global/footer/footer %>

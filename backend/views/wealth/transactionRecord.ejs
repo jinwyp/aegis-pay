@@ -21,9 +21,9 @@
                     <option value="2" <%if(type==2){ %>selected<% } %>>销售</option>
                 </select>
                 <span>交易时间:</span>
-                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=startDate%>"/></div>
+                <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
-                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=endDate%>"/></div>
+                <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
                 <span>交易状态:</span>
                 <select name="status" id="status">
                     <% for(var i in statusList) { %>
@@ -41,7 +41,7 @@
                     <option value="3" <%if(searchType==3){ %>selected<% } %>>流水号</option>
                     <option value="4" <%if(searchType==4){ %>selected<% } %>>公司名称</option>
                 </select>
-                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=content%>"/>
+                <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=clearEmpty(content)%>"/>
                 <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
             </div>
         </div>
@@ -56,7 +56,7 @@
                     <th width="160">编号</th>
                     <th width="160">金额</th>
                     <th width="120">状态</th>
-                    <th width="170">操作</th>
+                    <th width="120">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,25 +65,29 @@
                     <td width="130"><%=recordList[i].createTime%></td>
                     <td width="100"><%=recordList[i].typeName%></td>
                     <td width="100" class="coal-target">
-                        <div class="title"><%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
+                        <div class="title" title="<%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
+                                recordList[i].otherHarbour,recordList[i].otherHarbour,recordList[i].coalType,recordList[i].NCV02)%>">
+                            <%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
                                     recordList[i].otherHarbour,recordList[i].otherHarbour,recordList[i].coalType,recordList[i].NCV02)%></div>
                         <div><span class="label">煤种:</span><%=recordList[i].coalType%></div>
-                        <div><span class="label">品名:</span><%=recordList[i].brandName%></div>
+                        <div class="title" title="<%=getStringVal(recordList[i].brandName)%>"><span class="label">品名:</span><%=getStringVal(recordList[i].brandName)%></div>
                         <div><span class="label">热值:</span><%= multiArgAppend(recordList[i].NCV,recordList[i].NCV02,"kcal/kg") %></div>
                     </td>
                     <td width="160" class="order-number">
                         <div><span class="label">订单号:</span><%=recordList[i].orderNO%></div>
-                        <div><span class="label">合同号:</span><%=recordList[i].contractNO%></div>
-                        <div><span class="label">付款流水号:</span><%=recordList[i].paymentTransaction%></div>
+                        <div><span class="label">合同号:</span><%=getStringVal(recordList[i].contractNO)%></div>
+                        <div><span class="label">付款流水号:</span><%=getStringVal(recordList[i].paymentTransaction)%></div>
                         <%if(recordList[i].tailMoneyTransaction!=null){%>
-                        <div><span class="label">补款流水号:</span><%=recordList[i].tailMoneyTransaction%></div>
+                        <div><span class="label">补款流水号:</span><%=getStringVal(recordList[i].tailMoneyTransaction)%></div>
                         <%}else{%>
-                        <div><span class="label">退款流水号:</span><%=recordList[i].refundMoneyTransaction%></div>
+                        <div><span class="label">退款流水号:</span><%=getStringVal(recordList[i].refundMoneyTransaction)%></div>
                         <%}%>
                     </td>
-                    <td width="160"><%=recordList[i].totalMoney%></td>
+                    <td width="160"><%=formatMoney(recordList[i].totalMoney)%></td>
                     <td width="120"><%=recordList[i].statusName%></td>
-                    <td width="170"><input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="付款付款"/><a>详情</a></td>
+                    <td width="120">
+                        <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="付款付款"/>
+                        <a>查看详情</a></td>
                 </tr>
                 <%}%>
                 </tbody>
