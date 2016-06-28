@@ -20,7 +20,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
         if (data) {
             var source = JSON.parse(data.body);
             logger.debug('userId-----------------'+req.session.user.id);
-            logger.debug('status-----------------'+source.data.order.status);
+            logger.debug('status-----------------'+source.data.type);
             logger.debug('order-----------------'+JSON.stringify(source.data.order));
             logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
             var step = 0;
@@ -32,15 +32,20 @@ exports.getBuyOrderDetail = function (req, res, next) {
                     step = 2;
                     break;
                 case 'WaitConfirmDelivery':
+                case 'ReturnedDeliveryGoods':
+                case 'WaitVerifyDeliveryGoods':
                     step = 3;
                     break;
                 case 'WaitSettleAccounts':
-                case 'ReturnedDeliveryGoods':
+                case 'WaitVerifySettle':
+                case 'ReturnedSettleAccounts':
                     step = 4;
                     break;
                     case 'WaitReceiveReceipt':
                     step = 5;
                     break;
+                default :
+                    step=5;
             }
             var statusObj = {
                 step     : step,        // 第几步
@@ -71,7 +76,8 @@ exports.getBuyOrderDetail = function (req, res, next) {
             var content = {
                 headerTit  : "待签电子合同",
                 pageTitle  : "订单详情",
-                type       : "buy",
+                //type       : source.data.order.type,
+                type       : 0,
                 statusObj  : statusObj,
                 "sellInfo" : source.data.sellInfo,
                 "order"    : source.data.order

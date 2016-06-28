@@ -27,12 +27,12 @@
             <div class="explain">
                 <div class="item line-start line-gray">
                     <span class="dot-icon start dot-gray"></span>
-                    <div class="item-line">已付货款：<div class="number">200000</div>&nbsp;元</div>
+                    <div class="item-line">已付货款：<div class="number"><%= formatMoney(order.totalMoney,2) %></div>&nbsp;元</div>
                     <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
                 </div>
                 <div class="item line-end line-green">
                     <span class="dot-icon end dot-green"></span>
-                    <div class="item-line">待退货款：<div class="number orange">200000000.00</div>&nbsp;元</div>
+                    <div class="item-line">待退货款：<div class="number orange"><%= formatMoney(order.totalMoney,2) %></div>&nbsp;元</div>
                     <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
                     <div class="item-line"><span class="time status-color">等待退回</span></div>
                 </div>
