@@ -2,6 +2,7 @@ require.config({
   baseUrl: '/static/scripts',
   paths: { 
     'jquery': '/static/components/jquery/dist/jquery',
+    'validator': '/static/components/validator-js/validator',
     'bootstrap': '/static/components/bootstrap/dist/js/bootstrap',
     'eonasdan-bootstrap-datetimepicker': '../../static/components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
     'moment': '../../static/components/moment/moment',
@@ -28,6 +29,7 @@ require.config({
     'canvas-to-blob': '../../static/components/blueimp-canvas-to-blob/js/canvas-to-blob.min',
     'pay.upload': '../../static/custom_components/upload/upload',
     'message': 'Plugins/message',
+    'datachecker': 'Plugins/datachecker',
     'html5shiv': '/static/components/html5shiv/static/html5shiv',
     'requirejs': '/static/components/requirejs/require',
     "devbridge-autocomplete": "/static/components/devbridge-autocomplete/dist/jquery.autocomplete",

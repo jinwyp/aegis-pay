@@ -15,13 +15,14 @@ define(['jquery'],function($){
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val(),
                 payPassword = self.els.$pass.val();
-            if(!sms_code){
-                self.els.$codeTipErr.text('请输入校验码').show();
+                console.log(datachecker.smsText(sms_code))
+            if(!datachecker.smsText(sms_code)){
+                self.els.$codeTipErr.text('请输入有效的校验码').show();
                 self.els.$code.focus();
                 return;
             }
-            if(!payPassword){
-                self.els.$passTipErr.text('请输入支付密码').show();
+            if(!datachecker.payPassword(payPassword)){
+                self.els.$passTipErr.text('请输入有效的支付密码').show();
                 self.els.$pass.focus();
                 return;
             }

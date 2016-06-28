@@ -13,7 +13,7 @@ require(['jquery','bootstrap'],function($){
             }
         })
         $.get('/api/fetch-settle-html?orderId=' + orderId, function(data){
-            $('.download').attr('href', data.htmlpath);
+            $('.downLoad').attr('href', data.htmlpath);
         })
     }
 });

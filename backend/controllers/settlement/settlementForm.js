@@ -15,7 +15,7 @@
   	WaitWriteReceipt	 	审核通过.待卖家开发票(_)	*/
 
 
-var request  = require('request');
+var request  = require('../../libs/request');
 var checker  = require('../../libs/datachecker');			// 验证
 var apiHost  = require('../../api/v1/api_config');          // 接口路径配置
 
@@ -24,6 +24,7 @@ var config  = require('../../config');
 var utils   = require('../../libs/utils');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
+var config = require('../../config');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
 var pdfHtmlTemplatePath = path.join(config.file_path.download, '/settlement/pdfTemplate.ejs');
 
@@ -79,36 +80,25 @@ exports.orderSettlement = function (req, res, next) {
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
-	console.log('----111111111----------------------------------------------------------------');
-	console.log(apiUrl);
-
 	request(apiUrl, function (err, data) {
-
 		if (err) return next(err);
 		if (data && data.body){
-			var replyData = {
-				headerTit	: '下载打印结算单',
-				subTitle 	: '下载打印结算单',
-				userType 	: 'buy'
-			};
-			replyData.data = JSON.parse(data.body).data;
+			var replyData = JSON.parse(data.body);
+				replyData.headerTit	= '下载打印结算单';
+				replyData.subTitle 	= '下载打印结算单';
+				replyData.userType 	= 'buy';
 
-			console.log('----333333333333333----------------------------------------------------------------');
-			console.log(replyData);
-			console.log(replyData.order.buyerCompanyName);
-			return res.send(replyData);
+			// 文件转换处理
+			ejs.renderFile(pdfHtmlTemplatePath, replyData, function (err, resultHtml) {
+				if (err) return next(err);
+				var pdfOptions = {width: '1000px', height: '1414px', orientation: 'portrait' };		// format : 'Letter'
+				var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
 
-			//ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
-			//	if (err) return next(err);
-			//	var pdfOptions = {format : 'Letter'};
-			//	var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
-            //
-			//	pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
-			//		if (err) return next(err);
-			//		return res.download(pdfFileName);
-			//	});
-			//});
-
+				pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
+					if (err) return next(err);
+					return res.download(pdfFileName);
+				});
+			});
 		}else{
 			return next(new Error('Nock error!'))
 		}

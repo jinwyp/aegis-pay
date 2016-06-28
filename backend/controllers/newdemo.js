@@ -1,7 +1,7 @@
 /* 现在的"路由"调用方法 ************************ */
 var router = require('express').Router();
 var logger = require('../libs/logger');
-var rq = require('request');
+var rq = require('../libs/request');
 require('request-debug')(rq);
 exports.init = function (app) {
     app.use('/', router);

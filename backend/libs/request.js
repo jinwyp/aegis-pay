@@ -1,4 +1,4 @@
-var request = require('request');
+var rq = require('request');
 var _ = require('lodash');
 
 // organize params for post get
@@ -21,15 +21,15 @@ function initParams(uri, options, callback){
     if(typeof params.callback === 'function'){
         var _cb = params.callback;
         params.callback = function(err, response, body){
-            var statusCode = response.statusCode;
+            var statusCode = response && response.statusCode;
             if(err || (statusCode === 200)){
                 _cb(err, response, body);
             }else{
-                var errMsg = response&&response.body&&JSON.parse(response.body).error || response.statusMessage;
+                var errMsg = response&&response.body
+                            && ((typeof response.body == 'object') ? response.body.error : JSON.parse(response.body).error)
+                            || response.statusMessage;
                 var er = new Error('Service request error: ' + errMsg);
-                er.customCode = statusCode;
-                er.customMsg = errMsg;
-                er.customType = 'service-request';
+                _.assign(er, {'customCode': statusCode, 'customMsg': errMsg, 'customType': 'service-request'});
                 _cb(er);
             }
         }
@@ -46,9 +46,12 @@ function verbFunc (verb) {
   }
 }
 
-var rq = _.assign(rq, request);
+function request (uri, options, callback) {
+    var params = initParams(uri, options, callback)
+    return rq(params);
+}
 
-rq.post = verbFunc('post');
-rq.get = verbFunc('get');
+request.post = verbFunc('post');
+request.get = verbFunc('get');
 
-module.exports =rq;
+module.exports =request;

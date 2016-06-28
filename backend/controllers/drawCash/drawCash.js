@@ -1,7 +1,7 @@
  /*
     财务管理中心 --  账户通(初始化页面)    
 */
- var request = require('request');
+ var request = require('../../libs/request');
  var api_config = require('../../api/v1/api_config');
  var uuid = require('node-uuid');
  var UnauthenticatedAccessError = require('../../errors/UnauthenticatedAccessError');

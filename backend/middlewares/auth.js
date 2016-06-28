@@ -1,4 +1,4 @@
-var request = require('request');
+var request = require('../libs/request');
 var api_config = require('../api/v1/api_config');
 
 var config                     = require('../config');
