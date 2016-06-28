@@ -29,4 +29,4 @@ echo "---------------------------------------------------------------";
 echo "mode = $MODE";
 echo "---------------------------------------------------------------";
 
-supervisor -w api,views,config,controllers,custom_components,middlewares,errors,libs,routes,nock,app.js app.js
+supervisor -w api,config,controllers,custom_components,middlewares,errors,libs,routes,nock,app.js app.js
