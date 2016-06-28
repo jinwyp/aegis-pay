@@ -12,18 +12,17 @@ var __download = config.file_path.download;
 
 // 处理业务逻辑
 exports.sellerDelivery = function (req, res, next) {
-    console.log('====================seller====================')
+    console.log('====================seller====================');
+    var sellerId = req.session.user.id;
+    var url = api_config.confirmDeliverySellerDelivery + "?sellerId="+sellerId+"&orderId="+req.query.orderId;
     cache.get('qZips_' + req.query.orderId, function (err, zipurl) {
-        console.log(zipurl.qualityPath+"!!!!!!!"+zipurl.quantityPath+"&&&&&&&&&&&r");
-        console.log(zipurl);
+
         var qualityZip = zipurl.qualityPath.replace(__download, '/download');
         var quantityZip = zipurl.quantityPath.replace(__download, '/download');
-        var url = api_config.confirmDeliverySellerDelivery + "?sellerId=15&orderId=3632";
-        var sellerId = req.session.user.id;
         request.get({
             url: url,
-            userId: '15',
-            orderId: '3632'
+            userId: sellerId,
+            orderId: req.query.orderId
         }, function (err, data) {
             if (err) return next(err);
             if (data) {
@@ -54,8 +53,8 @@ exports.sellerDelivery = function (req, res, next) {
                     ]
                 };
                 var content = {
-                    sellerId: '15',
-                    orderId: '3632',
+                    sellerId: sellerId,
+                    orderId: req.query.orderId,
                     headerTit: "确认提货页面",
                     pageTitle: "确认提货页面",
                     statusObj: statusObj,

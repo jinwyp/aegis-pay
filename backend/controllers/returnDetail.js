@@ -21,18 +21,15 @@ exports.returnDetail = function (req, res, next) {
     // checker.orderId(req.query.orderId);
 
     cache.get('qZips_' + req.query.orderId, function (err, zipurl) {
-
+        var params = {
+            sellerId: req.session.user.id,
+            orderId: req.query.orderId
+        };
         var userId = req.session.user.id;
-        // 暂时写死
-        var url = api_config.orderReturn + "?sellerId=15&orderId=3632";
+        var url = api_config.orderReturn + "?sellerId="+params.sellerId+"&orderId="+params.orderId;
 
         var qualityZip = zipurl.qualityPath.replace(__download, '/download');
-        var quantityZip = zipurl.replace(__download, '/download');
-        
-        var params = {
-            userId: req.session.user.id,
-            sellerId: req.query.orderId
-        };
+        var quantityZip = zipurl.quantityPath.replace(__download, '/download');
 
         request(url, params, function (err, data) {
 
@@ -52,7 +49,7 @@ exports.returnDetail = function (req, res, next) {
                 "qualityZip": qualityZip,
                 "quantityZip": quantityZip,
                 "qualityList":source.data.qualityList,
-                "quantityList":source.data.qualityList,
+                "quantityList":source.data.quantityList,
                 userType: 'buy'
 
             };

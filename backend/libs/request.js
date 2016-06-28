@@ -25,7 +25,9 @@ function initParams(uri, options, callback){
             if(err || (statusCode === 200)){
                 _cb(err, response, body);
             }else{
-                var errMsg = response&&response.body&&JSON.parse(response.body).error || response.statusMessage;
+                var errMsg = response&&response.body
+                            && ((typeof response.body == 'object') ? response.body.error : JSON.parse(response.body).error)
+                            || response.statusMessage;
                 var er = new Error('Service request error: ' + errMsg);
                 _.assign(er, {'customCode': statusCode, 'customMsg': errMsg, 'customType': 'service-request'});
                 _cb(er);

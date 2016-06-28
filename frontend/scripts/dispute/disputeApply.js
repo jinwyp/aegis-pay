@@ -142,7 +142,7 @@ require(['jquery','pay.upload'],function($,upload){
                 // 把图片插入数组
                 var imgList=[];
                 $(".fileList .preview").each(function(i,val){
-                    imgList.push("imgList"+"["+i+"]"+".path"+":"+$(this).children("img").attr("src")+","+$(this).val()+"imgList"+"["+i+"]"+".name"+":"+$(this).data("name"));
+                    imgList.push({"path":$(this).children("img").attr("src"),"name":$(this).data("name")});
                 });
                 $.ajax({
                     url : "/api/disputeApplySubmit",
@@ -153,13 +153,12 @@ require(['jquery','pay.upload'],function($,upload){
                         "deliveryGoods":$('input:radio[name="delivery"]:checked').val(),
                         "returnGoods":$('input:radio[name="return"]:checked').val(),
                         "disputeRemarks":$("#disputeRemarks").val(),
-                        "imgList":imgList
+                        "files":imgList
                     },
                     type:"POST",
                     success:function(data){
                         if(data.success){
-                            // jump
-                            location.href='/dispute/disputeComplete'
+                            location.href='/dispute/disputeComplete?orderId='+$("#orderId").val()+"&userId="+$("#userId").val()
                         }
 
                     }
