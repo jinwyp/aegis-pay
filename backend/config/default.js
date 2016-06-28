@@ -26,7 +26,7 @@ var config = {
         db   : 0
     },
     passport: {
-      member: 'https://member-local.yimei180.com:7777',
+      member: 'https://member-local.yimei180.com',
       cookieName: 'passport'
     },
 

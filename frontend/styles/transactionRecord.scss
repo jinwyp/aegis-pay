@@ -6,6 +6,7 @@
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
   a {
+    display: block;
     color: $color_manage_text;
     text-decoration: none;
     cursor: pointer;
@@ -62,12 +63,19 @@
           td{
             text-align: center;
             padding: 8px 0;
-            .btn-option{ margin-right: 16px; }
+            .btn-option{ margin-bottom: 10px; }
           }
           td.coal-target > div{
             text-align: left;
             padding: 4px 0 4px 20px;
             .label{  color: $color_tip_font;  padding: 0;  }
+          }
+          .title{
+              width: 105px;
+              white-space:nowrap;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              text-align: center;
           }
           td.order-number > div{
             text-align: left;

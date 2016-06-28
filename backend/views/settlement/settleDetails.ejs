@@ -16,12 +16,11 @@
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
                 <h3 class="headLeft fl">开票详情</h3>
-                <% if(typeof htmlpath != 'undefined') { %>
-                    <p class="headRight"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
-                <% }else {%>
-                    <p class="headRight"><a href="" class="downLoad">下载开票资料</a></p>
-                    <input type='hidden' name='nohtmlpath' />
-                <% } %>
+
+                    <p class="headRight"><a href="/api/fetch-settle-html?orderId=<%= data.order.id %>&userId=<%= userId %>" class="downLoad">下载开票资料</a></p>
+
+                    <!--<p class="headRight"><a href="" class="downLoad">下载开票资料</a></p>-->
+                    <!--<input type='hidden' name='nohtmlpath' />-->
             </div>
             <div class="plateMain">
                 <!-- 结算单信息 板块-->
@@ -39,12 +38,8 @@
 
         <p class="mt20"></p>
         <!--<p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>-->
-        <% if(typeof htmlpath != 'undefined') { %>
-        <p class="headRight txt_r"><a href="<%= htmlpath %>" class="downLoad">下载开票资料</a></p>
-        <% }else {%>
-        <p class="headRight txt_r"><a href="#" class="downLoad">下载开票资料</a></p>
-        <input type='hidden' name='nohtmlpath' />
-        <% } %>
+        <p class="headRight txt_r"><a href="/api/fetch-settle-html?orderId=<%= data.order.id %>&userId=<%= userId %>" class="downLoad">下载开票资料</a></p>
+
         <p class="mt20"></p>
     </div>
 </div>

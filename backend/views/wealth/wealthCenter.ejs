@@ -22,9 +22,9 @@
         </div>
         <div class="centerWorkWrap">
             <ul class="centerWork">
-                <li><a href="#"><em class="trade"></em><br/><span>交易支付</span></a></li>
-                <li><a href="#"><em class="work"></em><br/><span>管控业务风险</span></a></li>
-                <li><a href="#"><em class="wealth"></em><br/><span>财务单据管理</span></a></li>
+                <li><a href="javascript:void(0);"><em class="trade"></em><br/><span>交易支付</span></a></li>
+                <li><a href="javascript:void(0);"><em class="work"></em><br/><span>管控业务风险</span></a></li>
+                <li><a href="javascript:void(0);"><em class="wealth"></em><br/><span>财务单据管理</span></a></li>
             </ul>
         </div>
     </div>
@@ -32,11 +32,11 @@
         <p class="wealthPower">财务管理中心五大权限</p>
         <div class="fivePower">
             <ul class="clearfix">
-                <li><a href="#"><p><em class="power-1"></em></p><br/><span>汇款回执</span></a></li>
-                <li><a href="#"><p><em class="power-2"></em></p><br/><span>结算管理</span></a></li>
-                <li><a href="#"><p><em class="power-3"></em></p><br/><span>资金安全管理</span></a></li>
-                <li><a href="#"><p><em class="power-4"></em></p><br/><span>票据管理</span></a></li>
-                <li><a href="#"><p><em class="power-5"></p></em><br/><span>业务管理</span></a></li>
+                <li><a href="javascript:void(0);"><p><em class="power-1"></em></p><br/><span>汇款回执</span></a></li>
+                <li><a href="javascript:void(0);"><p><em class="power-2"></em></p><br/><span>结算管理</span></a></li>
+                <li><a href="javascript:void(0);"><p><em class="power-3"></em></p><br/><span>资金安全管理</span></a></li>
+                <li><a href="javascript:void(0);"><p><em class="power-4"></em></p><br/><span>票据管理</span></a></li>
+                <li><a href="javascript:void(0);"><p><em class="power-5"></p></em><br/><span>业务管理</span></a></li>
             </ul>
         </div>
         <div class="agreement">
@@ -48,11 +48,13 @@
         <div class="open-btn openAccount" >
             <button id="open-btn">开通易煤网资金账户</button>
         </div>
+        <input type="hidden" id="userId" value="<%= user.id %>">
+        <%- include agreement %>
     </div>
 </div>
 
 
-<%- include agreement %>
+
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>

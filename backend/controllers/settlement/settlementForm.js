@@ -20,6 +20,7 @@ var checker  = require('../../libs/datachecker');			// 验证
 var apiHost  = require('../../api/v1/api_config');          // 接口路径配置
 
 var path	= require('path');
+var config  = require('../../config');
 var utils   = require('../../libs/utils');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
@@ -75,6 +76,7 @@ exports.orderSettlement = function (req, res, next) {
 
 
 // 下载打印, 结算信息
+// /settlement/settlementInfoDownload?orderId=3622&userId=15
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
@@ -82,15 +84,14 @@ exports.settlementInfoDownload = function (req, res, next) {
 		if (err) return next(err);
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
+				replyData.headerTit	= '下载打印结算单';
+				replyData.subTitle 	= '下载打印结算单';
+				replyData.userType 	= 'buy';
 
-			replyData.headerTit = '下载打印结算单';
-			replyData.subTitle 	= '下载打印结算单';
-			replyData.userType 	= 'buy';
-			//return res.send(replyData);
-
-			ejs.renderFile(pdfHtmlTemplatePath, {data: replyData}, function (err, resultHtml) {
+			// 文件转换处理
+			ejs.renderFile(pdfHtmlTemplatePath, replyData, function (err, resultHtml) {
 				if (err) return next(err);
-				var pdfOptions = {format : 'Letter'};
+				var pdfOptions = {width: '1000px', height: '1414px', orientation: 'portrait' };		// format : 'Letter'
 				var pdfFileName = pdfSavePath + '/settlementInfoDownload.pdf';
 
 				pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
@@ -98,7 +99,6 @@ exports.settlementInfoDownload = function (req, res, next) {
 					return res.download(pdfFileName);
 				});
 			});
-
 		}else{
 			return next(new Error('Nock error!'))
 		}

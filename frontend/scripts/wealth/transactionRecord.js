@@ -9,9 +9,17 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'bootstrap'],
             var pickerStart, pickerEnd,
                 day_1=86400000,
                 startObj=$(".startDate"),
-                endObj=$(".endDate");
-            pickerStart=startObj.pickadate({}).pickadate('picker');
-            pickerEnd=endObj.pickadate({}).pickadate('picker');
+                endObj=$(".endDate"),
+                datePackerSettings = {
+                    //monthsFull: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    //monthsShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    //weekdaysFull: ['星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+                    //weekdaysShort: ['日','一', '二', '三', '四', '五', '六'],
+                    format: 'yyyy-mm-dd',
+                    clear: '清空'
+                };
+            pickerStart=startObj.pickadate(datePackerSettings).pickadate('picker');
+            pickerEnd=endObj.pickadate(datePackerSettings).pickadate('picker');
             pickerStart.set("disable", [{ from: [1970,1,1] }]);
             pickerEnd.set("disable", [{ from: [1970,1,1]}]);
 
@@ -77,7 +85,39 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'bootstrap'],
         transactionRecord.initContentInput();
     });
 
+    //--------------------------合同管理模块的操作-----------------------------
+    //下载
+    $(".btn-download").click(function(){
+        var id = $(this).data('value');
+        alert('暂无配置下载路径');
+        //location.href='';
+    });
 
+    //--------------------------结算管理模块的操作-----------------------------
+    //修改结算
+    $(".btn-updateSettle").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
+    //确认结算
+    $(".btn-confirmSettle").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
+    //补款
+    $(".btn-pay").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
+    //完善开票信息
+    $(".btn-updateInfo").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
+    //结算
+    $(".btn-settle").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
+    //退款
+    $(".btn-returnMoney").click(function(){
+        window.open(host+"/order/orderClose?id="+$(this).data("value"));
+    });
 
 });
 

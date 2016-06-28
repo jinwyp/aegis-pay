@@ -31,27 +31,21 @@ exports.compact = function (req, res, next) {
 
 
 exports.compactDetail = function (req, res, next) {
-
-    //checker.orderId(req.query.id);
-    var orderId = req.query.id;
-    var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
-    request(api_config.getCompact + params, function (err, data) {
+    request.post({url:api_config.getCompact,form:{orderId:req.query.orderId,userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是----------------------------' + data.body);
         if (data) {
             var source = JSON.parse(data.body);
             if(source.success) {
                 var content = {
                     headerTit : '合同详情',
                     pageTitle : '合同详情',
-                    "data" : source.data.compact
+                    "data" : source.data.contract
                 };
                 //渲染页面
                 return res.render('compact/compactDetail', content);
+            }else{
+                res.send(source.data.error);
             }
         }
     });
-
-
 };

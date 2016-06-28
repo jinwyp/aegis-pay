@@ -29,6 +29,8 @@ exports.wealthCenter = function (req, res, next) {
 exports.checkUserCompany = function (req, res, next) {
     var url = api_config.checkUserCompany;
     //url = api_config.host + 'wealth/checkUserCompany';			// TODO: 本地
+    var user = req.session.user;    // req.session.user.id;
+   
 
     var param = {
       userId : req.session.user.id

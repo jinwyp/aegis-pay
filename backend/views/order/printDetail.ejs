@@ -1,6 +1,3 @@
-
-
-
 <link rel="stylesheet" href="<%= staticPath %>/styles/printDetail.css">
 <div id="print-detail-body">
     <div class="title">订单详情</div>
@@ -19,9 +16,9 @@
             </tr>
             <tr>
                 <td width="100"><div class="label">付款交易号</div></td>
-                <td width="200"><div><%= getString(order.transactionNO) %></div></td>
+                <td width="200"><div><%= getStringVal(order.transactionNO) %></div></td>
                 <td width="100"><div class="label">付款账号</div></td>
-                <td width="200"><div><%= getString(order.buyerFundAccount) %></div></td>
+                <td width="200"><div><%= getStringVal(order.buyerFundAccount) %></div></td>
             </tr>
             <tr>
                 <td width="100"><div class="label">提货地址</div></td>
@@ -38,19 +35,19 @@
             </tr>
             <tr>
                 <td width="100"><div class="label">收款账号</div></td>
-                <td width="300" colspan="3"><div><%= getString(order.sellerFundAccount) %></div></td>
+                <td width="300" colspan="3"><div><%= getStringVal(order.sellerFundAccount) %></div></td>
             </tr>
         </table>
         <div class="user-info-title">订单信息</div>
         <div class="order-info">
             <ul>
                 <li class="order-item"><div class="div-label">交易订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
-                <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= getString(order.contractNO) %></div></li>
-                <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getString(order.createtime) %></div></li>
-                <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getString(order.signContractTime) %></div></li>
-                <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getString(order.paymentTime) %></div></li>
-                <li class="order-item"><div class="div-label">确认收货时间：</div><div class="div-value"><%= getString(order.confirmDeliveryTime) %></div></li>
-                <li class="order-item"><div class="div-label">确认结算时间：</div><div class="div-value"><%= getString(order.settleAccountTime) %></div></li>
+                <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= getStringVal(order.contractNO) %></div></li>
+                <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createtime) %></div></li>
+                <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getStringVal(order.signContractTime) %></div></li>
+                <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getStringVal(order.paymentTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认收货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认结算时间：</div><div class="div-value"><%= getStringVal(order.settleAccountTime) %></div></li>
             </ul>
         </div>
         <table id="print-table">

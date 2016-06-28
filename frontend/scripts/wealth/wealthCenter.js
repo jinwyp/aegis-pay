@@ -12,15 +12,15 @@ require(['jquery','bootstrap', 'message'],function($, bootstrap, message){
             url:    '/api/wealth/checkUserCompany',
             success: function(data){
                 if(data.success) {
-                    setTimeout(function() {
+
                         location.href = '/';
-                    }, 500);
+
                 } else {
-                    setTimeout(function() {
+                    // setTimeout(function() {
                         $(".modal_2").modal();
                         $("#modalInfo_2").html("贵公司尚未通过认证，无法开通资金账户");
                         $("#md_ok_2").val("前往认证公司信息");
-                    }, 800);
+                    // }, 800);
                 }
             }
         });
@@ -29,7 +29,29 @@ require(['jquery','bootstrap', 'message'],function($, bootstrap, message){
 
     // 点击.前往认证公司
     $("#md_ok_2").click(function(){
-        location.href="/";
+        var memberUrl = $("#memberUrl").val();
+
+        $.post({
+            url:    '/api/wealth/checkUserCompany',
+            data:   {userId:$("#userId").val()},
+            // type: 'json',
+            success: function(data){
+                if(data.success) {
+
+                } else {
+                    if(data.error == "verifying"){                            //待审核
+                        location.href=memberUrl+" /account/companyDetail";     //查看页面
+                    }else if(data.error == "verifyNotPass"){                  //审核未通过
+                        location.href=memberUrl+" /account/companyDetail";      //查看页面
+                    }else if(data.indexOf("companyNotExists")){      //审核未通过
+                        location.href=memberUrl+"/account/companyCreate";       //新建页面
+                    }
+
+
+                }
+            }
+        });
+
     });
 
 
