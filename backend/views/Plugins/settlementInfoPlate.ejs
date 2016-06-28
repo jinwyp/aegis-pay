@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td><%= orderObj.totalMoney %></td>
-                        <td><%= orderObj.totalMoney %> </td>
+                        <td><span class="totalMoney"><%= orderObj.totalMoney %></span> </td>
                         <td><%= orderObj.paymentTime %></td>
                         <td>&nbsp;</td>
                     </tr>
@@ -95,9 +95,9 @@
                         </td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="tailMoneyNum"><%= orderObj.tailMoney || 0 %></span>
+                                <span class="refundMoney"><%= orderObj.tailMoney || 0 %></span>
                             <% }else{ %>
-                                <span class="refundMoneyNum"><%= orderObj.refundMoney || 0 %></span>
+                                <span class="refundMoney"><%= orderObj.refundMoney || 0 %></span>
                             <% } %>
                         </td>
                     </tr>
@@ -117,9 +117,9 @@
                         <td><%= orderObj.settleMoney %></td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="tailMoneyNum"><%= orderObj.tailMoney %></span>
+                                <span class="refundMoney"><%= orderObj.tailMoney %></span>
                             <% }else{ %>
-                                <span class="refundMoneyNum"><%= orderObj.refundMoney %></span>
+                                <span class="refundMoney"><%= orderObj.refundMoney %></span>
                             <% } %>
                         </td>
                     </tr>

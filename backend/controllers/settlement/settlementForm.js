@@ -158,11 +158,11 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 	var url = apiHost.buyersReturn;
 		//url = apiHost.host + 'settlement/buyersReturn';			// TODO: 本地
 
-	request.post(url, {formData:req.body, json:true}, function (err, data) {
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = JSON.parse(data.body);;
+			var replyData = JSON.parse(data.body);
 
 			replyData.headerTit = '待审核.买家退回结算单 220000';
 			return res.send(replyData);
@@ -177,11 +177,19 @@ var buyersReturn = exports.buyersReturn = function (req, res, next) {
 var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 	var url = apiHost.buyersEditReason;
 		//url = apiHost.host + 'settlement/buyersEditReason';			// TODO: 本地
-	request.post(url, {formData:req.body, json:true}, function (err, data) {
+
+	console.log('--buyersEditReason---url-----------------');
+	console.log(url);
+
+	//request.post(url, {formData: req.body, json: true}, function (err, data) {
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		if (err) return next(err);
 
 		if (data && data.body){
-			var replyData = JSON.parse(data.body);;
+			var replyData = JSON.parse(data.body);
+			console.log('--buyersEditReason--------------------');
+			console.log(replyData);
+
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))
