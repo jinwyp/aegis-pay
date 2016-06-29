@@ -27,8 +27,8 @@
                     <tr>
                         <td><%= orderObj.harbour %> </td>
                         <td><%= orderObj.coalType %> </td>
-                        <td><%= orderObj.amount %></td>
-                        <td><%= orderObj.price %></td>
+                        <td><%= formatMoney(orderObj.amount, 2) %></td>
+                        <td><%= formatMoney(orderObj.price, 2) %></td>
                     </tr>
                     <tr>
                         <th>合同金额（元）</th>
@@ -37,8 +37,8 @@
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
-                        <td><%= orderObj.totalMoney %></td>
-                        <td><span class="totalMoney"><%= orderObj.totalMoney %></span> </td>
+                        <td><%= formatMoney(orderObj.totalMoney, 2) %></td>
+                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= formatMoney(orderObj.totalMoney, 2) %></span> </td>
                         <td><%= orderObj.paymentTime %></td>
                         <td>&nbsp;</td>
                     </tr>
@@ -69,7 +69,7 @@
                         </th>
                         <th width="230">
                             <% if(isShowEdit_sj) {%><s class="require">*</s><%}%>
-                            <span class="giveChangeTit">
+                            <span class="refundMoneyTit">
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
                                 应补货款金额（元）
                             <% }else{ %>
@@ -80,46 +80,45 @@
                     </tr>
 
                     <% if(isShowEdit_sj) {%>
-                    <tr>
-                        <td class="billBox">
-                            <input type="number" class="billIpt" name="ins_ettleAmount" placeholder="0-100整数" value="<%= orderObj.settleAmount || '' %>" />
-                            <span class="errInfo"></span>
-                        </td>
-                        <td class="billBox">
-                            <input type="number" class="billIpt" name="ins_harbourDues" placeholder="0-100整数" value="<%= orderObj.harbourDues || '' %>"/>
-                            <span class="errInfo"></span>
-                        </td>
-                        <td class="billBox">
-                            <input type="number" class="billIpt" name="ins_settleMoney" placeholder="0-100整数" value="<%= orderObj.settleMoney || '' %>"/>
-                            <span class="errInfo"></span>
-                        </td>
-                        <td>
-                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="refundMoney"><%= orderObj.tailMoney || 0 %></span>
-                            <% }else{ %>
-                                <span class="refundMoney"><%= orderObj.refundMoney || 0 %></span>
-                            <% } %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>说明</th>
-                        <td colspan="3" class="billBox">
-                            <input type="text" class="billIpt" name="ins_remarks" placeholder="请填写关于结算的说明，如没有说明即可不用填写" value="<%= orderObj.remarks || '' %>"/>
-                            <span class="errInfo"></span>
-                        </td>
-                    </tr>
+<tr>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.settleAmount || ''), 2) %>" />
+        <span class="errInfo"></span>
+    </td>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_harbourDues" maxlength="11" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.harbourDues || ''), 2) %>"/>
+        <span class="errInfo"></span>
+    </td>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_settleMoney" maxlength="11" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.settleMoney || ''), 2) %>"/>
+        <span class="errInfo"></span>
+    </td>
+    <td>
+        <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+            <span class="refundMoney" data-num="<%= orderObj.tailMoney || 0 %>"><%= formatMoney((orderObj.tailMoney || 0), 2) %></span>
+        <% }else{ %>
+            <span class="refundMoney" data-num="<%= orderObj.refundMoney || 0 %>"><%= formatMoney((orderObj.refundMoney || 0), 2) %></span>
+        <% } %>
+    </td>
+</tr>
+<tr>
+    <th>说明</th>
+    <td colspan="3" class="billBox">
+        <textarea class="txtArea txtRemarks" name="ins_remarks" rows="1" maxlength="500" placeholder="请填写关于结算的说明，如没有说明即可不用填写。"><%= orderObj.remarks || '' %></textarea>
+    </td>
+</tr>
+
 
                     <% } else { %>
-
                     <tr>
-                        <td><%= orderObj.settleAmount %></td>
-                        <td><%= orderObj.harbourDues %></td>
-                        <td><%= orderObj.settleMoney %></td>
+                        <td><%= formatDecimal(orderObj.settleAmount, 2) %></td>
+                        <td><%= formatMoney(orderObj.harbourDues, 2) %></td>
+                        <td><%= formatMoney(orderObj.settleMoney, 2) %></td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="refundMoney"><%= orderObj.tailMoney %></span>
+                                <span class="refundMoney"><%= formatMoney(orderObj.tailMoney, 2) %></span>
                             <% }else{ %>
-                                <span class="refundMoney"><%= orderObj.refundMoney %></span>
+                                <span class="refundMoney"><%= formatMoney(orderObj.refundMoney, 2) %></span>
                             <% } %>
                         </td>
                     </tr>
@@ -128,6 +127,7 @@
                         <td colspan="3"><%= orderObj.remarks %></td>
                     </tr>
                     <% } %>
+
 
                     <tr>
                         <th colspan="2">购方公司</th>

@@ -8,6 +8,7 @@ local是本地开发， dev是容器开发,  staging是上线准备环境,  prod
 
 ## 安装依赖 后端
 backend 目录下：
+- npm install -g nodemon supervisor
 - npm install
 - brew install imagemagick ghostscript poppler    (OSX)
 - sudo apt-get install imagemagick ghostscript poppler-utils    (Ubuntu)
@@ -15,6 +16,7 @@ backend 目录下：
 
 ## 安装依赖 前端
 app 目录下：
+- npm install -g bower nodemon
 - npm install
 - bower install
 - 使用gulp 进行文件打包编译

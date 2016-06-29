@@ -14,7 +14,7 @@ var SystemError = require('../errors/SystemError');
 
 
 // 处理业务逻辑
-exports.accountSetting = function (req, res, next) {
+exports.securitySetting = function (req, res, next) {
 
     var user = req.session.user;
 
@@ -25,13 +25,13 @@ exports.accountSetting = function (req, res, next) {
             next(new SystemError());
             return;
         }
-        
+
         //头部
         var firstTab=req.query.firstTab==undefined?2:req.query.firstTab;
         var secondTab=req.query.secondTab==undefined?3:req.query.secondTab;
         // sideBar
         var accountSideBar = {
-            current : 1,
+            current : 2,
             sideBarList : [
                 {
                     listName : '基本信息',
@@ -45,11 +45,11 @@ exports.accountSetting = function (req, res, next) {
                 }
             ]
         };
-        
+
         if(data){
             var source = JSON.parse(data.body);
             var content = {
-                headerTit      : "基本信息",
+                headerTit      : "安全设置",
                 pageTitle      : "账户设置",
                 accountSideBar :accountSideBar,
                 tabObj : {
@@ -63,7 +63,7 @@ exports.accountSetting = function (req, res, next) {
             };
             logger.debug('获取到的结果是content----------------------------' ,content);
             //渲染页面
-            return res.render('account/accountSetting',content);
+            return res.render('account/securitySetting',content);
         }
     })
 

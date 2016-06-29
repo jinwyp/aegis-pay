@@ -59,8 +59,8 @@
                     <td class="va_top" width="66">退回原因：</td>
                     <td>
                         <div class="txtAreaBox">
-                            <div class="dockDown">您还可以输入<span class="limitNum reasonSize"><%= (200 - orderObj.returnReason.length) || (200 - orderObj.deliveryReturnReason.length)%></span>个字</div>
-                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="200" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></textarea>
+                            <div class="dockDown">您还可以输入<span class="limitNum reasonSize"><%= (500 - orderObj.returnReason.length) || (500 - orderObj.deliveryReturnReason.length)%></span>个字</div>
+                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></textarea>
                         </div>
                     </td>
                 </tr>

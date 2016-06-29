@@ -37,7 +37,7 @@
 
                     <!--统计数据长度来判断表格样式-->
                         <%count =0; for(var i in indexList){ count++; %><%}%>
-                        <% if (count<=6) {%>
+                        <% if (count<=7) {%>
                         <!--list小于6的情况-->
 
                         <table class="checkList">
@@ -45,11 +45,11 @@
                                 <td width="55">批次</td>
                                 <td width="92"><i class="calIcon"></i>检测时间</td>
                                 <td width="92">提货吨数(吨)</td>
-                                <% if (count<=6) {%>
+                                <% if (count<=7) {%>
                                 <% for(var i in indexList){%>
                                 <td width="92"><%= indexList[i] %></td>
                                 <%}%>
-                                <% for(var i=0;i<6-count;i++) {%>
+                                <% for(var i=0;i<7-count;i++) {%>
                                 <td width="92"></td>
                                 <% } %>
                                 <%}%>
@@ -61,15 +61,15 @@
                                 <td class="batch"><%=k+1%></td>
                                 <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%= indexDataList[k].checkTime %> /></td>
                                 <td><input type="text" name="checkAmount" value=<%= indexDataList[k].checkAmount %> /></td>
-                                <% if (count<=6) {%>
+                                <% if (count<=7) {%>
                                 <!--从提货吨数后开始遍历-->
                                 <% var count1=0; for(var i in indexDataList[k]){ count1++;%>
                                 <%if(count1>2){%>
-                                <td><input type="text" name=<%=i%> value=<%= indexDataList[k][i] %> /></td>
+                                    <td><input type="text" name=<%=i%> value=<%= indexDataList[k][i] %> /></td>
                                 <%}%>
                                 <%}%>
                                 <!--不足6位开始补全-->
-                                <% for(var i=0;i<6-count;i++) {%>
+                                <% for(var i=0;i<7-count;i++) {%>
                                 <td></td>
                                 <% } %>
                                 <%}%>
@@ -93,7 +93,7 @@
                                 <td width="92"><i class="calIcon"></i>检测时间</td>
                                 <td width="92">提货吨数(吨)</td>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex<=6) {%>
+                                <% if(Tindex<=7) {%>
                                 <td width="92"><%= indexList[i] %></td>
                                 <%}%>
                                 <%}%>
@@ -105,7 +105,7 @@
                                 <td><input type="text" name="checkAmount" value=<%=indexDataList[k].checkAmount%> /></td>
                                 <!--判断第一行数据表头显示，从提货吨数后开始-->
                                 <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
-                                    <% if(Tindex>2 && Tindex<=8) {%>
+                                    <% if(Tindex>2 && Tindex<=9) {%>
                                     <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
                                     <%}%>
                                 <%}%>
@@ -122,24 +122,25 @@
                             <tr class="thead">
                                 <!--第二行开始表头显示-->
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex>6) {%>
-                                <td width="92"><%= indexList[i] %></td>
+                                <% if(Tindex>7) {%>
+                                    <td width="92"><%= indexList[i] %></td>
                                 <%}%>
                                 <%}%>
-                                <% for(var i=0;i<14-count;i++) {%>
-                                <td></td>
+                                <% for(var i=0;i<16-count;i++) {%>
+                                    <td></td>
                                 <% } %>
                             </tr>
                             <tr>
                                 <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
-                                <% if(Tindex>8) {%>
-                                <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
+                                    <% if(Tindex>9) {%>
+                                        <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
+                                    <%}%>
                                 <%}%>
-                                <%}%>
-                                <% for(var i=0;i<14-count;i++) {%>
-                                <td></td>
+                                <% for(var i=0;i<16-count;i++) {%>
+                                    <td></td>
                                 <% } %>
                             </tr>
+
                         </table>
 
                         <%}%>
@@ -149,19 +150,19 @@
             <%}else{%>
             <div class="banCon pb10">
                 <%count =0; for(var i in indexList){ count++; %><%}%>
-                    <% if (count<=6) {%>
+                    <% if (count<=7) {%>
                         <div class="tableWrap">
                         <table class="checkList">
                             <tr class="thead">
                                 <td width="55">批次</td>
-                                <td width="92"><i class="calIcon"></i>检测时间</td>
-                                <td width="92">提货吨数(吨)</td>
-                                <% if (count<=6) {%>
+                                <td width="91"><i class="calIcon"></i>检测时间</td>
+                                <td width="91">提货吨数(吨)</td>
+                                <% if (count<=7) {%>
                                     <% for(var i in indexList){%>
-                                        <td width="92"><%= indexList[i] %></td>
+                                        <td width="91"><%= indexList[i] %></td>
                                     <%}%>
-                                    <% for(var i=0;i<6-count;i++) {%>
-                                        <td width="92"></td>
+                                    <% for(var i=0;i<7-count;i++) {%>
+                                        <td width="91"></td>
                                     <% } %>
                                 <%}%>
                                 <td width="94">
@@ -172,11 +173,11 @@
                                 <td class="batch">1</td>
                                 <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
                                 <td><input type="text" name="checkAmount"/></td>
-                                <% if (count<=6) {%>
+                                <% if (count<=7) {%>
                                 <% for(var i in indexList){%>
                                 <td><input type="text" name=<%=i%> /></td>
                                 <%}%>
-                                <% for(var i=0;i<6-count;i++) {%>
+                                <% for(var i=0;i<7-count;i++) {%>
                                 <td></td>
                                 <% } %>
                                 <%}%>
@@ -195,7 +196,7 @@
                                 <td width="92"><i class="calIcon"></i>检测时间</td>
                                 <td width="92">提货吨数(吨)</td>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex<=6) {%>
+                                <% if(Tindex<=7) {%>
                                     <td width="92"><%= indexList[i] %></td>
                                 <%}%>
                                 <%}%>
@@ -206,7 +207,7 @@
                                 <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
                                 <td><input type="text" name="checkAmount"/></td>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex<=6) {%>
+                                <% if(Tindex<=7) {%>
                                 <td><input type="text" name=<%=i%> /></td>
                                 <%}%>
                                 <%}%>
@@ -217,21 +218,21 @@
                             </tr>
                             <tr class="thead">
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex>6) {%>
+                                <% if(Tindex>7) {%>
                                 <td width="92"><%= indexList[i] %></td>
                                 <%}%>
                                 <%}%>
-                                <% for(var i=0;i<14-count;i++) {%>
-                                <td></td>
+                                <% for(var i=0;i<16-count;i++) {%>
+                                <td width="92"></td>
                                 <% } %>
                             </tr>
                             <tr>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
-                                <% if(Tindex>6) {%>
+                                <% if(Tindex>7) {%>
                                 <td><input type="text" name=<%=i%> /></td>
                                 <%}%>
                                 <%}%>
-                                <% for(var i=0;i<14-count;i++) {%>
+                                <% for(var i=0;i<16-count;i++) {%>
                                 <td></td>
                                 <% } %>
                             </tr>
@@ -310,7 +311,6 @@
     <input type="hidden" value="<%= order.version%>" id="version" />
     <input type="hidden" value="<%= userId%>" id="userId" />
 </div>
-
 
 <%- include ../global/footer/footer %>
 

@@ -108,6 +108,9 @@ exports.generate_compact = function (req, res, next) {
     var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
 
     request(api_config.getCompact + params, function (err, result) {
+        console.log('=========compact==============')
+        console.log(err)
+        console.log(result)
         if (err) return next(err);
 
         if (result) {

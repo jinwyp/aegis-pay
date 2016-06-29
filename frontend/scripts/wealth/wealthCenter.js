@@ -13,7 +13,7 @@ require(['jquery','bootstrap', 'message'],function($, bootstrap, message){
             success: function(data){
                 if(data.success) {
 
-                        location.href = '/';
+                        location.href = '/wealth/open-fund-account';
 
                 } else {
                     // setTimeout(function() {

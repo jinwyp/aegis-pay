@@ -120,6 +120,7 @@ var api_config = {
      *
      */
     accountSetting : host + 'account/accountSetting',   //基本信息
+    securitySetting : host + 'account/securitySetting',   //安全设置
     //notice : host + 'account/notice',   //消息提醒暂时不做
 
     // 获取用户资金账号

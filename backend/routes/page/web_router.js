@@ -42,6 +42,7 @@ var payCtl                    = require('../../controllers/pay');
 var wealthCenter              = require('../../controllers/wealth/wealthCenter');               //财富管理
 var financialHome             = require('../../controllers/wealth/financialHome');              //财富管理
 var accountSetting            = require('../../controllers/accountSetting');                    //账户设置
+var securitySetting            = require('../../controllers/securitySetting');                    //安全设置
 //var notice                    = require('../../controllers/notice');                            //账户设置消息提醒
 var paypasswordCtl            = require('../../controllers/paypassword/index');                 //paypassword
 var wealthAccount             = require('../../controllers/wealth/wealthAccount');              //账户通
@@ -52,7 +53,7 @@ var bindingBankAccount        = require('../../controllers/wealth/bindingBankAcc
 //=========================测试路由================================
 router.get('/demo', demoController.demo);                                                       //公用控件页面路由
 router.get('/test', demoController.test);                                                       
-router.get('/', siteController.home);                                                           //项目主页路由
+// router.get('/', siteController.home);                                                           //项目主页路由
 router.get('/header', headerController.header);                                                 //网页头部路由
 router.get('/subHeader', subHeaderController.subHeader);                                        //网页页面头部路由
 router.get('/footer', footerController.footer);                                                 //网页底部路由
@@ -113,7 +114,7 @@ router.get('/compactDetail', compactController.compactDetail);                  
 
 //=========================财富管理中心路由================================
 //首页
-router.get('/wealth/wealthCenter', wealthCenter.wealthCenter);                                  //财富管理中心－初始化
+router.get('/', wealthCenter.wealthCenter);                                  //财富管理中心－初始化
 router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);                          //开通资金账户
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
@@ -127,6 +128,7 @@ router.post('/drawCashCheck', drawCash.drawCashCheck);                          
 router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
 router.get('/account/accountSetting', accountSetting.accountSetting);
+router.get('/account/securitySetting', securitySetting.securitySetting);
 //router.get('/account/notice', notice.notice);                                                   //账户设置－消息提醒
 router.get('/wealth/bindingBankAccount',bindingBankAccount.bindingBankAccount);                 //账户设置－绑定银行卡
 router.get('/wealth/bindingSuccess',bindingBankAccount.bindingSuccess);                         //账户设置－绑定银行卡成功

@@ -3,7 +3,7 @@
  * */
 
 
-require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
+require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($, bootstrap, datePicker, avalon){
 
     //datePicker
     var transactionRecord= {
@@ -14,8 +14,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 endObj = $(".endDate");
             pickerStart = startObj.pickadate({}).pickadate('picker');
             pickerEnd = endObj.pickadate({}).pickadate('picker');
-            //pickerStart.set("disable", [{from: [1970, 1, 1]}]);
-            //pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
+            pickerStart.set("disable", [{from: [1970, 1, 1]}]);
+            pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
 
             startObj.on("change", function () {
                 if (new Date(startObj.val()).getTime() > new Date(endObj.val()).getTime()) {
@@ -55,11 +55,13 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 $(this).children(".triangle").removeClass("ico_triangle_down").addClass("ico_triangle_right");
             }
         }
-    })
+    });
 
     
     //未认证弹出框
     $(".sureSettle").click(function(){
+        //alert("1234")
+        $(this).prop("disabled",true);
         $.ajax({
             url:"/settlement/receiveReceipt",
             type: 'post',
@@ -76,7 +78,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                     })
                 }
                 else{
-
+                    $(this).prop("disabled",false);
                 }
             }
         });
@@ -91,13 +93,10 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         $("#billSearch").submit();
     });
 
-   /* $( "#pagechange" ).on( "click", "a", function() {
-
-    });
-*/
-    var vm = {};
 
     //分页相关
+    var vm = {};
+
     var app = {
         init : function(){
             vm = avalon.define({
@@ -105,7 +104,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 billSearchText  : '',
                 billList        : [],
                 type            : undefined,
-
+                
+                _isShowPagination : true,
                 _currentPages : 1,
                 _totalPages : 10,
                 _inputCurrentPages : 1,
@@ -198,9 +198,13 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         app.init();
        // alert($("#count").val());
        // alert($("#pagesize").val());
-        vm._totalPages = Math.ceil($("#count").val()/ $("#pagesize").val());
+        vm._totalPages = Math.ceil($("#count").val() / $("#pagesize").val());
       //  alert(vm._totalPages);
         vm._currentPages = Number($("#page").val());
+        vm._inputCurrentPages = Number($("#page").val());
+
+        if (Number($("#count").val()) < 8) {vm._isShowPagination = false};
+
         vm._showPagination();
     });
 
