@@ -19,7 +19,10 @@ requirejs(['jquery'], function($,sms_code,pay){
         $.ajax({
             url:'/api/account/fund/bankCard/verify/submit',
             type:'POST',
-            data:{userId:"250",confirmMoney:remittance},
+            data:{
+                userId:$("#userId").val(),
+                confirmMoney:remittance
+            },
             success:function(data){
                 if(data.success){
                     $(".errorMsg").text("");
