@@ -50,10 +50,6 @@ gulp.task('jslint', function() {
 // Optimize images
 gulp.task('images', function() {
     gulp.src(sourcePaths.images)
-    //.pipe(plugins.imagemin({
-    //  progressive: true,
-    //  interlaced: true
-    //}))
         .pipe(gulp.dest(distPaths.images))
 });
 
