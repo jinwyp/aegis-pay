@@ -103,6 +103,9 @@ exports.fetchPayPhone = function(req, res, next){
         return next();
     }
     request(api_config.fetchPayPhone+'?userId=' + req.session.user.id, function(err, data){
+        if(err && err.customCode === 409 && err.customMsg === '您还没有开通易煤网资金账户'){
+            return next();
+        }
         if(err) { return next(err);}
         var data = JSON.parse(data.body);
         if(data && data.success){
