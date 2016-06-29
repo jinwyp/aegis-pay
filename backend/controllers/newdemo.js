@@ -1,8 +1,13 @@
 /* 现在的"路由"调用方法 ************************ */
 var router = require('express').Router();
 var logger = require('../libs/logger');
-var rq = require('../libs/request');
-require('request-debug')(rq);
+// var rq = require('../libs/request');
+var rq = require('request') ;
+// require('request-debug')(rq);
+// rq.debug=true ;
+// rq.debug = true ;
+// require('request-debug')(rq);
+// require('request-debug')(rq);
 exports.init = function (app) {
     app.use('/', router);
 };
@@ -24,24 +29,27 @@ exports.init = function (app) {
 
 // 控制器Controller
 var newDemo = exports.newDemo = function (req, res, next) {
-    rq.post({
+    //        uri:'http://127.0.0.1:8888/test/',
+    rq({
+        type:'get',
         uri:'http://127.0.0.1:8888/test/',
         // qs:{file:'file1'},
         // contentType:'application/json',
         // qs:{
         //
         // },
-        json:{
+        form:{
             file:'sfs',
             files:[{name:'23423',path:'23423'},{name:'424',path:'234'}]
         },
             // fiels:[{name:'23423',path:'23423'},{name:'424',path:'234'}],
             // files:JSON.stringify({file:[{name:'23423',path:'23423'},{name:'424',path:'234'}])
-            // files:{name:'sdfsd'}
+            // files:{name:'sdfsd}
 
     },function(error, response, body){
-        console.log(body);
-        res.end(JSON.stringify(body));
+        // console.log(body);
+
+        res.end(JSON.stringify("body:"+error));
     })
 };
 

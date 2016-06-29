@@ -85,7 +85,7 @@
                         <% } %>
                         <% if(userType == 'buy'){ %>
                         <!-- 买家下载-->
-                        <a href="javascript:;" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
+                        <a href="<%=zipSavePath || '' %>" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
                         <% } %>
 
                         <% data.files = data.files ? data.files : [] %>

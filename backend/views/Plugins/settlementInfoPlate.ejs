@@ -1,5 +1,4 @@
         <% var orderObj = data.order %>
-        <% var userType = userType || 'buy' %>
         <!-- 结算单信息 板块-->
         <div id="settlementInfoPlate">
             <!-- 结算信息 -->
@@ -39,13 +38,14 @@
                     </tr>
                     <tr>
                         <td><%= orderObj.totalMoney %></td>
-                        <td><%= orderObj.totalMoney %> </td>
+                        <td><span class="totalMoney"><%= orderObj.totalMoney %></span> </td>
                         <td><%= orderObj.paymentTime %></td>
                         <td>&nbsp;</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+
             <!-- 实际结算数据 -->
             <div class="mt20">
                 <% var isShowEdit_sj = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
@@ -95,9 +95,9 @@
                         </td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="tailMoneyNum"><%= orderObj.tailMoney || 0 %></span>
+                                <span class="refundMoney"><%= orderObj.tailMoney || 0 %></span>
                             <% }else{ %>
-                                <span class="refundMoneyNum"><%= orderObj.refundMoney || 0 %></span>
+                                <span class="refundMoney"><%= orderObj.refundMoney || 0 %></span>
                             <% } %>
                         </td>
                     </tr>
@@ -110,15 +110,16 @@
                     </tr>
 
                     <% } else { %>
+
                     <tr>
                         <td><%= orderObj.settleAmount %></td>
                         <td><%= orderObj.harbourDues %></td>
                         <td><%= orderObj.settleMoney %></td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="tailMoneyNum"><%= orderObj.tailMoney %></span>
+                                <span class="refundMoney"><%= orderObj.tailMoney %></span>
                             <% }else{ %>
-                                <span class="refundMoneyNum"><%= orderObj.refundMoney %></span>
+                                <span class="refundMoney"><%= orderObj.refundMoney %></span>
                             <% } %>
                         </td>
                     </tr>
