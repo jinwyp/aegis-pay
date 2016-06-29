@@ -24,19 +24,33 @@
             <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
         </td>
         <td class="info-col explain-paied-bg">
+            <%if(order.refundMoney==0&&order.tailMoney==0){%>
+            --
+            <%}else{%>
             <div class="explain">
                 <div class="item line-start line-gray">
                     <span class="dot-icon start dot-gray"></span>
                     <div class="item-line">已付货款：<div class="number"><%= formatMoney(order.totalMoney,2) %></div>&nbsp;元</div>
-                    <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
+                    <div class="item-line"><span class="time"><%= clearEmpty(order.paymentTime) %></span></div>
                 </div>
-                <div class="item line-end line-green">
-                    <span class="dot-icon end dot-green"></span>
-                    <div class="item-line">待退货款：<div class="number orange"><%= formatMoney(order.totalMoney,2) %></div>&nbsp;元</div>
-                    <div class="item-line"><span class="time">2016-04-10 16:24:32</span></div>
-                    <div class="item-line"><span class="time status-color">等待退回</span></div>
+                <div class="item line-end <%if(order.tailMoneyTime==null||order.refundMoneyTime==null){%>line-gray<%}else{%>line-green<%}%>">
+                    <span class="dot-icon end <%if(order.tailMoneyTime==null||order.refundMoneyTime==null){%>dot-gray<%}else{%>dot-green<%}%>"></span>
+                    <%if(order.refundMoney==0){%>
+                        <div class="item-line"><%if(order.tailMoneyTime==null){%>待补货款：<%}else{%>已补货款：<%}%><div class="number orange"><%= formatMoney(order.tailMoney,2) %></div>&nbsp;元</div>
+                        <div class="item-line"><span class="time"><%= clearEmpty(order.tailMoneyTime) %></span></div>
+                        <%if(order.tailMoneyTime==null){%>
+                        <div class="item-line"><span class="time orange">等待补款</span></div>
+                        <%}%>
+                    <%}else if(order.tailMoney==0){%>
+                        <div class="item-line"><%if(order.refundMoneyTime==null){%>待退货款：<%}else{%>已退货款：<%}%><div class="number orange"><%= formatMoney(order.refundMoney,2) %></div>&nbsp;元</div>
+                        <div class="item-line"><span class="time"><%= clearEmpty(order.refundMoneyTime) %></span></div>
+                        <%if(order.refundMoneyTime==null){%>
+                        <div class="item-line"><span class="time status-color">等待退回</span></div>
+                        <%}%>
+                    <%}%>
                 </div>
             </div>
+            <%}%>
         </td>
     </tr>
 </table>

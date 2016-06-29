@@ -31,7 +31,7 @@ body{
         .mt-10{  margin-top: 10px;  }
         .ml-10{  margin-left: 10px;  }
         .state-item{
-          width: 540px;
+          width: 560px;
           margin-left: auto;
           margin-right: auto;
           .status{  color: $color_green;  }
@@ -49,6 +49,7 @@ body{
             cursor: pointer;
           }
         }
+        div.hint>span{vertical-align: middle;}
       }
       .btn-bottom {
         height: 80px;

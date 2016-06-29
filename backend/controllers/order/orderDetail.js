@@ -74,7 +74,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
             };
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var content = {
-                headerTit  : "待签电子合同",
+                headerTit  : "订单详情",
                 pageTitle  : "订单详情",
                 //type       : source.data.order.type,
                 type       : 0,
@@ -93,6 +93,7 @@ exports.getSellOrderDetail = function (req, res, next) {
     request.post(
         {
             url : api_config.sellOrderDetail,
+            //form: {orderId:req.query.orderId, sellerId:req.query.sellerId}
             form: {orderId:req.query.orderId, userId:req.session.user.id}
         },
         function (err, data) {
@@ -112,15 +113,20 @@ exports.getSellOrderDetail = function (req, res, next) {
                         step = 2;
                         break;
                     case 'WaitConfirmDelivery':
+                    case 'ReturnedDeliveryGoods':
+                    case 'WaitVerifyDeliveryGoods':
                         step = 3;
                         break;
                     case 'WaitSettleAccounts':
-                    case 'ReturnedDeliveryGoods':
+                    case 'WaitVerifySettle':
+                    case 'ReturnedSettleAccounts':
                         step = 4;
                         break;
                     case 'WaitReceiveReceipt':
                         step = 5;
                         break;
+                    default :
+                        step=5;
                 }
                 var statusObj = {
                     step     : step,        // 第几步
@@ -149,14 +155,15 @@ exports.getSellOrderDetail = function (req, res, next) {
                 };
                 //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
                 var content = {
-                    headerTit  : "待签电子合同",
+                    headerTit  : "订单详情",
                     pageTitle  : "订单详情",
-                    type       : "sell",
+                    //type       : source.data.order.type,
+                    type       : 1,
                     statusObj  : statusObj,
                     "sellInfo" : source.data.sellInfo,
                     "order"    : source.data.order
                 };
-                res.render('order/buyOrderDetail', content);
+                res.render('order/sellOrderDetail', content);
             } else {
                 res.send(data.body);
             }
