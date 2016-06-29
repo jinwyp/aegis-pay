@@ -11,9 +11,11 @@
 
     <div id="bindingSuccess">
         <div class="bindingSuccessWrap">
-            <% include ../global/order/statusBar %>
+
             <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4被删除,5错误3次以上)-->
             <% if(userAccount.status==1){%>
+            <% var statusObj = statusObj[0]%>
+            <% include ../global/order/statusBar %>
                 <!--绑定成功页面-->
                 <div class="bindingSuccessInfoWrap">
                     <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">提交成功。</span>3个工作内将向*****账户（尾号<%= subFour(userAccount.userFundAccount)%>）汇入一笔1元以下的确认金额。</p>
@@ -24,6 +26,8 @@
                 <!--绑定成功页面结束-->
             <%}%>
             <% if(userAccount.status==2){%>
+            <% var statusObj = statusObj[1]%>
+            <% include ../global/order/statusBar %>
                 <!--绑定账户确认页面-->
                 <div class="bindingSuccessInfoWrap">
                     <p class="bindingMainCon bindingConfirmTit">当前状态：<span class="bindingSuc">易煤网已向*****银行卡（尾号<%= subFour(userAccount.userFundAccount)%>）汇入一笔1元以下的确认金额。</span></p>
@@ -72,12 +76,16 @@
                 <!--确认金额成功页面结束-->
             <%}%>
             <% if(userAccount.status==3){%>
+            <% var statusObj = statusObj[2]%>
+            <% include ../global/order/statusBar %>
                 <div class="bindingSuccessInfoWrap">
                     <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">您已绑定银行账户，不能重复绑定</span></p>
                     <p class="bindingsubCon">已经绑定的账号不可以重复绑定</p>
                 </div>
             <%}%>
             <% if(userAccount.status==4){%>
+            <% var statusObj = statusObj[1]%>
+            <% include ../global/order/statusBar %>
             <div class="accountError" style="display: block">
                 <p>因为您的出金账户汇款金额<span>核对不正确</span>已满三次</p>
                 <p>导致<span>账户添加失败</span>,请重新绑定银行账号</p>
