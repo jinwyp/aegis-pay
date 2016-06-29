@@ -13,12 +13,17 @@ var api_config = require('../api/v1/api_config');
 // 处理业务逻辑
 exports.confirmDelivery = function (req, res, next) {
 
-    var url = api_config.confirmDelivery+"?userId=15&orderId=3632";
+
     var userId=req.session.user.id;
+    var params = {
+        userId: req.session.user.id,
+        orderId: req.query.orderId
+    };
+    var url = api_config.confirmDelivery+"?userId="+params.userId+"&orderId="+params.orderId;
     request.get({
         url : url,
         userId:userId,
-        orderId:'3632'
+        orderId:req.query.orderId
     }, function (err, data) {
         if (err) return next(err);
         if (data){
@@ -49,8 +54,8 @@ exports.confirmDelivery = function (req, res, next) {
                 ]
             };
             var content={
-                userId:'15',
-                orderId:'3632',
+                userId:userId,
+                orderId:params.orderId,
                 headerTit   : "确认提货页面",
                 pageTitle   : "确认提货页面",
                 statusObj: statusObj,
