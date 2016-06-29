@@ -22,14 +22,15 @@ exports.billCenter = function (req, res, next) {
 
     var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')
         +(content?'&content='+content:'')+(type?'&type='+type:'')+(page && page>0?'&page='+page:'');
-    request({url : api_config.billCenter+queryString}, function (err, data) {
 
-        if (err || data.statusCode != 200) {
-            next(new SystemError());
-            return;
+    request({url : api_config.billCenter+queryString}, function (err, response, body) {
+        if (err) return next(err);
+
+        if (response.statusCode !== 200) {
+            return next(new SystemError());
         }
 
-        var source = JSON.parse(data.body);
+        var source = JSON.parse(body);
 
         //头部
         var firstTab=req.query.firstTab==undefined?4:req.query.firstTab;
@@ -69,33 +70,33 @@ exports.billCenter = function (req, res, next) {
             ]
         };
 
-        if(data) {
 
-            var content = {
-                pageTitle: "结算管理",
-                headerTit: "结算管理",
-                tabObj: {
-                    firstTab: firstTab,
-                    secondTab: secondTab
-                },
-                accountSideBar: accountSideBar,
-                receiptOrder:source.data.receiptOrder,
-                data: {
-                    receipt:source.data.receipt
-                },
-                count:source.data.receiptOrder.count,
-                page:source.data.receiptOrder.page,
-                pagesize:source.data.receiptOrder.pagesize,
-            };
-            //渲染页面
-            if(!type){
-                return res.render('settlement/billCenter', content);
-            }else if(type == 1){
-                return res.render('settlement/waitSettle', content);
-            }else if(type == 2){
-                return res.render('settlement/hadSettle', content);
-            }
+
+        var content = {
+            pageTitle: "结算管理",
+            headerTit: "结算管理",
+            tabObj: {
+                firstTab: firstTab,
+                secondTab: secondTab
+            },
+            accountSideBar: accountSideBar,
+            receiptOrder:source.data.receiptOrder,
+            data: {
+                receipt:source.data.receipt
+            },
+            count:source.data.receiptOrder.count,
+            page:source.data.receiptOrder.page,
+            pagesize:source.data.receiptOrder.pagesize,
+        };
+        //渲染页面
+        if(!type){
+            return res.render('settlement/billCenter', content);
+        }else if(type == 1){
+            return res.render('settlement/waitSettle', content);
+        }else if(type == 2){
+            return res.render('settlement/hadSettle', content);
         }
+
     })
 
 };
@@ -128,20 +129,19 @@ exports.billCenterView = function (req, res, next) {
     console.log(data + '-----------------------')
 
     request({url : api_config.billCenterView+'?userId=' + user.id +'&orderId=' + orderId}, function (err, data) {
+        if (err) return next(err);
 
-        if (err || data.statusCode != 200) {
-            next(new SystemError());
-            return;
+        if (data.statusCode !== 200) {
+            return next(new SystemError());
         }
         var replayDate = JSON.parse(data.body);
         if(replayDate.success) {
             res.json({success:true});
-
         }else{
             res.json({success:false});
         }
     })
-}
+};
 
 
 // exports. = function (req, res, next) {

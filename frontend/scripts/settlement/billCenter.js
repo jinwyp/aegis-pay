@@ -3,7 +3,7 @@
  * */
 
 
-require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
+require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($, bootstrap, datePicker, avalon){
 
     //datePicker
     var transactionRecord= {
@@ -55,7 +55,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 $(this).children(".triangle").removeClass("ico_triangle_down").addClass("ico_triangle_right");
             }
         }
-    })
+    });
 
     
     //未认证弹出框
@@ -93,6 +93,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         $("#billSearch").submit();
     });
 
+
     //分页相关
     var vm = {};
 
@@ -103,7 +104,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 billSearchText  : '',
                 billList        : [],
                 type            : undefined,
-
+                
+                _isShowPagination : true,
                 _currentPages : 1,
                 _totalPages : 10,
                 _inputCurrentPages : 1,
@@ -196,9 +198,12 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         app.init();
        // alert($("#count").val());
        // alert($("#pagesize").val());
-        vm._totalPages = Math.ceil($("#count").val()/ $("#pagesize").val());
+        vm._totalPages = Math.ceil($("#count").val() / $("#pagesize").val());
       //  alert(vm._totalPages);
         vm._currentPages = Number($("#page").val());
+
+        if (Number($("#count").val()) < 8) {vm._isShowPagination = false};
+
         vm._showPagination();
     });
 
