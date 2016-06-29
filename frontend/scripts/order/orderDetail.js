@@ -96,7 +96,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //确认提货/重新确认提货
     $(".btn-deliveryGoods").click(function(){
         alert("测试");
-        window.open(host+"/confirmDelivery?id="+$("#orderId").val());
+        location.href="/confirmDelivery?orderId="+$("#orderId").val();
     });
 
     //查看提货详情
@@ -256,18 +256,15 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //申请纠纷处理
     $(".btn-applyDispute").click(function(){
-        alert("测试");
-        location.href="/dispute/disputeApply?id="+$("#orderId").val();
+        location.href="/dispute/disputeApply?orderId="+$("#orderId").val();
     });
     //纠纷处理
     $(".btn-dealDispute").click(function(){
-        alert("测试");
-        location.href="/settlement/settlementForm?id="+$(this).data(orderid);
+        location.href="/dispute/disputeDetail?orderId="+$("#orderId").val();
     });
     //查看纠纷详情
     $(".btn-lookDispute").click(function(){
-        alert("测试");
-        //window.open(host+"/settlement/settlementForm?id="+$(this).data(orderid));
+        location.href="/dispute/disputeComplete?orderId="+$("#orderId").val();
     });
     //删除
     $(".btn-delete").click(function(){
