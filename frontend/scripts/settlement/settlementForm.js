@@ -535,7 +535,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             num2 = parseFloat(num2);
             num1 = Math.round(num1 * 10000);
             num2 = Math.round(num2 * 10000);
-            difNum = Math.round((num1 - num2) / 10000);
+            difNum = (num1 - num2) / 10000;
             return difNum;
         }
     };
