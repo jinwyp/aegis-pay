@@ -54,25 +54,6 @@ gulp.task('images', function() {
 });
 
 
-// Compile and automatically prefix stylesheets
-gulp.task('sass', ['sprite'], function() {
-    gulp.src(sourcePaths.scss)
-        //.pipe(plugins.newer({
-        //    dest : distPaths.css,
-        //    ext  : '.css'
-        //}))
-        .pipe(plugins.sass({
-            precision       : 10,
-            outputStyle     : 'compact',
-            errLogToConsole : true
-        }).on('error', plugins.sass.logError))
-        //.pipe(plugins.autoprefixer({
-        //    browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
-        //    cascade: false
-        //}))
-        .pipe(gulp.dest(distPaths.css))
-});
-
 
 gulp.task('sprite', function () {
     var spriteData = gulp.src(sourcePaths.imagesSprites).pipe(spritesmith({
@@ -86,6 +67,23 @@ gulp.task('sprite', function () {
     return spriteData.pipe(gulp.dest(''));
 });
 
+// Compile and automatically prefix stylesheets
+gulp.task('sass', ['sprite'], function() {
+    gulp.src(sourcePaths.scss)
+        .pipe(plugins.sass({
+            precision       : 10,
+            outputStyle     : 'compact',
+            errLogToConsole : true
+        }).on('error', plugins.sass.logError))
+        //.pipe(plugins.autoprefixer({
+        //    browsers: ['> 1%', 'Last 2 versions', 'IE 8'],
+        //    cascade: false
+        //}))
+        //.pipe(plugins.cleanCss({compatibility: 'ie8'}))
+        .pipe(gulp.dest(distPaths.css))
+});
+
+
 
 gulp.task('components', function() {
     gulp.src(sourcePaths.components)
@@ -94,10 +92,6 @@ gulp.task('components', function() {
 
 gulp.task('custom_components', function() {
     gulp.src(sourcePaths.custom_components_styles)
-        //.pipe(plugins.newer({
-        //    dest: distPaths.custom_components,
-        //    ext: '.css'
-        //}))
         .pipe(plugins.sass({
             precision : 10
         }).on('error', plugins.sass.logError))
