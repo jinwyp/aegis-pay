@@ -34,16 +34,6 @@
                         <td colspan="2"><%= registerTime %></td>
                     </tr>
                     <tr>
-                        <th>邮箱地址：</th>
-                        <% if(!user.email){%>
-                            <td class="red">您的邮箱尚未绑定</td>
-                            <td><a href="<%=memberUrl%>/account/bindEmail" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
-                        <%}else{%>
-                            <td><%= user.email %></td>
-                            <td><a href="<%=memberUrl%>/account/editEmail" class="iBtn iBtn_xs iBtn_no">修改</a></td>
-                        <%}%>
-                    </tr>
-                    <tr>
                         <th>资金账户：</th>
                         <td>已开通</td>
                         <td><a href="/wealth/addAccount" class="iBtn iBtn_xs iBtn_no">查看</a></td>
