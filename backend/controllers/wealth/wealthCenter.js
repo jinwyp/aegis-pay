@@ -7,20 +7,35 @@
 var request = require('../../libs/request');
 var api_config = require('../../api/v1/api_config');
 var cache = require('../../libs/cache');
+var logger = require('../../libs/logger');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 //var path = require('path');
 //var _ = require('lodash');
 
 
 // 处理业务逻辑
-exports.wealthCenter = function (req, res, next) {
-    var content = {
-        pageTitle   : "账户管理中心",
-        headerTit   : "账户管理中心"
-
+exports.checkFundAccount = function (req, res, next) {
+    var url = api_config.checkFundAccount;
+    var user = req.session.user;
+    var param = {
+        userId : req.session.user.id
     };
-        //渲染页面
-        res.render('wealth/wealthCenter',content);
+    request.post(url,{formData: param, json: true},function (err,data) {
+        var content = {
+            pageTitle   : "账户管理中心",
+            headerTit   : "账户管理中心"
+    
+        };
+
+        if(data.body.success){
+            res.redirect('wealth/financialHome');
+
+        }else{
+            //渲染页面
+            res.render('wealth/wealthCenter',content);
+        }
+
+    })
 };
 
 // 检查用公司信息 审核情况

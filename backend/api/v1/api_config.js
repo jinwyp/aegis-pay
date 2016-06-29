@@ -106,6 +106,7 @@ var api_config = {
      * checkUserCompany     检查用公司信息 审核情况
      */
     checkUserCompany:       host + 'checkUserCompanyStatus',
+    checkFundAccount:       host + 'account/fund/checkFundAccount',
 
 
     /**
