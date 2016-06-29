@@ -201,6 +201,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($, boots
         vm._totalPages = Math.ceil($("#count").val() / $("#pagesize").val());
       //  alert(vm._totalPages);
         vm._currentPages = Number($("#page").val());
+        vm._inputCurrentPages = Number($("#page").val());
 
         if (Number($("#count").val()) < 8) {vm._isShowPagination = false};
 
