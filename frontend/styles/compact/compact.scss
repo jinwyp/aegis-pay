@@ -1,6 +1,8 @@
 @import '../helpers/_variables.scss';
-@import url('#{$assetPath}/components/flexslider/flexslider.css');
-@import url('#{$assetPath}/components/lightbox2/dist/css/lightbox.min.css');
+/* 使用import 引入普通的css文件需要省略.css 扩展名,这样就能直接把引入的css编译到该scss文件中, 如果写.css 扩展名 则使用标准的css @import url 引入文件, 会增加请求,不推荐使用 */
+/* http://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file */
+@import '../../components/flexslider/flexslider';
+@import '../../components/lightbox2/dist/css/lightbox.min';
 
 .compactReadme{
   border: 1px dashed $color_readme_border;

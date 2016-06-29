@@ -141,28 +141,74 @@ exports.bindingBankAccountSubmit = function (req, res, next) {
 exports.bindingSuccess = function (req, res, next) {
 
     // 订单状态 数据模拟
-    var statusObj = {
-        step     : 2,
-        total    : 4,
-        stepList : [
-            {
-                stepName : '填写账户信息',
-                stepDate : ''
-            },
-            {
-                stepName : '银行汇款',
-                stepDate : ''
-            },
-            {
-                stepName : '确认银行汇款',
-                stepDate : ''
-            },
-            {
-                stepName : '添加成功',
-                stepDate : ''
-            }
-        ]
-    };
+    var statusObj = [
+        {
+            step     : 2,
+            total    : 4,
+            stepList : [
+                {
+                    stepName : '填写账户信息',
+                    stepDate : ''
+                },
+                {
+                    stepName : '银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '确认银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '添加成功',
+                    stepDate : ''
+                }
+            ]
+        },
+        {
+            step     : 3,
+            total    : 4,
+            stepList : [
+                {
+                    stepName : '填写账户信息',
+                    stepDate : ''
+                },
+                {
+                    stepName : '银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '确认银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '添加成功',
+                    stepDate : ''
+                }
+            ]
+        },
+        {
+            step     : 4,
+            total    : 4,
+            stepList : [
+                {
+                    stepName : '填写账户信息',
+                    stepDate : ''
+                },
+                {
+                    stepName : '银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '确认银行汇款',
+                    stepDate : ''
+                },
+                {
+                    stepName : '添加成功',
+                    stepDate : ''
+                }
+            ]
+        },
+    ];
 
 
     var url = api_config.bindingSuccess;

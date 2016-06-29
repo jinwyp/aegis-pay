@@ -1,0 +1,47 @@
+
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/accountSetting.css">
+</head>
+
+
+<body>
+<%- include ../global/modal/modal  %>
+
+<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/financialSecondHeader %>
+<div id="accountSetting">
+    <div class="accountSetting">
+        <div class="wrap clearfix">
+            <% include sideBar  %>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>邮箱地址：</th>
+                        <% if(!user.email){%>
+                        <td class="red">您的邮箱尚未绑定</td>
+                        <td><a href="<%=memberUrl%>/account/bindEmail" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
+                        <%}else{%>
+                        <td><%= user.email %></td>
+                        <td><a href="<%=memberUrl%>/account/editEmail" class="iBtn iBtn_xs iBtn_no">修改</a></td>
+                        <%}%>
+                    </tr>
+                    <tr>
+                        <th>支付密码：</th>
+                        <td>在账户资金变动,修改账户信息时需要输入的密码</td>
+                        <td><a href="/ucenter/paypassword/reset" class="iBtn iBtn_xs iBtn_no">重置</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+</body>
+</html>

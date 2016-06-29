@@ -14,7 +14,6 @@ var cache = require('../../libs/cache');
 
 // 处理业务逻辑
 exports.wealthCenter = function (req, res, next) {
-
     var content = {
         pageTitle   : "账户管理中心",
         headerTit   : "账户管理中心"
@@ -37,7 +36,6 @@ exports.checkUserCompany = function (req, res, next) {
     };
 
     request.post(url, {formData: param, json: true}, function (err, data) {
-
         if (err) return next(err);
         if (data && data.body){
             var replyData = data.body;
