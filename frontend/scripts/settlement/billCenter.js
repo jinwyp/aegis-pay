@@ -14,8 +14,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                 endObj = $(".endDate");
             pickerStart = startObj.pickadate({}).pickadate('picker');
             pickerEnd = endObj.pickadate({}).pickadate('picker');
-            //pickerStart.set("disable", [{from: [1970, 1, 1]}]);
-            //pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
+            pickerStart.set("disable", [{from: [1970, 1, 1]}]);
+            pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
 
             startObj.on("change", function () {
                 if (new Date(startObj.val()).getTime() > new Date(endObj.val()).getTime()) {
@@ -60,6 +60,8 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
     
     //未认证弹出框
     $(".sureSettle").click(function(){
+        //alert("1234")
+        $(this).prop("disabled",true);
         $.ajax({
             url:"/settlement/receiveReceipt",
             type: 'post',
@@ -76,7 +78,7 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
                     })
                 }
                 else{
-
+                    $(this).prop("disabled",false);
                 }
             }
         });
@@ -91,13 +93,9 @@ require(['jquery','bootstrap','jQuery.fn.datePicker','avalon'],function($){
         $("#billSearch").submit();
     });
 
-   /* $( "#pagechange" ).on( "click", "a", function() {
-
-    });
-*/
+    //分页相关
     var vm = {};
 
-    //分页相关
     var app = {
         init : function(){
             vm = avalon.define({

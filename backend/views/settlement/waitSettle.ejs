@@ -39,7 +39,7 @@
                                 <td><%= obj.otherCompanyName %></td>
                                 <td>待开票</td>
                                 <td>
-                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no"></div>
+                                    <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle" name="<%= obj.orderId  %>"></div>
                                     <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                 </td>
                             </tr>
