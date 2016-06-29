@@ -77,7 +77,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
             // 输入数量计算
             $reason.keyup(function () {
-                var num = 200;
+                var num = 500;
                 num = num - parseInt(this.value.length);
                 $('.reasonSize').html(num);
             });
@@ -118,7 +118,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                             $('.labReturnTime').html(data.data.lastEditReasonTime);
 
                             setTimeout(function() {
-                                $btnCancelTrigger.click();      //location.href = '/settlement/settlementForm?type=1&id=3622';
+                                $btnCancelTrigger.click();
                             }, 800);
                         } else {
                             message({
@@ -137,7 +137,51 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         settlementInfoHandle: function() { },
 
         // 清算货款信息
-        clearPaymentHandle: function() { },
+        clearPaymentHandle: function() {
+            var $totalMoney     = $('.totalMoney'),                 //已付款金额.text
+                $settleAmount   = $('[name=ins_ettleAmount]'),      //总结算吨位 *
+                $harbourDues    = $('[name=ins_harbourDues]'),      //港务费 *
+                $settleMoney    = $('[name=ins_settleMoney]'),      //总结算金额.val *
+                $refundMoney    = $('.refundMoney'),                //退补款金额.text
+                $refundMoneyTit = $('.refundMoneyTit');             //退补款标题.text
+
+            // 输入 格式|范围 控制
+            $settleAmount.keyup(numberFormatValidation);
+            $harbourDues.keyup(numberFormatValidation);
+            $settleMoney.keyup(numberFormatValidation);
+
+            // 退补款 控制
+            $settleMoney.change(function() {
+                if($.isNumeric(this.value)) {
+                    var totalMoney = parseFloat($totalMoney.attr('data-num')),          //已交总
+                        refundMoney = parseFloat($refundMoney.attr('data-num')),        //找零
+                        settleMoney = parseFloat($settleMoney.val()),                   //实际总
+                        tempNum = 0;
+                    if(settleMoney > totalMoney) {
+                        $refundMoneyTit.text('应补货款金额（元）');
+                        tempNum = mathTool.theDifference(settleMoney, totalMoney);
+                        $refundMoney.text( mathTool.formatMoney(tempNum, 2)).attr('data-num', mathTool.formatDecimal(tempNum, 2));
+                    } else {
+                        $refundMoneyTit.text('应退货款金额（元）');
+                        tempNum = mathTool.theDifference(totalMoney, settleMoney);
+                        $refundMoney.text( mathTool.formatMoney(tempNum, 2) ).attr('data-num', mathTool.formatDecimal(tempNum, 2));
+                    }
+                }
+            });
+
+            // 数字格式验证
+            function numberFormatValidation(event) {
+                var valStr = this.value, valNum = 0;  //event.keyCode
+                if($.isNumeric(valStr)) {
+                    valNum = parseFloat(valStr);
+                    if(valNum <= 0) {
+                        this.value = '';
+                    }
+                } else {
+                    this.value = '';
+                }
+            }
+        },
 
         // 补充协议文件
         supplyAgreementPlate: function() {
@@ -154,7 +198,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
@@ -165,10 +209,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             $fileList.on('click', '.fileLab_del', function(e) {
                 upload.ajaxFileRemove($(this));
             });
-
-            //下载补充协议
-
-
         },
 
         // 上传盖结算单
@@ -185,7 +225,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
@@ -201,15 +241,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         // 开具结算 操作
         issueSettleHandle: function() {
 
-            var $btnSubSettlement = $('#btnSubSettlement'),         //开具结算
-                $settleAmount = $('[name=ins_ettleAmount]'),        //总结算吨位
-                $harbourDues = $('[name=ins_harbourDues]'),         //港务费
-                $settleMoney = $('[name=ins_settleMoney]'),         //总结算金额
-                $tailMoneyNum = $('.tailMoneyNum'),
-                $refundMoneyNum = $('.refundMoneyNum');
-
-            //动态验证.及.补退款处理 - - - - - - - - - - - - - - - - - - - - - - - -
-            //
+            var $btnSubSettlement = $('#btnSubSettlement');         //开具结算
 
             //卖家.开具结算单 - - - - - - - - - - - - - - - - - - - - - - - - - - -
             $btnSubSettlement.click(function() {
@@ -221,11 +253,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                 var param = {
                     version:        $('[name=version]').val(),
-                    sellerId:       '15',   //$('[name=sellerId]').val(),
+                    sellerId:       $('[name=sellerId]').val(),
                     orderId:        $('[name=orderId]').val(),
-                    settleAmount:   $settleAmount.val(),
-                    harbourDues:    $harbourDues.val(),
-                    settleMoney:    $settleMoney.val(),
+                    settleAmount:   $('[name=ins_ettleAmount]').val(),
+                    harbourDues:    $('[name=ins_harbourDues]').val(),
+                    settleMoney:    $('[name=ins_settleMoney]').val(),
                     remarks:        $('[name=ins_remarks]').val(),
                     files:          fileListCollector($('.supplyFileList .fileLab_del') )
                 };
@@ -235,15 +267,32 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     data: param,
                     success: function(data){
                         if(data.success) {
-                            message({
-                                type: 'done',
-                                title: '完成：',
-                                detail: '确认审核 操作成功'
-                            });
-                            setTimeout(function() {
-                                location.href = '/';
-                            }, 1500);
-                            //$('#operationInfoModal').modal('show');     // 倒计时 提示框 hide
+                            //message({type: 'done', title: '完成：', detail: '确认审核 操作成功'});
+                            //setTimeout(function() {
+                            //    location.href = '/account/order/sell';
+                            //}, 1500);
+
+                            var $operationInfoModal = $('#operationInfoModal'),
+                                $option_info = $('.option_info'),
+                                arrInfo = '结算单已提交待买家确认！',
+                                $counterNum = $('.counterNum'),
+                                counterNum = 3;
+
+                            if($('[name=orderStatus]').val() == 'ReturnedSettleAccounts') {
+                                arrInfo = '结算单已重新提交待买家确认！';
+                            }
+
+                            $option_info.html(arrInfo);
+                            $operationInfoModal.modal('show');
+
+                            setInterval(function() {
+                                if(counterNum < 1) {
+                                    location.href = '/account/order/sell';
+                                }
+
+                                $counterNum.html(counterNum+'S');
+                                counterNum -= 1;
+                            }, 1000);
                         } else {
                             message({
                                 type: 'error',
@@ -264,7 +313,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
             // 输入数量计算
             $reason.keyup(function () {
-                var num = 200;
+                var num = 500;
                 num = num - parseInt(this.value.length);
                 $('.reasonSize_md').html(num);
             });
@@ -283,7 +332,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                 var param = {
                     version:    $('[name=version]').val(),
-                    userId:     '15',   //$('[name=userId]').val(),
+                    userId:     $('[name=userId]').val(),
                     orderId:    $('[name=orderId]').val(),
                     reason:     $reason.val()
                 };
@@ -300,7 +349,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 detail: '退回结算 操作成功'
                             });
                             setTimeout(function() {
-                                location.href = '/';
+                                location.href = '/account/order/buy';
                             }, 1500);
                         } else {
                             message({
@@ -312,14 +361,12 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     }
                 });
             });
-
         },
 
 
         // 确认结算 操作(审核通过)
         auditingAdoptHandle: function() {
             var $btnSubAuditing = $('#btnSubAuditing');             //确认审核.通过
-
 
             //买家.审核通过
             $btnSubAuditing.click(function() {
@@ -331,7 +378,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                 var param = {
                     version:    $('[name=version]').val(),
-                    userId:     '15',   //$('[name=userId]').val(),
+                    userId:     $('[name=userId]').val(),
                     orderId:    $('[name=orderId]').val(),
                     files:      fileListCollector($('.upSealFileList .fileLab_del') )
                 };
@@ -348,7 +395,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 detail: '审核通过 操作成功'
                             });
                             setTimeout(function() {
-                                location.href = '/';
+                                if(data.data.result) {
+                                    location.href = '/settlement/confirmTheInvoice?orderId='+ param.orderId;
+                                } else {
+                                    location.href = '/pay?userId='+ param.userId +'&type=2&orderId='+ param.orderId;       // 补款
+                                }
                             }, 1500);
                         } else {
                             message({
@@ -360,7 +411,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     }
                 });
             });
-
         },
 
 
@@ -465,6 +515,30 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         }
         return arrFile;
     }
+
+    // 工具函数 数值处理
+    var mathTool = {
+        // 格式化数字(两位小数)
+        formatDecimal: function (num, deg) {
+            return (num.toFixed(deg || 2) + '');
+        },
+
+        // 数字千分符
+        formatMoney: function (num, deg) {
+            return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        },
+
+        // 两数求差
+        theDifference: function(num1, num2) {
+            var difNum = 0;
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+            num1 = Math.round(num1 * 10000);
+            num2 = Math.round(num2 * 10000);
+            difNum = Math.round((num1 - num2) / 10000);
+            return difNum;
+        }
+    };
 
 
     /**

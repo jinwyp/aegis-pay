@@ -83,3 +83,18 @@
         }
     }
 }
+.txtArea.txtRemarks {
+    width: 672px;
+    max-width: 672px;
+    min-width: 672px;
+    overflow: hidden;
+    text-align: left;
+    background: #f3fcff;
+    resize: vertical;
+    border: none;
+
+    &:hover {
+        border: none;
+    }
+
+}
