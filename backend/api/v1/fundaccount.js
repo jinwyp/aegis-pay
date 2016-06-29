@@ -6,10 +6,10 @@ var api_config = require('./api_config');
 
 exports.openFundAccount = function(req, res, next){
     var params = _.assign({}, {userId: req.session.user.id}, req.body);
-    request.post(api_config.openFundAccount, {body: params, json:true}, function(err, data){
+    request.post({url: api_config.openFundAccount, form: params}, function(err, data){
         if(err) return next(err);
         if(!err && data){
-            var result = data.body;
+            var result = JSON.parse(data.body);
             if(result.success){
                 req.session.user.payPhone = params.payPhone;
             }

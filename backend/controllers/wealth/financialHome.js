@@ -54,7 +54,7 @@ exports.financialHome = function (req, res, next) {
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
                 res.render('wealth/financialCenterHome', content);
             }else{
-                res.send(source.data.error);
+                res.send(source.error);
             }
         }
 
