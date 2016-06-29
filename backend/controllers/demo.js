@@ -112,3 +112,8 @@ exports.demo = function (req, res, next) {
 
 };
 
+
+
+exports.test = function (req, res, next) {
+    res.render('test', {});				// 指定模板路径 渲染
+}

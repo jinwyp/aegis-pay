@@ -12,6 +12,7 @@ var confirmDelivery   = require('../../api/v1/confirmDelivery');
 var confirmComplete   = require('../../controllers/confirmComplete');
 var disputeApply      = require('../../controllers/disputeApply');
 var disputeCancel     = require('../../controllers/disputeDetail');
+var disputeSellerDetail     = require('../../controllers/disputeSellerDetail');
 var payApi            = require('../../api/v1/pay');
 var payPasswordApi    = require('../../api/v1/paypassword');
 var bindingBankAccount = require('../../controllers/wealth/bindingBankAccount');
@@ -60,7 +61,7 @@ router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 router.post('/disputeApply', disputeApply.disputeApply);
 router.post('/disputeApplySubmit', disputeApply.disputeApplySubmit);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
-router.post('/disputeCancel', disputeCancel.disputeCancel);
+router.post('/disputeBackReason', disputeSellerDetail.disputeBackReason);
 router.post('/wealth/checkUserCompany', wealthCenter.checkUserCompany);                                  //财富管理中心－初始化
 
 

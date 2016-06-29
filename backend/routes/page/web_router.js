@@ -33,6 +33,9 @@ var sellerDeliveryController  = require('../../controllers/sellerDelivery');
 var returnDetailController    = require('../../controllers/returnDetail');
 var disputeComplete           = require('../../controllers/disputeComplete');                   //纠纷申请完成页面
 var disputeDetail             = require('../../controllers/disputeDetail');                     //纠纷详情页
+var disputeSellerDetail             = require('../../controllers/disputeSellerDetail');          //卖家查看纠纷详情页
+var disputeSuccess             = require('../../controllers/disputeSuccess');          //卖家查看纠纷详情页
+
 var signCtrl                  = require('../../controllers/sign');                              //支付模块
 var confirmComplete           = require('../../controllers/confirmComplete');                   //确认完成页面
 var payCtl                    = require('../../controllers/pay');
@@ -48,6 +51,7 @@ var bindingBankAccount        = require('../../controllers/wealth/bindingBankAcc
 
 //=========================测试路由================================
 router.get('/demo', demoController.demo);                                                       //公用控件页面路由
+router.get('/test', demoController.test);                                                       
 router.get('/', siteController.home);                                                           //项目主页路由
 router.get('/header', headerController.header);                                                 //网页头部路由
 router.get('/subHeader', subHeaderController.subHeader);                                        //网页页面头部路由
@@ -86,6 +90,8 @@ router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInv
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);                        //纠纷申请完成
 router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);                              //纠纷详情
+router.get('/dispute/disputeSellerDetail', disputeSellerDetail.disputeSellerDetail);           //纠纷详情
+router.get('/dispute/disputeSuccess', disputeSuccess.disputeSuccess);           //纠纷详情
 
 //交易结束
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭订单路由

@@ -29,6 +29,8 @@ var renderMiddleware = require('./middlewares/render');
 var logger           = require("./libs/logger");
 var ejs              = require('ejs');
 
+var request          = require("request");
+
 
 // 静态文件目录
 var document  = path.join(__dirname, '../docs/swagger/ui/output');
@@ -58,6 +60,8 @@ if (config.debug) {
     // 记录渲染时间
     app.use(renderMiddleware.render);
 }
+require("./libs/request-debug")(request) ;
+
 
 
 require('./libs/ejshelper')(app);

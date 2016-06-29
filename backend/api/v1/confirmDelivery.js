@@ -1,5 +1,5 @@
 var request    = require('../../libs/request');
-var requestdebug = require('request-debug');
+// var requestdebug = require('request-debug');
 var _          = require('lodash');
 
 var api_config = require('./api_config');
@@ -11,19 +11,19 @@ var path       = require('path');
 
 var co = require('co');
 
-requestdebug(request);
+// requestdebug(request);
 
-const uploadPath = config.file_path.download + '/';
+const uploadPath = config.file_path.root + '/upload/';
 
 // 提交按钮
 exports.confirmDeliverySubmit = function (req, res, next) {
     var body = req.body;
     var url = api_config.confirmDeliverySubmit;
-    var userId=15 || req.session.user.id;
+    var userId=req.session.user.id;
 
     var formData = {
         "userId" : userId,
-        "orderId":req.body.deliveryAmount,
+        "orderId":req.body.orderId,
         "version":req.body.version,
         "deliveryAmount":req.body.deliveryAmount,
         "indexList":req.body.indexList,
@@ -46,7 +46,6 @@ exports.confirmDeliverySubmit = function (req, res, next) {
     console.log('===============confrm========');
     console.log(formData)
     console.log(req.body)
-    var formData = _.assign({}, {userId: userId, orderId:'250', version:'1'}, req.body);
     request.post({
         form:formData,
         url : url,
@@ -66,22 +65,17 @@ exports.confirmDeliverySubmit = function (req, res, next) {
 var zipFile = exports.zipFile = function (req, res, next) {
    return new Promise(function(resolve, reject){
         var params   = req.body;
-
-        var qualityArray = [];
         var qualityPathArray = [];
-       var quantityArray = [];
-       var quantityPathArray = [];
+        var quantityPathArray = [];
        
         _.each(params.qualityList, function (value, index) {
-            qualityArray.push({id : uploadPath + index, name : uploadPath + value});
-            qualityPathArray.push(uploadPath + 'zips/' + path.basename(value.path)); // 需要压缩文件的绝对路径数组
+            qualityPathArray.push(uploadPath + path.basename(value.path)); // 需要压缩文件的绝对路径数组
             console.log("chen~~~~~~~~~~~~~~~~~1")
             console.log(qualityPathArray);
         });
 
         _.each(params.quantityList, function (value, index) {
-            quantityArray.push({id : uploadPath + index, name : uploadPath + value});
-            quantityPathArray.push(uploadPath + 'zips/' + path.basename(value.path)); // 需要压缩文件的绝对路径数组
+            quantityPathArray.push(uploadPath  + path.basename(value.path)); // 需要压缩文件的绝对路径数组
             console.log("chen~~~~~~~~~~~~~~~~~2")
             console.log(quantityPathArray)
         });
@@ -89,14 +83,16 @@ var zipFile = exports.zipFile = function (req, res, next) {
        var zips = [
            convert.zipFile({path : qualityPathArray}),
            convert.zipFile({path : quantityPathArray})
-       ]
+       ];
+       console.log("zip!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+
 
        Promise.all(zips).then(function(result){
            console.log('==============promisezips===============')
            console.log(result)
            var obj = {'qualityPath': result[0], 'quantityPath': result[1]};
            cache.set('qZips_' + req.body.orderId, obj);
-           console.log(req.body+"fffffffffffffffffffffffffffffffff")
        }).catch(next);
 
    })
