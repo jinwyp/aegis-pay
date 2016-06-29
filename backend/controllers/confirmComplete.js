@@ -38,8 +38,11 @@ exports.confirmComplete = function (req, res, next) {
             }
         ]
     };
-    
-    var url = api_config.confirmDeliveryConfirmComplete+"orderId=3632&userId=15";
+    var params = {
+        userId: req.session.user.id,
+        orderId: req.query.orderId
+    };
+    var url = api_config.confirmDeliveryConfirmComplete+"?userId="+params.userId+"&orderId="+params.orderId;
     request({url : url}, function (err, data) {
 
         if (err) return next(err);

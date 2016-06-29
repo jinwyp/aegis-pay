@@ -44,21 +44,21 @@
                         <%}%>
                     </tr>
                     <tr>
-                        <th>附属账户：</th>
+                        <th>资金账户：</th>
                         <td>已开通</td>
-                        <td><a href="#" class="iBtn iBtn_xs iBtn_no">查看</a></td>
+                        <td><a href="/wealth/addAccount" class="iBtn iBtn_xs iBtn_no">查看</a></td>
                     </tr>
                     <tr class="noBorder">
                         <th>银行账户：</th>
                         <% if(cashStatus == 0){%>
                             <td>尚未绑定出金账户</td>
-                            <td><a href="#" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
+                            <td><a href="/wealth/bindingBankAccount?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
                         <%}else if(cashStatus == 1){%>
                             <td>银行账户等待确认汇款金额</td>
-                            <td><a href="#" class="iBtn iBtn_xs iBtn_no">认证</a></td>
+                            <td><a href="/wealth/bindingSuccess?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">认证</a></td>
                         <%}else if(cashStatus == 2){%>
                             <td>已绑定1张出金账户</td>
-                            <td><a href="#" class="iBtn iBtn_xs iBtn_no">查看</a></td>
+                            <td><a href="/wealth/addAccount?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">查看</a></td>
                         <%}%>
                     </tr>
 
