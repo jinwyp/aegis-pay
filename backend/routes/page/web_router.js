@@ -77,6 +77,7 @@ router.get('/pay/success', payCtl.success);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
+router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由
@@ -106,7 +107,7 @@ router.get('/toNoticeSellerReturnMoney', noticeController.toNoticeSellerReturnMo
 router.get('/toNoticeMadeReceipt', noticeController.toNoticeMadeReceipt);                       //卖家短信提醒买家已经开发票
 router.get('/printDetail', orderController.printDetail);                                        //打印订单
 router.get('/compactDetail', compactController.compactDetail);                                  //合同详情页面
-router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
+
 
 
 
