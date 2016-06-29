@@ -19,7 +19,7 @@ exports.billCenter = function (req, res, next) {
     var user = req.session.user;
     var type = req.query.type;
     var page = req.query.page;
-
+    
     var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')
         +(content?'&content='+content:'')+(type?'&type='+type:'')+(page && page>0?'&page='+page:'');
 
