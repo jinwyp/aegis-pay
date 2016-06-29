@@ -244,7 +244,7 @@ nkScopePersist.post('/settlement/buyersAuditing')//.query({sellerId: '213', orde
 		data: {
 			orderId: 123124,
 			version: 123,
-			result: false
+			result: false		// false 需要买家补款
 		}
 	});
 

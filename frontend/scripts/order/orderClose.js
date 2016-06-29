@@ -50,7 +50,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
                         detail: '操作成功'
                     });
                     setTimeout(function() {
-                        location.href = '/';
+                        location.href = '/getBuyOrderDetail?orderId='+ param.orderId;
                     }, 1500);
                 } else {
                     message({

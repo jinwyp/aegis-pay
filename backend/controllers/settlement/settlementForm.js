@@ -5,16 +5,19 @@
  *
  * type: buy 1买家; sell 2卖家
  * status:
-  	WaitSettleAccounts	 	待结算.卖家开具结算单(卖)
-  	WaitVerifySettle	 	待审核.卖家编辑结算单(卖)
-  	WaitVerifySettle	 	待审核.买家审核结算单(买)
-  	ReturnedSettleAccounts	审核退回.卖家修改数据(卖)
-  	ReturnedSettleAccounts	审核退回.买家修改原因(买)
+  	WaitSettleAccounts	 	待结算.卖家开具结算单(卖)  to-> 卖家.订单列表 /account/order/sell
+  	WaitVerifySettle	 	待审核.卖家查看结算单(卖)
+  	WaitVerifySettle	 	待审核.买家审核结算单(买)  to-> 1.通过(
+ 									01.   补款 ->付款页面 /pay?orderId=100000&userId=123&type=1;
+ 									02|03.退款 ->完善开票信息页面 /settlement/confirmTheInvoice?orderId=110000)
+ 									2.不通过 (退回后 -> 买家.订单列表/account/order/buy)
+  	ReturnedSettleAccounts	审核退回.卖家修改数据(卖)  to-> 卖家.订单列表 /account/order/sell
+  	ReturnedSettleAccounts	审核退回.买家修改原因(买)  to-> 当前页
   	WaitPayTailMoney	 	审核通过.待买家补款  (_)
   	WaitPayRefundMoney	 	审核通过.待卖家退款  (_)
   	WaitWriteReceipt	 	审核通过.待卖家开发票(_)
 
- 	var typeArr = ['none', 'buy', 'sell'];					// 用户类型	*/
+	关闭订单(成功后跳转) --> 订单详情  /getBuyOrderDetail?orderId=13		*/
 
 
 var request  = require('../../libs/request');
@@ -37,7 +40,7 @@ const uploadPath = config.file_path.root + '/upload/';			// 压缩.原材料路�
 
 
 
-// 页面路由
+// 页面路由   		var typeArr = ['none', 'buy', 'sell'];		// 本地测.用户类型
 exports.orderSettlement = function (req, res, next) {
 
 	var apiUrl = '',
@@ -73,20 +76,16 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
-
 			cache.get('zip_jsd_scxy_'+req_id, function (err, data){
 				data = data || {};
-				replyData.zipSavePath = data.zipSavePath || '';					// 读取 压缩文件
+				replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
 				console.log('-=-=-读取压缩文件-11=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
-				console.log(data);
 				console.log(data.zipSavePath);
-
-				console.log('-=-=-查询结算信息-22=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=');
+				console.log('-=-=-查询结算信息-22=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
 				console.log(replyData);
 
 				return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
 			});
-
 		});
 
 	}

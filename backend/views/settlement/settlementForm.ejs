@@ -78,7 +78,7 @@
                 <div class="fileList">
                     <div class="supplyFileList" style="display: inline-block">
                         <% if(isSupply_sell){ %>
-                        <span class="iBtn iBtn_up">
+                        <span class="iBtn iBtn_up mb10">
                             <i class="iBtn_up_icn"></i>点击上传
                             <input id="supplyFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                         </span>
@@ -93,14 +93,14 @@
                             <% var fileObj = data.files[x]; %>
                             <% if(isSupply_sell && fileObj ){ %>
                             <!-- 卖家编辑附件 -->
-                            <p class="fileLab">
+                            <p class="fileLab mb10">
                                 <span class="fileLab_name"><%=fileObj.name %></span>
                                 <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
                             </p>
                             <% } %>
                             <% if(isSupply_only && fileObj ){ %>
                             <!-- 卖家查看-->
-                            <p class="fileLab only">
+                            <p class="fileLab mb10 only">
                                 <span class="fileLab_name"><%=fileObj.name %></span>
                                 <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
                             </p>
@@ -166,7 +166,7 @@
             </div>
             <div class="fileOperation_body">
                 <div class="fileList">
-                     <span class="iBtn iBtn_up">
+                     <span class="iBtn iBtn_up mb10">
                         <i class="iBtn_up_icn"></i>点击上传
                         <input id="upSealFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                     </span>
@@ -216,8 +216,8 @@
             <div class="modal-body">
                 <div class="pad_15">
                     <div class="txtAreaBox">
-                        <div class="dockDown">您还可以输入<span class="limitNum reasonSize_md">200</span>个字</div>
-                        <textarea class="txtArea .returnText" id="oneRemarks" rows="10" maxlength="200" placeholder="请简要填写退回原因，限200个字"></textarea>
+                        <div class="dockDown">您还可以输入<span class="limitNum reasonSize_md">500</span>个字</div>
+                        <textarea class="txtArea .returnText" id="oneRemarks" rows="10" maxlength="500" placeholder="请简要填写退回原因，限500个字"></textarea>
                     </div>
                 </div>
             </div>
@@ -252,7 +252,7 @@
             <div class="modal-body">
                 <span class="icn_successMax option_info_icn"></span>
                 <p class="option_info">结算单已重新提交到买家确认！</p>
-                <p class="option_warn"><span class="bright">5S</span> 后自动关闭</p>
+                <p class="option_warn"><span class="bright counterNum">3S</span> 后自动关闭</p>
                 <p>&nbsp;</p>
             </div>
         </div>
