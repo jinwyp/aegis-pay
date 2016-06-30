@@ -20,15 +20,15 @@ exports.checkFundAccount = function (req, res, next) {
     var param = {
         userId : req.session.user.id
     };
-    request.post(url,{formData: param, json: true},function (err,data) {r
+    request.post(url,{formData: param, json: true},function (err,data) {
         if(err) {return next(err);}
         var content = {
             pageTitle   : "账户管理中心",
             headerTit   : "账户管理中心"
     
         };
-
-        if(data.body.success){
+        console.dir(data.body.success);
+        if(data.body.success&&data.body.data.success){
             res.redirect('wealth/financialHome');
 
         }else{
