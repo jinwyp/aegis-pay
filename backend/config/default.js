@@ -40,10 +40,10 @@ var config = {
         upload      : '/upload',
         html        : '/html',
         images      : '/images',
-        views       : path.join(__dirname, '../views'),
-        download    : path.join(__dirname, '../views/download'),
-        zips        : path.join(__dirname, '../views/download/zips'),
-        pdf         : path.join(__dirname, '../views/download/pdf')
+        views       : '/app/backend/views',
+        download    : '/app/backend/views/download',
+        zips        : '/app/backend/views/download/zips',
+        pdf         : '/app/backend/views/download/pdf'
     },
     
     member_address: 'http://10.100.20.3:3000',

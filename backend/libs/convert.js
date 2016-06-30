@@ -66,11 +66,9 @@ exports.html2pdf = function (htmlpath, options) {
     var pdfpath = options.pdfpath || pdf_path;
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {format : 'Letter'};
-
-    //if (!utils.isDirExistsSync(pdfpath)) {
+    // if (!utils.isDirExistsSync(pdfpath)) {
     //    fs.mkdirSync(pdfpath);
-    //}
-
+    // }
     utils.makeDir(pdfpath);
 
     return new Promise(function (resolve, reject) {
@@ -82,10 +80,14 @@ exports.html2pdf = function (htmlpath, options) {
                 if (err) reject(err);
 
                 if (resultHtml) {
-
+                    fs.writeFileSync(pdffile, '');
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
+                        console.log('-----------')
+                        console.log(err)
                         if (!err) {
                             fs.stat(pdffile, function (err, stat) {
+                                console.log('2222222222222222')
+                                console.log(err)
                                 if (err) reject(err);
 
                                 if (stat && stat.isFile()) {

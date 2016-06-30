@@ -1,6 +1,7 @@
 /**
  * config
  */
+var path = require('path');
 var config = {
 
     https    : true,

@@ -84,13 +84,19 @@ var convertData = function (compactdata, compactejs, orderId) {
     };
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
+        console.log('--------resulthtml-------------')
+        console.log(resultHtml)
         return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
+        console.log('--------resultPDF-------------')
+        console.log(resultPDF)
         data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
     .then(function(resultImgs){
+        console.log('--------resultImgs-------------')
+        console.log(resultImgs)
         resultImgs.imgs.forEach(function (img) {
             data.imgs.push('/files/images/' + path.basename(img));
         });
@@ -108,9 +114,6 @@ exports.generate_compact = function (req, res, next) {
     var params  = '?orderId=' + orderId + "&userId=" + req.session.user.id;
 
     request(api_config.getCompact + params, function (err, result) {
-        console.log('=========compact==============')
-        console.log(err)
-        console.log(result)
         if (err) return next(err);
 
         if (result) {
@@ -126,6 +129,7 @@ exports.generate_compact = function (req, res, next) {
 
             if (data.success) {
                 convertData({data: data.data.contract}, ejspath, orderId).then(function (result) {
+                    console.log('-------convertData-----------')
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {
