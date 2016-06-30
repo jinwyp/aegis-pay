@@ -90,16 +90,15 @@
                         <a>查看详情</a>
                         <%if(recordList[i].type==0){%>
                             <% if(order.status=='WaitSignContract'){ %>
-                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="签订合同"/>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-signContract" value="签订合同"/>
                             <% }else if(order.status=='WaitPayment'){ %>
-                            <span class="status">已签订电子合同，请及时支付货款</span>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-payMoney" value="签订合同"/>
                             <% }else if(order.status=='WaitConfirmDelivery'){ %>
-                            <span class="status">已付款，待卖家确认提货</span>
-                            <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-deliveryGoods" value="确认提货"/>
                             <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
-                            <span class="status-return">提货被卖家退回，待确认提货</span>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-deliveryGoods" value="重新确认提货"/>
                             <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
-                            <span class="status">提货已确认，等待卖家审核</span>
+                            <a class="btn-deliveryGoods">查看提货详情</a>
                             <% }else if(order.status=='WaitSettleAccounts'){ %>
                             <span class="status">已确认提货，待开具结算单</span>
                             <% }else if(order.status=='WaitVerifySettle'){ %>

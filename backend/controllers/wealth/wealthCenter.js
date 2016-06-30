@@ -27,8 +27,8 @@ exports.checkFundAccount = function (req, res, next) {
             headerTit   : "账户管理中心"
     
         };
-
-        if(data.body.success){
+        console.dir(data.body.success);
+        if(data.body.success&&data.body.data.success){
             res.redirect('wealth/financialHome');
 
         }else{
