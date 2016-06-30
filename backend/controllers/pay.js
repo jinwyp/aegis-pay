@@ -35,7 +35,7 @@ exports.page = function (req, res, next) {
             var result = JSON.parse(data.body);
             if(result.errorCode === '1009'){
                 // 订单不处于支付状态
-                 res.redirect('/getOrderDetail?orderId=' + req.query.orderId);
+                 res.redirect('/getBuyOrderDetail?orderId=' + req.query.orderId);
             }else{
                 var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款' },
                                             result.data);

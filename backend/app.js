@@ -127,7 +127,7 @@ app.use(function (req, res, next) {
 // custom middleware
 app.use(auth.passport);
 
-app.use(auth.fetchPayPhone);
+// app.use(auth.fetchPayPhone);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
