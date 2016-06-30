@@ -7,9 +7,9 @@
 var request = require('../../libs/request');
 var api_config = require('../../api/v1/api_config');
 var cache = require('../../libs/cache');
+var _ = require('lodash');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 //var path = require('path');
-//var _ = require('lodash');
 
 
 // 处理业务逻辑
@@ -48,7 +48,20 @@ exports.checkUserCompany = function (req, res, next) {
     });
 };
 
-
+exports.isFundAccountExist = function(req, res, next){
+    request.post({url: api_config.checkFundAccount, form: {userId: req.session.user.id}}, function(err, data){
+        var result = JSON.parse(data.body);
+        if(result.data.success){
+            var errMsg = '您已经存在易煤网资金账户';
+            var er = new Error('Service request error: ' + errMsg);
+            _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
+            return next(er);
+        }else{
+            //渲染页面
+            return next();
+        }
+    }) 
+}
 
 // 开通资金账户 - 设置密码&绑定手机号
 exports.openFundAccount = function (req, res, next) {
@@ -56,8 +69,8 @@ exports.openFundAccount = function (req, res, next) {
         pageTitle   : "开通易煤网资金账户",
         headerTit   : "开通易煤网资金账户"
     };
-        //渲染页面
-        res.render('wealth/openFundAccount',pageData);
+    //渲染页面
+    res.render('wealth/openFundAccount',pageData);    
 };
 
 // 开通资金账户 - 设置密码&绑定手机号 - 等待开通
