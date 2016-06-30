@@ -76,6 +76,7 @@ var api_config = {
     buyOrderDetail : host + 'mall/order',
     sellOrderDetail : host + 'mall/seller/order',
     printOrderDetail : host + 'mall/order/print',
+    sureReceiveReceipt : host + 'mall/order/complete/submit',
 
     noticeReceiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
     noticeSellerReturnMoney : host + 'mall/order/remindSeller/payRefundMoney',

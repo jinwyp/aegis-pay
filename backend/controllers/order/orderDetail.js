@@ -200,6 +200,27 @@ exports.printDetail = function (req, res, next) {
     });
 };
 
+exports.sureReceiveReceipt = function (req, res, next) {
+    request.post(
+        {
+            url : api_config.sureReceiveReceipt,
+            form:{orderId:req.query.orderId, userId:req.session.user.id, version:req.query.version}
+        },
+        function (err, data) {
+            if (err) return next(err);
+            if (data) {
+                var source  = JSON.parse(data.body);
+                if(source.success){
+                    res.send(source);
+                }else{
+                    res.send(source.error);
+                }
+            } else {
+                res.send(data.body);
+            }
+        });
+};
+
 exports.orderTest = function (req, res, next) {
     logger.debug('服务器被请求了' + req.query.id);
     res.send('fdsfsdfsdf');
