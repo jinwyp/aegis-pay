@@ -87,7 +87,95 @@
                     <td width="120"><%=recordList[i].statusName%></td>
                     <td width="120">
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="付款付款"/>
-                        <a>查看详情</a></td>
+                        <a>查看详情</a>
+                        <%if(recordList[i].type==0){%>
+                            <% if(order.status=='WaitSignContract'){ %>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="签订合同"/>
+                            <% }else if(order.status=='WaitPayment'){ %>
+                            <span class="status">已签订电子合同，请及时支付货款</span>
+                            <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                            <span class="status">已付款，待卖家确认提货</span>
+                            <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                            <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                            <span class="status-return">提货被卖家退回，待确认提货</span>
+                            <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                            <span class="status">提货已确认，等待卖家审核</span>
+                            <% }else if(order.status=='WaitSettleAccounts'){ %>
+                            <span class="status">已确认提货，待开具结算单</span>
+                            <% }else if(order.status=='WaitVerifySettle'){ %>
+                            <span class="status">已开具结算单，等待买家确认</span>
+                            <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                            <span class="status">结算单被退回，等待卖家修改</span>
+                            <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                            <span class="status">结算已完成，等待卖家退款</span>
+                            <% }else if(order.status=='WaitPayTailMoney'){ %>
+                            <span class="status">结算单已确认，等待买家补款</span>
+                            <% }else if(order.status=='WaitWriteReceipt'){ %>
+                            <span class="status">结算完成，等待卖家开具增值税发票</span>
+                            <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                            <span class="status">卖家已开增值税发票，等待收发票</span>
+                            <% }else if(order.status=='WaitImproveReceipt'){ %>
+                            <span class="status">结算单已确认，等待完善开票信息</span>
+                            <% }else if(order.status=='TradeDisputing'){ %>
+                            <% }else if(order.status=='TradeDisputeFinished'){ %>
+                            <% }else if(order.status=='MakeMatch'){ %>
+                            <span class="status">匹配中</span>
+                            <% }else if(order.status=='Canceled'){ %>
+                            <span class="status">已取消</span>
+                            <% }else if(order.status=='Completed'){ %>
+                            <span class="status">交易完成</span>
+                            <% }else if(order.status=='TradeFinished'){ %>
+                            <span class="status-close">交易结束</span>
+                            <% }else if(order.status=='TradeClosed'){ %>
+                            <span class="status-close">交易关闭</span>
+                            <% }else{ %>
+                            <%=order.status%>
+                            <% } %>
+                        <%}else if(recordList[i].type==1){%>
+                            <% if(order.status=='WaitSignContract'){ %>
+                            <span class="status">货物已下单，请及时签订电子合同</span>
+                            <% }else if(order.status=='WaitPayment'){ %>
+                            <span class="status">已签订电子合同，请及时支付货款</span>
+                            <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                            <span class="status">已付款，待卖家确认提货</span>
+                            <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                            <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                            <span class="status-return">提货被卖家退回，待确认提货</span>
+                            <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                            <span class="status">提货已确认，等待卖家审核</span>
+                            <% }else if(order.status=='WaitSettleAccounts'){ %>
+                            <span class="status">已确认提货，待开具结算单</span>
+                            <% }else if(order.status=='WaitVerifySettle'){ %>
+                            <span class="status">已开具结算单，等待买家确认</span>
+                            <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                            <span class="status">结算单被退回，等待卖家修改</span>
+                            <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                            <span class="status">结算已完成，等待卖家退款</span>
+                            <% }else if(order.status=='WaitPayTailMoney'){ %>
+                            <span class="status">结算单已确认，等待买家补款</span>
+                            <% }else if(order.status=='WaitWriteReceipt'){ %>
+                            <span class="status">结算完成，等待卖家开具增值税发票</span>
+                            <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                            <span class="status">卖家已开增值税发票，等待收发票</span>
+                            <% }else if(order.status=='WaitImproveReceipt'){ %>
+                            <span class="status">结算单已确认，等待完善开票信息</span>
+                            <% }else if(order.status=='TradeDisputing'){ %>
+                            <% }else if(order.status=='TradeDisputeFinished'){ %>
+                            <% }else if(order.status=='MakeMatch'){ %>
+                            <span class="status">匹配中</span>
+                            <% }else if(order.status=='Canceled'){ %>
+                            <span class="status">已取消</span>
+                            <% }else if(order.status=='Completed'){ %>
+                            <span class="status">交易完成</span>
+                            <% }else if(order.status=='TradeFinished'){ %>
+                            <span class="status-close">交易结束</span>
+                            <% }else if(order.status=='TradeClosed'){ %>
+                            <span class="status-close">交易关闭</span>
+                            <% }else{ %>
+                            <%=order.status%>
+                            <% } %>
+                        <% } %>
+                    </td>
                 </tr>
                 <%}%>
                 </tbody>

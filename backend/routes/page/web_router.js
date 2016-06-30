@@ -16,6 +16,7 @@ var compactController         = require('../../controllers/compact');
 var headerController          = require('../../controllers/header');
 var footerController          = require('../../controllers/footer');
 var orderController           = require('../../controllers/order/orderDetail');
+var noticeController           = require('../../controllers/order/notice');
 var confirmDeliveryController = require('../../controllers/confirmDelivery');
 var subHeaderController       = require('../../controllers/subHeader');
 var orderCloseControl         = require('../../controllers/order/orderClose');                  //关闭订单 模块(控制文件路径)
@@ -77,6 +78,7 @@ router.get('/pay/success', payCtl.success);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
+router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由
@@ -85,6 +87,7 @@ router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceI
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
 router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单－提交开票备注
+router.post('/settlement/sureReceiveReceipt', confirmTheInvoiceControl.sureReceiveReceipt);     //结算-确认收到发票
 
 //纠纷
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
@@ -100,10 +103,13 @@ router.get('/order/orderClose', orderCloseControl.orderInfo);                   
 //router.get('/getOrderDetail', orderController.getOrderDetail);                                //买货订单详情页面路由
 router.get('/getBuyOrderDetail', orderController.getBuyOrderDetail);                            //买货订单详情页面路由
 router.get('/getSellOrderDetail', orderController.getSellOrderDetail);                          //卖货订单详情页面路由
-router.get('/orderTest', orderController.orderTest);                                            //打印订单测试接口
+router.get('/toNoticeBuyerToDelivery', noticeController.toRemindBuyerToDelivery);               //卖家催买家确认提货路由
+router.get('/toNoticeSellerToSettle', noticeController.toRemindSellerToSettle);                 //买家催卖家进行结算订单
+router.get('/toNoticeSellerReturnMoney', noticeController.toNoticeSellerReturnMoney);           //买家提醒卖家支付退款
+router.get('/toNoticeMadeReceipt', noticeController.toNoticeMadeReceipt);                       //卖家短信提醒买家已经开发票
 router.get('/printDetail', orderController.printDetail);                                        //打印订单
 router.get('/compactDetail', compactController.compactDetail);                                  //合同详情页面
-router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
+
 
 
 

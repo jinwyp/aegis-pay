@@ -2,7 +2,7 @@
 * 页面脚本
 * */
 
-requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'bootstrap'], function($, fancySelect){
+requirejs(['jquery', 'jquery.fancySelect', 'avalon', 'jQuery.fn.datePicker', 'bootstrap'], function($, fancySelect, avalon){
 
     var transactionRecord={
         "datepicker" : function(){
