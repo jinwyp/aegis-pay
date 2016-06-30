@@ -114,7 +114,8 @@ _.extend(app.locals, {
     config : config,
     staticPath : '/static',
     homepage : config.homepage,
-    memberUrl : config.passport.member
+    memberUrl : config.passport.member,
+    sitepage : config.site_page
 });
 
 app.use(function (req, res, next) {

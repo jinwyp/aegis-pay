@@ -6,7 +6,10 @@
                 </ul>
 
                 <ul class="menuList rightMenuList">
-                    <li>欢迎来到易煤网<% if((typeof user !== 'undefined') && user.id){ %>，<a href="javascript:void(0)"><%= user.nickname %></a><% } %></li>
+                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="<%= config.site_page%>"><%if(session.user.verifystatus != "审核通过") {%>
+                            <%=session.user.nickname?session.user.nickname:session.user.securephone %>
+                            <%}else{ %> <%=session.user.companyName.length<=8?session.user.companyName:session.user.companyName.substring(0,8)+"..."%>
+                            <%}%></a><% } %></li>
 
                     <!--登录状态-->
                     <% if((typeof user !== 'undefined') && user.id){ %>
@@ -19,21 +22,21 @@
                     <% } %>
 
                     <li class="webNav">
-                        <a href="javascript:void(0)">关于我们</a>
+                        <a href="<%= config.passport.member%>/aboutUs">关于我们</a>
                         <span class="triggle"></span>
                         <ul class="hideMenu">
-                            <li><a href="javascript:void(0)">首页</a></li>
-                            <li><a href="javascript:void(0)">易煤商城</a></li>
-                            <li><a href="javascript:void(0)">现货搜索</a></li>
-                            <li><a href="javascript:void(0)">阳光采购</a></li>
-                            <li><a href="javascript:void(0)">报价区</a></li>
-                            <li><a href="javascript:void(0)">金融</a></li>
-                            <li><a href="javascript:void(0)">团购</a></li>
-                            <li><a href="javascript:void(0)">行情资讯</a></li>
-                            <li><a href="javascript:void(0)">数据中心</a></li>
+                            <li><a href="<%= config.site_page%>">首页</a></li>
+                            <li><a href="<%= config.site_page%>/mall">易煤商城</a></li>
+                            <li><a href="<%= config.site_page%>/buy">现货搜索</a></li>
+                            <li><a href="<%= config.site_page%>/tender">阳光采购</a></li>
+                            <li><a href="<%= config.site_page%>/sell">报价区</a></li>
+                            <li><a href="<%= config.site_page%>/finance">金融</a></li>
+                            <li><a href="<%= config.site_page%>/group">团购</a></li>
+                            <li><a href="<%= config.site_page%>/news">行情资讯</a></li>
+                            <li><a href="<%= config.site_page%>/dataCenter">数据中心</a></li>
                         </ul>
                     </li>
-                    <li class="noborder"><span class="icon-tel"></span><span>400-728-0153</span></li>
+                    <li class="noborder"><span class="icon-tel"></span><span>400-960-1180</span></li>
                 </ul>
             </div>
         </div>
