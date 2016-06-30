@@ -1,12 +1,11 @@
 
-requirejs(['jquery', 'avalon'], function( $, avalon){
+
+define(['jquery', 'avalon'], function( $, avalon){
 
     function heredoc(fn) {
         return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
         replace(/\*\/[^\/]+$/, '').trim().replace(/>\s*</g, '><')
     }
-
-
 
     var paginationTemplate = heredoc(function() {
 
@@ -40,7 +39,6 @@ requirejs(['jquery', 'avalon'], function( $, avalon){
          */
 
     });
-
 
     avalon.component('ms-pagination', {
         template: paginationTemplate,
@@ -156,7 +154,7 @@ requirejs(['jquery', 'avalon'], function( $, avalon){
 
     });
 
-
+    return avalon;
 });
 
 
