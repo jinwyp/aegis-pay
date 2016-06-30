@@ -119,6 +119,7 @@ _.extend(app.locals, {
 });
 
 app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
     next();

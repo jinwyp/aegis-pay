@@ -87,7 +87,7 @@ router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceI
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
 router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单－提交开票备注
-router.post('/settlement/sureReceiveReceipt', confirmTheInvoiceControl.sureReceiveReceipt);     //结算-确认收到发票
+// router.post('/settlement/sureReceiveReceipt', confirmTheInvoiceControl.sureReceiveReceipt);     //结算-确认收到发票
 
 //纠纷
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
