@@ -15,11 +15,11 @@ var co = require('co');
 
 function generate_code (type, options) {
     var default_opt = {
-        width : 126,
-        height : 30,
-        offset : 18,
-        fontsize : 26,
-        quality : 200
+        // width : 126,
+        // height : 30,
+        // offset : 18,
+        // fontsize : 26,
+        // quality : 200
     };
 
     if (options) {

@@ -160,6 +160,12 @@ var api_config = {
 
     // open fund account
     openFundAccount: host + 'account/fund/create',
+    /**
+     * 是否已经开通了资金账户
+     * params: userId
+     * res: {success: true, data: {success:true/false}} 
+     */ 
+    checkFundAccount: host + 'account/fund/checkFundAccount',
     /** fetch status
      * params: {userId}
      * response:
