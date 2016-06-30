@@ -1,4 +1,4 @@
-var baseUrl = '/static';
+var baseUrl    = '/static';
 var libraryUrl = '/static/components';
 require.config({
     baseUrl  : baseUrl + '/scripts',
@@ -70,7 +70,7 @@ require.config({
             exports : 'bootstrap'
         },
         'jquery.fancySelect'     : {
-            deps : [
+            deps    : [
                 'jquery'
             ]
         },

@@ -9,9 +9,13 @@
 
     <script type="text/javascript" src="<%= staticPath %>/components/requirejs/require.js"></script>
     <script type="text/javascript" src="<%= staticPath %>/scripts/config.js"></script>
-    <script type="text/javascript" src="<%= staticPath %>/scripts/common.js"></script>
-    <!--<script type="text/javascript" src="<%= staticPath %>/scripts/avalon_components/pagination.js"></script>-->
 
+
+    <style>
+        .pagination>li .active{
+            border: 1px solid red;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,7 +31,20 @@
 <script>
 
 
-    requirejs([ 'jquery', 'avalon'], function( $, avalon){
+    requirejs([ 'jquery', 'avalon', 'avalon.components'], function( $, avalon){
+
+        function getData (){
+            $.ajax({
+                url    : "/api/financial/order/details",
+                method : "POST",
+                data   : {},
+                success:function(data){
+
+                    vm.value = Math.ceil(data.count / data.pagesize);
+                    vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize) + Math.floor(Math.random()*9);
+                }
+            })
+        }
 
         var vm = avalon.define({
             $id: 'test',
@@ -38,21 +55,15 @@
             },
 
             configPagination : {
-                totalPages: 1
+                totalPages: 1,
+                changePageNo : function(){
+                    getData()
+                }
             }
         });
 
 
-        $.ajax({
-            url    : "/api/financial/order/details",
-            method : "POST",
-            data   : {},
-            success:function(data){
 
-                vm.value = Math.ceil(data.count / data.pagesize);
-                vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
-            }
-        })
 
         function heredoc(fn) {
             return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
