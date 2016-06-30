@@ -87,7 +87,7 @@ router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceI
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
 router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单－提交开票备注
-router.post('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);     //结算-确认收到发票
+router.post('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);              //结算-确认收到发票
 
 //纠纷
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
@@ -103,10 +103,14 @@ router.get('/order/orderClose', orderCloseControl.orderInfo);                   
 //router.get('/getOrderDetail', orderController.getOrderDetail);                                //买货订单详情页面路由
 router.get('/getBuyOrderDetail', orderController.getBuyOrderDetail);                            //买货订单详情页面路由
 router.get('/getSellOrderDetail', orderController.getSellOrderDetail);                          //卖货订单详情页面路由
-router.get('/toNoticeBuyerToDelivery', noticeController.toRemindBuyerToDelivery);               //卖家催买家确认提货路由
-router.get('/toNoticeSellerToSettle', noticeController.toRemindSellerToSettle);                 //买家催卖家进行结算订单
+
+router.get('/toNoticeBuyerSignContract', noticeController.toNoticeBuyerSignContract);           //卖家提醒买家签订电子合同
+router.get('/toNoticeBuyerPayMoney', noticeController.toNoticeBuyerPayMoney);                   //卖家提醒买家付款
+router.get('/toNoticeBuyerToDelivery', noticeController.toNoticeBuyerToDelivery);               //卖家催买家确认提货
+router.get('/toNoticeSellerToSettle', noticeController.toNoticeSellerToSettle);                 //买家催卖家进行结算订单
 router.get('/toNoticeSellerReturnMoney', noticeController.toNoticeSellerReturnMoney);           //买家提醒卖家支付退款
-router.get('/toNoticeMadeReceipt', noticeController.toNoticeMadeReceipt);                       //卖家短信提醒买家已经开发票
+router.get('/toNoticeSellerWriteReceipt', noticeController.toNoticeSellerWriteReceipt);         //买家提醒卖家开发票
+router.get('/toNoticeReceiveReceipt', noticeController.toNoticeReceiveReceipt);                 //卖家短信提醒买家已经开发票
 router.get('/printDetail', orderController.printDetail);                                        //打印订单
 router.get('/compactDetail', compactController.compactDetail);                                  //合同详情页面
 
