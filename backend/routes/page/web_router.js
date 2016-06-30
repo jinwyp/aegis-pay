@@ -53,7 +53,7 @@ var bindingBankAccount        = require('../../controllers/wealth/bindingBankAcc
 //=========================测试路由================================
 router.get('/demo', demoController.demo);                                                       //公用控件页面路由
 router.get('/test', demoController.test);                                                       
-// router.get('/', siteController.home);                                                           //项目主页路由
+router.get('/temphome', siteController.home);                                                           //项目主页路由
 router.get('/header', headerController.header);                                                 //网页头部路由
 router.get('/subHeader', subHeaderController.subHeader);                                        //网页页面头部路由
 router.get('/footer', footerController.footer);                                                 //网页底部路由
