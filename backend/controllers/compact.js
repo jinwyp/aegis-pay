@@ -8,10 +8,9 @@ var checker = require('../libs/datachecker');
 // fetch compact
 exports.compact = function (req, res, next) {
 
-    //checker.orderId(req.query.orderId);
+    checker.orderId(req.query.orderId);
     var orderId = req.query.orderId;
 
-    cache.del('compacts[' + orderId + ']');
     cache.get('compacts[' + orderId + ']', function (err, data) {
         if (err) return next(err);
         if (data) {
