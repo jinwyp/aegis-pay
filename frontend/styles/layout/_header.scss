@@ -98,6 +98,7 @@ $headerBgColor: #292929;
               &:hover a {
                 color: $hoverColor
               }
+              a{display: inline-block;width:100%;}
             }
           }
           &.webNav:hover .hideMenu {
