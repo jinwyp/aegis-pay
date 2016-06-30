@@ -63,6 +63,7 @@ router.post('/disputeApplySubmit', disputeApply.disputeApplySubmit);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
 router.post('/disputeBackReason', disputeSellerDetail.disputeBackReason);
 router.post('/wealth/checkUserCompany', wealthCenter.checkUserCompany);                                  //财富管理中心－初始化
+router.post('/wealth/checkFundAccount', wealthCenter.checkFundAccount);                                  //财富管理中心－初始化
 
 
 router.get('/imgcode', captcha.sendCode('_ccapimgtxt_pay'));

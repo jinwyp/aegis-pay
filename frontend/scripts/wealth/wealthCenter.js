@@ -43,7 +43,7 @@ require(['jquery','bootstrap', 'message'],function($, bootstrap, message){
                         location.href=memberUrl+" /account/companyDetail";     //查看页面
                     }else if(data.error == "verifyNotPass"){                  //审核未通过
                         location.href=memberUrl+" /account/companyDetail";      //查看页面
-                    }else if(data.indexOf("companyNotExists")){      //审核未通过
+                    }else if(data.error.indexOf("companyNotExists") !== -1){      //审核未通过
                         location.href=memberUrl+"/account/companyCreate";       //新建页面
                     }
 

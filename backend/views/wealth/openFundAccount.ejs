@@ -30,7 +30,7 @@
             <ul class='valid'>
                 <li>
                     <label>手机号码：</label>
-                    <input type="text" name="payPhone" value="<%= user.phone %>">
+                    <input type="text" name="payPhone" value="<%= user.payPhone || user.securephone %>">
                     <p class='tip-error'></p>
                 </li>
                 <li>
