@@ -119,7 +119,7 @@ router.get('/compactDetail', compactController.compactDetail);                  
 
 //=========================财富管理中心路由================================
 //首页
-router.get('/', wealthCenter.wealthCenter);                                  //财富管理中心－初始化
+router.get('/', wealthCenter.checkFundAccount);                                  //财富管理中心－初始化
 router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                          //开通资金账户
 router.get('/wealth/open-fund-account/waiting', wealthCenter.isFundAccountExist, wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.isFundAccountExist, wealthCenter.openFundAccountSuccess);           //开通成功页面
