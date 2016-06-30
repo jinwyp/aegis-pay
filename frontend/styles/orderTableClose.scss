@@ -64,8 +64,8 @@
           .dot-gray{  background-color: $color_dot;  }
           .dot-green{  background-color: $color_green;  }
         }
-        .line-start{  padding-bottom: 10px;  }
-        .line-end{  padding-top: 10px;  }
+        .line-start{  padding-bottom: 10px;min-height: 55px;  }
+        .line-end{  padding-top: 10px;min-height: 55px;  }
         .line-start:before {
           content: "";
           width: 2px;

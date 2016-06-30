@@ -114,10 +114,12 @@ _.extend(app.locals, {
     config : config,
     staticPath : '/static',
     homepage : config.homepage,
-    memberUrl : config.passport.member
+    memberUrl : config.passport.member,
+    sitepage : config.site_page
 });
 
 app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
     next();
@@ -127,7 +129,7 @@ app.use(function (req, res, next) {
 // custom middleware
 app.use(auth.passport);
 
-app.use(auth.fetchPayPhone);
+// app.use(auth.fetchPayPhone);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
