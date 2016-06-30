@@ -53,7 +53,7 @@ var bindingBankAccount        = require('../../controllers/wealth/bindingBankAcc
 //=========================测试路由================================
 router.get('/demo', demoController.demo);                                                       //公用控件页面路由
 router.get('/test', demoController.test);                                                       
-// router.get('/', siteController.home);                                                           //项目主页路由
+router.get('/temphome', siteController.home);                                                           //项目主页路由
 router.get('/header', headerController.header);                                                 //网页头部路由
 router.get('/subHeader', subHeaderController.subHeader);                                        //网页页面头部路由
 router.get('/footer', footerController.footer);                                                 //网页底部路由
@@ -87,7 +87,7 @@ router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceI
 router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
 router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单－提交开票备注
-// router.post('/settlement/sureReceiveReceipt', confirmTheInvoiceControl.sureReceiveReceipt);     //结算-确认收到发票
+router.post('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);     //结算-确认收到发票
 
 //纠纷
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
