@@ -140,6 +140,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                     });
                     $("#cityCode").trigger("update.fs");
                 });
+                that.Verify();
             });
             var childBankNameList=[];
             var childBankIndex = [];
