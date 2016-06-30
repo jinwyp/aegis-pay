@@ -1,8 +1,6 @@
-@import '/static/components/bootstrap/dist/css/bootstrap.min.css';
-@import '/static/components/blueimp-file-upload/css/jquery.fileupload.css';
-@import '/static/components/blueimp-file-upload/css/jquery.fileupload-ui.css';
-@import '/static/components/bootstrap/dist/css/bootstrap.min.css';
-@import '../../styles/helpers/_variables.scss';
+@import '../../components/blueimp-file-upload/css/jquery.fileupload';
+@import '../../components/blueimp-file-upload/css/jquery.fileupload-ui';
+@import '../helpers/_variables.scss';
 
 .fileinput-button{
   vertical-align: middle;
