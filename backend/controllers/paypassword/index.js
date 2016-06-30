@@ -23,6 +23,21 @@ var _getUserFundAccount = exports.getUserFundAccount = function(userId){
     })
 }
 
+// 获取支付手机
+// var fetchPayPhone = function(req, res, next){
+//     request(api_config.fetchPayPhone+'?userId=' + req.session.user.id, function(err, data){
+//         if(err) { return next(err);}
+//         var data = JSON.parse(data.body);
+//         if(data && data.success){
+//             res.locals.user.phone = data.data.payPhone;
+//             return next()
+//         }else{
+//             return next(new SystemError(data.status, data.error));
+//             // return next(data)
+//         }
+//     })
+// }
+
 exports.reset = function(req, res, next){
     var pageData = {
         pageTitle : '安全设置 —— 支付密码',
