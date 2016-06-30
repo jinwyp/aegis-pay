@@ -5,7 +5,7 @@ parent_dir="$(dirname "$script_dir")"
 
 cd $script_dir;
 
-export NODE_PATH=$HOME/.nvm/versions/node/`node -v`/lib/node_modules;
+export NODE_PATH=$HOME/.nvm/versions/node/`node -v`/lib/node_modules:/usr/local/lib/node_modules:$NODE_PATH;
 export DOMAIN=cn;
 export DEBUG=true;
 export MOCK=false;

@@ -30,7 +30,7 @@ exports.fetchOpenStatus = function(req, res, next){
             postFlag = false;
             if(err) return next(err);
             if(!err && data){
-                var result = data.body;
+                var result = JSON.parse(data.body);
                 var status = result.data.success;
                 if(status === 1){
                     // 开通成功

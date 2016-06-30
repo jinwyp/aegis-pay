@@ -12,7 +12,7 @@
                             <%}%></a><% } %></li>
 
                     <!--登录状态-->
-                    <% if(user && user.id){ %>
+                    <% if((typeof user !== 'undefined') && user.id){ %>
                     <!--<li>职务：<%= user.nickname %></li>-->
                     <li><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
                     <% }else{ %>
