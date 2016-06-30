@@ -20,7 +20,8 @@ exports.checkFundAccount = function (req, res, next) {
     var param = {
         userId : req.session.user.id
     };
-    request.post(url,{formData: param, json: true},function (err,data) {
+    request.post(url,{formData: param, json: true},function (err,data) {r
+        if(err) {return next(err);}
         var content = {
             pageTitle   : "账户管理中心",
             headerTit   : "账户管理中心"
