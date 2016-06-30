@@ -308,8 +308,9 @@
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray -504px -63px);
+          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 91px) -63px);
         }
+        
         .input-date-icon{
           top: 6px;
           right: 10px;
