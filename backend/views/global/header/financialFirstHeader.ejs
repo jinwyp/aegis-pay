@@ -6,9 +6,9 @@
                 </ul>
 
                 <ul class="menuList rightMenuList">
-                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="<%= config.site_page%>"><%if(session.user.verifystatus != "审核通过") {%>
-                            <%=session.user.nickname?session.user.nickname:session.user.securephone %>
-                            <%}else{ %> <%=session.user.companyName.length<=8?session.user.companyName:session.user.companyName.substring(0,8)+"..."%>
+                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="<%= config.site_page%>"><%if(user.verifystatus != "审核通过") {%>
+                            <%=user.nickname?user.nickname:user.securephone %>
+                            <%}else{ %> <%=user.companyName.length<=8?user.companyName:user.companyName.substring(0,8)+"..."%>
                             <%}%></a><% } %></li>
 
                     <!--登录状态-->
