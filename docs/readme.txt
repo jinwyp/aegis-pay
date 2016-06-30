@@ -40,8 +40,7 @@ common/                     Node公用的库
     └── redis.js
 controllers/                Node业务逻辑控制
     ├── sign.js
-    ├── site.js
-    └── static.js
+    └── demo.js
 docs/                       说明文档
     ├── readme.txt
     └──
