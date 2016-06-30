@@ -11,7 +11,7 @@
 <div class="mainWrapper forgetValid">
     <% var statusObj = {step:1, total:3, stepList: [{stepName:'验证身份', stepDate:''}, {stepName:'重置支付密码', stepDate:''}, {stepName:'重置成功', stepDate:''}]} %>
     <%- include ./statusBar %>
-    <input type='hidden' name='payPhone' value='<%= user.phone %>'>
+    <input type='hidden' name='payPhone' value='<%= user.payPhone %>'>
     <form method="post" id='forgetValid'>
       <ul class='valid'>
         <%- include ../../custom_components/ccapimg-modal/form-part %>
