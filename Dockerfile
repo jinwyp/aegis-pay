@@ -1,6 +1,4 @@
-FROM ubuntu-1404
-
-RUN npm install -g phantomjs-prebuilt --registry=https://registry.npm.taobao.org
+FROM ubuntu-nodejs
 
 MAINTAINER hary zhou <94093146@qq.com>
 
