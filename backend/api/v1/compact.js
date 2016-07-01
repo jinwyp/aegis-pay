@@ -14,7 +14,7 @@ var checker = require('../../libs/datachecker');
 
 
 const uploadPath = config.file_path.root + config.file_path.upload + '/';
-const ejspath    = config.file_path.views +'/global/compact.ejs';
+const ejspath    = config.views +'/global/compact.ejs';
 const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
 const downloadPath = config.file_path.root + config.file_path.download;
 

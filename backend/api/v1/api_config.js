@@ -110,7 +110,7 @@ var api_config = {
     financialCenterHome : host + 'finance/center',
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
-    settlementList : host + '/finance/order/settle',
+    settlementList : host + 'finance/order/settle',
 
 
     /**
