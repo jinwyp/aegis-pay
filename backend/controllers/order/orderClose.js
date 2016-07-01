@@ -28,6 +28,8 @@ exports.orderInfo = function (req, res, next) {
 			};
 
 			replyData.data = JSON.parse(data.body).data;
+			console.log('_+_关闭订单-查看信息_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+');
+			console.log(replyData);
 			res.render('order/orderClose', replyData);		// 渲染页面,(指定模板, 数据)
 		});
 	}
