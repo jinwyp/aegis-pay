@@ -19,7 +19,7 @@ var excelSavePath = path.join(config.file_path.root, config.file_path.upload, '/
 utils.makeDir(excelSavePath);
 
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
-var pdfHtmlTemplatePath = path.join(config.file_path.root + config.file_path.download, '/financialDetails/pdftemplate.ejs');
+var pdfHtmlTemplatePath = path.join(config.viewspdf, '/financialDetails/pdftemplate.ejs');
 
 
 
@@ -303,11 +303,11 @@ exports.financialContract = function (req, res, next) {
 
             if (response.statusCode === 200 && body.success) {
 
-                content.startDate= body.data.settleOrder.startDate;
-                content.endDate= body.data.settleOrder.endDate;
-                content.type= body.data.settleOrder.searchType;
-                content.content= body.data.settleOrder.content;
-                content.contractList= body.data.settleOrder.list;
+                content.startDate= body.data.contract.startDate;
+                content.endDate= body.data.contract.endDate;
+                content.type= body.data.contract.searchType;
+                content.content= body.data.contract.content;
+                content.contractList= body.data.contract.list;
 
                 //渲染页面
                 return res.render('wealth/contractList',content);
