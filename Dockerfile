@@ -1,6 +1,4 @@
-FROM ubuntu-1404
-
-RUN npm install phantomjs-prebuilt -g --phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs  
+FROM ubuntu-nodejs
 
 MAINTAINER hary zhou <94093146@qq.com>
 
