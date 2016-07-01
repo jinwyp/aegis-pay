@@ -1,6 +1,6 @@
 FROM ubuntu-1404
 
-RUN npm install -g phantomjs-prebuilt --registry=https://registry.npm.taobao.org
+RUN npm install phantomjs-prebuilt -g --phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs  
 
 MAINTAINER hary zhou <94093146@qq.com>
 
