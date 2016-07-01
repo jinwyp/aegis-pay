@@ -10,7 +10,7 @@ var convert = require('../../libs/convert');
 var config = require('../../config');
 var cache = require('../../libs/cache');
 
-var tableEjs    = config.file_path.views + '/settlement/settleTable.html';
+var tableEjs    = config.views + '/settlement/settleTable.html';
 var downloadPath = config.file_path.root + config.file_path.download;
 var SystemError = require('../../errors/SystemError');
 
