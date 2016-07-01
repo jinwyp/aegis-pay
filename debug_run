@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /app/backend;
+cd /app/aegis-pay/backend;
 
 #echo "$nginx_ip  member-$MODE.yimei180.com"  >> /etc/hosts;
 
