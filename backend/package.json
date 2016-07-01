@@ -52,7 +52,6 @@
     "xss": "^0.2.13"
   },
   "devDependencies": {
-    "flow-bin": "^0.26.0",
     "istanbul": "*",
     "mocha": "^2.5.3",
     "should": "^9.0.0"
