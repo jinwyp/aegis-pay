@@ -11,13 +11,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
     $(".close").click(function(){
         $(".bubble").addClass("bubble-hidden");
     });
-    //$(".btn-pay").click(function(){
-    //    //windown.open="/pay?orderId=100000&userId=123&type=1";
-    //    alert("32423423");
-    //});
-    $(".btn-pay").on("click", function(){
-        alert("32423423");
-    });
 
 
     var vm = {};
@@ -214,37 +207,37 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
     });
 
     $(".btn-buyOrderDetail").click(function(){
-        window.open(host+"/getBuyOrderDetail?orderId="+$(this).data("id"));
+        window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
     });
 
     //卖货订单详情
     $(".btn-sellOrderDetail").click(function(){
-        window.open(host+"/getSellOrderDetail?orderId="+$(this).data("id"));
+        window.open("/getSellOrderDetail?orderId="+$(this).data("id"));
     });
 
     //签订合同
     $(".btn-signContract").click(function(){
-        window.open(host+"/compact?orderId="+$(this).data("id"));
+        window.open("/compact?orderId="+$(this).data("id"));
     });
 
     //付款
     $(".btn-payMoney").click(function(){
-        window.open(host+"/pay?type=1&orderId="+$(this).data("id"));
+        window.open("/pay?type=1&orderId="+$(this).data("id"));
     });
 
     //退款
     $(".btn-retrunMoney").click(function(){
-        window.open(host+"/pay?type=3&orderId="+$(this).data("id"));
+        window.open("/pay?type=3&orderId="+$(this).data("id"));
     });
 
     //补款
     $(".btn-tailMoney").click(function(){
-        window.open(host+"/pay?type=2&orderId="+$(this).data("id"));
+        window.open("/pay?type=2&orderId="+$(this).data("id"));
     });
 
     //确认提货/重新确认提货
     $(".btn-deliveryGoods").click(function(){
-        window.open(host+"/confirmDelivery?orderId="+$(this).data("id"));
+        window.open("/confirmDelivery?orderId="+$(this).data("id"));
     });
 
     //确认收到发票
@@ -276,17 +269,17 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        window.open(host+"/settlement/confirmTheInvoice?orderId＝"+$(this).data(orderid));
+        window.open("/settlement/confirmTheInvoice?orderId＝"+$(this).data(orderid));
     });
 
     //审核提货
     $(".btn-auditDelivery").click(function(){
-        window.open(host+"/getBuyOrderDetail?orderId="+$(this).data("id"));
+        window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
     });
 
     //开具结算单
     $(".btn-settleAccounts").click(function(){
-        window.open(host+"/settlement/settlementForm?type=2&id="+$(this).data("id"));
+        window.open("/settlement/settlementForm?type=2&id="+$(this).data("id"));
     });
 
     //确认已开发票
