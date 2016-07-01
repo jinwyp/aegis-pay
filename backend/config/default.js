@@ -41,9 +41,9 @@ var config = {
         html        : '/html',
         images      : '/images',
         views       : '/app/backend/views',
-        download    : '/app/backend/views/download',
-        zips        : '/app/backend/views/download/zips',
-        pdf         : '/app/backend/views/download/pdf'
+        download    : '/download',
+        zips        : '/download/zips',
+        pdf         : '/download/pdf'
     },
     
     member_address: 'http://10.100.20.3:3000',

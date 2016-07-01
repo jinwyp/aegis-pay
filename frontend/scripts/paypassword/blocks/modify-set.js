@@ -1,4 +1,4 @@
-define(['jquery'],function($){
+define(['jquery', 'datachecker'],function($, datachecker){
   return {
       init: function(){
         this.els = {

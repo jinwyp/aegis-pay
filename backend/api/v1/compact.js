@@ -16,7 +16,7 @@ var checker = require('../../libs/datachecker');
 const uploadPath = config.file_path.root + config.file_path.upload + '/';
 const ejspath    = config.file_path.views +'/global/compact.ejs';
 const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
-const downloadPath = config.file_path.download;
+const downloadPath = config.file_path.root + config.file_path.download;
 
 exports.uploadFile = function (req, res, next) {
     utils.makeDir(uploadTmp);
@@ -84,19 +84,13 @@ var convertData = function (compactdata, compactejs, orderId) {
     };
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
-        console.log('--------resulthtml-------------')
-        console.log(resultHtml)
         return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
-        console.log('--------resultPDF-------------')
-        console.log(resultPDF)
         data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
     .then(function(resultImgs){
-        console.log('--------resultImgs-------------')
-        console.log(resultImgs)
         resultImgs.imgs.forEach(function (img) {
             data.imgs.push('/files/images/' + path.basename(img));
         });
@@ -129,7 +123,6 @@ exports.generate_compact = function (req, res, next) {
 
             if (data.success) {
                 convertData({data: data.data.contract}, ejspath, orderId).then(function (result) {
-                    console.log('-------convertData-----------')
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
                     cache.set('compacts[' + orderId + ']', pageData, function () {

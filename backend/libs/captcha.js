@@ -97,7 +97,7 @@ exports.verifyMiddleware = function (type) {
                 cache.get(userInfo.id + "_ccapimgtxt_pay", function (err, data) {
                     if (err) return next(err);
 
-                    if (data && data === captchaText) {
+                    if (data && data.toLowerCase() === captchaText.toLowerCase()) {
                         return next();
                     } else {
                         return res.json(result);

@@ -12,7 +12,7 @@ var api_config = require('../api/v1/api_config');
 var config     = require('../config');
 
 
-var __download = config.file_path.download;
+var __download = config.file_path.root + config.file_path.download;
 
 
 // 处理业务逻辑
