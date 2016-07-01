@@ -8,7 +8,7 @@ var cache      = require('../libs/cache');
 var config     = require('../config');
 var logger     = require("../libs/logger");
 
-var __download = config.file_path.download;
+var __download = config.file_path.root + config.file_path.download;
 
 // 处理业务逻辑
 exports.sellerDelivery = function (req, res, next) {
