@@ -332,8 +332,9 @@ financialCenterHomePersist
         }
     });
 
+
 financialCenterHomePersist
-    .get('/account/finance/settlement/list')
+    .post('/finance/contract/list')
     .reply(200,
     {
         success:true,

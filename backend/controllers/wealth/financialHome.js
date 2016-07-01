@@ -267,6 +267,7 @@ exports.financialContract = function (req, res, next) {
     var content = req.query.content;
     logger.debug('获取到的userId是----------------------------' + req.session.user.id);
     logger.debug("获取到的表单数据是：startDate=="+startDate+" endDate=="+endDate+" type=="+type+" content=="+content);
+
     request.post(
         {
             url:api_config.contractList,
@@ -276,31 +277,42 @@ exports.financialContract = function (req, res, next) {
                 endDate:endDate,
                 type:type,
                 content:content
-            }
+            },
+            json:true
         },
-        function (err, data) {
+        function (err, response, body) {
             if (err) return next(err);
+
             logger.debug('获取到的错误是----------------------------' + err);
-            logger.debug('获取到的结果是----------------------------' + data.body);
-            if (data) {
-                var source = JSON.parse(data.body);
-                if(source.success) {
-                    var content = {
-                        pageTitle: "合同管理",
-                        headerTit: "合同管理",
-                        tabObj: {
-                            firstTab: firstTab,
-                            secondTab: secondTab
-                        },
-                        startDate: source.data.contract.startDate,
-                        endDate: source.data.contract.endDate,
-                        type: source.data.contract.type,
-                        content: source.data.contract.content,
-                        contractList: source.data.contract.list
-                    };
-                    //渲染页面
-                    res.render('wealth/contractList',content);
-                }
+            logger.debug('获取到的结果是----------------------------' + body);
+
+
+            var content = {
+                pageTitle: "合同管理",
+                headerTit: "合同管理",
+                tabObj: {
+                    firstTab: firstTab,
+                    secondTab: secondTab
+                },
+                startDate: [],
+                endDate: [],
+                type: [],
+                content: [],
+                contractList: []
+            };
+
+            if (response.statusCode === 200 && body.success) {
+
+                content.startDate= body.data.settleOrder.startDate;
+                content.endDate= body.data.settleOrder.endDate;
+                content.type= body.data.settleOrder.searchType;
+                content.content= body.data.settleOrder.content;
+                content.contractList= body.data.settleOrder.list;
+
+                //渲染页面
+                return res.render('wealth/contractList',content);
+            }else {
+                return res.render('wealth/contractList',content);
             }
         }
     );

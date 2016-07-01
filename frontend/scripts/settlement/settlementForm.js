@@ -97,7 +97,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                 var param = {
                     version:    $('[name=version]').val(),
-                    userId:     '15',   //$('[name=userId]').val(),
+                    userId:     $('[name=userId]').val(),
                     orderId:    $('[name=orderId]').val(),
                     reason:     $reason.val()
                 };
@@ -287,7 +287,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                             setInterval(function() {
                                 if(counterNum < 1) {
-                                    location.href = '/account/order/sell';
+                                    location.href = $('.site_page').val() + '/account/order/sell';
                                 }
 
                                 $counterNum.html(counterNum+'S');
@@ -349,7 +349,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 detail: '退回结算 操作成功'
                             });
                             setTimeout(function() {
-                                location.href = '/account/order/buy';
+                                location.href = $('.site_page').val() + '/account/order/buy';
                             }, 1500);
                         } else {
                             message({
