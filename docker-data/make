@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source ../../aegis-docker/bin/aegis-config
+export container_name="aegis-pay-data"
+export project_name=docker-nodejs-pay
+export image_name=ubuntu-nodejs-pay
+
+cp ../backend/package.json  .
+
+# 重写mbt!!!!!
+mbt_rewrite;
+create()      { echo "ERROR: target not supported" | color red bold; }
+stop()        { echo "ERROR: target not supported" | color red bold; }
+start()       { 
+    docker run -d --name aegis-pay-data ubuntu-nodejs-pay echo "pay-data created";
+}
+publish()     { echo "ERROR: target not supported" | color red bold; }
+devPublish()  { echo "ERROR: target not supported" | color red bold; }
+enter()       { echo "ERROR: target not supported" | color red bold; }
+log()         { echo "ERROR: target not supported" | color red bold; }
+local()       { echo "ERROR: target not supported" | color red bold; }
+debug()       { echo "ERROR: target not supported" | color red bold; }
+
+eval "$@"
+
