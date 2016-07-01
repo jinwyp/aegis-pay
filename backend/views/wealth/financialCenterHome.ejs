@@ -38,7 +38,7 @@
                 <div class="bank-card">
                     <span class="bank-icon ml-20"></span>
                     <span class="fs-24 ml-10 account-color">银行账户</span>
-                    <a class="manage-color" href="/wealth/addAccount?firstTab=2&secondTab=1">管理</a>
+                    <a class="manage-color" href="/wealth/addAccount">管理</a>
                 </div>
                 <% if(finance.cashBankAccount==null){ %>
                 <div class="bank-add">
@@ -72,7 +72,7 @@
                 <li class="separator"></li>
                 <li><a href="">交易回执</a></li>
             </ul>
-            <a class="record-all" href="/wealth/financialTransaction?firstTab=3&secondTab=1">查看所有交易记录&gt;&gt;</a>
+            <a class="record-all" href="/wealth/financialTransaction">查看所有交易记录&gt;&gt;</a>
         </div>
         <div class="financial-center">
             <div class="record-div">
@@ -90,103 +90,103 @@
                     <td width="100"><%= recordList[i].statusName %></td>
                     <td width="80">
                         <%if(recordList[i].type){%>
-                        <% if(order.status=='WaitSignContract'){ %>
+                        <% if(recordList[i].status=='WaitSignContract'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-signContract" value="签订合同">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayment'){ %>
+                        <% }else if(recordList[i].status=='WaitPayment'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-payMoney" value="付款">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                        <% }else if(recordList[i].status=='WaitConfirmDelivery'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-confirmDelivery" value="确认提货">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                        <% }else if(recordList[i].status=='ReturnedDeliveryGoods'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-confirmDelivery" value="重新确认提货">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                        <% }else if(recordList[i].status=='WaitVerifyDeliveryGoods'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitSettleAccounts'){ %>
+                        <% }else if(recordList[i].status=='WaitSettleAccounts'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitVerifySettle'){ %>
+                        <% }else if(recordList[i].status=='WaitVerifySettle'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                        <% }else if(recordList[i].status=='ReturnedSettleAccounts'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                        <% }else if(recordList[i].status=='WaitPayRefundMoney'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayTailMoney'){ %>
+                        <% }else if(recordList[i].status=='WaitPayTailMoney'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-tailMoney" value="补款">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitWriteReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitWriteReceipt'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitReceiveReceipt'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-receiveReceipt" value="确认收到发票">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitImproveReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitImproveReceipt'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-improveReceipt" value="完善开票信息">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeDisputing'){ %>
+                        <% }else if(recordList[i].status=='TradeDisputing'){ %>
                         <a target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeDisputeFinished'){ %>
+                        <% }else if(recordList[i].status=='TradeDisputeFinished'){ %>
                         <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='MakeMatch'){ %>
+                        <% }else if(recordList[i].status=='MakeMatch'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='Canceled'){ %>
+                        <% }else if(recordList[i].status=='Canceled'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='Completed'){ %>
+                        <% }else if(recordList[i].status=='Completed'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeFinished'){ %>
+                        <% }else if(recordList[i].status=='TradeFinished'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeClosed'){ %>
+                        <% }else if(recordList[i].status=='TradeClosed'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else{ %>
-                        <%=order.status%>
+                        <%=recordList[i].status%>
                         <% } %>
                         <% }else{ %>
-                        <% if(order.status=='WaitSignContract'){ %>
+                        <% if(recordList[i].status=='WaitSignContract'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayment'){ %>
+                        <% }else if(recordList[i].status=='WaitPayment'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                        <% }else if(recordList[i].status=='WaitConfirmDelivery'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                        <% }else if(recordList[i].status=='ReturnedDeliveryGoods'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                        <% }else if(recordList[i].status=='WaitVerifyDeliveryGoods'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-auditDelivery" value="审核提货">
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitSettleAccounts'){ %>
+                        <% }else if(recordList[i].status=='WaitSettleAccounts'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-settleAccounts" value="开具结算单">
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitVerifySettle'){ %>
+                        <% }else if(recordList[i].status=='WaitVerifySettle'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                        <% }else if(recordList[i].status=='ReturnedSettleAccounts'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                        <% }else if(recordList[i].status=='WaitPayRefundMoney'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-retrunMoney" value="退款">
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitPayTailMoney'){ %>
+                        <% }else if(recordList[i].status=='WaitPayTailMoney'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitWriteReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitWriteReceipt'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-writeReceipt" value="确认已开发票">
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitReceiveReceipt'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='WaitImproveReceipt'){ %>
+                        <% }else if(recordList[i].status=='WaitImproveReceipt'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeDisputing'){ %>
+                        <% }else if(recordList[i].status=='TradeDisputing'){ %>
                         <a target="_blank" href="/dispute/disputeSellerDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeDisputeFinished'){ %>
+                        <% }else if(recordList[i].status=='TradeDisputeFinished'){ %>
                         <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='MakeMatch'){ %>
+                        <% }else if(recordList[i].status=='MakeMatch'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='Canceled'){ %>
+                        <% }else if(recordList[i].status=='Canceled'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='Completed'){ %>
+                        <% }else if(recordList[i].status=='Completed'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeFinished'){ %>
+                        <% }else if(recordList[i].status=='TradeFinished'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
-                        <% }else if(order.status=='TradeClosed'){ %>
+                        <% }else if(recordList[i].status=='TradeClosed'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else{ %>
-                        <%=order.status%>
+                        <%=order.recordList[i]%>
                         <% } %>
                         <% } %>
                     </td>
