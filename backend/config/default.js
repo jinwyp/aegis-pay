@@ -40,12 +40,14 @@ var config = {
         upload      : '/upload',
         html        : '/html',
         images      : '/images',
-        views       : '/app/backend/views',
         download    : '/download',
         zips        : '/download/zips',
         pdf         : '/download/pdf'
     },
-    
+
+    views       : '/app/backend/views',
+    viewspdf    : '/app/backend/views/global/pdftemplate',
+
     member_address: 'http://10.100.20.3:3000',
     site_page: 'https://www.yimei180.com',
     rest_address: 'http://10.100.30.1:8080/'

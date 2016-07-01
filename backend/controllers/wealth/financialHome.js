@@ -19,7 +19,7 @@ var excelSavePath = path.join(config.file_path.root, config.file_path.upload, '/
 utils.makeDir(excelSavePath);
 
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/financial-details');
-var pdfHtmlTemplatePath = path.join(config.file_path.root + config.file_path.download, '/financialDetails/pdftemplate.ejs');
+var pdfHtmlTemplatePath = path.join(config.file_path.download, '/financialDetails/pdftemplate.ejs');
 
 
 
