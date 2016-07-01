@@ -45,8 +45,8 @@ var config = {
         pdf         : '/download/pdf'
     },
 
-    views       : '/app/backend/views',
-    viewspdf    : '/app/backend/views/global/pdftemplate',
+    views       : 'views',
+    viewspdf    : 'views/global/pdftemplate',
 
     member_address: 'http://10.100.20.3:3000',
     site_page: 'https://www.yimei180.com',
