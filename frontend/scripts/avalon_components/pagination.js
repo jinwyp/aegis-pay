@@ -1,6 +1,6 @@
 
 
-define(['jquery', 'avalon'], function( $, avalon){
+define([ 'avalon'], function(  avalon){
 
     function heredoc(fn) {
         return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
@@ -46,8 +46,7 @@ define(['jquery', 'avalon'], function( $, avalon){
             totalPages : 10,
             currentPages : 1,
             inputCurrentPages : 1,
-            changePageNo : function(){},
-            changeTotalPages : function(){},
+            changePageNo : avalon.noop,
 
             _pageArrayLeft : [],
             _pageArrayRight : [],
@@ -58,20 +57,18 @@ define(['jquery', 'avalon'], function( $, avalon){
 
             onInit : function() {
                 console.log('init', this.totalPages);
-                var vm = this;
-                //this.changeTotalPages(vm._showPaginations)
-                vm._showPaginations()
             },
 
             onReady : function(){
                 console.log('ready', this.totalPages);
-                this.$watch('totalPages', function(a){
-                    console.log('ready', this.totalPages);
-                })
+                //this.$watch('totalPages', function(a){
+                //    console.log('ready', this.totalPages);
+                //})
             },
 
             onViewChange : function(){
                 console.log('views change', this.totalPages);
+                this._showPaginations()
             },
 
             _changePage : function(pageNo, event){
@@ -86,12 +83,11 @@ define(['jquery', 'avalon'], function( $, avalon){
                 }
 
                 this.currentPages = tempNo;
-                //this.changePageNo(tempNo, vm._showPaginations );
-                vm._showPaginations()
-
+                this.changePageNo(tempNo);
             },
 
             _showPaginations : function (totalPages) {
+                console.log('show Paginations', this.totalPages);
                 var vm = this;
                 if (totalPages) {
                     vm.totalPages = totalPages;

@@ -213,6 +213,109 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
         app.getFinancialDetailsApi();
     });
 
+    $(".btn-buyOrderDetail").click(function(){
+        window.open(host+"/getBuyOrderDetail?orderId="+$(this).data("id"));
+    });
+
+    //卖货订单详情
+    $(".btn-sellOrderDetail").click(function(){
+        window.open(host+"/getSellOrderDetail?orderId="+$(this).data("id"));
+    });
+
+    //签订合同
+    $(".btn-signContract").click(function(){
+        window.open(host+"/compact?orderId="+$(this).data("id"));
+    });
+
+    //付款
+    $(".btn-payMoney").click(function(){
+        window.open(host+"/pay?type=1&orderId="+$(this).data("id"));
+    });
+
+    //退款
+    $(".btn-retrunMoney").click(function(){
+        window.open(host+"/pay?type=3&orderId="+$(this).data("id"));
+    });
+
+    //补款
+    $(".btn-tailMoney").click(function(){
+        window.open(host+"/pay?type=2&orderId="+$(this).data("id"));
+    });
+
+    //确认提货/重新确认提货
+    $(".btn-deliveryGoods").click(function(){
+        window.open(host+"/confirmDelivery?orderId="+$(this).data("id"));
+    });
+
+    //确认收到发票
+    $(".btn-receiveReceipt").click(function(){
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
+        $('#md_ok_1').val("确定");
+        $("#md_ok_1").off("click").on("click",function(){
+            $(".modal_1").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        var version=$(this).data("version");
+        $.ajax({
+            url:"/mall/order/complete/submit",
+            data:{orderId:orderId,version:version},
+            success:function(data){
+                if(data){
+                    $(".modal_1").modal('show');
+                    //alert('请求成功了');
+                    //if(data.success){
+                    //  $(".modal_2").modal('show');
+                    //}else{
+                    //  alert(data.error);
+                    //}
+                }
+            }
+        });
+    });
+
+    //完善开票信息
+    $(".btn-improveReceipt").click(function(){
+        window.open(host+"/settlement/confirmTheInvoice?orderId＝"+$(this).data(orderid));
+    });
+
+    //审核提货
+    $(".btn-auditDelivery").click(function(){
+        window.open(host+"/getBuyOrderDetail?orderId="+$(this).data("id"));
+    });
+
+    //开具结算单
+    $(".btn-settleAccounts").click(function(){
+        window.open(host+"/settlement/settlementForm?type=2&id="+$(this).data("id"));
+    });
+
+    //确认已开发票
+    $(".btn-writeReceipt").click(function(){
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
+        $('#md_ok_1').val("确定");
+        $("#md_ok_1").off("click").on("click",function(){
+            $(".modal_1").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        var version=$(this).data("version");
+        $.ajax({
+            url:"/mall/order/seller/notice/receiveReceipt",
+            data:{orderId:orderId,version:version},
+            success:function(data){
+                if(data){
+                    $(".modal_1").modal('show');
+                    //alert('请求成功了');
+                    //if(data.success){
+                    //  $(".modal_2").modal('show');
+                    //}else{
+                    //  alert(data.error);
+                    //}
+                }
+            }
+        });
+    });
+
 
 });
 

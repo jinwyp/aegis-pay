@@ -17,10 +17,9 @@
                 <div class="form-row" >
                     <div class="form-group form-search indexHigh">
                         <label class="col-sm-4 control-label" for="orderCategory">摘要:</label>
-                        <select name="orderCategory" id="orderCategory" class="">
-                            <option value="0">全部</option>
+                        <select name="orderCategory" id="orderCategory" >
                             <% formSelectOrderCategory.forEach(function(order){ %>
-                            <option value="<%= order.value %>"><%= order.text %></option>
+                            <option value="<%= order.value %>" <% if (order.selected) { %> selected <% } %> ><%= order.text %></option>
                             <% }) %>
                         </select>
                     </div>

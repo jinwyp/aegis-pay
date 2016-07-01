@@ -12,7 +12,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
         	var timer = setInterval(function(){
         		if(maxTime<=0){
         			clearInterval(timer);
-        			window.location.href= '/';
+        			window.location.href= '/wealth/bindingBankAccount';
         		}else{
         			maxTime--;
         			dealLine.html(maxTime+'s');

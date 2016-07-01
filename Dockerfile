@@ -1,4 +1,4 @@
-FROM ubuntu-1404
+FROM ubuntu-nodejs
 
 MAINTAINER hary zhou <94093146@qq.com>
 

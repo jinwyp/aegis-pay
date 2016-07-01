@@ -69,6 +69,8 @@ exports.financialDetails = function (req, res, next) {
     checker.menuTab(req.query.firstTab);
     checker.menuTab(req.query.secondTab);
 
+    var category  = req.query.category || 0;
+
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 2;
     var content = {
@@ -82,11 +84,14 @@ exports.financialDetails = function (req, res, next) {
         userFundAccount : '1234567890',
 
         formSelectOrderCategory:[
-            {id:'1', value:'1', text:'充值'},
-            {id:'2', value:'2', text:'提现'},
-            {id:'3', value:'3', text:'采购'},
-            {id:'4', value:'4', text:'销售'}
+            {id:'0', value:'0', text:'全部', selected:false},
+            {id:'1', value:'1', text:'充值', selected:false},
+            {id:'2', value:'2', text:'提现', selected:false},
+            {id:'3', value:'3', text:'采购', selected:false},
+            {id:'4', value:'4', text:'销售', selected:false}
         ],
+
+
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},
             {id:'2', value:'2', text:'对方账户名称'},
@@ -94,6 +99,9 @@ exports.financialDetails = function (req, res, next) {
         ]
     };
 
+    if (category) {
+        content.formSelectOrderCategory[category].selected = true;
+    }
 
     var url = api_config.financialDetails;
     var formData = {

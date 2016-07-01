@@ -16,8 +16,6 @@ var plugins = gulpLoadPlugins();
 var sourcePaths = {
     "html"               : "../backend/views/**/*",
     "javascript"               : "scripts/**/*.js",
-    "custom_components_styles" : "custom_components/**/*.scss",
-    "custom_components_js"     : "custom_components/**/*.js",
     "components"               : "components/**/*",
     "images"                   : "images/**/*",
     "imagesSprites"            : "images/sprite/icon/**/*",
@@ -26,7 +24,6 @@ var sourcePaths = {
 
 var distPaths = {
     "javascript"        : "dist/scripts",
-    "custom_components" : "dist/custom_components",
     "components"        : "dist/components",
     "images"            : "dist/images",
     "imagesSprites"     : "images/sprite/auto-sprite.png",
@@ -90,19 +87,11 @@ gulp.task('components', function() {
         .pipe(gulp.dest(distPaths.components))
 });
 
-gulp.task('custom_components', function() {
-    gulp.src(sourcePaths.custom_components_styles)
-        .pipe(plugins.sass({
-            precision : 10
-        }).on('error', plugins.sass.logError))
-        .pipe(gulp.dest(distPaths.custom_components));
-
-    gulp.src(sourcePaths.custom_components_js).pipe(gulp.dest(distPaths.custom_components))
-});
 
 
 
-gulp.task('javascript', ['jslint', 'components', 'custom_components'], function() {
+
+gulp.task('javascript', ['jslint', 'components'], function() {
     gulp.src(sourcePaths.javascript).pipe(gulp.dest(distPaths.javascript))
 });
 
@@ -110,8 +99,6 @@ gulp.task('javascript', ['jslint', 'components', 'custom_components'], function(
 gulp.task('watch', function() {
     gulp.watch(sourcePaths.scss, ['sass']);
     gulp.watch(sourcePaths.javascript, ['javascript']);
-    gulp.watch(sourcePaths.custom_components_js, ['custom_components']);
-    gulp.watch(sourcePaths.custom_components_styles, ['custom_components']);
     gulp.watch(sourcePaths.images, ['images']);
 });
 
