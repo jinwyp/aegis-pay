@@ -73,22 +73,16 @@ exports.html2pdf = function (htmlpath, options) {
 
     return new Promise(function (resolve, reject) {
 
-        // if (utils.isFileExistsSync(pdffile)) {
-        //     resolve({'pdfpath' : pdffile});
-        // } else {
+        if (utils.isFileExistsSync(pdffile)) {
+            resolve({'pdfpath' : pdffile});
+        } else {
             fs.readFile(htmlpath, 'utf8', function (err, resultHtml) {
                 if (err) reject(err);
 
                 if (resultHtml) {
-                    fs.writeFileSync(pdffile, '');
-                    console.log('start-------------------------')
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
-                        console.log('-----------')
-                        console.log(err)
                         if (!err) {
                             fs.stat(pdffile, function (err, stat) {
-                                console.log('2222222222222222')
-                                console.log(err)
                                 if (err) reject(err);
 
                                 if (stat && stat.isFile()) {
@@ -106,7 +100,7 @@ exports.html2pdf = function (htmlpath, options) {
                     resolve({'pdfpath' : 'notfound.html'});
                 }
             });
-        // }
+        }
     })
 };
 
