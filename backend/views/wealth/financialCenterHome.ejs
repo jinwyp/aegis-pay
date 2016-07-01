@@ -186,7 +186,7 @@
                         <% }else if(recordList[i].status=='TradeClosed'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else{ %>
-                        <%=order.recordList[i]%>
+                        <%=recordList[i].status%>
                         <% } %>
                         <% } %>
                     </td>
