@@ -386,7 +386,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $.post({
                     url: apiHost + '/settlement/buyersAuditing',
                     data: param,
-                    type: 'json',
+                    //type: 'json',
                     success: function(data){
                         if(data.success) {
                             message({

@@ -199,7 +199,9 @@ var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 
 // API路由: 买家.结算审核通过.fs --------- http://localhost:3001/api/settlement/buyersAuditing
 var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
+	console.log('bugbugbugbug')
 	var url = apiHost.buyersAuditing;
+	console.log(11111111111111111)
 		//url = apiHost.host + 'settlement/buyersAuditing';			// TODO: 本地
 
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
