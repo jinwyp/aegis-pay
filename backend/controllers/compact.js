@@ -5,61 +5,32 @@ var cache   = require('../libs/cache');
 var checker = require('../libs/datachecker');
 var config = require('../config');
 var utils = require('../libs/utils');
+var _ = require('lodash');
 
 var pdfpath = config.file_path.root + config.file_path.pdf;
 var imagespath = config.file_path.root + config.file_path.images;
 
 // fetch compact
 exports.compact = function (req, res, next) {
-// { pageTitle: '签订电子合同',
-//   orderId: '2020',
-//   headerTit: '签订电子合同',
-//   version: 1,
-//   imgs: 
-//    [ '/files/images/compact-2020-0.jpg',
-//      '/files/images/compact-2020-1.jpg',
-//      '/files/images/compact-2020-2.jpg' ],
-//   pdfpath: '/download/compact-2020.pdf' }
-    // checker.orderId(req.query.orderId);
-    // var orderId = req.query.orderId;
-    // var pageData = {
-    //             pageTitle : '签订电子合同',
-    //             orderId : orderId,
-    //             headerTit : '签订电子合同',
-    //             version: '',
-    //             imgs : []
-    //         };
-    // var compact_pdffile = pdfpath + '/compact-' + req.query.orderId + '.pdf';
-    // var compact_imagespath = imagespath + '/compact-' + req.query.orderId;
-    // if(utils.isDirExistsSync(compact_imagespath) && utils.isFileExistsSync(compact_pdffile)){
-
-    // }else{
-
-    // }
-    var pageData = {
-            pageTitle : '签订电子合同',
-            orderId : req.query.orderId,
-            headerTit : '签订电子合同',
-            version: '',
-            imgs : []
-        };
-    return res.render('compact/compact', pageData);
-    // cache.get('compacts[' + orderId + ']', function (err, data) {
-    //     console.log(data)
-    //     if (err) return next(err);
-    //     if (data) {
-    //         return res.render('compact/compact', data);
-    //     } else {
-    //         var pageData = {
-    //             pageTitle : '签订电子合同',
-    //             orderId : orderId,
-    //             headerTit : '签订电子合同',
-    //             version: '',
-    //             imgs : []
-    //         };
-    //         return res.render('compact/compact', pageData);
-    //     }
-    // })
+    request({url: api_config.checkOrderStatus + '?orderId=' + req.query.orderId + '&userId=' + req.session.user.id}, function(err, data){
+        if(err) {return next(err); }
+        var result = JSON.parse(data.body);
+        if(result.data && (result.data.status === 'WaitSignContract')){
+            var pageData = {
+                pageTitle : '签订电子合同',
+                orderId : req.query.orderId,
+                headerTit : '签订电子合同',
+                version: '',
+                imgs : []
+            };
+            return res.render('compact/compact', pageData);
+        }else{
+            var errMsg = '当前订单不处于签订合同状态！';
+            var er = new Error('Service request error: ' + errMsg);
+            _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
+            return next(er);
+        }
+    })
 };
 
 

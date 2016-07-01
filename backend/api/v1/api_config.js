@@ -15,6 +15,11 @@ var api_config = {
     products      : host + 'products',
     uploadFile    : host + 'upload-file',
     delFile       : host + 'del-file',
+    /**订单状态
+     * params: userId; orderId
+     * res: {data: {status: ''} }
+     */
+    checkOrderStatus: host + 'mall/order/status',
     /**
      * 提交已盖章电子合同
      * method: post
