@@ -14,6 +14,7 @@
     <form method="post" id='pay'>
       <input type="hidden" name="orderId" value="<%= order.id %>" />
       <input type="hidden" name="version" value="<%= order.version %>">
+        <input type="hidden" name="type" value="<%= type %>">
       <ul class='seller'>
         <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.totalMoney) %></i>元</span></li>
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.totalMoney) %>)</span></li>
