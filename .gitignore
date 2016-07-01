@@ -131,3 +131,6 @@ backend/config/
 !backend/config/prod.js
 !backend/config/default.js
 !backend/config/testing.js
+
+docker-data/package.json
+

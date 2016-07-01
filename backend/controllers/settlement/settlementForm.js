@@ -33,7 +33,7 @@ var cache 	= require('../../libs/cache');
 var _       = require('lodash');
 var convert = require('../../libs/convert');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
-var pdfHtmlTemplatePath = path.join(config.file_path.root + config.file_path.download, '/settlement/pdfTemplate.ejs');
+var pdfHtmlTemplatePath = path.join(config.viewspdf, '/settlement/pdfTemplate.ejs');
 const uploadPath = config.file_path.root + '/upload/';			// 压缩.原材料路径
 
 

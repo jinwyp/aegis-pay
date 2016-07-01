@@ -15,12 +15,14 @@ var config = {
         upload      : '/upload',
         html        : '/html',
         images      : '/images',
-        views       : path.join(__dirname, '../views'),
-        download    : path.join(__dirname, '../views/download'),
-        zips        : path.join(__dirname, '../views/download/zips'),
-        pdf         : path.join(__dirname, '../views/download/pdf')
+        download    : '/download',
+        zips        : '/download/zips',
+        pdf         : '/download/pdf'
     },
     
+    views       : path.join(__dirname, '../views'),
+    viewspdf    : path.join(__dirname, '../views/global/pdftemplate'),
+
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',
         cookieName : 'passport'
