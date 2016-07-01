@@ -14,7 +14,7 @@ var checker = require('../../libs/datachecker');
 
 
 const uploadPath = config.file_path.root + config.file_path.upload + '/';
-const ejspath    = config.views +'/global/compact.ejs';
+const ejspath    = config.viewspdf +'/compact.ejs';
 const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
 const downloadPath = config.file_path.root + config.file_path.download;
 
@@ -125,9 +125,9 @@ exports.generate_compact = function (req, res, next) {
                 convertData({data: data.data.contract}, ejspath, orderId).then(function (result) {
                     pageData = _.assign(pageData, {version: data.data.version}, result);
 
-                    cache.set('compacts[' + orderId + ']', pageData, function () {
+                    // cache.set('compacts[' + orderId + ']', pageData, function () {
                         return res.render('compact/blocks/compact', pageData);
-                    });
+                    // });
                 }).catch(next);
             } else {
                 return res.render('compact/blocks/compact', pageData);
