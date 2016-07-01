@@ -259,7 +259,7 @@ exports.financialTransaction = function (req, res, next) {
 
 exports.financialContract = function (req, res, next) {
 
-    var firstTab  = req.query.firstTab || 3;
+    var firstTab  = req.query.firstTab || 5;
     var secondTab = req.query.secondTab || 1;
     var startDate = req.query.startDate;
     var endDate = req.query.endDate;

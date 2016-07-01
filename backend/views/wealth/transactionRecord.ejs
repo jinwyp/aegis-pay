@@ -89,90 +89,90 @@
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-option" value="付款付款"/>
                         <a>查看详情</a>
                         <%if(recordList[i].type==0){%>
-                            <% if(order.status=='WaitSignContract'){ %>
+                            <% if(recordList[i].status=='WaitSignContract'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-signContract" value="签订合同">
                         <a class="ml-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">关闭交易</a>
-                            <% }else if(order.status=='WaitPayment'){ %>
+                            <% }else if(recordList[i].status=='WaitPayment'){ %>
                             <input type="button" class="iBtn iBtn_xs iBtn_no btn-payMoney" value="签订合同"/>
-                            <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                            <% }else if(recordList[i].status=='WaitConfirmDelivery'){ %>
                             <!--<input type="button" class="iBtn iBtn_xs iBtn_no btn-deliveryGoods" value="确认提货"/>-->
-                            <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                            <% }else if(recordList[i].status=='ReturnedDeliveryGoods'){ %>
                             <!--<input type="button" class="iBtn iBtn_xs iBtn_no btn-deliveryGoods" value="重新确认提货"/>-->
-                            <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                            <% }else if(recordList[i].status=='WaitVerifyDeliveryGoods'){ %>
                             <!--<a class="btn-deliveryGoods">查看提货详情</a>-->
-                            <% }else if(order.status=='WaitSettleAccounts'){ %>
+                            <% }else if(recordList[i].status=='WaitSettleAccounts'){ %>
 
-                            <% }else if(order.status=='WaitVerifySettle'){ %>
+                            <% }else if(recordList[i].status=='WaitVerifySettle'){ %>
 
-                            <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                            <% }else if(recordList[i].status=='ReturnedSettleAccounts'){ %>
 
-                            <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                            <% }else if(recordList[i].status=='WaitPayRefundMoney'){ %>
 
-                            <% }else if(order.status=='WaitPayTailMoney'){ %>
+                            <% }else if(recordList[i].status=='WaitPayTailMoney'){ %>
 
-                            <% }else if(order.status=='WaitWriteReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitWriteReceipt'){ %>
 
-                            <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitReceiveReceipt'){ %>
 
-                            <% }else if(order.status=='WaitImproveReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitImproveReceipt'){ %>
 
-                            <% }else if(order.status=='TradeDisputing'){ %>
-                            <% }else if(order.status=='TradeDisputeFinished'){ %>
-                            <% }else if(order.status=='MakeMatch'){ %>
+                            <% }else if(recordList[i].status=='TradeDisputing'){ %>
+                            <% }else if(recordList[i].status=='TradeDisputeFinished'){ %>
+                            <% }else if(recordList[i].status=='MakeMatch'){ %>
 
-                            <% }else if(order.status=='Canceled'){ %>
+                            <% }else if(recordList[i].status=='Canceled'){ %>
 
-                            <% }else if(order.status=='Completed'){ %>
+                            <% }else if(recordList[i].status=='Completed'){ %>
 
-                            <% }else if(order.status=='TradeFinished'){ %>
+                            <% }else if(recordList[i].status=='TradeFinished'){ %>
 
-                            <% }else if(order.status=='TradeClosed'){ %>
+                            <% }else if(recordList[i].status=='TradeClosed'){ %>
 
                             <% }else{ %>
-                                <%=order.status%>
+                                <%=recordList[i].status%>
                             <% } %>
                         <%}else if(recordList[i].type==1){%>
-                            <% if(order.status=='WaitSignContract'){ %>
+                            <% if(recordList[i].status=='WaitSignContract'){ %>
                             <span class="status">货物已下单，请及时签订电子合同</span>
-                            <% }else if(order.status=='WaitPayment'){ %>
+                            <% }else if(recordList[i].status=='WaitPayment'){ %>
                             <span class="status">已签订电子合同，请及时支付货款</span>
-                            <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                            <% }else if(recordList[i].status=='WaitConfirmDelivery'){ %>
                             <span class="status">已付款，待卖家确认提货</span>
                             <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
-                            <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                            <% }else if(recordList[i].status=='ReturnedDeliveryGoods'){ %>
                             <span class="status-return">提货被卖家退回，待确认提货</span>
-                            <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                            <% }else if(recordList[i].status=='WaitVerifyDeliveryGoods'){ %>
                             <span class="status">提货已确认，等待卖家审核</span>
-                            <% }else if(order.status=='WaitSettleAccounts'){ %>
+                            <% }else if(recordList[i].status=='WaitSettleAccounts'){ %>
                             <span class="status">已确认提货，待开具结算单</span>
-                            <% }else if(order.status=='WaitVerifySettle'){ %>
+                            <% }else if(recordList[i].status=='WaitVerifySettle'){ %>
                             <span class="status">已开具结算单，等待买家确认</span>
-                            <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                            <% }else if(recordList[i].status=='ReturnedSettleAccounts'){ %>
                             <span class="status">结算单被退回，等待卖家修改</span>
-                            <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                            <% }else if(recordList[i].status=='WaitPayRefundMoney'){ %>
                             <span class="status">结算已完成，等待卖家退款</span>
-                            <% }else if(order.status=='WaitPayTailMoney'){ %>
+                            <% }else if(recordList[i].status=='WaitPayTailMoney'){ %>
                             <span class="status">结算单已确认，等待买家补款</span>
-                            <% }else if(order.status=='WaitWriteReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitWriteReceipt'){ %>
                             <span class="status">结算完成，等待卖家开具增值税发票</span>
-                            <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitReceiveReceipt'){ %>
                             <span class="status">卖家已开增值税发票，等待收发票</span>
-                            <% }else if(order.status=='WaitImproveReceipt'){ %>
+                            <% }else if(recordList[i].status=='WaitImproveReceipt'){ %>
                             <span class="status">结算单已确认，等待完善开票信息</span>
-                            <% }else if(order.status=='TradeDisputing'){ %>
-                            <% }else if(order.status=='TradeDisputeFinished'){ %>
-                            <% }else if(order.status=='MakeMatch'){ %>
+                            <% }else if(recordList[i].status=='TradeDisputing'){ %>
+                            <% }else if(recordList[i].status=='TradeDisputeFinished'){ %>
+                            <% }else if(recordList[i].status=='MakeMatch'){ %>
                             <span class="status">匹配中</span>
-                            <% }else if(order.status=='Canceled'){ %>
+                            <% }else if(recordList[i].status=='Canceled'){ %>
                             <span class="status">已取消</span>
-                            <% }else if(order.status=='Completed'){ %>
+                            <% }else if(recordList[i].status=='Completed'){ %>
                             <span class="status">交易完成</span>
-                            <% }else if(order.status=='TradeFinished'){ %>
+                            <% }else if(recordList[i].status=='TradeFinished'){ %>
                             <span class="status-close">交易结束</span>
-                            <% }else if(order.status=='TradeClosed'){ %>
+                            <% }else if(recordList[i].status=='TradeClosed'){ %>
                             <span class="status-close">交易关闭</span>
                             <% }else{ %>
-                            <%=order.status%>
+                            <%=recordList[i].status%>
                             <% } %>
                         <% } %>
                     </td>
