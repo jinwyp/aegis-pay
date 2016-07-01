@@ -89,7 +89,7 @@
                     <% }else{ %>
                     <td width="100"><%= recordList[i].statusName %></td>
                     <td width="80">
-                        <%if(recordList[i].type){%>
+                        <%if(recordList[i].type==0){%>
                         <% if(recordList[i].status=='WaitSignContract'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-signContract" value="签订合同">
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
