@@ -15,5 +15,9 @@ make self:
 	make self将采用backend/config/self.js来配置来启动应用,
 	你可以随意修改self.js中的配置来联调, 因为self.js已经被写入.gitignore, 不会纳入版本管理
 ";
+
+if [[ $@ == "image" ]]; then
+    ( cd docker-data; make image; );
+fi
 mbt $@;
 
