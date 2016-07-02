@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        @charset "UTF-8";
+        @keyframes spin { from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); } }
+        @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); } }
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; font-family: 'Microsoft Yahei', Arial, Helvetica, "黑体", sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+        html, body { min-width: 1000px; font-size: 12px; }
+        ol, ul { list-style: none; }
+        blockquote, q { quotes: none; }
+        blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+        /* remember to define focus styles! */
+        :focus { outline: 0; }
+        /* remember to highlight inserts somehow! */
+        ins { text-decoration: none; }
+        del { text-decoration: line-through; }
+        /* tables still need 'cellspacing="0"' in the markup */
+        table { border-collapse: collapse; border-spacing: 0; }
+        caption, th, td { text-align: left; font-weight: normal; float: none !important; }
+        table, th, td { vertical-align: middle; }
+        em, i { font-style: normal; }
+        a { text-decoration: none; }
+        /* Remove annoying border on linked images. */
+        a img { border: none; text-decoration: none; }
+        /* Remember to define your own focus styles! */
+        :focus { outline: 0; }
+        a:link, a:focus { text-decoration: none; }
+        a:active, a:hover { outline: 0; }
+        a:hover { color: #00b7ec; text-decoration: underline; }
+
+        /* 公用: layout 布局 --------------------------- */
+        .containerWrap { width: 100%; height: 100%; padding-top: 80px; background: #FFFFFF; }
+        .containerWrap .bodyWrap { width: 1000px; margin: 0 auto 50px; padding: 20px 40px 30px 10px; background: #FFFFFF; /* 板块 */ }
+        .containerWrap .bodyWrap .plateBox { width: auto; }
+        .containerWrap .bodyWrap .plateBox .plateHead { height: 37px; position: relative; z-index: 3; }
+        .containerWrap .bodyWrap .plateBox .plateHead .prefix { float: left; display: inline; width: 2px; height: 18px; margin-top: 9px; margin-right: 8px; background: #00b6ef; }
+        .containerWrap .bodyWrap .plateBox .plateHead .headLeft { margin: 0; font: lighter 18px/36px "\5FAE\8F6F\96C5\9ED1"; }
+        .containerWrap .bodyWrap .plateBox .plateHead .headContent { width: 40%; display: block; margin: 0 auto; text-align: center; font: lighter 18px/36px "\5FAE\8F6F\96C5\9ED1"; }
+        .containerWrap .bodyWrap .plateBox .plateHead .headRight { width: 100px; float: right; display: inline; text-align: right; font-size: 12px; line-height: 36px; font-family: "宋体"; }
+        .containerWrap .bodyWrap .plateBox .plateHead .subTitle_hint { display: inline-block; height: 28px; color: #333333; font-size: 12px; font-family: "宋体"; line-height: 18px; }
+        .containerWrap .bodyWrap .plateBox .plateHead .headLeft_hint { display: inline-block; font-size: 12px; color: #ff6e27; }
+        .containerWrap .bodyWrap .plateBox .plateHead.borSolid { border-bottom: 1px solid #666666; }
+        .containerWrap .bodyWrap .plateBox .plateMain { position: relative; z-index: 4; border: none; }
+        .containerWrap .bodyWrap .plateBox .plateMain.borSolid { border: 1px solid #666666; }
+
+
+        /* 结算单表格 板块 --------------------------- */
+        @keyframes spin { from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); } }
+        @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); } }
+        .settlementTable { width: 100%; max-width: 100%; }
+        .settlementTable tbody tr th, .settlementTable tbody tr td { padding: 9px; font-size: 14px; line-height: 1.428571429; vertical-align: top; border: 1px solid #666666; text-align: center; }
+        .settlementTable tbody tr th { background: #f5f5f5; color: #666666; }
+        .settlementTable tbody tr td { padding: 15px 0; background: #ffffff; color: #333333; }
+        .settlementTable tbody .billBox { position: relative; background: #f3fcff; }
+        .settlementTable tbody .billBox:hover { outline: #27abff solid thin; }
+        .settlementTable tbody .billBox .billIpt { width: 90%; border: none; background: #f3fcff; text-align: center; }
+        .settlementTable tbody .billBox .errInfo { width: 200px; height: 18px; padding: 0 3px; position: absolute; z-index: 6; font-size: 12px; line-height: 18px; bottom: 0; right: 0; left: 0; margin: 0 auto; color: #ff0000; }
+        .settlementTit { height: 50px; line-height: 42px; font-size: 22px; color: #333333; text-align: center; }
+        .settlementTit .subEditTitle { font-size: 12px; color: #666666; }
+        .settlementTit .subEditTitle .require { line-height: 16px; }
+        .mt20 {margin-top: 40px; }
+    </style>
+</head>
+<body>
+<div >
+
+    <!-- 下载打印 结算单模板 -->
+    <div class="containerWrap">
+        <div class="bodyWrap">
+            <div class="plateBox">
+                <!--<div class="plateHead borSolid">-->
+                    <!--<h3 class="headContent">结算单详情</h3>-->
+                <!--</div>-->
+                <div class="plateMain">
+
+                    <%- include ../../Plugins/settlementInfoPlate %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

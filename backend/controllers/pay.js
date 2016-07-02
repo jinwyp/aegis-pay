@@ -37,7 +37,7 @@ exports.page = function (req, res, next) {
                 // 订单不处于支付状态
                  res.redirect('/getBuyOrderDetail?orderId=' + req.query.orderId);
             }else{
-                var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款' },
+                var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款', type:req.query.type },
                                             result.data);
                 // 未开通资金账号
                 var view = (result.errorCode==='1001') ? 'pay/open-account' : 'pay/index';
@@ -49,8 +49,9 @@ exports.page = function (req, res, next) {
 
 
 exports.success = function (req, res, next) {
-    var params = '?orderId=' + req.query.orderId + '&userId=' + req.session.user.id + '&type=1';
+    var params = '?orderId=' + req.query.orderId + '&userId=' + req.session.user.id + '&type=' + req.query.type;
     request(api_config.orderProgress + params, function (err, data) {
+        if(err){ return next(err); }
         if (!err && data) {
             var body = JSON.parse(data.body);
             var data = body.data;

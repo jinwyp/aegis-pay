@@ -37,7 +37,7 @@ define(['jquery', 'datachecker'],function($, datachecker){
         $.post('/api/pay/submit', params, function(data){
           if(data.success){
             // 跳转到付款成功提示页面
-            location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=1';
+            location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=' + $('input[name="type"]').val();
           }else{
             if(data.errType && (data.errType=='sms_code')){
               self.els.$codeTipErr.text('校验码错误').show();
