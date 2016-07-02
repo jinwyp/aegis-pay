@@ -120,26 +120,26 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //确认结算单
     $(".btn-confirmSettle").click(function(){
-        window.open("/settlement/settlementForm?type=1&id="+$(this).data("id"));
+        window.open("/settlement/settlementForm?type=1&id="+$("#orderId").val());
     });
 
     //买家查看结算单
     $(".btn-buyerLookSettle").click(function(){
-        window.open("/settlement/settlementForm?type=1&id="+$(this).data("id"));
+        window.open("/settlement/settlementForm?type=1&id="+$("#orderId").val());
     });
     //卖家查看结算单
     $(".btn-sellerLookSettle").click(function(){
-        window.open("/settlement/settlementForm?type=2&id="+$(this).data("id"));
+        window.open("/settlement/settlementForm?type=2&id="+$("#orderId").val());
     });
 
     //买家修改结算单
     $(".btn-buyerUpdateSettle").click(function(){
-        window.open(host+"/settlement/settlementForm?type=1&id="+$(this).data("id"));
+        window.open(host+"/settlement/settlementForm?type=1&id="+$("#orderId").val());
     });
 
     //卖家修改结算单
     $(".btn-sellerUpdateSettle").click(function(){
-        window.open(host+"/settlement/settlementForm?type=2&id="+$(this).data("id"));
+        window.open(host+"/settlement/settlementForm?type=2&id="+$("#orderId").val());
     });
 
     //提醒卖家结算
@@ -196,12 +196,12 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //退款
     $(".btn-retrunMoney").click(function(){
-        window.open(host+"/pay?type=3&orderId="+$(this).data("id"));
+        window.open(host+"/pay?type=3&orderId="+$("#orderId").val());
     });
 
     //补款
     $(".btn-tailMoney").click(function(){
-        window.open(host+"/pay?type=2&orderId="+$(this).data("id"));
+        window.open(host+"/pay?type=2&orderId="+$("#orderId").val());
     });
 
     //提醒卖家开发票

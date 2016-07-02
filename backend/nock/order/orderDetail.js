@@ -211,7 +211,7 @@ var data = {
     }
 };
 
-orderDetailPersist.post('/mall/order').query({orderId:1}).reply(200, data);
+orderDetailPersist.post('/mall/order').reply(200, data);
 
 module.exports = orderDetailPersist;
 

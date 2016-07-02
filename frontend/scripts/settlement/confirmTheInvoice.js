@@ -113,7 +113,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                         return $("#totalError").val(data.message);
                     }
                     $("#totalError").val("");
-                    location.href = "/getOrderDetail?orderId=" + orderId;
+                    location.href = "/getBuyOrderDetail?orderId=" + orderId;
                     console.log('------------- submit success -------------');
                 }
             );

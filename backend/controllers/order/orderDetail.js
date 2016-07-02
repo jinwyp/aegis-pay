@@ -72,6 +72,11 @@ exports.getBuyOrderDetail = function (req, res, next) {
                     }
                 ]
             };
+            logger.debug('status-----------------'+source.data.order.createTime);
+            logger.debug('status-----------------'+source.data.order.signContractTime);
+            logger.debug('status-----------------'+source.data.order.paymentTime);
+            logger.debug('status-----------------'+source.data.order.confirmDeliveryTime);
+            logger.debug('status-----------------'+source.data.order.settleAccountTime);
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var content = {
                 headerTit  : "订单详情",
@@ -101,7 +106,6 @@ exports.getSellOrderDetail = function (req, res, next) {
             if (data) {
                 var source = JSON.parse(data.body);
                 logger.debug('userId-----------------'+req.session.user.id);
-                logger.debug('status-----------------'+source.data.order.status);
                 logger.debug('order-----------------'+JSON.stringify(source.data.order));
                 logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
                 var step = 0;
