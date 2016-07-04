@@ -13,7 +13,7 @@
     <div class="settlementManagement">
         <div class="wrap clearfix">
             <% include ../account/sideBar  %>
-            <div class="content">
+            <div class="content" ms-controller="paginationController">
                 <% include billSearch %>
                 <table class="billList">
                     <thead>
@@ -63,7 +63,9 @@
 
                     </tbody>
                 </table>
-                <% include page %>
+
+                <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
+
             </div>
         </div>
     </div>
