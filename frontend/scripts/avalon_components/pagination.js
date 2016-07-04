@@ -1,6 +1,6 @@
 
 
-define([ 'avalon'], function(  avalon){
+define(['avalon'], function(avalon){
 
     function heredoc(fn) {
         return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').

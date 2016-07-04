@@ -2,7 +2,7 @@
 * 页面脚本
 * */
 
-requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'avalon.components'], function( $, fancySelect, datePicker, avalon){
+requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'], function( $, fancySelect, datePicker, avalon){
 
     $(".recharge").click(function(){
         $(".bubble").removeClass("bubble-hidden");
