@@ -103,29 +103,8 @@
 
 
 
-                        <nav class="pagination-financial">
-                            <ul class="pagination pageno">
-                                <li> <a aria-label="Previous" ms-click="@_changePage(@_currentPages-1, $event, '')"> <span aria-hidden="true" > 上一页 </span> </a> </li>
+                        <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
 
-                                <li ms-for='(key, page) in @_pageArrayLeft'> <a ms-class="{active : page.value == @_currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
-                                <li ms-visible='@_ellipsisLeft'> <a >...</a> </li>
-
-
-                                <li ms-for='(key, page) in @_pageArrayMiddle'> <a ms-class="{active : page.value == @_currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
-
-
-                                <li ms-visible='@_ellipsisRight'> <a >...</a> </li>
-                                <li ms-for='(key, page) in @_pageArrayRight'> <a ms-class="{active : page.value == @_currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
-
-
-                                <li> <a aria-label="Next" ms-click="@_changePage(@_currentPages+1, $event, '')"> <span aria-hidden="true"> 下一页 </span> </a> </li>
-                            </ul>
-
-                            <div class="jump-to-page">
-                                <span>共 {{@_totalPages}}页, 到第</span> <input type="text" placeholder="" ms-duplex="@_inputCurrentPages"> <span>页</span>
-                                <button class="iBtn pagination-button" ms-click="@_changePage(@_inputCurrentPages, $event)">确定</button>
-                            </div>
-                        </nav>
 
                     </div>
 

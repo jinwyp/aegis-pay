@@ -2,7 +2,7 @@
 * 页面脚本
 * */
 
-requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], function( $, fancySelect, datePicker, avalon){
+requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'avalon.components'], function( $, fancySelect, datePicker, avalon){
 
     $(".recharge").click(function(){
         $(".bubble").removeClass("bubble-hidden");
@@ -28,10 +28,10 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
             var $formSelectOrderSearchType = $('[name=orderSearchType]');
 
             var $formDateFrom = $('.orderDateFrom').pickadate({format:'yyyy-mm-dd', max:true});
-            var $formDateTo = $('.orderDateTo').pickadate({min:1});
+            var $formDateTo = $('.orderDateTo').pickadate({max:true});
 
             var $formDownloadDateFrom = $('[name=orderDownloadDateFrom]').pickadate({format:'yyyy-mm-dd', max:true});
-            var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({min:1});
+            var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({max:true});
 
 
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
@@ -66,15 +66,13 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 orderSearchText  : '',
                 orderList        : [],
 
-                _currentPages : 1,
-                _totalPages : 10,
-                _inputCurrentPages : 1,
-                _pageArrayLeft : [],
-                _pageArrayRight : [],
-                _pageArrayMiddle : [],
-
-                _ellipsisLeft : false,
-                _ellipsisRight : false,
+                configPagination : {
+                    totalPages : 10,
+                    changePageNo : function(page){
+                        searchQuery.currentPage = page;
+                        app.getFinancialDetailsApi(searchQuery);
+                    }
+                },
 
                 searchOrder : function(event){
                     event.preventDefault();
@@ -83,84 +81,14 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                     searchQuery.orderDateTo = $formDateTo.val();
 
                     console.log(searchQuery);
-
                     app.getFinancialDetailsApi(searchQuery);
                 },
 
                 printOrder : function (fundAccount, printCode) {
                     app.getFinancialDetailPrintApi(fundAccount, printCode);
-                },
-
-
-                _changePage : function(pageNo, event){
-                    event.preventDefault();
-                    var tempNo = Number(pageNo);
-
-                    if (tempNo < 1){
-                        tempNo = 1
-                    }else if (tempNo > vm._totalPages){
-                        tempNo = vm._totalPages
-                    }
-
-                    vm._currentPages = tempNo;
-                    searchQuery.currentPage = tempNo;
-                    app.getFinancialDetailsApi(searchQuery);
-                },
-
-                _showPagination : function () {
-
-                    vm._pageArrayLeft = [];
-                    vm._pageArrayRight = [];
-                    vm._pageArrayMiddle = [];
-
-                    vm._ellipsisLeft = false;
-                    vm._ellipsisRight = false;
-
-                    var paginationShowNumberLimit = 8;
-                    var paginationLeftShowNumber = 2;
-                    var paginationRightShowNumber = 2;
-                    var paginationMiddleShowNumber = 3;
-
-                    var currentPageShowLeftNumber = paginationMiddleShowNumber + 1;
-                    var currentPageShowMiddleNumber = Math.ceil(paginationMiddleShowNumber / 2) ;
-
-                    for (var i=1; i<= vm._totalPages; i++){
-
-                        if (vm._totalPages <= paginationShowNumberLimit){
-                            vm._pageArrayMiddle.push({value:i});
-                        }else{
-
-                            //创建左部分的分页 例如 1,2
-                            if ( i <= paginationLeftShowNumber ){ vm._pageArrayLeft.push({value:i}); }
-
-                            //创建右部分的分页 例如 99,100
-                            if ( i >= vm._totalPages - (paginationRightShowNumber - 1) ){ vm._pageArrayRight.push({value:i}); }
-
-                            //创建中间部分的分页 例如 49,50,51
-                            if (i > paginationLeftShowNumber  && i < vm._totalPages - (paginationRightShowNumber - 1) ) {
-
-                                if (vm._currentPages <= currentPageShowLeftNumber && i <= (currentPageShowLeftNumber + 1) ) {
-                                    vm._ellipsisRight = true;
-                                    vm._pageArrayMiddle.push({value:i});
-                                }
-
-                                if ( vm._currentPages > currentPageShowLeftNumber && vm._currentPages < vm._totalPages - paginationMiddleShowNumber) {
-                                    vm._ellipsisLeft = true;
-                                    vm._ellipsisRight = true;
-
-                                    if ( i > vm._currentPages - currentPageShowMiddleNumber && i < vm._currentPages + currentPageShowMiddleNumber){
-                                        vm._pageArrayMiddle.push({value:i});
-                                    }
-                                }
-
-                                if ( vm._currentPages >= vm._totalPages - paginationMiddleShowNumber && i >= vm._totalPages - paginationMiddleShowNumber - 1) {
-                                    vm._ellipsisLeft = true;
-                                    vm._pageArrayMiddle.push({value:i});
-                                }
-                            }
-                        }
-                    }
                 }
+
+
             });
 
 
@@ -176,8 +104,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
                 data   : params1,
                 success:function(data){
                     vm.orderList = data.list;
-                    vm._totalPages = Math.ceil(data.count / data.pagesize);
-                    vm._showPagination()
+                    vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                 }
             })
         },
@@ -205,6 +132,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon'], f
         app.init();
         app.getFinancialDetailsApi();
     });
+
 
     $(".btn-buyOrderDetail").click(function(){
         window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
