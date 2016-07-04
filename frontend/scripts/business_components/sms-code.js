@@ -24,12 +24,16 @@ define(['jquery','bootstrap'],function($){
         })
 
         $('#imgcodeValid').click(function(){
-          var imgcode = $('input[name="imgcode"]').val();
-          if(!imgcode){
-            $('input[name="imgcode"]').focus();
-            return;
-          }
-          self.validImgcode(imgcode);
+            var imgcode = $('input[name="imgcode"]').val();
+                if(!imgcode){
+                $('input[name="imgcode"]').focus();
+                return;
+            }
+            if( $(this).hasClass("sended")){
+                return  ;
+            }
+            $(this).addClass("sended");
+            self.validImgcode(imgcode);
         })
     },
     validImgcode: function(imgcode){
@@ -40,6 +44,7 @@ define(['jquery','bootstrap'],function($){
         $.post('/api/validImgcode', params, function(data){
           if(data.success){
               $('#imgcodeModal').modal('hide');
+              $(self).removeClass("sended");
               // 发送短信验证码成功
               var time = data.time;
               $send_sms.addClass('disable').text(time + 's后重新发送').attr('data-target','');
@@ -55,6 +60,7 @@ define(['jquery','bootstrap'],function($){
                 }
               },1000)
           }else{
+              $(self).removeClass("sended");
               if(data.errType == 'imgcode'){
                   $('input[name="imgcode"]').focus();
                   self.els.$imgcodeTipErr.text('验证码无效，请重新输入').show();

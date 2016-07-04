@@ -55,6 +55,9 @@ require(['jquery', 'pay.smscode'], function($, smscode){
             })
 
             $('#send_code').on('click', function(e){
+                if($(this).hasClass("disable")){
+                    return ;
+                };
                 var payPhone = $('input[name="payPhone"]').val();
                 if(! /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/.test(payPhone)){
                     self.els.$payPhoneErr.text('请输入有效的手机号！').show();
