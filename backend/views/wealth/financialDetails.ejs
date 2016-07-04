@@ -85,7 +85,7 @@
 
                             <tr ms-for='(key, order) in @orderList'>
                                 <td >{{order.createDate  }}</td>
-                                <td >{{order.transactionNO}}</td>
+                                <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
                                 <td >{{order.money | number(2) }}</td>
                                 <td >{{order.balanceMoney | number(2)}}</td>
                                 <td >
