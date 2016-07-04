@@ -111,14 +111,14 @@
 
                     <% } else { %>
                     <tr>
-                        <td><%= formatDecimal(orderObj.settleAmount, 2) %></td>
-                        <td><%= formatMoney(orderObj.harbourDues, 2) %></td>
-                        <td><%= formatMoney(orderObj.settleMoney, 2) %></td>
+                        <td><%= formatDecimal(orderObj.settleAmount || 0, 2) %></td>
+                        <td><%= formatMoney(orderObj.harbourDues || 0, 2) %></td>
+                        <td><%= formatMoney(orderObj.settleMoney || 0, 2) %></td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="refundMoney"><%= formatMoney(orderObj.tailMoney, 2) %></span>
+                                <span class="refundMoney"><%= formatMoney(orderObj.tailMoney || 0, 2) %></span>
                             <% }else{ %>
-                                <span class="refundMoney"><%= formatMoney(orderObj.refundMoney, 2) %></span>
+                                <span class="refundMoney"><%= formatMoney(orderObj.refundMoney || 0, 2) %></span>
                             <% } %>
                         </td>
                     </tr>
