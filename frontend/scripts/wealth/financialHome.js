@@ -133,98 +133,295 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         app.getFinancialDetailsApi();
     });
 
+    //提醒签订合同
+    $(".notice-signContract").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId= $(this).data("id");
+        $.ajax({
+            url:"/toNoticeBuyerSignContract?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
+    });
+
     //签订合同
     $(".btn-signContract").click(function(){
-        window.open("/compact?orderId="+$(this).data("id"));
+        location.href="/compact?orderId="+$(this).data("id");
+    });
+
+    //提醒买家确认提货
+    $(".notice-confirmDelivery").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        $.ajax({
+            url:"/toNoticeBuyerPayMoney?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
     });
 
     //付款
     $(".btn-payMoney").click(function(){
-        window.open("/pay?type=1&orderId="+$(this).data("id"));
+        location.href="/pay?type=1&orderId="+$(this).data("id");
     });
 
-    //退款
-    $(".btn-retrunMoney").click(function(){
-        window.open("/pay?type=3&orderId="+$(this).data("id"));
-    });
-
-    //补款
-    $(".btn-tailMoney").click(function(){
-        window.open("/pay?type=2&orderId="+$(this).data("id"));
+    //提醒买家确认提货
+    $(".notice-confirmDelivery").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        $.ajax({
+            url:"/toNoticeBuyerToDelivery?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
     });
 
     //确认提货/重新确认提货
     $(".btn-deliveryGoods").click(function(){
-        window.open("/confirmDelivery?orderId="+$(this).data("id"));
+        location.href="/confirmDelivery?orderId="+$(this).data("id");
     });
 
-    //确认收到发票
-    $(".btn-receiveReceipt").click(function(){
-        $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
-        $('#md_ok_1').val("确定");
-        $("#md_ok_1").off("click").on("click",function(){
-            $(".modal_1").modal('hide');
+    //查看提货详情
+    $(".btn-deliveryDetail").click(function(){
+        location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
+    });
+
+    //查看退货详情
+    $(".btn-returnDetail").click(function(){
+        location.href="/return?orderId="+$(this).data("id");
+    });
+
+    //审核提货
+    $(".btn-auditDelivery").click(function(){
+        location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
+    });
+
+    //开具结算单
+    $(".btn-settleAccounts").click(function(){
+        location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+    });
+
+    //确认结算单
+    $(".btn-confirmSettle").click(function(){
+        location.href="/settlement/settlementForm?type=1&id="+$(this).data("id");
+    });
+
+    //买家查看结算单
+    $(".btn-buyerLookSettle").click(function(){
+        location.href="/settlement/settlementForm?type=1&id="+$(this).data("id");
+    });
+    //卖家查看结算单
+    $(".btn-sellerLookSettle").click(function(){
+        location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+    });
+
+    //买家修改结算单
+    $(".btn-buyerUpdateSettle").click(function(){
+        location.href="/settlement/settlementForm?type=1&id="+$(this).data("id");
+    });
+
+    //卖家修改结算单
+    $(".btn-sellerUpdateSettle").click(function(){
+        location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+    });
+
+    //提醒卖家结算
+    $(".notice-sellerSettle").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
         });
         var orderId=$(this).data("id");
-        var version=$(this).data("version");
         $.ajax({
-            url:"/mall/order/complete/submit",
-            data:{orderId:orderId,version:version},
+            url:"/toNoticeSellerToSettle?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_1").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
+            }
+        });
+    });
+
+    //提醒卖家退款
+    $(".notice-sellerRetrunMoney").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        $.ajax({
+            url:"/toNoticeSellerReturnMoney?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
+    });
+
+    //退款
+    $(".btn-retrunMoney").click(function(){
+        location.href="/pay?type=3&orderId="+$(this).data("id");
+    });
+
+    //补款
+    $(".btn-tailMoney").click(function(){
+        location.href="/pay?type=2&orderId="+$(this).data("id");
+    });
+
+    //提醒卖家开发票
+    $(".notice-sellerWriteReceipt").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        $.ajax({
+            url:"/toNoticeSellerWriteReceipt?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
             }
         });
     });
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        window.open("/settlement/confirmTheInvoice?orderId＝"+$(this).data(orderid));
-    });
-
-    //审核提货
-    $(".btn-auditDelivery").click(function(){
-        window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
-    });
-
-    //开具结算单
-    $(".btn-settleAccounts").click(function(){
-        window.open("/settlement/settlementForm?type=2&id="+$(this).data("id"));
+        location.href="/settlement/confirmTheInvoice?orderId＝"+$(this).data("id");
     });
 
     //确认已开发票
     $(".btn-writeReceipt").click(function(){
         $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
-        $('#md_ok_1').val("确定");
-        $("#md_ok_1").off("click").on("click",function(){
-            $(".modal_1").modal('hide');
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
         });
         var orderId=$(this).data("id");
         var version=$(this).data("version");
         $.ajax({
-            url:"/mall/order/seller/notice/receiveReceipt",
-            data:{orderId:orderId,version:version},
+            url:"/toNoticeReceiveReceipt?orderId="+orderId+"&version="+version,
             success:function(data){
-                if(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
+    });
+
+    //确认收到发票
+    $(".btn-receiveReceipt").click(function(){
+        $("#modal_title_3").text("温馨提示");
+        $('#md_ok_3').val("确定");
+
+        $("#modal_title_1").text("温馨提示");
+        $('#md_ok_1').val("确定");
+        $("#md_ok_1").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+            location.reload();
+        });
+        var orderId=$(this).data("id");
+        var version=$(this).data("version");
+        $.ajax({
+            url:"/settlement/sureReceiveReceipt?orderId="+orderId+"&version="+version,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_1").text("您的请求已通过短信的方式通知对方,请您耐心等待");
                     $(".modal_1").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                }else{
+                    $("#modalInfo_3").text(data.error);
+                    $(".modal_3").modal('show');
                 }
             }
         });
+    });
+
+    //申请纠纷处理
+    $(".btn-applyDispute").click(function(){
+        location.href="/dispute/disputeApply?orderId="+$(this).data("id");
+    });
+    //纠纷处理
+    $(".btn-dealDispute").click(function(){
+        location.href="/dispute/disputeDetail?orderId="+$(this).data("id");
+    });
+    //查看纠纷详情
+    $(".btn-lookDispute").click(function(){
+        location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
+    });
+    //删除
+    $(".btn-delete").click(function(){
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您确认删除该订单吗");
+        $('#md_ok_1').val("确定");
+        $(".modal_1").modal('show');
+        var id=$(this).data("id"),
+            version=$(this).data("version");
+        $("#md_ok_1").off("click").on("click",function(){
+            $.ajax({
+                url:"/account/deleteOrder",
+                data:{id:id,version:version},
+                success:function(data){
+                    if(data){
+                        $(".modal_1").modal('hide');
+                        location.reload();
+                    }else{
+                        $("#modal_title_3").text("温馨提示");
+                        $("#modalInfo_3").text(data.error);
+                        $(".modal_3").modal('show');
+                    }
+                }
+            });
+        });
+    });
+    //关闭交易
+    $(".btn-closeTrade").click(function(){
+        location.href="/order/orderClose?id="+$(this).data("id");
     });
 
 

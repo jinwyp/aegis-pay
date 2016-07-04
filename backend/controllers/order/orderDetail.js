@@ -212,6 +212,7 @@ exports.printDetail = function (req, res, next) {
 };
 
 exports.sureReceiveReceipt = function (req, res, next) {
+    logger.debug("---------data---------"+req.query.orderId+"-------"+req.query.version);
     request.post(
         {
             url : api_config.sureReceiveReceipt,
@@ -219,6 +220,7 @@ exports.sureReceiveReceipt = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug("------------------"+data.body);
             if (data) {
                 var source  = JSON.parse(data.body);
                 if(source.success){
