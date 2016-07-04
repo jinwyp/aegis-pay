@@ -5,40 +5,165 @@ var intercept        = nock(API.host).log(console.log);
 var interceptPersist = nock(API.host).log(console.log).persist();
 
 
-var details = [
-    {date:'2016-05-12', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-13', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-14', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-15', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-16', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-17', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-18', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-19', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-20', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-21', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-22', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-23', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-24', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-25', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'}
-];
+var result1 = {
+    "payments": {
+        "page": 1,
+        "pagesize": 10,
+        "rowNum": 10,
+        "totalCount": null,
+        "totalPage": null,
+        "list": [
+            {createDate:'2016-05-12', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-13', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-14', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-15', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-16', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-17', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-18', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-19', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-20', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-21', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-22', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-23', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-24', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-25', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'}
+        ],
+        "indexNum": 0,
+        "count": 200,
+        "userId": 2719,
+        "type": null,
+        "startDate": null,
+        "endDate": null,
+        "searchType": 0,
+        "searchContent": null,
+        "userFundAccount": "3110710001261037605",
+        "typeList": [
+            {
+                "type": "paymentstypelist",
+                "sequence": 1,
+                "name": "充值"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 2,
+                "name": "提现"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 3,
+                "name": "销售"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 4,
+                "name": "采购"
+            }
+        ],
+        "content": null
+    }
+};
 
-var details2 = [
-    {date:'2016-05-12', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-13', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-14', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-15', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-16', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-17', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-18', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-19', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'}
-];
 
-var details3 = [
-    {date:'2016-05-12', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-13', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-14', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'},
-    {date:'2016-05-19', orderNo: 123456789012345678, amoumt : 1000000000, account: 12345678, tradeType:'提现', toPersonAccount : '12345678901234', toPersonAccountName:'和略电子商务公司', toPersonBankName:'中国银行'}
-];
+
+var result2 = {
+    "payments": {
+        "page": 1,
+        "pagesize": 10,
+        "rowNum": 10,
+        "totalCount": null,
+        "totalPage": null,
+        "list": [
+            {createDate:'2016-05-12', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-13', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-14', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-15', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-16', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-17', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-18', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-19', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'}
+        ],
+        "indexNum": 0,
+        "count": 100,
+        "userId": 2719,
+        "type": null,
+        "startDate": null,
+        "endDate": null,
+        "searchType": 0,
+        "searchContent": null,
+        "userFundAccount": "3110710001261037605",
+        "typeList": [
+            {
+                "type": "paymentstypelist",
+                "sequence": 1,
+                "name": "充值"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 2,
+                "name": "提现"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 3,
+                "name": "销售"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 4,
+                "name": "采购"
+            }
+        ],
+        "content": null
+    }
+};
+
+var result3 = {
+    "payments": {
+        "page": 1,
+        "pagesize": 10,
+        "rowNum": 10,
+        "totalCount": null,
+        "totalPage": null,
+        "list": [
+            {createDate:'2016-05-12', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-13', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-14', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'},
+            {createDate:'2016-05-19', transactionNO: 123456789012345678, money : 1000000000, balanceMoney: 12345678, type:'提现', otherFundAccount : '12345678901234', otherCompanyName:'和略电子商务公司'}
+        ],
+        "indexNum": 0,
+        "count": 60,
+        "userId": 2719,
+        "type": null,
+        "startDate": null,
+        "endDate": null,
+        "searchType": 0,
+        "searchContent": null,
+        "userFundAccount": "3110710001261037605",
+        "typeList": [
+            {
+                "type": "paymentstypelist",
+                "sequence": 1,
+                "name": "充值"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 2,
+                "name": "提现"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 3,
+                "name": "销售"
+            },
+            {
+                "type": "paymentstypelist",
+                "sequence": 4,
+                "name": "采购"
+            }
+        ],
+        "content": null
+    }
+};
 
 
 var result = {
@@ -221,26 +346,37 @@ var result = {
 };
 
 
-interceptPersist
 
-.post('/finance/payments/list', { orderCategory: '2' }).reply(200, {
+interceptPersist
+.post('/finance/payments/paymentAccount', { userId: "213" }).reply(200, {
     success:true,
     error:"",
     data:result
 })
-.post('/finance/payments/list', { orderCategory: '1' }).reply(200, {
+.post('/finance/payments/list', { type: '1' }).reply(200, {
     success : true,
-    data : result
+    data : result2
+})
+.post('/finance/payments/list', { type: '2' }).reply(200, {
+    success:true,
+    error:"",
+    data:result3
 })
 .post('/finance/payments/list', { userId: "2719" }).reply(200, {
     success:true,
     error:"",
-    data:result
+    data:result1
+})
+.post('/finance/payments/list', { userId: "213", page:5 }).reply(200, {
+    success:true,
+    error:"",
+    data:result3
 })
 .post('/finance/payments/list', { userId: "213" }).reply(200, {
     success:true,
     error:"",
-    data:result
+    data:result1
 });
+
 
 module.exports = interceptPersist;

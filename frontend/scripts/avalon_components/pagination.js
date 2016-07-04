@@ -13,25 +13,25 @@ define([ 'avalon'], function(  avalon){
 
          <nav class="pagination-financial">
          <ul class="pagination pageno">
-         <li> <a aria-label="Previous" ms-click="@_changePage(@currentPages-1, $event, '')"> <span aria-hidden="true" > 上一页 </span> </a> </li>
+         <li> <a aria-label="Previous" ms-class="{disabled: @isDisabled('prev', 1)}" ms-click="@_changePage($event, @currentPage-1, 'prev' )"> <span aria-hidden="true" > 上一页 </span> </a> </li>
 
-         <li ms-for='(key, page) in @_pageArrayLeft'> <a ms-class="{active : page.value == @currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
+         <li ms-for='(key, page) in @_pageArrayLeft'> <a ms-class="{active : page.value == @currentPage}" ms-click="@_changePage($event, page.value )">{{page.value}}</a> </li>
          <li ms-visible='@_ellipsisLeft'> <a >...</a> </li>
 
 
-         <li ms-for='(key, page) in @_pageArrayMiddle'> <a ms-class="{active : page.value == @currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
+         <li ms-for='(key, page) in @_pageArrayMiddle'> <a ms-class="{active : page.value == @currentPage}" ms-click="@_changePage($event, page.value )">{{page.value}}</a> </li>
 
 
          <li ms-visible='@_ellipsisRight'> <a >...</a> </li>
-         <li ms-for='(key, page) in @_pageArrayRight'> <a ms-class="{active : page.value == @currentPages}" ms-click="@_changePage(page.value, $event)">{{page.value}}</a> </li>
+         <li ms-for='(key, page) in @_pageArrayRight'> <a ms-class="{active : page.value == @currentPage}" ms-click="@_changePage($event, page.value)">{{page.value}}</a> </li>
 
 
-         <li> <a aria-label="Next" ms-click="@_changePage(@currentPages+1, $event, '')"> <span aria-hidden="true"> 下一页 </span> </a> </li>
+         <li> <a aria-label="Next" ms-class="{disabled: @isDisabled('next', @totalPages)}" ms-click="@_changePage($event, @currentPage+1, 'next')"> <span aria-hidden="true"> 下一页 </span> </a> </li>
          </ul>
 
          <div class="jump-to-page">
          <span>共 {{@totalPages}}页, 到第</span> <input type="text" placeholder="" ms-duplex="@inputCurrentPages"> <span>页</span>
-         <button class="iBtn pagination-button" ms-click="@_changePage(@inputCurrentPages, $event)">确定</button>
+         <button class="iBtn pagination-button" ms-click="@_changePage($event, @inputCurrentPages)">确定</button>
          </div>
          </nav>
 
@@ -44,7 +44,7 @@ define([ 'avalon'], function(  avalon){
         template: paginationTemplate,
         defaults: {
             totalPages : 10,
-            currentPages : 1,
+            currentPage : 1,
             inputCurrentPages : 1,
             changePageNo : avalon.noop,
 
@@ -54,9 +54,16 @@ define([ 'avalon'], function(  avalon){
 
             _ellipsisLeft : false,
             _ellipsisRight : false,
+            $buttons: {},
 
             onInit : function() {
+                var vm = this;
                 console.log('init', this.totalPages);
+                this.$watch('totalPages', function(){
+                    setTimeout(function(){
+                        vm._showPaginations()
+                    },2)
+                })
             },
 
             onReady : function(){
@@ -68,12 +75,19 @@ define([ 'avalon'], function(  avalon){
 
             onViewChange : function(){
                 console.log('views change', this.totalPages);
-                this._showPaginations()
             },
 
-            _changePage : function(pageNo, event){
+            isDisabled: function (name, page) {
+                this.$buttons[name] = (this.currentPage === page);
+                return this.$buttons[name];
+            },
+
+            _changePage : function(event, pageNo, name){
+                if (this.$buttons[name] || pageNo === this.currentPage) {
+                    return;  //disabled, active不会触发
+                }
+
                 event.preventDefault();
-                var vm = this;
                 var tempNo = Number(pageNo);
 
                 if (tempNo < 1){
@@ -81,16 +95,21 @@ define([ 'avalon'], function(  avalon){
                 }else if (tempNo > this.totalPages){
                     tempNo = this.totalPages
                 }
-
-                this.currentPages = tempNo;
+                this.currentPage = tempNo;
                 this.changePageNo(tempNo);
+                this._showPaginations()
             },
 
             _showPaginations : function (totalPages) {
-                console.log('show Paginations', this.totalPages);
+                console.log('Pagination updated, Total Page:', this.totalPages, ', Current Page:', this.currentPage);
                 var vm = this;
                 if (totalPages) {
                     vm.totalPages = totalPages;
+                }
+                if (vm.currentPage < 1){
+                    vm.currentPage = 1
+                }else if (vm.currentPage > vm.totalPages){
+                    vm.currentPage = vm.totalPages
                 }
 
                 vm._pageArrayLeft = [];
@@ -123,21 +142,21 @@ define([ 'avalon'], function(  avalon){
                         //创建中间部分的分页 例如 49,50,51
                         if (i > paginationLeftShowNumber  && i < vm.totalPages - (paginationRightShowNumber - 1) ) {
 
-                            if (vm.currentPages <= currentPageShowLeftNumber && i <= (currentPageShowLeftNumber + 1) ) {
+                            if (vm.currentPage <= currentPageShowLeftNumber && i <= (currentPageShowLeftNumber + 1) ) {
                                 vm._ellipsisRight = true;
                                 vm._pageArrayMiddle.push({value:i});
                             }
 
-                            if ( vm.currentPages > currentPageShowLeftNumber && vm.currentPages < vm.totalPages - paginationMiddleShowNumber) {
+                            if ( vm.currentPage > currentPageShowLeftNumber && vm.currentPage < vm.totalPages - paginationMiddleShowNumber) {
                                 vm._ellipsisLeft = true;
                                 vm._ellipsisRight = true;
 
-                                if ( i > vm.currentPages - currentPageShowMiddleNumber && i < vm.currentPages + currentPageShowMiddleNumber){
+                                if ( i > vm.currentPage - currentPageShowMiddleNumber && i < vm.currentPage + currentPageShowMiddleNumber){
                                     vm._pageArrayMiddle.push({value:i});
                                 }
                             }
 
-                            if ( vm.currentPages >= vm.totalPages - paginationMiddleShowNumber && i >= vm.totalPages - paginationMiddleShowNumber - 1) {
+                            if ( vm.currentPage >= vm.totalPages - paginationMiddleShowNumber && i >= vm.totalPages - paginationMiddleShowNumber - 1) {
                                 vm._ellipsisLeft = true;
                                 vm._pageArrayMiddle.push({value:i});
                             }
