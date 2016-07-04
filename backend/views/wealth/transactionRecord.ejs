@@ -11,7 +11,7 @@
 
 <div id="transaction-body">
     <div class="transaction-main" >
-        <form id="transactionSearch" action="/wealth/financialTransaction">
+        <form id="searchForm" action="/wealth/financialTransaction">
         <div class="search-div">
             <div class="search-row row-one">
                 <span>订单类型:</span>
@@ -47,11 +47,11 @@
                 <input type="hidden" value="<%= page %>" id="page" name="page">
                 <input type="hidden" value="<%= pagesize %>" id="pagesize">
 
-                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submit">
+                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submitSearch">
             </div>
         </div>
         </form>
-        <div class="transaction-div" ms-controller="financialTransactionController">
+        <div class="transaction-div" ms-controller="financialPaginationController">
             <table class="transaction-table">
                 <thead>
                 <tr>
