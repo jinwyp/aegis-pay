@@ -1,6 +1,6 @@
 
 
-define([ 'avalon'], function(  avalon){
+define(['avalon'], function(avalon){
 
     function heredoc(fn) {
         return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
@@ -58,6 +58,7 @@ define([ 'avalon'], function(  avalon){
 
             onInit : function() {
                 var vm = this;
+                vm._showPaginations();
                 console.log('init', this.totalPages);
                 this.$watch('totalPages', function(){
                     setTimeout(function(){

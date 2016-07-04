@@ -80,9 +80,7 @@ exports.financialDetails = function (req, res, next) {
             firstTab : firstTab,
             secondTab : secondTab
         },
-
-        userFundAccount : '1234567890',
-
+        userFundAccount : '',
         formSelectOrderCategory:[
             {id:'0', value:'0', text:'全部', selected:false},
             {id:'1', value:'1', text:'充值', selected:false},
@@ -90,8 +88,6 @@ exports.financialDetails = function (req, res, next) {
             {id:'3', value:'3', text:'采购', selected:false},
             {id:'4', value:'4', text:'销售', selected:false}
         ],
-
-
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},
             {id:'2', value:'2', text:'对方账户名称'},
@@ -124,10 +120,9 @@ exports.financialDetails = function (req, res, next) {
             //}
 
             content.userFundAccount = body.data.payments.userFundAccount;
-
             return res.render('wealth/financialDetails',content);
         }else {
-            return res.json([]);
+            return res.render('wealth/financialDetails',content);
         }
     })
 
@@ -226,36 +221,74 @@ exports.financialTransaction = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
-    request.post({url:api_config.financialTransaction,form:{userId:req.session.user.id}}, function (err, data) {
-        if (err) return next(err);
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是----------------------------' + data.body);
-        if (data) {
-            var source = JSON.parse(data.body);
-            if(source.success) {
-                var content = {
-                    pageTitle: "交易管理",
-                    headerTit: "交易管理",
 
-                    tabObj: {
-                        firstTab: firstTab,
-                        secondTab: secondTab
-                    },
-                    type: source.data.transactionRecord.type,
-                    startDate: source.data.transactionRecord.startDate,
-                    endDate: source.data.transactionRecord.endDate,
-                    status: source.data.transactionRecord.status,
-                    searchType: source.data.transactionRecord.searchType,
-                    content: source.data.transactionRecord.content,
-                    statusList: source.data.transactionRecord.statusList,
-                    recordList: source.data.transactionRecord.list
-                };
-                //渲染页面
-                res.render('wealth/transactionRecord',content);
-            }
+
+    var getQuery = {
+        userId : req.session.user.id,
+        //userId :  2719,
+        page : req.query.page || 1,
+        pagesize : 10
+    };
+
+    if (req.query.type) getQuery.type = req.query.type;
+    if (req.query.startDate) getQuery.startDate = req.query.startDate;
+    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    if (req.query.status) getQuery.status = req.query.status;
+    if (req.query.searchType) getQuery.searchType = req.query.searchType;
+    if (req.query.content) getQuery.content = req.query.content;
+
+    request.post({
+        url  : api_config.financialTransaction,
+        form : getQuery,
+        json : true
+    }, function (err, response, body) {
+        if (err) return next(err);
+
+        var content = {
+            pageTitle: "交易管理",
+            headerTit: "交易管理",
+
+            tabObj: {
+                firstTab: firstTab,
+                secondTab: secondTab
+            },
+            pagesize : 10,
+            page : 1,
+            count : 10,
+
+            type: 0,
+            startDate: '',
+            endDate: '',
+            status: '',
+            searchType: 0,
+            content: '',
+            statusList: {},
+            recordList: []
+        };
+
+        if(response.statusCode === 200 && body.success) {
+
+            content.type = body.data.transactionRecord.type;
+            content.startDate = body.data.transactionRecord.startDate;
+            content.endDate = body.data.transactionRecord.endDate;
+            content.status = body.data.transactionRecord.status;
+            content.searchType = body.data.transactionRecord.searchType;
+            content.statusList = body.data.transactionRecord.statusList;
+            content.recordList = body.data.transactionRecord.list;
+
+            content.pagesize = body.data.transactionRecord.pagesize;
+            content.page = body.data.transactionRecord.page;
+            content.count = body.data.transactionRecord.count;
+
+            return res.render('wealth/transactionRecord',content);
+        }else{
+            return res.render('wealth/transactionRecord',content);
         }
     });
 };
+
+
+
 
 exports.financialContract = function (req, res, next) {
 

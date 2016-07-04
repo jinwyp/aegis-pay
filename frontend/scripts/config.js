@@ -36,7 +36,7 @@ require.config({
         'pay.upload'                        : 'business_components/upload',
         'pay.smscode'                       : 'business_components/sms-code',
         'datachecker'                       : 'business_components/datachecker',
-        'avalon.components'                 : 'avalon_components/pagination'
+        'avalon.pagination'                 : 'avalon_components/pagination'
 
     },
     packages : [],
