@@ -15,7 +15,7 @@
             <% include ../account/sideBar  %>
             <div class="content">
                 <% include billSearch %>
-                <table class="billList">
+                <table class="billList" >
                     <thead>
                     <tr>
                         <th>订单号</th>
@@ -55,7 +55,11 @@
 
                     </tbody>
                 </table>
-                <% include page %>
+
+                <div ms-controller="paginationController">
+                    <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
+                </div>
+
             </div>
         </div>
     </div>

@@ -1,10 +1,16 @@
 
 .pagination-financial {
   padding-left: 160px;
+  overflow: hidden;
+
   .pageno{
     float: left;
     margin: 10px;
     li {
+      .disabled {
+        color: $color_text_select_gray;
+      }
+
       .active {
         background-color: $color_button_hover_blue;
         color: #fff;

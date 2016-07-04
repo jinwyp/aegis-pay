@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; font-family: 'Microsoft Yahei', Arial, Helvetica, "黑体", sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+        html, body { min-width: 1000px; font-size: 12px; }
+
+        ol, ul { list-style: none; }
+
+        blockquote, q { quotes: none; }
+
+        blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+        /* remember to highlight inserts somehow! */
+        ins { text-decoration: none; }
+
+        del { text-decoration: line-through; }
+
+        /* tables still need 'cellspacing="0"' in the markup */
+        table { border-collapse: collapse; border-spacing: 0; }
+
+        caption, th, td { text-align: left; font-weight: normal; float: none !important; }
+
+        table, th, td { vertical-align: middle; }
+
+        em, i { font-style: normal; }
+
+        a { text-decoration: none; }
+
+        /* Remove annoying border on linked images. */
+        a img { border: none; text-decoration: none; }
+
+
+        /* #Clearing
+        ================================================== */
+        /* 公用 */
+        .fl { float: left; display: inline; }
+
+        .mt20 { margin-top: 20px; }
+
+        /* 公用: layout 布局 --------------------------- */
+        .containerWrap { width: 100%; height: 100%; padding-top: 0px; background: #ffffff; }
+
+        .containerWrap .bodyWrap { width: 1000px; margin: 0 auto 50px; padding: 10px 40px 20px 10px; background: #FFFFFF; /* 板块 */ }
+        /*.containerWrap .bodyWrap .plateBox { width: auto; }*/
+
+        .containerWrap .bodyWrap .plateBox .plateHead { height: 37px; position: relative; z-index: 3; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .prefix { float: left; display: inline; width: 2px; height: 18px; margin-top: 9px; margin-right: 8px; background: #00b6ef; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .headLeft { display: block;margin: 0; font: lighter 18px/36px "\5FAE\8F6F\96C5\9ED1"; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .headContent { width: 40%; display: block; margin: 0 auto; text-align: center; font: lighter 18px/36px "\5FAE\8F6F\96C5\9ED1"; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .headRight { width: 100px; float: right; display: inline; text-align: right; font-size: 12px; line-height: 36px; font-family: "宋体"; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .subTitle_hint { display: inline-block; height: 28px; color: #333333; font-size: 12px; font-family: "宋体"; line-height: 18px; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead .headLeft_hint { display: inline-block; font-size: 12px; color: #ff6e27; }
+
+        .containerWrap .bodyWrap .plateBox .plateHead.borSolid { border-bottom: 1px solid #666666; }
+
+        .containerWrap .bodyWrap .plateBox .plateMain { position: relative; z-index: 4; border: none; }
+
+        .containerWrap .bodyWrap .plateBox .plateMain.borSolid { border: 1px solid #666666; }
+
+        #paymentHeader .headWrap { height: 35px; background: #292929; font-size: 12px; color: #fff; font-family: "microsoft yahei"; }
+
+        #paymentHeader .headWrap .wrap1000 { width: 1000px; margin: 0 auto; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList { padding: 8px 0; float: left; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li > span { vertical-align: middle; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li { float: left; padding: 0px 10px; position: relative; background: url("/static/images/header/indexBorder.png") no-repeat right 4px; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li .icon-phone { width: 10px; height: 15px; margin-right: 8px; display: inline-block; vertical-align: middle; background: url("/static/images/header/phone_icon.png"); }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li .icon-tel { width: 18px; height: 11px; margin-right: 8px; display: inline-block; vertical-align: middle; background: url("/static/images/header/tel_icon.png"); }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li a { color: #fff; display: inline-block; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li.noborder { background: none; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li .triggle { width: 0; height: 0; display: inline-block; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #fff; vertical-align: middle; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li .hideMenu { display: none; background: #292929; padding: 10px; padding-top: 15px; position: absolute; z-index: 10; top: 16px; left: 0px; z-index: 100; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList li .hideMenu li { background: none; display: inline; width: 100%; margin-bottom: 5px; padding: 0; cursor: pointer; }
+
+        #paymentHeader .headWrap .wrap1000 .menuList::after { clear: both; content: ''; }
+
+        #paymentHeader .headWrap .wrap1000 .rightMenuList { float: right; }
+
+        #subHeader .subHeaderWrap { min-height: 73px; background: #fff; box-shadow: 0px 2px 3px #ddd; }
+
+        #subHeader .subHeaderWrap a { cursor: pointer; outline: none; text-decoration: none; }
+
+        #subHeader .subHeaderWrap .hidden-ul { display: none; }
+
+        #subHeader .subHeaderWrap .subHeader1000 { width: 1000px; padding-top: 17px; padding-bottom: 8px; margin: 0 auto; height: 79px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 a, #subHeader .subHeaderWrap .subHeader1000 span { display: inline-block; vertical-align: middle; font-size: 18px; color: #666; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .subHeaderTit { margin-left: 10px; position: relative; top: -2px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .subHeaderTit i { font-size: 14px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards { display: inline-block; float: right; margin-top: 18px; position: relative; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards ul { float: right; font-size: 18px; color: #666666; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards ul li { float: left; padding: 5px 10px; position: relative; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards ul li a.selected { color: #01b7ec; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .arrow-blue { position: absolute; border-style: solid dashed dashed; border-color: transparent transparent #01b7ec; bottom: -7px; border-width: 7px; left: 23px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .tab-step-1 { border-width: 7px; left: 23px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .tab-step-2 { border-width: 7px; left: 92px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .tab-step-3 { border-width: 7px; left: 186px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .tab-step-4 { border-width: 7px; left: 278px; }
+
+        #subHeader .subHeaderWrap .subHeader1000 .tab-cards .tab-step-5 { border-width: 7px; left: 372px; }
+
+        #subHeader .subHeaderWrap .second-tab { border: 1px solid #01b7ec; background-color: #01b7ec; font-size: 16px; color: #fff; }
+
+        #subHeader .subHeaderWrap .second-tab ul { height: 32px; width: 1000px; margin-left: auto; margin-right: auto; }
+
+        #subHeader .subHeaderWrap .second-tab ul li { float: left; width: 100px; padding: 6px 0; margin: -1px; text-align: center; }
+
+        #subHeader .subHeaderWrap .second-tab ul li a { color: #fff; }
+
+        #subHeader .subHeaderWrap .second-tab ul li.selected { background-color: #8edaf1; }
+
+        #paymentFooter .footerInfo { background: #292929; color: #999; padding-top: 25px; padding-bottom: 18px; }
+
+        #paymentFooter .footerInfo .footerInfo-fl { max-width: 1200px; margin-left: auto; margin-right: auto; position: relative; text-align: center; }
+
+        #paymentFooter .footerInfo li { display: inline-block; padding: 0 10px; text-align: center; background: url("/static/images/footer/indexBorder1.png") no-repeat right center; }
+
+        #paymentFooter .footerInfo li a { color: #999; text-decoration: none; }
+
+        #paymentFooter .footerInfo li.noborder { background: none; }
+
+        #paymentFooter .footerInfo p { font-size: 12px; text-align: center; margin-top: 10px; }
+
+        #paymentFooter .footerInfo p.szfw-wrap { margin-top: 20px; }
+
+        .pageTitle span { float: left; width: 2px; height: 18px; background: #31b9e6; margin-top: 9px; margin-right: 10px; }
+
+        .btn_download .icon_download, .btn_download .icon_upload, .btn_upload .icon_download, .btn_upload .icon_upload { display: inline-block; *display: inline; zoom: 1; vertical-align: middle; width: 18px; height: 18px; background: url("/static/images/sprite_ico.png") no-repeat -550px -269px; }
+
+        .btn_download .icon_upload, .btn_upload .icon_upload { background-position: -550px -307px; }
+
+        #lightbox .lb-outerContainer { -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; }
+
+        #lightbox .lb-container { padding: 40px 68px 56px; }
+
+        #lightbox .lb-nav a.lb-next, #lightbox .lb-nav a.lb-prev { opacity: 1; filter: alpha(opacity=100); position: absolute; left: 0; top: 50%; margin-top: -50px; width: 66px; height: 100px; background: url("/static/images/sprite.png") no-repeat -292px -45px; }
+
+        #lightbox .lb-nav a.lb-next { background-position: -372px -45px; right: 0; left: auto; }
+
+        #lightbox .lb-close { position: absolute; top: 0; right: 0; z-index: 10; width: 30px; height: 30px; background: #666 url("/static/images/sprite.png") no-repeat -116px -171px; }
+
+        #lightbox .lb-dataContainer { height: 30px; position: relative; bottom: 40px; }
+
+        #lightbox .lb-dataContainer .lb-details { float: none; width: 100%; text-align: center; }
+
+        #lightbox .lb-dataContainer .lb-data .lb-number { color: #333; }
+
+        /* 公用: 按钮,输入框 --------------------------- */
+        .iBtn { min-width: 140px; height: 40px; padding: 3px 15px; display: inline-block; margin-bottom: 0; font-size: 16px; font-weight: normal; line-height: 32px; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 2px; }
+
+        .iIpt { display: inline-block; width: 88%; height: 40px; padding: 3px 6px; font-size: 16px; line-height: 36; color: #333; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 2px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s; -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
+
+        .iIpt_date { background: url("/static/images/sprite_ico.png") no-repeat right -704px; }
+
+        .iBtn_def { color: #ffffff; border: 1px solid #e4e4e4; background: #c7c7c7; }
+
+        .iBtn_edit { color: #656565; border: 1px solid #e4e4e4; background: url("/static/images/gradualLine.png") repeat-x; }
+
+        .iBtn_yes { color: #ffffff; background: #1fb8ea; }
+
+        .iBtn_no { color: #ffffff; background: #fd6e35; }
+
+        .iBtn_up, .iBtn_down { min-width: 96px; height: 32px; margin-right: 10px; padding: 2px 10px 2px 3px; border: 1px solid #e4e4e4; background: url("/static/images/gradualLine.png") repeat-x; text-align: left; text-indent: 8px; line-height: 26px; font-size: 14px; color: #656565; }
+
+        .iBtn_up { position: relative; z-index: 5; }
+
+        .iBtn_up .iBtn_up_icn { margin: 6px 0 0 7px; float: left; display: inline; width: 14px; height: 14px; background: url("/static/images/sprite_ico.png") no-repeat -552px -307px; }
+
+        .iBtn_up input[type=file] { display: block; width: 96px; height: 32px; position: absolute; z-index: 9; top: 0; left: 0; cursor: pointer; opacity: 0; filter: alpha(opacity=0); }
+
+        .iBtn_down .iBtn_down_icn { margin: 6px 0 0 7px; float: left; display: inline; width: 14px; height: 14px; background: url("/static/images/sprite_ico.png") no-repeat -552px -269px; }
+
+        .fileLab { display: inline-block; height: 30px; margin-right: 10px; padding: 3px 7px 0 30px; zoom: 1; font-size: 12px; line-height: 22px; color: #666666; border: 1px solid #f5f5f5; background: #f5f5f5 url("/static/images/sprite_ico.png") no-repeat -542px -221px; text-align: left; vertical-align: middle; cursor: default; }
+
+        .fileLab .fileLab_del { display: inline; float: right; width: 14px; height: 14px; cursor: pointer; margin: 4px 0 0 20px; background: url("/static/images/sprite_ico.png") no-repeat -222px -176px; }
+
+        .fileLab.only { border: 1px solid #f3f3f3; padding: 3px 10px 0 30px; }
+
+        .fileLab.only .fileLab_del { display: none; }
+
+        .fileBlockBox { display: inline-block; width: 152px; margin-right: 20px; vertical-align: top; }
+
+        .fileBlockBox .fileBlockBox_head { display: block; width: 152px; height: 30px; overflow: hidden; font-size: 14px; line-height: 24px; text-align: left; color: #333333; }
+
+        .fileBlockBox .fileBlockBox_body { position: relative; display: block; width: 152px; height: 152px; border: 1px solid #e4e4e4; background: #f5f5f5; }
+
+        .fileBlockBox .fileBlockBox_body .fileViewImg { display: block; max-width: 150px; height: 150px; border: none; }
+
+        .fileBlockBox .fileBlockBox_body .operateFileBox { display: none; position: absolute; z-index: 2; left: 0; bottom: 0; width: 150px; height: 34px; padding: 5px 0; line-height: 24px; font-size: 14px; text-align: center; background: #000000; opacity: 0.5; }
+
+        .fileBlockBox .fileBlockBox_body .fileLinkBtn { display: inline-block; height: 24px; padding: 0 20px; color: #FFFFFF; opacity: 1; }
+
+        .fileBlockBox .fileBlockBox_body .iptEditFile { width: 50px; height: 22px; display: block; position: absolute; top: 6px; left: 13px; z-index: 30; opacity: 0; filter: alpha(opacity=0); }
+
+        .fileBlockBox .fileBlockBox_body.blockUpload { cursor: pointer; }
+
+        .fileBlockBox .fileBlockBox_body.blockUpload .btnUploadIcon { display: block; width: 60px; height: 60px; margin: 30px auto 0; background: url("/static/images/sprite_ico.png") no-repeat 4px -437px; }
+
+        .fileBlockBox .fileBlockBox_body.blockUpload .labUploadStr { display: block; height: 20px; padding-top: 2px; font-size: 14px; line-height: 20px; text-align: center; }
+
+        .fileBlockBox .fileBlockBox_body.blockUpload .iptBlockFile { width: 150px; height: 150px; display: block; position: absolute; top: 0; left: 0; z-index: 30; opacity: 0; filter: alpha(opacity=0); }
+
+        .iBtn_sm { min-width: 96px; height: 32px; padding: 2px 15px; font-size: 12px; line-height: 26px; }
+
+        .iBtn_xs { min-width: 60px; height: 24px; padding: 2px 15px; font-size: 12px; line-height: 18px; }
+
+        .iIpt_sm { height: 32px; padding: 2px 4px; font-size: 14px; line-height: 30px; }
+
+        .iIpt_xs { height: 24px; padding: 2px 4px; font-size: 12px; line-height: 22px; }
+
+        .modal-content { border-radius: 2px; border-top: 2px solid #00b6ec; }
+
+        .modal-header { height: 50px; padding: 10px 12px; }
+
+        .modal-header .close { display: inline-block; width: 22px; height: 22px; margin: 3px 0 0 0; background: url("/static/images/sprite_ico.png") no-repeat -120px -175px; }
+
+        .modal-title { color: #333333; font-size: 20px; font-family: "微软雅黑"; line-height: 30px; }
+
+        .modal-pl { width: 800px; }
+
+        .modal-sm { width: 400px; }
+
+        .modal-lg { width: 940px; }
+
+        table.tab_nBor { border: none; }
+
+        table.tab_nBor thead > tr > th, table.tab_nBor thead > tr > td, table.tab_nBor tbody > tr > th, table.tab_nBor tbody > tr > td { border: none; }
+
+        /* 通用: 文本域, 带可输入字数 ------------- */
+        .txtAreaBox { position: relative; padding: 0; margin: 0; }
+
+        .txtAreaBox .dockDown { width: 145px; height: 22px; padding: 1px 5px; position: absolute; z-index: 3; bottom: 6px; right: 2px; text-align: right; font-size: 12px; line-height: 22px; }
+
+        .txtAreaBox .limitNum { color: #ff8553; }
+
+        .txtAreaBox .txtArea { width: 100%; padding: 5px; border: 1px solid #CCCCCC; border-radius: 2px; resize: none; }
+
+        .pad-t20 { padding-top: 20px; }
+
+        /* system message ========================================== */
+        .system-message { display: none; position: fixed; top: 50%; left: 50%; z-index: 2147483646; min-width: 10em; max-width: 50%; box-shadow: 0 0 15px #999; padding: 15px; border: 1px solid transparent; border-radius: 4px; font-size: 16px; }
+
+        .system-message h4 { margin-top: 0; color: inherit; font-weight: bold; }
+
+        .system-message .system-message-link { font-weight: bold; }
+
+        .system-message > p, .system-message > ul { margin-bottom: 0; margin-top: 8px; font-size: 14px; line-height: 20px; }
+
+        .system-message > p + p { margin-top: 5px; }
+
+        .system-message-dismissable, .system-message-dismissible { padding-right: 35px; }
+
+        .system-message-dismissable .close, .system-message-dismissible .close { position: relative; top: -2px; right: -21px; color: inherit; }
+
+        .system-message-done { color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; }
+
+        .system-message-done hr { border-top-color: #c9e2b3; }
+
+        .system-message-done .system-message-link { color: #2b542c; }
+
+        .system-message-info { color: #31708f; background-color: #d9edf7; border-color: #bce8f1; }
+
+        .system-message-info hr { border-top-color: #a6e1ec; }
+
+        .system-message-info .system-message-link { color: #245269; }
+
+        .system-message-alert { color: #8a6d3b; background-color: #fcf8e3; border-color: #faebcc; }
+
+        .system-message-alert hr { border-top-color: #f7e1b5; }
+
+        .system-message-alert .system-message-link { color: #66512c; }
+
+        .system-message-error { color: #a94442; background-color: #f2dede; border-color: #ebccd1; }
+
+        .system-message-error hr { border-top-color: #e4b9c0; }
+
+        .system-message-error .system-message-link { color: #843534; }
+
+        div.fancy-select { position: relative; font-size: 12px; width: 170px; background-color: #fff; display: inline-block; vertical-align: middle; }
+
+        div.fancy-select.disabled { opacity: 0.5; }
+
+        div.fancy-select div.trigger { height: 30px; cursor: pointer; padding-left: 0; padding-right: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position: relative; z-index: 53; line-height: 30px; text-indent: 8px; color: #a8a8a8; border: #cccccc 1px solid; border-radius: 2px; min-width: 170px; min-width: 130px\0; transition: all 240ms ease-out; -webkit-transition: all 240ms ease-out; -moz-transition: all 240ms ease-out; -ms-transition: all 240ms ease-out; -o-transition: all 240ms ease-out; }
+
+        div.fancy-select div.trigger::after { content: ""; display: block; position: absolute; width: 0; height: 0; top: 12px; right: 13px; overflow: hidden; border-style: solid; border-width: 6px 6px 0; border-color: #9a9da4 transparent transparent; -webkit-transition: all .4s ease 0s; -moz-transition: all .4s ease 0s; -o-transition: all .4s ease 0s; transition: all .4s ease 0s; }
+
+        div.fancy-select div.selected { color: #333; }
+
+        div.fancy-select div.trigger.open { border-color: #00b7ec; }
+
+        div.fancy-select div.trigger.open:after { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); animation-fill-mode: forwards; }
+
+        div.fancy-select ul.options { list-style: none; margin: 0; position: absolute; top: 32px; left: 0; visibility: hidden; opacity: 0; z-index: 50; max-height: 300px; min-width: 170px; overflow: auto; background: #fff; border: 1px solid #e4e4e4; border-bottom: none; transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out; -webkit-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out; -moz-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out; -ms-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out; -o-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out; }
+
+        div.fancy-select ul.options.open { visibility: visible; top: 32px; opacity: 1; /* have to use a non-visibility transition to prevent this iOS issue (bug?): */ /*http://stackoverflow.com/questions/10736478/css-animation-visibility-visible-works-on-chrome-and-safari-but-not-on-ios*/ transition: opacity 300ms ease-out, top 300ms ease-out; -webkit-transition: opacity 300ms ease-out, top 300ms ease-out; -moz-transition: opacity 300ms ease-out, top 300ms ease-out; -ms-transition: opacity 300ms ease-out, top 300ms ease-out; -o-transition: opacity 300ms ease-out, top 300ms ease-out; }
+
+        div.fancy-select ul.options.overflowing { top: auto; bottom: 32px; transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out; -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out; -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out; -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out; -o-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out; }
+
+        div.fancy-select ul.options.overflowing.open { top: auto; bottom: 32px; transition: opacity 300ms ease-out, bottom 300ms ease-out; -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out; -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out; -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out; -o-transition: opacity 300ms ease-out, bottom 300ms ease-out; }
+
+        div.fancy-select ul.options li { height: 32px; line-height: 32px; padding-left: 7px; padding-right: 7px; cursor: pointer; white-space: nowrap; border-bottom: 1px solid #e4e4e4; margin-bottom: 0; transition: all 150ms ease-out; -webkit-transition: all 150ms ease-out; -moz-transition: all 150ms ease-out; -ms-transition: all 150ms ease-out; -o-transition: all 150ms ease-out; }
+
+        div.fancy-select ul.options li.selected { color: #00b7ec; }
+
+        /* 结算.确认开票 页面 --------------------------- */
+        #addInvoiceMain { padding-top: 20px; padding-bottom: 10px; z-index: 20; }
+
+        #addInvoiceMain .table tbody > tr > th { line-height: 30px; }
+
+        #upInvoiceMain .sidebarDownFile { width: 416px; height: 416px; padding: 20px 0 20px 20px; border-left: 1px solid #666666; border-bottom: 1px solid #666666; background: #f5f5f5; }
+
+        #upInvoiceMain .sidebarDownFile h3 { padding-top: 15px; font-size: 18px; line-height: 32px; text-align: center; color: #333333; }
+
+        #upInvoiceMain .sidebarUpFile { width: 524px; height: 416px; }
+
+        #upInvoiceMain .sidebarUpFile .upFileHandle { height: 280px; padding-top: 40px; border-left: 1px solid #666666; border-right: 1px solid #666666; text-align: center; }
+
+        #upInvoiceMain .sidebarUpFile .upFileHint { height: 136px; padding: 15px 20px; background: #fffaf7; border: 1px dashed #fecdb3; }
+
+        #upInvoiceMain .sidebarUpFile .upFileHint_tit { height: 34px; font-size: 16px; line-height: 26px; color: #333333; }
+
+        #upInvoiceMain .sidebarUpFile .upFileHint_con { font-size: 12px; line-height: 24px; color: #b6b4b3; }
+
+        .disabled_textarea { width: 100%; height: 100px; resize: none; padding: 5px; border: 1px solid #cccccc; }
+
+        /* 备注.开票信息 页面 --------------------------- */
+        @keyframes spin { from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); } }
+
+        @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); } }
+
+        /* 备注.开票信息 页面 --------------------------- */
+        #InvoiceInfoBox { width: 460px; padding-top: 16px; padding-bottom: 10px; }
+
+        #InvoiceInfoBox .table tbody > tr { font-size: 14px; }
+
+        #InvoiceInfoBox .table tbody > tr th { line-height: 30px; color: #666666; }
+
+        #InvoiceInfoBox .table tbody > tr td { line-height: 30px; color: #333333; }
+
+        #InvoiceThumbnail { width: 480px; padding-top: 20px; padding-bottom: 20px; }
+
+        #InvoiceThumbnail .invoiceImgTit { line-height: 22px; display: block; padding: 8px 0; }
+
+        #InvoiceThumbnail .thumbnailBox { padding-top: 20px; padding-bottom: 10px; background: #f5f5f5; }
+
+        #InvoiceThumbnail .thumbnailPic { position: relative; width: 380px; height: 262px; margin: 0 auto; text-align: center; cursor: pointer; }
+
+        #InvoiceThumbnail .thumbnailPic .clickLarger { position: absolute; width: 82px; height: 24px; right: 1px; bottom: 1px; z-index: 12; color: #FFFFFF; font-size: 12px; line-height: 24px; text-indent: 20px; background: #333333 url("/static/images/sprite_ico.png") no-repeat -545px -173px; opacity: 0.5; filter: alpha(opacity=50); }
+
+        #InvoiceThumbnail .thumbnailPic img { width: 377px; height: 260px; }
+
+        #InvoiceThumbnail .thumbnailName { height: 40px; padding-top: 8px; font-size: 18px; line-height: 30px; text-align: center; }
+
+        #InvoiceInfoViewPlate{height: 310px;}
+
+        #InvoiceInfoViewPlate.bor_btm { border-bottom: 1px dashed #666666; }
+        .bor_btm { border-bottom: 1px dashed #666666; }
+
+        .invoiceInfoPic_md { text-align: center; padding: 20px 20px; }
+
+        .invoiceInfoPic_md img { max-width: 860px; }
+
+        @keyframes spin { from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); } }
+
+        @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); } }
+
+        /* 结算单表格 板块 --------------------------- */
+        @keyframes spin { from { transform: scale(1) rotate(0deg); }
+            to { transform: scale(1) rotate(360deg); } }
+
+        @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); } }
+
+        .settlementTable { width: 100%; max-width: 100%; }
+
+        .settlementTable tbody tr th, .settlementTable tbody tr td { padding: 9px; font-size: 14px; line-height: 1.428571429; vertical-align: top; border: 1px solid #666666; text-align: center; }
+
+        .settlementTable tbody tr th { background: #f5f5f5; color: #666666; }
+
+        .settlementTable tbody tr td { padding: 15px 0; background: #ffffff; color: #333333; }
+
+        .settlementTable tbody .billBox { position: relative; background: #f3fcff; }
+
+        .settlementTable tbody .billBox .billIpt { width: 90%; border: none; background: #f3fcff; text-align: center; }
+
+        .settlementTable tbody .billBox .errInfo { width: 200px; height: 18px; padding: 0 3px; position: absolute; z-index: 6; font-size: 12px; line-height: 18px; bottom: 0; right: 0; left: 0; margin: 0 auto; color: #ff0000; }
+
+        .settlementTit { height: 50px; line-height: 42px; font-size: 22px; color: #333333; text-align: center; }
+
+        .settlementTit .subEditTitle { font-size: 12px; color: #666666; }
+
+        .settlementTit .subEditTitle .require { line-height: 16px; }
+
+    </style>
+</head>
+<body>
+<!-- 以下.内容部分 -->
+
+
+<div class="containerWrap">
+    <div class="bodyWrap">
+
+        <div id="doubtPlate" class="plateBox">
+            <div class="plateMain">
+                <!-- 结算单信息 板块-->
+                <%- include ../../../Plugins/settlementInfoPlate %>
+            </div>
+        </div>
+        <p class="mt20 bor_btm"></p>
+
+        <div id="InvoiceInfoViewPlate" class="plateBox bor_btm">
+            <div class="plateHead pad-t20">
+                <!--<span class="prefix"></span>-->
+                <%  var subTitle = subTitle || '查看开票信息' %>
+                <h3 class="headLeft"><%= subTitle %></h3>
+            </div>
+            <div class="plateMain clearfix">
+                <div class="fl" id="InvoiceInfoBox">
+                    <table class="table tab_nBor">
+                        <tbody>
+                        <tr>
+                            <th class="txt_r" width="130">公司名称：</th>
+                            <td width="340">
+                                <span class="a"><%=data.receipt && data.receipt.companyName? data.receipt.companyName : ""%></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司地址：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.companyAddress? data.receipt.companyAddress : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司电话：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.companyPhone? data.receipt.companyPhone : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">公司传真：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.companyFax? data.receipt.companyFax : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">纳税人识别号：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.identificationNumber? data.receipt.identificationNumber : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">开户银行：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.bankName? data.receipt.bankName : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">开户银行账号：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.bankAccount? data.receipt.bankAccount : ""%></span></td>
+                        </tr>
+                        <tr>
+                            <th class="txt_r">发票类型：</th>
+                            <td><span class="a"><%=data.receipt && data.receipt.typeName? data.receipt.typeName : ""%></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 发票备注 板块-->
+        <div id="InvoiceRemarksPlate" class="plateBox mt20">
+            <form action="" method="post">
+                <!-- 发票备注-->
+                <div class="plateHead">
+                    <h3 class="headLeft"> 对“发票备注”内容是否有明确的要求？</h3>
+                </div>
+                <div class="plateMain">
+                    <div class="txtAreaBox">
+                        <% if(data.orderReceiptRemarks != null){ %>
+                        <textarea class="disabled_textarea" id="requirement" name="requirement" disabled><%= data.orderReceiptRemarks.requirement %></textarea>
+                        <%}else{%>
+                        <textarea class="disabled_textarea" id="requirement" name="requirement" disabled>无</textarea>
+                        <%}%>
+                    </div>
+                </div>
+
+                <!-- 特殊备注-->
+                <div class="plateHead mt20">
+                    <h3 class="headLeft fl"> 其他特殊要求</h3>
+                </div>
+                <div class="plateMain">
+                    <div class="txtAreaBox">
+                        <% if(data.orderReceiptRemarks != null){ %>
+                        <textarea class="disabled_textarea" id="specialRequirement" name="specialRequirement" disabled><%= data.orderReceiptRemarks.specialRequirement%></textarea>
+                        <%}else{%>
+                        <textarea class="disabled_textarea" id="specialRequirement" name="specialRequirement" disabled>无</textarea>
+                        <%}%>
+                    </div>
+                </div>
+
+                <!-- 操作按钮-->
+                <% if(editable !="false" ){ %>
+
+                <div class="plateMain txt_c">
+                    <br/><br/>
+                    <input type="button" id="cancelBtn" class="iBtn iBtn_def" value="取消">
+                    <input type="button" id="submitInvoiceNoteBtn" class="iBtn iBtn_yes ml20" value="确认">
+                </div>
+
+                <%}else{%>
+
+                <%}%>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

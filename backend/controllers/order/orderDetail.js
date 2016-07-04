@@ -25,6 +25,13 @@ exports.getBuyOrderDetail = function (req, res, next) {
             logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
             var step = 0;
             switch (source.data.order.status) {
+                case 'TradeClosed':
+                    if(source.data.order.statusClose=='WaitPayment'){
+                        step = 2;
+                    }else{
+                        step = 1;
+                    }
+                    break;
                 case 'WaitSignContract':
                     step = 1;
                     break;
@@ -205,6 +212,7 @@ exports.printDetail = function (req, res, next) {
 };
 
 exports.sureReceiveReceipt = function (req, res, next) {
+    logger.debug("---------data---------"+req.query.orderId+"-------"+req.query.version);
     request.post(
         {
             url : api_config.sureReceiveReceipt,
@@ -212,6 +220,7 @@ exports.sureReceiveReceipt = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug("------------------"+data.body);
             if (data) {
                 var source  = JSON.parse(data.body);
                 if(source.success){
@@ -245,28 +254,6 @@ exports.buyDeleteOrder = function (req, res, next) {
             }
         });
 };
-
-exports.sellDeleteOrder = function (req, res, next) {
-    request.post(
-        {
-            url : api_config.sureReceiveReceipt,
-            form:{orderId:req.query.orderId, userId:req.session.user.id, version:req.query.version}
-        },
-        function (err, data) {
-            if (err) return next(err);
-            if (data) {
-                var source  = JSON.parse(data.body);
-                if(source.success){
-                    res.send(source);
-                }else{
-                    res.send(source.error);
-                }
-            } else {
-                res.send(data.body);
-            }
-        });
-};
-
 
 exports.orderTest = function (req, res, next) {
     logger.debug('服务器被请求了' + req.query.id);

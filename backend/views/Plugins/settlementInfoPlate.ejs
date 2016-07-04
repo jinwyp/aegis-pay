@@ -1,4 +1,19 @@
         <% var orderObj = data.order %>
+        <%
+        // 工具函数 数值处理
+        var mathTool = {
+            // 格式化数字(两位小数)
+            formatDecimal: function (num, deg) {
+                return (num.toFixed(deg || 2) + '');
+            },
+
+            // 数字千分符
+            formatMoney: function (num, deg) {
+                return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+            }
+        };
+
+        %>
         <!-- 结算单信息 板块-->
         <div id="settlementInfoPlate">
             <!-- 结算信息 -->
@@ -25,10 +40,10 @@
                         <th>合同基准单价（元/吨）</th>
                     </tr>
                     <tr>
-                        <td><%= orderObj.harbour %> </td>
-                        <td><%= orderObj.coalType %> </td>
-                        <td><%= formatMoney(orderObj.amount, 2) %></td>
-                        <td><%= formatMoney(orderObj.price, 2) %></td>
+                        <td><%= orderObj.harbour || '' %> </td>
+                        <td><%= orderObj.coalType || '' %> </td>
+                        <td><%= mathTool.formatMoney(orderObj.amount || 0, 2) %></td>
+                        <td><%= mathTool.formatMoney(orderObj.price || 0, 2) %></td>
                     </tr>
                     <tr>
                         <th>合同金额（元）</th>
@@ -37,8 +52,8 @@
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
-                        <td><%= formatMoney(orderObj.totalMoney, 2) %></td>
-                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= formatMoney(orderObj.totalMoney, 2) %></span> </td>
+                        <td><%= mathTool.formatMoney(orderObj.totalMoney || 0, 2) %></td>
+                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= mathTool.formatMoney(orderObj.totalMoney || 0, 2) %></span> </td>
                         <td><%= orderObj.paymentTime %></td>
                         <td>&nbsp;</td>
                     </tr>
@@ -82,22 +97,22 @@
                     <% if(isShowEdit_sj) {%>
 <tr>
     <td class="billBox">
-        <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.settleAmount || ''), 2) %>" />
+        <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= mathTool.formatDecimal((orderObj.settleAmount || ''), 2) %>" />
         <span class="errInfo"></span>
     </td>
     <td class="billBox">
-        <input type="text" class="billIpt" name="ins_harbourDues" maxlength="11" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.harbourDues || ''), 2) %>"/>
+        <input type="text" class="billIpt" name="ins_harbourDues" maxlength="11" placeholder="请输入大于0的数值" value="<%= mathTool.formatDecimal((orderObj.harbourDues || ''), 2) %>"/>
         <span class="errInfo"></span>
     </td>
     <td class="billBox">
-        <input type="text" class="billIpt" name="ins_settleMoney" maxlength="11" placeholder="请输入大于0的数值" value="<%= formatDecimal((orderObj.settleMoney || ''), 2) %>"/>
+        <input type="text" class="billIpt" name="ins_settleMoney" maxlength="11" placeholder="请输入大于0的数值" value="<%= mathTool.formatDecimal((orderObj.settleMoney || ''), 2) %>"/>
         <span class="errInfo"></span>
     </td>
     <td>
         <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-            <span class="refundMoney" data-num="<%= orderObj.tailMoney || 0 %>"><%= formatMoney((orderObj.tailMoney || 0), 2) %></span>
+            <span class="refundMoney" data-num="<%= orderObj.tailMoney || 0 %>"><%= mathTool.formatMoney((orderObj.tailMoney || 0), 2) %></span>
         <% }else{ %>
-            <span class="refundMoney" data-num="<%= orderObj.refundMoney || 0 %>"><%= formatMoney((orderObj.refundMoney || 0), 2) %></span>
+            <span class="refundMoney" data-num="<%= orderObj.refundMoney || 0 %>"><%= mathTool.formatMoney((orderObj.refundMoney || 0), 2) %></span>
         <% } %>
     </td>
 </tr>
@@ -107,18 +122,17 @@
         <textarea class="txtArea txtRemarks" name="ins_remarks" rows="1" maxlength="500" placeholder="请填写关于结算的说明，如没有说明即可不用填写。"><%= orderObj.remarks || '' %></textarea>
     </td>
 </tr>
-
-
                     <% } else { %>
+
                     <tr>
-                        <td><%= formatDecimal(orderObj.settleAmount || 0, 2) %></td>
-                        <td><%= formatMoney(orderObj.harbourDues || 0, 2) %></td>
-                        <td><%= formatMoney(orderObj.settleMoney || 0, 2) %></td>
+                        <td><%= mathTool.formatDecimal(orderObj.settleAmount || 0, 2) %></td>
+                        <td><%= mathTool.formatMoney(orderObj.harbourDues || 0, 2) %></td>
+                        <td><%= mathTool.formatMoney(orderObj.settleMoney || 0, 2) %></td>
                         <td>
                             <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <span class="refundMoney"><%= formatMoney(orderObj.tailMoney || 0, 2) %></span>
+                                <span class="refundMoney"><%= mathTool.formatMoney(orderObj.tailMoney || 0, 2) %></span>
                             <% }else{ %>
-                                <span class="refundMoney"><%= formatMoney(orderObj.refundMoney || 0, 2) %></span>
+                                <span class="refundMoney"><%= mathTool.formatMoney(orderObj.refundMoney || 0, 2) %></span>
                             <% } %>
                         </td>
                     </tr>
@@ -127,7 +141,6 @@
                         <td colspan="3"><%= orderObj.remarks %></td>
                     </tr>
                     <% } %>
-
 
                     <tr>
                         <th colspan="2">购方公司</th>

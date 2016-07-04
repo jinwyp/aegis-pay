@@ -18,13 +18,13 @@
                         </ul>
                     </li>
                     <li><a href="<%=sitepage%>/account/getMyOrders">业务管理中心</a></li>
-                    <li class="noborder"><a href="javascript:void(0)">财务管理中心</a></li>
+                    <li class="noborder"><a href="/">财务管理中心</a></li>
                 </ul>
 
                 <ul class="menuList rightMenuList">
                     <!--登录状态-->
                     <% if(user && user.id){ %>
-                    <li><a href="javascript:void(0)">账户名：<%= user.nickname || user.securephone %></a></li>
+                    <li><a href="../account/accountSetting">账户名：<%= user.nickname || user.securephone %></a></li>
                     <li class="noborder"><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
                     <% }else{ %>
                     <!--未登录状态-->

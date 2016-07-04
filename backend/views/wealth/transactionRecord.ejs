@@ -10,8 +10,8 @@
 <%- include ../global/header/financialSecondHeader %>
 
 <div id="transaction-body">
-    <div class="transaction-main">
-        <form action="/finance/transaction/list" method="get">
+    <div class="transaction-main" >
+        <form id="searchForm" action="/wealth/financialTransaction">
         <div class="search-div">
             <div class="search-row row-one">
                 <span>订单类型:</span>
@@ -42,11 +42,16 @@
                     <option value="4" <%if(searchType==4){ %>selected<% } %>>公司名称</option>
                 </select>
                 <input type="text" name="content" class="iIpt iIpt_sm record-number content" maxlength="50" id="content" value="<%=clearEmpty(content)%>"/>
-                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
+
+                <input type="hidden" value="<%= count %>" id="count">
+                <input type="hidden" value="<%= page %>" id="page" name="page">
+                <input type="hidden" value="<%= pagesize %>" id="pagesize">
+
+                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submitSearch">
             </div>
         </div>
         </form>
-        <div class="transaction-div">
+        <div class="transaction-div" ms-controller="financialPaginationController">
             <table class="transaction-table">
                 <thead>
                 <tr>
@@ -180,6 +185,9 @@
                 <%}%>
                 </tbody>
             </table>
+
+            <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
+
         </div>
     </div>
 </div>
