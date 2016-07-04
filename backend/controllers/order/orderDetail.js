@@ -25,6 +25,13 @@ exports.getBuyOrderDetail = function (req, res, next) {
             logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
             var step = 0;
             switch (source.data.order.status) {
+                case 'TradeClosed':
+                    if(source.data.order.statusClose=='WaitPayment'){
+                        step = 2;
+                    }else{
+                        step = 1;
+                    }
+                    break;
                 case 'WaitSignContract':
                     step = 1;
                     break;
