@@ -67,14 +67,15 @@
                         <%if(settlementList[i].type==0){%>
                             <%if(settlementList[i].status=="WaitSettleAccounts"){%>
                             <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-confirmSettle mb-10" value="确认结算" data-value="<%=settlementList[i].id%>"/>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-confirmSettle mb-10" value="确认结算" data-id="<%=settlementList[i].id%>"/>
                             <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
                             <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-pay mb-10" value="补款" <%=settlementList[i].id%>/>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-tailMoney mb-10" value="支付尾款" data-id="<%=settlementList[i].id%>"/>
                             <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
                             <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-updateInfo mb-10" value="完善信息" <%=settlementList[i].id%>/>
+                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-improveReceipt mb-10" value="完善开票信息" data-id="<%=settlementList[i].id%>"/>
                             <%}%>
+                            <a target="_blank" href="/getBuyOrderDetail?orderId=<%=settlementList[i].id%>">查看详情</a>
                         <%}else if(settlementList[i].type=1){%>
                             <%if(settlementList[i].status=="WaitSettleAccounts"){%>
                                 <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-settle mb-10" value="结算" <%=settlementList[i].id%>/>
@@ -87,7 +88,6 @@
                             <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
                             <%}%>
                         <%}%>
-                        <a href="http://pay-local.yimei180.com:3001/getOrderDetail?orderId=<%=settlementList[i].id%>">查看详情</a>
                     </td>
                 </tr>
                 <%}%>

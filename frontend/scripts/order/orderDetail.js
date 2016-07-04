@@ -202,7 +202,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        location.href="/settlement/confirmTheInvoice?orderId＝"+$("#orderId").val();
+        location.href="/settlement/confirmTheInvoice?orderId="+$("#orderId").val();
     });
 
     //确认已开发票
