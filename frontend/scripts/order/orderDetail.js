@@ -207,7 +207,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //确认已开发票
     $(".btn-writeReceipt").click(function(){
-        $("#modal_title_1").text("温馨提示");
+        $("#modal_title_2").text("温馨提示");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
@@ -229,10 +229,14 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //确认收到发票
     $(".btn-receiveReceipt").click(function(){
-        $("#modal_title_1").text("温馨提示");
+        $("#modal_title_3").text("温馨提示");
+        $('#md_ok_3').val("确定");
+
+        $("#modal_title_2").text("温馨提示");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
+            location.reload();
         });
         var orderId=$("#orderId").val();
         var version=$("#version").val();
@@ -241,10 +245,11 @@ require(['jquery','jQuery.fn.datePicker'],function($){
             success:function(data){
                 if(data&&data.success){
                     $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                    $(".modal_2").modal('show');
                 }else{
-                    $("#modalInfo_2").text(data.error);
+                    $("#modalInfo_3").text(data.error);
+                    $(".modal_3").modal('show');
                 }
-                $(".modal_2").modal('show');
             }
         });
     });

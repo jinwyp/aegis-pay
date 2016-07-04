@@ -26,7 +26,7 @@ financialCenterHomePersist
                         "createTime": "2016-06-18",
                         "typeName": "采购",
                         "totalMoney": "1000000.00",
-                        "status": "WaitPayment",
+                        "status": "等待付款",
                         "statusName": "等待付款"
                     },
                     {

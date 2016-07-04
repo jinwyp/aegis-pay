@@ -22,6 +22,7 @@ define(['jquery','bootstrap'],function($){
         $('#generate_imgcode').click(function(){
             $code_img.attr('src','/api/imgcode?time='+new Date().getTime());
             $('#imgcodeModal .tip-error').hide();           // 刷新图片,隐藏错误提示
+            $('input[name="imgcode"]').val('');
         });
 
         $('#imgcodeValid').click(function(){

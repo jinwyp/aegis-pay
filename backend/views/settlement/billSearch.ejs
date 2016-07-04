@@ -1,4 +1,4 @@
-<form class="billSearch" id="billSearch"  action="/settlement/billCenter">
+<form class="billSearch" id="searchForm"  action="/settlement/billCenter">
     <span>结算时间&nbsp;:&nbsp;&nbsp;</span>
     <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=receiptOrder.startDate%>"/></div>
     <span class="to">&nbsp;&nbsp;至&nbsp;&nbsp;</span>
@@ -9,7 +9,7 @@
     <input type="hidden" value="<%= count %>" id="count">
     <input type="hidden" value="<%= page %>" id="page" name="page">
     <input type="hidden" value="<%= pagesize %>" id="pagesize">
-    <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submit">
+    <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submitSearch">
 
 </form>
 

@@ -11,7 +11,7 @@ define(['avalon'], function(avalon){
 
         /*
 
-         <nav class="pagination-financial">
+         <nav class="pagination-financial" ms-if="@isShowPagination">
          <ul class="pagination pageno">
          <li> <a aria-label="Previous" ms-class="{disabled: @isDisabled('prev', 1)}" ms-click="@_changePage($event, @currentPage-1, 'prev' )"> <span aria-hidden="true" > 上一页 </span> </a> </li>
 
@@ -46,6 +46,7 @@ define(['avalon'], function(avalon){
             totalPages : 10,
             currentPage : 1,
             inputCurrentPages : 1,
+            isShowPagination : true,
             changePageNo : avalon.noop,
 
             _pageArrayLeft : [],

@@ -173,16 +173,15 @@
           margin-right: auto;
           padding-bottom: 20px;
           tr{
-            line-height: 60px;
+            height: 60px;
             border-bottom: 1px dotted $color_border;
             &:hover{
               background-color: $tr_hover_color;
             }
-            td{
-              text-align: center;
-            }
+            td{  text-align: center;padding-top: 10px;padding-bottom: 10px;  }
+            td > a { display: block;}
             .orange{ color: $color_orange; }
-            .ml-10{  margin-left: 10px; }
+            .mt-10{  margin-top: 10px; }
           }
         }
       }
@@ -342,8 +341,9 @@
         font-size: $size_font_pageTitle;
       }
       .record-download{
-        margin-left: 505px;
+        float: right;
         padding: 2px 10px;
+        margin-right: 0px;
 
         .iBtn_down_icn{
           margin-top :1px;
