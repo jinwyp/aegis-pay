@@ -68,19 +68,16 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     // 绑定 下拉框插件
     $('[name=type]').fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');
-        console.log(this.value);
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
     $('[name=status]').fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');
-        console.log(this.value);
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
     $searchType.fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');
-        console.log(this.value);
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
