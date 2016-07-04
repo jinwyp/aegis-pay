@@ -122,11 +122,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
 
 
     //搜索form表单提交
-    $("#submit").on("click",function(event, pageno){
+    $("#submitSearch").on("click",function(event, pageno){
         // alert(pageno);
         pageno = pageno || 1;
         $("#page").val(pageno);
-        $("#transactionSearch").submit();
+        $("#searchForm").submit();
     });
 
     //分页相关
@@ -134,14 +134,14 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     var app = {
         init :function (){
             vm = avalon.define({
-                $id: "financialTransactionController",
+                $id: "financialPaginationController",
 
                 configPagination : {
                     totalPages : 10,
                     currentPage : 1,
                     inputCurrentPages : 1,
                     changePageNo : function(page){
-                        $("#submit").trigger("click",[page]);
+                        $("#submitSearch").trigger("click",[page]);
                     }
                 }
             });

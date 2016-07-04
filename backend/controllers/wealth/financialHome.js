@@ -294,31 +294,28 @@ exports.financialContract = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 5;
     var secondTab = req.query.secondTab || 1;
-    var startDate = req.query.startDate;
-    var endDate = req.query.endDate;
-    var type = req.query.type;
-    var content = req.query.content;
-    logger.debug('获取到的userId是----------------------------' + req.session.user.id);
-    logger.debug("获取到的表单数据是：startDate=="+startDate+" endDate=="+endDate+" type=="+type+" content=="+content);
+
+    var getQuery = {
+        userId : req.session.user.id,
+        //userId :  2719,
+        page : req.query.page || 1,
+        pagesize : 10
+    };
+
+    if (req.query.type) getQuery.type = req.query.type;
+    if (req.query.startDate) getQuery.startDate = req.query.startDate;
+    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    //if (req.query.searchType) getQuery.searchType = req.query.searchType;
+    if (req.query.content) getQuery.content = req.query.content;
 
     request.post(
         {
             url:api_config.contractList,
-            form: {
-                userId:req.session.user.id,
-                startDate:startDate,
-                endDate:endDate,
-                type:type,
-                content:content
-            },
+            form: getQuery,
             json:true
         },
         function (err, response, body) {
             if (err) return next(err);
-
-            logger.debug('获取到的错误是----------------------------' + err);
-            logger.debug('获取到的结果是----------------------------' + body);
-
 
             var content = {
                 pageTitle: "合同管理",
@@ -327,10 +324,15 @@ exports.financialContract = function (req, res, next) {
                     firstTab: firstTab,
                     secondTab: secondTab
                 },
-                startDate: [],
-                endDate: [],
-                type: [],
-                content: [],
+
+                pagesize : 10,
+                page : 1,
+                count : 10,
+
+                startDate: '',
+                endDate: '',
+                type: '',
+                content: '',
                 contractList: []
             };
 
@@ -341,6 +343,10 @@ exports.financialContract = function (req, res, next) {
                 content.type= body.data.contract.searchType;
                 content.content= body.data.contract.content;
                 content.contractList= body.data.contract.list;
+
+                content.pagesize = body.data.contract.pagesize;
+                content.page = body.data.contract.page;
+                content.count = body.data.contract.count;
 
                 //渲染页面
                 return res.render('wealth/contractList',content);
