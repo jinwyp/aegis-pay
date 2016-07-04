@@ -110,7 +110,7 @@ var api_config = {
     disputeDetail : host + 'mall/order/dispute/detail',
     disputeSellerDetail : host + 'mall/order/seller/dispute',
     disputeBackReason : host + 'mall/order/seller/dispute/submit',
-    disputeComplete : host + 'mall/order/seller/dispute',
+    disputeComplete : host + 'mall/order/dispute/detail',
     disputeSuccess : host + 'mall/order/seller/dispute/complete',
     financialCenterHome : host + 'finance/center',
     financialTransaction : host + 'finance/transaction/list',
