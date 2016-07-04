@@ -103,7 +103,7 @@ exports.financialDetails = function (req, res, next) {
         content.formSelectOrderCategory[category].selected = true;
     }
 
-    var url = api_config.financialDetails;
+    var url = api_config.financialDetailsAccount;
     var formData = {
         userId: req.session.user.id
         //userId: 2719

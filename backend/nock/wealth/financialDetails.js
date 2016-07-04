@@ -222,7 +222,11 @@ var result = {
 
 
 interceptPersist
-
+.post('/finance/payments/paymentAccount', { userId: "213" }).reply(200, {
+    success:true,
+    error:"",
+    data:result
+})
 .post('/finance/payments/list', { orderCategory: '2' }).reply(200, {
     success:true,
     error:"",

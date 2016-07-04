@@ -155,6 +155,7 @@ var api_config = {
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
     financialDetails : host + 'finance/payments/list',
+    financialDetailsAccount : host + 'finance/payments/paymentAccount',
     financialDetailsPrint : host + 'finance/payments/print',
     bindingBankAccount : host + '/account/fund/bankCard/add',
     bindingBankAccountCityList : host + '/bank/loadBankSiteCities',
