@@ -102,7 +102,7 @@ var api_config = {
     orderInfo : host + 'order/orderInfo',
     orderSettlement : host + 'settlement',
     settleDetails : host + '/finance/receipt',
-    orderCloseAPI : host + '/order/orderInfo_api',
+    orderCloseAPI : host + 'order/orderInfo_api',
     orderReturn : host + '/mall/order/seller/verifyDelivery',
     disputeApply : host + 'mall/order/dispute',
     disputeApplySubmit : host+ 'mall/order/dispute/submit',

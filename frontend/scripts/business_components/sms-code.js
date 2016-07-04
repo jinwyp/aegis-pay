@@ -6,7 +6,7 @@ define(['jquery','bootstrap'],function($){
             $codeTipErr: $('input[name="sms_code"]').parent().find('.tip-error'),
             $codeTipMsg: $('input[name="sms_code"]').parent().find('.tip-msg'),
             $imgcodeTipErr: $('#imgcodeModal .tip-error')
-        }
+        };
         this.customPhone = customPhone || false;
         this.imgcode();
       },
@@ -20,8 +20,9 @@ define(['jquery','bootstrap'],function($){
         });
 
         $('#generate_imgcode').click(function(){
-          $code_img.attr('src','/api/imgcode?time='+new Date().getTime())
-        })
+            $code_img.attr('src','/api/imgcode?time='+new Date().getTime());
+            $('#imgcodeModal .tip-error').hide();           // 刷新图片,隐藏错误提示
+        });
 
         $('#imgcodeValid').click(function(){
           var imgcode = $('input[name="imgcode"]').val();
@@ -83,4 +84,4 @@ define(['jquery','bootstrap'],function($){
         })
     }
   }
-})
+});
