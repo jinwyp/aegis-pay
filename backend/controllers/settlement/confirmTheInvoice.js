@@ -30,7 +30,7 @@ var apiHost  = require('../../api/v1/api_config');          // 接口路径配�
 // 			bankNam:           '招商银行',          //开户银行名称
 // 			bankAccount:        '1234567890098765',         //银行账号名称
 // 			type:               '1',                //发票类型id
-// 			templetUrl:         '/files/upload/3eb4d184-5c26-4a10-ba59-158807007a24.png'            //发票样板图片url
+// 			templateUrl:         '/files/upload/3eb4d184-5c26-4a10-ba59-158807007a24.png'            //发票样板图片url
 // 		},
 // 		companyName: '公司名称',
 // 		receiptTypeList: [{sequence: 1, name:'增值税发票'}]
@@ -83,7 +83,8 @@ exports.addInvoiceInfo = function (req, res, next) {
 		var replyData = {
 			headerTit: '结算单.获取开票信息',
 			subTitle: '确认开票信息',
-			pageTitle: '结算_确认开票信息'
+			pageTitle: '结算_确认开票信息',
+			orderId: orderId
 		};
 		
 		Object.assign(replyData, resBody);
@@ -100,7 +101,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 // 页面路由.提交开票信息
 exports.submitInvoiceInfo = function (req, res, next) {
 	// res.status(409);
-	var templetUrl = _.trim(req.body.templetUrl),
+	var templateUrl = _.trim(req.body.templateUrl),
 		companyAddress = _.trim(req.body.companyAddress),
 		companyPhone = _.trim(req.body.companyPhone),
 		companyFax = _.trim(req.body.companyFax),
@@ -121,7 +122,7 @@ exports.submitInvoiceInfo = function (req, res, next) {
 		bankName : bankName,
 		bankAccount : bankAccount,
 		type : type,
-		templetUrl : templetUrl,
+		templateUrl : templateUrl,
 		userId: userId
 	}
 
@@ -150,8 +151,8 @@ exports.submitInvoiceInfo = function (req, res, next) {
 		console.log("-------------- resp ---------------");
 		console.log(req.body);
 
-		// console.log("templetUrl", "companyAddress", "companyPhone", "companyFax", "identificationNumber", "bankName", "bankAccount", "type")
-		// console.log(templetUrl,  companyAddress,  companyPhone,  companyFax,  identificationNumber,  bankName,  bankAccount,  type);
+		// console.log("templateUrl", "companyAddress", "companyPhone", "companyFax", "identificationNumber", "bankName", "bankAccount", "type")
+		// console.log(templateUrl,  companyAddress,  companyPhone,  companyFax,  identificationNumber,  bankName,  bankAccount,  type);
 
         return res.json({success: true});
 	})

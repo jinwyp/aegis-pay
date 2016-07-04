@@ -101,7 +101,8 @@
                     <tr>
                         <th class="txt_r"></th>
                         <td>
-                            <input type="hidden" id="templetUrl" name="templetUrl" value="<%=data.receipt && data.receipt.templetUrl ? data.receipt.templetUrl:"" %>">
+                            <input type="hidden" id="templateUrl" name="templateUrl" value="<%=data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:"" %>">
+                            <div class="errorMsg"></div>
                             <div class="totalError"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -187,7 +188,7 @@
                 <input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">
                 <input type="button" id="submitBtn" class="iBtn iBtn_yes ml20" value="确认">
             </div>
-            <input type="text" id="orderId" name="orderId" value="<%=data.orderId ? data.orderId : ""%>">
+            <input type="text" id="orderId" name="orderId" value="<%=orderId ? orderId : ""%>">
 
         </div>
 
