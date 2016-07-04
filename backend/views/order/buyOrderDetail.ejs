@@ -20,7 +20,7 @@
 
             <div class="status-content">
                 <input type="hidden" id="orderId" value="<%=order.id%>" />
-                <input type="text" id="status" value="<%=order.status%>" />
+                <input type="hidden" id="status" value="<%=order.status%>" />
                 <div class="state-item fs-24">
                     <span>当前订单状态：</span>
                     <% if(order.status=='WaitSignContract'){ %>
@@ -85,7 +85,7 @@
                     <div class="state-item mt-10 hint"><span>3. 如果您在交易过程中发生纠纷，您可以&nbsp;<a class="btn-applyDispute">申请纠纷处理</a></span></div>
                 <!--<div class="state-item mt-10 hint"><span>1. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>-->
                 <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
-                    <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-deliveryDetail">查看提货详情</a></span></div>
+                    <!--<div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-deliveryDetail">查看提货详情</a></span></div>-->
                 <% }else if(order.status=='WaitSettleAccounts'){ %>
                 <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerSettle">提醒卖家结算</span></div>
                 <div class="state-item mt-10 hint"><span>2. 如果您在交易过程中发生纠纷，您可以&nbsp;<a class="btn-applyDispute">申请纠纷处理</a></span></div>
@@ -102,7 +102,7 @@
                     <div class="state-item mt-10 hint"><span>2. 如果您需要支付电子回单，进入银行电子回单系统进行打印&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-printReceipt">打印回单</span></div>
                     <%}%>
                 <% }else if(order.status=='WaitPayTailMoney'){ %>
-                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">支付尾款</span></div>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-tailMoney">支付尾款</span></div>
                 <% }else if(order.status=='WaitWriteReceipt'){ %>
                 <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerWriteReceipt">提醒卖家开具发票</span></div>
                 <% }else if(order.status=='WaitReceiveReceipt'){ %>
