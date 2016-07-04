@@ -3,9 +3,9 @@
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
     <link rel="stylesheet" href="<%= staticPath %>/styles/drawCash/drawCash.css">
-    
+
 </head>
-	
+
 <body>
 
 <%- include ../global/header/financialFirstHeader %>
@@ -22,10 +22,10 @@
 			<div class="figure-content">
 				<form action="/drawCashCheck" method="post" class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>	
+						<label class="col-sm-5 control-label select-bank-label">选择银行卡：</label>
 						<div class="col-sm-4 select-bank">
 							<ul>
-								<li class="active"><input type="radio" checked/>  <%= bankName %>： 
+								<li class="active"><input type="radio" checked/>  <%= bankName %>：
 									<p class="padding-top-6">尾号：<%- fundAccountFormat(bankAccount,true) %></p>
 								</li>
 							</ul>
@@ -49,7 +49,7 @@
 					</div>
 					<div  class="form-group padding-top-8">
 						<div class="col-sm-4 col-sm-offset-5">
-							<input type="submit" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">		
+							<input type="submit" class="iBtn iBtn_yes" value="下一步" id="drawCashBtn">
 							<span id="errorMsg" class="text-danger display-none"></span>
 						</div>
 					</div>
@@ -71,6 +71,3 @@
 
 </body>
 </html>
-
-
-

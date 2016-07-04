@@ -126,7 +126,7 @@ $dark:#000000;
 			}
 		}
 		.float-right{
-			height:30px; 
+			height:30px;
 			padding-top:5px;
 			span{
 				margin-top:-1px;
@@ -195,7 +195,7 @@ $dark:#000000;
 		}
 		.figure-content{
 			@include overFlow;
-			padding:20px 0; 
+			padding:20px 0;
 			@include fontSize(14px);
 			dt,dd{
 				@include displayInlineBlock;
@@ -218,6 +218,10 @@ $dark:#000000;
 				@include fontSize(18px);
 				@include fontWeight;
 				line-height:200px;
+				&.no-bg{
+					background:none;
+					padding-left:0;
+				}
 			}
 		}
 	}

@@ -8,25 +8,20 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //提醒签订合同
     $(".notice-signContract").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeBuyerSignContract",
-            data:{orderId:orderId},
+            url:"/toNoticeBuyerSignContract?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -39,25 +34,20 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //提醒买家确认提货
     $(".notice-confirmDelivery").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeBuyerPayMoney",
-            data:{orderId:orderId},
+            url:"/toNoticeBuyerPayMoney?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -70,25 +60,20 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //提醒买家确认提货
     $(".notice-confirmDelivery").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeBuyerToDelivery",
-            data:{orderId:orderId},
+            url:"/toNoticeBuyerToDelivery?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -100,70 +85,65 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //查看提货详情
     $(".btn-deliveryDetail").click(function(){
-        window.open("/getBuyOrderDetail?orderId="+$("#orderId").val());
+        location.href="/getBuyOrderDetail?orderId="+$("#orderId").val();
     });
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
-        window.open("/return?orderId="+$("#orderId").val());
+        location.href="/return?orderId="+$("#orderId").val();
     });
 
     //审核提货
     $(".btn-auditDelivery").click(function(){
-        window.open("/getBuyOrderDetail?orderId="+$("#orderId").val());
+        location.href="/getBuyOrderDetail?orderId="+$("#orderId").val();
     });
 
     //开具结算单
     $(".btn-settleAccounts").click(function(){
-        window.open("/settlement/settlementForm?type=2&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=2&id="+$("#orderId").val();
     });
 
     //确认结算单
     $(".btn-confirmSettle").click(function(){
-        window.open("/settlement/settlementForm?type=1&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=1&id="+$("#orderId").val();
     });
 
     //买家查看结算单
     $(".btn-buyerLookSettle").click(function(){
-        window.open("/settlement/settlementForm?type=1&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=1&id="+$("#orderId").val();
     });
     //卖家查看结算单
     $(".btn-sellerLookSettle").click(function(){
-        window.open("/settlement/settlementForm?type=2&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=2&id="+$("#orderId").val();
     });
 
     //买家修改结算单
     $(".btn-buyerUpdateSettle").click(function(){
-        window.open(host+"/settlement/settlementForm?type=1&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=1&id="+$("#orderId").val();
     });
 
     //卖家修改结算单
     $(".btn-sellerUpdateSettle").click(function(){
-        window.open(host+"/settlement/settlementForm?type=2&id="+$("#orderId").val());
+        location.href="/settlement/settlementForm?type=2&id="+$("#orderId").val();
     });
 
     //提醒卖家结算
     $(".notice-sellerSettle").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeSellerToSettle",
-            data:{orderId:orderId},
+            url:"/toNoticeSellerToSettle?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -171,93 +151,78 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //提醒卖家退款
     $(".notice-sellerRetrunMoney").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeSellerReturnMoney",
-            data:{orderId:orderId},
+            url:"/toNoticeSellerReturnMoney?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
 
     //退款
     $(".btn-retrunMoney").click(function(){
-        window.open(host+"/pay?type=3&orderId="+$("#orderId").val());
+        location.href="/pay?type=3&orderId="+$("#orderId").val();
     });
 
     //补款
     $(".btn-tailMoney").click(function(){
-        window.open(host+"/pay?type=2&orderId="+$("#orderId").val());
+        location.href="/pay?type=2&orderId="+$("#orderId").val();
     });
 
     //提醒卖家开发票
     $(".notice-sellerWriteReceipt").click(function(){
         $("#modal_title_2").text("温馨提示");
-        $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         $.ajax({
-            url:"/toNoticeSellerWriteReceipt",
-            data:{orderId:orderId},
+            url:"/toNoticeSellerWriteReceipt?orderId="+orderId,
             success:function(data){
-                if(data){
-                    $(".modal_2").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        window.open(host+"/settlement/confirmTheInvoice?orderId＝"+$(this).data(orderid));
+        location.href="/settlement/confirmTheInvoice?orderId＝"+$("#orderId").val();
     });
 
     //确认已开发票
     $(".btn-writeReceipt").click(function(){
         $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
-        $('#md_ok_1').val("确定");
-        $("#md_ok_1").off("click").on("click",function(){
-            $(".modal_1").modal('hide');
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         var version=$("#version").val();
         $.ajax({
-            url:"/toNoticeReceiveReceipt",
-            data:{orderId:orderId,version:version},
+            url:"/toNoticeReceiveReceipt?orderId="+orderId+"&version="+version,
             success:function(data){
-                if(data){
-                    $(".modal_1").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -265,26 +230,21 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     //确认收到发票
     $(".btn-receiveReceipt").click(function(){
         $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您将通过短信的方式通知买方已经开票,请您耐心等待");
-        $('#md_ok_1').val("确定");
-        $("#md_ok_1").off("click").on("click",function(){
-            $(".modal_1").modal('hide');
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
         });
         var orderId=$("#orderId").val();
         var version=$("#version").val();
         $.ajax({
-            url:"/settlement/sureReceiveReceipt",
-            data:{orderId:orderId,version:version},
+            url:"/settlement/sureReceiveReceipt?orderId="+orderId+"&version="+version,
             success:function(data){
-                if(data){
-                    $(".modal_1").modal('show');
-                    //alert('请求成功了');
-                    //if(data.success){
-                    //  $(".modal_2").modal('show');
-                    //}else{
-                    //  alert(data.error);
-                    //}
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
                 }
+                $(".modal_2").modal('show');
             }
         });
     });
@@ -303,7 +263,28 @@ require(['jquery','jQuery.fn.datePicker'],function($){
     });
     //删除
     $(".btn-delete").click(function(){
-        //window.open("/settlement/settlementForm?id="+$(this).data(orderid));
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您确认删除该订单吗");
+        $('#md_ok_1').val("确定");
+        $(".modal_1").modal('show');
+        var id=$(this).data("id"),
+            version=$(this).data("version");
+        $("#md_ok_1").off("click").on("click",function(){
+            $.ajax({
+                url:"/account/deleteOrder",
+                data:{id:id,version:version},
+                success:function(data){
+                    if(data){
+                        $(".modal_1").modal('hide');
+                        location.reload();
+                    }else{
+                        $("#modal_title_3").text("温馨提示");
+                        $("#modalInfo_3").text(data.error);
+                        $(".modal_3").modal('show');
+                    }
+                }
+            });
+        });
     });
     //关闭交易
     $(".btn-closeTrade").click(function(){

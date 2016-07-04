@@ -26,7 +26,7 @@ exports.compact = function (req, res, next) {
             return res.render('compact/compact', pageData);
         }else{
             var errMsg = '当前订单不处于签订合同状态！';
-            var er = new Error('Service request error: ' + errMsg);
+            var er = new Error(errMsg);
             _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
             return next(er);
         }

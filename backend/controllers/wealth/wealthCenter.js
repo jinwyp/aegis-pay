@@ -69,7 +69,7 @@ exports.isFundAccountExist = function(req, res, next){
         var result = JSON.parse(data.body);
         if(result.data.success){
             var errMsg = '您已经存在易煤网资金账户';
-            var er = new Error('Service request error: ' + errMsg);
+            var er = new Error(errMsg);
             _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
             return next(er);
         }else{

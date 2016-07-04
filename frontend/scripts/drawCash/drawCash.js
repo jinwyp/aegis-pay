@@ -50,10 +50,12 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				}else{
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
 						var curVal = numToPrice(val);
-						if(isNaN(curVal)){
-							drawCashTxt.val('0');	
+						if( !(curVal*1) ){
+							drawCashTxt.val('0.00');
+							toggleError(false);
+							return false;
 						}else{
-							drawCashTxt.val( numToPrice(val) );	
+							drawCashTxt.val( numToPrice(val) );
 						}
 						toggleError(true);
 						return true;
@@ -104,7 +106,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 						data:{
 							confirmToken:$('#confirmToken').val(),
 							cash:$('#cash').val(),
-							password:$('#confirmTxt').val() 
+							password:$('#confirmTxt').val()
 						},
 						success:function(response){
 							if(!response.success){

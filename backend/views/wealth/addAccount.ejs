@@ -3,9 +3,9 @@
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
     <link rel="stylesheet" href="<%= staticPath %>/styles/wealth/addAccount.css">
-    
+
 </head>
-	
+
 <body>
 
 <%- include ../global/header/financialFirstHeader %>
@@ -23,7 +23,7 @@
 					<dl>
 						<dt>如何绑定账户？</dt>
 						<dd>所绑定账户为您的提现账户。</dd>
-						<dd>绑定后您可将易煤网资金账户中的资金进行提现。为保证提现安全，您只能绑定一个出金银行账户。如需更换账户，需将原账户解绑再重新绑定新账户后方可提现。</dd>	
+						<dd>绑定后您可将易煤网资金账户中的资金进行提现。为保证提现安全，您只能绑定一个出金银行账户。如需更换账户，需将原账户解绑再重新绑定新账户后方可提现。</dd>
 					</dl>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 					<dd><%= fundAccount.payPhone %></dd>
 				</dl>
 			</div>
-			<% if( status ){ %>
+			<% if( status && (cashAccount && cashAccount.status*1 == 3) ){ %>
 			<div class="figure-wrap" id="hasAccountState">
 				<div class="figure-caption">公司银行账户
 					<span id="delBankBtn">删除</span>
@@ -74,8 +74,14 @@
 			<div class="figure-wrap">
 				<div class="figure-caption">公司银行账户</div>
 				<div class="figure-content text-center">
-					<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
-				</div>
+					<% if(cashAccount && cashAccount.status*1 == 1){ %>
+						<span class="add-bank-btn no-bg" href="/wealth/xx">等待银行汇款</span>
+					<% }else if(cashAccount && cashAccount.status*2 == 2){ %>
+						<a class="add-bank-btn" href="/wealth/bindingSuccess">确认银行汇款</a>
+					<% }else{ %>
+            <a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
+          <% } %>
+        </div>
 			</div>
 			<% } %>
 			<div class="figure-wrap display-none" id="noAccountState">
@@ -128,6 +134,3 @@
 
 </body>
 </html>
-
-
-
