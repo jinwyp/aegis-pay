@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/static/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="/static/styles/billCenter.css" rel="stylesheet">-->
 
 <!--    <script src="/static/components/avalon/dist/avalon.js"></script>
     <script src="/static/components/jquery/dist/jquery.js"></script>-->
@@ -15,9 +16,22 @@
         .pagination>li .active{
             border: 1px solid red;
         }
+
+        .time {
+            border: 1px solid red; display: inline-block; padding: 10px;}
+
     </style>
 </head>
 <body>
+
+
+
+
+<div ms-controller="test2">
+    <div class="time">222222</div>
+    <div class="time">33333</div>
+
+</div>
 
 <div ms-controller="test">
     <xmp ms-widget="{is:'ms-select', items:@items, value:@value}"></xmp>
@@ -31,7 +45,7 @@
 <script>
 
 
-    requirejs([ 'jquery', 'avalon', 'avalon.components'], function( $, avalon){
+    requirejs([ 'jquery', 'avalon', 'avalon.pagination'], function( $, avalon){
 
         function getData (){
             $.ajax({
@@ -48,6 +62,22 @@
 
         var vm = avalon.define({
             $id: 'test',
+            items: ['请选择', '选项一', '选项二'],
+            value: 1,
+            onChange:function(a, b){
+                console.log(a,b)
+            },
+
+            configPagination : {
+                totalPages: 1,
+                changePageNo : function(){
+                    getData()
+                }
+            }
+        });
+
+        var vm2 = avalon.define({
+            $id: 'test2',
             items: ['请选择', '选项一', '选项二'],
             value: 1,
             onChange:function(a, b){
