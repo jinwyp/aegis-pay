@@ -106,11 +106,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //签订合同
     $(".btn-signContract").click(function(){
         location.href="/compact?orderId="+$(this).data("id");
+        return false;
     });
 
     //提醒买家确认提货
@@ -132,11 +134,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //付款
     $(".btn-payMoney").click(function(){
         location.href="/pay?type=1&orderId="+$(this).data("id");
+        return false;
     });
 
     //提醒买家确认提货
@@ -158,31 +162,37 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //确认提货/重新确认提货
     $(".btn-deliveryGoods").click(function(){
         location.href="/confirmDelivery?orderId="+$(this).data("id");
+        return false;
     });
 
     //查看提货详情
     $(".btn-deliveryDetail").click(function(){
         location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
+        return false;
     });
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
         location.href="/return?orderId="+$(this).data("id");
+        return false;
     });
 
     //审核提货
     $(".btn-auditDelivery").click(function(){
         location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
+        return false;
     });
 
     //开具结算单
     $(".btn-settleAccounts").click(function(){
         location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+        return false;
     });
 
     //确认结算单
@@ -193,20 +203,24 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     //买家查看结算单
     $(".btn-buyerLookSettle").click(function(){
         location.href="/settlement/settlementForm?type=1&id="+$(this).data("id");
+        return false;
     });
     //卖家查看结算单
     $(".btn-sellerLookSettle").click(function(){
         location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+        return false;
     });
 
     //买家修改结算单
     $(".btn-buyerUpdateSettle").click(function(){
         location.href="/settlement/settlementForm?type=1&id="+$(this).data("id");
+        return false;
     });
 
     //卖家修改结算单
     $(".btn-sellerUpdateSettle").click(function(){
         location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
+        return false;
     });
 
     //提醒卖家结算
@@ -228,6 +242,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //提醒卖家退款
@@ -249,16 +264,19 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //退款
     $(".btn-retrunMoney").click(function(){
         location.href="/pay?type=3&orderId="+$(this).data("id");
+        return false;
     });
 
     //补款
     $(".btn-tailMoney").click(function(){
         location.href="/pay?type=2&orderId="+$(this).data("id");
+        return false;
     });
 
     //提醒卖家开发票
@@ -280,11 +298,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
         location.href="/settlement/confirmTheInvoice?orderId="+$(this).data("id");
+        return false;
     });
 
     //确认已开发票
@@ -307,6 +327,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $(".modal_2").modal('show');
             }
         });
+        return false;
     });
 
     //确认收到发票
@@ -334,19 +355,23 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 }
             }
         });
+        return false;
     });
 
     //申请纠纷处理
     $(".btn-applyDispute").click(function(){
         location.href="/dispute/disputeApply?orderId="+$(this).data("id");
+        return false;
     });
     //纠纷处理
     $(".btn-dealDispute").click(function(){
         location.href="/dispute/disputeDetail?orderId="+$(this).data("id");
+        return false;
     });
     //查看纠纷详情
     $(".btn-lookDispute").click(function(){
         location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
+        return false;
     });
     //删除
     $(".btn-delete").click(function(){
@@ -372,10 +397,12 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 }
             });
         });
+        return false;
     });
     //关闭交易
     $(".btn-closeTrade").click(function(){
         location.href="/order/orderClose?id="+$(this).data("id");
+        return false;
     });
 
     //--------------------------合同管理模块的操作-----------------------------
