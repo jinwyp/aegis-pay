@@ -43,7 +43,7 @@
             <ul>
                 <li class="order-item"><div class="div-label">交易订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
                 <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= getStringVal(order.contractNO) %></div></li>
-                <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createtime) %></div></li>
+                <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createdate) %></div></li>
                 <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getStringVal(order.signContractTime) %></div></li>
                 <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getStringVal(order.paymentTime) %></div></li>
                 <li class="order-item"><div class="div-label">确认收货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
