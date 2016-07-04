@@ -340,7 +340,7 @@ exports.financialContract = function (req, res, next) {
 
                 content.startDate= body.data.contract.startDate;
                 content.endDate= body.data.contract.endDate;
-                content.type= body.data.contract.searchType;
+                content.type= body.data.contract.type;
                 content.content= body.data.contract.content;
                 content.contractList= body.data.contract.list;
 
@@ -358,50 +358,72 @@ exports.financialContract = function (req, res, next) {
 
 };
 
+
+
 exports.financialSettlement = function (req, res, next) {
 
     var firstTab  = req.query.firstTab || 4;
     var secondTab = req.query.secondTab || 1;
-    var startDate = req.query.startDate;
-    var endDate = req.query.endDate;
-    var searchType = req.query.searchType;
-    var content = req.query.content;
+
+    var getQuery = {
+        userId : req.session.user.id,
+        //userId :  2719,
+        page : req.query.page || 1,
+        pagesize : 10
+    };
+
+    //if (req.query.type) getQuery.type = req.query.type;
+    if (req.query.startDate) getQuery.startDate = req.query.startDate;
+    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    if (req.query.searchType) getQuery.searchType = req.query.searchType;
+    if (req.query.content) getQuery.content = req.query.content;
+
+
     request.post(
         {
             url:api_config.settlementList,
-            form: {
-                userId:req.session.user.id,
-                startDate:startDate,
-                endDate:endDate,
-                searchType:searchType,
-                content:content
+            form: getQuery,
+            json:true
+        },
+        function (err, response, body) {
+            if (err) return next(err);
+
+            var content = {
+                pageTitle: "结算管理",
+                headerTit: "结算管理",
+
+                tabObj: {
+                    firstTab: firstTab,
+                    secondTab: secondTab
+                },
+
+                pagesize : 10,
+                page : 1,
+                count : 10,
+
+                startDate: '',
+                endDate: '',
+                searchType: '',
+                content: '',
+                settlementList: []
+            };
+
+            if (response.statusCode === 200 && body.success) {
+                content.startDate= body.data.settleOrder.startDate;
+                content.endDate= body.data.settleOrder.endDate;
+                content.searchType= body.data.settleOrder.searchType;
+                content.content= body.data.settleOrder.content;
+                content.settlementList= body.data.settleOrder.list;
+
+                content.pagesize = body.data.settleOrder.pagesize;
+                content.page = body.data.settleOrder.page;
+                content.count = body.data.settleOrder.count;
+
+                return res.render('wealth/settlementList',content);
+            }else{
+                return res.render('wealth/settlementList',content);
             }
-        }
-        , function (err, data) {
-        if (err) return next(err);
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是----------------------------' + data.body);
-        if (data) {
-            var source = JSON.parse(data.body);
-            if(source.success) {
-                var content = {
-                    pageTitle: "结算管理",
-                    headerTit: "结算管理",
-                    tabObj: {
-                        firstTab: firstTab,
-                        secondTab: secondTab
-                    },
-                    startDate: source.data.settleOrder.startDate,
-                    endDate: source.data.settleOrder.endDate,
-                    searchType: source.data.settleOrder.searchType,
-                    content: source.data.settleOrder.content,
-                    settlementList: source.data.settleOrder.list
-                };
-                //渲染页面
-                logger.debug('获取到的settlementList结果是----------------------------' + JSON.stringify(source.data.settleOrder.list));
-                res.render('wealth/settlementList',content);
-            }
-        }
+
     });
 
 };

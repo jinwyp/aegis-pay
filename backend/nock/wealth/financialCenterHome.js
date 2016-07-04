@@ -8,7 +8,7 @@ financialCenterHomePersist
     .reply(200,
         {
             success:true,
-            error:"fdsfsdfsdfs",
+            error:"wrong",
             data:{
                 "finance": {
                     "userId": 1,
@@ -73,7 +73,7 @@ financialCenterHomePersist
                 endDate : "2016-06-19",
                 status : "WaitVerifyDeliveryGoods",
                 searchType : 4,
-                content : "fsadfafas",
+                content : "",
                 count:200,
                 pagesize:10,
                 page:1,
@@ -171,9 +171,7 @@ financialCenterHomePersist
         }
     });
 
-financialCenterHomePersist
-    .post('/finance/order/settle')
-    .reply(200,
+financialCenterHomePersist.post('/finance/order/settle').reply(200,
     {
         success:true,
         error:"fdsfsdfsdfs",
@@ -184,8 +182,8 @@ financialCenterHomePersist
                 endDate : "2016-06-21",
                 searchType : 1,
 
-                content : "合同管理",
-                count:4,
+                content : "",
+                count:160,
                 pagesize:10,
                 page:1,
                 totalPage:1,
@@ -261,6 +259,7 @@ financialCenterHomePersist
         }
     });
 
+
 financialCenterHomePersist.post('/finance/contract/list').reply(200,
     {
         success:true,
@@ -270,7 +269,7 @@ financialCenterHomePersist.post('/finance/contract/list').reply(200,
                 startDate : "2016-06-20",
                 endDate : "2016-06-21",
                 type : 1,
-                content : "合同管理",
+                content : "",
                 count:100,
                 pagesize:10,
                 page:1,
