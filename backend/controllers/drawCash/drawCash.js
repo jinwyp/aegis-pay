@@ -1,5 +1,5 @@
  /*
-    财务管理中心 --  账户通(初始化页面)    
+    财务管理中心 --  账户通(初始化页面)
 */
  var request = require('../../libs/request');
  var api_config = require('../../api/v1/api_config');
@@ -15,7 +15,7 @@ exports.drawCash = function(req,res,next){
     // 提现已绑定
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
- 
+
 
     request(api_config.drawcash, {
         qs:{
@@ -63,13 +63,13 @@ exports.drawCash = function(req,res,next){
         }
     });
 };
- 
+
 
 exports.drawCashCheck = function(req,res,next){
     res.setHeader('Cache-Control', 'no-store, must-revalidate');
     res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
     // 提现 确认信息
-    
+
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
     var content;
@@ -80,6 +80,13 @@ exports.drawCashCheck = function(req,res,next){
     var bankAccount = req.body.bankAccount;
     var bankName = req.body.bankName;
 
+    if( !(/^\d+(\.?\d{1,2})$/.test(cash)) ){
+      next(new UnauthenticatedAccessError());
+      return;
+    }else if( /^\s*$/.test(companyName) ){
+      next(new UnauthenticatedAccessError());
+      return;
+    }
     //token不相同
     if(!cashToken && cashToken!=req.session.cashToken) {
         logger.error(req.ip+" drawCash token error");
@@ -117,7 +124,11 @@ exports.drawCashStatus = function(req,res,next){
     var confirmToken = req.body.confirmToken;
     var cash = req.body.cash;
     var userId = req.session.user.id;
-    
+
+    if( !(/^\d+(\.?\d{1,2})$/.test(cash)) ){
+      next(new UnauthenticatedAccessError());
+      return;
+    }
     //confirmToken不相同
     if(!confirmToken && confirmToken!=req.session.confirmToken) {
         logger.error(req.ip+" drawCash token error");
@@ -154,14 +165,14 @@ exports.cashSuccess = function(req,res,next){
     var secondTab = req.query.secondTab || 1;
 
     var confirmToken = req.body.confirmToken;
-    
+
     //confirmToken不相同
     if(!confirmToken && confirmToken!=req.session.confirmToken) {
         logger.error(req.ip+" drawCash status error");
         next(new UnauthenticatedAccessError());
         return;
     }
-    
+
     var content = {
         pageTitle : "财务管理中心 - 账户通 - 提现",
         headerTit : "财务管理中心 - 账户通 - 提现",

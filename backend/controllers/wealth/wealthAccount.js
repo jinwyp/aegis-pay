@@ -1,5 +1,5 @@
 /*
-    财务管理中心 --  账户通(初始化页面)    
+    财务管理中心 --  账户通(初始化页面)
 */
 var request = require('../../libs/request');
 var api_config = require('../../api/v1/api_config');
@@ -17,8 +17,6 @@ exports.addAccount = function(req,res,next){
         }},function (err, resp) {
         if(err){ next(err); }
         var replyData = JSON.parse(resp.body);
-        console.log(1)
-        console.dir(replyData);
         //后台返回正确,展现页面
         if(replyData.success) {
             var content = {
@@ -64,6 +62,5 @@ exports.accountDel = function(req,res,next){
         if (err) return next(err);
         var replyData = JSON.parse(resp.body);
         res.json(replyData);
-    });       
+    });
 }
-
