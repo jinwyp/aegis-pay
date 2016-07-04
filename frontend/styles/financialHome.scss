@@ -341,8 +341,9 @@
         font-size: $size_font_pageTitle;
       }
       .record-download{
-        margin-left: 505px;
+        float: right;
         padding: 2px 10px;
+        margin-right: 0px;
 
         .iBtn_down_icn{
           margin-top :1px;
