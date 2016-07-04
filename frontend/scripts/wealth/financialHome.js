@@ -133,16 +133,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         app.getFinancialDetailsApi();
     });
 
-
-    $(".btn-buyOrderDetail").click(function(){
-        window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
-    });
-
-    //卖货订单详情
-    $(".btn-sellOrderDetail").click(function(){
-        window.open("/getSellOrderDetail?orderId="+$(this).data("id"));
-    });
-
     //签订合同
     $(".btn-signContract").click(function(){
         window.open("/compact?orderId="+$(this).data("id"));
