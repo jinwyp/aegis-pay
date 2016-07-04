@@ -11,7 +11,7 @@
 
 <div id="contract-body">
     <div class="contract-main">
-        <form action="/wealth/financialSettlement" method="get">
+        <form id="searchForm" action="/wealth/financialSettlement" method="get">
             <input type="hidden" name="firstTab" value="<%=clearEmpty(tabObj.firstTab)%>"/>
             <input type="hidden" name="secondTab" value="<%=clearEmpty(tabObj.secondTab)%>"/>
             <div class="search-div">
@@ -30,10 +30,15 @@
 
                 </select>
                 <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=clearEmpty(content)%>"/>
-                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询">
+
+                <input type="hidden" value="<%= count %>" id="count">
+                <input type="hidden" value="<%= page %>" id="page" name="page">
+                <input type="hidden" value="<%= pagesize %>" id="pagesize">
+
+                <input type="submit" class="iBtn iBtn_sm iBtn_yes ml-40" value="查询" id="submitSearch">
             </div>
         </form>
-        <div class="contract-div">
+        <div class="contract-div" ms-controller="financialPaginationController">
             <table class="transaction-table">
                 <thead>
                 <tr>
@@ -93,6 +98,8 @@
                 <%}%>
                 </tbody>
             </table>
+
+            <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
         </div>
     </div>
 </div>
