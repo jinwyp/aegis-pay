@@ -51,7 +51,9 @@
                     <% }else if(order.status=='WaitImproveReceipt'){ %>
                         <span class="status">结算单已确认，等待完善开票信息</span>
                     <% }else if(order.status=='TradeDisputing'){ %>
+                        <span class="status">纠纷待处理</span>
                     <% }else if(order.status=='TradeDisputeFinished'){ %>
+                        <span class="status">纠纷协商完成</span>
                     <% }else if(order.status=='MakeMatch'){ %>
                         <span class="status">匹配中</span>
                     <% }else if(order.status=='Canceled'){ %>
@@ -93,7 +95,7 @@
                 <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-confirmSettle">确认结算</span></div>
                 <% }else if(order.status=='ReturnedSettleAccounts'){ %>
                 <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerSettle">提醒卖家结算</span></div>
-                <div class="state-item mt-10 hint"><span>2. 您可以&nbsp;<a class="btn-lookSettle">查看结算单</a></span></div>
+                <div class="state-item mt-10 hint"><span>2. 您可以&nbsp;<a class="btn-buyerLookSettle">查看结算单</a></span></div>
                 <% }else if(order.status=='WaitPayRefundMoney'){ %>
                     <%if(order.refundMoneyTime==null){%>
                     <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerRetrunMoney">提醒卖家退款</span></div>

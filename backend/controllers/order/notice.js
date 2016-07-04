@@ -17,12 +17,10 @@ exports.toNoticeBuyerSignContract = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('order-----------------'+JSON.stringify(data.body));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
@@ -39,12 +37,10 @@ exports.toNoticeBuyerPayMoney = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('order-----------------'+JSON.stringify(data.body));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
@@ -61,12 +57,10 @@ exports.toNoticeBuyerToDelivery = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('order-----------------'+JSON.stringify(data.body));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
@@ -76,25 +70,20 @@ exports.toNoticeBuyerToDelivery = function (req, res, next) {
 
 //买家催卖家进行结算订单
 exports.toNoticeSellerToSettle = function (req, res, next) {
-    logger.debug('-----------------'+"请求成功了");
+    logger.debug('-------orderId----------'+req.query.orderId);
     request.post(
         {
             url : api_config.noticeToSettle,
-            form: {orderId:req.body.orderId, userId:req.session.user.id}
+            form: {orderId:req.query.orderId, userId:req.session.user.id}
         },
         function (err, data) {
             if (err) return next(err);
-            logger.debug('error-----------------'+error);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('body-----------------'+data.body);
-                //logger.debug('status-----------------'+source.data.order.status);
-                //logger.debug('order-----------------'+JSON.stringify(source.data.order));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-
-                res.send("请求成功了");
+                res.send(source);
             } else {
-                res.send("请求失败了");
+                res.send(data.body);
             }
         }
     );
@@ -109,13 +98,10 @@ exports.toNoticeSellerReturnMoney = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('status-----------------'+source.data.order.status);
-                //logger.debug('order-----------------'+JSON.stringify(source.data.order));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
@@ -131,13 +117,10 @@ exports.toNoticeSellerWriteReceipt = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('status-----------------'+source.data.order.status);
-                //logger.debug('order-----------------'+JSON.stringify(source.data.order));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
@@ -153,13 +136,10 @@ exports.toNoticeReceiveReceipt = function (req, res, next) {
         },
         function (err, data) {
             if (err) return next(err);
+            logger.debug('order-----------------'+data.body);
             if (data) {
                 var source = JSON.parse(data.body);
-                logger.debug('order-----------------'+data.body);
-                //logger.debug('status-----------------'+source.data.order.status);
-                //logger.debug('order-----------------'+JSON.stringify(source.data.order));
-                //logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                res.send(data.body);
+                res.send(source);
             } else {
                 res.send(data.body);
             }
