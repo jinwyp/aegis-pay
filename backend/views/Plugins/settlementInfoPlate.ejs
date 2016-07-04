@@ -25,10 +25,10 @@
                         <th>合同基准单价（元/吨）</th>
                     </tr>
                     <tr>
-                        <td><%= orderObj.harbour %> </td>
-                        <td><%= orderObj.coalType %> </td>
-                        <td><%= formatMoney(orderObj.amount, 2) %></td>
-                        <td><%= formatMoney(orderObj.price, 2) %></td>
+                        <td><%= orderObj.harbour || '' %> </td>
+                        <td><%= orderObj.coalType || '' %> </td>
+                        <td><%= formatMoney(orderObj.amount || 0, 2) %></td>
+                        <td><%= formatMoney(orderObj.price || 0, 2) %></td>
                     </tr>
                     <tr>
                         <th>合同金额（元）</th>
@@ -37,8 +37,8 @@
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
-                        <td><%= formatMoney(orderObj.totalMoney, 2) %></td>
-                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= formatMoney(orderObj.totalMoney, 2) %></span> </td>
+                        <td><%= formatMoney(orderObj.totalMoney || 0, 2) %></td>
+                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= formatMoney(orderObj.totalMoney || 0, 2) %></span> </td>
                         <td><%= orderObj.paymentTime %></td>
                         <td>&nbsp;</td>
                     </tr>
