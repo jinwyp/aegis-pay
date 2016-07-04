@@ -2,7 +2,10 @@
 * 页面脚本
 * */
 
-requirejs(['jquery', 'jquery.fancySelect', 'avalon', 'jQuery.fn.datePicker', 'bootstrap'], function($, fancySelect, avalon){
+requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'], function($, fancySelect, datePicker, avalon){
+
+    var $content = $("#content");
+    var $searchType = $("#searchType");
 
     var transactionRecord={
         "datepicker" : function(){
@@ -34,29 +37,29 @@ requirejs(['jquery', 'jquery.fancySelect', 'avalon', 'jQuery.fn.datePicker', 'bo
             });
         },
         "initContentInput": function () {
-            if($("#searchType").val()==0){
-                $("#content").val("");
-                $("#content").attr("disabled",true);
-                $("#content").addClass("disabled-bg");
-                $("#content").attr("placeholder","");
-            }else if($("#searchType").val()==1){
-                $("#content").attr("disabled",false);
-                $("#content").removeClass("disabled-bg");
-                $("#content").attr("placeholder","请输入订单编号");
-            }else if($("#searchType").val()==2){
-                $("#content").attr("disabled",false);
-                $("#content").removeClass("disabled-bg");
-                $("#content").attr("placeholder","请输入合同编号");
-            }else if($("#searchType").val()==3){
-                $("#content").attr("disabled",false);
-                $("#content").removeClass("disabled-bg");
-                $("#content").attr("placeholder","请输入交易流水号");
-            }else if($("#searchType").val()==4){
-                $("#content").attr("disabled",false);
-                $("#content").removeClass("disabled-bg");
-                $("#content").attr("placeholder","请输入公司名称");
+            if($searchType.val()==0){
+                $content.val("");
+                $content.attr("disabled",true);
+                $content.addClass("disabled-bg");
+                $content.attr("placeholder","");
+            }else if($searchType.val()==1){
+                $content.attr("disabled",false);
+                $content.removeClass("disabled-bg");
+                $content.attr("placeholder","请输入订单编号");
+            }else if($searchType.val()==2){
+                $content.attr("disabled",false);
+                $content.removeClass("disabled-bg");
+                $content.attr("placeholder","请输入合同编号");
+            }else if($searchType.val()==3){
+                $content.attr("disabled",false);
+                $content.removeClass("disabled-bg");
+                $content.attr("placeholder","请输入交易流水号");
+            }else if($searchType.val()==4){
+                $content.attr("disabled",false);
+                $content.removeClass("disabled-bg");
+                $content.attr("placeholder","请输入公司名称");
             }
-        },
+        }
     };
 
     transactionRecord.datepicker();
@@ -75,13 +78,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'avalon', 'jQuery.fn.datePicker', 'bo
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
-    $('#searchType').fancySelect().on('change.fs', function() {
+    $searchType.fancySelect().on('change.fs', function() {
         $(this).trigger('change.$');
         console.log(this.value);
         //$subBtn.prop('disabled', $.trim(this.value)==='--');
     });
 
-    $("#searchType").on("change", function(){
+    $searchType.on("change", function(){
         transactionRecord.initContentInput();
     });
 
@@ -118,6 +121,45 @@ requirejs(['jquery', 'jquery.fancySelect', 'avalon', 'jQuery.fn.datePicker', 'bo
     $(".btn-returnMoney").click(function(){
         window.open(host+"/order/orderClose?id="+$(this).data("value"));
     });
+
+
+
+    //搜索form表单提交
+    $("#submit").on("click",function(event, pageno){
+        // alert(pageno);
+        pageno = pageno || 1;
+        $("#page").val(pageno);
+        $("#transactionSearch").submit();
+    });
+
+    //分页相关
+    var vm = {};
+    var app = {
+        init :function (){
+            vm = avalon.define({
+                $id: "financialTransactionController",
+
+                configPagination : {
+                    totalPages : 10,
+                    currentPage : 1,
+                    inputCurrentPages : 1,
+                    changePageNo : function(page){
+                        $("#submit").trigger("click",[page]);
+                    }
+                }
+            });
+        }
+    };
+
+    $( document ).ready( function() {
+        app.init();
+
+        vm.configPagination.currentPage = Number($("#page").val());
+        vm.configPagination.inputCurrentPages = Number($("#page").val());
+        vm.configPagination.totalPages = Math.ceil($("#count").val() / $("#pagesize").val());
+
+    });
+
 
 });
 
