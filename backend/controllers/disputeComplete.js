@@ -14,7 +14,7 @@ exports.disputeComplete = function (req, res, next) {
         userId: req.session.user.id,
         orderId: req.query.orderId
     };
-    var url=api_config.disputeComplete+"?sellerId="+params.userId+"&orderId="+params.orderId;
+    var url=api_config.disputeComplete+"?userId="+params.userId+"&orderId="+params.orderId;
     request(url, params, function (err, data) {
 
         if (err) return next(err);

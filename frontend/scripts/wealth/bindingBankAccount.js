@@ -251,6 +251,8 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                             success : function(data){
                                 if(data.success){
                                     location.href='/wealth/bindingSuccess?userId='+$("#userId").val();
+                                }else{
+                                    $('.submitTotal').find(".errorMsg").text(data.error);
                                 }
                             }
                         })
