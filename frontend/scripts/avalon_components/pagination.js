@@ -60,7 +60,7 @@ define(['avalon'], function(avalon){
             onInit : function() {
                 var vm = this;
                 vm._showPaginations();
-                console.log('init', this.totalPages);
+                //console.log('init', this.totalPages);
                 this.$watch('totalPages', function(){
                     setTimeout(function(){
                         vm._showPaginations()
@@ -69,14 +69,11 @@ define(['avalon'], function(avalon){
             },
 
             onReady : function(){
-                console.log('ready', this.totalPages);
-                //this.$watch('totalPages', function(a){
-                //    console.log('ready', this.totalPages);
-                //})
+                //console.log('ready', this.totalPages);
             },
 
             onViewChange : function(){
-                console.log('views change', this.totalPages);
+                //console.log('views change', this.totalPages);
             },
 
             isDisabled: function (name, page) {

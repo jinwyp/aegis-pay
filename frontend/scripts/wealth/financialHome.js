@@ -60,7 +60,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 window.open('/wealth/financialDetailsDownload?filetype=excel&orderDateFromDownload=' + $formDownloadDateFrom.val() + '&orderDateToDownload=' + $formDownloadDateTo.val(), '_blank');
             });
 
-            //avalon.config({debug: false})
+            avalon.config({debug: false});
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : '',
