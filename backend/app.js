@@ -37,8 +37,6 @@ var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
 
-
-
 var app = express();
 
 // configuration in all env
@@ -120,11 +118,10 @@ _.extend(app.locals, {
 });
 
 app.use(function (req, res, next) {
-    res.locals.user = req.session.user;
+    res.locals.user = req.session.user || {};
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
-
-    app.locals.user = _.assign({}, app.locals.user, res.locals.user);
+    app.locals.user = _.assign({}, (typeof app.locals.user === 'undefined')?{}:app.locals.user, res.locals.user);
     if(res.locals.user.payPhone){
         app.locals.user.payPhone = res.locals.user.payPhone;
     }
