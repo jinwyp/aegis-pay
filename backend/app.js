@@ -37,8 +37,6 @@ var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
 
-
-
 var app = express();
 
 // configuration in all env
@@ -62,7 +60,10 @@ if (config.debug) {
 }
 require("./libs/request-debug")(request) ;
 
-
+// mock api request
+if (config.mock) {
+    require('./nock/index');
+}
 
 require('./libs/ejshelper')(app);
 
@@ -71,31 +72,12 @@ app.use('/static', express.static(staticDir));
 app.use('/files',express.static(fileStatic));
 app.use('/docs',express.static(document));
 
-// 支付下载文件目录
-app.use('/download/:path?/:name', function(req, res, next){
-    var downloadPath = config.file_path.root + config.file_path.download + '/';
-    var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
-    var fileName = req.params.name;
-    var filePath = path + fileName;
-
-    res.download(filePath, fileName, function(err){
-        if(err) return next(err);
-    });
-});
-
-
 
 // 每日访问限制
 app.use(compression());
 app.use(responseTime());
 app.use(bodyParser.json({limit : '1mb'}));
 app.use(bodyParser.urlencoded({extended : true, limit : '1mb'}));
-
-// mock api request
-
-if (config.mock) {
-    require('./nock/index');
-}
 
 app.use(require('cookie-parser')(config.session_secret));
 
@@ -109,33 +91,8 @@ app.use(session({
     saveUninitialized : true
 }));
 
-
-
-_.extend(app.locals, {
-    config : config,
-    staticPath : '/static',
-    homepage : config.homepage,
-    memberUrl : config.passport.member,
-    sitepage : config.site_page
-});
-
-app.use(function (req, res, next) {
-    res.locals.user = req.session.user;
-    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
-    res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
-
-    app.locals.user = _.assign({}, app.locals.user, res.locals.user);
-    if(res.locals.user.payPhone){
-        app.locals.user.payPhone = res.locals.user.payPhone;
-    }
-    next();
-});
-
-
 // custom middleware
 app.use(auth.passport);
-
-// app.use(auth.fetchPayPhone);
 
 if (!config.debug) {
     app.use(function (req, res, next) {
@@ -148,15 +105,30 @@ if (!config.debug) {
     app.set('view cache', true);
 }
 
+
+_.extend(app.locals, {
+    config : config,
+    staticPath : '/static',
+    homepage : config.homepage,
+    memberUrl : config.passport.member,
+    sitepage : config.site_page
+});
+
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user || {};
+    res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+    res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
+    app.locals.user = _.assign({}, (typeof app.locals.user === 'undefined')?{}:app.locals.user, res.locals.user);
+    if(res.locals.user.payPhone){
+        app.locals.user.payPhone = res.locals.user.payPhone;
+    }
+    next();
+});
+
 // for debug
 // app.get('/err', function (req, res, next) {
 //   next(new Error('haha'))
 // });
-
-
-
-
-
 app.use(busboy({
     limits : {
         fileSize : 10 * 1024 * 1024 // 10MB
@@ -168,6 +140,17 @@ app.use('/api', cors(), routes.api);
 app.use('/', routes.webPage);
 routes.autoLoaderControllers(app);
 
+// 支付下载文件目录
+app.use('/download/:path?/:name', function(req, res, next){
+    var downloadPath = config.file_path.root + config.file_path.download + '/';
+    var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
+    var fileName = req.params.name;
+    var filePath = path + fileName;
+
+    res.download(filePath, fileName, function(err){
+        if(err) return next(err);
+    });
+});
 
 app.use(errorhandler.PageNotFoundMiddleware);
 

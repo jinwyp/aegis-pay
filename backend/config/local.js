@@ -10,14 +10,15 @@ var config = {
     homepage : 'http://pay-local.yimei180.com:3001',
 
     file_path: {
-        root : path.join(__dirname, '../../../files'),
+        root : path.join(__dirname, '../../../files/pay'),
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',
         images      : '/images',
         download    : '/download',
         zips        : '/download/zips',
-        pdf         : '/download/pdf'
+        pdf         : '/download/pdf',
+        compact     : '/compact'
     },
     
     views       : path.join(__dirname, '../views'),
