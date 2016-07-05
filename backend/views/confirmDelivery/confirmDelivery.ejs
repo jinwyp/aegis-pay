@@ -77,8 +77,11 @@
                                     <%if(k<totalP-1){%>
                                     <a href="javascript:void(0)" class="del" style="">删除</a>
                                     <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
-                                    <%}else{%>
+                                    <%}else if(totalP==15){%>
                                     <a href="javascript:void(0)" class="del" style="">删除</a>
+                                    <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                    <%}else{%>
+                                    <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
                                     <a href="javascript:void(0)" class="add" style="">增加</a>
                                     <%}%>
                                 </td>
@@ -111,11 +114,14 @@
                                 <%}%>
                                 <td rowspan="3">
                                     <%if(k<totalP-1){%>
-                                    <a href="javascript:void(0)" class="del" style="">删除</a>
-                                    <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                    <%}else if(totalP==15){%>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
                                     <%}else{%>
-                                    <a href="javascript:void(0)" class="del" style="">删除</a>
-                                    <a href="javascript:void(0)" class="add" style="">增加</a>
+                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="">增加</a>
                                     <%}%>
                                 </td>
                             </tr>
