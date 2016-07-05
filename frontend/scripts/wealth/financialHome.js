@@ -67,7 +67,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 orderList        : [],
 
                 configPagination : {
-                    totalPages : 10,
+                    totalPages : 0,
                     changePageNo : function(page){
                         searchQuery.currentPage = page;
                         app.getFinancialDetailsApi(searchQuery);
@@ -118,9 +118,9 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 dataType : "json",
                 success:function(data){
                     if(data.success){
-                        alert('打印成功!')
+                        alert('打印成功,打印码已发送到您手机,请查收!')
                     }else{
-                        alert('打印失败!')
+                        alert('打印码发送失败!')
                     }
                 }
             })

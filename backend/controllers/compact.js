@@ -53,3 +53,15 @@ exports.compactDetail = function (req, res, next) {
         }
     });
 };
+
+exports.downloadContract = function (req, res, next) {
+    var orderId=req.query.orderId;
+    res.send("正在处理合同逻辑中。。。");
+    //res.send(config.file_path.root+config.file_path.pdf,"compact-"+orderId+".pdf",function(err){
+    //    if(err){
+    //        next(err);
+    //    }else{
+    //
+    //    }
+    //});
+};

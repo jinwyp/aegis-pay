@@ -409,8 +409,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     //下载
     $(".btn-download").click(function(){
         var id = $(this).data('value');
-        alert('暂无配置下载路径');
-        //location.href='';
+        location.href="/downloadContract?orderId="+$(this).data("id");
+        //alert('暂无配置下载路径');
     });
 
     //--------------------------结算管理模块的操作-----------------------------
@@ -457,7 +457,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $id: "financialPaginationController",
 
                 configPagination : {
-                    totalPages : 10,
+                    totalPages : 0,
                     currentPage : 1,
                     inputCurrentPages : 1,
                     changePageNo : function(page){

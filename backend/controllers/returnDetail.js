@@ -16,7 +16,7 @@ var __download = config.file_path.root + config.file_path.download;
 
 
 // 处理业务逻辑
-exports.returnDetail = function (req, res, next) {
+exports.returnSeller = function (req, res, next) {
 
     // checker.orderId(req.query.orderId);
 
@@ -26,7 +26,48 @@ exports.returnDetail = function (req, res, next) {
             orderId: req.query.orderId
         };
         var userId = req.session.user.id;
-        var url = api_config.orderReturn + "?sellerId="+params.sellerId+"&orderId="+params.orderId;
+        var url = api_config.orderReturnSeller + "?sellerId="+params.sellerId+"&orderId="+params.orderId;
+
+        var qualityZip = zipurl.qualityPath.replace(__download, '/download');
+        var quantityZip = zipurl.quantityPath.replace(__download, '/download');
+
+        request(url, params, function (err, data) {
+
+            if (err) return next(err);
+
+            var source = JSON.parse(data.body);
+            var content = {
+                headerTit: "确认退回页面",
+                pageTitle: "确认退回页面",
+                orderId: req.query.orderId,
+                sellerId: userId,
+                type: "buy",
+                "order": source.data.order,
+                "sellInfo": source.data.sellInfo,
+                "deliveryAmount": source.data.order.deliveryAmount,
+                "indexList": source.data.indexList,
+                "qualityZip": qualityZip,
+                "quantityZip": quantityZip,
+                "qualityList":source.data.qualityList,
+                "quantityList":source.data.quantityList,
+                userType: 'buy'
+
+            };
+            content.data = JSON.parse(data.body).data;
+            res.render('return/returnDetail', content);
+
+        });
+    });
+
+};
+exports.returnBuyer = function (req, res, next) {
+    cache.get('qZips_' + req.query.orderId, function (err, zipurl) {
+        var params = {
+            userId: req.session.user.id,
+            orderId: req.query.orderId
+        };
+        var userId = req.session.user.id;
+        var url = api_config.orderReturnBuyer + "?userId="+params.userId+"&orderId="+params.orderId;
 
         var qualityZip = zipurl.qualityPath.replace(__download, '/download');
         var quantityZip = zipurl.quantityPath.replace(__download, '/download');

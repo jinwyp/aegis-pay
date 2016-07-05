@@ -9,7 +9,7 @@
 <%- include ../global/header/financialFirstHeader %>
 <%- include ../global/header/financialSecondHeader %>
 
-<div id="contract-body">
+<div class="contract-body">
     <div class="contract-main">
         <form id="searchForm" action="/wealth/financialContract" >
             <input type="hidden" name="firstTab" value="<%=clearEmpty(tabObj.firstTab)%>"/>
@@ -55,7 +55,7 @@
                         <td width="120"><%=contractList[i].contractNO%></td>
                         <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>
                         <td width="100">
-                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-download mr-16" value="下载" data-value="<%=contractList[i].id%>"/>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-download mr-16" value="下载" data-id="<%=contractList[i].id%>"/>
                             <a target="_blank" href="/compactDetail?orderId=<%=contractList[i].orderId%>">查看详情</a></td>
                     </tr>
                     <%}%>
