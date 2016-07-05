@@ -111,6 +111,7 @@ exports.fetchPayPhonePage = function(req, res, next){
         headerTit : '安全设置',
         subHeaderTit: '修改支付密码'
     };
+    
     if(req.path.indexOf('modify') === -1){
         res.render('paypassword/forget-valid', pageData);
     }else{

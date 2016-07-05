@@ -98,7 +98,9 @@
                                 <td >{{order.otherCompanyName}}</td>
                                 <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
                             </tr>
-
+                            <tr ms-visible="@orderList.length===0">
+                                <td colspan="8" class="no-data">暂无符合条件的数据</td>
+                            </tr>
                         </table>
 
 
