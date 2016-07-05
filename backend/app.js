@@ -69,19 +69,6 @@ app.use('/static', express.static(staticDir));
 app.use('/files',express.static(fileStatic));
 app.use('/docs',express.static(document));
 
-// 支付下载文件目录
-app.use('/download/:path?/:name', function(req, res, next){
-    var downloadPath = config.file_path.root + config.file_path.download + '/';
-    var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
-    var fileName = req.params.name;
-    var filePath = path + fileName;
-
-    res.download(filePath, fileName, function(err){
-        if(err) return next(err);
-    });
-});
-
-
 
 // 每日访问限制
 app.use(compression());
@@ -117,6 +104,9 @@ _.extend(app.locals, {
     sitepage : config.site_page
 });
 
+// custom middleware
+app.use(auth.passport);
+
 app.use(function (req, res, next) {
     res.locals.user = req.session.user || {};
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
@@ -128,9 +118,17 @@ app.use(function (req, res, next) {
     next();
 });
 
+// 支付下载文件目录
+app.use('/download/:path?/:name', function(req, res, next){
+    var downloadPath = config.file_path.root + config.file_path.download + '/';
+    var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
+    var fileName = req.params.name;
+    var filePath = path + fileName;
 
-// custom middleware
-app.use(auth.passport);
+    res.download(filePath, fileName, function(err){
+        if(err) return next(err);
+    });
+});
 
 // app.use(auth.fetchPayPhone);
 

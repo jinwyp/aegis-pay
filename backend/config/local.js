@@ -18,7 +18,7 @@ var config = {
         download    : '/download',
         zips        : '/download/zips',
         pdf         : '/download/pdf',
-        compact: '/compact'
+        compact     : '/compact'
     },
     
     views       : path.join(__dirname, '../views'),
