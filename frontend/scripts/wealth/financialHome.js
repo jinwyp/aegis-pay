@@ -67,7 +67,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 orderList        : [],
 
                 configPagination : {
-                    totalPages : 10,
+                    totalPages : 1,
                     changePageNo : function(page){
                         searchQuery.currentPage = page;
                         app.getFinancialDetailsApi(searchQuery);

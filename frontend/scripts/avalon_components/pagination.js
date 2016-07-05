@@ -43,7 +43,7 @@ define(['avalon'], function(avalon){
     avalon.component('ms-pagination', {
         template: paginationTemplate,
         defaults: {
-            totalPages : 10,
+            totalPages : 1,
             currentPage : 1,
             inputCurrentPages : 1,
             isShowPagination : true,
