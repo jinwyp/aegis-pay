@@ -149,6 +149,9 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             $settleAmount.keyup(numberFormatValidation);
             $harbourDues.keyup(numberFormatValidation);
             $settleMoney.keyup(numberFormatValidation);
+            $settleAmount.add($harbourDues).add($settleMoney).change(function() {
+                this.value = this.getAttribute('data-val');
+            });
 
             // 退补款 控制
             $settleMoney.change(function() {
@@ -173,10 +176,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             function numberFormatValidation(event) {
                 var valStr = this.value, valNum = 0;  //event.keyCode
                 if($.isNumeric(valStr)) {
-                    valNum = parseFloat(valStr);
+                    valNum = mathTool.formatDecimal(parseFloat(valStr), 2);
                     if(valNum <= 0) {
                         this.value = '';
+                    } else {
+                        this.setAttribute('data-val', valNum);
                     }
+                    isShowErrorBox($(this), false);
                 } else {
                     this.value = '';
                 }
@@ -478,14 +484,14 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             isShowErrorBox($settleMoney, false);
         }
 
-        if($fileList.length < 1) {
-            message({
-                type: 'error',
-                title: '错误：',
-                detail: '请上传 补充协议文件!'
-            });
-            return results = true;
-        }
+        //if($fileList.length < 1) {
+        //    message({
+        //        type: 'error',
+        //        title: '错误：',
+        //        detail: '请上传 补充协议文件!'
+        //    });
+        //    return results = true;
+        //}
 
         return results;
     }

@@ -60,17 +60,33 @@
 
 
         <!-- 补充协议文件 板块 -->
-        <% var isSupply_buy = (userType == 'buy' && (orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts')) %>
-        <% var isSupply_sell = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
-        <% var isSupply_only = (userType == 'sell' && orderObj.status == 'WaitVerifySettle') %>
+        <% var isSupply_sell = (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts') %>
+        <% var isSupply_only = (orderObj.status == 'WaitVerifySettle') %>
         <div id="supplyAgreementPlate" class="fileOperation mt20 clearfix">
+            <% if(userType == 'buy' && zipSavePath){ %>
+            <!-- 买家操作 -->
             <div class="fileOperation_title fl">
                 <p class="fileTitle">
-                    <% if(isSupply_only || (userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts')) {%>
                     <span class="require">&nbsp;</span>
-                    <% } else { %>
-                    <span class="require">*</span>
-                    <% } %>
+                    补充协议文件：
+                </p>
+            </div>
+            <div class="fileOperation_body">
+                <div class="fileList">
+                    <div class="supplyFileList" style="display: inline-block">
+                        <a href="<%=zipSavePath || '' %>" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
+                    </div>
+                </div>
+                <p class="fileExplain bright">在审核时请详细查看文件。</p>
+            </div>
+
+
+
+            <% } else if(userType == 'sell') { %>
+            <!-- 卖家操作 -->
+            <div class="fileOperation_title fl">
+                <p class="fileTitle">
+                    <span class="require">&nbsp;</span>
                     补充协议文件：
                 </p>
             </div>
@@ -83,34 +99,33 @@
                             <input id="supplyFile" class="iptFile" data-url="/api/upload-file" type="file" name="files">
                         </span>
                         <% } %>
-                        <% if(userType == 'buy'){ %>
-                        <!-- 买家下载-->
-                        <a href="<%=zipSavePath || '' %>" class="iBtn iBtn_down"><i class="iBtn_down_icn"></i>下载附件 </a>
-                        <% } %>
 
                         <% data.files = data.files ? data.files : [] %>
                         <% for(var x = 0, s = data.files.length; x < s; x++ ){ %>
                             <% var fileObj = data.files[x]; %>
                             <% if(isSupply_sell && fileObj ){ %>
-                            <!-- 卖家编辑附件 -->
-                            <p class="fileLab mb10">
-                                <span class="fileLab_name"><%=fileObj.name %></span>
-                                <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
-                            </p>
+                                <!-- 卖家编辑附件 -->
+                                <p class="fileLab mb10">
+                                    <span class="fileLab_name"><%=fileObj.name %></span>
+                                    <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
+                                </p>
                             <% } %>
                             <% if(isSupply_only && fileObj ){ %>
-                            <!-- 卖家查看-->
-                            <p class="fileLab mb10 only">
-                                <span class="fileLab_name"><%=fileObj.name %></span>
-                                <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
-                            </p>
+                                <!-- 卖家查看-->
+                                <p class="fileLab mb10 only">
+                                    <span class="fileLab_name"><%=fileObj.name %></span>
+                                    <span class="fileLab_del" data-name="<%=fileObj.name %>" data-id="<%=fileObj.path %>"></span>
+                                </p>
                             <% } %>
                         <% } %>
                     </div>
-
                 </div>
-                <p class="fileExplain bright">在审核时请详细查看文件。</p>
+                <p class="fileExplain">提示：最多可上传
+                    <span class="bright">20个文件</span>，单个文件
+                    <span class="bright">不大于5Mb</span>
+                </p>
             </div>
+            <% } %>
         </div>
 
 
@@ -137,14 +152,14 @@
                         </th>
                     </tr>
                     <tr>
-                        <td><%= orderObj.settleMoney %></td>
-                        <td><%= orderObj.totalMoney %></td>
+                        <td><%= formatMoney(orderObj.settleMoney || 0, 2) %></td>
+                        <td><%= formatMoney(orderObj.totalMoney || 0, 2) %></td>
                         <td>
                             <span class="bright">
                                 <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                    <%= orderObj.tailMoney %>
+                                <%= formatMoney(orderObj.tailMoney || 0, 2) %>
                                 <% }else{ %>
-                                    <%= orderObj.refundMoney %>
+                                <%= formatMoney(orderObj.refundMoney || 0, 2) %>
                                 <% } %>
                             </span>
                         </td>
