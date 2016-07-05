@@ -43,7 +43,7 @@
                     <th width="120">订单编号</th>
                     <th width="120">合同编号</th>
                     <th width="160">对方公司名称</th>
-                    <th width="100">操作</th>
+                    <th width="120">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@
                         <td width="120"><%=contractList[i].orderNO%></td>
                         <td width="120"><%=contractList[i].contractNO%></td>
                         <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>
-                        <td width="100">
+                        <td width="120">
                             <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-download mr-16" value="下载" data-id="<%=contractList[i].id%>"/>
                             <a target="_blank" href="/compactDetail?orderId=<%=contractList[i].orderId%>">查看详情</a></td>
                     </tr>

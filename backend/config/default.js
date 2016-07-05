@@ -35,14 +35,15 @@ var config = {
 
     // 文件目录配置
     file_path: {
-        root        : '/app/files',
+        root        : '/app/files/pay',
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',
         images      : '/images',
         download    : '/download',
         zips        : '/download/zips',
-        pdf         : '/download/pdf'
+        pdf         : '/download/pdf',
+        compact     : '/compact'
     },
 
     views       : 'views',

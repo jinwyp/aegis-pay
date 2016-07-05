@@ -87,6 +87,28 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
 
     //--------------------------交易管理模块的操作-----------------------------
 
+    //买货订单详情
+    $(".btn-buyOrderDetail").click(function(){
+        if($(this).data("status")=="TradeDisputing") {
+            window.open("/dispute/disputeDetail?orderId="+$(this).data("id"));
+        }else if($(this).data("status")=="TradeDisputeFinished"){
+            window.open("/dispute/disputeComplete?orderId="+$(this).data("id"));
+        }else{
+            window.open("/getBuyOrderDetail?orderId="+$(this).data("id"));
+        }
+    });
+
+    //卖货订单详情
+    $(".btn-sellOrderDetail").click(function(){
+        if($(this).data("status")=="TradeDisputing") {
+            window.open("/dispute/disputeSellerDetail?orderId="+$(this).data("id"));
+        }else if($(this).data("status")=="TradeDisputeFinished"){
+            window.open("/dispute/disputeComplete?orderId="+$(this).data("id"));
+        }else{
+            window.open("/getSellOrderDetail?orderId="+$(this).data("id"));
+        }
+    });
+
     //提醒签订合同
     $(".notice-signContract").click(function(){
         $("#modal_title_2").text("温馨提示");
@@ -179,7 +201,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
-        location.href="/return?orderId="+$(this).data("id");
+        location.href="/returnBuyer?orderId="+$(this).data("id");
         return false;
     });
 
@@ -457,7 +479,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $id: "financialPaginationController",
 
                 configPagination : {
-                    totalPages : 1,
+                    totalPages : 0,
                     currentPage : 1,
                     inputCurrentPages : 1,
                     changePageNo : function(page){

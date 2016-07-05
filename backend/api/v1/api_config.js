@@ -103,7 +103,9 @@ var api_config = {
     orderSettlement : host + 'settlement',
     settleDetails : host + 'finance/receipt',
     orderCloseAPI : host + 'order/orderInfo_api',
-    orderReturn : host + 'mall/order/seller/verifyDelivery',
+    orderReturnSeller : host + 'mall/order/seller/verifyDelivery',
+    orderReturnBuyer : host + 'mall/order/delivery/return',
+    
     disputeApply : host + 'mall/order/dispute',
     disputeApplySubmit : host+ 'mall/order/dispute/submit',
     disputeCancel:host+'mall/order/dispute/cancel',
@@ -113,6 +115,7 @@ var api_config = {
     disputeComplete : host + 'mall/order/dispute/detail',
     disputeSuccess : host + 'mall/order/seller/dispute/complete',
     financialCenterHome : host + 'finance/center',
+    checkCashBank : host + '/account/fund/checkCashBank',
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',
@@ -162,6 +165,7 @@ var api_config = {
     bindingBankAccountChildBankName : host + 'bank/loadChildBanks',
     bindingSuccess : host + 'account/fund/bankCard/verify',
     bindingBankAccountSubmit : host + 'account/fund/bankCard/add/submit',
+    bankCardConfirm : host + 'account/fund/bankCard/submit/success',
     remittance:host+ 'account/fund/bankCard/verify/submit',
 
     // open fund account

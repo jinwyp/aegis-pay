@@ -38,7 +38,7 @@ var cacheGet = function(userInfo, validTime){
 
     return new Promise(function(resolve, reject){
         var result = {"readyToSend": true};
-
+        
         cache.get('yimei180_sms_' + userInfo.id, function(err, data){
             if(err){ return reject(err); }
 
@@ -70,15 +70,15 @@ var cacheGet = function(userInfo, validTime){
             });
 
             if(minTime>0){
-                result = {"readyToSend":true, "sms": minSms[minSms.length-1].sms};
+                result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
                 if(validTime){
                     return resolve(result);
                 }
-            }
-            if(hourTime>=300000){
+            } 
+            if(hourTime>=3){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
-            if(dayTime>=300000){
+            if(dayTime>=30){
                 result = {"readyToSend":false, "errType":"dayTimes"};
             }
 
@@ -148,7 +148,8 @@ exports.sendCode = function (req, res, next) {
             return res.json(result);
         }
 
-        var sms    = data.sms || generate_code(smsType);
+        // var sms    = data.sms || generate_code(smsType);
+        var sms    = generate_code(smsType);
         var params = {
             "phone" : req.body.customPhone || userInfo.securephone || userInfo.telephone,
             "message" : sms
@@ -159,8 +160,8 @@ exports.sendCode = function (req, res, next) {
             dataSMS.time = api_config.smsResend;
 
             if (dataSMS.success) {
-
                 cacheSet(userInfo, sms).then(function(data){
+                    isUsed = false;
                     logger.debug('----- Send SMS Success: ' + sms);
                     return res.json(dataSMS);
                 }).catch(next);
@@ -194,6 +195,7 @@ exports.verifyMiddleware = function () {
             }else{
                 cacheGet(userInfo, true).then(function(data){
                     if(data && data.sms && (data.sms === sms)){
+                        isUsed = true;
                         return next();
                     }else{
                         return res.json(result);

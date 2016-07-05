@@ -78,7 +78,8 @@ router.get('/pay/success', payCtl.success);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
-router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
+router.get('/returnSeller', returnDetailController.returnSeller);                                     //确认提货被退回
+router.get('/returnBuyer', returnDetailController.returnBuyer);                                     //确认提货被退回
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由
@@ -123,6 +124,7 @@ router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthC
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
+router.get('/wealth/checkCashBank', financialHome.checkCashBank);                               //财务管理中心－首页
 
 //账户管理
 router.get('/wealth/addAccount', wealthAccount.addAccount);                                     //账户管理－账户通－初始化

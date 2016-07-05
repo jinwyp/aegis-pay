@@ -1,0 +1,168 @@
+        <% var orderObj = data.order %>
+        <%
+        var mathTool = {
+            // 格式化数字(两位小数)
+            formatDecimal: function (num, deg) {
+                num = new Number(num);
+                return (num.toFixed(deg || 2) + '');
+            },
+            // 数字千分符
+            formatMoney: function (num, deg) {
+                num = new Number(num);
+                return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+            }
+        };  %>
+
+
+        <% orderObj.amount = orderObj.amount || 0 %>
+        <% orderObj.price = orderObj.price || 0 %>
+        <% orderObj.totalMoney = orderObj.totalMoney || 0 %>
+        <!-- 结算单信息 板块-->
+        <div id="settlementInfoPlate">
+            <!-- 结算信息 -->
+            <div class="mt20">
+                <h2 class="settlementTit">结算单</h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">订单号</th>
+                        <th width="230">合同编号</th>
+                        <th>确认提货时间</th>
+                        <th width="230">结算时间</th>
+                    </tr>
+                    <tr>
+                        <td><%= orderObj.orderNO %> </td>
+                        <td><%= orderObj.contractNO %> </td>
+                        <td><%= orderObj.confirmDeliveryTime %></td>
+                        <td><%= orderObj.sellerSettleTime %></td>
+                    </tr>
+                    <tr>
+                        <th>港口</th>
+                        <th>煤种</th>
+                        <th>合同吨位（吨）</th>
+                        <th>合同基准单价（元/吨）</th>
+                    </tr>
+                    <tr>
+                        <td><%= orderObj.harbour || '' %> </td>
+                        <td><%= orderObj.coalType || '' %> </td>
+                        <td><%= mathTool.formatMoney(orderObj.amount, 2) %></td>
+                        <td><%= mathTool.formatMoney(orderObj.price, 2) %></td>
+                    </tr>
+                    <tr>
+                        <th>合同金额（元）</th>
+                        <th>已付款金额（元）</th>
+                        <th>付款时间</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><%= mathTool.formatMoney(orderObj.totalMoney, 2) %></td>
+                        <td><span class="totalMoney" data-num="<%=orderObj.totalMoney%>"><%= mathTool.formatMoney(orderObj.totalMoney, 2) %></span> </td>
+                        <td><%= orderObj.paymentTime %></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 实际结算数据 -->
+            <div class="mt20">
+                <% var isEdit_sj = (userType == 'sell' && (orderObj.status == 'WaitSettleAccounts' || orderObj.status == 'ReturnedSettleAccounts')) %>
+                <h2 class="settlementTit">实际结算数据
+                    <% if(isEdit_sj) {%><span class="subEditTitle">(带 <s class="require">*</s>的为必填项)</span><%}%>
+                </h2>
+                <table class="settlementTable">
+                    <tbody>
+                    <tr>
+                        <th width="230">
+                            <% if(isEdit_sj) {%><s class="require">*</s><%}%> 总结算吨位（吨）
+                        </th>
+                        <th width="230">
+                            <% if(isEdit_sj) {%><s class="require">*</s><%}%> 港务费（元）
+                        </th>
+                        <th>
+                            <% if(isEdit_sj) {%><s class="require">*</s><%}%> 总结算金额（元）
+                        </th>
+                        <th width="230">
+                            <% if(isEdit_sj) {%><s class="require">*</s><%}%>
+                            <span class="refundMoneyTit">
+                                <% if(orderObj.tailMoney > orderObj.refundMoney){ %> 应补货款金额（元） <% }else{ %> 应退货款金额（元） <% } %>
+                            </span>
+                        </th>
+                    </tr>
+
+
+                    <% orderObj.settleAmount = orderObj.settleAmount ? mathTool.formatDecimal((orderObj.settleAmount), 2) : '0.00' %>
+                    <% orderObj.harbourDues = orderObj.harbourDues ? mathTool.formatDecimal((orderObj.harbourDues), 2) : '0.00' %>
+                    <% orderObj.settleMoney = orderObj.settleMoney ? mathTool.formatDecimal((orderObj.settleMoney), 2) : '0.00' %>
+                    <% orderObj.tailMoney = orderObj.tailMoney || '0.00' %>
+                    <% orderObj.refundMoney = orderObj.refundMoney || '0.00' %>
+                    <% if(orderObj.status == 'WaitSettleAccounts') {
+                        orderObj.settleAmount = '';
+                        orderObj.harbourDues = '';
+                        orderObj.settleMoney = '';
+                    }%>
+                    <% if(isEdit_sj) {%>
+<tr>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= orderObj.settleAmount %>" />
+        <span class="errInfo"></span>
+    </td>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_harbourDues" maxlength="11" placeholder="请输入大于0的数值" value="<%= orderObj.harbourDues %>"/>
+        <span class="errInfo"></span>
+    </td>
+    <td class="billBox">
+        <input type="text" class="billIpt" name="ins_settleMoney" maxlength="11" placeholder="请输入大于0的数值" value="<%= orderObj.settleMoney %>"/>
+        <span class="errInfo"></span>
+    </td>
+    <td>
+        <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+            <span class="refundMoney" data-num="<%= orderObj.tailMoney %>"><%= mathTool.formatMoney((orderObj.tailMoney), 2) %></span>
+        <% }else{ %>
+            <span class="refundMoney" data-num="<%= orderObj.refundMoney %>"><%= mathTool.formatMoney((orderObj.refundMoney), 2) %></span>
+        <% } %>
+    </td>
+</tr>
+<tr>
+    <th>说明</th>
+    <td colspan="3" class="billBox">
+        <textarea class="txtArea txtRemarks" name="ins_remarks" rows="1" maxlength="500" placeholder="请填写关于结算的说明，如没有说明即可不用填写。"><%= orderObj.remarks || '' %></textarea>
+    </td>
+</tr>
+
+
+                    <% } else { %>
+                    <tr>
+                        <td><%= orderObj.settleAmount %></td>
+                        <td><%= orderObj.harbourDues %></td>
+                        <td><%= orderObj.settleMoney %></td>
+                        <td>
+                            <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
+                                <span class="refundMoney"><%= mathTool.formatMoney(orderObj.tailMoney, 2) %></span>
+                            <% }else{ %>
+                                <span class="refundMoney"><%= mathTool.formatMoney(orderObj.refundMoney, 2) %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>说明</th>
+                        <td colspan="3"><%= orderObj.remarks || '' %></td>
+                    </tr>
+                    <% } %>
+
+                    <tr>
+                        <th colspan="2">购方公司</th>
+                        <th colspan="2">销方公司</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span><%= orderObj.buyerCompanyName %></span>
+                        </td>
+                        <td colspan="2">
+                            <span><%= orderObj.sellerCompanyName %></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
