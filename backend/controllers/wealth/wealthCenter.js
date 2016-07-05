@@ -11,6 +11,7 @@ var logger = require('../../libs/logger');
 var _ = require('lodash');
 //var apiHost = 'http://server.180.com/';			// 模拟域名
 //var path = require('path');
+var app = require('../../app');
 
 
 // 处理业务逻辑
