@@ -26,7 +26,7 @@ function initParams(uri, options, callback){
                 _cb(err, response, body);
             }else{
                 var errMsg = response&&response.body
-                            && ((typeof response.body == 'object') ? response.body.error : JSON.parse(response.body).error)
+                            && ((typeof response.body == 'object') ? response.body : JSON.parse(response.body))
                             || response.statusMessage;
                 var er = new Error(errMsg);
                 _.assign(er, {'customCode': statusCode, 'customMsg': errMsg, 'customType': 'service-request'});
