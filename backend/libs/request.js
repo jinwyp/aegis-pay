@@ -16,8 +16,12 @@ function isObject(obj) {
 
 
 // organize params for post get
-function initParams(uri, options){
-    var params = {};
+function initParams(uri, options, callback){
+    if (typeof options === 'function') {
+        callback = options;
+    }
+
+    var params = {}
     if (typeof options === 'object') {
         _.assign(params, options, {uri: uri});
     } else if (typeof uri === 'string') {
@@ -26,70 +30,60 @@ function initParams(uri, options){
         _.assign(params, uri)
     }
 
+    params.callback = callback || params.callback;
+
+    if(typeof params.callback === 'function'){
+        var _cb = params.callback;
+        params.callback = function(err, response, body){
+            if (err){
+                return _cb(err, response, body);
+            }else if (response.statusCode === 200){
+                return _cb(err, response, body);
+            }else{
+                var tempBody = {};
+                if (isObject(response.body)){
+                    tempBody = response.body;
+                }else {
+                    tempBody = JSON.parse(response.body);
+                }
+
+                var errMessage = tempBody.error + ". Url: " + tempBody.path + ". Reason: " + tempBody.message + ". Exception: " + tempBody.exception;
+
+                if (response.statusCode === 400 || response.statusCode === 405) { // 参数错误
+                    return _cb(new MethodArgumentNotValidError(400, errMessage) )
+
+                }else if (response.statusCode === 401) { // 重新登录
+                    return _cb(new UnauthenticatedAccessError(401, errMessage) )
+
+                }else if (response.statusCode === 403) { // 没有权限访问
+                    return _cb(new UnauthorizedAccessError(403, errMessage) )
+
+                }else if (response.statusCode === 409) { // 业务逻辑错误
+                    return _cb(new BusinessError(409, errMessage) )
+
+                }else {
+                    return _cb(new SystemError(500, errMessage, err) )
+                }
+            }
+        }
+    }
     return params;
 }
 
 
-var customCallback = function(callback){
-
-    return function(err, response, body){
-        if (err){
-            return callback(err, response, body);
-        }else if (response.statusCode === 200){
-            return callback(err, response, body);
-        }else{
-            var tempBody = {};
-            if (isObject(response.body)){
-                tempBody = response.body;
-            }else {
-                tempBody = JSON.parse(response.body);
-            }
-
-            var errMessage = tempBody.error + ". Url: " + tempBody.path + ". Reason: " + tempBody.message + ". Exception: " + tempBody.exception;
-
-            if (response.statusCode === 400 || response.statusCode === 405) { // 参数错误
-                return callback(new MethodArgumentNotValidError(400, errMessage) )
-
-            }else if (response.statusCode === 401) { // 重新登录
-                return callback(new UnauthenticatedAccessError(401, errMessage) )
-
-            }else if (response.statusCode === 403) { // 没有权限访问
-                return callback(new UnauthorizedAccessError(403, errMessage) )
-
-            }else if (response.statusCode === 409) { // 业务逻辑错误
-                return callback(new BusinessError(409, errMessage) )
-
-            }else {
-                return callback(new SystemError(500, errMessage, err) )
-            }
-        }
-    }
-
-};
 
 
-function verbFunc(verb) {
+function verbFunc (verb) {
     var method = verb.toUpperCase()
     return function (uri, options, callback) {
-        if (typeof options === 'function') {
-            callback = options;
-        }
-
-        var params      = initParams(uri, options);
-        params.method   = method;
-        params.callback = customCallback(callback);
-        return rq(params);
+        var params = initParams(uri, options, callback)
+        params.method = method;
+        return rq(params, params.callback)
     }
 }
 
 function request (uri, options, callback) {
-    if (typeof options === 'function') {
-        callback = options;
-    }
-
-    var params = initParams(uri, options);
-    params.callback = customCallback(callback);
-
+    var params = initParams(uri, options, callback)
     return rq(params);
 }
 
