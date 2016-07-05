@@ -79,6 +79,8 @@ router.post('/paypassword/modify/submit', payPasswordApi.modifySubmit);
 router.post('/open-fund-account', sms.verifyMiddleware(), fundAccountApi.openFundAccount);
 router.post('/wealth/open-fund-account/fetchOpenStatus', fundAccountApi.fetchOpenStatus);
 router.post('/account/fund/bankCard/verify/submit',bindingBankAccount.remittance); //汇款金额确认
+router.post('/account/fund/bankCard/submit/success',bindingBankAccount.bankCardConfirm); // 银行卡绑定确认
+
 
 router.post('/financial/order/details', financialApi.financialDetailsApi);
 router.get('/financial/order/details/print', financialApi.financialDetailsPrintApi);

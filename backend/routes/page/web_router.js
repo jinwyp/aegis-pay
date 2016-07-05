@@ -78,7 +78,8 @@ router.get('/pay/success', payCtl.success);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
-router.get('/return', returnDetailController.returnDetail);                                     //确认提货被退回
+router.get('/returnSeller', returnDetailController.returnSeller);                                     //确认提货被退回
+router.get('/returnBuyer', returnDetailController.returnBuyer);                                     //确认提货被退回
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由

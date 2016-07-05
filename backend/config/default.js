@@ -42,7 +42,8 @@ var config = {
         images      : '/images',
         download    : '/download',
         zips        : '/download/zips',
-        pdf         : '/download/pdf'
+        pdf         : '/download/pdf',
+        compact: '/compact'
     },
 
     views       : 'views',

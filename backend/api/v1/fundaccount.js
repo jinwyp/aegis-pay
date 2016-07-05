@@ -11,7 +11,8 @@ exports.openFundAccount = function(req, res, next){
         if(!err && data){
             var result = JSON.parse(data.body);
             if(result.success){
-                res.locals.user.payPhone = req.session.user.payPhone = params.payPhone;
+                req.session.user.payPhone = params.payPhone;
+                res.locals.user = req.session.user;
             }
             res.json(result);
         }
