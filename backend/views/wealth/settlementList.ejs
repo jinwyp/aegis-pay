@@ -60,8 +60,8 @@
                     <td width="100"><%=settlementList[i].orderNO%></td>
                     <td width="100"><%=settlementList[i].transactionNO%></td>
                     <td width="160"><%=settlementList[i].otherCompanyName%></td>
-                    <td width="160"><%=settlementList[i].settleAmount%></td>
-                    <td width="160"><%=settlementList[i].totalMoney%></td>
+                    <td width="160"><%=getStringVal(settlementList[i].settleAmount)%></td>
+                    <td width="160"><%=getStringVal(settlementList[i].totalMoney)%></td>
                     <td width="140"><%=settlementList[i].statusName%></td>
                     <td width="100">
                         <%if(settlementList[i].type==0){%>
