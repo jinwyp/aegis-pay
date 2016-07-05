@@ -9,6 +9,8 @@ var archiver = require('archiver');
 var fs = require('fs');
 var _ = require('lodash');
 
+var BusinessError = require('../errors/BusinessError');
+
 var pdfpath = config.file_path.root + config.file_path.pdf;
 var imagespath = config.file_path.root + config.file_path.images;
 
@@ -27,10 +29,7 @@ exports.compact = function (req, res, next) {
             };
             return res.render('compact/compact', pageData);
         }else{
-            var errMsg = '当前订单不处于签订合同状态！';
-            var er = new Error(errMsg);
-            _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
-            return next(er);
+            return next(new BusinessError(409, '当前订单不处于签订合同状态！'));
         }
     })
 };

@@ -4,7 +4,7 @@
 function BusinessError(code, message, field) {
     Error.captureStackTrace(this, this.constructor);
 
-    this.type = "BusinessError";
+    this.type = "UserLevelServiceRequestError";
     this.name = "BusinessError";
     this.message = message || "Unauthenticated Access Token";
 

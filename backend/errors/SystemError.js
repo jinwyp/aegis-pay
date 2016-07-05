@@ -24,7 +24,7 @@ function SystemError(code, message, error) {
     this.message = message || "System Operational Error";
 
     this.code = code || 500;
-    if(error) {
+    if(typeof error !== 'undefined' && error) {
         this.codename = error.code || 'Common System Errors';
     }
     this.status = 500;

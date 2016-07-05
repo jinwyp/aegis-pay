@@ -34,6 +34,37 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 		$("#server-error-msg").text(errorMsg[status]);
 		$('#modal-server-error').modal(true);
 	};
+
+
+// 底部吸底
+	var bottomStyle={
+		init : function(){
+			this.judge(),
+            this.resize()
+		},
+		judge : function(){
+			var hBody=$('body').height(),
+				hWindow=$(window).height();
+			if(hWindow>hBody){
+				$("#paymentFooter").addClass('bottomAbsolute');
+			}else{
+                $("#paymentFooter").removeClass('bottomAbsolute');
+            }
+		},
+		resize : function(){
+			var that=this;
+			$(window).resize(function(){
+				that.judge();
+			});
+		}
+	};
+	bottomStyle.init();
+
+
+
+
+
+
 });
 
 
