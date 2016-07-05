@@ -457,7 +457,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 $id: "financialPaginationController",
 
                 configPagination : {
-                    totalPages : 10,
+                    totalPages : 1,
                     currentPage : 1,
                     inputCurrentPages : 1,
                     changePageNo : function(page){
