@@ -68,6 +68,7 @@ router.get('/removeSSOCookie', signCtrl.removeSSOCookie);
 
 //签订合同
 router.get('/compact', compactController.compact);
+router.get('/downloadContract', compactController.downloadContract);                            //下载合同
 
 //付款
 router.get('/pay', payCtl.page);
@@ -99,7 +100,6 @@ router.get('/dispute/disputeSuccess', disputeSuccess.disputeSuccess);           
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭订单路由
 
 //详情页面
-//router.get('/getOrderDetail', orderController.getOrderDetail);                                //买货订单详情页面路由
 router.get('/getBuyOrderDetail', orderController.getBuyOrderDetail);                            //买货订单详情页面路由
 router.get('/getSellOrderDetail', orderController.getSellOrderDetail);                          //卖货订单详情页面路由
 
