@@ -218,7 +218,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
-        location.href="/return?orderId="+$(this).data("id");
+        location.href="/returnBuyer?orderId="+$(this).data("id");
     });
 
     //审核提货
@@ -424,7 +424,21 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         location.href="/order/orderClose?id="+$(this).data("id");
     });
 
-
+    //绑定银行卡
+    $(".label-add").click(function(){
+        $.ajax({
+            url:"/wealth/checkCashBank",
+            success:function(data){
+                if(data&&data.success){
+                    location.href="/wealth/bindingBankAccount";
+                }else{
+                    $("#modal_title_3").text("温馨提示");
+                    $("#modalInfo_3").text(data.error);
+                    $(".modal_3").modal('show');
+                }
+            }
+        });
+    });
 });
 
 

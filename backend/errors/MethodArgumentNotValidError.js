@@ -4,7 +4,7 @@
 function MethodArgumentNotValidError(code, message, field) {
     Error.captureStackTrace(this, this.constructor);
 
-    this.type = "MethodArgumentNotValidError";
+    this.type = "UserLevelServiceRequestError";
     this.name = "MethodArgumentNotValidError";
     this.message = message || "Unauthenticated Access Token";
 

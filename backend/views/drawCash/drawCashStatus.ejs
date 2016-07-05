@@ -3,10 +3,10 @@
     <%- include ../global/includehead/head %>
     <link rel="stylesheet" href="<%= staticPath %>/styles/financialHome.css">
     <link rel="stylesheet" href="<%= staticPath %>/styles/drawCash/drawCash.css">
-    
+
 </head>
-	
-<body>
+
+<body class="add-bg">
 
 <%- include ../global/header/financialFirstHeader %>
 <%- include ../global/header/financialSecondHeader %>
@@ -22,7 +22,7 @@
 			<div class="reasonsReturn mt20">
 				<span class="icn_successMax"></span>
 				<span><strong>提现申请已提交</strong>等待银行处理...</span>
-			</div> 
+			</div>
 			<div class="statusBar">
     			<ul class="statusMain status_<%= status %>">
 			        <li class="statusMax step_1">
@@ -62,6 +62,3 @@
 
 </body>
 </html>
-
-
-

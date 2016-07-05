@@ -90,7 +90,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
-        location.href="/return?orderId="+$("#orderId").val();
+        location.href="/returnBuyer?orderId="+$("#orderId").val();
     });
 
     //审核提货

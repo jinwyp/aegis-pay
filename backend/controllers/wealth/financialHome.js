@@ -62,6 +62,20 @@ exports.financialHome = function (req, res, next) {
 };
 
 
+// 检查是否绑定银行卡
+exports.checkCashBank = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.checkCashBank,form:{userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
+
 
 
 
@@ -85,8 +99,8 @@ exports.financialDetails = function (req, res, next) {
             {id:'0', value:'0', text:'全部', selected:false},
             {id:'1', value:'1', text:'充值', selected:false},
             {id:'2', value:'2', text:'提现', selected:false},
-            {id:'3', value:'3', text:'采购', selected:false},
-            {id:'4', value:'4', text:'销售', selected:false}
+            {id:'3', value:'3', text:'销售', selected:false},
+            {id:'4', value:'4', text:'采购', selected:false}
         ],
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},

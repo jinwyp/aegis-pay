@@ -4,6 +4,6 @@ cd /app/aegis-pay/backend;
 
 #echo "$nginx_ip  member-$MODE.yimei180.com"  >> /etc/hosts;
 
-supervisor -w api,common,config,custom_components,middlewares,errors,nock,controllers,views,app.js app.js
+supervisor -w api,config,controllers,custom_components,errors,middlewares,libs,routes,nock,app.js app.js
 
 
