@@ -1,12 +1,12 @@
 <div id="paymentHeader">
     <div class="headWrap">
             <div class="wrap1000">
-                <ul class="menuList">
-                    <li class="noborder"><span class="icon-phone"></span><span>移动客户端</span></li>
-                </ul>
+                <!--<ul class="menuList">-->
+                    <!--<li class="noborder"><span class="icon-phone"></span><span>移动客户端</span></li>-->
+                <!--</ul>-->
 
                 <ul class="menuList rightMenuList">
-                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="<%= config.site_page%>"><%if(user.verifystatus != "审核通过") {%>
+                    <li>欢迎来到易煤网<% if(user && user.id){ %>，<a href="<%= config.passport.member%>"><%if(user.verifystatus != "审核通过") {%>
                             <%=user.nickname?user.nickname:user.securephone %>
                             <%}else{ %> <%=user.companyName.length<=8?user.companyName:user.companyName.substring(0,8)+"..."%>
                             <%}%></a><% } %></li>
@@ -22,7 +22,7 @@
                     <% } %>
 
                     <li class="webNav">
-                        <a href="<%= config.passport.member%>/aboutUs">关于我们</a>
+                        <a href="<%= config.site_page%>/aboutUs">关于我们</a>
                         <span class="triggle"></span>
                         <ul class="hideMenu">
                             <li><a href="<%= config.site_page%>">首页</a></li>

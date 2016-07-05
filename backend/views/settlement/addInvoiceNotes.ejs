@@ -17,8 +17,8 @@
 
         <%- include ../Plugins/InvoiceRemarksPlate %>
 
-            <input type="text" id="version" name="version" value="<%= data.version? data.version : "" %>">
-            <input type="text" id="orderId" name="orderId" value="<%= data.orderId? data.orderId : "" %>">
+            <input type="hidden" id="version" name="version" value="<%= data.version? data.version : "" %>">
+            <input type="hidden" id="orderId" name="orderId" value="<%= data.orderId? data.orderId : "" %>">
         </form>
 
     </div>

@@ -38,8 +38,6 @@ const uploadPath = config.file_path.root + '/upload/';			// 压缩.原材料路�
 
 
 
-
-
 // 页面路由   		var typeArr = ['none', 'buy', 'sell'];		// 本地测.用户类型
 exports.orderSettlement = function (req, res, next) {
 
@@ -96,6 +94,9 @@ exports.orderSettlement = function (req, res, next) {
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
+	//console.log('--结算打印-11--------------------------------');
+	//console.log(apiUrl);
+
 	request(apiUrl, function (err, data) {
 		if (err) return next(err);
 		if (data && data.body){
@@ -103,6 +104,10 @@ exports.settlementInfoDownload = function (req, res, next) {
 				replyData.headerTit	= '下载打印结算单';
 				replyData.subTitle 	= '下载打印结算单';
 				replyData.userType 	= 'buy';
+
+			console.log('--结算打印-22--------------------------------');
+			console.log(replyData);
+			console.log(pdfHtmlTemplatePath);
 
 			// 文件转换处理
 			ejs.renderFile(pdfHtmlTemplatePath, replyData, function (err, resultHtml) {

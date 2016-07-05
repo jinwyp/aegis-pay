@@ -17,7 +17,7 @@ var utils   = require('../../libs/utils');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settleDetails');
-var pdfHtmlTemplatePath = path.join(config.views, '/settlement/settleTable.ejs');
+var pdfHtmlTemplatePath = path.join(config.viewspdf, '/settlement/settleTable.ejs');
 
 
 

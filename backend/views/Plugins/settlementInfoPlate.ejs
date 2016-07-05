@@ -122,9 +122,8 @@
         <textarea class="txtArea txtRemarks" name="ins_remarks" rows="1" maxlength="500" placeholder="请填写关于结算的说明，如没有说明即可不用填写。"><%= orderObj.remarks || '' %></textarea>
     </td>
 </tr>
-
-
                     <% } else { %>
+
                     <tr>
                         <td><%= mathTool.formatDecimal(orderObj.settleAmount || 0, 2) %></td>
                         <td><%= mathTool.formatMoney(orderObj.harbourDues || 0, 2) %></td>
@@ -142,7 +141,6 @@
                         <td colspan="3"><%= orderObj.remarks %></td>
                     </tr>
                     <% } %>
-
 
                     <tr>
                         <th colspan="2">购方公司</th>

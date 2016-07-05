@@ -11,7 +11,7 @@ define(['avalon'], function(avalon){
 
         /*
 
-         <nav class="pagination-financial">
+         <nav class="pagination-financial" ms-if="@isShowPagination">
          <ul class="pagination pageno">
          <li> <a aria-label="Previous" ms-class="{disabled: @isDisabled('prev', 1)}" ms-click="@_changePage($event, @currentPage-1, 'prev' )"> <span aria-hidden="true" > 上一页 </span> </a> </li>
 
@@ -46,6 +46,7 @@ define(['avalon'], function(avalon){
             totalPages : 10,
             currentPage : 1,
             inputCurrentPages : 1,
+            isShowPagination : true,
             changePageNo : avalon.noop,
 
             _pageArrayLeft : [],
@@ -59,7 +60,7 @@ define(['avalon'], function(avalon){
             onInit : function() {
                 var vm = this;
                 vm._showPaginations();
-                console.log('init', this.totalPages);
+                //console.log('init', this.totalPages);
                 this.$watch('totalPages', function(){
                     setTimeout(function(){
                         vm._showPaginations()
@@ -68,14 +69,11 @@ define(['avalon'], function(avalon){
             },
 
             onReady : function(){
-                console.log('ready', this.totalPages);
-                //this.$watch('totalPages', function(a){
-                //    console.log('ready', this.totalPages);
-                //})
+                //console.log('ready', this.totalPages);
             },
 
             onViewChange : function(){
-                console.log('views change', this.totalPages);
+                //console.log('views change', this.totalPages);
             },
 
             isDisabled: function (name, page) {
