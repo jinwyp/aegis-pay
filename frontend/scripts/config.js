@@ -41,43 +41,29 @@ require.config({
     },
     packages : [],
     shim     : {
-        'jQuery.fn.datePicker'   : {
-            deps : [
-                'jquery'
-            ]
+        "jQuery.fn.datePicker"   : {
+            deps : ['jquery']
         },
-        flexslider               : {
-            deps    : [
-                'jquery'
-            ],
+        "flexslider"               : {
+            deps : ['jquery'],
             exports : 'flexslider'
         },
         "devbridge-autocomplete" : {
-            deps : [
-                "jquery"
-            ]
+            deps : ['jquery']
         },
-        lightbox                 : {
-            deps    : [
-                'jquery'
-            ],
+        "lightbox"                 : {
+            deps : ['jquery'],
             exports : 'lightbox'
         },
-        bootstrap                : {
-            deps    : [
-                'jquery'
-            ],
+        "bootstrap"                : {
+            deps : ['jquery'],
             exports : 'bootstrap'
         },
-        'jquery.fancySelect'     : {
-            deps    : [
-                'jquery'
-            ]
+        "jquery.fancySelect"     : {
+            deps : ['jquery']
         },
-        avalon                   : {
-            deps    : [
-                'jquery',
-            ],
+        "avalon"                   : {
+            deps : ['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker'],
             exports : "avalon"
         }
     }

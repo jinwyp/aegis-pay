@@ -3,7 +3,7 @@
 @import "./components/_datePicker.scss";
 @import './components/pagination_finalcial.scss';
 
-#contract-body{
+.contract-body{
   min-height: 425px;
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;

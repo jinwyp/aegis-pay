@@ -102,7 +102,7 @@ require(['jquery', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'],functi
                 $id: "paginationController",
 
                 configPagination : {
-                    totalPages : 10,
+                    totalPages : 0,
                     currentPage : 1,
                     inputCurrentPages : 1,
                     isShowPagination : true,
