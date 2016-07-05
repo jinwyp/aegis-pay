@@ -13,7 +13,7 @@ var cache   = require('../../libs/cache');
 var checker = require('../../libs/datachecker');
 
 
-const uploadPath = config.file_path.root + config.file_path.upload + '/';
+const uploadPath = config.file_path.root + config.file_path.compact + '/';
 const ejspath    = config.viewspdf +'/compact.ejs';
 const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
 const downloadPath = config.file_path.root + config.file_path.download;
@@ -77,6 +77,7 @@ exports.signCompact = function (req, res, next) {
 
 
 // 接收service数据，转化数据为客户端需要的格式
+var compactData = {};
 var convertData = function (compactdata, compactejs, orderId) {
     var data = {
         'pdfpath' : '',
@@ -84,13 +85,16 @@ var convertData = function (compactdata, compactejs, orderId) {
     };
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
+        compactData.html = resultHtml.htmlpath;
         return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
+        compactData.pdf = resultPDF.pdfpath;
         data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath)
     })
     .then(function(resultImgs){
+        compactData.imgs = resultImgs.imgs;
         resultImgs.imgs.forEach(function (img) {
             data.imgs.push('/files/images/' + path.basename(img));
         });
@@ -136,3 +140,16 @@ exports.generate_compact = function (req, res, next) {
         }
     })
 };
+
+exports.compactpdf = function (req, res, next) {
+    res.download(compactData.pdf, 'compact.pdf', function(err){
+        if(err) return next(err);
+    });
+}
+
+exports.compactimg = function (req, res, next) {
+    var index = req.query.index;
+    res.download(compactData.imgs[index], function(err){
+        if(err) return next(err);
+    });
+}
