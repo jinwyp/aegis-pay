@@ -80,6 +80,7 @@ var api_config = {
 
     buyOrderDetail : host + 'mall/order',
     sellOrderDetail : host + 'mall/seller/order',
+    downloadContract : host + 'mall/order/contract/files',
     printOrderDetail : host + 'mall/order/print',
     buyDeleteOrder : host + 'mall/order/print',
     sellDeleteOrder : host + 'mall/order/print',

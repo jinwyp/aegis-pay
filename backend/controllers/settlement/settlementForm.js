@@ -94,9 +94,8 @@ exports.orderSettlement = function (req, res, next) {
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 
-	//console.log('--结算打印-11--------------------------------');
-	//console.log(apiUrl);
-
+	console.log('--结算打印-11--------------------------------');
+	console.log(apiUrl);
 	request(apiUrl, function (err, data) {
 		if (err) return next(err);
 		if (data && data.body){
@@ -204,9 +203,8 @@ var buyersEditReason = exports.buyersEditReason = function (req, res, next) {
 
 // API路由: 买家.结算审核通过.fs --------- http://localhost:3001/api/settlement/buyersAuditing
 var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
-	console.log('bugbugbugbug')
+
 	var url = apiHost.buyersAuditing;
-	console.log(11111111111111111)
 		//url = apiHost.host + 'settlement/buyersAuditing';			// TODO: 本地
 
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
@@ -326,7 +324,7 @@ var zipFileMerge = function (req, res, next, saveKey) {
 
 			cache.set(saveKey, obj);									// 设置 压缩后的文件路径, 设置Key
 			cache.get(saveKey, function (err, data){
-				console.log('--设置-读取-压缩文件------------------------');
+				console.log('---读取-压缩文件------------------------');
 				console.log(data.zipSavePath);							// 读取 压缩文件
 			});
 

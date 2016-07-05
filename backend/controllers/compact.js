@@ -5,6 +5,8 @@ var cache   = require('../libs/cache');
 var checker = require('../libs/datachecker');
 var config = require('../config');
 var utils = require('../libs/utils');
+var archiver = require('archiver');
+var fs = require('fs');
 var _ = require('lodash');
 
 var BusinessError = require('../errors/BusinessError');
@@ -54,13 +56,37 @@ exports.compactDetail = function (req, res, next) {
 };
 
 exports.downloadContract = function (req, res, next) {
-    var orderId=req.query.orderId;
-    res.send("正在处理合同逻辑中。。。");
-    //res.send(config.file_path.root+config.file_path.pdf,"compact-"+orderId+".pdf",function(err){
-    //    if(err){
-    //        next(err);
-    //    }else{
-    //
-    //    }
-    //});
+    request.post({url:api_config.downloadContract,form:{orderId:req.query.orderId,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug("----------downloadContract----------"+data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+                //被打包文件
+                var files = source.data.files;
+                var zip = archiver('zip');
+                zip.on('error', function(err) {
+                    res.status(500).send({error: err.message});
+                });
+                //on stream closed we can end the request
+                res.on('close', function() {
+                    logger.debug('Archive wrote %d bytes', archive.pointer());
+                    return res.status(200).send('OK').end();
+                });
+                var timeStr=new Date().getTime();
+                //set the archive name
+                res.attachment('contract-'+req.query.orderId+'-'+timeStr+'.zip');
+                //this is the streaming magic
+                zip.pipe(res);
+                for (var i = 0; i < files.length; i++) {
+                    zip.append(fs.createReadStream(files[i].path), { name: files[i].name });
+                }
+                zip.finalize();
+
+            }else{
+                res.send(source.data.error);
+            }
+        }
+    });
+    //res.send("正在处理合同逻辑中。。。");
 };
