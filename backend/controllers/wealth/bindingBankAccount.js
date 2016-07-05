@@ -211,7 +211,8 @@ exports.bindingSuccess = function (req, res, next) {
     ];
 
 
-    var url = api_config.bindingSuccess;
+
+    var url = api_config.bankCardConfirm;
     var userId=req.session.user.id
     request({url : url+"?userId="+userId}, function (err, data) {
 
@@ -239,6 +240,24 @@ exports.remittance = function (req, res, next) {
     var formData = {
         userId:userId,
         confirmMoney:req.body.confirmMoney
+    };
+    request.post({
+        form:formData,
+        url : url
+    }, function (err, data, body) {
+        if (err) return next(err);
+        var resultJson = JSON.parse(body);
+        return res.send(resultJson);
+    });
+};
+// 绑定成功确认
+exports.bankCardConfirm = function (req, res, next) {
+    var body = req.body;
+    var url = api_config.bindingSuccess;
+    var userId=req.session.user.id;
+
+    var formData = {
+        userId:userId,
     };
     request.post({
         form:formData,
