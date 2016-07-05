@@ -185,7 +185,8 @@
             <!-- 操作按钮-->
             <div class="plateMain txt_c">
                 <br/><br/>
-                <input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">
+                <!--<input type="button" id="cancleBtn" class="iBtn iBtn_def" value="取消">-->
+                <a href="javascript:history.go(-1);" id="cancleBtn" class="iBtn iBtn_def">取消</a>
                 <input type="button" id="submitBtn" class="iBtn iBtn_yes ml20" value="确认">
             </div>
             <input type="hidden" id="orderId" name="orderId" value="<%=orderId ? orderId : ""%>">
