@@ -45,7 +45,7 @@ define(['jquery','bootstrap'],function($){
         var params = {'captchaText':imgcode};
         self.customPhone && (params.customPhone = $('input[name="'+ self.customPhone +'"]').val())
         $.post('/api/validImgcode', params, function(data){
-            $(self).removeClass("sended");
+            $('#imgcodeValid').removeClass("sended");
             $('.glyphicon').hide();
           if(data.success){
               $('#imgcodeModal').modal('hide');
