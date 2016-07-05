@@ -121,6 +121,12 @@ $dark:#000000;
 .second-tab{
 	display:none;
 }
+.add-bg{
+	background:#f5f5f5;
+}
+.no-padding-bottom{
+	padding-bottom:0;
+}
 .draw-cash{
 	width:1000px;
 	margin:0 auto;
@@ -146,7 +152,7 @@ $dark:#000000;
 				dd{
 					color:$gray3;
 					a{
-						color:$gray2;	
+						color:$gray2;
 					}
 				}
 			}
@@ -250,7 +256,7 @@ $dark:#000000;
 				}
 			}
 		}
-	}	
+	}
 	.reasonsReturn{
 		height:250px;
 		margin:30px;
@@ -293,7 +299,7 @@ $dark:#000000;
 				}
 			}
 		}
-	} 
+	}
 	.list{
 		list-style-type:decimal;
 		padding-left:256px;
@@ -310,4 +316,3 @@ $dark:#000000;
 		}
 	}
 }
-

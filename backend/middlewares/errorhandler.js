@@ -18,7 +18,7 @@ var MethodArgumentNotValidError = require('../errors/MethodArgumentNotValidError
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
 var UnauthorizedAccessError = require('../errors/UnauthorizedAccessError');
 
-
+var inspect = require('util').inspect;
 exports.PageNotFoundMiddleware = function(req, res, next) {
     next(new PageNotFoundError(404 , 'Page Not Found'));
 };
@@ -55,7 +55,8 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         errorCode: newErr.code,
         field: newErr.field,
         stack: newErr.stack,
-        error: newErr
+        error: newErr,
+        inspect:inspect(newErr)
     };
 
     var type = req.accepts('html', 'json', 'text');

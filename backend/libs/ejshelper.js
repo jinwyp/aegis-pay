@@ -40,18 +40,18 @@ module.exports = function (app) {
     }
 
     app.locals.sellInfoTitleAppend = function (deliveryprovince, deliveryplace, otherplace, originplace, pname, NCV02) {
-        var content = deliveryprovince;
+        var content = app.locals.clearEmpty(deliveryprovince);
         if (deliveryplace == '其它') {
-            content += otherplace;
+            content += app.locals.clearEmpty(otherplace);
         } else {
-            content += deliveryplace;
+            content += app.locals.clearEmpty(deliveryplace);
         }
-        content += originplace;
+        content += app.locals.clearEmpty(originplace);
         if (pname != '焦煤' && NCV02 != 0) {
             content += NCV02;
             content += '大卡';
         }
-        content += pname;
+        content += app.locals.clearEmpty(pname);
         return content;
     }
 

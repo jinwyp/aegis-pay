@@ -1,6 +1,13 @@
 @import '../helpers/_variables.scss';
 
 #imgcodeModal{
+    #imgcodeValid.sended{
+        background: $color_btn_gray;
+        color: $color_gray;
+    }
+    .glyphicon{
+        display: none;
+    }
     .modal-body{
         p{
             margin:20px 0 0;
