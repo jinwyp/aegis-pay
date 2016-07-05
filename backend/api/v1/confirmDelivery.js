@@ -11,9 +11,9 @@ var path       = require('path');
 
 var co = require('co');
 
-// requestdebug(request);
+const conPath=(config.file_path.root + config.file_path.upload).substr(4);
+const uploadPath = conPath + '/';
 
-const uploadPath = config.file_path.root + '/upload/';
 
 // 提交按钮
 exports.confirmDeliverySubmit = function (req, res, next) {
@@ -36,6 +36,7 @@ exports.confirmDeliverySubmit = function (req, res, next) {
         val.path = uploadPath + val.file_id;
         _.unset(val, 'file_id');
         _.unset(val, 'file_name');
+
     })
     _.map(req.body.quantityList, function(val, index){
         val.name = val.file_name;
