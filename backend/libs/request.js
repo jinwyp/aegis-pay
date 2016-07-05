@@ -78,12 +78,18 @@ function verbFunc(verb) {
         var params      = initParams(uri, options);
         params.method   = method;
         params.callback = customCallback(callback);
-        return request(params);
+        return rq(params);
     }
 }
 
 function request (uri, options, callback) {
-    var params = initParams(uri, options, callback)
+    if (typeof options === 'function') {
+        callback = options;
+    }
+
+    var params = initParams(uri, options);
+    params.callback = customCallback(callback);
+
     return rq(params);
 }
 
