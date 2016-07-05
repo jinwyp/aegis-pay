@@ -64,8 +64,8 @@ exports.downloadContract = function (req, res, next) {
             if(source.success) {
                 //被打包文件
                 var files = source.data.files;
-                var archive = Archiver('zip');
-                archive.on('error', function(err) {
+                var zip = archiver('zip');
+                zip.on('error', function(err) {
                     res.status(500).send({error: err.message});
                 });
                 //on stream closed we can end the request
@@ -73,17 +73,15 @@ exports.downloadContract = function (req, res, next) {
                     logger.debug('Archive wrote %d bytes', archive.pointer());
                     return res.status(200).send('OK').end();
                 });
+                var timeStr=new Date().getTime();
                 //set the archive name
-                res.attachment('file-txt.zip');
+                res.attachment('contract-'+req.query.orderId+'-'+timeStr+'.zip');
                 //this is the streaming magic
-                archive.pipe(res);
+                zip.pipe(res);
                 for (var i = 0; i < files.length; i++) {
-                    archive.append(fs.createReadStream(files[i].path), { name: files[i].name });
+                    zip.append(fs.createReadStream(files[i].path), { name: files[i].name });
                 }
-                archive.append(fs.createReadStream('mydir/file.txt'), {name:'file.txt'});
-                //you can add a directory using directory function
-                //archive.directory(dirPath, false);
-                archive.finalize();
+                zip.finalize();
 
             }else{
                 res.send(source.data.error);
