@@ -7,8 +7,7 @@
 .transaction-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
-  a {
-    display: block;
+  a{
     color: $color_manage_text;
     text-decoration: none;
     cursor: pointer;
@@ -65,7 +64,9 @@
           td{
             text-align: center;
             padding: 8px 0;
-            .btn-option{ margin-bottom: 10px; }
+            .block-a{
+              display: block;
+            }
           }
           td.coal-target > div{
             text-align: left;

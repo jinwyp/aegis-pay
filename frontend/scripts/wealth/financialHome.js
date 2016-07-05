@@ -218,7 +218,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     //查看退货详情
     $(".btn-returnDetail").click(function(){
-        location.href="/return?orderId="+$(this).data("id");
+        location.href="/returnBuyer?orderId="+$(this).data("id");
     });
 
     //审核提货
