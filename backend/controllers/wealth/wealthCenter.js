@@ -69,10 +69,7 @@ exports.isFundAccountExist = function(req, res, next){
     request.post({url: api_config.checkFundAccount, form: {userId: req.session.user.id}}, function(err, data){
         var result = JSON.parse(data.body);
         if(result.data.success){
-            var errMsg = '您已经存在易煤网资金账户';
-            var er = new Error(errMsg);
-            _.assign(er, {'customCode': 409, 'customMsg': errMsg, 'customType': 'service-request'});
-            return next(er);
+            return next(new BusinessError(409, '您已经存在易煤网资金账户！'));
         }else{
             //渲染页面
             return next();
