@@ -2,10 +2,13 @@
 * 业务控制 (模板 & 数据请求)
 * */
 
-var config = require('../config');
+var path    = require('path');
+var config  = require('../config');
 var request = require('../libs/request');
-var apiHost = 'http://server.180.com/';			// 模拟域名
+var apiHost = 'http://server.180.com/';
+var ejs     = require('ejs');
 
+var ejsHelper = require('../libs/ejshelper')({locals: {}});
 
 // 处理业务逻辑
 exports.demo = function (req, res, next) {
@@ -122,5 +125,14 @@ exports.home = function (req, res, next) {
 
 
 exports.test = function (req, res, next) {
-    return res.render('test', {});
+
+    var pdfHtmlTemplatePath = path.join(config.viewspdf, '/financialDetails/pdftemplate.ejs');
+
+    ejs.renderFile(pdfHtmlTemplatePath, {orderList:[], ejsHelper:ejsHelper.locals}, function (err, resultHtml) {
+        if (err) return next(err);
+
+        return res.send(resultHtml);
+    });
+
+    //return res.render('test', {});
 }
