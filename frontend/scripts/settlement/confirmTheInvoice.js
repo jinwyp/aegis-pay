@@ -236,11 +236,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     /* ---附件交互---------------------------------------- */
     var $tempAdd = $('#tempAdd'),
-        $editFile = $('#editFile'),
+        $editFile = $('#editFile'),         //file input
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
         // $fileId = $('#fileId'),
-        $fileId = $('#templateUrl'),
+        $fileId = $('#templateUrl'),        //file id
         $fileViewImg = $('.fileViewImg'),
         $fBox_1 = $('.fBox_1'),
         $fBox_2 = $('.fBox_2');
@@ -294,6 +294,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             $fBox_1.hide();
             $fBox_2.show();
             $fileViewImg.attr('src', '');
+            $fileId.val('');
         });
     });
 
