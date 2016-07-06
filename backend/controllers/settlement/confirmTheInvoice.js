@@ -169,7 +169,7 @@ exports.submitInvoiceNotes = function (req, res, next) {
 
 // 下载模板.路由
 exports.downInvoiceTemplate = function (req, res, next) {
-	var fileUrl = config.viewspdf + '/invoiceTemplate.jpg';
+	var fileUrl = config.viewspdf + '/downInvoiceTemplate.docx';
 
 	res.download(fileUrl, function(err, data){
 		console.log('-----下载模板-成功---------views/global/pdftemplate/invoiceTemplate.jpg  ');
