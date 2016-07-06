@@ -41,8 +41,8 @@ var payCtl                    = require('../../controllers/pay');
 var wealthCenter              = require('../../controllers/wealth/wealthCenter');               //财富管理
 var financialHome             = require('../../controllers/wealth/financialHome');              //财富管理
 var accountSetting            = require('../../controllers/accountSetting');                    //账户设置
-var securitySetting            = require('../../controllers/securitySetting');                    //安全设置
-//var notice                    = require('../../controllers/notice');                            //账户设置消息提醒
+var securitySetting            = require('../../controllers/securitySetting');                  //安全设置
+//var notice                    = require('../../controllers/notice');                          //账户设置消息提醒
 var paypasswordCtl            = require('../../controllers/paypassword/index');                 //paypassword
 var wealthAccount             = require('../../controllers/wealth/wealthAccount');              //账户通
 var drawCash                  = require('../../controllers/drawCash/drawCash');
@@ -52,7 +52,7 @@ var bindingBankAccount        = require('../../controllers/wealth/bindingBankAcc
 //=========================测试路由================================
 router.get('/demo', demoController.demo);                                                       //公用控件页面路由
 router.get('/test', demoController.test);                                                       
-router.get('/home', demoController.home);                                                        //项目主页路由
+router.get('/home', demoController.home);                                                       //项目主页路由
 router.get('/header', headerController.header);                                                 //网页头部路由
 router.get('/subHeader', subHeaderController.subHeader);                                        //网页页面头部路由
 router.get('/footer', footerController.footer);                                                 //网页底部路由

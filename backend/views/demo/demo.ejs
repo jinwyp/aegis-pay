@@ -266,8 +266,9 @@
         <div class="fileBlockBox_body">
             <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
             <div class="operateFileBox">
-                <a href="" class="fileLinkBtn">修改</a>
-                <a href="" class="fileLinkBtn">删除</a>
+                <a href="javascript:;" class="fileLinkBtn">修改</a>
+                <a href="javascript:;" class="fileLinkBtn" data-id="true">删除</a>
+                <input class="iptEditFile" type="file" name="files">
             </div>
         </div>
     </div>
@@ -285,8 +286,8 @@
             <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="发票样板"/>
             <div class="operateFileBox">
                 <a href="javascript:;" class="fileLinkBtn">修改</a>
-                <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="true">删除</a>
-                <input class="iptEditFile" id="tempEdit" type="file" name="files">
+                <a href="javascript:;" class="fileLinkBtn" data-id="true">删除</a>
+                <input class="iptEditFile" type="file" name="files">
             </div>
         </div>
     </div>
@@ -309,11 +310,9 @@
         <% include ../global/order/statusBar %>
         <p>&nbsp;</p>
 
-
         <!-- 退回原因提示框 板块 -->
         <%- include ../Plugins/reasonsReturnPlate %>
         <p>&nbsp;</p>
-
 
         <!-- 结算单信息 板块-->
         <%- include ../Plugins/settlementInfoPlate %>
@@ -325,44 +324,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--测试列表 -->
-<div class="demoList fl">
-    <table id="listBox">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>城市</th>
-            <th>描述</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <% listData.forEach(function(city){ %>
-        <tr>
-            <td><%= city.id%></td>
-            <td><%= city.name%></td>
-            <td><%= city.desc%></td>
-        </tr>
-        <% }) %>
-        </tbody>
-    </table>
-</div>
 
 
 <!-- 结算单退回原因: 模态框-->
@@ -412,7 +373,27 @@
 </div>
 
 
-
+<!--测试列表 -->
+<!--<div class="demoList fl">-->
+<!--<table id="listBox">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>序号</th>-->
+<!--<th>城市</th>-->
+<!--<th>描述</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<# listData.forEach(function(city){ #>-->
+<!--<tr>-->
+<!--<td><#= city.id #></td>-->
+<!--<td><#= city.name #></td>-->
+<!--<td><#= city.desc #></td>-->
+<!--</tr>-->
+<!--<# }) #>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
 
 
 
