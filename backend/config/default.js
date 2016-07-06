@@ -36,6 +36,7 @@ var config = {
     // 文件目录配置
     file_path: {
         root        : '/app/files/pay',
+        adminroot   : '/files/pay',
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',

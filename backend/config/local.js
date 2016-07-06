@@ -11,6 +11,7 @@ var config = {
 
     file_path: {
         root : path.join(__dirname, '../../../files/pay'),
+        adminroot: path.join(__dirname, '../../../files/pay'),
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',
