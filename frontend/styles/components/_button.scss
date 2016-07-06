@@ -296,17 +296,17 @@
       opacity: 1;
 
       &:hover {
-        color: #00b6ef;
+        color: #4cc6ee;
         text-decoration: underline;
       }
     }
     .iptEditFile {
       width: 50px;
       height: 22px;
-      display: block;
-      position: absolute;
-      top: 6px;
-      left: 13px;
+      display: none;
+      //position: absolute;
+      //top: 6px;
+      //left: 13px;
       z-index: 30;
       opacity: 0;
       filter: alpha(opacity=0);
