@@ -18,17 +18,17 @@ require(['jquery','bootstrap', 'message'],function($, bootstrap, message){
                 } else {
                     if(data.error == "verifying"){                            //待审核
                         $(".modal_3").modal();
-                        $("#modalInfo_3").html("贵公司企业认证正在审核中，<br />无法开通资金账户");
-                    }else if(data.error == "verifyNotPass"){                  //审核未通过
+                        $("#modalInfo_3").html("贵公司企业认证正在审核中，<br />无法开通资金账户!");
+                    }else if(data.error == "verifyNotPass" || data.error == "improve"){                  //审核未通过
                         $(".modal_2").modal();
-                        $("#modalInfo_2").html("贵公司尚未通过认证，无法开通资金账户");
+                        $("#modalInfo_2").html("贵公司尚未通过认证，无法开通资金账户!");
                         $("#md_ok_2").val("前往认证公司信息");
                         $("#md_ok_2").click(function(){
                             location.href=memberUrl+" /account/companyDetail";
                         });
                     }else if(data.error  == "companyNotExists"){              //未认证
                         $(".modal_2").modal();
-                        $("#modalInfo_2").html("贵公司尚未通过认证，无法开通资金账户");
+                        $("#modalInfo_2").html("贵公司尚未通过认证，无法开通资金账户!");
                         $("#md_ok_2").val("前往认证公司信息");
                         $("#md_ok_2").click(function(){
                             location.href=memberUrl+"/account/companyCreate";

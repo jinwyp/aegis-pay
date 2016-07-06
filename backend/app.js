@@ -28,6 +28,7 @@ var cors             = require('cors');
 var renderMiddleware = require('./middlewares/render');
 var logger           = require("./libs/logger");
 var ejs              = require('ejs');
+var flash            = require('./libs/flash');
 
 var request          = require("request");
 
@@ -90,7 +91,7 @@ app.use(session({
     resave            : true,
     saveUninitialized : true
 }));
-
+app.use(flash());
 // custom middleware
 app.use(auth.passport);
 
