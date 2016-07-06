@@ -59,6 +59,7 @@ exports.settleDetails = function (req, res, next) {
                             }
 
                     };
+                    req.flash('tpl', content.data.receipt.templateUrl);           // 读取
                     //渲染页面
                     return res.render('settlement/settleDetails', content);
                 }

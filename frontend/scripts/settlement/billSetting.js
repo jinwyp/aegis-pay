@@ -7,18 +7,23 @@ require(['jquery','bootstrap'],function($){
 
     //删除
     $("#delete").click(function () {
-        $.ajax({
-            url:"/settlement/billDelete",
-            type: 'post',
-            success:function(data){
-                if(data.success){
-                    location.reload();
-                }
-                else{
+        $(".modal_1").modal();
+        $("#modalInfo_1").html("确定删除?");
+        $("#md_ok_1").click(function(){
+            $.ajax({
+                url:"/settlement/billDelete",
+                type: 'post',
+                success:function(data){
+                    if(data.success){
+                        location.reload();
+                    }
+                    else{
 
+                    }
                 }
-            }
-        });
+            });
+        })
+
     })
 
     //sideBar切换
