@@ -120,7 +120,6 @@ exports.financialDetails = function (req, res, next) {
         //userId: 2719
     };
     request.post({url:url, form:formData, json:true}, function (err, response, body) {
-
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
