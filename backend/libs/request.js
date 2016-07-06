@@ -78,10 +78,8 @@ function verbFunc (verb) {
     var method = verb.toUpperCase();
     return function (uri, options, callback) {
         if (isObject(options)){
-            console.log('1111111')
             options.method = method;
         }else if (isObject(uri)){
-            console.log('222222')
             uri.method = method;
         }
         return requestWithErrorHandler(uri, options, callback)
