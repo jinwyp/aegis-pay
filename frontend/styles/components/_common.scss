@@ -171,3 +171,17 @@
 //    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
 //    @include sprite($big-loading);
 //}
+
+
+.loading_big {
+
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background-color: #F5F5F5;
+  z-index: 70;
+  .loading_pic{
+    width: 33px;
+    margin:20px auto;
+  }
+
+}
