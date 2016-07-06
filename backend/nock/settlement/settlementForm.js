@@ -364,7 +364,7 @@ nkScopePersist.get('/settlement/downPrint')
 				returnReason: '结算退回原因 结算退回原因 打印',
 
 				files: [
-					{name: '补充协议文件', path: '/a/b/d.jpg'}
+					{name: '补充协议文件', path: '/app/files/pay/compact/5567697a-99d4-445d-870c-ae0c93206015.jpg'}
 				]
 			}
 		}

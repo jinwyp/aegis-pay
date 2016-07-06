@@ -264,7 +264,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     fileObj = file;
                 });
                 $fileViewImg.attr('src', fileObj.url);
-                $fileId.val(fileObj.url);
+                $fileId.val(fileObj.id);
                 $fBox_1.show();
                 $fBox_2.hide();
             }
