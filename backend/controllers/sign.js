@@ -9,7 +9,7 @@ exports.setSSOCookie = function(req, res, next){
         httpOnly: true,
         secure: config.https,
         domain: config.domain,
-        expires: new Date(Date.now() + 900000) // todo
+        expires: new Date(Date.now() + 3600*24*7*1000) //
     });
 
     res.send(jsonpCallback + "({})");
