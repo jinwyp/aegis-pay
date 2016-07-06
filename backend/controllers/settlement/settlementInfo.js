@@ -29,11 +29,14 @@ exports.settlementInfo = function (req, res, next) {
                 data: {
                     receipt:source.data.receipt
                 }
-
-
             };
+
             //渲染页面
-            console.log(data)
+            req.flash('tpl', content.data.receipt.templateUrl);           // 读取
+            console.log('-------------------------------------------');
+            console.log(content.data.receipt.templateUrl);
+            console.log(content);
+
             return res.render('settlement/settlementInfo', content);
         }
     })
