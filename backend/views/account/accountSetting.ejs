@@ -35,8 +35,14 @@
                     </tr>
                     <tr>
                         <th>资金账户：</th>
-                        <td>已开通</td>
-                        <td><a href="/wealth/addAccount" class="iBtn iBtn_xs iBtn_no">查看</a></td>
+                        <% if(fundStatus == 2){%>
+                            <td>已开通</td>
+                            <td><a href="/wealth/addAccount" class="iBtn iBtn_xs iBtn_no">查看</a></td>
+                        <% }else if(fundStatus == 4){%>
+                            <td>已锁定</td>
+                            <td><a href="/ucenter/paypassword/fg/vl" class="iBtn iBtn_xs iBtn_no">去解锁</a></td>
+                        <%}%>
+
                     </tr>
                     <tr class="noBorder">
                         <th>银行账户：</th>
