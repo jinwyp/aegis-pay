@@ -72,6 +72,9 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 function switchTxt(n) {
 	if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
 		return "数据非法";
+	if(n==0){
+		return  "零元整" ;
+	}
 	var unit = "千百拾亿千百拾万千百拾元角分", str = "";
 	n += "00";
 	var p = n.indexOf('.');

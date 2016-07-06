@@ -29,6 +29,7 @@ exports.addAccount = function(req,res,next){
                 }
             };
             var cashAccount = replyData.data.cashAccount;
+            content.userFundAccountStatus = replyData.data.userFundAccountStatus;
             //有银行卡绑定的情况下
             if(cashAccount.companyName && cashAccount.companyName.length>1) {
                 content.status = 1;

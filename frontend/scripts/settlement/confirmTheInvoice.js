@@ -236,6 +236,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     /* ---附件交互---------------------------------------- */
     var $tempAdd = $('#tempAdd'),
+        $editFile = $('#editFile'),
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
         // $fileId = $('#fileId'),
@@ -272,8 +273,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     //修改附件
     $tempEdit.click(function() {
-
-        uploadWrapper ($tempEdit, function(data) {
+        $editFile.trigger("click");
+    });
+    $editFile.click(function() {
+        uploadWrapper ($editFile, function(data) {
             var fileObj = {};
             if(data.success) {
                 $.each(data.attach, function(ind, file) {

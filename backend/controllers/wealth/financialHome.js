@@ -7,6 +7,7 @@ var request = require('../../libs/request');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
 
+var ejsHelper  = require('../../libs/ejshelper')({locals: {}});
 var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
 var checker    = require('../../libs/datachecker');
@@ -104,7 +105,7 @@ exports.financialDetails = function (req, res, next) {
         ],
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},
-            {id:'2', value:'2', text:'对方账户名称'},
+            {id:'2', value:'2', text:'对方账号名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
     };
@@ -200,7 +201,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
                 }else if (req.query.filetype === 'pdf'){
 
-                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list}, function (err, resultHtml) {
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list, helper:ejsHelper.locals}, function (err, resultHtml) {
                         if (err) return next(err);
 
                         var pdfOptions = {format : 'Letter'};
@@ -246,7 +247,7 @@ exports.financialTransaction = function (req, res, next) {
 
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
-    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.status) getQuery.status = req.query.status;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
     if (req.query.content) getQuery.content = req.query.content;
@@ -318,7 +319,7 @@ exports.financialContract = function (req, res, next) {
 
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
-    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    if (req.query.endDate) getQuery.endDate = req.query.endDate;
     //if (req.query.searchType) getQuery.searchType = req.query.searchType;
     if (req.query.content) getQuery.content = req.query.content;
 
@@ -388,7 +389,7 @@ exports.financialSettlement = function (req, res, next) {
 
     //if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
-    if (req.query.endDate) getQuery.startDate = req.query.endDate;
+    if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
     if (req.query.content) getQuery.content = req.query.content;
 

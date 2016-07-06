@@ -1,5 +1,7 @@
 var _ = require('lodash');
 
+
+
 module.exports = function (app) {
 
     //以下所有方法在ejs模板中的调用(例：multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg'))
@@ -95,6 +97,9 @@ module.exports = function (app) {
     app.locals.switchTxt = function (n) {
         if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
             return "数据非法";
+        if(n==0){
+            return  "零元整" ;
+        }
         var unit = "千百拾亿千百拾万千百拾元角分", str = "";
         n += "00";
         var p    = n.indexOf('.');
@@ -199,4 +204,6 @@ module.exports = function (app) {
         }
         
     }
-}
+
+    return app;
+};
