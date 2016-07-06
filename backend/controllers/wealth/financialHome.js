@@ -35,8 +35,7 @@ exports.financialHome = function (req, res, next) {
     logger.debug('userId----------------------------' + req.session.user.id);
     request.post({url:api_config.financialCenterHome,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
-        logger.debug('获取到的错误是----------------------------' + err);
-        logger.debug('获取到的结果是----------------------------' + data.body);
+
         if (data) {
             var source = JSON.parse(data.body);
             if(source.success) {
@@ -53,9 +52,9 @@ exports.financialHome = function (req, res, next) {
                 //渲染页面
                 logger.debug('获取到的finance是----------------------------' + JSON.stringify(source.data.finance));
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
-                res.render('wealth/financialCenterHome', content);
+                return res.render('wealth/financialCenterHome', content);
             }else{
-                res.send(source.error);
+                return res.send(source.error);
             }
         }
 

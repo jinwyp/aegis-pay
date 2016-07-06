@@ -47,7 +47,7 @@ var callbackWithErrorHandler = function(callback){
             if (response.statusCode === 400 || response.statusCode === 405) { // 参数错误
                 return callback(new MethodArgumentNotValidError(response.statusCode, errMessage) )
 
-            }else if (response.statusCode === 401) { // 重新登录
+            }else if (response.statusCode === 401 || response.statusCode === 404) { // 重新登录
                 return callback(new UnauthenticatedAccessError(401, errMessage) )
 
             }else if (response.statusCode === 403) { // 没有权限访问
