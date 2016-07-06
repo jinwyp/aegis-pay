@@ -104,7 +104,7 @@ exports.financialDetails = function (req, res, next) {
         ],
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},
-            {id:'2', value:'2', text:'对方账户名称'},
+            {id:'2', value:'2', text:'对方账号名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
     };
