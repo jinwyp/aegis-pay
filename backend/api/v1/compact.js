@@ -36,12 +36,20 @@ exports.uploadFile = function (req, res, next) {
         utils.makeDir(uploadPath);
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/files/upload/'+newFile}]})
+            req.flash('file_id_'+req.session.user.id, newFile);
+            res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/api/thumbnail?t=' + new Date().getTime()}]})
         })
 
     });
 };
 
+exports.thumbnail = function(req, res, next){
+    var fid = req.flash('file_id_'+req.session.user.id)[0];
+    var path = uploadPath + fid;
+    res.download(path, fid, function(err, data){
+        if(err) {return next(err); }
+    })
+}
 // del file
 exports.delFile = function (req, res, next) {
     fs.unlink(uploadPath + req.body.id, function (err) {
@@ -59,7 +67,7 @@ exports.signCompact = function (req, res, next) {
         params.file_name = [params.file_name];
     }
     _.forEach(params.file_id, function(id, index){
-        files.push({'name': params.file_name[index], 'path':uploadPath + '/' + id});
+        files.push({'name': params.file_name[index], 'path':uploadPath + id});
     })
 
     params.files = files;
