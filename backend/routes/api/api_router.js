@@ -39,6 +39,8 @@ router.post('/upload-file', compactApi.uploadFile);
 router.post('/del-file', compactApi.delFile);
 router.post('/sign-compact', compactApi.signCompact);
 router.get('/generate_compact', compactApi.generate_compact);
+router.get('/compactpdf', compactApi.compactpdf);
+router.get('/compactimg', compactApi.compactimg);
 
 router.get('/order/orderCloseView', orderCloseApi.orderCloseView);				            // 关闭订单: 订单信息Api
 router.post('/order/orderCloseSubmit', orderCloseApi.orderCloseSubmit);			            // 关闭订单: 提交关闭Api (路由, 控制模块)
