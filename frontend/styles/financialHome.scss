@@ -172,7 +172,7 @@
           margin-left: auto;
           margin-right: auto;
           padding-bottom: 20px;
-          tr{
+          tr.line{
             height: 60px;
             border-bottom: 1px dotted $color_border;
             &:hover{
@@ -182,6 +182,12 @@
             td > a { display: block;}
             .orange{ color: $color_orange; }
             .mt-10{  margin-top: 10px; }
+          }
+          .no-data{
+            text-align: center;
+            padding: 105px 0;
+            font-size: 18px;
+            color: #666;
           }
         }
       }
