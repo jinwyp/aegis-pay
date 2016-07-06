@@ -56,13 +56,15 @@
                     <% }else if(order.status=='TradeDisputeFinished'){ %>
                         <span class="status">纠纷协商完成</span>
                     <% }else if(order.status=='MakeMatch'){ %>
-                        <span class="status">匹配中</span>
+                        <span class="status">撮合中</span>
                     <% }else if(order.status=='Canceled'){ %>
                         <span class="status">已取消</span>
                     <% }else if(order.status=='Completed'){ %>
                         <span class="status">交易完成</span>
                     <% }else if(order.status=='TradeFinished'){ %>
                         <span class="status-close">交易结束</span>
+                    <% }else if(order.status=='Deleted'){ %>
+                        <span class="status-close">已删除</span>
                     <% }else if(order.status=='TradeClosed'){ %>
                         <span class="status-close">交易关闭</span>
                     <% }else{ %>
@@ -115,6 +117,8 @@
                 <% }else if(order.status=='TradeDisputing'){ %>
                 <% }else if(order.status=='TradeDisputeFinished'){ %>
                 <% }else if(order.status=='MakeMatch'){ %>
+
+                <% }else if(order.status=='Deleted'){ %>
 
                 <% }else if(order.status=='Canceled'){ %>
 
