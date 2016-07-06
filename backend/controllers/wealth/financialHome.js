@@ -120,7 +120,6 @@ exports.financialDetails = function (req, res, next) {
         //userId: 2719
     };
     request.post({url:url, form:formData, json:true}, function (err, response, body) {
-
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
@@ -237,7 +236,7 @@ exports.financialTransaction = function (req, res, next) {
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
 
-
+    console.log(req.query)
     var getQuery = {
         userId : req.session.user.id,
         //userId :  2719,

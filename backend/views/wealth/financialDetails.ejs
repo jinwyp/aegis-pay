@@ -13,6 +13,8 @@
     <div class="financial-main">
 
         <div class="row financial-details ms-controller" ms-controller="financialDetailsController">
+
+
             <form class="form-inline">
                 <div class="form-row" >
                     <div class="form-group form-search indexHigh">
@@ -68,48 +70,52 @@
                         <i class="iBtn_down_icn"></i>下载收支明细
                     </span>
                 </div>
-                <div class="">
-                    <div class="record-div">
-                        <table class="table financeDetailTable">
-                            <tr>
-                                <th >交易日期</th>
-                                <th >交易流水号</th>
-                                <th >金额</th>
-                                <th >账户余额</th>
-                                <th >交易类型</th>
-                                <th >对方账号</th>
-                                <th >对方账号名称</th>
-                                <th >操作</th>
-                            </tr>
 
 
-                            <tr ms-for='(key, order) in @orderList'>
-                                <td >{{order.createDate  }}</td>
-                                <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
-                                <td > <span ms-visible="order.type==2 || order.type==4">-</span> <span>{{order.money | number(2) }}</span></td>
-                                <td >{{order.balanceMoney | number(2)}}</td>
-                                <td >
-                                    <span ms-visible="order.type==1">充值</span>
-                                    <span ms-visible="order.type==2">提现</span>
-                                    <span ms-visible="order.type==3">销售</span>
-                                    <span ms-visible="order.type==4">采购</span>
-                                </td>
-                                <td >{{order.otherFundAccount}}</td>
-                                <td >{{order.otherCompanyName}}</td>
-                                <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
-                            </tr>
-                            <tr ms-visible="@orderList.length===0">
-                                <td colspan="8" class="no-data">暂无符合条件的数据</td>
-                            </tr>
-                        </table>
-
-
-
-                        <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
-
-
+                <div class="search-content">
+                    <div class="loading_big" ms-visible="@orderShowLoading">
+                        <div class="loading_pic">
+                            <img src="<%= staticPath %>/images/loading3.gif">
+                        </div>
                     </div>
 
+
+                    <table class="table financeDetailTable" ms-visible="!@orderShowLoading">
+                        <tr>
+                            <th >交易日期</th>
+                            <th >交易流水号</th>
+                            <th >金额</th>
+                            <th >账户余额</th>
+                            <th >交易类型</th>
+                            <th >对方账号</th>
+                            <th >对方账号名称</th>
+                            <th >操作</th>
+                        </tr>
+
+
+                        <tr ms-for='(key, order) in @orderList'>
+                            <td >{{order.createDate  }}</td>
+                            <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
+                            <td > <span ms-visible="order.type==2 || order.type==4">-</span> <span>{{order.money | number(2) }}</span></td>
+                            <td >{{order.balanceMoney | number(2)}}</td>
+                            <td >
+                                <span ms-visible="order.type==1">充值</span>
+                                <span ms-visible="order.type==2">提现</span>
+                                <span ms-visible="order.type==3">销售</span>
+                                <span ms-visible="order.type==4">采购</span>
+                            </td>
+                            <td >{{order.otherFundAccount}}</td>
+                            <td >{{order.otherCompanyName}}</td>
+                            <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
+                        </tr>
+                        <tr ms-visible="@orderList.length===0 && !@orderShowLoading">
+                            <td colspan="8" class="no-data">暂无符合条件的数据</td>
+                        </tr>
+
+                    </table>
+
+
+                    <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
 
                 </div>
             </div>

@@ -11,7 +11,7 @@ define(['avalon'], function(avalon){
 
         /*
 
-         <nav class="pagination-financial" ms-if="@_isShow">
+         <nav class="pagination-financial" ms-visible="@_isShow">
          <ul class="pagination pageno">
          <li> <a aria-label="Previous" ms-class="{disabled: @isDisabled('prev', 1)}" ms-click="@_changePage($event, @currentPage-1, 'prev' )"> <span aria-hidden="true" > 上一页 </span> </a> </li>
 
@@ -101,8 +101,8 @@ define(['avalon'], function(avalon){
             },
 
             _showPaginations : function (totalPages) {
-                console.log('Pagination updated, Total Page:', this.totalPages, ', Current Page:', this.currentPage);
                 var vm = this;
+
                 if (totalPages) {
                     vm.totalPages = Number(totalPages);
                 }
@@ -111,7 +111,7 @@ define(['avalon'], function(avalon){
                 if (vm.totalPages > 0 && vm.isShowPagination) {
                     vm._isShow = true;
                 }
-
+                console.log('Pagination updated, isShow:', vm._isShow, '. Total Page:', this.totalPages, '. Current Page:', this.currentPage);
 
                 if (vm.currentPage < 1){
                     vm.currentPage = 1
