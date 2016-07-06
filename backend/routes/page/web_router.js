@@ -32,8 +32,8 @@ var sellerDeliveryController  = require('../../controllers/sellerDelivery');
 var returnDetailController    = require('../../controllers/returnDetail');
 var disputeComplete           = require('../../controllers/disputeComplete');                   //纠纷申请完成页面
 var disputeDetail             = require('../../controllers/disputeDetail');                     //纠纷详情页
-var disputeSellerDetail             = require('../../controllers/disputeSellerDetail');          //卖家查看纠纷详情页
-var disputeSuccess             = require('../../controllers/disputeSuccess');          //卖家查看纠纷详情页
+var disputeSellerDetail             = require('../../controllers/disputeSellerDetail');         //卖家查看纠纷详情页
+var disputeSuccess             = require('../../controllers/disputeSuccess');                   //卖家查看纠纷详情页
 
 var signCtrl                  = require('../../controllers/sign');                              //支付模块
 var confirmComplete           = require('../../controllers/confirmComplete');                   //确认完成页面
@@ -42,7 +42,6 @@ var wealthCenter              = require('../../controllers/wealth/wealthCenter')
 var financialHome             = require('../../controllers/wealth/financialHome');              //财富管理
 var accountSetting            = require('../../controllers/accountSetting');                    //账户设置
 var securitySetting            = require('../../controllers/securitySetting');                  //安全设置
-//var notice                    = require('../../controllers/notice');                          //账户设置消息提醒
 var paypasswordCtl            = require('../../controllers/paypassword/index');                 //paypassword
 var wealthAccount             = require('../../controllers/wealth/wealthAccount');              //账户通
 var drawCash                  = require('../../controllers/drawCash/drawCash');
@@ -78,24 +77,25 @@ router.get('/pay/success', payCtl.success);
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
-router.get('/returnSeller', returnDetailController.returnSeller);                                     //确认提货被退回
-router.get('/returnBuyer', returnDetailController.returnBuyer);                                     //确认提货被退回
+router.get('/returnSeller', returnDetailController.returnSeller);                               //确认提货被退回
+router.get('/returnBuyer', returnDetailController.returnBuyer);                                 //确认提货被退回
 
 //结算
 router.get('/settlement/settlementForm', settlementFormControl.orderSettlement);                //结算单－页面路由
 router.get('/settlement/settlementInfoDownload', settlementFormControl.settlementInfoDownload); //结算单－下载打印结算信息
-router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);           //结算单－确认(添加)开票
-router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单－提交开票
-router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单－开票备注 页面路由
-router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单－提交开票备注
-router.get('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);              //结算-确认收到发票
+router.get('/settlement/confirmTheInvoice', confirmTheInvoiceControl.addInvoiceInfo);           //结算单.开票－确认(添加)开票
+router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceInfo);           //结算单.开票－提交开票
+router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单.开票－开票备注 页面路由
+router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单.开票－提交开票备注
+router.get('/settlement/downInvoiceTemplate', confirmTheInvoiceControl.downInvoiceTemplate);    //结算单.开票－下载开票模板
+router.get('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);               //结算-确认收到发票
 
 //纠纷
 router.get('/dispute/disputeApply', disputeApply.disputeApply);                                 //纠纷申请
 router.get('/dispute/disputeComplete', disputeComplete.disputeComplete);                        //纠纷申请完成
 router.get('/dispute/disputeDetail', disputeDetail.disputeDetail);                              //纠纷详情
-router.get('/dispute/disputeSellerDetail', disputeSellerDetail.disputeSellerDetail);           //纠纷详情
-router.get('/dispute/disputeSuccess', disputeSuccess.disputeSuccess);           //纠纷详情
+router.get('/dispute/disputeSellerDetail', disputeSellerDetail.disputeSellerDetail);            //纠纷详情
+router.get('/dispute/disputeSuccess', disputeSuccess.disputeSuccess);                           //纠纷详情
 
 //交易结束
 router.get('/order/orderClose', orderCloseControl.orderInfo);                                   //关闭订单路由
@@ -119,8 +119,8 @@ router.get('/compactDetail', compactController.compactDetail);                  
 
 //=========================财富管理中心路由================================
 //首页
-router.get('/', wealthCenter.checkFundAccount);                                  //财富管理中心－初始化
-router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                          //开通资金账户
+router.get('/', wealthCenter.checkFundAccount);                                                 //财富管理中心－初始化
+router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                 //开通资金账户
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
@@ -135,17 +135,17 @@ router.post('/drawCashStatus', drawCash.drawCashStatus);                        
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
 router.get('/account/accountSetting', accountSetting.accountSetting);
 router.get('/account/securitySetting', securitySetting.securitySetting);
-//router.get('/account/notice', notice.notice);                                                   //账户设置－消息提醒
+//router.get('/account/notice', notice.notice);                                                 //账户设置－消息提醒
 router.get('/wealth/bindingBankAccount',bindingBankAccount.bindingBankAccount);                 //账户设置－绑定银行卡
 router.get('/wealth/bindingSuccess',bindingBankAccount.bindingSuccess);                         //账户设置－绑定银行卡成功
 
 router.get('/wealth/financialDetails', financialHome.financialDetails);                         //账户管理-收支明细
 router.get('/wealth/financialDetailsDownload', financialHome.financialDetailsToExcelAndPDF);    //账户管理-收支明细-下载
 router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);                                 //重置密码页面(选择方式：是否记得密码)
-router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhonePage);           //修改或忘记密码身份验证
-router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);//忘记密码－设置密码
-router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess);//重置密码成功
-router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);//修改密码－设置密码
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhonePage);       //修改或忘记密码身份验证
+router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);           //忘记密码－设置密码
+router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess); //重置密码成功
+router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);       //修改密码－设置密码
 
 //交易管理
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);                 //交易记录
