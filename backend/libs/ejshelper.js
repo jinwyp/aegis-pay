@@ -1,5 +1,7 @@
 var _ = require('lodash');
 
+
+
 module.exports = function (app) {
 
     //以下所有方法在ejs模板中的调用(例：multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg'))
@@ -202,4 +204,6 @@ module.exports = function (app) {
         }
         
     }
-}
+
+    return app;
+};

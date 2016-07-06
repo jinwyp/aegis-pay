@@ -7,6 +7,7 @@ var request = require('../../libs/request');
 var ejs     = require('ejs');
 var pdf     = require('html-pdf');
 
+var ejsHelper  = require('../../libs/ejshelper')({locals: {}});
 var excel      = require("../../libs/excel");
 var api_config = require('../../api/v1/api_config');
 var checker    = require('../../libs/datachecker');
@@ -104,7 +105,7 @@ exports.financialDetails = function (req, res, next) {
         ],
         formSelectOrderSearchType:[
             {id:'1', value:'1', text:'交易流水号'},
-            {id:'2', value:'2', text:'对方账户名称'},
+            {id:'2', value:'2', text:'对方账号名称'},
             {id:'3', value:'3', text:'订单号'}
         ]
     };
@@ -200,7 +201,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
 
                 }else if (req.query.filetype === 'pdf'){
 
-                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list}, function (err, resultHtml) {
+                    ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list, helper:ejsHelper.locals}, function (err, resultHtml) {
                         if (err) return next(err);
 
                         var pdfOptions = {format : 'Letter'};

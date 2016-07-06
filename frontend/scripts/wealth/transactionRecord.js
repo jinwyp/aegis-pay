@@ -430,7 +430,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     //--------------------------合同管理模块的操作-----------------------------
     //下载
     $(".btn-download").click(function(){
-        var id = $(this).data('value');
         location.href="/downloadContract?orderId="+$(this).data("id");
         //alert('暂无配置下载路径');
     });
