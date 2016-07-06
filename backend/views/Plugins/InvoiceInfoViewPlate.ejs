@@ -52,7 +52,7 @@
 
             <div class="thumbnailBox">
                 <div class="thumbnailPic"  data-toggle="modal" data-target="#operationInfoModal">
-                    <img class="" src="<%= data.receipt && data.receipt.templateUrl? data.receipt.templateUrl : ""%>" alt="发票样板">
+                    <img class="" src="/settlement/viewInvoiceInfo" alt="发票样板">
                     <span class="clickLarger">点击放大</span>
                 </div>
                 <p class="thumbnailName">客户开票信息表</p>
@@ -70,7 +70,7 @@
             <!--</div>-->
             <div class="modal-body invoiceInfoPic_md">
                 <span class="icn_cross close" data-dismiss="modal" aria-label="Close"></span>
-                <img class="" src="<%= data.receipt && data.receipt.templateUrl? data.receipt.templateUrl : ""%>" alt="开票信息表">
+                <img class="" src="/settlement/viewInvoiceInfo" alt="开票信息表">
                 <p>&nbsp;</p>
             </div>
         </div>

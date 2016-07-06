@@ -124,6 +124,8 @@
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else if(recordList[i].status=='Canceled'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                        <% }else if(recordList[i].status=='Deleted'){ %>
+                        <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else if(recordList[i].status=='Completed'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else if(recordList[i].status=='TradeFinished'){ %>
@@ -170,6 +172,8 @@
                         <% }else if(recordList[i].status=='MakeMatch'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else if(recordList[i].status=='Canceled'){ %>
+                        <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                        <% }else if(recordList[i].status=='Deleted'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else if(recordList[i].status=='Completed'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>

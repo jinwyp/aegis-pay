@@ -99,7 +99,7 @@ exports.signCompact = function (req, res, next) {
         if(err){ return next(err); }
         if (!err && data) {
             if(data.success){
-                delFile([convertData.html, convert.pdf, convertData.imgs]);
+                delFile([compactData.html, compactData.pdf, compactData.imgs]);
             }
             return res.send(JSON.parse(data.body));
         }
@@ -132,9 +132,7 @@ var convertData = function (compactdata, compactejs, orderId) {
         });
         return data;
     });
-
 };
-
 
 
 // generate compact

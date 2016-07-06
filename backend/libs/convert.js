@@ -43,9 +43,9 @@ exports.pdf2image = function (pdfpath, options) {
                 var imgfile = imgpath + imgname + '-' + i + "." + convertExtension;
                 imageList.push(imgfile);
 
-                if (!utils.isFileExistsSync(imgfile)) {
+                // if (!utils.isFileExistsSync(imgfile)) {
                     promiseList.push(pdfImage.convertPage(i));
-                }
+                // }
             }
 
             if (promiseList.length > 0) {
@@ -65,7 +65,19 @@ exports.html2pdf = function (htmlpath, options) {
     var pdfname = options.pdfname || path.basename(htmlpath, '.html');
     var pdfpath = options.pdfpath || pdf_path;
     var pdffile = pdfpath + pdfname + '.pdf';
-    var options = {format : 'Letter'};
+    var options = {
+                        'width':'1140px', 
+                        'height':'800px',
+                        // 'format':'A4',
+                        "header": {
+                            "height": "20mm"
+                            // "contents": '<div style="text-align: center;">Author: Marc Bachmann</div>'
+                        },
+                        "footer": {
+                            "height": "20mm",
+                            // "contents": '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'
+                        }
+                    };
     // if (!utils.isDirExistsSync(pdfpath)) {
     //    fs.mkdirSync(pdfpath);
     // }
@@ -73,9 +85,9 @@ exports.html2pdf = function (htmlpath, options) {
 
     return new Promise(function (resolve, reject) {
 
-        if (utils.isFileExistsSync(pdffile)) {
-            resolve({'pdfpath' : pdffile});
-        } else {
+        // if (utils.isFileExistsSync(pdffile)) {
+        //     resolve({'pdfpath' : pdffile});
+        // } else {
             fs.readFile(htmlpath, 'utf8', function (err, resultHtml) {
                 if (err) reject(err);
 
@@ -100,7 +112,7 @@ exports.html2pdf = function (htmlpath, options) {
                     resolve({'pdfpath' : 'notfound.html'});
                 }
             });
-        }
+        // }
     })
 };
 
