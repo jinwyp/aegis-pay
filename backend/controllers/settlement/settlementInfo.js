@@ -34,10 +34,7 @@ exports.settlementInfo = function (req, res, next) {
 
             //渲染页面
             req.flash('tpl', content.data.receipt.templateUrl);           // 读取
-            console.log('-------------------------------------------');
-            console.log(content.data.receipt.templateUrl);
-            console.log(content);
-
+            
             return res.render('settlement/settlementInfo', content);
         }
     })

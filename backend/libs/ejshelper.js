@@ -112,6 +112,12 @@ module.exports = function (app) {
         return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
     }
 
+    // 截取id路径
+    app.locals.substrId = function (n) {
+        if(n.length){
+            return n.substr(n.lastIndexOf('/')+1)
+        }
+    };
     /*
      * 格式化时间方法，返回拼接字符串(例：5000-7000 kcal/kg)
      * @param obj    时间对象
