@@ -78,6 +78,9 @@
         background: #1fb8ea;
         color: #ffffff;
         margin-left: 15px;
+        &:hover{
+          background-color: #4cc6ee;
+        }
       }
       .ml0 {
         margin-left: 0px;
