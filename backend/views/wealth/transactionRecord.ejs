@@ -66,6 +66,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%if(typeof recordList && recordList.length>0){%>
                 <%for(var i in recordList){%>
                 <tr class="line">
                     <td width="130"><%=recordList[i].createTime%></td>
@@ -186,6 +187,11 @@
                             <% } %>
                         <% } %>
                     </td>
+                </tr>
+                <%}%>
+                <%}else{%>
+                <tr>
+                    <td colspan="7" class="no-data">暂无符合条件的交易数据</td>
                 </tr>
                 <%}%>
                 </tbody>
