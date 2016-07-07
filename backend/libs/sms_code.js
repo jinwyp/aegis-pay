@@ -70,7 +70,8 @@ var cacheGet = function(userInfo, validTime){
             });
 
             if(minTime>0){
-                result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
+                // result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
+                result = {"sms":minSms[minSms.length-1].sms};
                 if(validTime){
                     return resolve(result);
                 }
@@ -161,7 +162,7 @@ exports.sendCode = function (req, res, next) {
 
             if (dataSMS.success) {
                 cacheSet(userInfo, sms).then(function(data){
-                    isUsed = false;
+                    // isUsed = false;
                     logger.debug('----- Send SMS Success: ' + sms);
                     return res.json(dataSMS);
                 }).catch(next);
@@ -195,7 +196,7 @@ exports.verifyMiddleware = function () {
             }else{
                 cacheGet(userInfo, true).then(function(data){
                     if(data && data.sms && (data.sms === sms)){
-                        isUsed = true;
+                        // isUsed = true;
                         return next();
                     }else{
                         return res.json(result);
