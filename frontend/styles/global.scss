@@ -1,4 +1,4 @@
-@import './helpers/variables.scss';
+@import './helpers/_variables.scss';
 @import './base/_reset.scss';
 
 @import './helpers/_sprite.scss';
@@ -18,7 +18,27 @@
 img.ccapImgcode{
     width:126px;
 }
+.send_code{
+    cursor:default;
+    &.disable{
+        background-color: $color_dot;
+    }
+}
+/* 通用 */
+::-webkit-input-placeholder { color: #d9d9d9; }
+::-moz-placeholder { color:#d9d9d9; } /* firefox 19+ */
+:-ms-input-placeholder { color:#d9d9d9; } /* ie */
+input:-moz-placeholder { color:#d9d9d9; }
 
+
+.icon-secure-tip{
+   display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+   @include sprite($secure-tip);
+}
+.icon-big-loading{
+   display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+   @include sprite($big-loading);
+}
 
 
 

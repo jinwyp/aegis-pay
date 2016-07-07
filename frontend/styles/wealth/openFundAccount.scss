@@ -9,6 +9,12 @@ body{ background-color: $color_body_bg; font-size:$size_font_middle; font-family
 input[type="text"],input[type="password"]{
     width:298px; height:38px; line-height: 38px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
 }
+input[type="text"]:focus,input[type="password"]:focus{
+    border-color:$color_blue;
+}
+input[type="text"]:focus.error,input[type="password"]:focus.error{
+    border-color:$color_red;
+}
 a.btn_blue{
     &:hover{ color:#fff; text-decoration: none;}
 }
@@ -60,6 +66,9 @@ a.btn_blue{
                   width:298px; border:1px solid $color_border_gray;
                   input[type='text']{
                       width:178px; border:none; margin:0;
+                  }
+                  &.focus{
+                      border-color:$color_blue;
                   }
               }
           }

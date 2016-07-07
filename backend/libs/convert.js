@@ -25,7 +25,6 @@ exports.pdf2image = function (pdfpath, options) {
     //if (!utils.isDirExistsSync(imgpath)) {
     //    fs.mkdirSync(imgpath);
     //}
-
     utils.makeDir(imgpath);
 
     return new Promise(function (resolve, reject) {
@@ -90,9 +89,9 @@ exports.html2pdf = function (htmlpath, options) {
         // } else {
             fs.readFile(htmlpath, 'utf8', function (err, resultHtml) {
                 if (err) reject(err);
-
                 if (resultHtml) {
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
+                        console.log(err);
                         if (!err) {
                             fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);
@@ -127,9 +126,9 @@ exports.ejs2html = function (data, ejspath, options) {
 
     return new Promise(function (resolve, reject) {
 
-        if (utils.isFileExistsSync(htmlfile)) {
-            resolve({'htmlpath' : htmlfile});
-        } else {
+        // if (utils.isFileExistsSync(htmlfile)) {
+        //     resolve({'htmlpath' : htmlfile});
+        // } else {
             ejs.renderFile(ejspath, data, function (err, resulthtml) {
                 if (err) reject(err);
 
@@ -142,7 +141,7 @@ exports.ejs2html = function (data, ejspath, options) {
                     resolve({'htmlpath' : 'notfound.html'});
                 }
             })
-        }
+        // }
 
     })
 };

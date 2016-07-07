@@ -52,7 +52,7 @@ define(['jquery','bootstrap'],function($){
               // 发送短信验证码成功
               var time = data.time;
               $send_sms.addClass('disable').text(time + 's后重新发送').attr('data-target','');
-              self.els.$codeTipMsg.text('校验码已发送，5分钟之内输入有效，请勿泄露!').show();
+              self.els.$codeTipMsg.text('验证码已发送，5分钟之内输入有效，请勿泄露!').show();
               self.els.$codeTipErr.hide();
               var timer = setInterval(function(){
                 time -= 1;
@@ -60,7 +60,7 @@ define(['jquery','bootstrap'],function($){
                   $send_sms.text(time + 's后重新发送');
                 }else{
                   clearInterval(timer);
-                  $send_sms.removeClass('disable').text('重新发送验证码').attr('data-target','#imgcodeModal');
+                  $send_sms.removeClass('disable').text('重新获取验证码').attr('data-target','#imgcodeModal');
                 }
               },1000)
           }else{
