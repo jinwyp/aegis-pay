@@ -53,11 +53,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
             }else if($searchType.val()==3){
                 $content.attr("disabled",false);
                 $content.removeClass("disabled-bg");
-                $content.attr("placeholder","请输入交易流水号");
+                $content.attr("placeholder","请输入流水号");
             }else if($searchType.val()==4){
                 $content.attr("disabled",false);
                 $content.removeClass("disabled-bg");
-                $content.attr("placeholder","请输入公司名称");
+                $content.attr("placeholder","请输入对方公司名称");
             }
         }
     };
