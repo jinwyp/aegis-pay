@@ -111,7 +111,7 @@ gulp.task('nodemon', function (cb) {
     return nodemon({
         nodeArgs: ['--debug'],
         script: '../backend/app.js',
-        env: { 'MODE': 'local' , 'MOCK':'true'},
+        env: { 'MODE': 'local' , 'MOCK':'false'},
         ignore: ["app/**/*", "../backend/views/**/*","../backend/test/**/*"],
         // watch core server file(s) that require server restart on change
          watch: ['../backend/**/*.js']
