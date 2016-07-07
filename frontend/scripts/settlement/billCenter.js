@@ -12,8 +12,16 @@ require(['jquery', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'],functi
                 day_1 = 86400000,
                 startObj = $(".startDate"),
                 endObj = $(".endDate");
-            pickerStart = startObj.pickadate({}).pickadate('picker');
-            pickerEnd = endObj.pickadate({}).pickadate('picker');
+                datePackerSettings = {
+                    //monthsFull: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    //monthsShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    //weekdaysFull: ['星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+                    //weekdaysShort: ['日','一', '二', '三', '四', '五', '六'],
+                    format: 'yyyy-mm-dd',
+                    clear: '清空'
+                };
+            pickerStart = startObj.pickadate(datePackerSettings).pickadate('picker');
+            pickerEnd = endObj.pickadate(datePackerSettings).pickadate('picker');
             pickerStart.set("disable", [{from: [1970, 1, 1]}]);
             pickerEnd.set("disable", [{from: [1970, 1, 1]}]);
 
