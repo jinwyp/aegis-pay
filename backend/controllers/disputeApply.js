@@ -31,7 +31,7 @@ exports.disputeApply = function (req, res, next) {
             order:source.data.order,
             files:source.data.files
         };
-        if(source.data.files.length>0){
+        if( source.data.files&&source.data.files.length>0){
             req.flash('disputeImg',source.data.files); //返回修改图片路径
         }
 
