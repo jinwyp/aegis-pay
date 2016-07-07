@@ -86,7 +86,7 @@
                             <th >交易流水号</th>
                             <th >金额</th>
                             <th >账户余额</th>
-                            <th >交易类型</th>
+                            <th >摘要</th>
                             <th >对方账号</th>
                             <th >对方账号名称</th>
                             <th >操作</th>
@@ -94,16 +94,11 @@
 
 
                         <tr ms-for='(key, order) in @orderList'>
-                            <td >{{order.createDate  }}</td>
+                            <td >{{order.createDate }} </td>
                             <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
-                            <td > <span ms-visible="order.type==2 || order.type==4">-</span> <span>{{order.money | number(2) }}</span></td>
+                            <td >{{order.money | number(2) }}</td>
                             <td >{{order.balanceMoney | number(2)}}</td>
-                            <td >
-                                <span ms-visible="order.type==1">充值</span>
-                                <span ms-visible="order.type==2">提现</span>
-                                <span ms-visible="order.type==3">销售</span>
-                                <span ms-visible="order.type==4">采购</span>
-                            </td>
+                            <td >{{order.type}}</td>
                             <td >{{order.otherFundAccount}}</td>
                             <td >{{order.otherCompanyName}}</td>
                             <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
