@@ -13,29 +13,21 @@
                 <th >交易流水号</th>
                 <th >金额</th>
                 <th >账户余额</th>
-                <th >交易类型</th>
+                <th >摘要</th>
                 <th >对方账号</th>
                 <th >对方账号名称</th>
-                <th >对方开户行</th>
-                <th >操作</th>
             </tr>
 
             <% orderList.forEach(function(order){ %>
             <tr>
-                <td><%= order.createDate %> </td>
+                <td><%= order.createDate %></td>
                 <td><%= order.transactionNO %></td>
-                <td><%= helper.formatMoney(order.money) %></td>
+                <td><%= helper.formatMoney(order.money) %> </td>
                 <td><%= helper.formatMoney(order.balanceMoney) %></td>
-                <td>
-                    <% if(order.type==1){ %> 充值 <% } %>
-                    <% if(order.type==2){ %> 提现 <% } %>
-                    <% if(order.type==3){ %> 销售 <% } %>
-                    <% if(order.type==4){ %> 采购 <% } %>
-                </td>
+                <td><%= order.type %></td>
                 <td><%= order.otherFundAccount %></td>
                 <td><%= order.otherCompanyName %></td>
             </tr>
-
             <% }); %>
 
         </table>

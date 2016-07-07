@@ -33,7 +33,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             var $formDownloadDateFrom = $('[name=orderDownloadDateFrom]').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({max:true});
 
-
+            searchQuery.orderCategory = $formSelectOrderCategory.val();
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderCategory = this.value;
@@ -82,7 +82,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     searchQuery.orderSearchText = vm.orderSearchText;
                     searchQuery.orderDateFrom = $formDateFrom.val();
                     searchQuery.orderDateTo = $formDateTo.val();
-
+                    
                     console.log(searchQuery);
                     app.getFinancialDetailsApi(searchQuery);
                 },
@@ -134,7 +134,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     $( document ).ready( function() {
         app.init();
-        app.getFinancialDetailsApi();
+        app.getFinancialDetailsApi(searchQuery);
     });
 
     //提醒签订合同
@@ -215,6 +215,27 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         location.href="/confirmDelivery?orderId="+$(this).data("id");
     });
 
+    //提醒卖家结算
+    $(".notice-sellerSettle").click(function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#md_ok_2").off("click").on("click",function(){
+            $(".modal_2").modal('hide');
+        });
+        var orderId=$(this).data("id");
+        $.ajax({
+            url:"/toNoticeSellerToSettle?orderId="+orderId,
+            success:function(data){
+                if(data&&data.success){
+                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                }else{
+                    $("#modalInfo_2").text(data.error);
+                }
+                $(".modal_2").modal('show');
+            }
+        });
+    });
+
     //查看提货详情
     $(".btn-deliveryDetail").click(function(){
         location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
@@ -257,27 +278,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     //卖家修改结算单
     $(".btn-sellerUpdateSettle").click(function(){
         location.href="/settlement/settlementForm?type=2&id="+$(this).data("id");
-    });
-
-    //提醒卖家结算
-    $(".notice-sellerSettle").click(function(){
-        $("#modal_title_2").text("温馨提示");
-        $('#md_ok_2').val("确定");
-        $("#md_ok_2").off("click").on("click",function(){
-            $(".modal_2").modal('hide');
-        });
-        var orderId=$(this).data("id");
-        $.ajax({
-            url:"/toNoticeSellerToSettle?orderId="+orderId,
-            success:function(data){
-                if(data&&data.success){
-                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
-                }else{
-                    $("#modalInfo_2").text(data.error);
-                }
-                $(".modal_2").modal('show');
-            }
-        });
     });
 
     //提醒卖家退款

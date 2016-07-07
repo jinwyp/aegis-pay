@@ -19,7 +19,7 @@
         <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.totalMoney) %></i>元</span></li>
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.totalMoney) %>)</span></li>
       </ul>
-      <% if(order.buyerBalanceMoney>order.totalMoney) {%>
+      <% if(order.buyerBalanceMoney>=order.totalMoney) {%>
       <ul class="buyer">
         <li><input type="radio" checked /></li>
         <li>

@@ -50,7 +50,7 @@
                 <%if(typeof contractList && contractList.length>0){%>
                     <%for(var i in contractList){%>
                     <tr class="line">
-                        <td width="100"><%=contractList[i].signContractTime%></td>
+                        <td width="100"><%=dateformat(contractList[i].signContractTime)%></td>
                         <td width="120"><%=contractList[i].orderNO%></td>
                         <td width="120"><%=contractList[i].contractNO%></td>
                         <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>

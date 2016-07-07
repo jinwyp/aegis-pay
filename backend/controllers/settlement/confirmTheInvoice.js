@@ -51,11 +51,16 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-		if(replyData.data.receipt && replyData.data.receipt.templateUrl){
-            req.flash('imgs', replyData.data.receipt.templateUrl);
-        }
 		console.log('/* ---replyData-99988888--------------------------------------- */');
-		console.log(replyData);
+		//replyData.data.receiptTypeList = [
+		//	{ type: 'type_001', sequence: 1, name: '增值税专用发票' },
+		//	{ type: 'type_002', sequence: 2, name: '增值税专用发票_2' },
+		//	{ type: 'type_003', sequence: 3, name: '增值税专用发票_3' },
+		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }
+		//];
+		console.dir(replyData.data.receiptTypeList);
+		console.dir(replyData);
+		//console.log(replyData.receipt.companyName);
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 	});
 };
@@ -125,8 +130,7 @@ exports.invoiceNotes = function (req, res, next) {
 			editable : true
 		};
 		Object.assign(replyData, resBody);
-		req.flash('imgs', replyData.data.receipt.templateUrl);
-		console.log("-------------- replyData ---------------");
+		console.log("-------------- replyData -246--------------");
 		console.dir(replyData);
 
 		return res.render('settlement/addInvoiceNotes', replyData);			// 渲染页面(指定模板, 数据)
@@ -183,15 +187,16 @@ exports.downInvoiceTemplate = function (req, res, next) {
 
 // 图片预览.路由
 exports.imgViewApi = function (req, res, next) {
-	var key = req.query.key || 0;
-	var imgs = req.flash('imgs');
+	var key = req.query.key || '';
+	var imgSrc = config.view_file + key;
 
 	console.log('---imgViewApi-----------------------------------');
 	console.log(key);
-	console.log(imgs);
+	console.log(imgSrc);
 
-	res.download(imgs[key], path.basename(imgs[key]), function(err,data){
-		if(err) return next(err);
-	});
+	if(key) {
+		res.download(imgSrc, path.basename(imgSrc), function(err,data){
+			if(err) return next(err);
+		});
+	}
 };
-

@@ -38,13 +38,13 @@
             </ul>
         </div>
         <div class="agreement">
-            <input type="checkbox" name="checkbox" id="checkbox" checked />
-            <label for="checkbox" class="checkbox check"></label>
+            <input type="checkbox" name="checkbox" id="checkbox" />
+            <label for="checkbox" class="checkbox"></label>
             同意并签署<span id="agreement">《中信银行开通附属账户协议》</span>
         </div>
 
-        <div class="open-btn openAccount" >
-            <button id="open-btn">开通易煤网资金账户</button>
+        <div class="open-btn closeAccount" >
+            <button id="open-btn" disabled>开通易煤网资金账户</button>
         </div>
         <input type="hidden" id="userId" value="<%= user.id %>">
         <%- include agreement %>

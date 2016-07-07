@@ -32,24 +32,21 @@ var newDemo = exports.newDemo = function (req, res, next) {
     //        uri:'http://127.0.0.1:8888/test/',
     rq({
         type:'get',
-        uri:'http://127.0.0.1:8888/test/',
+        uri:'http://127.0.0.1:9091/query/',
         // qs:{file:'file1'},
         // contentType:'application/json',
         // qs:{
         //
         // },
         form:{
-            file:'sfs',
+            accno:'sfs',
             files:[{name:'23423',path:'23423'},{name:'424',path:'234'}]
         },
-            // fiels:[{name:'23423',path:'23423'},{name:'424',path:'234'}],
-            // files:JSON.stringify({file:[{name:'23423',path:'23423'},{name:'424',path:'234'}])
-            // files:{name:'sdfsd}
-
+        // fiels:[{name:'23423',path:'23423'},{name:'424',path:'234'}],
+        // files:JSON.stringify({file:[{name:'23423',path:'23423'},{name:'424',path:'234'}])
+        // files:{name:'sdfsd}
     },function(error, response, body){
-        // console.log(body);
-
-        res.end(JSON.stringify("body:"+error));
+        res.json(response.body);
     })
 };
 
