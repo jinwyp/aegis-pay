@@ -51,7 +51,9 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-		req.flash('imgs', replyData.data.receipt.templateUrl);
+		if(replyData.data.receipt && replyData.data.receipt.templateUrl){
+            req.flash('imgs', replyData.data.receipt.templateUrl);
+        }
 		console.log('/* ---replyData-99988888--------------------------------------- */');
 		console.log(replyData);
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)

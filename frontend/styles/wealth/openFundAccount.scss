@@ -62,6 +62,7 @@ a.btn_blue{
                   margin:1px 5px 0 0;
               }
               .smsWrapper{
+                  position:relative; 
                   display: inline-block; *display: inline; zoom:1; margin-left:5px;
                   width:298px; border:1px solid $color_border_gray;
                   input[type='text']{
@@ -70,6 +71,12 @@ a.btn_blue{
                   &.focus{
                       border-color:$color_blue;
                   }
+                  .icon-sendsms{
+                        position:absolute; right:-26px; top:11px;
+                        display: inline-block; *display: inline; zoom:1; 
+                        width: 18px; height:18px; background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -333px -643px;
+                        display: none;
+                    }
               }
           }
       }
@@ -128,3 +135,4 @@ a.btn_blue{
     animation: spin 2.5s infinite linear;
     -webkit-animation: spin2 2.5s infinite linear;
 }
+

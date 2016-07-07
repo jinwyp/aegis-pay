@@ -20,7 +20,7 @@ img.ccapImgcode{
 }
 .send_code{
     cursor:default;
-    &.disable{
+    &.btn_gray_small.disable{
         background-color: $color_dot;
     }
 }
@@ -39,6 +39,7 @@ input:-moz-placeholder { color:#d9d9d9; }
    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
    @include sprite($big-loading);
 }
+
 
 
 
