@@ -61,7 +61,7 @@ module.exports = exports = function(request, log) {
                             debugId    : this._debugId,
                             headers    : clone(this.headers),
                             statusCode : res.statusCode,
-                            body       : res.body
+                            body       : JSON.parse(res.body)
                         }, this)
                     }
 
