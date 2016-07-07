@@ -14,9 +14,9 @@ module.exports = function (app) {
      *
      * */
     app.locals.multiArgAppend = function (arg1, arg2, unit) {
-        if ((arg1 == 0 && arg2 == 0)||(arg1==undefined&&arg2==undefined)||(arg1==null&&arg2==undefined)) {
+        if ((arg1 === 0 && arg2 === 0)||(arg1===undefined&&arg2===undefined)||(arg1===null&&arg2===unll)) {
             return "--";
-        } else if (arg1 == arg2) {
+        } else if (arg1 === arg2) {
             return arg1 + " " + unit;
         } else {
             return arg1 + "-" + arg2 + " " + unit
@@ -24,7 +24,7 @@ module.exports = function (app) {
     }
 
     app.locals.singleArgAppend = function (arg, unit) {
-        if (arg == 0||arg==undefined||arg==null) {
+        if (arg === 0||arg===undefined||arg===null) {
             return "--";
         } else {
             return arg + " " + unit
@@ -33,7 +33,7 @@ module.exports = function (app) {
 
     app.locals.deliveryplaceAppend = function (deliveryprovince, deliveryplace, otherplace) {
         var content = deliveryprovince;
-        if (deliveryplace == '其它') {
+        if (deliveryplace === '其它') {
             content += otherplace;
         } else {
             content += deliveryplace;
@@ -85,7 +85,11 @@ module.exports = function (app) {
 
     //数字千分符
     app.locals.formatMoney = function (num, deg) {
-        return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        if(/^(0|[1-9][0-9]*)(.[0-9]{2})+$/.test(num)){
+            return (num + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        }else{
+            return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+        }
     }
 
     //截取后四位银行卡号
@@ -124,34 +128,17 @@ module.exports = function (app) {
         }
     };
     /*
-     * 格式化时间方法，返回拼接字符串(例：5000-7000 kcal/kg)
+     * 格式化时间方法，返回拼接字符串
      * @param obj    时间对象
-     * @param type   1(yyyy-MM-dd),2(yyyy-MM-dd HH:mm:ss)
      *
      * */
-    app.locals.dateformat = function (obj, type) {
-        if (obj == undefined) {
-            return '时间格式错误';
-        } else {
-            if (type == 1) {
-                return obj.year + "-" + obj.monthValue + "-" + obj.dayOfMonth;
-            } else if (type == 2) {
-                var second = null;
-                if (obj.second < 10) {
-                    second = obj.nano + obj.second;
-                } else {
-                    second = obj.second;
-                }
-                return obj.year + "-" + obj.monthValue + "-" + obj.dayOfMonth + " " + obj.hour + ":" + obj.minute + ":" + second;
-            } else {
-                return '请传入正确的格式化类型';
-            }
-        }
+    app.locals.dateformat = function (obj) {
+        return obj.replace(/-/g, ".")
     };
 
     app.locals.getStringVal = function (str) {
-        return typeof str == 'undefined' ? '' :
-            (str == null || str == 'null' || str == "undefined") ? '--':  str;
+        return typeof str === 'undefined' ? '' :
+            (str === null || str === 'null' || str === "undefined") ? '--':  str;
     }
 
     app.locals.clearEmpty = function (str) {
@@ -161,7 +148,7 @@ module.exports = function (app) {
     app.locals.targetIsEmpty = function (arg1, arg2) {
         if ((typeof arg1 === 'undefined' && typeof arg2 === 'undefined')
             || (arg1 == 0 && arg2 == 0)
-            || (arg1 == null && arg2 == null)) {
+            || (arg1 === null && arg2 === null)) {
             return true;
         } else {
             return false;
