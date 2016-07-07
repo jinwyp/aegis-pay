@@ -43,17 +43,22 @@ module.exports = function (app) {
 
     app.locals.sellInfoTitleAppend = function (deliveryprovince, deliveryplace, otherplace, originplace, pname, NCV02) {
         var content = app.locals.clearEmpty(deliveryprovince);
-        if (deliveryplace == '其它') {
+
+        if (deliveryplace === '其它') {
             content += app.locals.clearEmpty(otherplace);
         } else {
             content += app.locals.clearEmpty(deliveryplace);
         }
+
         content += app.locals.clearEmpty(originplace);
-        if (pname != '焦煤' && NCV02 != 0) {
+
+        if (pname !== '焦煤' && NCV02 !== 0) {
             content += NCV02;
             content += '大卡';
         }
+
         content += app.locals.clearEmpty(pname);
+
         return content;
     }
 
@@ -150,12 +155,11 @@ module.exports = function (app) {
     }
 
     app.locals.clearEmpty = function (str) {
-        return typeof str == 'undefined' ? '' :
-            (str == null || str == 'null' || str == "undefined") ? '':  str;
+        return typeof str === 'undefined' ? '' : (str === null || str === 'null' || str === "undefined") ? '':  str;
     }
 
     app.locals.targetIsEmpty = function (arg1, arg2) {
-        if ((arg1 == undefined && arg2 == undefined)
+        if ((typeof arg1 === 'undefined' && typeof arg2 === 'undefined')
             || (arg1 == 0 && arg2 == 0)
             || (arg1 == null && arg2 == null)) {
             return true;

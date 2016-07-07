@@ -72,9 +72,9 @@
                     <td width="100"><%=recordList[i].typeName%></td>
                     <td width="100" class="coal-target">
                         <div class="title" title="<%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
-                                recordList[i].otherHarbour,recordList[i].otherHarbour,recordList[i].coalType,recordList[i].NCV02)%>">
+                                recordList[i].otherHarbour,recordList[i].originPlace,recordList[i].coalType,recordList[i].ncv02)%>">
                             <%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
-                                    recordList[i].otherHarbour,recordList[i].otherHarbour,recordList[i].coalType,recordList[i].NCV02)%></div>
+                                    recordList[i].otherHarbour,recordList[i].originPlace,recordList[i].coalType,recordList[i].ncv02)%></div>
                         <div><span class="label">煤种:</span><%=recordList[i].coalType%></div>
                         <div class="title" title="<%=getStringVal(recordList[i].brandName)%>"><span class="label">品名:</span><%=getStringVal(recordList[i].brandName)%></div>
                         <div><span class="label">热值:</span><%= multiArgAppend(recordList[i].NCV,recordList[i].NCV02,"kcal/kg") %></div>
