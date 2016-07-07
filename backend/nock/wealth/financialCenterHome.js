@@ -15,8 +15,10 @@ financialCenterHomePersist
                     "companyName": "易煤网",
                     "userFundAccount": "1111111111",
                     "balanceMoney": 222000.00,
-                    "cashBankName": "建设银行",
-                    "cashBankAccount": "621488888888",
+                    //"cashBankName": "建设银行",
+                    "cashBankName": null,
+                    //"cashBankAccount": "6214830211655658",
+                    "cashBankAccount": null,
                     "cashBankCode": "3555555"
                 },
                 "recordList": [
