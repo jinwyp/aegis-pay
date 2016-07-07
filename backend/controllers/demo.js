@@ -5,10 +5,7 @@
 var path    = require('path');
 var config  = require('../config');
 var request = require('../libs/request');
-var apiHost = 'http://server.180.com/';
-var ejs     = require('ejs');
 
-var ejsHelper = require('../libs/ejshelper')({locals: {}});
 
 // 处理业务逻辑
 exports.demo = function (req, res, next) {
@@ -130,14 +127,5 @@ exports.home = function (req, res, next) {
 
 
 exports.test = function (req, res, next) {
-
-    var pdfHtmlTemplatePath = path.join(config.viewspdf, '/financialDetails/pdftemplate.ejs');
-
-    ejs.renderFile(pdfHtmlTemplatePath, {orderList:[], ejsHelper:ejsHelper.locals}, function (err, resultHtml) {
-        if (err) return next(err);
-
-        return res.send(resultHtml);
-    });
-
-    //return res.render('test', {});
+    return res.render('test', {});
 };
