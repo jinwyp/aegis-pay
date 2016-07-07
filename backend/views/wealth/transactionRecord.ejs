@@ -185,11 +185,10 @@
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-improveReceipt" value="完善开票信息" data-id="<%= recordList[i].id %>">
                         <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='TradeDisputing'){ %>
-                        <a target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">查看纠纷详情</a>
-                        <a class="mt-10" target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">详情</a>
+
+                        <a target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='TradeDisputeFinished'){ %>
-                        <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">查看纠纷详情</a>
-                        <a class="mt-10" target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">详情</a>
+                        <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='MakeMatch'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='Canceled'){ %>
