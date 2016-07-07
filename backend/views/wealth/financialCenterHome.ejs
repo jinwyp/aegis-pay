@@ -14,7 +14,7 @@
     <div class="financial-main">
         <div class="financial-header">
             <div class="header-left border-right">
-                <div class="username"><%= finance.companyName %></div>
+                <div class="username"><%= user.securephone %></div>
                 <div class="companyname"><%= finance.companyName %></div>
                 <div class="occupation"><span class="label">职务：</span>员工</div>
                 <ul>
@@ -26,24 +26,24 @@
                 </ul>
             </div>
             <div class="header-center border-right">
-                <div class="useraccount"><span class="label fs-14">易煤网资金账号：</span><%= finance.userFundAccount %></div>
+                <div class="useraccount"><span class="label fs-14">易煤网资金账户号：</span><%= blankFour(finance.userFundAccount) %></div>
                 <div class="center-operate">
                     <span class="balance">余额：<span class="orange"><%= formatMoney((finance.balanceMoney==null||finance.balanceMoney==undefined)==true? 0 : finance.balanceMoney)%>元</span></span>
-                    <a class="look" href="/wealth/financialDetails">查看</a>
-                    <a class="btn-option mr-10" href="/drawCash">提现</a>
-                    <a class="btn-option recharge mr-10">充值</a>
+                    <a class="a-link look" href="/wealth/financialDetails">查看</a>
+                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option" href="/drawCash">提现</span>
+                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option">充值</span>
                 </div>
             </div>
             <div class="header-right">
                 <div class="bank-card">
                     <span class="bank-icon ml-20"></span>
                     <span class="fs-24 ml-10 account-color">银行账户</span>
-                    <a class="manage-color" href="/wealth/addAccount">管理</a>
+                    <a class="a-link manage-color" href="/wealth/addAccount">管理</a>
                 </div>
                 <% if(finance.cashBankAccount==null){ %>
                 <div class="bank-add">
                     <a class="add-icon"></a>
-                    <a class="label-add">添加银行账户</a>
+                    <a class="a-link label-add">添加银行账户</a>
                 </div>
                 <% }else{ %>
                 <div class="bank-info">
@@ -133,7 +133,7 @@
                         <% }else if(recordList[i].status=='TradeClosed'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else{ %>
-                        <%=recordList[i].status%>
+                            <a><%=recordList[i].status%></a>
                         <% } %>
                         <% }else{ %>
                         <% if(recordList[i].status=='WaitSignContract'){ %>
@@ -182,7 +182,7 @@
                         <% }else if(recordList[i].status=='TradeClosed'){ %>
                         <a target="_blank" href="/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                         <% }else{ %>
-                        <%=recordList[i].status%>
+                        <a><%=recordList[i].status%></a>
                         <% } %>
                         <% } %>
                     </td>
