@@ -34,7 +34,7 @@ require(['jquery', 'pay.smscode'], function($, smscode){
             var self = this;
             // blur validate 
             // var eventValid = [
-            //     [['$pass1', /^((?=.*\d)(?=.*[a-zA-Z])|(?=.*[_(^\w)])(?=.*[a-zA-Z])).{6,20}$/], '$passFormatErr', '支付密码格式不正确！', 'blur'],
+            //     [['$pass1', /^((?=.*\d)(?=.*[a-zA-Z])|(?=.*[_\W])(?=.*[a-zA-Z])).{6,20}$/], '$passFormatErr', '支付密码格式不正确！', 'blur'],
             //     [['$pass2', '$pass1'], '$passDiffErr', '两次密码输入不一致！', 'blur'],
             //     // [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！', 'blur'],
             // ];
@@ -51,7 +51,7 @@ require(['jquery', 'pay.smscode'], function($, smscode){
                 if($(this).hasClass('disable')) return;
                 var requiredValid = [
                                     ['$pass1', '$passFormatErr', '请输入密码！'],
-                                    [['$pass1', /^((?=.*\d)(?=.*[a-zA-Z])|(?=.*[_(^\w)])(?=.*[a-zA-Z])).{6,20}$/], '$passFormatErr', '支付密码格式不正确！'],
+                                    [['$pass1', /^((?=.*\d)(?=.*[a-zA-Z])|(?=.*[_\W])(?=.*[a-zA-Z])).{6,20}$/], '$passFormatErr', '支付密码格式不正确！'],
                                     ['$pass2', '$passDiffErr', '请再次输入密码！'],
                                     [['$pass2','$pass1'], '$passDiffErr', '两次密码输入不一致！'],
                                     [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！'],
