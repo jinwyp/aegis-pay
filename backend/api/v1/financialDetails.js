@@ -1,5 +1,5 @@
 /**
- * Created by tttt on 6/16/16.
+ * Created by JinWYP on 6/16/16.
  */
 
 
@@ -7,6 +7,8 @@ var request    = require('../../libs/request');
 
 var checker    = require('../../libs/datachecker');
 var api_config = require('./api_config');
+
+var ejsHelper  = require('../../libs/ejshelper')({locals: {}});
 
 
 
@@ -40,6 +42,18 @@ exports.financialDetailsApi = function (req, res, next) {
         if (err) return next(err);
 
         if (response.statusCode === 200 && body.success) {
+
+            body.data.payments.list.forEach(function(order){
+                //order.createDate = order.createDate.substr(0,4) + '.' + order.createDate.substr(4,2) + '.' + order.createDate.substr(6,2)
+                order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1.$2.$3");
+                
+                if (order.type === 1){order.type = '充值'}
+                if (order.type === 2){order.type = '提现'; order.money = -order.money;}
+                if (order.type === 3){order.type = '销售'}
+                if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+
+            });
+
             return res.json(body.data.payments);
         }else {
             return res.json([]);

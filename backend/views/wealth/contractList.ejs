@@ -19,12 +19,12 @@
                 <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
                 <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
-                <span>交易编号:</span>
+                <span>编号:</span>
                 <select name="type" id="searchType">
                     <option value="0">全部</option>
-                    <option value="1" <%if(type==1){ %>selected<% } %>>订单编号</option>
-                    <option value="2" <%if(type==2){ %>selected<% } %>>合同编号</option>
-                    <option value="3" <%if(type==3){ %>selected<% } %>>对方公司名称</option>
+                    <option value="1" <%if(type===1){ %>selected<% } %>>订单编号</option>
+                    <option value="2" <%if(type===2){ %>selected<% } %>>合同编号</option>
+                    <option value="4" <%if(type===4){ %>selected<% } %>>对方公司名称</option>
                 </select>
                 <input type="text" name="content" class="iIpt iIpt_sm record-number content" id="content" value="<%=clearEmpty(content)%>"/>
 
@@ -50,7 +50,7 @@
                 <%if(typeof contractList && contractList.length>0){%>
                     <%for(var i in contractList){%>
                     <tr class="line">
-                        <td width="100"><%=contractList[i].signContractTime%></td>
+                        <td width="100"><%=dateformat(contractList[i].signContractTime)%></td>
                         <td width="120"><%=contractList[i].orderNO%></td>
                         <td width="120"><%=contractList[i].contractNO%></td>
                         <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>

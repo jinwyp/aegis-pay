@@ -61,7 +61,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 return this.showErrMsg($companyPhone, "请输入公司电话");
             } else if ( companyPhone.length > 13 ) {
                 return this.showErrMsg($companyPhone, "请输入正确的公司电话,最多13位");
-            } else if ( ! /^[\d-]*$/.test(companyPhone) ) {
+            } else if ( ! /^\d{3,4}-\d{7,8}$/.test(companyPhone) ) {
                 return this.showErrMsg($companyPhone, "请输入正确的公司电话,如021-66787788");
             } else {
                 return this.showErrMsg($companyPhone, "");
@@ -75,7 +75,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 return this.showErrMsg($companyFax, "请输入公司传真");
             } else if ( companyFax.length > 13 ) {
                 return this.showErrMsg($companyFax, "请输入正确的公司纯真,最多13位");
-            } else if ( ! /^[\d-]*$/.test(companyFax) ) {
+            } else if ( ! /^\d{3,4}-\d{7,8}$/.test(companyFax) ) {
                 return this.showErrMsg($companyFax, "请输入正确的公司传真,如021-66787788");
             } else {
                 return this.showErrMsg($companyFax, "");

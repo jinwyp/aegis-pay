@@ -1,6 +1,21 @@
 /**
- * Created by tttt on 6/21/16.
+ * Created by JinWYP on 6/21/16.
+ *
+ * 生成EXCEL 文件xlsx
+ * @param {Object} options - 参数必填
+ * @param {string} [options.templatePath] - xlsx模版路径。 可选参数
+ * @param {string} options.savePath - 生成文件的路径。 必填参数
+ * @param {Array} options.dataList - 数据源。 必填参数
+ * @param {Array} [options.propertyList] - 要输出指定字段的列表,如果不提供则输出所有字段。 可选参数
+ * @param {Array} [options.titleList] - 第一行表头数组,如果不提供表头默认使用字段名称代替。 可选参数
+ *
+ * @param {callback} [callback] - 提供处理数据的回调函数, 可以用来生成指定的单元格格式或数据格式。 可选参数
+ * @param {string} [key] - 回调函数提供的第一个参数, 该数据的属性字段名
+ * @param {string} [value] - 回调函数提供的第二个参数, 该数据的值
+ * @returns {string|number|boolean}  回调函数需要返回一个值,用来生成单元格的值
  */
+
+
 
 var XLSX = require('xlsx');
 var path = require('path');
@@ -41,7 +56,7 @@ function getWorkSheet(workbook){
 function generateCell(value, type){
     var cellClone = {v : '', t : 's'};
 
-    if (value) {
+    if (typeof value !== 'undefined' && value !== null) {
         cellClone.v = value;
 
         if (typeof cellClone.v === 'number') {
@@ -102,14 +117,12 @@ function generateSheet(worksheet, sourceDataList, titleLabelList, propertyList, 
     // 从第二行写入内容
     for (var row = 0; row < total.row; row++){
         for (var column = 0; column < total.column; column++){
-
             var currentData = sourceDataList[row][propertyList[column]];
 
-            if (isFunction(callback)) callback(currentData);
+            if (isFunction(callback)) callback(propertyList[column], currentData);
 
-            if (currentData) {
-                cell = generateCell(currentData)
-            }
+            cell = generateCell(currentData);
+            //console.log(row, column, currentData, cell.v, cell.t)
             worksheet[XLSX.utils.encode_cell({c:column, r : row + 1})] = cell;
         }
     }
@@ -117,7 +130,6 @@ function generateSheet(worksheet, sourceDataList, titleLabelList, propertyList, 
     worksheet['!ref'] = XLSX.utils.encode_range(range);
     return worksheet;
 }
-
 
 
 

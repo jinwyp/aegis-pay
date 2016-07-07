@@ -15,7 +15,7 @@
                 <span class="statusHr"></span>
                 <span class="statusDot"><%= i+1 %></span>
                 <span class="stepName"><%= obj.stepName %></span>
-                <span class="stepDate"><%= obj.stepDate ? dateFormat(obj.stepDate, 'YYYY-MM-DD HMS') : '' %></span>
+                <span class="stepDate"><%= obj.stepDate ? obj.stepDate : '' %></span>
             </li>
         <% }%>
     </ul>

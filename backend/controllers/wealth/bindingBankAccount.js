@@ -107,6 +107,30 @@ exports.childBankName = function (req, res, next) {
 
 };
 
+// 获取所有银行
+exports.childAllBankName = function (req, res, next) {
+    var cityCode = req.query.cityCode,
+        bankCode = req.query.bankCode,
+        childBankName = req.body.childBankName;
+    var url = api_config.childAllBankName+"/" + cityCode+"/"+bankCode;
+
+    request.get({
+        qs:{
+            childBankName:childBankName
+        },
+        url : url
+    }, function (err, data) {
+        if (err) return next(err);
+        if (data){
+            var source  = JSON.parse(data.body);
+            res.send({
+                childBankName:source
+            });
+        }
+    });
+
+};
+
 // 提交按钮
 exports.bindingBankAccountSubmit = function (req, res, next) {
     var body = req.body;
