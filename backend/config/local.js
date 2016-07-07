@@ -11,6 +11,7 @@ var config = {
 
     file_path: {
         root : path.join(__dirname, '../../../files/pay'),
+        adminroot: path.join(__dirname, '../../../files/pay'),
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',
@@ -23,6 +24,7 @@ var config = {
     
     views       : path.join(__dirname, '../views'),
     viewspdf    : path.join(__dirname, '../views/global/pdftemplate'),
+    view_file   : path.join(__dirname, '../../../files/pay/compact/'),             // 图片实际地址
 
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',

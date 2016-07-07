@@ -152,7 +152,7 @@ exports.sendCode = function (req, res, next) {
         var sms    = generate_code(smsType);
         var params = {
             "phone" : req.body.customPhone || userInfo.securephone || userInfo.telephone,
-            "message" : sms
+            "message" : '您的验证码是：' + sms
         };
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
             if (err) return next(err);

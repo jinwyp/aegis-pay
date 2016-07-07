@@ -32,8 +32,8 @@ var sellerDeliveryController  = require('../../controllers/sellerDelivery');
 var returnDetailController    = require('../../controllers/returnDetail');
 var disputeComplete           = require('../../controllers/disputeComplete');                   //纠纷申请完成页面
 var disputeDetail             = require('../../controllers/disputeDetail');                     //纠纷详情页
-var disputeSellerDetail             = require('../../controllers/disputeSellerDetail');         //卖家查看纠纷详情页
-var disputeSuccess             = require('../../controllers/disputeSuccess');                   //卖家查看纠纷详情页
+var disputeSellerDetail       = require('../../controllers/disputeSellerDetail');               //卖家查看纠纷详情页
+var disputeSuccess            = require('../../controllers/disputeSuccess');                    //卖家查看纠纷详情页
 
 var signCtrl                  = require('../../controllers/sign');                              //支付模块
 var confirmComplete           = require('../../controllers/confirmComplete');                   //确认完成页面
@@ -88,7 +88,7 @@ router.post('/settlement/submitInvoice', confirmTheInvoiceControl.submitInvoiceI
 router.get('/settlement/addInvoiceNotes', confirmTheInvoiceControl.invoiceNotes);               //结算单.开票－开票备注 页面路由
 router.post('/settlement/submitInvoiceNotes', confirmTheInvoiceControl.submitInvoiceNotes);     //结算单.开票－提交开票备注
 router.get('/settlement/downInvoiceTemplate', confirmTheInvoiceControl.downInvoiceTemplate);    //结算单.开票－下载开票模板
-router.get('/settlement/viewInvoiceInfo', confirmTheInvoiceControl.viewInvoiceInfo);            //结算单.开票－预览开票信息
+router.get('/settlement/imgViewApi', confirmTheInvoiceControl.imgViewApi);                      //结算单.开票－图片预览 #公用, 多张传?key=i
 router.get('/settlement/sureReceiveReceipt', orderController.sureReceiveReceipt);               //结算-确认收到发票
 
 //纠纷
@@ -121,7 +121,8 @@ router.get('/compactDetail', compactController.compactDetail);                  
 //=========================财富管理中心路由================================
 //首页
 router.get('/', wealthCenter.checkFundAccount);                                                 //财富管理中心－初始化
-router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                 //开通资金账户
+// router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                 //开通资金账户
+router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页

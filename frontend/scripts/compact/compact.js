@@ -8,12 +8,14 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
             $('#signCompact input[name="version"]').val($(data).find('input[name="version"]').val());
             $('.compactContainer').replaceWith(data);
             $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
+            $('#signCompact .submit').removeClass('disable');
             self.flexslider();
             self.lightbox();
           })
         }else{
           self.flexslider();
           self.lightbox();
+          $('#signCompact .submit').removeClass('disable');
           $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
         }
       },
