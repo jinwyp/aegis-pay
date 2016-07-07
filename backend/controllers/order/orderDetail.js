@@ -59,26 +59,27 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 stepList : [
                     {
                         stepName : '提交订单',
-                        stepDate : source.data.order.createTime == null ? "" : source.data.order.createTime
+                        stepDate : source.data.order.createTime||""
                     },
                     {
                         stepName : '签订合同',
-                        stepDate : source.data.order.signContractTime == null ? "" : source.data.order.signContractTime
+                        stepDate : source.data.order.signContractTime ||""
                     },
                     {
                         stepName : '付款',
-                        stepDate : source.data.order.paymentTime == null ? "" : source.data.order.paymentTime
+                        stepDate : source.data.order.paymentTime || ""
                     },
                     {
                         stepName : '确认提货',
-                        stepDate : source.data.order.confirmDeliveryTime == null ? "" : source.data.order.confirmDeliveryTime
+                        stepDate : source.data.order.confirmDeliveryTime ||""
                     },
                     {
                         stepName : '结算',
-                        stepDate : source.data.order.settleAccountTime == null ? "" : source.data.order.settleAccountTime
+                        stepDate : source.data.order.settleAccountTime ||""
                     }
                 ]
             };
+            logger.debug("typeof:"+ typeof source.data.order.createTime);
             logger.debug('status-----------------'+source.data.order.createTime);
             logger.debug('status-----------------'+source.data.order.signContractTime);
             logger.debug('status-----------------'+source.data.order.paymentTime);
