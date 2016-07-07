@@ -11,7 +11,7 @@ define(['jquery', 'validator'],function($, validator){
         },
         payPassword: function(password){
             // return !!(password && (typeof password == 'string') && validator.isLength(password, { min: 6, max: 20}));
-            return !!(password && /^(\w){6,16}$/.test(password));
+            return !!(password && /^((?=.*\d)(?=.*[a-zA-Z])|(?=.*[_\W])(?=.*[a-zA-Z])).{6,20}$/.test(password));
         },
         deliveryAmount: function(deliveryAmount){
             return !!(deliveryAmount && validator.isInt(deliveryAmount, { min: 1, max: 999999999}));

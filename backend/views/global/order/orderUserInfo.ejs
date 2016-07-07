@@ -40,7 +40,7 @@
                 <li class="order-item"><div class="div-label">付款账号：</div><div class="div-value"><%= order.buyerFundAccount %></div></li>
                 <% } %>
                 <% if(order.createtime!=null){ %>
-                <li class="order-item"><div class="div-label">成交时间：</div><div class="div-value"><%= dateformat(order.createtime,"YYYY-MM-DD HH:mm:ss") %></div></li>
+                <li class="order-item"><div class="div-label">成交时间：</div><div class="div-value"><%= order.createtime %></div></li>
                 <% } %>
                 <li class="order-item"><div class="div-label">买家公司：</div><div class="div-value"><%= order.buyerCompanyName %></div></li>
                 <li class="order-item"><div class="div-label">联系电话：</div><div class="div-value"><%= order.buyerLoginPhone %></div></li>

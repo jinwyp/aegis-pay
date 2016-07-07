@@ -33,7 +33,7 @@ exports.settlementInfo = function (req, res, next) {
             };
 
             //渲染页面
-            req.flash('imgs', content.data.receipt.templateUrl);           // 读取
+            //req.flash('imgs', content.data.receipt.templateUrl);           // 读取
             
             return res.render('settlement/settlementInfo', content);
         }

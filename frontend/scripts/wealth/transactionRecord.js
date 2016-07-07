@@ -53,11 +53,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
             }else if($searchType.val()==3){
                 $content.attr("disabled",false);
                 $content.removeClass("disabled-bg");
-                $content.attr("placeholder","请输入交易流水号");
+                $content.attr("placeholder","请输入流水号");
             }else if($searchType.val()==4){
                 $content.attr("disabled",false);
                 $content.removeClass("disabled-bg");
-                $content.attr("placeholder","请输入公司名称");
+                $content.attr("placeholder","请输入对方公司名称");
             }
         }
     };
@@ -433,34 +433,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
         location.href="/downloadContract?orderId="+$(this).data("id");
         //alert('暂无配置下载路径');
     });
-
-    //--------------------------结算管理模块的操作-----------------------------
-    ////修改结算
-    //$(".btn-updateSettle").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-    ////确认结算
-    //$(".btn-confirmSettle").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-    ////补款
-    //$(".btn-pay").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-    ////完善开票信息
-    //$(".btn-updateInfo").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-    ////结算
-    //$(".btn-settle").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-    ////退款
-    //$(".btn-returnMoney").click(function(){
-    //    window.open(host+"/order/orderClose?id="+$(this).data("value"));
-    //});
-
-
 
     //搜索form表单提交
     $("#submitSearch").on("click",function(event, pageno){

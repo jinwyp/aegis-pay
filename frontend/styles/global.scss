@@ -31,14 +31,14 @@ img.ccapImgcode{
 input:-moz-placeholder { color:#d9d9d9; }
 
 
-.icon-secure-tip{
-   display:inline-block; *display:inline; zoom:1; vertical-align: middle;
-   @include sprite($secure-tip);
-}
-.icon-big-loading{
-   display:inline-block; *display:inline; zoom:1; vertical-align: middle;
-   @include sprite($big-loading);
-}
+// .icon-secure-tip{
+//    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+//    @include sprite($secure-tip);
+// }
+// .icon-big-loading{
+//    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
+//    @include sprite($big-loading);
+// }
 
 
 
