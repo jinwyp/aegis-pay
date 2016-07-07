@@ -51,8 +51,8 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-
-		console.log('/* ---replyData---------------------------------------- */');
+		req.flash('tpl', replyData.data.receipt.templateUrl);
+		console.log('/* ---replyData-99988888--------------------------------------- */');
 		console.log(replyData);
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 	});

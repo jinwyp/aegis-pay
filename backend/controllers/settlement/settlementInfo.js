@@ -29,6 +29,7 @@ exports.settlementInfo = function (req, res, next) {
                 data: {
                     receipt:source.data.receipt
                 }
+
             };
 
             //渲染页面

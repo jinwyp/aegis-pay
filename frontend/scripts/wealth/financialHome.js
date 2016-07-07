@@ -64,6 +64,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : '',
+                orderShowLoading  : true,
                 orderList        : [],
 
                 configPagination : {
@@ -76,6 +77,8 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
                 searchOrder : function(event){
                     event.preventDefault();
+
+                    vm.orderShowLoading = true;
                     searchQuery.orderSearchText = vm.orderSearchText;
                     searchQuery.orderDateFrom = $formDateFrom.val();
                     searchQuery.orderDateTo = $formDateTo.val();
@@ -105,6 +108,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 success:function(data){
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
+                    vm.orderShowLoading = false;
                 }
             })
         },

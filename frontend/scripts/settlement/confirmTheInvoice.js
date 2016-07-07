@@ -87,7 +87,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 bankName = $.trim($bankName.val());
             if ( bankName.length == 0 ) {
                 return this.showErrMsg($bankName, "请输入银行名称");
-            } else if ( bankName.length > 25 ) {
+            } else if ( bankName.length > 50 ) {
                 return this.showErrMsg($bankName, "请输入正确的银行名称,最多50位");
             } else if ( ! /^[a-zA-Z\u4e00-\u9fa5]*$/.test(bankName) ) {
                 return this.showErrMsg($bankName, "请输入正确的银行名称");
@@ -236,11 +236,11 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     /* ---附件交互---------------------------------------- */
     var $tempAdd = $('#tempAdd'),
-        $editFile = $('#editFile'),
+        $editFile = $('#editFile'),         //file input
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
         // $fileId = $('#fileId'),
-        $fileId = $('#templateUrl'),
+        $fileId = $('#templateUrl'),        //file id
         $fileViewImg = $('.fileViewImg'),
         $fBox_1 = $('.fBox_1'),
         $fBox_2 = $('.fBox_2');
@@ -283,7 +283,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     fileObj = file;
                 });
                 $fileViewImg.attr('src', fileObj.url);
-                $fileId.val(fileObj.url);
+                $fileId.val(fileObj.id);
             }
         });
     });
@@ -294,6 +294,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             $fBox_1.hide();
             $fBox_2.show();
             $fileViewImg.attr('src', '');
+            $fileId.val('');
         });
     });
 
