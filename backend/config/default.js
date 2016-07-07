@@ -48,6 +48,7 @@ var config = {
 
     views       : 'views',
     viewspdf    : 'views/global/pdftemplate',
+    view_file   : '/app/files/pay/compact/',             // 图片实际地址
 
     member_address: 'http://10.100.20.3:3000',
     site_page: 'https://www.yimei180.com',

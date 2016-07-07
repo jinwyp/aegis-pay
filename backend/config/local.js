@@ -23,6 +23,7 @@ var config = {
     
     views       : path.join(__dirname, '../views'),
     viewspdf    : path.join(__dirname, '../views/global/pdftemplate'),
+    view_file   : path.join(__dirname, '../../../files/pay/compact/'),             // 图片实际地址
 
     passport   : {
         member     : 'http://member-local.yimei180.com:3000',

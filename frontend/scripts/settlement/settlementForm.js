@@ -204,7 +204,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename
+                                +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.id +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
@@ -231,7 +232,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                     if(data.success) {
                         $.each(data.attach, function(ind, file) {
-                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.url +'"></span></p>';
+                            htmlStr += '<p class="fileLab mb10"><span class="fileLab_name">'+ file.filename
+                                +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.id +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
                     }
