@@ -23,6 +23,12 @@
     .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList{border-bottom:1px solid #ccc;padding:5px 0;padding-left:5px;font-size:12px;color:#666;background:#fff;cursor:pointer;}
     .accountInfoWrap .accountInfoUl .childBankName .childBankList .bankNameList:hover{background: #f3fcff;}
     .accountInfoWrap .accountInfoUl .childBankName .childBankList .borderNone{border:none;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap{position: relative}
+    .accountInfoWrap .accountInfoUl .childBankName .accountInfoInput:hover{border:1px solid #00b6ef;}
+
+    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap::after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;  border-color: #9a9da4 transparent transparent;  -webkit-transition: all .4s ease 0s;  -moz-transition: all .4s ease 0s;  -o-transition: all .4s ease 0s;  transition: all .4s ease 0s;}
+    .accountInfoWrap .accountInfoUl .childBankName .open::after{-webkit-transform: rotate(180deg);  -moz-transform: rotate(180deg);  -ms-transform: rotate(180deg);  transform: rotate(180deg);  animation-fill-mode: forwards;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap:hover::after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;border-color: #00b6ef transparent transparent;}
 
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{border-bottom:1px solid #e4e4e4;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}
@@ -46,14 +52,14 @@
     .accountInfoWrap .accountInfoUl .accountInfoLi p{font-size: 12px;color:#666;padding-top: 6px;margin-left: 110px;margin-left: 154px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi p i{display: inline-block;width:15px;height:15px;background: url("/static/images/sprite_ico.png") no-repeat -281px -643px;vertical-align: top;margin-right: 2px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi p span.strengthTxt{color:#01b7ec;width:auto;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput{width:300px;height:40px;line-height: 40px;font-size:12px;padding-left:10px;border:1px solid #ccc;border-radius:2px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput{width:300px;height:40px;line-height: 40px;font-size:12px;padding-left:10px;border:1px solid #ccc;border-radius:2px;transition: border-color ease-in-out .3s}
     .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoInput:focus{border: 1px solid #00b7ec}
 
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap{position: relative;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap i{display: inline-block;width:20px;height:20px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -331px -643px;vertical-align: middle;visibility:hidden;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;cursor:pointer;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:29px;top:5px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown:hover{text-decoration: none;opacity: .8;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .disable{font-size: 12px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .disable{font-size: 12px;background: #c5c4c4}
     .accountInfoWrap .btnWrap{padding-left: 326px;padding-top: 50px;}
     .accountInfoWrap .btnWrap .haveRead{margin-right: 10px;}
     .accountInfoWrap .btnWrap label{font-weight:normal;}
@@ -62,8 +68,8 @@
     .accountInfoWrap .btnWrap a.submitInfo{width:180px;height:40px;margin-top:10px;color:#fff;font-size: 16px;line-height: 40px;text-align:center;border-radius:2px;background: #00b6ef;display: block;}
     .accountInfoWrap .btnWrap a.submitInfo:hover{text-decoration: none;opacity: .8;}
 
-
-
+    //增加样式
+    .options:hover{border:1px solid #00b6ef!important;border-top:none!important;}
   }
 
 }
@@ -71,6 +77,7 @@
 .autocomplete-suggestions {
   border: 1px solid #e4e4e4; background: #fff; color: #333; overflow: auto;
   box-sizing: border-box;
+  width:300px;
   & strong { font-weight: normal; color: #00b7ec; }
 
   .autocomplete-suggestion {

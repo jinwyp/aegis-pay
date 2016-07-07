@@ -121,8 +121,7 @@ router.get('/compactDetail', compactController.compactDetail);                  
 //=========================财富管理中心路由================================
 //首页
 router.get('/', wealthCenter.checkFundAccount);                                                 //财富管理中心－初始化
-// router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                 //开通资金账户
-router.get('/wealth/open-fund-account', wealthCenter.openFundAccount);
+router.get('/wealth/open-fund-account', wealthCenter.isFundAccountExist, wealthCenter.openFundAccount);                 //开通资金账户
 router.get('/wealth/open-fund-account/waiting', wealthCenter.openFundAccountWait);              //正在开通资金账户页面
 router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSuccess);           //开通成功页面
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
@@ -147,7 +146,8 @@ router.get('/ucenter/paypassword/reset', paypasswordCtl.reset);                 
 router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPhonePage);       //修改或忘记密码身份验证
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);           //忘记密码－设置密码
 router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess); //重置密码成功
-router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);       //修改密码－设置密码
+// router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);       //修改密码－设置密码
+router.get('/ucenter/paypassword/modify/set', paypasswordCtl.modifyReset); 
 
 //交易管理
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);                 //交易记录
