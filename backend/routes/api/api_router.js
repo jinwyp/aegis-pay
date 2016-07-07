@@ -63,6 +63,7 @@ router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeli
 router.get('/confirmComplete/test', confirmComplete.confirmComplete);
 router.post('/disputeApply', disputeApply.disputeApply);
 router.post('/disputeApplySubmit', disputeApply.disputeApplySubmit);
+router.get('/disputeImg', disputeApply.disputeImg);
 router.post('/disputeCancel', disputeCancel.disputeCancel);
 router.post('/disputeBackReason', disputeSellerDetail.disputeBackReason);
 router.post('/wealth/checkUserCompany', wealthCenter.checkUserCompany);                                  //财富管理中心－初始化

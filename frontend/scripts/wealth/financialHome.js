@@ -33,7 +33,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             var $formDownloadDateFrom = $('[name=orderDownloadDateFrom]').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({max:true});
 
-
+            searchQuery.orderCategory = $formSelectOrderCategory.val();
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderCategory = this.value;
@@ -82,7 +82,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     searchQuery.orderSearchText = vm.orderSearchText;
                     searchQuery.orderDateFrom = $formDateFrom.val();
                     searchQuery.orderDateTo = $formDateTo.val();
-
+                    
                     console.log(searchQuery);
                     app.getFinancialDetailsApi(searchQuery);
                 },
@@ -134,7 +134,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     $( document ).ready( function() {
         app.init();
-        app.getFinancialDetailsApi();
+        app.getFinancialDetailsApi(searchQuery);
     });
 
     //提醒签订合同

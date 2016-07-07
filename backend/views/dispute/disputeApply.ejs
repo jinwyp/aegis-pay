@@ -132,8 +132,8 @@
                             <div class="fileList">
                                 <%if (files !=undefined){%>
                                     <%for(var i=0;i<files.length;i++){%>
-                                        <div class="preview" data-id=<%=files[i].path %> data-name= <%=files[i].name%>>
-                                            <img src=<%= files[i].path %> >
+                                        <div class="preview" data-id=<%= substrId(files[i].path) %> data-name= <%=files[i].name%>>
+                                            <img src=/api/disputeImg?imgid=<%= i %>>
                                             <div class="modifyFile">
                                                 <a href="javascript:void(0)" class="modify" data-id=<%= files[i].path %> data-name=<%=files[i].name%>>修改</a><a href="javascript:void(0)" class="delete">删除</a>
                                             </div>

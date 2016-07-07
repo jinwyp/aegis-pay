@@ -139,6 +139,11 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	var url = apiHost.sellerSubmit;
 		//url = apiHost.host + 'settlement/sellerSubmit';			// TODO: 本地
 
+	for(var i = 0, s = req.body.files.length; i < s; i++) {
+		var file = req.body.files[i];
+		file.path = config.view_file + file.path;
+	}
+
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		if (err) return next(err);
 		if (data && data.body){
@@ -207,15 +212,24 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 	var url = apiHost.buyersAuditing;
 		//url = apiHost.host + 'settlement/buyersAuditing';			// TODO: 本地
 
-	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
-		if (err) return next(err);
+	for(var i = 0, s = req.body.files.length; i < s; i++) {
+		var file = req.body.files[i];
+		file.path = config.view_file + file.path;
+	}
+	console.log('--结算审核通过-111-------------------------------------');
+	console.log(req.body);
 
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
+		console.log('--结算审核通过-222-------------------------------------');
+		console.log(err);
+		console.log(data);
+
+		if (err) return next(err);
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 			if(replyData.success){
 				zipFileMerge(req, res, next, 'zip_jsd_scgz_'+req.body.orderId);		// 压缩合并处理
 			}
-
 			return res.send(replyData);
 		}else{
 			return next(new Error('Nock error!'))

@@ -6,6 +6,7 @@ define(['jquery', 'pay.upload'],function($, upload){
 		},
 		signCompact: function(){
 			$('#signCompact .submit').click(function(e){
+				if($(this).hasClass('disable')) {return ;}
 				if(!$('input[name="file_id"]').size()>0 || !$('input[name="file_id"]').val()){
 					$('#signCompact .tip-error').text('请上传已盖章合同！').show();
 					return ;

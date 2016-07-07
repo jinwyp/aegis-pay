@@ -32,23 +32,31 @@ require(['jquery', 'pay.smscode'], function($, smscode){
         },
         bindEvent: function(){
             var self = this;
-            // validate
-            var eventValid = [
-                [['$pass1', /^(\w){6,16}$/], '$passFormatErr', '支付密码格式不正确！', 'blur'],
-                [['$pass2', '$pass1'], '$passDiffErr', '两次密码输入不一致！', 'blur'],
-                // [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！', 'blur'],
-            ];
-            self.eventValidBind(eventValid);
-
+            // blur validate 
+            // var eventValid = [
+            //     [['$pass1', /^(\w){6,16}$/], '$passFormatErr', '支付密码格式不正确！', 'blur'],
+            //     [['$pass2', '$pass1'], '$passDiffErr', '两次密码输入不一致！', 'blur'],
+            //     // [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！', 'blur'],
+            // ];
+            // self.eventValidBind(eventValid);
+            // blue border
+            $('input[name="sms_code"]').on('focus', function(e){
+                $(this).parent().addClass('focus');
+            });
+            $('input[name="sms_code"]').on('blur', function(e){
+                $(this).parent().removeClass('focus');
+            })
             // 下一步
             self.els.$submit.click(function(){
                 if($(this).hasClass('disable')) return;
                 var requiredValid = [
                                     ['$pass1', '$passFormatErr', '请输入密码！'],
+                                    [['$pass1', /^(\w){6,16}$/], '$passFormatErr', '支付密码格式不正确！'],
                                     ['$pass2', '$passDiffErr', '请再次输入密码！'],
-                                    [['$pass1','$pass2'], '$passDiffErr', '两次密码输入不一致！'],
+                                    [['$pass2','$pass1'], '$passDiffErr', '两次密码输入不一致！'],
                                     [['$payPhone', /^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/], '$payPhoneErr', '请输入有效的手机号！'],
-                                    [['$sms_code', /\w{6,6}/], '$smscodeErr', '请输入有效的手机验证码！']
+                                    [['$sms_code', /\w+/], '$smscodeErr', '请输入验证码！'],
+                                    [['$sms_code', /\w{6,6}/], '$smscodeErr', '验证码输入有误！']
                                 ]
                 var noValid = self.submitValid(requiredValid);
                 !noValid && self.submit();
@@ -75,7 +83,11 @@ require(['jquery', 'pay.smscode'], function($, smscode){
                 (function(arrObj, index){
                     el = $.isArray(arrObj[0]) ? self.els[arrObj[0][0]] : self.els[arrObj[0]];
                     ev = arrObj[3] || 'blur';
+                    el.on('focus', function(e){
+                        console.log((e||window.event).target || (e||window.event).srcElement)
+                    })
                     el.on(ev, function(e){
+                        var target = (e||window.event).target || (e||window.event).srcElement;
                         if($.isArray(arrObj[0])){
                             if(typeof arrObj[0][1].test == 'function'){
                                 condition = !arrObj[0][1].test(self.els[arrObj[0][0]].val());

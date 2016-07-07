@@ -14,6 +14,7 @@ var checker = require('../../libs/datachecker');
 
 
 const uploadPath = config.file_path.root + config.file_path.compact + '/';
+const adminUploadPath = config.file_path.adminroot + config.file_path.compact + '/';
 const ejspath    = config.viewspdf +'/compact.ejs';
 const uploadTmp = config.file_path.root + config.file_path.upload_tmp + '/';
 const downloadPath = config.file_path.root + config.file_path.download;
@@ -58,6 +59,26 @@ exports.delFile = function (req, res, next) {
 };
 
 // sign compact
+var delFile = function(path){
+    if(!path) throw new Error('delFile need a path param');
+    var pArr = [];
+    _.isString(path) ? pArr.push(path) : '';
+    _.isArray(path) ? (pArr=path) : '';
+
+    var del = function(path){
+         _.forEach(path, function(val, index){
+            if(_.isArray(val)){
+                del(val);
+            }else{
+                fs.unlink(val, function(err){
+                    if(err) { throw new Error('del failed'); }
+                })
+            }
+        })
+    }
+    del(path);
+}
+
 exports.signCompact = function (req, res, next) {
     var params     = req.body;
 
@@ -67,7 +88,7 @@ exports.signCompact = function (req, res, next) {
         params.file_name = [params.file_name];
     }
     _.forEach(params.file_id, function(id, index){
-        files.push({'name': params.file_name[index], 'path':uploadPath + id});
+        files.push({'name': params.file_name[index], 'path':adminUploadPath + id});
     })
 
     params.files = files;
@@ -77,6 +98,9 @@ exports.signCompact = function (req, res, next) {
     request.post({url: api_config.signCompact, form:params, qsStringifyOptions:{allowDots:true}}, function (err, data) {
         if(err){ return next(err); }
         if (!err && data) {
+            if(data.success){
+                delFile([compactData.html, compactData.pdf, compactData.imgs]);
+            }
             return res.send(JSON.parse(data.body));
         }
     })
@@ -94,12 +118,16 @@ var convertData = function (compactdata, compactejs, orderId) {
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
         compactData.html = resultHtml.htmlpath;
+        console.log('resultHtml')
+        console.log(resultHtml.htmlpath)
         return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
         compactData.pdf = resultPDF.pdfpath;
         data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
-        return convert.pdf2image(resultPDF.pdfpath)
+        console.log('resultPDF')
+        console.log(resultPDF.pdfpath);
+        return convert.pdf2image(resultPDF.pdfpath);
     })
     .then(function(resultImgs){
         compactData.imgs = resultImgs.imgs;
@@ -108,9 +136,7 @@ var convertData = function (compactdata, compactejs, orderId) {
         });
         return data;
     });
-
 };
-
 
 
 // generate compact

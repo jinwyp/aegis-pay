@@ -9,6 +9,12 @@ body{ background-color: $color_body_bg; font-size:$size_font_middle; font-family
 input[type="text"],input[type="password"]{
     width:298px; height:38px; line-height: 38px; border:1px solid $color_border_gray; padding:0 5px; margin:0 5px;
 }
+input[type="text"]:focus,input[type="password"]:focus{
+    border-color:$color_blue;
+}
+input[type="text"]:focus.error,input[type="password"]:focus.error{
+    border-color:$color_red;
+}
 a.btn_blue{
     &:hover{ color:#fff; text-decoration: none;}
 }
@@ -56,11 +62,21 @@ a.btn_blue{
                   margin:1px 5px 0 0;
               }
               .smsWrapper{
+                  position:relative; 
                   display: inline-block; *display: inline; zoom:1; margin-left:5px;
                   width:298px; border:1px solid $color_border_gray;
                   input[type='text']{
                       width:178px; border:none; margin:0;
                   }
+                  &.focus{
+                      border-color:$color_blue;
+                  }
+                  .icon-sendsms{
+                        position:absolute; right:-26px; top:11px;
+                        display: inline-block; *display: inline; zoom:1; 
+                        width: 18px; height:18px; background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -333px -643px;
+                        display: none;
+                    }
               }
           }
       }
@@ -119,3 +135,4 @@ a.btn_blue{
     animation: spin 2.5s infinite linear;
     -webkit-animation: spin2 2.5s infinite linear;
 }
+

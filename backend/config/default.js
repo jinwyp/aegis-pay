@@ -36,6 +36,7 @@ var config = {
     // 文件目录配置
     file_path: {
         root        : '/app/files/pay',
+        adminroot   : '/files/pay',
         upload_tmp  : '/upload_tmp_pay',
         upload      : '/upload',
         html        : '/html',
@@ -48,6 +49,7 @@ var config = {
 
     views       : 'views',
     viewspdf    : 'views/global/pdftemplate',
+    view_file   : '/app/files/pay/compact/',             // 图片实际地址
 
     member_address: 'http://10.100.20.3:3000',
     site_page: 'https://www.yimei180.com',

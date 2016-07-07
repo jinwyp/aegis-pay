@@ -51,7 +51,9 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-		req.flash('tpl', replyData.data.receipt.templateUrl);
+		if(replyData.data.receipt && replyData.data.receipt.templateUrl){
+            req.flash('imgs', replyData.data.receipt.templateUrl);
+        }
 		console.log('/* ---replyData-99988888--------------------------------------- */');
 		console.log(replyData);
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
@@ -123,7 +125,7 @@ exports.invoiceNotes = function (req, res, next) {
 			editable : true
 		};
 		Object.assign(replyData, resBody);
-		req.flash('tpl', replyData.data.receipt.templateUrl);
+		req.flash('imgs', replyData.data.receipt.templateUrl);
 		console.log("-------------- replyData ---------------");
 		console.dir(replyData);
 
@@ -179,11 +181,17 @@ exports.downInvoiceTemplate = function (req, res, next) {
 };
 
 
-// 预览开票信息.路由
-exports.viewInvoiceInfo = function (req, res, next) {
-	var tpl = req.flash('tpl')[0];
-	res.download(tpl, path.basename(tpl), function(err,data){
+// 图片预览.路由
+exports.imgViewApi = function (req, res, next) {
+	var key = req.query.key || 0;
+	var imgs = req.flash('imgs');
+
+	console.log('---imgViewApi-----------------------------------');
+	console.log(key);
+	console.log(imgs);
+
+	res.download(imgs[key], path.basename(imgs[key]), function(err,data){
 		if(err) return next(err);
-	})
+	});
 };
 
