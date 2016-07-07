@@ -16,8 +16,6 @@ require(['jquery','pay.upload'],function($,upload){
           this.upload();
           this.countDown();
           this.submit();
-
-
         },
         "countDown" : function(){
             $(document).ready(function(){
@@ -106,6 +104,7 @@ require(['jquery','pay.upload'],function($,upload){
 
             //删除操作
             $(document).on('click', '.preview .delete', function(e) {
+                upload.ajaxFileRemove($(this));
                 $(this).parents(".preview").remove();
             });
         },
@@ -142,7 +141,7 @@ require(['jquery','pay.upload'],function($,upload){
                 // 把图片插入数组
                 var imgList=[];
                 $(".fileList .preview").each(function(i,val){
-                    imgList.push({"path":$(this).children("img").attr("src"),"name":$(this).data("name")});
+                    imgList.push({"path":$(this).attr("data-id"),"name":$(this).data("name")});
                 });
                 $.ajax({
                     url : "/api/disputeApplySubmit",
