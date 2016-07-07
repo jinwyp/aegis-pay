@@ -33,7 +33,7 @@ module.exports = function (app) {
 
     app.locals.deliveryplaceAppend = function (deliveryprovince, deliveryplace, otherplace) {
         var content = deliveryprovince;
-        if (deliveryplace == '其它') {
+        if (deliveryplace === '其它') {
             content += otherplace;
         } else {
             content += deliveryplace;
@@ -137,8 +137,8 @@ module.exports = function (app) {
     };
 
     app.locals.getStringVal = function (str) {
-        return typeof str == 'undefined' ? '' :
-            (str == null || str == 'null' || str == "undefined") ? '--':  str;
+        return typeof str === 'undefined' ? '' :
+            (str === null || str === 'null' || str === "undefined") ? '--':  str;
     }
 
     app.locals.clearEmpty = function (str) {
@@ -148,7 +148,7 @@ module.exports = function (app) {
     app.locals.targetIsEmpty = function (arg1, arg2) {
         if ((typeof arg1 === 'undefined' && typeof arg2 === 'undefined')
             || (arg1 == 0 && arg2 == 0)
-            || (arg1 == null && arg2 == null)) {
+            || (arg1 === null && arg2 === null)) {
             return true;
         } else {
             return false;
