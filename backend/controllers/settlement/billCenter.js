@@ -19,11 +19,20 @@ exports.billCenter = function (req, res, next) {
     var user = req.session.user;
     var type = req.query.type;
     var page = req.query.page;
-    
-    var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')
-        +(content?'&content='+content:'')+(type?'&type='+type:'')+(page && page>0?'&page='+page:'');
 
-    request({url : api_config.billCenter+queryString}, function (err, response, body) {
+    var postBody = {
+        userId : user.id
+    };
+    if (startDate) postBody.startDate = startDate;
+    if (endDate) postBody.endDate = endDate;
+    if (content) postBody.content = content;
+    if (type) postBody.type = type;
+    if (page) postBody.page = page;
+    
+    /*var queryString = '?userId='+ user.id +(startDate?'&startDate='+startDate:'')+ (endDate?'&endDate='+endDate:'')
+        +(content?'&content='+content:'')+(type?'&type='+type:'')+(page && page>0?'&page='+page:'');*/
+
+    request.post({url : api_config.billCenter,form:postBody}, function (err, response, body) {
         if (err) return next(err);
 
         if (response.statusCode !== 200) {
