@@ -164,6 +164,7 @@ var api_config = {
     bindingBankAccount : host + 'account/fund/bankCard/add',
     bindingBankAccountCityList : host + 'bank/loadBankSiteCities',
     bindingBankAccountChildBankName : host + 'bank/loadChildBanks',
+    childAllBankName : host + 'bank/loadAllChildBanks',
     bindingSuccess : host + 'account/fund/bankCard/verify',
     bindingBankAccountSubmit : host + 'account/fund/bankCard/add/submit',
     bankCardConfirm : host + 'account/fund/bankCard/submit/success',

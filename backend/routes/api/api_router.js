@@ -93,6 +93,7 @@ router.post('/verifyCode', sms.verifyMiddleware(), bindingBankAccount.verifyCode
 router.get('/bank/loadBankSiteCities',bindingBankAccount.cityList);   //城市下拉确认
 
 router.post('/bank/bindingBankAccountChildBankName',bindingBankAccount.childBankName);   //开户行支行名称检索
+router.post('/bank/childAllBankName',bindingBankAccount.childAllBankName);   //开户行支行所有名称检索
 
 router.post('/account/fund/bankCard/add/submit',bindingBankAccount.bindingBankAccountSubmit);   //绑定银行卡提交
 
