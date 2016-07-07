@@ -30,10 +30,11 @@ exports.settlementInfo = function (req, res, next) {
                     receipt:source.data.receipt
                 }
 
-
             };
+
             //渲染页面
-            console.log(data)
+            req.flash('tpl', content.data.receipt.templateUrl);           // 读取
+            
             return res.render('settlement/settlementInfo', content);
         }
     })

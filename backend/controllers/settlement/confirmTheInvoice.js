@@ -51,8 +51,8 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-
-		console.log('/* ---replyData---------------------------------------- */');
+		req.flash('tpl', replyData.data.receipt.templateUrl);
+		console.log('/* ---replyData-99988888--------------------------------------- */');
 		console.log(replyData);
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 	});
@@ -80,13 +80,15 @@ exports.submitInvoiceInfo = function (req, res, next) {
 		bankName : bankName,
 		bankAccount : bankAccount,
 		type : type,
-		templateUrl : templateUrl,
+		templateUrl : config.file_path.root + config.file_path.compact + '/' + templateUrl,
 		userId: userId
 	};
 
+	console.log(param);
 	request.post(url, {form: param}, function(err,httpResponse,body) {
 		if (err) return next(err);
 		console.log("-------------- succ ---------------");
+
 		var resBody = JSON.parse(body);
 
 		if (resBody.success == false) {
@@ -121,7 +123,7 @@ exports.invoiceNotes = function (req, res, next) {
 			editable : true
 		};
 		Object.assign(replyData, resBody);
-
+		req.flash('tpl', replyData.data.receipt.templateUrl);
 		console.log("-------------- replyData ---------------");
 		console.dir(replyData);
 
@@ -169,9 +171,19 @@ exports.submitInvoiceNotes = function (req, res, next) {
 
 // 下载模板.路由
 exports.downInvoiceTemplate = function (req, res, next) {
-	var fileUrl = config.viewspdf + '/invoiceTemplate.jpg';
+	var fileUrl = config.viewspdf + '/downInvoiceTemplate.docx';
 
 	res.download(fileUrl, function(err, data){
 		console.log('-----下载模板-成功---------views/global/pdftemplate/invoiceTemplate.jpg  ');
 	});
 };
+
+
+// 预览开票信息.路由
+exports.viewInvoiceInfo = function (req, res, next) {
+	var tpl = req.flash('tpl')[0];
+	res.download(tpl, path.basename(tpl), function(err,data){
+		if(err) return next(err);
+	})
+};
+

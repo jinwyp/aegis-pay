@@ -58,7 +58,7 @@
           line-height: 36px;
           th{  text-align: center;  }
         }
-        tbody tr.line{
+        tbody tr{
           border-bottom: 1px dotted $color_border;
           &:hover{  background-color: $tr_hover_color;  }
           td{
@@ -86,12 +86,6 @@
             padding: 4px 0 4px 20px;
             .label{  color: $color_tip_font;  padding: 0;  }
           }
-        }
-        .no-data{
-          text-align: center;
-          padding: 105px 0;
-          font-size: 18px;
-          color: #666;
         }
       }
     }

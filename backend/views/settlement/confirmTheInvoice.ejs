@@ -101,7 +101,7 @@
                     <tr>
                         <th class="txt_r"></th>
                         <td>
-                            <input type="hidden" id="templateUrl" name="templateUrl" value="<%=data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:"" %>">
+                            <input type="hidden" id="templateUrl" name="templateUrl" value="<%= substrId(data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:'') %>" />
                             <div class="errorMsg"></div>
                             <div class="totalError"></div>
                         </td>
@@ -119,7 +119,7 @@
             <div class="plateHead borSolid">
                 <h3 class="headLeft">
                     <s class="require lih_16">*</s>上传开票信息
-                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="/download/invoiceTemplate.jpg" class="a">下载样板</a>，然后拍照上传 )</p>
+                    <p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="/settlement/downInvoiceTemplate" class="a">下载样板</a>，然后拍照上传 )</p>
                 </h3>
             </div>
             <div class="plateMain clearfix" id="upInvoiceMain">
@@ -138,16 +138,15 @@
                     <div class="upFileHandle">
 
                         <!-- 块型附件-->
-
                         <div class="fileBlockBox">
                             <h3 class="fileBlockBox_head"><s class="require lih_18">*</s>开票信息（加盖章）</h3>
-                            <% if(data.receipt && data.receipt.templetUrl){ %>
+                            <% if(data.receipt && data.receipt.templateUrl){ %>
                             <div class="fileBlockBox_body fBox_1" style="display: block">
-                                <img class="fileViewImg" src="<%=data.receipt && data.receipt.templetUrl ? data.receipt.templetUrl:"" %>" alt="开票信息"/>
+                                <img class="fileViewImg" src="/settlement/viewInvoiceInfo" alt="开票信息" data-id="<%= substrId(data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:'') %>" />
                                 <div class="operateFileBox">
                                     <a href="javascript:;" class="fileLinkBtn" id="tempEdit">修改</a>
-                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= data.receipt.templetUrl %>">删除</a>
-                                    <input class="iptEditFile" id="editFile" type="file" name="files">
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= substrId(data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:'') %>">删除</a>
+                                    <input class="iptEditFile" id="editFile" type="file" name="files" />
                                 </div>
                             </div>
                             <div class="fileBlockBox_body blockUpload fBox_2" style="display: none">
@@ -160,8 +159,8 @@
                                 <img class="fileViewImg" src="<%= staticPath %>/images/compact/invoiceTemplate.jpg" alt="开票信息"/>
                                 <div class="operateFileBox">
                                     <a href="javascript:;" class="fileLinkBtn" id="tempEdit">修改</a>
-                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= data.receipt && data.receipt.templetUrl %>">删除</a>
-                                    <input class="iptEditFile" id="editFile" type="file" name="files">
+                                    <a href="javascript:;" class="fileLinkBtn" id="tempDel" data-id="<%= substrId(data.receipt && data.receipt.templateUrl ? data.receipt.templateUrl:'') %>">删除</a>
+                                    <input class="iptEditFile" id="editFile" type="file" name="files" />
                                 </div>
                             </div>
                             <div class="fileBlockBox_body blockUpload fBox_2" style="display: block">
@@ -176,7 +175,7 @@
                         <h4 class="upFileHint_tit">注意事项</h4>
                         <p class="upFileHint_con">1. 请左侧<span class="bright">按照样版</span>上传相关的扫描件/照片，确保清晰度，证件内容完整且<span class="bright">加盖贵公司公章</span> <br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;<span class="bright">或财务专用章</span>。 <br/>
-                            2. 上传文件格式：<span class="bright">jpg、png</span>.文件大小：<span class="bright">小于400k</span> <br/>
+                            2. 上传文件格式：<span class="bright">jpg、png</span>.文件大小：<span class="bright">小于5MB</span> <br/>
                         </p>
                     </div>
                 </div>

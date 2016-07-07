@@ -77,9 +77,9 @@
         <div class="financial-center">
             <div class="record-div">
             <table class="record-table">
-                <% if(typeof recordList && recordList.length>0){%>
+                <% if(recordList.typeof != "undefined"){%>
                 <%for(var i=0;i<recordList.length;i++){%>
-                <tr class="line">
+                <tr>
                     <td width="60"><div><%= recordList[i].createTime %></div></td>
                     <td width="150"><div><%= recordList[i].typeName %></div></td>
                     <td width="100"><div><% if(recordList[i].typeName=="采购"){ %>-<% }else{ %>+<% } %><%= recordList[i].totalMoney %></div></td>
@@ -188,10 +188,6 @@
                     </td>
                 </tr>
                 <% } %>
-                <% }else{ %>
-                <tr>
-                    <td colspan="5" class="no-data">暂无交易记录</td>
-                </tr>
                 <% } %>
             </table>
             </div>
