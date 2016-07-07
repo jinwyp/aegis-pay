@@ -3,6 +3,7 @@ var _          = require('lodash');
 var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var cache = require('../libs/cache');
+var logger = require('../libs/logger');
 
 var getOrderStatus = function(orderId){
     return new Promise(function(resolve, reject){
@@ -53,6 +54,7 @@ exports.success = function (req, res, next) {
     request(api_config.orderProgress + params, function (err, data) {
         if(err){ return next(err); }
         if (!err && data) {
+            logger.debug("-------"+data.body);
             var body = JSON.parse(data.body);
             var data = body.data;
             // 构造符合业务逻辑的statusObj数据结构
