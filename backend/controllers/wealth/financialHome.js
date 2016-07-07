@@ -38,23 +38,36 @@ exports.financialHome = function (req, res, next) {
 
         if (data) {
             var source = JSON.parse(data.body);
+            var content = {
+                pageTitle: "财务管理中心",
+                headerTit: "财务管理中心",
+                tabObj: {
+                    firstTab: firstTab,
+                    secondTab: secondTab
+                },
+                finance: {
+                    companyName : '',
+                    userFundAccount : '',
+                    balanceMoney : 0,
+                    cashBankAccount : '',
+                    cashBankName : ''
+                },
+                recordList: [],
+                error :''
+            };
+
             if(source.success) {
-                var content = {
-                    pageTitle: "财务管理中心",
-                    headerTit: "财务管理中心",
-                    tabObj: {
-                        firstTab: firstTab,
-                        secondTab: secondTab
-                    },
-                    finance: source.data.finance,
-                    recordList: source.data.recordList
-                };
+
                 //渲染页面
                 logger.debug('获取到的finance是----------------------------' + JSON.stringify(source.data.finance));
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
+                content.finance = source.data.finance;
+                content.recordList = source.data.recordList;
                 return res.render('wealth/financialCenterHome', content);
             }else{
-                return res.send(source.error);
+                content.error = source.error;
+                content.finance.userFundAccount = source.error;
+                return res.render('wealth/financialCenterHome', content);
             }
         }
 
