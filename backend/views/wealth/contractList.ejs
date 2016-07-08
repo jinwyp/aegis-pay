@@ -15,7 +15,7 @@
             <input type="hidden" name="firstTab" value="<%=clearEmpty(tabObj.firstTab)%>"/>
             <input type="hidden" name="secondTab" value="<%=clearEmpty(tabObj.secondTab)%>"/>
             <div class="search-div">
-                <span>签订时间:</span>
+                <span>签订日期:</span>
                 <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
                 <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
@@ -39,7 +39,7 @@
             <table class="transaction-table">
                 <thead>
                 <tr>
-                    <th width="100">签订时间</th>
+                    <th width="100">签订日期</th>
                     <th width="120">订单编号</th>
                     <th width="120">合同编号</th>
                     <th width="160">对方公司名称</th>
@@ -55,7 +55,7 @@
                         <td width="120"><%=contractList[i].contractNO%></td>
                         <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>
                         <td width="120">
-                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-download mr-16" value="下载" data-id="<%=contractList[i].orderId%>"/>
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-download mr-16" value="下载" data-id="<%=contractList[i].orderId%>"/>
                             <a target="_blank" href="/compactDetail?orderId=<%=contractList[i].orderId%>">查看详情</a></td>
                     </tr>
                     <%}%>
