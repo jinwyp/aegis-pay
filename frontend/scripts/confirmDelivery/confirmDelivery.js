@@ -68,6 +68,16 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
          $(".qualityInfo input").on("blur",function(){
             tVal="";
          });
+          // 上传文件个数限制
+          // 质量确认单
+          // $(document).on("change",".fileupload",function(){
+          //     var qualityList=$(document).find(".files").eq(0).children("p").length+1;
+          //     var quantityList=$(document).find(".files").eq(1).children("p").length+1;
+          //     if(qualityList>3){
+          //         $(".errorMes").text("质量确认单最多上传15个");
+          //         return;
+          //     }
+          // });
       },
       "submit": function(){        
          var temp=true;
@@ -79,6 +89,8 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             var qualityList=[];
             var quantityList=[];
             //数量
+             var qualityListLen=$(".files").eq(0).children(".file").length;
+             var quantityListLen=$(".files").eq(1).children(".file").length;
 
             for(var i=0;i<=$(".checkList").length;i++){
                var obj = {};
@@ -145,6 +157,19 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             }else{
                $(".errorMes").text("");
             }
+             if(qualityListLen>15){
+                 $(".errorMes").text("质量确认单最多上传15个");
+                 return;
+             }else{
+                 $(".errorMes").text("");
+             }
+             if(quantityListLen>15){
+                 $(".errorMes").text("数量确认单最多上传15个");
+                 return;
+             }else{
+                 $(".errorMes").text("");
+             }
+
                $.ajax({
                   url:'/api/confirmDelivery/confirmDeliveryIndex',
                   method:'POST',
