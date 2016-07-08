@@ -2,6 +2,7 @@
 
 // api
 var config = require('../../config');
+var request = require('../../libs/request');
 
 var host = config.rest_address;
 
@@ -231,5 +232,19 @@ var api_config = {
 
 
 };
+
+api_config.fetchPayPhone = function(userId){
+    return new Promise(function(resolve, reject){
+        request(host + 'account/fund/payPwd/forget/first?userId=' + userId, function(err, data){
+            if(err) { return reject(err);}
+            var data = JSON.parse(data.body);
+            if(data && data.success){
+                return resolve(data.data.payPhone)
+            }else{
+                return reject(new SystemError(data.status, data.error));
+            }
+        })
+    })
+}
 
 module.exports = api_config;

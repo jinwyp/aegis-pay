@@ -111,12 +111,14 @@ exports.fetchPayPhonePage = function(req, res, next){
         headerTit : '安全设置',
         subHeaderTit: '修改支付密码'
     };
-    
-    if(req.path.indexOf('modify') === -1){
-        res.render('paypassword/forget-valid', pageData);
-    }else{
-        res.render('paypassword/modify-valid', pageData);
-    }
+   api_config.fetchPayPhone(req.session.user.id).then(function(payPhone){
+        res.locals.user.payPhone = payPhone;
+        if(req.path.indexOf('modify') === -1){
+            res.render('paypassword/forget-valid', pageData);
+        }else{
+            res.render('paypassword/modify-valid', pageData);
+        }
+    }).catch(next);
 }
 
 exports.modifyReset = function(req, res, next){

@@ -37,25 +37,28 @@ exports.bindingBankAccount = function (req, res, next) {
 
     var userId=req.session.user.id;
     var url = api_config.bindingBankAccount+"?userId="+userId;
-    request.get({
-        url : url,
-        userId:userId
-    }, function (err, data) {
-        if (err) return next(err);
-        if (data){
-            var source  = JSON.parse(data.body);
-            var content={
-                userId:userId,
-                pageTitle: "绑定银行账户",
-                statusObj: statusObj,
-                companyName:source.data.companyName,
-                payPhone:source.data.payPhone,
-                bankList:source.data.bankList,
-                provinceList:source.data.provinceList
+    api_config.fetchPayPhone(req.session.user.id).then(function(payPhone){
+        res.locals.user.payPhone = payPhone;
+        request.get({
+            url : url,
+            userId:userId
+        }, function (err, data) {
+            if (err) return next(err);
+            if (data){
+                var source  = JSON.parse(data.body);
+                var content={
+                    userId:userId,
+                    pageTitle: "绑定银行账户",
+                    statusObj: statusObj,
+                    companyName:source.data.companyName,
+                    payPhone:source.data.payPhone,
+                    bankList:source.data.bankList,
+                    provinceList:source.data.provinceList
+                }
+                res.render('wealth/bindingBankAccount', content);
             }
-            res.render('wealth/bindingBankAccount', content);
-        }
-    });
+        });
+    }).catch(next); 
 };
 // 验证码
 exports.verifyCode = function (req, res, next) {
