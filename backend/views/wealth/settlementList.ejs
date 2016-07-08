@@ -15,7 +15,7 @@
             <input type="hidden" name="firstTab" value="<%=clearEmpty(tabObj.firstTab)%>"/>
             <input type="hidden" name="secondTab" value="<%=clearEmpty(tabObj.secondTab)%>"/>
             <div class="search-div">
-                <span>交易时间:</span>
+                <span>交易日期:</span>
                 <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
                 <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
@@ -41,11 +41,11 @@
             <table class="transaction-table">
                 <thead>
                 <tr>
-                    <th width="130">交易时间</th>
+                    <th width="130">交易日期</th>
                     <th width="100">订单编号</th>
                     <th width="100">付款流水号</th>
-                    <th width="160">对方公司</th>
-                    <th width="160">结算吨数(吨)</th>
+                    <th width="160">对方公司名称</th>
+                    <th width="160">结算数量(吨)</th>
                     <th width="160">结算金额(元)</th>
                     <th width="140">状态</th>
                     <th width="100">操作</th>
@@ -60,7 +60,7 @@
                     <td width="100"><%=settlementList[i].transactionNO%></td>
                     <td width="160"><%=settlementList[i].otherCompanyName%></td>
                     <td width="160"><%=getStringVal(settlementList[i].settleAmount)%></td>
-                    <td width="160"><%=getStringVal(settlementList[i].totalMoney)%></td>
+                    <td width="160"><%=getStringVal(settlementList[i].settleMoney)%></td>
                     <td width="140"><%=settlementList[i].statusName%></td>
                     <td width="100">
                         <%if(settlementList[i].type==0){%>
