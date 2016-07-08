@@ -87,7 +87,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
             }
             // 验证码
             if(vertifyCode==""){
-                $(".vertifyCode").find(".errorMsg").text("请填写验证码");
+                $(".vertifyCode").find(".errorMsg").text("请输入验证码");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
             }else{
@@ -127,6 +127,12 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 data:{childBankName:$("#childBankName").val()}
             });
         },
+        "childAllBankName":function(){
+            return $.ajax({
+                url:'/api/bank/childAllBankName?cityCode='+$("#cityCode").val()+'&bankCode='+$("#bankCode").val(),
+                type:'POST'
+            });
+        },
         "changeSelect" : function(){
             var that=this
             $("#bankCode").on('change', function() {
@@ -142,9 +148,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 });
                 that.Verify();
             });
-            var childBankNameList=[];
-            var childBankIndex = [];
-            var timer = null;
+
             // ie8以下数组indexof不兼容
             if (!Array.prototype.indexOf){
                 // ie8 新增 indexOf 方法
@@ -166,35 +170,74 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                 };
             }
 
-                $("#childBankName").on('input', function(e) {
-                    if($("#bankCode").val()!="" && $("#cityCode").val()!="") {
-                        if (timer) {
-                            clearTimeout(timer);
-                        }
-                        timer = setTimeout(function () {
 
-                            that.childBankName().done(function (data) {
-                                data.childBankName.forEach(function (value, i) {
-                                    if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
-                                        childBankIndex.push(data.childBankName[i].childBankCode);
-                                        childBankNameList.push({
-                                            value: data.childBankName[i].childBankName,
-                                            data: data.childBankName[i].childBankCode
-                                        })
-                                    }
-
-                                });
-                            });
-
-                        }, 400);
-                    }
-                });
+            $("#childBankName").on("focus",function(){
+                $(".childBankNameWrap").addClass("open");
+            });
+            $("#childBankName").on("blur",function(){
+                $(".childBankNameWrap").removeClass("open");
+                // childBankNameList=[];
+            });
             $("#childBankName").change(function(){
                 $("#childBankName").attr("data-selectData","");
             });
 
             $("#childBankName").autocomplete({
-                lookup:childBankNameList,
+                mustMatch:true,
+                minChars:0,
+                lookup:function (query,done) {
+
+                    var childBankNameList=[];
+                    var childBankIndex = [];
+                    var timer = null;
+
+                    if($("#childBankName").val()==""){
+                        that.childAllBankName().done(function (data) {
+
+                            data.childBankName.forEach(function (value, i) {
+                                if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
+                                    childBankIndex.push(data.childBankName[i].childBankCode);
+                                    childBankNameList.push({
+                                        value: data.childBankName[i].childBankName,
+                                        data: data.childBankName[i].childBankCode
+                                    })
+                                }
+                            });
+                            var result = {
+                                suggestions:childBankNameList
+                            }
+                            done(result);
+                        });
+                    }else{
+                        if($("#bankCode").val()!="" && $("#cityCode").val()!="") {
+
+                            if (timer) {
+                                clearTimeout(timer);
+                            }
+                            timer = setTimeout(function () {
+
+                                that.childBankName().done(function (data) {
+                                    data.childBankName.forEach(function (value, i) {
+                                        if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
+                                            childBankIndex.push(data.childBankName[i].childBankCode);
+                                            childBankNameList.push({
+                                                value: data.childBankName[i].childBankName,
+                                                data: data.childBankName[i].childBankCode
+                                            })
+                                        }
+
+                                    });
+                                    var result = {
+                                        suggestions:childBankNameList
+                                    }
+                                    done(result);
+                                });
+
+                            }, 400);
+                        }
+                    }
+
+                },
                 onSelect: function (suggestion) {
                     $("#childBankName").attr("data-selectData",suggestion.data)
                 }

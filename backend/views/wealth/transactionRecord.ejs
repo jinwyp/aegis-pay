@@ -34,13 +34,13 @@
             </div>
 
             <div class="search-row row-two mt-20">
-                <span>交易编号:</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号:</span>
                 <select name="searchType" id="searchType">
                     <option value="0">全部</option>
                     <option value="1" <%if(searchType===1){ %>selected<% } %>>订单编号</option>
                     <option value="2" <%if(searchType===2){ %>selected<% } %>>合同编号</option>
                     <option value="3" <%if(searchType===3){ %>selected<% } %>>流水号</option>
-                    <option value="4" <%if(searchType===4){ %>selected<% } %>>公司名称</option>
+                    <option value="4" <%if(searchType===4){ %>selected<% } %>>对方公司名称</option>
                 </select>
                 <input type="text" name="content" class="iIpt iIpt_sm record-number content" maxlength="50" id="content" value="<%=clearEmpty(content)%>"/>
 
@@ -176,7 +176,7 @@
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-tailMoney" value="支付尾款" data-id="<%= recordList[i].id %>">
                         <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='WaitWriteReceipt'){ %>
-                        <a class="notice-sellerRetrunMoney" data-id="<%= recordList[i].id %>">提醒卖家开发票</a>
+                        <a class="notice-sellerWriteReceipt" data-id="<%= recordList[i].id %>">提醒卖家开发票</a>
                         <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='WaitReceiveReceipt'){ %>
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-receiveReceipt" value="确认收到发票" data-id="<%= recordList[i].id %>">
@@ -185,11 +185,10 @@
                         <input type="button" class="iBtn iBtn_xs iBtn_no btn-improveReceipt" value="完善开票信息" data-id="<%= recordList[i].id %>">
                         <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='TradeDisputing'){ %>
-                        <a target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">查看纠纷详情</a>
-                        <a class="mt-10" target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">详情</a>
+
+                        <a target="_blank" href="/dispute/disputeDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='TradeDisputeFinished'){ %>
-                        <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">查看纠纷详情</a>
-                        <a class="mt-10" target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">详情</a>
+                        <a target="_blank" href="/dispute/disputeComplete?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='MakeMatch'){ %>
                         <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">详情</a>
                         <% }else if(recordList[i].status==='Canceled'){ %>

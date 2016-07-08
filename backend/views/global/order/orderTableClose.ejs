@@ -9,16 +9,16 @@
     </tr>
     <tr class="table-info">
         <td class="info-col center-content">
-            <span class="number"><%= formatDecimal(order.price,2) %></span>
-        </td>
-        <td class="info-col center-content">
-            <span class="number"><%= formatDecimal(order.price,2) %></span>
+            <span class="number"><%= order.orderNO %></span>
         </td>
         <td class="info-col center-content">
             <span class="number"><%= order.amount %></span>
         </td>
         <td class="info-col center-content">
-            <span class="money"><%= formatMoney(order.totalMoney,2) %></span>
+            <span class="number"><%= order.deliveryAmount %></span>
+        </td>
+        <td class="info-col center-content">
+            <span class="money"><%= formatMoney(order.price,2) %></span>
         </td>
         <td class="info-col center-content">
             <span class="money"><%= formatMoney(order.totalMoney,2) %></span>

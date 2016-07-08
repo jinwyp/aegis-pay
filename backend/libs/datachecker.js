@@ -1,5 +1,5 @@
 /**
- * Created by tttt on 6/1/16.
+ * Created by JinWYP on 6/1/16.
  */
 
 var validator = require('validator');

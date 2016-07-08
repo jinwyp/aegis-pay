@@ -169,6 +169,9 @@ module.exports = function (app) {
  * <%= dateFormat（date,  "YYYY-MM-DD HM") %>
  */
     app.locals.dateFormat = function(date,format){
+        if(!/^[1-9]\d*$/.test(date)){
+            return  date ;
+        }
         var date = parseInt(date),
             currentTime =  new Date().getTime(),
             diffTime = currentTime - date;
@@ -201,6 +204,15 @@ module.exports = function (app) {
         }
         
     }
+
+
+    app.locals.ngShow = function (flag){
+        if (!flag){
+            return ' style="display: none;" '
+        }
+    };
+
+
 
     return app;
 };
