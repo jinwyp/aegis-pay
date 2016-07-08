@@ -55,42 +55,42 @@
                 <tbody>
                 <%if(typeof settlementList && settlementList.length>0){%>
                     <%for(var i in settlementList){%>
-                <tr class="line">
-                    <td width="130"><%=settlementList[i].createTime%></td>
-                    <td width="100"><%=settlementList[i].orderNO%></td>
-                    <td width="100"><%=settlementList[i].transactionNO%></td>
-                    <td width="160"><%=settlementList[i].otherCompanyName%></td>
-                    <td width="160"><%=getStringVal(settlementList[i].settleAmount)%></td>
-                    <td width="160"><%=getStringVal(settlementList[i].settleMoney)%></td>
-                    <td width="140"><%=settlementList[i].statusName%></td>
-                    <td width="100">
-                        <%if(settlementList[i].type==0){%>
-                            <%if(settlementList[i].status=="WaitSettleAccounts"){%>
-                            <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-confirmSettle mb-10" value="确认结算" data-id="<%=settlementList[i].id%>"/>
-                            <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
-                            <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-tailMoney mb-10" value="支付尾款" data-id="<%=settlementList[i].id%>"/>
-                            <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
-                            <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-improveReceipt mb-10" value="完善开票信息" data-id="<%=settlementList[i].id%>"/>
+                    <tr class="line">
+                        <td width="130"><%=settlementList[i].createTime%></td>
+                        <td width="100"><%=settlementList[i].orderNO%></td>
+                        <td width="100"><%=settlementList[i].transactionNO%></td>
+                        <td width="160"><%=settlementList[i].otherCompanyName%></td>
+                        <td width="160"><%=getStringVal(settlementList[i].settleAmount)%></td>
+                        <td width="160"><%=getStringVal(settlementList[i].settleMoney)%></td>
+                        <td width="140"><%=settlementList[i].statusName%></td>
+                        <td width="100">
+                            <%if(settlementList[i].type==0){%>
+                                <%if(settlementList[i].status=="WaitSettleAccounts"){%>
+                                <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-confirmSettle mb-10" value="确认结算" data-id="<%=settlementList[i].id%>"/>
+                                <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
+                                <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-tailMoney mb-10" value="支付尾款" data-id="<%=settlementList[i].id%>"/>
+                                <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
+                                <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-improveReceipt mb-10" value="完善开票信息" data-id="<%=settlementList[i].id%>"/>
+                                <%}%>
+                                <a target="_blank" href="/getBuyOrderDetail?orderId=<%=settlementList[i].id%>">查看详情</a>
+                            <%}else if(settlementList[i].type=1){%>
+                                <%if(settlementList[i].status=="WaitSettleAccounts"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-settle mb-10" value="结算" <%=settlementList[i].id%>/>
+                                <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
+                                <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-updateSettle mb-10" value="修改结算" <%=settlementList[i].id%>/>
+                                <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
+                                <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
+                                    <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-returnMoney mb-10" value="退款" <%=settlementList[i].id%>/>
+                                <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
+                                <%}%>
                             <%}%>
-                            <a target="_blank" href="/getBuyOrderDetail?orderId=<%=settlementList[i].id%>">查看详情</a>
-                        <%}else if(settlementList[i].type=1){%>
-                            <%if(settlementList[i].status=="WaitSettleAccounts"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-settle mb-10" value="结算" <%=settlementList[i].id%>/>
-                            <%}else if(settlementList[i].status=="WaitVerifySettle"){%>
-                            <%}else if(settlementList[i].status=="ReturnedSettleAccounts"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-updateSettle mb-10" value="修改结算" <%=settlementList[i].id%>/>
-                            <%}else if(settlementList[i].status=="WaitPayTailMoney"){%>
-                            <%}else if(settlementList[i].status=="WaitPayRefundMoney"){%>
-                                <input type="button" class="iBtn iBtn_xs iBtn_no btn-option btn-returnMoney mb-10" value="退款" <%=settlementList[i].id%>/>
-                            <%}else if(settlementList[i].status=="WaitImproveReceipt"){%>
-                            <%}%>
-                        <%}%>
-                    </td>
-                </tr>
-                <%}%>
+                        </td>
+                    </tr>
+                    <%}%>
                 <%}else{%>
                     <tr>
                         <td colspan="8" class="no-data">暂无符合条件的结算数据</td>
