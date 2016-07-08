@@ -40,12 +40,12 @@ exports.getBuyOrderDetail = function (req, res, next) {
                     break;
                 case 'WaitConfirmDelivery':
                 case 'ReturnedDeliveryGoods':
-                case 'WaitVerifyDeliveryGoods':
                     step = 3;
                     break;
                 case 'WaitSettleAccounts':
                 case 'WaitVerifySettle':
                 case 'ReturnedSettleAccounts':
+                case 'WaitVerifyDeliveryGoods':
                     step = 4;
                     break;
                     case 'WaitReceiveReceipt':
