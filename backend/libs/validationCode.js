@@ -35,8 +35,9 @@ var validationCode = {
         orderIdWrong : {code:5001, message:'Field validation error, orderId length should be 1 - 100', field : "orderId"},
         deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"},
 
-        startDate : {code:5201, message:'Field validation error, start date wrong', field : "orderDateFromDownload"},
-        endDate : {code:5201, message:'Field validation error, end date wrong', field : "orderDateToDownload"}
+        startDate : {code:5201, message:'Field validation error, start date wrong', field : "orderDateFrom"},
+        endDate : {code:5202, message:'Field validation error, end date wrong', field : "orderDateTo"},
+        categoryType : {code:5204, message:'Field validation error, category type wrong', field : "orderCategory"}
     },
 
     captcha : {
@@ -55,6 +56,7 @@ var validationCode = {
 
     page : {
         menuTabNumberWrong : {code:9001, message:'Field validation error, menu Tab number should be 1 - 20', field : "firstTab"},
+        pageNumberWrong : {code:9005, message:'Field validation error, page number should be 1 - 100', field : "currentPage"}
     }
 };
 
