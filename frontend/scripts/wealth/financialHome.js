@@ -412,7 +412,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     $(".btn-dealDispute").click(function(){
         location.href="/dispute/disputeDetail?orderId="+$(this).data("id");
     });
-    //查看纠纷详情
+    //纠纷完成
     $(".btn-lookDispute").click(function(){
         location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
     });
