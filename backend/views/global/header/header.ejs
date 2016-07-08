@@ -1,36 +1,83 @@
 <div id="paymentHeader">
     <div class="headWrap">
             <div class="wrap1000">
-                <ul class="menuList">
-                    <li class="webNav">
-                        <a href="javascript:void(0)">网站导航</a>
-                        <span class="triggle"></span>
-                        <ul class="hideMenu">
-                            <li><a href="<%=sitepage%>">首页</a></li>
-                            <li><a href="<%=sitepage%>/mall">易煤商城</a></li>
-                            <li><a href="<%=sitepage%>/buy">现货搜索</a></li>
-                            <li><a href="<%=sitepage%>/tender">阳光采购</a></li>
-                            <li><a href="<%=sitepage%>/sell">报价区</a></li>
-                            <li><a href="<%=sitepage%>/finance">金融</a></li>
-                            <li><a href="<%=sitepage%>/group">团购</a></li>
-                            <li><a href="<%=sitepage%>/news">行情资讯</a></li>
-                            <li><a href="<%=sitepage%>/dataCenter">数据中心</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="<%=sitepage%>/account/getMyOrders">业务管理中心</a></li>
-                    <li class="noborder"><a href="/">财务管理中心</a></li>
+                <ul class="menuList leftMenuList">
+                    <li class="noborder">24小时贵宾热线</li>
+                    <li  class="noborder red">400-960-1180</li>
                 </ul>
 
                 <ul class="menuList rightMenuList">
                     <!--登录状态-->
                     <% if(user && user.id){ %>
                     <li><a href="<%= config.passport.member%>">账户名：<%= user.nickname || user.securephone %></a></li>
-                    <li class="noborder"><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
+                    <li><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
                     <% }else{ %>
                     <!--未登录状态-->
-                    <li><a href="<%= config.passport.member %>/login?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">登录</a></li>
-                    <li class="noborder"><a href="<%= config.passport.member %>/register?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">注册</a></li>
+                    <li>您好!<a href="<%= config.passport.member %>/login?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">请登录</a></li>
+                    <li><a href="<%= config.passport.member %>/register?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">免费注册</a></li>
                     <% } %>
+                    <li><a href="<%= sitepage %>/account/order/buy">我的易煤网</a></li>
+                    <li class="hoverDiv">
+                        <a href="javascript:void(0);" class="hoverTitle">网站导航</a>
+                        <div class="Nav hideMenu">
+                            <div class="floatL">
+                                <h2><span class="headBg"></span>交易服务</h2>
+                                <table>
+                                    <tr>
+                                        <td><a href="<%= sitepage %>/mall">商城</a></td>
+                                        <td><a href="<%= sitepage %>/buy">供应专区</a></td>
+                                        <td><a href="<%= sitepage %>/sell">需求专区</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="<%= sitepage %>/finance">金融</a></td>
+                                        <td><a href="<%= sitepage %>/tender">阳光采购</a></td>
+                                        <td><a href="<%= sitepage %>/coalzone">煤矿专区</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="<%= sitepage %>/news">资讯</a></td>
+                                        <td><a href="<%= sitepage %>/logistics/toLogistics">物流</a></td>
+                                        <td><a href="<%= sitepage %>/dataCenter">数据中心</a></td>
+                                    </tr>
+                                    <!--<tr>-->
+                                        <!--<td colspan="3"><a href="#">易煤指数</a></td>-->
+
+                                    <!--</tr> -->
+                                </table>
+                            </div>
+
+                            <div class="floatR">
+                                <h2><span class="headBg"></span>我的易煤网</h2>
+                                <table  class="noborder">
+                                    <tr>
+                                        <td><a href="<%= sitepage %>/account/getMyOrders">业务管理中心</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="<%= payUrl %>/">财务管理中心</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="<%= memberUrl %>/account/individualCenter">账户设置</a></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li  class="hoverDiv">
+                        <a href="javascript:void(0);" class="hoverTitle">手机助手</a>
+                        <div class="phoneHelper hideMenu">
+                            <div class="floatL">
+                                <h2>易煤助手</h2>
+                                <img src="<%= staticPath %>/images/header/yimei_helper.png" alt="易煤助手">
+                            </div>
+                            <div class="floatR">
+                                <h2>易煤资讯</h2>
+                                <img src="<%= staticPath %>/images/header/yimei_news.png" alt="易煤资讯">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="noborder paddingRight0"><a href="<%= sitepage %>/aboutUs">关于我们</a></li>
                 </ul>
             </div>
         </div>
