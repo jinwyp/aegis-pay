@@ -246,14 +246,13 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         $fBox_2 = $('.fBox_2');
 
 
-    //上传文件格式：jpg、png.文件大小：小于400k
+    //ToDo: 图片大小校验 上传文件格式：jpg、png.文件大小：小于400k
     function uploadWrapper ($ele, cb) {
-        // ToDo: 图片大小校验
-        upload.ajaxFileUpload($ele, {fileSize: 400, maxSize: 400, fileType: ["jpg", "jpeg", "png"]}, cb);
+        upload.ajaxFileUpload($ele, {maxFileSize: 1048576 * 5, fileType: ["jpg", "jpeg", "png"]}, cb);
     }
 
     //添加附件
-    $tempAdd.click(function() {
+    $tempAdd.change(function() {
         //var $tag = $(this);
 
         uploadWrapper ($tempAdd, function(data) {
@@ -267,6 +266,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $fileId.val(fileObj.id);
                 $fBox_1.show();
                 $fBox_2.hide();
+            } else {
+                message({type: 'error', title: '错误：', detail: data.errorMessage});
             }
         });
     });
@@ -275,7 +276,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     $tempEdit.click(function() {
         $editFile.trigger("click");
     });
-    $editFile.click(function() {
+    $editFile.change(function() {
         uploadWrapper ($editFile, function(data) {
             var fileObj = {};
             if(data.success) {

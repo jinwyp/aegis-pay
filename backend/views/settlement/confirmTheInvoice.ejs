@@ -36,7 +36,7 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>公司地址：</th>
                         <td>
-                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="<%=data.receipt && data.receipt.companyAddress ? data.receipt.companyAddress:"" %>" placeholder="正常状态">
+                            <input type="text" id="companyAddress" name="companyAddress" class="iIpt iIpt_sm" maxlength="100" value="<%=data.receipt && data.receipt.companyAddress ? data.receipt.companyAddress:"" %>" placeholder="请输入公司地址">
                             <div class="errorMsg"></div>
                         </td>
                         <td>&nbsp;</td>
@@ -84,9 +84,9 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
                         <td>
-                            <select name="type" id="type" style="display: none">
+                            <select name="type" id="type" style="display: none" data-name="<%=data.receipt && data.receipt.typeName ? data.receipt.typeName : ''%>">
                                 <% for (receiptType of data.receiptTypeList) {%>
-                                    <option value="<%=receiptType.sequence%>" <% if(data.receipt && data.receipt.typeName == receiptType.name){ %>selected<% } %> ><%=receiptType.name %></option>
+                                    <option value="<%=receiptType.sequence%>" <% if(data.receipt && data.receipt.typeName == receiptType.name){ %> selected <% } %> ><%=receiptType.name %></option>
                                 <%}%>
                             </select>
                             <div class="errorMsg"></div>

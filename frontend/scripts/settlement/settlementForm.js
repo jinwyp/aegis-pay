@@ -121,11 +121,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 $btnCancelTrigger.click();
                             }, 800);
                         } else {
-                            message({
-                                type: 'error',
-                                title: '错误：',
-                                detail: '操作失败!!'
-                            });
+                            message({type: 'error', title: '错误：', detail: '操作失败!'});
                         }
                     }
                 });
@@ -196,10 +192,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $upFile = $('#supplyFile');               //上传控件
 
             //上传操作
-            $upFile.click(function() {
+            $upFile.change(function() {
                 var $tag = $(this);
 
-                upload.ajaxFileUpload($tag, '', function(data) {
+                upload.ajaxFileUpload($tag, {maxFileSize: 1048576 * 5}, function(data) {
                     var htmlStr = '';
 
                     if(data.success) {
@@ -208,6 +204,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.id +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
+                    } else {
+                        message({type: 'error', title: '错误：', detail: data.errorMessage});
                     }
                 });
             });
@@ -224,10 +222,10 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $upFile = $('#upSealFile');               //上传控件
 
             //上传操作
-            $upFile.click(function() {
+            $upFile.change(function() {
                 var $tag = $(this);
 
-                upload.ajaxFileUpload($tag, '', function(data) {
+                upload.ajaxFileUpload($tag, {maxFileSize: 1048576 * 5}, function(data) {
                     var htmlStr = '';
 
                     if(data.success) {
@@ -236,6 +234,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 +'</span><span class="fileLab_del" data-name="'+ file.filename +'" data-id="'+ file.id +'"></span></p>';
                         });
                         $fileList.append(htmlStr);
+                    } else {
+                        message({type: 'error', title: '错误：', detail: data.errorMessage});
                     }
                 });
             });
@@ -302,11 +302,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 counterNum -= 1;
                             }, 1000);
                         } else {
-                            message({
-                                type: 'error',
-                                title: '错误：',
-                                detail: '操作失败!!'
-                            });
+                            message({type: 'error', title: '错误：', detail: '操作失败!'});
                         }
                     }
                 });
@@ -360,11 +356,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 location.href = $('.site_page').val() + '/account/order/buy';
                             }, 1500);
                         } else {
-                            message({
-                                type: 'error',
-                                title: '错误：',
-                                detail: '操作失败!!'
-                            });
+                            message({type: 'error', title: '错误：', detail: '操作失败!'});
                         }
                     }
                 });
@@ -410,11 +402,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                                 }
                             }, 1500);
                         } else {
-                            message({
-                                type: 'error',
-                                title: '错误：',
-                                detail: '操作失败!!'
-                            });
+                            message({type: 'error', title: '错误：', detail: '操作失败!'});
                         }
                     }
                 });
