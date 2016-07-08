@@ -30,4 +30,11 @@ require(['jquery'], function($){
             modifySet.init();
         })
     }
+    if($('.mainWrapper').hasClass('successPage')){
+        var $countDown = $('.countDown'),
+            sec = parseInt($countDown.text());
+        var timer = setInterval(function(){
+            (sec>0) ? $countDown.text(sec--) : (location.href="/account/accountSetting");
+        }, 1000)
+    }
 })
