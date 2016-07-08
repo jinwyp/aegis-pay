@@ -44,9 +44,9 @@ exports.addInvoiceInfo = function (req, res, next) {
 		}
 
 		var replyData = {
-			headerTit: '结算单.获取开票信息',
+			pageTitle: '结算.编辑开票信息页',
+			headerTit: '开票信息',
 			subTitle: '确认开票信息',
-			pageTitle: '结算_确认开票信息',
 			orderId: orderId
 		};
 		
@@ -124,8 +124,9 @@ exports.invoiceNotes = function (req, res, next) {
 
 		var resBody = JSON.parse(body);
 		var replyData = {
-			headerTit: '添加开票备注',
-			pageTitle : '开票信息',
+			pageTitle : '结算.查看开票信息页',
+			headerTit: '开票信息',
+			subTitle: '确认开票信息',
 			editable : true
 		};
 		Object.assign(replyData, resBody);
