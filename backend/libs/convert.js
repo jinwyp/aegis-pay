@@ -65,8 +65,8 @@ exports.html2pdf = function (htmlpath, options) {
     var pdfpath = options.pdfpath || pdf_path;
     var pdffile = pdfpath + pdfname + '.pdf';
     var options = {
-                        'width':'1140px', 
-                        'height':'800px',
+                        'width':'1000px',
+                        'height':'1413px',
                         // 'format':'A4',
                         "header": {
                             "height": "20mm"
