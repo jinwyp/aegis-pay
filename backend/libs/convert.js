@@ -20,7 +20,7 @@ var zips_path = config.file_path.zips;
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
     var imgpath          = options && options.imgpath || images_path;
-    var convertExtension = options && options.convertExtension || 'jpg';
+    var convertExtension = options && options.convertExtension || 'png';
 
     //if (!utils.isDirExistsSync(imgpath)) {
     //    fs.mkdirSync(imgpath);
@@ -69,11 +69,11 @@ exports.html2pdf = function (htmlpath, options) {
                         'height':'1413px',
                         // 'format':'A4',
                         "header": {
-                            "height": "20mm"
+                            "height": "10mm"
                             // "contents": '<div style="text-align: center;">Author: Marc Bachmann</div>'
                         },
                         "footer": {
-                            "height": "20mm",
+                            "height": "10mm",
                             // "contents": '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'
                         }
                     };

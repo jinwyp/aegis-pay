@@ -5,6 +5,7 @@
 
 
 
+
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -274,7 +275,7 @@
         }
         .label-timeto{
           width:30px;
-          margin-left: -15px;
+          margin-left: -26px;
         }
 
         .input-text {
@@ -291,11 +292,11 @@
         }
 
         .input-date{
-          width: 110px;
+          width: 120px;
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 89px) -63px);
+          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) -64px);
         }
 
         .input-date-icon{
@@ -311,7 +312,7 @@
         }
       }
       .form-search-big{
-        width: 410px;
+        width: 470px;
       }
       .table-box{
         padding: 5px 30px;
