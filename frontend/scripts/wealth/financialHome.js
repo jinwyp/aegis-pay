@@ -30,8 +30,23 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             var $formDateFrom = $('.orderDateFrom').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDateTo = $('.orderDateTo').pickadate({max:true});
 
+            $formDateFrom.on("change",function(){
+                if($formDateTo.pickadate('picker').get('select') && $formDateFrom.pickadate('picker').get('select').pick > $formDateTo.pickadate('picker').get('select').pick ){
+                    $formDateTo.pickadate('picker').clear();
+                }
+                $formDateTo.pickadate('picker').set('min', $formDateFrom.pickadate('picker').get('select').obj);
+            });
+
+
             var $formDownloadDateFrom = $('[name=orderDownloadDateFrom]').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({max:true});
+
+            $formDownloadDateFrom.on("change",function(){
+                if($formDownloadDateTo.pickadate('picker').get('select') && $formDownloadDateFrom.pickadate('picker').get('select').pick > $formDownloadDateTo.pickadate('picker').get('select').pick ){
+                    $formDownloadDateTo.pickadate('picker').clear();
+                }
+                $formDownloadDateTo.pickadate('picker').set('min', $formDownloadDateFrom.pickadate('picker').get('select').obj);
+            });
 
             searchQuery.orderCategory = $formSelectOrderCategory.val();
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
