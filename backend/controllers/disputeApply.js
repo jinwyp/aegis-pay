@@ -60,7 +60,7 @@ exports.disputeApplySubmit = function (req, res, next) {
             var file = req.body.files[i];
             formData.files.push({
                 name: file.name,
-                path: file.path = config.file_path.root + config.file_path.compact + '/' + file.path
+                path: file.path =(config.file_path.root + config.file_path.compact + '/' + file.path).substr(4)
             });
         }
     }

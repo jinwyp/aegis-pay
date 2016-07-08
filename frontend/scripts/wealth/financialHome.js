@@ -30,8 +30,23 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             var $formDateFrom = $('.orderDateFrom').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDateTo = $('.orderDateTo').pickadate({max:true});
 
+            $formDateFrom.on("change",function(){
+                if($formDateTo.pickadate('picker').get('select') && $formDateFrom.pickadate('picker').get('select').pick > $formDateTo.pickadate('picker').get('select').pick ){
+                    $formDateTo.pickadate('picker').clear();
+                }
+                $formDateTo.pickadate('picker').set('min', $formDateFrom.pickadate('picker').get('select').obj);
+            });
+
+
             var $formDownloadDateFrom = $('[name=orderDownloadDateFrom]').pickadate({format:'yyyy-mm-dd', max:true});
             var $formDownloadDateTo = $('[name=orderDownloadDateTo]').pickadate({max:true});
+
+            $formDownloadDateFrom.on("change",function(){
+                if($formDownloadDateTo.pickadate('picker').get('select') && $formDownloadDateFrom.pickadate('picker').get('select').pick > $formDownloadDateTo.pickadate('picker').get('select').pick ){
+                    $formDownloadDateTo.pickadate('picker').clear();
+                }
+                $formDownloadDateTo.pickadate('picker').set('min', $formDownloadDateFrom.pickadate('picker').get('select').obj);
+            });
 
             searchQuery.orderCategory = $formSelectOrderCategory.val();
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
@@ -41,12 +56,14 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             $formSelectOrderSearchType.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderSearchType = this.value;
+                if (searchQuery.orderSearchType === '0') {vm.orderSearchTextPlaceHolder = ''}
+                if (searchQuery.orderSearchType === '1') {vm.orderSearchTextPlaceHolder = '请输入交易流水号'}
+                if (searchQuery.orderSearchType === '2') {vm.orderSearchTextPlaceHolder = '请输入对方账号名称'}
+                if (searchQuery.orderSearchType === '3') {vm.orderSearchTextPlaceHolder = '请输入订单号'}
+
             });
 
             $('#downloadExcel').on('show.bs.modal', function (e) {
-                console.log( $formDateTo.val());
-                console.log( $formDateTo.pickadate('picker').get());
-
                 $formDownloadDateFrom.pickadate('picker').set('select', $formDateFrom.val(), { format: 'yyyy-mm-dd' });
                 $formDownloadDateTo.pickadate('picker').set('select', $formDateTo.val(), { format: 'yyyy-mm-dd' });
             });
@@ -64,6 +81,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : '',
+                orderSearchTextPlaceHolder  : '',
                 orderShowLoading  : true,
                 orderList        : [],
 
