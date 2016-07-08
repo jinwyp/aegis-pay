@@ -24,7 +24,7 @@
                 <td><%= order.transactionNO %></td>
                 <td><%= helper.formatMoney(order.money) %> </td>
                 <td><%= helper.formatMoney(order.balanceMoney) %></td>
-                <td><%= order.type %></td>
+                <td><%= order.type %> 订单号:<%= order.orderId%></td>
                 <td><%= order.otherFundAccount %></td>
                 <td><%= order.otherCompanyName %></td>
             </tr>
