@@ -8,12 +8,12 @@
 <%- include ../global/header/header %>
 <%- include ../global/header/subHeader %>
 
-<div class="mainWrapper forgetSet">
+<div class="mainWrapper forgetSet successPage">
     <% var statusObj = {step:3, total:3, stepList: [{stepName:'校验手机号码', stepDate:''}, {stepName:'修改支付密码', stepDate:''}, {stepName:'修改成功', stepDate:''}]} %>
     <%- include ./statusBar %>
     <div class="contentWrapper">
         <h5><i class='icon_ok'></i>支付密码修改成功</h5>
-        <p>界面将在5秒后自动关闭, 并前往 <a href='/account/accountSetting'>安全设置></a></p>
+        <p>界面将在<span class='countDown'>5</span>秒后自动关闭, 并前往 <a href='/account/accountSetting'>安全设置></a></p>
     </div>
     <%- include ./tip %>
 </div>

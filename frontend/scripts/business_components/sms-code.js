@@ -14,6 +14,7 @@ define(['jquery','bootstrap'],function($){
         var self = this;
         var $code_img = $('#generate_imgcode').parent().find("img");
         $('#imgcodeModal').on('show.bs.modal', function(){
+            ($('input[type="text"][name="sms_code"]').size()>0) && $('input[type="text"][name="sms_code"]').val('');
             $code_img.attr('src','/api/imgcode?time='+new Date().getTime());
             self.els.$imgcodeTipErr.hide();
             $('input[name="imgcode"]').val('');
