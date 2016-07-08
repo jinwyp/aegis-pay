@@ -161,8 +161,8 @@ exports.financialDetails = function (req, res, next) {
 
 
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
-    checker.paymentStartDate(req.query.orderDateFromDownload);
-    checker.paymentStartDate(req.query.orderDateToDownload);
+    checker.paymentStartDate(req.query.orderDateFromDownload, 'orderDateFromDownload');
+    checker.paymentEndDate(req.query.orderDateToDownload, 'orderDateToDownload');
 
 
     if (req.query.filetype){
