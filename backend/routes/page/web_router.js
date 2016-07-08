@@ -147,7 +147,6 @@ router.get(/^\/ucenter\/paypassword\/(fg|modify)\/vl/, paypasswordCtl.fetchPayPh
 router.get('/ucenter/paypassword/fg/set', paypasswordCtl.isValidMidware, paypasswordCtl.forgetReset);           //忘记密码－设置密码
 router.get(/^\/ucenter\/paypassword\/(fg|modify)\/success/, paypasswordCtl.isSetMidware, paypasswordCtl.forgetSuccess); //重置密码成功
 router.get('/ucenter/paypassword/modify/set', paypasswordCtl.isValidMidware, paypasswordCtl.modifyReset);       //修改密码－设置密码
-// router.get('/ucenter/paypassword/modify/set', paypasswordCtl.modifyReset); 
 
 //交易管理
 router.get('/wealth/financialTransaction', financialHome.financialTransaction);                 //交易记录

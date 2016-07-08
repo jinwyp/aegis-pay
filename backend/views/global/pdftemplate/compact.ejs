@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        *{font-size: 12px;}
-        h2{font-size: 14px;font-weight: bold;line-height: 26px;}
-        p{text-indent: 2em;}
+        *{font-size: 18px;}
+        h2{font-size: 18px;font-weight: bold;line-height:28px;}
+        p{text-indent: 2em;line-height:24px;font-weight: normal;}
+        span{line-height:24px;}
 
     </style>
 </head>
@@ -13,16 +14,16 @@
 <body>
 
 
-<div id="compact-body" style="background-color: #f5f5f5;">
-    <div class="compact-main" style="width: 1000px; margin: 0 auto ;background: white;padding: 30px 70px">
+<div id="compact-body">
+    <div class="compact-main" style="width: 860px; margin: 0 auto ;">
         <center style="font-size: 30px;margin-top: 60px;margin-bottom: 60px;">**煤炭购销合同**</center>
 
         <div style="border-bottom: 1px dotted #e4e4e4;padding-bottom: 10px;">
             <span style="text-align: left;">合同编号:<%= data.orderContractNO %></span>
 
-            <span style="text-align: center;margin-left: 260px;">签订日期:<%= data.contractSignDate %></span>
+            <span style="text-align: center;margin-left: 130px;">签订日期:<%= data.contractSignDate %></span>
 
-            <span style="text-align: right;margin-left: 260px;">签订地点:上海市闸北区</span>
+            <span style="text-align: right;margin-left: 130px;">签订地点:上海市闸北区</span>
         </div>
 
 
@@ -37,9 +38,9 @@
 
         **鉴于:**<br/>
 
-        <p style="line-height: 1.5;">1.**<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;">江苏晋和电力燃料有限公司</b></span>** **(下称"卖方"或"甲方")**通过"易煤网"网络平台(域名为www.yimei180.com)发布煤炭销售信息。甲方保证对其销售的煤炭享有完全的所有权,不存在任何权利上的瑕疵,并承诺其在"易煤网"发布的销售信息真实完整,不存在隐瞒、欺诈等情;</p>
+        <p>1.**<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;">江苏晋和电力燃料有限公司</b></span>** **(下称"卖方"或"甲方")**通过"易煤网"网络平台(域名为www.yimei180.com)发布煤炭销售信息。甲方保证对其销售的煤炭享有完全的所有权,不存在任何权利上的瑕疵,并承诺其在"易煤网"发布的销售信息真实完整,不存在隐瞒、欺诈等情;</p>
 
-        <p style="line-height: 1.5;">2.**<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.buyerCompanyName %></b></span>**  **(下称"买方"或"乙方")**通过"易煤网"网络平台(域名为www.yimei180.com)获取甲方发布的煤炭销售信息,同意与甲方签订《煤炭购销合同》,并承诺其通过"易煤网"实施的购买行为信息真实完整,不存在隐瞒、欺诈等情形;</p>
+        <p>2.**<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.buyerCompanyName %></b></span>**  **(下称"买方"或"乙方")**通过"易煤网"网络平台(域名为www.yimei180.com)获取甲方发布的煤炭销售信息,同意与甲方签订《煤炭购销合同》,并承诺其通过"易煤网"实施的购买行为信息真实完整,不存在隐瞒、欺诈等情形;</p>
 
 
         <h2>**第一条 合同标的煤炭**</h2>
@@ -49,7 +50,9 @@
         </p>
         <p>
             1.2 数量:<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderAmount %></b></span>吨±10%</p>
-        <span style="line-height: 1.5;">1.3 煤炭基准结算价格:以收到基低位发热量（Qnet.ar)<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.productNCV %></b></span>大卡/KG为基准,一票含税价<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderPrice %></b></span>元/吨,税率为17%。</span>
+        <p>
+            <span>1.3 煤炭基准结算价格:以收到基低位发热量（Qnet.ar)<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.productNCV %></b></span>大卡/KG为基准,一票含税价<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderPrice %></b></span>元/吨,税率为17%。</span>
+        </p>
 
         <p>
             1.4 交/提货地点:<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryRegion %><%= data.orderDeliveryProvince %></b></span>(区/市)<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryHarbour %></b></span>
@@ -59,38 +62,38 @@
         </p>
 
         <p>
-            <span style="line-height: 1.5;">1.6 买方提货时间:买方承诺在<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryDate1 %></b></span>日至<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryDate2 %></b></span>日提完全部标的煤炭。</span>
+            <span>1.6 买方提货时间:买方承诺在<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryDate1 %></b></span>日至<span style="border-bottom: 1px solid black;"><b style="padding-left: 10px; padding-right: 10px;"><%= data.orderDeliveryDate2 %></b></span>日提完全部标的煤炭。</span>
         </p>
         <h2> **第二条 质量验收办法**</h2>
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;甲乙双方一致同意以甲方在"易煤网"平台发布的质量标准和基准结算价格进行结算,双方不再对标的煤炭进行煤质化验考核。</span>
+            <span>&#160; &#160; &#160;甲乙双方一致同意以甲方在"易煤网"平台发布的质量标准和基准结算价格进行结算,双方不再对标的煤炭进行煤质化验考核。</span>
         </p>
         <h2>**第三条 数量验收**</h2>
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;数量验收以交/提货港出具的实际出库装载吨位计量单据为甲乙双方的结算依据。</span>
+            <span>&#160; &#160; &#160;数量验收以交/提货港出具的实际出库装载吨位计量单据为甲乙双方的结算依据。</span>
         </p>
         <h2>**第四条 付款方式及所有权转移**</h2>
         <p>
-            <span style="line-height: 1.5;">4.1 本合同签订后1天内,乙方应当以现汇的形式向甲方支付标的煤炭10%的货款作为定金。</span>
+            <span>4.1 本合同签订后1天内,乙方应当以现汇的形式向甲方支付标的煤炭10%的货款作为定金。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">4.2 在本合同约定的提货期间起始日的3天前,乙方应当以电汇的形式向甲方一次性支付标的煤炭剩余90%的货款。</span>
+            <span>4.2 在本合同约定的提货期间起始日的3天前,乙方应当以电汇的形式向甲方一次性支付标的煤炭剩余90%的货款。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">4.3 甲方应当在确定收到乙方全部货款后1天内将标的煤炭所有权转移给乙方。</span>
+            <span>4.3 甲方应当在确定收到乙方全部货款后1天内将标的煤炭所有权转移给乙方。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">4.4 乙方承诺在合同约定提货期间内付清货款并提完货物,若因乙方原因未能在规定时间内提完所有标的煤炭,则因乙方逾期提货产生的港口堆存等费用由乙方承担,具体收费标准以甲方和港口签订的合同为准。</span>
+            <span>4.4 乙方承诺在合同约定提货期间内付清货款并提完货物,若因乙方原因未能在规定时间内提完所有标的煤炭,则因乙方逾期提货产生的港口堆存等费用由乙方承担,具体收费标准以甲方和港口签订的合同为准。</span>
         </p>
         <h2>**第五条:结算方式**</h2>
         <p>
             5.1 甲乙双方进入最终结算的前提是甲方已持有100%货款且乙方已拥有100%的货权。
         </p>
         <p>
-            <span style="line-height: 1.5;">5.2 甲方按照合同基准结算价格及提货港出具的实际出库装载吨位计量单据进行结算,由甲方向乙方出具结算单。</span>
+            <span>5.2 甲方按照合同基准结算价格及提货港出具的实际出库装载吨位计量单据进行结算,由甲方向乙方出具结算单。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">5.3 甲方出具结算单后,甲乙双方根据结算单上的货款金额进行实际货款的确认工作,乙方应当按照最终确认的货款金额多退少补。</span>
+            <span>5.3 甲方出具结算单后,甲乙双方根据结算单上的货款金额进行实际货款的确认工作,乙方应当按照最终确认的货款金额多退少补。</span>
         </p>
         <p>
             5.4 甲乙双方根据结算单结清货款后,甲方在3个工作日内向乙方开具全额增值税发票。
@@ -103,26 +106,26 @@
 
         <p>6.2 合同生效</p>
 
-        <span style="line-height: 1.5;">&#160; &#160; &#160;本合同签署后立即生效,生效起始日为本合同首页所记载的日期,生效后对各方具有约束力。</span>
+        <span>&#160; &#160; &#160;本合同签署后立即生效,生效起始日为本合同首页所记载的日期,生效后对各方具有约束力。</span>
 
         <p>6.3 合同变更</p>
 
-        <span style="line-height: 1.5;">&#160; &#160; &#160;合同各当事人经协商一致可对本合同进行变更或补充,合同的变更、补充均应采取书面形式。合同的变更及补充协议均为本合同之不可分割的组成部分,与本合同具有同等法律效力。合同的变更、补充协议与本合同条款有冲突时,以变更、补充协议条款为准。</span>
+        <span>&#160; &#160; &#160;合同各当事人经协商一致可对本合同进行变更或补充,合同的变更、补充均应采取书面形式。合同的变更及补充协议均为本合同之不可分割的组成部分,与本合同具有同等法律效力。合同的变更、补充协议与本合同条款有冲突时,以变更、补充协议条款为准。</span>
 
         <p> 6.4 合同违约条款</p>
 
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;本合同生效后,甲、乙双方应当按照合同约定履行合同义务,甲、乙任何一方不履行合同约定的义务或不完全履行合同约定的义务的,构成违约。违约方应当向守约方支付标的煤炭全额货款的10%作为违约金；违约金不足以弥补损失的,还应赔偿对方全部损失。</span>
+            <span >&#160; &#160; &#160;本合同生效后,甲、乙双方应当按照合同约定履行合同义务,甲、乙任何一方不履行合同约定的义务或不完全履行合同约定的义务的,构成违约。违约方应当向守约方支付标的煤炭全额货款的10%作为违约金；违约金不足以弥补损失的,还应赔偿对方全部损失。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;本合同签订后乙方未按约向甲方支付定金的,甲方有权解除合同并要求乙方支付违约金。乙方未按合同约定全面履行付款义务的,甲方有权没收定金并解除合同。</span>
+            <span >&#160; &#160; &#160;本合同签订后乙方未按约向甲方支付定金的,甲方有权解除合同并要求乙方支付违约金。乙方未按合同约定全面履行付款义务的,甲方有权没收定金并解除合同。</span>
         </p>
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;若乙方按约履行了付款义务,甲方未按合同约定向乙方转移货权的,甲方构成违约,乙方有权解除合同并要求甲方支付违约金。</span>
+            <span >&#160; &#160; &#160;若乙方按约履行了付款义务,甲方未按合同约定向乙方转移货权的,甲方构成违约,乙方有权解除合同并要求甲方支付违约金。</span>
         </p>
         <h2>**第七条 通知条款**</h2>
 
-        <p>        <span style="line-height: 1.5;">&#160; &#160; &#160;本合同任何一方根据本合同约定做出的通知均应以书面形式做出,可采取专人送达、挂号邮寄、特快专递、传真、电子邮件或者通过"易煤网"平台发布等方式传送。所发通知自以下日期起视为有效送达:</span>
+        <p>        <span >&#160; &#160; &#160;本合同任何一方根据本合同约定做出的通知均应以书面形式做出,可采取专人送达、挂号邮寄、特快专递、传真、电子邮件或者通过"易煤网"平台发布等方式传送。所发通知自以下日期起视为有效送达:</span>
         </p>
         <p>
             &#160; &#160; &#160;(1) 专人送达的,在交付递送人之日;
@@ -151,11 +154,11 @@
         </p>
 
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;(1) 甲方保证标的煤炭系其合法所有并依法可以转让。甲方对标的煤炭享有完整的所有权,且标的煤炭未被质押或转让给任何第三方,不存在第三人可主张的任何其它权利,没有任何权利瑕疵。</span>
+            <span >&#160; &#160; &#160;(1) 甲方保证标的煤炭系其合法所有并依法可以转让。甲方对标的煤炭享有完整的所有权,且标的煤炭未被质押或转让给任何第三方,不存在第三人可主张的任何其它权利,没有任何权利瑕疵。</span>
 
         </p>
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;(2) 甲方承诺其在"易煤网"平台上发布的标的煤炭的信息真实、准确、完整,不存在发布虚假信息及故意隐瞒重要信息的情形。</span>
+            <span >&#160; &#160; &#160;(2) 甲方承诺其在"易煤网"平台上发布的标的煤炭的信息真实、准确、完整,不存在发布虚假信息及故意隐瞒重要信息的情形。</span>
 
         </p>
         <p>
@@ -166,7 +169,7 @@
             8.2 乙方的陈述和保证
         </p>
 
-        <p><span style="line-height: 1.5;">&#160; &#160; &#160;(1) 乙方保证其按照"易煤网"平台的要求进行实名注册,通过"易煤网"平台提供的企业资质、资料均真实、有效。</span>
+        <p><span >&#160; &#160; &#160;(1) 乙方保证其按照"易煤网"平台的要求进行实名注册,通过"易煤网"平台提供的企业资质、资料均真实、有效。</span>
         </p>
         <p>
             &#160; &#160; &#160;(2) 乙方承诺购买标的煤炭所使用的资金款项系其合法所得。
@@ -179,7 +182,7 @@
         <h2>**第九条 争议解决**</h2>
 
         <p>
-            <span style="line-height: 1.5;">&#160; &#160; &#160;本合同适用中华人民共和国（不含香港特别行政区、澳门特别行政区及台湾地区)法律。凡因本合同引起的或与本合同相关的争议,甲乙双方应平等协商解决;如协商不成,可提交至合同签订地管辖法院裁决处理。</span>
+            <span >&#160; &#160; &#160;本合同适用中华人民共和国（不含香港特别行政区、澳门特别行政区及台湾地区)法律。凡因本合同引起的或与本合同相关的争议,甲乙双方应平等协商解决;如协商不成,可提交至合同签订地管辖法院裁决处理。</span>
 
         </p>
         <h2>**第十条 其他规定**</h2>
@@ -189,7 +192,7 @@
         </p>
 
         <p>
-            <span style="line-height: 1.5;">10.2 本合同任何条款部分或全部无效或不可执行不影响其余条款的效力。以上规定同样适用于本合同出现漏洞的情况,在该情况下,双方可签订补充协议以填补上述漏洞。</span>
+            <span >10.2 本合同任何条款部分或全部无效或不可执行不影响其余条款的效力。以上规定同样适用于本合同出现漏洞的情况,在该情况下,双方可签订补充协议以填补上述漏洞。</span>
 
         </p>
         <p>(以下无正文,为合同签署页)</p>
