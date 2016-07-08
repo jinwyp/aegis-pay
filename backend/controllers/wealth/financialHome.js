@@ -205,6 +205,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             '金额',
                             '账户余额',
                             '摘要',
+                            '订单号',
                             '对方账号',
                             '对方账号名称'
                         ],
@@ -214,6 +215,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             'money',
                             'balanceMoney',
                             'type',
+                            'orderId',
                             'otherFundAccount',
                             'otherCompanyName'
                         ],
