@@ -88,6 +88,13 @@ exports.childBankName = function (req, res, next) {
     var cityCode = req.query.cityCode,
         bankCode = req.query.bankCode,
         childBankName = req.body.childBankName;
+
+    if(!bankCode||!cityCode) {
+        res.send("");
+        return;
+    }
+
+
      var url = api_config.bindingBankAccountChildBankName+"/" + cityCode+"/"+bankCode;
 
     request.get({
@@ -112,6 +119,12 @@ exports.childAllBankName = function (req, res, next) {
     var cityCode = req.query.cityCode,
         bankCode = req.query.bankCode,
         childBankName = req.body.childBankName;
+
+    if(!bankCode||!cityCode) {
+        res.send("");
+        return;
+    }
+
     var url = api_config.childAllBankName+"/" + cityCode+"/"+bankCode;
 
     request.get({

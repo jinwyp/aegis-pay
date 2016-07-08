@@ -116,6 +116,7 @@ exports.financialDetails = function (req, res, next) {
             {id:'4', value:'4', text:'采购', selected:false}
         ],
         formSelectOrderSearchType:[
+            {id:'0', value:'0', text:'全部'},
             {id:'1', value:'1', text:'交易流水号'},
             {id:'2', value:'2', text:'对方账号名称'},
             {id:'3', value:'3', text:'订单号'}
@@ -160,8 +161,8 @@ exports.financialDetails = function (req, res, next) {
 
 
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
-    checker.paymentStartDate(req.query.orderDateFromDownload);
-    checker.paymentStartDate(req.query.orderDateToDownload);
+    checker.paymentStartDate(req.query.orderDateFromDownload, 'orderDateFromDownload');
+    checker.paymentEndDate(req.query.orderDateToDownload, 'orderDateToDownload');
 
 
     if (req.query.filetype){
@@ -190,6 +191,8 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                     if (order.type === 3){order.type = '销售'}
                     if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+
+                    if (!order.orderId){order.orderId = '-'}
                 });
 
                 if (req.query.filetype === 'excel'){
@@ -202,6 +205,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             '金额',
                             '账户余额',
                             '摘要',
+                            '订单号',
                             '对方账号',
                             '对方账号名称'
                         ],
@@ -211,6 +215,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             'money',
                             'balanceMoney',
                             'type',
+                            'orderId',
                             'otherFundAccount',
                             'otherCompanyName'
                         ],
