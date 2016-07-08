@@ -44,9 +44,9 @@ exports.addInvoiceInfo = function (req, res, next) {
 		}
 
 		var replyData = {
-			headerTit: '结算单.获取开票信息',
+			pageTitle: '结算.编辑开票信息页',
+			headerTit: '开票信息',
 			subTitle: '确认开票信息',
-			pageTitle: '结算_确认开票信息',
 			orderId: orderId
 		};
 		
@@ -56,8 +56,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 		//	{ type: 'type_001', sequence: 1, name: '增值税专用发票' },
 		//	{ type: 'type_002', sequence: 2, name: '增值税专用发票_2' },
 		//	{ type: 'type_003', sequence: 3, name: '增值税专用发票_3' },
-		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }
-		//];
+		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }];
 		console.dir(replyData.data.receiptTypeList);
 		console.dir(replyData);
 		//console.log(replyData.receipt.companyName);
@@ -125,8 +124,9 @@ exports.invoiceNotes = function (req, res, next) {
 
 		var resBody = JSON.parse(body);
 		var replyData = {
-			headerTit: '添加开票备注',
-			pageTitle : '开票信息',
+			pageTitle : '结算.查看开票信息页',
+			headerTit: '开票信息',
+			subTitle: '确认开票信息',
 			editable : true
 		};
 		Object.assign(replyData, resBody);
