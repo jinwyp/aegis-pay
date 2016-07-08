@@ -56,12 +56,14 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             $formSelectOrderSearchType.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderSearchType = this.value;
+                if (searchQuery.orderSearchType === '0') {vm.orderSearchTextPlaceHolder = ''}
+                if (searchQuery.orderSearchType === '1') {vm.orderSearchTextPlaceHolder = '请输入交易流水号'}
+                if (searchQuery.orderSearchType === '2') {vm.orderSearchTextPlaceHolder = '请输入对方账号名称'}
+                if (searchQuery.orderSearchType === '3') {vm.orderSearchTextPlaceHolder = '请输入订单号'}
+
             });
 
             $('#downloadExcel').on('show.bs.modal', function (e) {
-                console.log( $formDateTo.val());
-                console.log( $formDateTo.pickadate('picker').get());
-
                 $formDownloadDateFrom.pickadate('picker').set('select', $formDateFrom.val(), { format: 'yyyy-mm-dd' });
                 $formDownloadDateTo.pickadate('picker').set('select', $formDateTo.val(), { format: 'yyyy-mm-dd' });
             });
@@ -79,6 +81,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             vm = avalon.define({
                 $id: "financialDetailsController",
                 orderSearchText  : '',
+                orderSearchTextPlaceHolder  : '',
                 orderShowLoading  : true,
                 orderList        : [],
 

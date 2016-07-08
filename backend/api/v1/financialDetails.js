@@ -33,7 +33,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateTo) postBody.startDate = req.body.endDate;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
     if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
-    if (req.body.orderSearchText) postBody.searchContent = req.body.orderSearchText;
+    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText;
 
 
     var url = api_config.financialDetails;
@@ -51,6 +51,8 @@ exports.financialDetailsApi = function (req, res, next) {
                 if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                 if (order.type === 3){order.type = '销售'}
                 if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+
+                if (!order.orderId){order.orderId = '-'}
 
             });
 
