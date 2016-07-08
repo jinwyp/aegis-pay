@@ -3,25 +3,46 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	/**
 	 * 异步上传附件.自定义
 	 * @param $file file控件元素
-	 * @param params 参数对象(API:接口路径, typeObj:请求类型, fileSize:大小, fileWidth:宽度, fileHeight:高度, fileType:文件类型限制)
+	 * @param params 参数对象(API:接口路径, typeObj:请求类型, maxFileSize: 最多值, fileType: ["jpg", "png"]文件类型限制, fileWidth:宽度, fileHeight:高度)
 	 * @param callback 回调函数
 	 */
 	function ajaxFileUpload ($file, params, callback) {
+		var errorMessage = '', verify = true; 						// 错误信息, 验证结果
 		params = params || {};
+		params.maxFileSize = params.maxFileSize || 1048576 * 5;		// 最大5Mb
+		params.fileType = params.fileType || [];
 
-		$file.fileupload({
-			url: params.API || '/api/upload-file',
-			dataType: 'json',
-			maxFileSize: params.maxSize || 5120,		// 单位 K  5Mb
-			done: function (e, data) {
-				if (data && data.result && data.result) {
-					callback && typeof callback === "function" && callback(data.result);
+		var file = $file[0];
+		if( filterFormat(file, params.fileType) ) {
+			errorMessage = '上传附件格式错误!';
+			verify = false;
+		}
+		if( file.files.length > 0 && (file.files[0].size > params.maxFileSize) ) {
+			errorMessage = '上传附件超出大小上限!';
+			verify = false;
+		}
+
+		if(verify) {
+			$file.fileupload({
+				url: params.API || '/api/upload-file',
+				dataType: 'json',
+				//maxFileSize: params.maxSize || 5120,
+				done: function (e, data) {
+					if (data && data.result && data.result) {
+						callback && typeof callback === "function" && callback(data.result);
+					}
+				},
+				progressall: function (e, data) {
+					// var progress = parseInt(data.loaded / data.total * 100, 10);
 				}
-			},
-			progressall: function (e, data) {
-				// var progress = parseInt(data.loaded / data.total * 100, 10);
-			}
-		});
+			});
+		} else {
+			var data = {
+				success: false,
+				errorMessage: errorMessage
+			};
+			callback && typeof callback === "function" && callback(data);
+		}
 	}
 
 	/**
@@ -50,11 +71,21 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		});
 	}
 
+	// 图片格式
+	function filterFormat($tag, typeList) {
+		var results = false,
+			tagType = $tag.value.substr($tag.value.lastIndexOf('.') + 1);
 
+		if(typeList && typeList.length > 0 && $.inArray(tagType, typeList) < 0) {
+			results = true;
+		}
+		return results;
+	}
 
 	return {
 		ajaxFileUpload: ajaxFileUpload,				//上传附件
 		ajaxFileRemove: ajaxFileRemove,				//移除附件
+		filterFormat: filterFormat,					//格式验证
 
 		init: function(){
 			this.uploadfile();

@@ -84,9 +84,9 @@
                     <tr>
                         <th class="txt_r"><s class="require lih_16">*</s>发票类型：</th>
                         <td>
-                            <select name="type" id="type" style="display: none">
+                            <select name="type" id="type" style="display: none" data-name="<%=data.receipt && data.receipt.typeName ? data.receipt.typeName : ''%>">
                                 <% for (receiptType of data.receiptTypeList) {%>
-                                    <option value="<%=receiptType.sequence%>" <% if(data.receipt && data.receipt.typeName == receiptType.name){ %>selected<% } %> ><%=receiptType.name %></option>
+                                    <option value="<%=receiptType.sequence%>" <% if(data.receipt && data.receipt.typeName == receiptType.name){ %> selected <% } %> ><%=receiptType.name %></option>
                                 <%}%>
                             </select>
                             <div class="errorMsg"></div>

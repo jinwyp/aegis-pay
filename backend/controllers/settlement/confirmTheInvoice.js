@@ -56,8 +56,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 		//	{ type: 'type_001', sequence: 1, name: '增值税专用发票' },
 		//	{ type: 'type_002', sequence: 2, name: '增值税专用发票_2' },
 		//	{ type: 'type_003', sequence: 3, name: '增值税专用发票_3' },
-		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }
-		//];
+		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }];
 		console.dir(replyData.data.receiptTypeList);
 		console.dir(replyData);
 		//console.log(replyData.receipt.companyName);
