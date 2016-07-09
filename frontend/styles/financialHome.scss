@@ -4,8 +4,6 @@
 @import './components/pagination_finalcial.scss';
 
 
-
-
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -18,10 +16,6 @@
     &:hover{  color: $color_a_hover;  }
   }
   .financial-main{
-    .no-data {
-      font-size: 18px;
-      text-align: center;
-    }
     width: $main_width;
     margin-left: auto;
     margin-right: auto;
@@ -166,18 +160,24 @@
           margin-left: auto;
           margin-right: auto;
           padding-bottom: 20px;
-          tr{
+          tr.line{
             height: 98px;
             border-bottom: 1px dotted $color_border;
             &:hover{
               background-color: $tr_hover_color;
             }
-            td{  text-align: center;padding-top: 10px;padding-bottom: 10px;  }
+            td{  text-align: center;  padding: 10px 0;  }
             td > a { display: block;}
             .orange{ color: $color_orange; }
             .mt-10{  margin-top: 10px; }
             .status-green{  color: #1aaa6b;  }
             .status-red{  color: #ff0000;  }
+          }
+          .no-data{
+            text-align: center;
+            padding: 105px 0;
+            font-size: 18px;
+            color: #666;
           }
         }
       }

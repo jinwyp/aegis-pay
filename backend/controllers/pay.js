@@ -29,23 +29,25 @@ var getOrderStatus = function(orderId){
 exports.page = function (req, res, next) {
         checker.orderId(req.query.orderId);
         var userInfo = req.session.user;
+        api_config.fetchPayPhone(userInfo.id).then(function(payPhone){
+            res.locals.user.payPhone = payPhone;
+            var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
+            request(api_config.payPage + query, function (err, data) {
+                if (err) return next(err);
+                var result = JSON.parse(data.body);
+                if(result.errorCode === '1009'){
+                    // 订单不处于支付状态
+                    res.redirect('/getBuyOrderDetail?orderId=' + req.query.orderId);
+                }else{
+                    var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款', type:req.query.type },
+                                                result.data);
+                    // 未开通资金账号
+                    var view = (result.errorCode==='1001') ? 'pay/open-account' : 'pay/index';
+                    return res.render(view, pageData);
+                }
 
-        var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
-        request(api_config.payPage + query, function (err, data) {
-            if (err) return next(err);
-            var result = JSON.parse(data.body);
-            if(result.errorCode === '1009'){
-                // 订单不处于支付状态
-                 res.redirect('/getBuyOrderDetail?orderId=' + req.query.orderId);
-            }else{
-                var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款', type:req.query.type },
-                                            result.data);
-                // 未开通资金账号
-                var view = (result.errorCode==='1001') ? 'pay/open-account' : 'pay/index';
-                return res.render(view, pageData);
-            }
-
-        })
+            })
+        }).catch(next);
 };
 
 

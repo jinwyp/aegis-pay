@@ -10,10 +10,11 @@ exports.openFundAccount = function(req, res, next){
         if(err) return next(err);
         if(!err && data){
             var result = JSON.parse(data.body);
-            if(result.success){
-                req.session.user.payPhone = params.payPhone;
-                res.locals.user = req.session.user;
-            }
+            // if(result.success){
+            //     req.session.user.payPhone = params.payPhone;
+            //     res.locals.user = req.session.user;
+            //     cache.set('payPhone_' + req.session.user.id, params.payPhone);
+            // }
             res.json(result);
         }
     })

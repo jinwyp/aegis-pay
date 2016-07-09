@@ -91,7 +91,6 @@ exports.html2pdf = function (htmlpath, options) {
                 if (err) reject(err);
                 if (resultHtml) {
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
-                        console.log(err);
                         if (!err) {
                             fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);

@@ -85,7 +85,7 @@ exports.openFundAccount = function (req, res, next) {
         headerTit   : "开通易煤网资金账户"
     };
     //渲染页面
-    res.render('wealth/openFundAccount',pageData);    
+    res.render('wealth/openFundAccount',pageData);   
 };
 
 // 开通资金账户 - 设置密码&绑定手机号 - 等待开通
