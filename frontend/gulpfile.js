@@ -40,7 +40,7 @@ gulp.task('jslint', function() {
     gulp.src(sourcePaths.javascript)
         .pipe(plugins.eslint())
         .pipe(plugins.eslint.format())
-        .pipe(plugins.if(!browserSync.active, plugins.eslint.failOnError()))
+        .pipe(plugins.if(!bs.active, plugins.eslint.failOnError()))
 });
 
 
