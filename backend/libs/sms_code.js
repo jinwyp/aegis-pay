@@ -71,7 +71,7 @@ var cacheGet = function(userInfo, validTime){
 
             if(minTime>0){
                 // result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
-                result = {"sms":minSms[minSms.length-1].sms};
+                result = {"sms":minSms[minSms.length-1].sms, payPhone:minSms[minSms.length-1].payPhone};
                 if(validTime){
                     return resolve(result);
                 }

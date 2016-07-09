@@ -118,15 +118,11 @@ var convertData = function (compactdata, compactejs, orderId) {
 
     return convert.ejs2html(compactdata, compactejs, {htmlname: path.basename(compactejs, '.ejs') + '-' + orderId}).then(function(resultHtml){
         compactData.html = resultHtml.htmlpath;
-        console.log('resultHtml')
-        console.log(resultHtml.htmlpath)
         return convert.html2pdf(resultHtml.htmlpath, {pdfpath: downloadPath+"/"})
     })
     .then(function(resultPDF){
         compactData.pdf = resultPDF.pdfpath;
         data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
-        console.log('resultPDF')
-        console.log(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath);
     })
     .then(function(resultImgs){
