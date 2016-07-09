@@ -9,6 +9,8 @@ $headerBgColor: #292929;
     font-size: 12px;
     color: #fff;
     font-family: "microsoft yahei";
+    position: relative;
+    z-index: 100;
 
     .wrap1000 {
       width: 1000px;

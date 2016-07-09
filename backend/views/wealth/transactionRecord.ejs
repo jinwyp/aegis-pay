@@ -16,17 +16,17 @@
         <form id="searchForm" action="/wealth/financialTransaction">
         <div class="search-div">
             <div class="search-row row-one">
-                <span>订单类型:</span>
+                <span>类型:</span>
                 <select name="type" id="type">
                     <option value="0">全部</option>
                     <option value="1" <%if(type===1){ %>selected<% } %>>采购</option>
                     <option value="2" <%if(type===2){ %>selected<% } %>>销售</option>
                 </select>
-                <span>交易日期:</span>
+                <span>创建日期:</span>
                 <div class="time"><input type="text" name="startDate" class="iIpt iIpt_sm startDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(startDate)%>"/></div>
                 <span class="to">至</span>
                 <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=clearEmpty(endDate)%>"/></div>
-                <span>交易状态:</span>
+                <span>状态:</span>
                 <select name="status" id="status">
                     <% for(var i in statusList) { %>
                     <option value="<%=i%>" <%if(status===i){ %>selected<% } %>><%=statusList[i]%></option>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="search-row row-two mt-20">
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号:</span>
+                <span>编号:</span>
                 <select name="searchType" id="searchType">
                     <option value="0">全部</option>
                     <option value="1" <%if(searchType===1){ %>selected<% } %>>订单编号</option>
@@ -60,8 +60,8 @@
                     <th width="80">创建日期</th>
                     <th width="60">分类</th>
                     <th width="140">名称</th>
-                    <th width="180">编号</th>
-                    <th width="160">金额</th>
+                    <th width="180">编号/流水号</th>
+                    <th width="160">订单金额</th>
                     <th width="120">状态</th>
                     <th width="120">操作</th>
                 </tr>
