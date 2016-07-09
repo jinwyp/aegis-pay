@@ -89,6 +89,20 @@ exports.checkCashBank = function (req, res, next) {
 };
 
 
+// 检查是否绑定银行卡
+exports.checkDrawCash = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.checkDrawBank,form:{userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
+
 
 
 

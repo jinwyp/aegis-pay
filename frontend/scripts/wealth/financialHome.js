@@ -448,7 +448,18 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     });
 
     $(".btn-drawCash").click(function(){
-        location.href="/drawCash";
+        $.ajax({
+            url:"/wealth/checkDrawCash",
+            success:function(data){
+                if(data&&data.success){
+                    location.href="/drawCash";
+                }else{
+                    $("#modal_title_3").text("温馨提示");
+                    $("#modalInfo_3").text(data.error);
+                    $(".modal_3").modal('show');
+                }
+            }
+        });
     });
 
     //绑定银行卡
