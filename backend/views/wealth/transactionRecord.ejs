@@ -104,39 +104,39 @@
                             <% }else if(recordList[i].status === 'WaitVerifyDeliveryGoods'){ %>
                             <span class="status-green">待卖家审核提货</span>
                             <% }else if(recordList[i].status === 'WaitSettleAccounts'){ %>
-                            <span class="status-green">待开具结算单</span>
+                            <span class="status-green">待卖家结算</span>
                             <% }else if(recordList[i].status === 'WaitVerifySettle'){ %>
-                            <span class="status-green">待确认结算</span>
+                            <span class="status-green">待审核结算</span>
                             <% }else if(recordList[i].status === 'ReturnedSettleAccounts'){ %>
-                            <span class="status-red">结算已退回</span>
+                            <span class="status-red">结算被退回</span>
                             <% }else if(recordList[i].status === 'WaitPayRefundMoney'){ %>
-                            <span class="status-green">待退款</span>
+                            <span class="status-green">待卖家退款</span>
                             <% }else if(recordList[i].status === 'WaitPayTailMoney'){ %>
-                            <span class="status-green"><%=recordList[i].statusName%></span>
+                            <span class="status-green">待买家补款</span>
                             <% }else if(recordList[i].status === 'WaitWriteReceipt'){ %>
-                            <span class="status-green"><%=recordList[i].statusName%></span>
+                            <span class="status-green">待卖家开发票</span>
                             <% }else if(recordList[i].status === 'WaitReceiveReceipt'){ %>
                             <span class="status-green">待收发票</span>
                             <% }else if(recordList[i].status === 'WaitImproveReceipt'){ %>
-                            <span class="status-green"><%=recordList[i].statusName%></span>
+                            <span class="status-green">待完善开票信息</span>
                             <% }else if(recordList[i].status === 'TradeDisputing'){ %>
                             <span class="status-green">纠纷待处理</span>
                             <% }else if(recordList[i].status === 'TradeDisputeFinished'){ %>
-                            <span><%=recordList[i].statusName%></span>
+                            <span class="status-green">纠纷协商完成</span>
                             <% }else if(recordList[i].status === 'MakeMatch'){ %>
-                            <span>撮合中</span>
+                            <span class="status-green">撮合中</span>
                             <% }else if(recordList[i].status === 'Deleted'){ %>
-                            <span>已删除</span>
+                            <span class="status-green">已删除</span>
                             <% }else if(recordList[i].status === 'Canceled'){ %>
-                            <span>已取消</span>
+                            <span class="status-green">已取消</span>
                             <% }else if(recordList[i].status === 'Completed'){ %>
-                            <span>交易完成</span>
+                            <span class="status-green">交易完成</span>
                             <% }else if(recordList[i].status === 'TradeFinished'){ %>
-                            <span>交易结束</span>
+                            <span class="status-green">交易结束</span>
                             <% }else if(recordList[i].status === 'TradeClosed'){ %>
-                            <span>交易关闭</span>
+                            <span class="status-green">交易关闭</span>
                             <% }else{ %>
-                            <span class=""><%=recordList[i].status%></span>
+                            <span class="status-green"><%=recordList[i].status%></span>
                             <%}%>
                         </td>
                         <td class="operation" width="80">
