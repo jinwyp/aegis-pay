@@ -197,7 +197,7 @@ exports.verifyMiddleware = function () {
                 return res.json(result);
             }else{
                 cacheGet(userInfo, true).then(function(data){
-                    if(data && data.sms && (data.payPhone === payPhone) && (data.sms === sms)){
+                    if(data && data.sms && (data.payPhone === payPhone) && (data.sms.toLowerCase() === sms.toLowerCase())){
                         // isUsed = true;
                         return next();
                     }else{
