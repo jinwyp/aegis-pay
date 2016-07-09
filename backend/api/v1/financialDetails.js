@@ -14,12 +14,14 @@ var ejsHelper  = require('../../libs/ejshelper')({locals: {}});
 
 exports.financialDetailsApi = function (req, res, next) {
 
-    //checker.orderId(req.body.orderCategory);
-    //checker.orderId(req.body.orderDateFrom);
-    //checker.orderId(req.body.orderDateTo);
-    //checker.orderId(req.body.orderSearchType);
-    //checker.payPassword(req.body.orderSearchText);
-    //checker.payPassword(req.body.currentPage);
+    checker.paymentStartDate(req.body.orderDateFrom, 'orderDateFrom');
+    checker.paymentEndDate(req.body.orderDateTo, 'orderDateTo');
+
+    checker.paymentCategoryType(req.body.orderCategory, 'orderCategory');
+    checker.paymentCategoryType(req.body.orderSearchType, 'orderSearchType');
+
+    checker.pageNumber(req.body.currentPage, 'currentPage');
+    //checker.searchText(req.body.orderSearchText);
     //checker.payPassword(req.body.limit);
 
     var postBody = {

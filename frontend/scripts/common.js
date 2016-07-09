@@ -39,8 +39,8 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 // 底部吸底
 	var bottomStyle={
 		init : function(){
-			this.judge(),
-            this.resize()
+			this.judge();
+			$(window).scroll(this.judge).resize(this.judge);
 		},
 		judge : function(){
 			var hBody=$('body').height(),
@@ -50,20 +50,9 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 			}else{
                 $("#paymentFooter").removeClass('bottomAbsolute');
             }
-		},
-		resize : function(){
-			var that=this;
-			$(window).resize(function(){
-				that.judge();
-			});
 		}
 	};
 	bottomStyle.init();
-
-
-
-
-
 
 });
 

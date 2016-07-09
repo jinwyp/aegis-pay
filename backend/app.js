@@ -112,6 +112,7 @@ _.extend(app.locals, {
     staticPath : '/static',
     homepage : config.homepage,
     memberUrl : config.passport.member,
+    payUrl : config.passport.pay,
     sitepage : config.site_page
 });
 

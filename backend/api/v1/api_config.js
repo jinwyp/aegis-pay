@@ -117,7 +117,7 @@ var api_config = {
     disputeComplete : host + 'mall/order/dispute/detail',
     disputeSuccess : host + 'mall/order/seller/dispute/complete',
     financialCenterHome : host + 'finance/center',
-    checkCashBank : host + '/account/fund/checkCashBank',
+    checkCashBank : host + 'account/fund/checkCashBank',
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',

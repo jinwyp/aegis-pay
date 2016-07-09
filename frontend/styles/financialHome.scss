@@ -4,7 +4,6 @@
 @import './components/pagination_finalcial.scss';
 
 
-
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -161,18 +160,24 @@
           margin-left: auto;
           margin-right: auto;
           padding-bottom: 20px;
-          tr{
+          tr.line{
             height: 98px;
             border-bottom: 1px dotted $color_border;
             &:hover{
               background-color: $tr_hover_color;
             }
-            td{  text-align: center;padding-top: 10px;padding-bottom: 10px;  }
+            td{  text-align: center;  padding: 10px 0;  }
             td > a { display: block;}
             .orange{ color: $color_orange; }
             .mt-10{  margin-top: 10px; }
             .status-green{  color: #1aaa6b;  }
             .status-red{  color: #ff0000;  }
+          }
+          .no-data{
+            text-align: center;
+            padding: 105px 0;
+            font-size: 18px;
+            color: #666;
           }
         }
       }
@@ -244,28 +249,20 @@
 
 
 
-
-
     .financial-details{
-
       margin: 10px 0px;
       padding: 8px 0px;
-
       background-color: #fff;
-
       .indexHigh{
         ul{
           z-index:99
         }
       }
-
       .form-row{
         margin: 10px 1px;
       }
-
       .form-search {
         width: 255px;
-
         label {
           font-size: $size_font_normal;
           color: $color_text_gray;
@@ -273,13 +270,12 @@
           padding-right: 2px;
           margin-right: -10px
         }
-
         .label-timefrom{
           width:70px;
         }
         .label-timeto{
           width:30px;
-          margin-left: -15px;
+          margin-left: -26px;
         }
 
         .input-text {
@@ -296,11 +292,11 @@
         }
 
         .input-date{
-          width: 110px;
+          width: 120px;
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 89px) -63px);
+          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) -64px);
         }
 
         .input-date-icon{
@@ -311,14 +307,12 @@
           line-height: 15px;
           @include sprite($icon-calendar-gray);
         }
-
         .input-box {
           width: 240px;
         }
       }
-
       .form-search-big{
-        width: 410px;
+        width: 470px;
       }
       .table-box{
         padding: 5px 30px;
@@ -335,14 +329,12 @@
         float: right;
         padding: 2px 10px;
         margin-right: 0px;
-
         .iBtn_down_icn{
           margin-top :1px;
           margin-left :0px;
           padding: 2px 7px;
         }
       }
-
       .search-content{
         position: relative;
       }
@@ -354,10 +346,8 @@
           text-align: center;
           border-top:0px
         }
-
         tr {
           border-bottom: 1px dotted $color_border;
-
           &:hover{
             background-color: $tr_hover_color;
           }
@@ -370,15 +360,8 @@
           vertical-align: middle;
           border-top: 0px dotted $color_border;
         }
-        .no-data {
-          font-size: 18px;
-          text-align: center;
-        }
-
       }
-
     }
-
   }
 }
 

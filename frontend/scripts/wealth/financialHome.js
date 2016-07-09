@@ -412,7 +412,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     $(".btn-dealDispute").click(function(){
         location.href="/dispute/disputeDetail?orderId="+$(this).data("id");
     });
-    //查看纠纷详情
+    //纠纷完成
     $(".btn-lookDispute").click(function(){
         location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
     });
@@ -441,9 +441,14 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             });
         });
     });
+
     //关闭交易
     $(".btn-closeTrade").click(function(){
         location.href="/order/orderClose?id="+$(this).data("id");
+    });
+
+    $(".btn-drawCash").click(function(){
+        location.href="/drawCash";
     });
 
     //绑定银行卡

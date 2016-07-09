@@ -27,6 +27,7 @@ var config = {
     },
     passport: {
       member: 'https://member-local.yimei180.com',
+      pay: 'https://pay-local.yimei180.com',
       cookieName: 'passport'
     },
 
