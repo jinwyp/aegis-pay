@@ -61,7 +61,7 @@
           line-height: 36px;
           th{  text-align: center;  }
         }
-        tbody tr{
+        tbody tr.line{
           border-bottom: 1px dotted $color_border;
           &:hover{  background-color: $tr_hover_color;  }
           td{
@@ -92,6 +92,12 @@
           td.operation > a { display: block;}
           .status-green{  color: #1aaa6b;  }
           .status-red{  color: #ff0000;  }
+        }
+        .no-data{
+          text-align: center;
+          padding: 105px 0;
+          font-size: 18px;
+          color: #666;
         }
       }
     }

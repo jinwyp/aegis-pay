@@ -263,7 +263,7 @@ exports.financialTransaction = function (req, res, next) {
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
 
-    console.log(req.query)
+    console.log(req.query);
     var getQuery = {
         userId : req.session.user.id,
         //userId :  2719,
@@ -276,7 +276,10 @@ exports.financialTransaction = function (req, res, next) {
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.status) getQuery.status = req.query.status;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+        getQuery.content = "%";
+    else if(req.query.content)
+        getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post({
         url  : api_config.financialTransaction,
@@ -346,8 +349,10 @@ exports.financialContract = function (req, res, next) {
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
-    //if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+        getQuery.content = "%";
+    else if(req.query.content)
+        getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post(
         {
@@ -413,11 +418,13 @@ exports.financialSettlement = function (req, res, next) {
         pagesize : 10
     };
 
-    //if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+        getQuery.content = "%";
+    else if(req.query.content)
+        getQuery.content = req.query.content.replace(/\s+/g,"");
 
 
     request.post(

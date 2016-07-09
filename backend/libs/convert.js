@@ -13,8 +13,8 @@ var logger   = require("./logger");
 var __dirfiles = config.file_path.root;
 var images_path = config.file_path.root + config.file_path.images + '/';
 var html_path = config.file_path.root + config.file_path.html + '/';
-var pdf_path = config.file_path.pdf + '/';
-var zips_path = config.file_path.zips;
+var pdf_path = config.file_path.root + config.file_path.pdf + '/';
+var zips_path = config.file_path.root + config.file_path.zips + '/';
 
 
 exports.pdf2image = function (pdfpath, options) {
@@ -186,14 +186,14 @@ exports.zipFile = function (options) {
 
         var archive = archiver(options.type, {});
 
-        var output = fs.createWriteStream(options.output + '/' + options.zipname);
+        var output = fs.createWriteStream(options.output + options.zipname);
 
         archive.on('error', reject);
 
         output.on('close', function () {
             logger.debug(archive.pointer() + ' total bytes');
             logger.debug('archiver has been finalized and the output file descriptor has closed.');
-            resolve(options.output + '/' + options.zipname);
+            resolve(options.output + options.zipname);
         });
 
 
