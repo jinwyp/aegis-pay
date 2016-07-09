@@ -46,7 +46,9 @@
     background-color:$color_btn_gray; color:#fff;
 }
 
-
+.btn_blue:hover, .btn_blue_small:hover{
+  background-color:$color_link_hover;
+}
 
 // lightbox 样式调整
 .lightboxOverlay{ opacity:0.5; filter:alpha(opacity=50)};
