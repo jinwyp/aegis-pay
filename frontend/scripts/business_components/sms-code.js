@@ -43,8 +43,8 @@ define(['jquery','bootstrap'],function($){
     validImgcode: function(imgcode){
         var self = this;
         var $send_sms = $('#send_code');
-        var params = {'captchaText':imgcode};
-        self.customPhone && (params.customPhone = $('input[name="'+ self.customPhone +'"]').val())
+        var params = {'captchaText':imgcode, 'payPhone': $('input[name="payPhone"]').val()};
+        self.customPhone && (params.payPhone = $('input[name="'+ self.customPhone +'"]').val())
         $.post('/api/validImgcode', params, function(data){
             $('#imgcodeValid').removeClass("sended");
             // $('.glyphicon').hide();

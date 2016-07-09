@@ -15,32 +15,37 @@ define(['jquery', 'datachecker'],function($, datachecker){
             if($(this).hasClass('disable')) return;
             var sms_code = self.els.$code.val(),
                 payPassword = self.els.$pass.val();
-                console.log(datachecker.smsText(sms_code))
             if(!datachecker.smsText(sms_code)){
-                self.els.$codeTipErr.text('请输入有效的校验码').show();
+                var msg = !sms_code ? '请输入验证码' : '验证码错误！';
+                self.els.$codeTipErr.text(msg).show();
                 self.els.$code.focus();
                 return;
+            }else{
+                self.els.$codeTipErr.hide();
             }
             if(!datachecker.payPassword(payPassword)){
-                self.els.$passTipErr.text('请输入有效的支付密码').show();
+                var msg = !payPassword ? '请输入支付密码' : '支付密码错误！';
+                self.els.$passTipErr.text(msg).show();
                 self.els.$pass.focus();
                 return;
-            }
-                self.els.$codeTipErr.hide();
+            }else{
                 self.els.$passTipErr.hide();
-                self.submit();
-            })
+            } 
+            $(this).addClass('disable');
+            self.submit();
+        })
       },
       submit: function(){
         var self = this;
         var params = $('#pay').serialize();
         $.post('/api/pay/submit', params, function(data){
+          $('#payBtn').removeClass('disable');
           if(data.success){
             // 跳转到付款成功提示页面
             location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=' + $('input[name="type"]').val();
           }else{
             if(data.errType && (data.errType=='sms_code')){
-              self.els.$codeTipErr.text('校验码错误').show();
+              self.els.$codeTipErr.text('验证码错误！').show();
               self.els.$code.focus();
             }else if(data.errType && (data.errType=='payPassword')){
               if(data.errorCode==1004){
