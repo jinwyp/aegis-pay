@@ -57,6 +57,6 @@
 
 <!-- 总金额 -->
 <div class="total-money">
-    <div class="money-number">总金额：<span><%= formatMoney((order.totalMoney + order.tailMoney - order.refundMoney),2) %></span></div>
+    <div class="money-number">总金额：<span><%= formatMoney((order.totalMoney + order.tailMoney - order.refundMoney),2) %>元</span></div>
     <div class="money-zh">(人民币：<%= switchTxt((order.totalMoney + order.tailMoney - order.refundMoney)) %>)</div>
 </div>
