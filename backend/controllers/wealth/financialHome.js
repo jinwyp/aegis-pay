@@ -207,6 +207,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                     if (order.type === 3){order.type = '销售'}
                     if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
 
                     if (!order.orderId){order.orderId = '-'}
                 });
@@ -292,10 +293,11 @@ exports.financialTransaction = function (req, res, next) {
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.status) getQuery.status = req.query.status;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
-        getQuery.content = "%";
-    else if(req.query.content)
-        getQuery.content = req.query.content.replace(/\s+/g,"");
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/^\s+|\s+$/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post({
         url  : api_config.financialTransaction,
@@ -365,10 +367,11 @@ exports.financialContract = function (req, res, next) {
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
-    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
-        getQuery.content = "%";
-    else if(req.query.content)
-        getQuery.content = req.query.content.replace(/\s+/g,"");
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post(
         {
@@ -437,10 +440,11 @@ exports.financialSettlement = function (req, res, next) {
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
-        getQuery.content = "%";
-    else if(req.query.content)
-        getQuery.content = req.query.content.replace(/\s+/g,"");
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
 
     request.post(
