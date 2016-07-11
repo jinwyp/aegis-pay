@@ -8,7 +8,6 @@
 
 
 <%- include ../header/header %>
-<span>a a a a a a a  <% ngShow(false) %> </span>
 
 <h1><%- status %> System Error</h1>
 <%- status %> <br/>
@@ -16,9 +15,7 @@
 
 <h1>inspect:</h1>
 <%- inspect %> <br/>
-<% if(message === "您还没有开通易煤网资金账户.") {%>
-<a href="/">开通资金账号</a>
-<% } %>
+<a <%= ngShow(message === "您还没有开通易煤网资金账户.") %> href="/">开通资金账号</a>
 <%- include ../footer/footer %>
 
 <%- include ../includehead/bottomscript %>
