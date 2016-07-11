@@ -184,6 +184,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
     if (req.query.filetype){
 
         var formData = {
+            pagesize : 10000,
             userId: req.session.user.id
             //userId: 2719
         };
