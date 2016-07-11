@@ -12,6 +12,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             var that = this;
             $("select").fancySelect();
             this.initFancySelectListener();
+            $('.trigger').addClass('selected');
 
             //结算单.获取开票信息
             $("#submitBtn").click(function(){that.submitForm(that)});
