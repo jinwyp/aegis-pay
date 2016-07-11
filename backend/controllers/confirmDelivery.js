@@ -67,6 +67,7 @@ exports.confirmDelivery = function (req, res, next) {
                 "qualityList" :  source.data.qualityList,
                 "quantityList" :  source.data.quantityList
             }
+
             res.render('confirmDelivery/confirmDelivery', content);
         }
     });
