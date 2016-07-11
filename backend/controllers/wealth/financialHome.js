@@ -63,10 +63,12 @@ exports.financialHome = function (req, res, next) {
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
                 content.finance = source.data.finance;
                 content.recordList = source.data.recordList;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }else{
                 content.error = source.error;
                 content.finance.userFundAccount = source.error;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }
         }
@@ -205,6 +207,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                     if (order.type === 3){order.type = '销售'}
                     if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
 
                     if (!order.orderId){order.orderId = '-'}
                 });
