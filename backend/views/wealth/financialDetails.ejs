@@ -116,6 +116,26 @@
                 </div>
             </div>
 
+
+            <div class="modal fade" id="showPrintCode" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+
+                    <div class="modal-content mt150 financial-details">
+                        <div class="modal-header">
+                            <span class="close" data-dismiss="modal" aria-label="Close"></span>
+                            <h4 class="modal-title">打印回执</h4>
+                        </div>
+                        <div class="modal-body">
+                            <span class="printText">打印校验码:</span>
+                            <span class="printCode">{{@orderCurrentPrintCode}}</span>
+                            <span class="printWaring">注:进入打印系统后, 输入易煤网资金帐号和打印校验码</span>
+                            <span class="printButton"><a class="iBtn iBtn_yes" href="https://enterprise.bank.ecitic.com/corporbank/userLogin.do" target="_blank">立即打印</a></span>
+
+                        </div>
+                        <!--<div class="modal-footer txt_c"></div>-->
+                    </div><!-- /.modal-content -->
+                </div>
+            </div>
         </div>
 
 

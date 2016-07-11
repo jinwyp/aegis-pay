@@ -65,7 +65,7 @@
           padding: 5px 0 19px 0;
         }
         .center-operate{
-          margin-top: 46px;
+          margin-top: 34px;
           .balance{
             font-size: 20px;
             vertical-align: middle;
@@ -362,6 +362,29 @@
           vertical-align: middle;
           border-top: 0px dotted $color_border;
         }
+      }
+
+      .printText, .printCode, .printWaring, .printButton{
+        display: block;
+        text-align: center;
+      }
+
+      .printText{
+        font-size: $size_font_middle;
+        margin-top: 30px;
+      }
+      .printCode{
+        font-size: $size_font_big_num;
+        color: $color_orange;
+        margin-top: 10px;;
+      }
+      .printWaring{
+        color: $color_text_select_gray;
+        margin-top: 20px;
+        font-weight: normal;
+      }
+      .printButton{
+        margin: 40px 0px 40px 0px;
       }
     }
   }

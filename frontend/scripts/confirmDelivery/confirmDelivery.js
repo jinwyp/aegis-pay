@@ -14,6 +14,26 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
       },
       "modifyData" : function(){
 
+          $("#qualityList .fileupload").on("click",function(){
+              var qualityListLen=$(document).find(".files").eq(0).children(".file").length;
+              if(qualityListLen>14){
+                  $(".errorMes").text("上传质量确认单最多上传15个文件");
+                  return false;
+              }else{
+                  $(".errorMes").text("")
+              }
+
+          });
+          $("#quantityList .fileupload").on("click",function(){
+              var quantityListLen=$(document).find(".files").eq(1).children(".file").length;
+              if(quantityListLen>14){
+                  $(".errorMes").text("上传数量确认单最多上传15个文件");
+                  return false;
+              }else{
+                  $(".errorMes").text("")
+              }
+          });
+
          $(".tableWrap a").on("click",function(){
 
             var tableList=$(this).parents(".checkList").clone("true");
