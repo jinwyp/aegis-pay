@@ -57,11 +57,11 @@
             <div class="orderSummary">
                 <div class="summaryL">
                     <p class="summaryLTit">订单摘要</p>
-                    <p><label>订单号：</label><%=order.orderNO%></p>
+                    <p><label>订单编号：</label><%=order.orderNO%></p>
                     <p><label>下单时间：</label><%= getStringVal(order.createTime) %></p>
                     <p><label>签合同时间：</label><%= getStringVal(order.signContractTime)%></p>
                     <p><label>付款时间：</label><%= getStringVal(order.paymentTime)%></p>
-                    <p><label>订单状态：</label><span><%=order.statusName%></span></p>
+                    <p><label>订单状态：</label><span class="redInfo"><%=order.statusName%></span></p>
                     <p class="searchDetail"><a href="/getBuyOrderDetail?orderId=<%= order.orderId%>&userId=<%= userId%>">查看订单详情&gt;&gt;</a></p>
                     <div class="summaryLAdditional">
                         <p><label>卖家：</label><%= order.sellerCompanyName%></p>
@@ -70,10 +70,10 @@
                     </div>
                 </div>
                 <div class="rightCon">
-                    <div class="conList"><span><em class="hid">* </em>订单编号：</span><%= order.orderNO %></div>
-                    <div class="conList"><span><em class="hid">* </em>合同编号：</span><%= order.contractNO %></div>
+                    <div class="conList"><span class="rightSpan"><em class="hid">* </em>订单编号：</span><%= order.orderNO %></div>
+                    <div class="conList"><span class="rightSpan"><em class="hid">* </em>合同编号：</span><%= order.contractNO %></div>
                     <div class="conList delivery">
-                        <span><em>* </em>是否提货：</span>
+                        <span class="rightSpan"><em>* </em>是否提货：</span>
                         <% if(order.deliveryGoods != undefined){%>
                             <% if(order.deliveryGoods ==0){%>
                                 <label for="deliveryConfirm"><input type="radio" name="delivery" id="deliveryConfirm" value="2" /> 是</label>
@@ -97,7 +97,7 @@
                         <%}%>
                     </div>
                     <div class="conList return">
-                        <span><em>* </em>是否退货：</span>
+                        <span class="rightSpan"><em>* </em>是否需要退货：</span>
                         <% if(order.returnGoods != undefined){%>
                             <% if(order.returnGoods){%>
                                 <label for="returnConfirm"><input type="radio" name="return" id="returnConfirm" value="1" checked /> 是</label>
@@ -112,7 +112,7 @@
                         <%}%>
                     </div>
                     <div class="conList">
-                        <span><em>* </em>退款原因及说明：</span>
+                        <span class="rightSpan"><em>* </em>说明：</span>
                         <% if(order.disputeRemarks != undefined){%>
                             <textarea name="" id="disputeRemarks" cols="30" rows="10" placeholder="请填写退款的原因及其他需要说明的内容" maxlength="200" ><%= order.disputeRemarks%></textarea>
                             <div class="leftTxt">最多可输入<span id="leftTxt">200</span>字</div>

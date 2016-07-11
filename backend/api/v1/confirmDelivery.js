@@ -36,6 +36,9 @@ exports.confirmDeliverySubmit = function (req, res, next) {
     _.map(req.body.qualityList, function(val, index){
         val.name = val.file_name;
         val.path = uploadPath + val.file_id;
+        console.log("smmmmmmmm1~~~~~~~~~~~~~~~~~")
+        console.log(val.path)
+        console.log(val.file_id)
         _.unset(val, 'file_id');
         _.unset(val, 'file_name');
 

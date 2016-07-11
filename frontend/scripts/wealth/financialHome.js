@@ -124,6 +124,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 method : "POST",
                 data   : params1,
                 success:function(data){
+                    vm.orderList = [];
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                     vm.orderShowLoading = false;
@@ -352,7 +353,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        location.href="/settlement/confirmTheInvoice?orderId＝"+$(this).data("id");
+        location.href="/settlement/confirmTheInvoice?orderId="+$(this).data("id");
     });
 
     //确认已开发票

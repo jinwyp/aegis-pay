@@ -34,7 +34,7 @@
       .row-two{ z-index: 1;  position: relative; }
       .search-row > span{ margin: 0 10px 0 20px; vertical-align: middle;}
       .search-row{
-        div.time{width: 132px;display: inline-block;position: relative;}
+        div.time{width: 132px;display: inline-block;position: relative;&:hover{border-color:$color_a_hover; }}
         input{vertical-align: middle; font-size: 12px;}
         .startDate,.endDate{
           margin-left: -1px;

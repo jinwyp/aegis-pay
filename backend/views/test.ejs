@@ -40,58 +40,82 @@
 </head>
 <body ms-controller="test">
 
-<div>
-    <!--<xmp ms-widget="[{is:'ms-modal'}, @configModal]"></xmp>-->
-</div>
+<button ms-click="@clickPage1">不显示</button>
+<button ms-click="@clickPage2">显示</button>
 
-
-<div >
-    <!--<xmp ms-widget="{is:'ms-select', items:@items, value:@value}"></xmp>-->
-    <a href="xxx" title="fffdd"> 2222</a>
-</div>
-
-<div class="center">
-    <div class="Absolute-Center">
-        <div>aaa</div>
-    </div>
-</div>
+<xmp ms-widget="[{is:'ms-pagination', $id:'xxx_'}, @configPagination]"></xmp>
 
 
 <script>
 
     requirejs([ 'jquery', 'avalon'], function( $, avalon){
 
-        function getData (){
-            $.ajax({
-                url    : "/api/financial/order/details",
-                method : "POST",
-                data   : {},
-                success:function(data){
-
-                    vm.value = Math.ceil(data.count / data.pagesize);
-                    vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize) + Math.floor(Math.random()*9);
-                }
-            })
-        }
-
-        var vm = avalon.define({
-            $id: 'test',
-            items: ['请选择', '选项一', '选项二'],
-            value: 1,
-            onChange:function(a, b){
-                console.log(a,b)
-            },
-
-            configModal : {
-                totalPages: 1
-            }
-        });
-
-
         function heredoc(fn) {
             return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
             replace(/\*\/[^\/]+$/, '').trim().replace(/>\s*</g, '><')
         }
+
+        var paginationTemplate = heredoc(function() {
+
+            /*
+             <nav class="pagination-financial" ms-if="!@_isShow">
+                测试 ms-if 和 ms visible 的区别 , ms-if 好像有bug {{@totalPages}}
+             </nav>
+             */
+
+        });
+
+        avalon.component('ms-pagination', {
+            template: paginationTemplate,
+            defaults: {
+                totalPages       : 1,
+                _isShow          : true,
+                isShowPagination : true,
+
+                onInit : function () {
+                    console.log('init', this.totalPages);
+                    var vm = this;
+                    vm._showPaginations();
+                    this.$watch('totalPages', function () {
+                        setTimeout(function () {
+                            vm._showPaginations()
+                        }, 2)
+                    })
+                },
+
+                _showPaginations : function(){
+                    var vm = this;
+                    console.log('-----------');
+                    console.log(vm.totalPages, vm.isShowPagination);
+                    vm._isShow = false;
+                    if (vm.totalPages > 0 && vm.isShowPagination) {
+                        console.log('----------- 显示');
+                        vm._isShow = true;
+                    }
+                }
+            }
+        })
+
+        var vm = avalon.define({
+            $id: 'test',
+            orderList: [],
+            configPagination : {
+                totalPages : 0
+            },
+            clickPage1:function(){
+                console.log(1111)
+                vm.configPagination.totalPages = 0;
+
+            },
+            clickPage2:function(){
+                console.log(22222)
+                vm.configPagination.totalPages = 1;
+            }
+
+        });
+
+
+
 
 
 
