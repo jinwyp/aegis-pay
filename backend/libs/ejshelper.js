@@ -217,7 +217,7 @@ module.exports = function (app) {
 
     app.locals.ngShow = function (flag){
         if (!flag){
-            return ' style="display: none;" '
+            return ' style=display:none; '
         }
     };
 
