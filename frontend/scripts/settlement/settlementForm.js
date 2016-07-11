@@ -48,8 +48,25 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $significantModal.modal('show');          // 手动打开模态框 toggle show hide
             }
 
-            // ---- 更新 倒计时 ------
+            // ---- 更新 倒计时 - - - - - - - - - - - - - - - - - - - - - -
+            var $countDownBox = $('.countDownBox'),
+                startTime = $countDownBox.attr('data-start'),
+                endTime = $countDownBox.attr('data-end'),
+                dateHtml = '';
 
+            countDownHandle(startTime, endTime, function(result) {
+                if(result.isEnd) {
+                    location.href = '/account/order/buy';         // 结束计时
+                } else {
+                    dateHtml = '您还有' +
+                        '<span class="bright Day">'+ result.day +'</span>天' +
+                        '<span class="bright Hour">'+ result.hou +'</span>小时' +
+                        '<span class="bright Minute">'+ result.min +'</span>分' +
+                        '<span class="bright Second">'+ result.sec +'</span>秒来' +
+                        '确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。';
+                    $countDownBox.html(dateHtml);
+                }
+            }, 1000);
 
         },
 
@@ -363,7 +380,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             });
         },
 
-
         // 确认结算 操作(审核通过)
         auditingAdoptHandle: function() {
             var $btnSubAuditing = $('#btnSubAuditing');             //确认审核.通过
@@ -396,9 +412,9 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                             });
                             setTimeout(function() {
                                 if(data.data.result) {
-                                    location.href = '/settlement/confirmTheInvoice?orderId='+ param.orderId;
+                                    location.href = '/settlement/confirmTheInvoice?orderId='+ param.orderId;            // 开票
                                 } else {
-                                    location.href = '/pay?userId='+ param.userId +'&type=2&orderId='+ param.orderId;       // 补款
+                                    location.href = '/pay?userId='+ param.userId +'&type=2&orderId='+ param.orderId;    // 补款
                                 }
                             }, 1500);
                         } else {
@@ -408,7 +424,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 });
             });
         },
-
 
         // 初始化
         init: function() {
@@ -536,6 +551,75 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         }
     };
 
+
+    /**
+     * 倒计时处理
+     * @param startTime 开始时间 string
+     * @param endTime   结束时间 string
+     * @param callback  回调函数 fun
+     * @param space     间隔毫秒 int
+     */
+    function countDownHandle(startTime, endTime, callback, space) {
+        space = space || 1000;
+        startTime = startTime.replace(/-/g,"/");
+        endTime = endTime.replace(/-/g,"/");
+
+        var startDate = new Date(startTime),
+            endDate = new Date(endTime),
+            dispaSec = 0,         // 时间差.毫秒
+            diffData = 0;
+
+        if(startDate < endDate) {
+            dispaSec = (endDate - startDate);
+        } else {
+            diffData.isEnd = true;
+        }
+
+        var timedTask = setInterval(function() {
+            dispaSec -= space;
+            if(dispaSec < 1) {
+                diffData.isEnd = true;
+            }
+
+            if(!diffData.isEnd) {
+                diffData = dateParseDiff(dispaSec);
+            } else {
+                clearInterval(timedTask);           // 结束计时
+            }
+
+            callback && typeof callback === "function" && callback(diffData);
+        }, space);
+    }
+
+    /**
+     * 求时间差, 返回 年月日时分秒
+     * @param parseNum int 差距毫秒数
+     * @returns diffDate obj 时间差对象
+     */
+    function dateParseDiff(parseNum) {
+        var newDate = new Date(parseNum - 28800000);    //减去8小时时差
+        var diffDate = {
+            isEnd: false,   //无时间差, 计时结束
+            yea: newDate.getFullYear() - 1970,          //年月日 时分秒
+            mon: newDate.getMonth(),
+            day: newDate.getDate() - 1,
+            hou: newDate.getHours(),
+            min: newDate.getMinutes(),
+            sec: newDate.getSeconds()
+        };
+
+        if(parseNum < 1) {
+            diffDate.isEnd = true;
+            diffDate.yea = 0;
+            diffDate.mon = 0;
+            diffDate.day = 0;
+            diffDate.hou = 0;
+            diffDate.min = 0;
+            diffDate.sec = 0;
+        }
+        console.log(newDate.toLocaleDateString() +' '+ newDate.toTimeString());
+        return diffDate;
+    }
 
     /**
      * 获取URL参数值

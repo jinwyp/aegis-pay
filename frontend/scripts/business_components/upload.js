@@ -76,7 +76,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		var results = false,
 			tagType = $tag.value.substr($tag.value.lastIndexOf('.') + 1);
 
-		if(typeList && typeList.length > 0 && $.inArray(tagType, typeList) < 0) {
+		if(typeList && typeList.length > 0 && $.inArray(tagType.toLowerCase(), typeList) < 0) {
 			results = true;
 		}
 		return results;
