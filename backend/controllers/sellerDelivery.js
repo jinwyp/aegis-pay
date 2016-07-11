@@ -8,70 +8,66 @@ var cache      = require('../libs/cache');
 var config     = require('../config');
 var logger     = require("../libs/logger");
 
-var __download = config.file_path.root + config.file_path.download;
-
 // 处理业务逻辑
 exports.sellerDelivery = function (req, res, next) {
-    console.log('====================seller====================');
     var sellerId = req.session.user.id;
     var url = api_config.confirmDeliverySellerDelivery + "?sellerId="+sellerId+"&orderId="+req.query.orderId;
-    cache.get('qZips_' + req.query.orderId, function (err, zipurl) {
 
-        var qualityZip = zipurl.qualityPath.replace(__download, '/download');
-        var quantityZip = zipurl.quantityPath.replace(__download, '/download');
-        request.get({
-            url: url,
-            userId: sellerId,
-            orderId: req.query.orderId
-        }, function (err, data) {
-            if (err) return next(err);
-            if (data) {
-                var source = JSON.parse(data.body);
-                var statusObj = {
-                    step: 4,
-                    stepList: [
-                        {
-                            stepName: '提交订单',
-                            stepDate: source.data.order.createTime
-                        },
-                        {
-                            stepName: '签订合同',
-                            stepDate: source.data.order.signContractTime
-                        },
-                        {
-                            stepName: '付款',
-                            stepDate: source.data.order.paymentTime
-                        },
-                        {
-                            stepName: '确认提货',
-                            stepDate: ""
-                        },
-                        {
-                            stepName: '结算',
-                            stepDate: ""
-                        }
-                    ]
-                };
-                var content = {
-                    sellerId: sellerId,
-                    orderId: req.query.orderId,
-                    headerTit: "确认提货页面",
-                    pageTitle: "确认提货页面",
-                    statusObj: statusObj,
-                    "sellInfo": source.data.sellInfo,
-                    "order": source.data.order,
-                    "indexList": source.data.indexList,
-                    "deliveryAmount": source.data.order.deliveryAmount,
-                    "indexDataList": source.data.indexDataList,
-                    "qualityZip": qualityZip,
-                    "quantityZip": quantityZip,
-                    "qualityList": source.data.qualityList,
-                    "quantityList": source.data.qualityList
-                }
-                res.render('confirmDelivery/sellerDelivery', content);
+    var qualityZip = '/api/fetchQuality?orderId=' + req.query.orderId;
+    var quantityZip = '/api/fetchQuantity?orderId=' + req.query.orderId;
+    
+    request.get({
+        url: url,
+        userId: sellerId,
+        orderId: req.query.orderId
+    }, function (err, data) {
+        if (err) return next(err);
+        if (data) {
+            var source = JSON.parse(data.body);
+            var statusObj = {
+                step: 4,
+                stepList: [
+                    {
+                        stepName: '提交订单',
+                        stepDate: source.data.order.createTime
+                    },
+                    {
+                        stepName: '签订合同',
+                        stepDate: source.data.order.signContractTime
+                    },
+                    {
+                        stepName: '付款',
+                        stepDate: source.data.order.paymentTime
+                    },
+                    {
+                        stepName: '确认提货',
+                        stepDate: ""
+                    },
+                    {
+                        stepName: '结算',
+                        stepDate: ""
+                    }
+                ]
+            };
+            var content = {
+                sellerId: sellerId,
+                orderId: req.query.orderId,
+                headerTit: "确认提货页面",
+                pageTitle: "确认提货页面",
+                statusObj: statusObj,
+                "sellInfo": source.data.sellInfo,
+                "order": source.data.order,
+                "indexList": source.data.indexList,
+                "deliveryAmount": source.data.order.deliveryAmount,
+                "indexDataList": source.data.indexDataList,
+                "qualityZip": qualityZip,
+                "quantityZip": quantityZip,
+                "qualityList": source.data.qualityList,
+                "quantityList": source.data.qualityList
             }
-        });
-    })
+            res.render('confirmDelivery/sellerDelivery', content);
+        }
+    });
 };
 // 退回原因
 
