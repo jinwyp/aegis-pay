@@ -134,7 +134,7 @@
         <div id="clearPaymentPlate" class="plateBox mt20">
             <div class="plateHead borSolid">
                 <span class="prefix"></span>
-                <h3 class="headLeft fl">清算货款确认</h3>
+                <h3 class="headLeft fl">结算货款确认</h3>
             </div>
             <div class="plateMain">
                 <p class="liquidationTime">付款时间:  <span class="time"><%= orderObj.paymentTime %></span></p>
@@ -155,13 +155,16 @@
                         <td><%= formatMoney(orderObj.settleMoney || 0, 2) %></td>
                         <td><%= formatMoney(orderObj.totalMoney || 0, 2) %></td>
                         <td>
-                            <span class="bright">
-                                <% if(orderObj.tailMoney > orderObj.refundMoney){ %>
-                                <%= formatMoney(orderObj.tailMoney || 0, 2) %>
-                                <% }else{ %>
-                                <%= formatMoney(orderObj.refundMoney || 0, 2) %>
-                                <% } %>
-                            </span>
+                            <%
+                                var money = 0;
+                                if(orderObj.tailMoney > orderObj.refundMoney) {
+                                    money = orderObj.tailMoney;
+                                } else {
+                                    money = orderObj.refundMoney;
+                                }
+                            %>
+                            <span class="bright"><%= formatMoney(money || 0, 2) %></span> <br/>
+                            <span class="a"><%= switchTxt(money) %></span>
                         </td>
                     </tr>
                     </tbody>

@@ -4,10 +4,12 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
         var self = this;
 
         if($('input[name="needGenerate"]').val() == "0" && $('input[name="orderId"]').val()){
+          $('.layer-shade').show();
           $.get('/api/generate_compact?orderId=' + $('input[name="orderId"]').val(), function(data){
             $('#signCompact input[name="version"]').val($(data).find('input[name="version"]').val());
             $('.compactContainer').replaceWith(data);
             $('.compactContainer input[name="needGenerate"], .compactContainer input[name="version"]').remove();
+            $('.layer-shade').hide();
             $('#signCompact .submit').removeClass('disable');
             self.flexslider();
             self.lightbox();
