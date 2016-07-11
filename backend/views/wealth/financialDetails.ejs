@@ -57,7 +57,7 @@
                         <input type="text" class="form-control input-text input-box" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
                     </div>
 
-                    <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
+                    <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
                 </div>
 
             </form>
