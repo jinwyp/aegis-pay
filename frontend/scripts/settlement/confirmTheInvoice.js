@@ -248,7 +248,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     //ToDo: 图片大小校验 上传文件格式：jpg、png.文件大小：小于400k
     function uploadWrapper ($ele, cb) {
-        upload.ajaxFileUpload($ele, {maxFileSize: 1048576 * 5, fileType: ["jpg", "jpeg", "png"]}, cb);
+        upload.ajaxFileUpload($ele, {maxFileSize: 1048576 * 5, fileType: ["JPG", "jpg", "jpeg", "PNG", "png"]}, cb);
     }
 
     //添加附件
@@ -273,21 +273,28 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     });
 
     //修改附件
-    $tempEdit.click(function() {
-        $editFile.trigger("click");
-    });
-    $editFile.change(function() {
-        uploadWrapper ($editFile, function(data) {
-            var fileObj = {};
-            if(data.success) {
-                $.each(data.attach, function(ind, file) {
-                    fileObj = file;
-                });
-                $fileViewImg.attr('src', fileObj.url);
-                $fileId.val(fileObj.id);
-            }
+    $fBox_1.delegate('#editFile', 'click', function(e) {
+        var $tag = $(e.target);
+
+        $tag.change(function() {
+            uploadWrapper ($(e.target), function(data) {
+                $tempEdit.html('修改<input class="iptEditFile" id="editFile" type="file" name="files">');  // 清楚file缓存记录
+
+                var fileObj = {};
+
+                if(data.success) {
+                    $.each(data.attach, function(ind, file) {
+                        fileObj = file;
+                    });
+                    $fileViewImg.attr('src', fileObj.url);
+                    $fileId.val(fileObj.id);
+                } else {
+                    message({type: 'error', title: '错误：', detail: data.errorMessage});
+                }
+            });
         });
     });
+
 
     //移除附件
     $tempDel.click(function() {

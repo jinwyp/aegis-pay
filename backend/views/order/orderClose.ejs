@@ -20,7 +20,7 @@
         <div class="plateBox">
             <div class="plateHead">
                 <span class="prefix"></span>
-                <h3 class="headLeft fl">交易关闭
+                <h3 class="headLeft fl"><%=subTitle%>
                     <!--<s class="require lih_16">*</s>上传开票信息-->
                     <!--<p class="headLeft_hint">&nbsp;&nbsp;&nbsp;( 请先 <a href="" class="a">下载样板</a>，然后拍照上传 )</p>-->
                 </h3>
@@ -37,7 +37,7 @@
                 <div class="sidebarWrap fl">
                     <div class="termBox">
                         <dl>
-                            <dt>订单号：</dt>
+                            <dt>订单编号：</dt>
                             <dd><%= orderObj.orderNO%></dd>
                         </dl>
                         <% if(orderObj.contractNO) {%>
@@ -47,8 +47,8 @@
                         </dl>
                         <% } %>
                         <dl>
-                            <dt>下单时间：</dt>
-                            <dd><%= orderObj.createTime%></dd>
+                            <dt>下单日期：</dt>
+                            <dd><%= timeToDate(orderObj.createTime) %></dd>
                         </dl>
                         <% if(orderObj.payTime) {%>
                         <dl>
@@ -93,7 +93,7 @@
                                         <div class="dockDown">
                                             限<span class="limitNum">500</span>字
                                         </div>
-                                    <textarea class="txtArea remarks" name="remarks" rows="9" cols="70" maxlength="510"
+                                    <textarea class="txtArea remarks" name="remarks" rows="9" cols="70" maxlength="500"
                                               placeholder="您可输入汉字、英文、数字、符号。" ></textarea>
                                     </div>
                                 </td>
@@ -128,8 +128,8 @@
                 <div class="warn_ico"></div>
                 <p class="warn_info">您确定关闭该笔订单交易?</p>
                 <div class="txt_c mt20">
-                    <button type="button" class="iBtn iBtn-cancel" data-dismiss="modal">取消</button>
-                    <button type="button" class="iBtn iBtn-primary" id="btnSubClose">确定</button>
+                    <input type="button" class="iBtn iBtn_def" data-dismiss="modal" value="取消" />
+                    <input type="button" class="iBtn iBtn_yes ml20" id="btnSubClose" value="确认" />
                 </div>
                 <p><br/><br/></p>
             </div>

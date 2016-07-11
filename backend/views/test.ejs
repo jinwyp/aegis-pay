@@ -35,23 +35,18 @@
             border: 1px solid blue;
             position: relative;
         }
+
     </style>
 </head>
-<body>
+<body ms-controller="test">
 
-
-
-
-<div ms-controller="test2">
-    <div class="time">222222</div>
-    <div class="time">33333</div>
-
+<div>
+    <!--<xmp ms-widget="[{is:'ms-modal'}, @configModal]"></xmp>-->
 </div>
 
-<div ms-controller="test">
-    <xmp ms-widget="{is:'ms-select', items:@items, value:@value}"></xmp>
-    <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
 
+<div >
+    <!--<xmp ms-widget="{is:'ms-select', items:@items, value:@value}"></xmp>-->
     <a href="xxx" title="fffdd"> 2222</a>
 </div>
 
@@ -64,8 +59,7 @@
 
 <script>
 
-
-    requirejs([ 'jquery', 'avalon', 'avalon.pagination'], function( $, avalon){
+    requirejs([ 'jquery', 'avalon'], function( $, avalon){
 
         function getData (){
             $.ajax({
@@ -88,93 +82,23 @@
                 console.log(a,b)
             },
 
-            configPagination : {
-                totalPages: 1,
-                changePageNo : function(){
-                    getData()
-                }
+            configModal : {
+                totalPages: 1
             }
         });
-
-        var vm2 = avalon.define({
-            $id: 'test2',
-            items: ['请选择', '选项一', '选项二'],
-            value: 1,
-            onChange:function(a, b){
-                console.log(a,b)
-            },
-
-            configPagination : {
-                totalPages: 1,
-                changePageNo : function(){
-                    getData()
-                }
-            }
-        });
-
-
 
 
         function heredoc(fn) {
             return fn.toString().replace(/^[^\/]+\/\*!?\s?/, '').
             replace(/\*\/[^\/]+$/, '').trim().replace(/>\s*</g, '><')
         }
-        avalon.component("ms-select", {
-            template: heredoc(function () {
-                /*
-                 <div ms-class="['btn-group', @_open && 'open']">
-                 <a name="dropdown-toggle" class="btn dropdown-toggle"
-                 data-toggle="dropdown" ms-click="@_openDropDown | prevent" href="#">
-                 {{@value}}
-                 <input ms-attr="{name:@name,value:@value}" type="hidden">
-                 <span class="caret"></span>
-                 </a>
-                 <ul class="dropdown-menu" >
-                 <li ms-for="(key, val) in @items" >
-                 <a href="javascript:;" class="not-close"
-                 ms-click="@_selectValue(key, $event)">{{val}}</a>
-                 </li>
-                 </ul>
-                 </div>
-                 */
-            }),
-            defaults: {
-                items: [],
-                value: '',
-                _open: false,
-                name: '',
-                onInit: function (e) {
-                    var vm = this;
-                    avalon(document).bind('click', function (e) {
-                        if (e.target.name !== 'dropdown-toggle') {
-                            vm._open = false
-                        }
-                    })
-                },
-                _selectValue: function (key) {
-                    var old = this.value
-                    var neo = this.items[key]
-                    if (old !== neo) {
-                        this.value = neo
-                        if (this.hasOwnProperty('onChange') && typeof this.onChange === 'function') {
-                            var ret = this.onChange(neo, old)
-                            if (ret !== false) {
-                                this._open = false
-                            }
-                        }
-                    }
-                },
-                _openDropDown: function () {
-                    this._open = true
-                }
-            }
-        });
+
 
 
     })
 
 </script>
-<p>给用户用的API有</p>
+<p>给用户用的API有222</p>
 <ul>
     <li>value:用于提交表单</li>
     <li>name:用于提交表单</li>

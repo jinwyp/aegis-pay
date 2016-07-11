@@ -23,8 +23,9 @@ exports.orderInfo = function (req, res, next) {
 			if (err) return next(err);
 
 			var replyData = {
-				pageTitle : '关闭订单 页面标题',
-				headerTit : '关闭订单'
+				pageTitle : '关闭订单页',
+				headerTit : '关闭订单',
+				subTitle  : '关闭交易'
 			};
 
 			replyData.data = JSON.parse(data.body).data;
