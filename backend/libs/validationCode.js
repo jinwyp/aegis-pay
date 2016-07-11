@@ -37,7 +37,8 @@ var validationCode = {
 
         startDate : {code:5201, message:'Field validation error, start date wrong', field : "orderDateFrom"},
         endDate : {code:5202, message:'Field validation error, end date wrong', field : "orderDateTo"},
-        categoryType : {code:5204, message:'Field validation error, category type wrong', field : "orderCategory"}
+        categoryType : {code:5204, message:'Field validation error, category type wrong', field : "orderCategory"},
+        searchText : {code:5205, message:'Field validation error, search text length should be 2 - 100', field : "orderSearchText"}
     },
 
     captcha : {

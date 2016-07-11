@@ -19,9 +19,10 @@ exports.financialDetailsApi = function (req, res, next) {
 
     checker.paymentCategoryType(req.body.orderCategory, 'orderCategory');
     checker.paymentCategoryType(req.body.orderSearchType, 'orderSearchType');
-
+    checker.paymentSearchText(req.body.orderSearchText);
+    
     checker.pageNumber(req.body.currentPage, 'currentPage');
-    //checker.searchText(req.body.orderSearchText);
+
     //checker.payPassword(req.body.limit);
 
     var postBody = {
