@@ -197,10 +197,14 @@ exports.verifyMiddleware = function () {
                 return res.json(result);
             }else{
                 cacheGet(userInfo, true).then(function(data){
+                    logger.info("前台传入sms:",sms);
+                    logger.info("缓存中的数据:",data);
                     if(data && data.sms && (data.payPhone === payPhone) && (data.sms.toLowerCase() === sms.toLowerCase())){
+                        logger.info("验证成功!");
                         // isUsed = true;
                         return next();
                     }else{
+                        logger.info("验证失败!");
                         return res.json(result);
                     }
                 }).catch(next)
