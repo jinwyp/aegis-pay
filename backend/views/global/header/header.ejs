@@ -9,7 +9,11 @@
                 <ul class="menuList rightMenuList">
                     <!--登录状态-->
                     <% if(user && user.id){ %>
-                    <li><a href="<%= config.passport.member%>">账户名：<%= user.nickname || user.securephone %></a></li>
+                    <li><a href="<%= config.passport.member%>">账户名：<%if(user.verifystatus != "审核通过") {%>
+                            <%=user.nickname?user.nickname:user.securephone %>
+                            <%}else{ %> <%=user.companyName.length<=8?user.companyName:user.companyName.substring(0,8)+"..."%>
+                            <%}%></a>
+                    </li>
                     <li><a href="<%= config.passport.member %>/logout?gotoURL=<%= currentLocation %>&from=<%= config.domain %>">退出</a></li>
                     <% }else{ %>
                     <!--未登录状态-->
