@@ -71,7 +71,7 @@ var cacheGet = function(userInfo, validTime){
 
             if(minTime>0){
                 // result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
-                result = {"sms":minSms[minSms.length-1].sms};
+                result = {"sms":minSms[minSms.length-1].sms, payPhone:minSms[minSms.length-1].payPhone};
                 if(validTime){
                     return resolve(result);
                 }
@@ -134,7 +134,8 @@ var generate_code = exports.generate_code = function (type, options) {
 
 
 exports.sendCode = function (req, res, next) {
-    var userInfo = req.session.user;
+    var payPhone = req.body.payPhone;
+    var userInfo = _.assign({}, req.session.user, {payPhone: payPhone});
     var smsType  = smsType || 'mix';
 
 
@@ -152,7 +153,7 @@ exports.sendCode = function (req, res, next) {
         // var sms    = data.sms || generate_code(smsType);
         var sms    = generate_code(smsType);
         var params = {
-            "phone" : req.body.customPhone || userInfo.securephone || userInfo.telephone,
+            "phone" : payPhone,
             "message" : '您的验证码是：' + sms
         };
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
@@ -187,6 +188,7 @@ exports.verifyMiddleware = function () {
 
         var sms  = req.body.sms_code;
         var userInfo = req.session.user;
+        var payPhone = req.body.payPhone;
 
         var result = {"success" : false, "errType" : "sms_code"};
 
@@ -195,7 +197,7 @@ exports.verifyMiddleware = function () {
                 return res.json(result);
             }else{
                 cacheGet(userInfo, true).then(function(data){
-                    if(data && data.sms && (data.sms === sms)){
+                    if(data && data.sms && (data.payPhone === payPhone) && (data.sms.toLowerCase() === sms.toLowerCase())){
                         // isUsed = true;
                         return next();
                     }else{

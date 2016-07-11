@@ -8,14 +8,14 @@
 
 <body class="add-bg">
 
-<%- include ../global/header/financialFirstHeader %>
+<%- include ../global/header/header %>
 <%- include ../global/header/financialSecondHeader %>
 
 
 <div id="financial-body">
 	<div class="financial-main add-account">
 		<div class="header">
-			<div class="float-right relative" id="info">
+			<div class="float-right relative info" id="info">
 				<p><span class="icn_doubt"></span>
 				绑定账户说明</p>
 				<div class="tool-tips display-none" id="toolTips">
@@ -43,7 +43,7 @@
 					<dt>银行开户名:</dt>
 					<dd><%= fundAccount.accountBankName %></dd>
 					<dt>账户号:</dt>
-					<dd><%= fundAccount.account %></dd>
+					<dd><%= blankFour(fundAccount.account) %></dd>
 					<dt>开通时间:</dt>
 					<dd><%= fundAccount.createTime %></dd>
 					<dt>绑定手机号码:</dt>
@@ -63,7 +63,7 @@
 							<dt>银行开户名:</dt>
 							<dd><%= cashAccount.accountBankName %></dd>
 							<dt>账户号:</dt>
-							<dd><%= cashAccount.account %></dd>
+							<dd><%= blankFour(cashAccount.account) %></dd>
 							<dt>开通时间:</dt>
 							<dd><%= cashAccount.createTime %></dd>
 							<dt>绑定手机号码:</dt>
@@ -78,7 +78,7 @@
 						<div class="figure-content text-center">
 							<% if(cashAccount && cashAccount.status*1 == 1){ %>
 								<span class="add-bank-btn no-bg">等待银行汇款</span>
-							<% }else if(cashAccount && cashAccount.status*2 == 2){ %>
+							<% }else if(cashAccount && cashAccount.status*1 == 2){ %>
 								<a class="add-bank-btn" href="/wealth/bindingSuccess">确认银行汇款</a>
 							<% }else{ %>
 								<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>

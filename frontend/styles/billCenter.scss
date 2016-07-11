@@ -84,10 +84,13 @@
       color: $color_font;
       width: 127px;
       background: url("#{$assetPath}/images/sprite_ico.png") no-repeat 104px -534px;
+      &:focus{
+        border: 1px solid #01b7ec;
+      }
     }
   }
   .billNumber{
-    width: 359px;
+    width: 180px;
     height: 32px;
     padding-left: 10px;
   }

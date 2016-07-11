@@ -46,16 +46,18 @@
                     </tr>
                     <tr class="noBorder">
                         <th>银行账户：</th>
-                        <% if(cashStatus == 0){%>
-                            <td>尚未绑定出金账户</td>
-                            <td><a href="/wealth/bindingBankAccount?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">绑定</a></td>
-                        <%}else if(cashStatus == 1){%>
+                        <% if(cashAccount && cashAccount.status*1 == 1){ %>
+                            <td>等待银行汇款</td>
+                        <% }else if(cashAccount && cashAccount.status*1 == 2){ %>
                             <td>银行账户等待确认汇款金额</td>
                             <td><a href="/wealth/bindingSuccess?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">认证</a></td>
-                        <%}else if(cashStatus == 2){%>
+                        <% }else if(cashAccount && cashAccount.status*1 == 3){ %>
                             <td>已绑定1张出金账户</td>
                             <td><a href="/wealth/addAccount?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">查看</a></td>
-                        <%}%>
+                        <% }else { %>
+                            <td>绑卡</td>
+                            <td><a class="iBtn iBtn_xs iBtn_no" href="/wealth/bindingBankAccount">添加银行账户</a></td>
+                        <% } %>
                     </tr>
 
                 </table>
@@ -69,5 +71,7 @@
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/header.js"></script>
 </body>
 </html>

@@ -112,6 +112,7 @@ _.extend(app.locals, {
     staticPath : '/static',
     homepage : config.homepage,
     memberUrl : config.passport.member,
+    payUrl : config.passport.pay,
     sitepage : config.site_page
 });
 
@@ -120,9 +121,6 @@ app.use(function (req, res, next) {
     res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
     res.locals.currentLocation= req.protocol + '://' + req.hostname + ":" + config.port + req.originalUrl;
     app.locals.user = _.assign({}, (typeof app.locals.user === 'undefined')?{}:app.locals.user, res.locals.user);
-    if(res.locals.user.payPhone){
-        app.locals.user.payPhone = res.locals.user.payPhone;
-    }
     next();
 });
 

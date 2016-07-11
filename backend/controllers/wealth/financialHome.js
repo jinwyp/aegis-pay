@@ -63,10 +63,12 @@ exports.financialHome = function (req, res, next) {
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
                 content.finance = source.data.finance;
                 content.recordList = source.data.recordList;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }else{
                 content.error = source.error;
                 content.finance.userFundAccount = source.error;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }
         }
@@ -79,6 +81,20 @@ exports.financialHome = function (req, res, next) {
 exports.checkCashBank = function (req, res, next) {
     logger.debug('userId----------------------------' + req.session.user.id);
     request.post({url:api_config.checkCashBank,form:{userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
+
+// 检查是否绑定银行卡
+exports.checkDrawCash = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.checkDrawBank,form:{userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug('获取到的结果是----------------------------' + data.body);
         if (data) {
@@ -116,6 +132,7 @@ exports.financialDetails = function (req, res, next) {
             {id:'4', value:'4', text:'采购', selected:false}
         ],
         formSelectOrderSearchType:[
+            {id:'0', value:'0', text:'全部'},
             {id:'1', value:'1', text:'交易流水号'},
             {id:'2', value:'2', text:'对方账号名称'},
             {id:'3', value:'3', text:'订单号'}
@@ -160,8 +177,8 @@ exports.financialDetails = function (req, res, next) {
 
 
 exports.financialDetailsToExcelAndPDF = function (req, res, next) {
-    checker.paymentStartDate(req.query.orderDateFromDownload);
-    checker.paymentStartDate(req.query.orderDateToDownload);
+    checker.paymentStartDate(req.query.orderDateFromDownload, 'orderDateFromDownload');
+    checker.paymentEndDate(req.query.orderDateToDownload, 'orderDateToDownload');
 
 
     if (req.query.filetype){
@@ -190,6 +207,9 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                     if (order.type === 3){order.type = '销售'}
                     if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
+
+                    if (!order.orderId){order.orderId = '-'}
                 });
 
                 if (req.query.filetype === 'excel'){
@@ -202,6 +222,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             '金额',
                             '账户余额',
                             '摘要',
+                            '订单号',
                             '对方账号',
                             '对方账号名称'
                         ],
@@ -211,6 +232,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             'money',
                             'balanceMoney',
                             'type',
+                            'orderId',
                             'otherFundAccount',
                             'otherCompanyName'
                         ],
@@ -258,7 +280,7 @@ exports.financialTransaction = function (req, res, next) {
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
 
-    console.log(req.query)
+    console.log(req.query);
     var getQuery = {
         userId : req.session.user.id,
         //userId :  2719,
@@ -269,9 +291,13 @@ exports.financialTransaction = function (req, res, next) {
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
-    if (req.query.status) getQuery.status = req.query.status;
+    if (req.query.status !== "#") getQuery.status = req.query.status;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/^\s+|\s+$/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post({
         url  : api_config.financialTransaction,
@@ -341,8 +367,11 @@ exports.financialContract = function (req, res, next) {
     if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
-    //if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
     request.post(
         {
@@ -408,11 +437,14 @@ exports.financialSettlement = function (req, res, next) {
         pagesize : 10
     };
 
-    //if (req.query.type) getQuery.type = req.query.type;
     if (req.query.startDate) getQuery.startDate = req.query.startDate;
     if (req.query.endDate) getQuery.endDate = req.query.endDate;
     if (req.query.searchType) getQuery.searchType = req.query.searchType;
-    if (req.query.content) getQuery.content = req.query.content;
+    if (req.query.content) getQuery.content = req.query.content.replace(/^\s+|\s+$/g,"");
+    //if (req.query.content&&req.query.content.replace(/\s+/g,"")=="")
+    //    getQuery.content = "";
+    //else if(req.query.content)
+    //    getQuery.content = req.query.content.replace(/\s+/g,"");
 
 
     request.post(

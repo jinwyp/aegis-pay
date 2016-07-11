@@ -16,6 +16,10 @@
       color: $color_a_hover;
     }
   }
+  .picker{
+    top: 32px;
+
+  }
   .contract-main{
     width: $main_width;
     margin-left: auto;
@@ -68,6 +72,7 @@
           td{
             text-align: center;
             padding: 24px 10px;
+            .btn-download{ display: none; }
             .mr-16{ margin-right: 16px; }
             .mb-10{ margin-bottom: 10px; }
           }
@@ -79,6 +84,8 @@
             text-align: center;
           }
         }
+        .status-green{  color: #1aaa6b;  }
+        .status-red{  color: #ff0000;  }
         td.no-data {
           text-align: center;
           padding: 105px 0;

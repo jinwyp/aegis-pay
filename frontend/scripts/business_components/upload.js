@@ -107,7 +107,6 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
                 // if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
                 //     uploadErrors.push('Not an accepted file type');
                 // }
-				console.log(data)
                 if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 30000000) {
                     uploadErrors.push('Filesize is too big');
                 }

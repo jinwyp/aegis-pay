@@ -6,7 +6,8 @@
 
 <body>
 
-<%- include ../global/header/financialFirstHeader %>
+
+<%- include ../global/header/header %>
 <%- include ../global/header/financialSecondHeader %>
 
 <div id="financial-body">
@@ -18,7 +19,7 @@
             <form class="form-inline">
                 <div class="form-row" >
                     <div class="form-group form-search indexHigh">
-                        <label class="col-sm-4 control-label" for="orderCategory">摘要:</label>
+                        <label class="col-sm-4 control-label" for="orderCategory">类型:</label>
                         <select name="orderCategory" id="orderCategory" >
                             <% formSelectOrderCategory.forEach(function(order){ %>
                             <option value="<%= order.value %>" <% if (order.selected) { %> selected <% } %> ><%= order.text %></option>
@@ -30,12 +31,12 @@
                         <label class="col-sm-2 control-label label-timefrom" for="orderDateFrom">交易日期:</label>
                         <div class="col-sm-4">
 
-                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="yyyy-mm-dd"/>
+                            <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="YYYY.MM.DD"/>
                             <!--<span class="input-date-icon" ></span>-->
                         </div>
                         <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="yyyy-mm-dd" />
+                            <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="YYYY.MM.DD" />
                             <!--<span class="input-date-icon" ></span>-->
                         </div>
                     </div>
@@ -43,7 +44,7 @@
 
                 <div class="form-row ">
                     <div class="form-group form-search">
-                        <label class="col-sm-4 control-label" for="orderSearchType">类型:</label>
+                        <label class="col-sm-4 control-label" for="orderSearchType"></label>
                         <select name="orderSearchType" id="orderSearchType" class="">
 
                             <% formSelectOrderSearchType.forEach(function(order){ %>
@@ -51,12 +52,12 @@
                             <% }) %>
                         </select>
                     </div>
-                    <div class="form-group form-search form-search-big">
+                    <div class="form-group form-search">
                         <label class="sr-only" for="orderSearchText">交易状态</label>
-                        <input type="text" class="form-control input-text input-box" id="orderSearchText" placeholder="请输入交易流水号" ms-duplex="@orderSearchText">
+                        <input type="text" class="form-control input-text input-box" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
                     </div>
 
-                    <button class="iBtn iBtn_sm iBtn_yes " ms-click="@searchOrder">查询</button>
+                    <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
                 </div>
 
             </form>
@@ -98,7 +99,7 @@
                             <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
                             <td >{{order.money | number(2) }}</td>
                             <td >{{order.balanceMoney | number(2)}}</td>
-                            <td >{{order.type}}</td>
+                            <td >{{order.type}} 订单号: {{order.orderId}}</td>
                             <td >{{order.otherFundAccount}}</td>
                             <td >{{order.otherCompanyName}}</td>
                             <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>
@@ -135,11 +136,11 @@
                                 <div class="form-group form-search form-search-big">
                                     <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易日期:</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
+                                        <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="YYYY.MM.DD"/>
                                     </div>
                                     <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
+                                        <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="YYYY.MM.DD" />
                                     </div>
                                 </div>
                             </div>

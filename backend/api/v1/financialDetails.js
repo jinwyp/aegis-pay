@@ -14,12 +14,14 @@ var ejsHelper  = require('../../libs/ejshelper')({locals: {}});
 
 exports.financialDetailsApi = function (req, res, next) {
 
-    //checker.orderId(req.body.orderCategory);
-    //checker.orderId(req.body.orderDateFrom);
-    //checker.orderId(req.body.orderDateTo);
-    //checker.orderId(req.body.orderSearchType);
-    //checker.payPassword(req.body.orderSearchText);
-    //checker.payPassword(req.body.currentPage);
+    checker.paymentStartDate(req.body.orderDateFrom, 'orderDateFrom');
+    checker.paymentEndDate(req.body.orderDateTo, 'orderDateTo');
+
+    checker.paymentCategoryType(req.body.orderCategory, 'orderCategory');
+    checker.paymentCategoryType(req.body.orderSearchType, 'orderSearchType');
+
+    checker.pageNumber(req.body.currentPage, 'currentPage');
+    //checker.searchText(req.body.orderSearchText);
     //checker.payPassword(req.body.limit);
 
     var postBody = {
@@ -33,7 +35,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateTo) postBody.startDate = req.body.endDate;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
     if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
-    if (req.body.orderSearchText) postBody.searchContent = req.body.orderSearchText;
+    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText;
 
 
     var url = api_config.financialDetails;
@@ -51,6 +53,9 @@ exports.financialDetailsApi = function (req, res, next) {
                 if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                 if (order.type === 3){order.type = '销售'}
                 if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+                if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
+
+                if (!order.orderId){order.orderId = '-'}
 
             });
 

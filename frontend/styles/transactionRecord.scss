@@ -15,6 +15,9 @@
       color: $color_a_hover;
     }
   }
+  .picker{
+    top: 32px;
+  }
   .transaction-main{
     width: $main_width;
     margin-left: auto;
@@ -58,12 +61,12 @@
           line-height: 36px;
           th{  text-align: center;  }
         }
-        tbody tr{
+        tbody tr.line{
           border-bottom: 1px dotted $color_border;
           &:hover{  background-color: $tr_hover_color;  }
           td{
             text-align: center;
-            padding: 8px 0;
+            padding: 12px 0;
             .block-a{
               display: block;
             }
@@ -89,6 +92,12 @@
           td.operation > a { display: block;}
           .status-green{  color: #1aaa6b;  }
           .status-red{  color: #ff0000;  }
+        }
+        .no-data{
+          text-align: center;
+          padding: 105px 0;
+          font-size: 18px;
+          color: #666;
         }
       }
     }

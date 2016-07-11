@@ -2,6 +2,7 @@
 
 // api
 var config = require('../../config');
+var request = require('../../libs/request');
 
 var host = config.rest_address;
 
@@ -116,7 +117,8 @@ var api_config = {
     disputeComplete : host + 'mall/order/dispute/detail',
     disputeSuccess : host + 'mall/order/seller/dispute/complete',
     financialCenterHome : host + 'finance/center',
-    checkCashBank : host + '/account/fund/checkCashBank',
+    checkCashBank : host + 'account/fund/checkCashBank',
+    checkDrawBank : host + 'account/fund/checkDrawCash',
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',
@@ -231,5 +233,19 @@ var api_config = {
 
 
 };
+
+api_config.fetchPayPhone = function(userId){
+    return new Promise(function(resolve, reject){
+        request(host + 'account/fund/payPwd/forget/first?userId=' + userId, function(err, data){
+            if(err) { return reject(err);}
+            var data = JSON.parse(data.body);
+            if(data && data.success){
+                return resolve(data.data.payPhone)
+            }else{
+                return reject(new SystemError(data.status, data.error));
+            }
+        })
+    })
+}
 
 module.exports = api_config;

@@ -27,6 +27,19 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
         $limitNum.html(num);
     });
 
+    $subBtn.click(function () {
+        var remarks = $('[name=remarks]').val();
+        if(remarks.length>500) {
+            message({
+                type: 'error',
+                title: '错误：',
+                detail: '输入内容超过长度限制!!'
+            });
+            return;
+        }else {
+            $('#orderModal').modal('show');
+        }
+    });
 
     // 确认提交
     $btnSubClose.click(function() {

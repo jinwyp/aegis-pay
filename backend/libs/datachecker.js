@@ -48,13 +48,12 @@ function throw403 (code, message, field, isNext){
 
 
 
-exports.menuTab = function(tab, next){
+exports.menuTab = function(tab, fieldname, next){
     if (tab){
         if ( !validator.isInt(tab, { min: 1, max: 20}) ) {
-            return throw400(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, code.order.menuTabNumberWrong.field, next);
+            return throw400(code.order.menuTabNumberWrong.code, code.order.menuTabNumberWrong.message, fieldname || code.order.menuTabNumberWrong.field, next);
         }
     }
-
 };
 
 
@@ -111,12 +110,31 @@ exports.deliveryAmount = function(deliveryAmount, next){
 };
 
 
-exports.paymentStartDate = function(date, next){
+exports.paymentStartDate = function(date, fieldname, next){
     if (date){
         if ( !validator.isDate(date) ) {
-            return throw409(code.order.startDate.code, code.order.startDate.message, code.order.startDate.field, next);
+            return throw409(code.order.startDate.code, code.order.startDate.message, fieldname || code.order.startDate.field, next);
+        }
+    }
+};
+exports.paymentEndDate = function(date, fieldname, next){
+    if (date){
+        if ( !validator.isDate(date) ) {
+            return throw409(code.order.endDate.code, code.order.endDate.message, fieldname || code.order.endDate.field, next);
+        }
+    }
+};
+exports.paymentCategoryType = function(type, fieldname, next){
+    if (type){
+        if ( !validator.isInt(type, { min: 0, max: 9}) ) {
+            return throw400(code.page.menuTabNumberWrong.code, code.page.menuTabNumberWrong.message, fieldname || code.page.menuTabNumberWrong.field, next);
         }
     }
 };
 
 
+exports.pageNumber = function(currentPage, fieldname, next){
+    if ( !validator.isInt(currentPage, { min: 1, max: 9}) ) {
+        return throw400(code.page.pageNumberWrong.code, code.page.pageNumberWrong.message, fieldname || code.page.pageNumberWrong.field, next);
+    }
+};

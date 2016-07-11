@@ -17,9 +17,9 @@
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
                 <div class="rightBan">
                     <%if(typeof deliveryAmount !="undefined"){%>
-                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>" />
+                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" />
                     <%}else{%>
-                    <input type="text" class="amount" id="deliveryAmount" />
+                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6"  />
                     <%}%>
                     <span class="unit">吨</span>
                 </div>
@@ -59,13 +59,13 @@
                             </tr>
                             <tr>
                                 <td class="batch"><%=k+1%></td>
-                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%= indexDataList[k].checkTime %> /></td>
-                                <td><input type="text" name="checkAmount" value=<%= indexDataList[k].checkAmount %> /></td>
+                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value="<%= indexDataList[k].checkTime %>" /></td>
+                                <td><input type="text" name="checkAmount" value="<%= indexDataList[k].checkAmount %>"  maxlength="6" /></td>
                                 <% if (count<=7) {%>
                                 <!--从提货吨数后开始遍历-->
                                 <% var count1=0; for(var i in indexDataList[k]){ count1++;%>
                                 <%if(count1>2){%>
-                                    <td><input type="text" name=<%=i%> value=<%= indexDataList[k][i] %> /></td>
+                                    <td><input type="text" name=<%=i%> value="<%= indexDataList[k][i] %>"  maxlength="6" /></td>
                                 <%}%>
                                 <%}%>
                                 <!--不足6位开始补全-->
@@ -104,12 +104,12 @@
                             </tr>
                             <tr>
                                 <td rowspan="3"  class="batch"><%=k+1%></td>
-                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value=<%=indexDataList[k].checkTime%> /></td>
-                                <td><input type="text" name="checkAmount" value=<%=indexDataList[k].checkAmount%> /></td>
+                                <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" value="<%=indexDataList[k].checkTime%>" /></td>
+                                <td><input type="text" name="checkAmount" value="<%=indexDataList[k].checkAmount%>"  maxlength="6" /></td>
                                 <!--判断第一行数据表头显示，从提货吨数后开始-->
                                 <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
                                     <% if(Tindex>2 && Tindex<=9) {%>
-                                    <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
+                                    <td><input type="text" name=<%=i%> value="<%=indexDataList[k][i]%>"  maxlength="6" /></td>
                                     <%}%>
                                 <%}%>
                                 <td rowspan="3">
@@ -139,7 +139,7 @@
                             <tr>
                                 <%var Tindex=0; for(var i in indexDataList[k]){ Tindex++%>
                                     <% if(Tindex>9) {%>
-                                        <td><input type="text" name=<%=i%> value=<%=indexDataList[k][i]%> /></td>
+                                        <td><input type="text" name=<%=i%> value="<%=indexDataList[k][i]%>"  maxlength="6" /></td>
                                     <%}%>
                                 <%}%>
                                 <% for(var i=0;i<16-count;i++) {%>
@@ -178,10 +178,10 @@
                             <tr>
                                 <td class="batch">1</td>
                                 <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                <td><input type="text" name="checkAmount"/></td>
+                                <td><input type="text" name="checkAmount"  maxlength="6"/></td>
                                 <% if (count<=7) {%>
                                 <% for(var i in indexList){%>
-                                <td><input type="text" name=<%=i%> /></td>
+                                <td><input type="text" name="<%=i%>"  maxlength="6" /></td>
                                 <%}%>
                                 <% for(var i=0;i<7-count;i++) {%>
                                 <td></td>
@@ -211,10 +211,10 @@
                             <tr>
                                 <td rowspan="3"  class="batch">1</td>
                                 <td class="dateWrap"><input type="text" class="checkTime" name="checkTime" placeholder="yyyy-mm-dd" /></td>
-                                <td><input type="text" name="checkAmount"/></td>
+                                <td><input type="text" name="checkAmount"  maxlength="6" /></td>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
                                 <% if(Tindex<=7) {%>
-                                <td><input type="text" name=<%=i%> /></td>
+                                <td><input type="text" name="<%=i%>"  maxlength="6" /></td>
                                 <%}%>
                                 <%}%>
                                 <td rowspan="3">
@@ -235,7 +235,7 @@
                             <tr>
                                 <%var Tindex=0; for(var i in indexList){ Tindex++%>
                                 <% if(Tindex>7) {%>
-                                <td><input type="text" name=<%=i%> /></td>
+                                <td><input type="text" name="<%=i%>"  maxlength="6" /></td>
                                 <%}%>
                                 <%}%>
                                 <% for(var i=0;i<16-count;i++) {%>

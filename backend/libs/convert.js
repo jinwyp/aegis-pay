@@ -13,14 +13,14 @@ var logger   = require("./logger");
 var __dirfiles = config.file_path.root;
 var images_path = config.file_path.root + config.file_path.images + '/';
 var html_path = config.file_path.root + config.file_path.html + '/';
-var pdf_path = config.file_path.pdf + '/';
-var zips_path = config.file_path.zips;
+var pdf_path = config.file_path.root + config.file_path.pdf + '/';
+var zips_path = config.file_path.root + config.file_path.zips + '/';
 
 
 exports.pdf2image = function (pdfpath, options) {
     var imgname          = options && options.imgname || path.basename(pdfpath, '.pdf');
     var imgpath          = options && options.imgpath || images_path;
-    var convertExtension = options && options.convertExtension || 'jpg';
+    var convertExtension = options && options.convertExtension || 'png';
 
     //if (!utils.isDirExistsSync(imgpath)) {
     //    fs.mkdirSync(imgpath);
@@ -69,11 +69,11 @@ exports.html2pdf = function (htmlpath, options) {
                         'height':'1413px',
                         // 'format':'A4',
                         "header": {
-                            "height": "20mm"
+                            "height": "10mm"
                             // "contents": '<div style="text-align: center;">Author: Marc Bachmann</div>'
                         },
                         "footer": {
-                            "height": "20mm",
+                            "height": "10mm",
                             // "contents": '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'
                         }
                     };
@@ -91,7 +91,6 @@ exports.html2pdf = function (htmlpath, options) {
                 if (err) reject(err);
                 if (resultHtml) {
                     pdf.create(resultHtml, options).toFile(pdffile, function (err, resultPDF) {
-                        console.log(err);
                         if (!err) {
                             fs.stat(pdffile, function (err, stat) {
                                 if (err) reject(err);
@@ -187,14 +186,14 @@ exports.zipFile = function (options) {
 
         var archive = archiver(options.type, {});
 
-        var output = fs.createWriteStream(options.output + '/' + options.zipname);
+        var output = fs.createWriteStream(options.output + options.zipname);
 
         archive.on('error', reject);
 
         output.on('close', function () {
             logger.debug(archive.pointer() + ' total bytes');
             logger.debug('archiver has been finalized and the output file descriptor has closed.');
-            resolve(options.output + '/' + options.zipname);
+            resolve(options.output + options.zipname);
         });
 
 
