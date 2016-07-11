@@ -64,6 +64,8 @@ exports.financialHome = function (req, res, next) {
                 content.finance = source.data.finance;
                 content.recordList = source.data.recordList;
                 content.cashAccount = source.data.cashAccount;
+                content.fundAccountStatus = source.data.fundAccountStatus;
+
                 return res.render('wealth/financialCenterHome', content);
             }else{
                 content.error = source.error;
@@ -184,6 +186,7 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
     if (req.query.filetype){
 
         var formData = {
+            pagesize : 10000,
             userId: req.session.user.id
             //userId: 2719
         };

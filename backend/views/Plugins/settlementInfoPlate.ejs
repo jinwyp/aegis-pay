@@ -125,8 +125,9 @@
 
                     <% if(isEdit_sj) {%>
                         <tr>
-                            <td class="billBox">
-                                <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= settleAmount %>" />
+                            <td class=".billBox">
+                                <%= settleAmount %>
+                                <input type="hidden" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= settleAmount %>" readonly />
                                 <span class="errInfo"></span>
                             </td>
                             <td class="billBox">
