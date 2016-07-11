@@ -2,10 +2,11 @@
 .pagination-financial {
   padding-left: 160px;
   overflow: hidden;
+  margin: 40px 10px;
 
   .pageno{
     float: left;
-    margin: 10px;
+    margin: 0px 10px;
     li {
       .disabled {
         color: $color_text_select_gray;
@@ -41,7 +42,7 @@
 
   .jump-to-page{
     float: left;
-    margin: 16px 3px;
+    margin: 5px 3px;
     font-size: $size_font_middle;
     color: $color_text_select_gray;
 
