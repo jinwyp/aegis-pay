@@ -66,7 +66,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                         '确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。';
                     $countDownBox.html(dateHtml);
                 }
-            }, 1000);
+            }, 60000);
 
         },
 
@@ -617,7 +617,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             diffDate.min = 0;
             diffDate.sec = 0;
         }
-        console.log(newDate.toLocaleDateString() +' '+ newDate.toTimeString());
+        //console.log(newDate.toLocaleDateString() +' '+ newDate.toTimeString());
         return diffDate;
     }
 
