@@ -248,9 +248,13 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     ejs.renderFile(pdfHtmlTemplatePath, {orderList:body.data.payments.list, helper:ejsHelper.locals}, function (err, resultHtml) {
                         if (err) return next(err);
 
-                        var pdfOptions = {format : 'Letter'};
+                        var pdfOptions = {
+                            "format" : "A4",
+                            "orientation": "landscape"
+                        };
                         var pdfFileName = pdfSavePath + '/financialdetails.pdf';
 
+                        //return res.send(resultHtml);
                         pdf.create(resultHtml, pdfOptions).toFile(pdfFileName, function (err, resultPDF) {
                             if (err) return next(err);
 
