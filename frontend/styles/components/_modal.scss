@@ -72,6 +72,9 @@
         width: 100px;
         background: #c7c7c7;
         color: #ffffff;
+        &:hover{
+          background-color: #dad8d8;
+        }
       }
       .confirm {
         min-width: 100px;
