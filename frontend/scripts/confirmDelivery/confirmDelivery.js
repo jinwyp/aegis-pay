@@ -125,7 +125,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
            tableChenkComplete=false;
            for(var i=0;i<$(".checkList").length;i++){
 
-               if(inputNCV.length>0){
+               if(inputNCV.length>0 && inputNCV.eq(i).val()!=""){
                    if(!digits(inputNCV.eq(i).val()) || !range(inputNCV.eq(i).val(),[0,7501])){
                        errorMsg("低位热值为0~7500之间的整数");
                        return false;
@@ -133,7 +133,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                        errorMsg("")
                    }
                }
-               if(inputADV.length>0){
+               if(inputADV.length>0 && inputADV.eq(i).val()!=""){
                    if(!range(inputADV.eq(i).val(), [0, 50.000000000001])){
                        errorMsg("空干基挥发分必须为一个介于0-50之间的数值[不包括0,最多保留两位小数]");
                        return false;
@@ -142,7 +142,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputRS.length>0){
+               if(inputRS.length>0 && inputRS.eq(i).val()!=""){
                    if(!float(inputRS.eq(i).val()) || !range(inputRS.eq(i).val(), [0, 10])){
                        errorMsg("收到硫分必须为一个介于0-10之间的数值[不包括0和10,最多保留两位小数]");
                        return false;
@@ -151,7 +151,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-                if(inputTM.length>0){
+                if(inputTM.length>0 && inputTM.eq(i).val()!=""){
                     if(!float(inputTM.eq(i).val()) || !range(inputTM.eq(i).val(), [0, 50.000000000001])){
                         errorMsg("全水必须为一个介于0-50之间的数值[不包括0,最多保留两位小数]");
                         return false;
@@ -160,7 +160,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                     }
                 }
 
-               if(inputRV.length>0){
+               if(inputRV.length>0 && inputRV.eq(i).val()!=""){
                    if(!float(inputRV.eq(i).val()) || !range(inputRV.eq(i).val(), [0, 50.000000000001])){
                        errorMsg("收到基挥发分必须为一个介于0-50之间的数值[不包括0,最多保留两位小数]");
                        return false;
@@ -169,7 +169,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputADS.length>0){
+               if(inputADS.length>0 && inputADS.eq(i).val()!=""){
                    if(!float(inputADS.eq(i).val()) || !range(inputADS.eq(i).val(), [0, 10.000000000001])){
                        errorMsg("空干基硫分必须为一个介于0-10之间的数值[不包括0,最多保留两位小数]");
                        return false;
@@ -178,7 +178,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputIM.length>0){
+               if(inputIM.length>0 && inputIM.eq(i).val()!=""){
                    if(!float(inputIM.eq(i).val()) || !range(inputIM.eq(i).val(), [0, 50.000000000001])){
                        errorMsg("内水分必须为一个介于0-50之间的数值[不包括0,最多保留两位小数]");
                        return false;
@@ -187,7 +187,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputASH.length>0){
+               if(inputASH.length>0 && inputASH.eq(i).val()!=""){
                    if(!float1(inputASH.eq(i).val()) || !range(inputASH.eq(i).val(), [0, 50.000000000001])){
                        errorMsg("灰分必须为一个介于0-50之间的数值[不包括0,最多保留一位小数]");
                        return false;
@@ -196,7 +196,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputGV.length>0){
+               if(inputGV.length>0 && inputGV.eq(i).val()!=""){
                    if(!digits(inputGV.eq(i).val()) || !range(inputGV.eq(i).val(), [0,99])){
                        errorMsg("G值必须为一个介于0-99之间的整数值");
                        return false;
@@ -205,7 +205,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputYV.length>0){
+               if(inputYV.length>0 && inputYV.eq(i).val()!=""){
                    if(!digits(inputYV.eq(i).val()) || !range(inputYV.eq(i).val(), [0,99])){
                        errorMsg("Y值必须为一个介于0-99之间的整数值");
                        return false;
@@ -214,7 +214,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputAFT.length>0){
+               if(inputAFT.length>0 && inputAFT.eq(i).val()!=""){
                    if(!digits(inputAFT.eq(i).val()) || !range(inputAFT.eq(i).val(), [899,1600])){
                        errorMsg("灰熔点必须为一个介于900-1600之间的整数值");
                        return false;
@@ -223,7 +223,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputFC.length>0){
+               if(inputFC.length>0 && inputFC.eq(i).val()!=""){
                    if(!digits(inputFC.eq(i).val()) || !range(inputFC.eq(i).val(), [0,99])){
                        errorMsg("固定碳必须为一个0-99之间的整数值[不包括0]");
                        return false;
@@ -232,7 +232,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputCRC.length>0){
+               if(inputCRC.length>0 && inputCRC.eq(i).val()!=""){
                    if(!digits(inputCRC.eq(i).val()) || !range(inputCRC.eq(i).val(), [0,99])){
                        errorMsg("焦渣特征必须为一个0-99之间的整数值[不包括0]");
                        return false;
@@ -241,7 +241,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputPSName.length>0){
+               if(inputPSName.length>0 && inputPSName.eq(i).val()!=""){
                    if(!chineseCheck(inputPSName.eq(i).val())){
                        errorMsg("颗粒度必须为中文");
                        return false;
@@ -250,7 +250,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                    }
                }
 
-               if(inputHGI.length>0){
+               if(inputHGI.length>0 && inputHGI.eq(i).val()!=""){
                    if(!digits(inputHGI.eq(i).val()) || !range(inputHGI.eq(i).val(), [0,99])){
                        errorMsg("哈氏可磨必须为一个0-99之间的整数值[不包括0]");
                        return false;
@@ -306,23 +306,16 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             //table校验
 
             if($(".checkList").length>0){
-               var temp=true;
-               $(".checkList input").each(function(i,item){
-                  if($(this).val()==""){
-                     $(".errorMes").text("检测结果不得为空");
-                     temp=false;
-
-                     return false;
-                  }else{
-                     $(".errorMes").text("");
-                  }
-
-               });
-
-               if (!temp){
-                  return false;
-               }
-
+                for(var i=0;i<$(".checkList").length;i++){
+                    if($("input[name='checkTime']").eq(i).val()==""){
+                        $(".errorMes").text("检测时间不能为空");
+                        return false;
+                    }
+                    if($("input[name='checkAmount']").eq(i).val()==""){
+                        $(".errorMes").text("提货吨数不能为空");
+                        return false;
+                    }
+                }
             };
              that.checkInput();
              if(tableChenkComplete){
