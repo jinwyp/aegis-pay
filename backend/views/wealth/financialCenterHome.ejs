@@ -43,10 +43,20 @@
                     <a class="a-link manage-color" href="/wealth/addAccount">管理</a>
                 </div>
                 <% if(finance.cashBankAccount===null){ %>
-                <div class="bank-add">
-                    <a class="add-icon"></a>
-                    <a class="a-link label-add">添加银行账户</a>
-                </div>
+                    <% if(cashAccount && cashAccount.status*1 == 1){ %>
+                        <div class="bank-add">
+                            <a>等待银行汇款</a>
+                        </div>
+                    <% }else if(cashAccount && cashAccount.status*1 == 2){ %>
+                        <div class="bank-add">
+                            <a href="/wealth/bindingSuccess">确认银行汇款</a>
+                        </div>
+                    <% }else{ %>
+                        <div class="bank-add">
+                            <a class="add-icon"></a>
+                            <a class="a-link label-add">添加银行账户</a>
+                        </div>
+                    <% } %>
                 <% }else{ %>
                 <div class="bank-info">
                     <div class="label-content"><%= finance.cashBankName %></div>

@@ -58,8 +58,7 @@ exports.accountSetting = function (req, res, next) {
                 },
                 registerTime:   user.registertime,
                 fundStatus:     source.data.fundStatus,
-                cashStatus:     source.data.cashStatus
-
+                cashAccount:    source.data.cashAccount
             };
             logger.debug('获取到的结果是content----------------------------' ,content);
             //渲染页面

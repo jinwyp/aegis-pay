@@ -78,7 +78,7 @@
 						<div class="figure-content text-center">
 							<% if(cashAccount && cashAccount.status*1 == 1){ %>
 								<span class="add-bank-btn no-bg">等待银行汇款</span>
-							<% }else if(cashAccount && cashAccount.status*2 == 2){ %>
+							<% }else if(cashAccount && cashAccount.status*1 == 2){ %>
 								<a class="add-bank-btn" href="/wealth/bindingSuccess">确认银行汇款</a>
 							<% }else{ %>
 								<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
