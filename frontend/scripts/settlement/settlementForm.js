@@ -239,7 +239,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 $upFile = $('#upSealFile');               //上传控件
 
             //上传操作
-            $upFile.change(function() {
+            $upFile.click(function() {
                 var $tag = $(this);
 
                 upload.ajaxFileUpload($tag, {maxFileSize: 1048576 * 5}, function(data) {
