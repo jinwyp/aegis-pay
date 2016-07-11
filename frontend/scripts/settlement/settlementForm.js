@@ -567,7 +567,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         var startDate = new Date(startTime),
             endDate = new Date(endTime),
             dispaSec = 0,         // 时间差.毫秒
-            diffData = 0;
+            diffData = 0,
+            first = 1;
 
         if(startDate < endDate) {
             dispaSec = (endDate - startDate);
@@ -575,6 +576,20 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             diffData.isEnd = true;
         }
 
+        if(first === 1) {
+            first += 1;
+            setTimeout(function() {
+                if(dispaSec < 1) {
+                    diffData.isEnd = true;
+                }
+
+                if(!diffData.isEnd) {
+                    diffData = dateParseDiff(dispaSec);
+                }
+
+                callback && typeof callback === "function" && callback(diffData);
+            }, 500);
+        }
         var timedTask = setInterval(function() {
             dispaSec -= space;
             if(dispaSec < 1) {
