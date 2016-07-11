@@ -353,7 +353,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     //完善开票信息
     $(".btn-improveReceipt").click(function(){
-        location.href="/settlement/confirmTheInvoice?orderId＝"+$(this).data("id");
+        location.href="/settlement/confirmTheInvoice?orderId="+$(this).data("id");
     });
 
     //确认已开发票
