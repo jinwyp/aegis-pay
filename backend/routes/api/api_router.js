@@ -57,6 +57,9 @@ router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeli
 
 router.post('/sellerDelivery/reasonSubmit', sellerDelivery.reasonSubmit); //确认提货提交
 router.post('/returnDetail/returnDetailSubmit', returnDetail.returnDetailSubmit); //确认提货提交
+router.get('/fetchQualityZips', returnDetail.fetchQualityZips); //下载质量确认单
+router.get('/fetchQuantityZips', returnDetail.fetchQuantityZips); //下载数量确认单
+
 
 
 router.post('/confirmDelivery/confirmDeliveryIndex', confirmDelivery.confirmDeliverySubmit);    //确认提货提交
