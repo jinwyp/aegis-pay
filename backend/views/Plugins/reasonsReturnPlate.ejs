@@ -1,4 +1,8 @@
 <% var orderObj = data.order %>
+<% orderObj.returnReason = orderObj.returnReason || ''%>
+<% orderObj.deliveryReturnReason = orderObj.deliveryReturnReason || ''%>
+<% var reasonStr = orderObj.returnReason || orderObj.deliveryReturnReason;  %>
+
 <% if(orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts' || orderObj.status == 'ReturnedDeliveryGoods') {%>
 
 <!-- 退回原因提示框 板块 -->
@@ -20,7 +24,6 @@
     <% } %>
 
     <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts' || orderObj.status=='ReturnedDeliveryGoods'){ %>
-    <% orderObj.returnReason = orderObj.returnReason || ''%>
     <div class="reasonsReturn mt20">
         <!-- 审核退回.查看原因-->
         <div class="reasonsReturn_view show">
@@ -30,7 +33,7 @@
                 <tr>
                     <td width="66">退回原因：</td>
                     <td>
-                        <span class="bright labReturnReason"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></span>
+                        <span class="bright labReturnReason"><%= reasonStr %></span>
                     </td>
                 </tr>
                 <tr>
@@ -58,8 +61,10 @@
                     <td class="va_top" width="66">退回原因：</td>
                     <td>
                         <div class="txtAreaBox">
-                            <div class="dockDown">您还可以输入<span class="limitNum reasonSize"><%= (500 - orderObj.returnReason.length) || (500 - orderObj.deliveryReturnReason.length)%></span>个字</div>
-                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></textarea>
+                            <div class="dockDown">您还可以输入
+                                <span class="limitNum reasonSize"><%= 500 - reasonStr.length %></span>个字
+                            </div>
+                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= reasonStr %></textarea>
                         </div>
                     </td>
                 </tr>
