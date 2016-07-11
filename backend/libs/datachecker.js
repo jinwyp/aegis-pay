@@ -113,25 +113,31 @@ exports.deliveryAmount = function(deliveryAmount, next){
 exports.paymentStartDate = function(date, fieldname, next){
     if (date){
         if ( !validator.isDate(date) ) {
-            return throw409(code.order.startDate.code, code.order.startDate.message, fieldname || code.order.startDate.field, next);
+            return throw400(code.order.startDate.code, code.order.startDate.message, fieldname || code.order.startDate.field, next);
         }
     }
 };
 exports.paymentEndDate = function(date, fieldname, next){
     if (date){
         if ( !validator.isDate(date) ) {
-            return throw409(code.order.endDate.code, code.order.endDate.message, fieldname || code.order.endDate.field, next);
+            return throw400(code.order.endDate.code, code.order.endDate.message, fieldname || code.order.endDate.field, next);
         }
     }
 };
 exports.paymentCategoryType = function(type, fieldname, next){
     if (type){
         if ( !validator.isInt(type, { min: 0, max: 9}) ) {
-            return throw400(code.page.menuTabNumberWrong.code, code.page.menuTabNumberWrong.message, fieldname || code.page.menuTabNumberWrong.field, next);
+            return throw400(code.order.categoryType.code, code.order.categoryType.message, fieldname || code.order.categoryType.field, next);
         }
     }
 };
-
+exports.paymentSearchText = function(text, fieldname, next){
+    if (text){
+        if ( !validator.isLength(text, { min: 2, max: 100}) ) {
+            return throw400(code.order.searchText.code, code.order.searchText.message, fieldname || code.order.searchText.field, next);
+        }
+    }
+};
 
 exports.pageNumber = function(currentPage, fieldname, next){
     if ( !validator.isInt(currentPage, { min: 1, max: 9}) ) {

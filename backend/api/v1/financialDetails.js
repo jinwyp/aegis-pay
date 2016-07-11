@@ -19,9 +19,10 @@ exports.financialDetailsApi = function (req, res, next) {
 
     checker.paymentCategoryType(req.body.orderCategory, 'orderCategory');
     checker.paymentCategoryType(req.body.orderSearchType, 'orderSearchType');
-
+    checker.paymentSearchText(req.body.orderSearchText);
+    
     checker.pageNumber(req.body.currentPage, 'currentPage');
-    //checker.searchText(req.body.orderSearchText);
+
     //checker.payPassword(req.body.limit);
 
     var postBody = {
@@ -35,7 +36,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateTo) postBody.startDate = req.body.endDate;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
     if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
-    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText;
+    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText.trim();
 
 
     var url = api_config.financialDetails;

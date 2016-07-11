@@ -74,6 +74,7 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
+			replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-20 11:11:11';// 截止时间
 			cache.get('zip_jsd_scxy_'+req_id, function (err, data){
 				data = data || {};
 				replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
@@ -90,7 +91,7 @@ exports.orderSettlement = function (req, res, next) {
 };
 
 
-// 下载打印, 结算信息	 /settlement/settlementInfoDownload?orderId=3622&userId=15
+// 下载打印.路由 	 /settlement/settlementInfoDownload?orderId=3622&userId=15
 exports.settlementInfoDownload = function (req, res, next) {
 	var apiUrl = apiHost.downPrintSettle +'?orderId='+ req.query.orderId + '&userId='+ req.session.user.id;
 

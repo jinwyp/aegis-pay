@@ -1,4 +1,8 @@
 <% var orderObj = data.order %>
+<% orderObj.returnReason = orderObj.returnReason || ''%>
+<% orderObj.deliveryReturnReason = orderObj.deliveryReturnReason || ''%>
+<% var reasonStr = orderObj.returnReason || orderObj.deliveryReturnReason;  %>
+
 <% if(orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts' || orderObj.status == 'ReturnedDeliveryGoods') {%>
 
 <!-- 退回原因提示框 板块 -->
@@ -7,21 +11,19 @@
     <!-- 待审核.状态提示-->
     <div class="reasonsReturn mt20">
         <div class="reasonsReturn_back show">
-            <h2 class="returnTitle"><span class="statusLab">当前状态：</span>待确认结算</h2>
-            <p class="sf">
-                <!--您还有-->
-                <!--<span class="bright Day">12</span>天-->
-                <!--<span class="bright Hour">12</span>小时-->
-                <!--<span class="bright Minute">12</span>分-->
-                <!--<span class="bright Second">12</span>秒来-->
-                请在<span class="bright Day">12</span>天内
+            <h2 class="returnTitle"><span class="statusLab">当前状态：</span>待确认结算 </h2>
+            <p class="countDownBox" data-start="<%= orderObj.sellerSettleTime %>" data-end="<%=orderObj.deadlineTime%>">
+                您还有
+                <span class="bright Day">0</span>天
+                <span class="bright Hour">0</span>小时
+                <span class="bright Minute">0</span>分
+                <span class="bright Second">0</span>秒来
                 确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。</p>
         </div>
     </div>
     <% } %>
 
     <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts' || orderObj.status=='ReturnedDeliveryGoods'){ %>
-    <% orderObj.returnReason = orderObj.returnReason || ''%>
     <div class="reasonsReturn mt20">
         <!-- 审核退回.查看原因-->
         <div class="reasonsReturn_view show">
@@ -31,7 +33,7 @@
                 <tr>
                     <td width="66">退回原因：</td>
                     <td>
-                        <span class="bright labReturnReason"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></span>
+                        <span class="bright labReturnReason"><%= reasonStr %></span>
                     </td>
                 </tr>
                 <tr>
@@ -59,8 +61,10 @@
                     <td class="va_top" width="66">退回原因：</td>
                     <td>
                         <div class="txtAreaBox">
-                            <div class="dockDown">您还可以输入<span class="limitNum reasonSize"><%= (500 - orderObj.returnReason.length) || (500 - orderObj.deliveryReturnReason.length)%></span>个字</div>
-                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= orderObj.returnReason || orderObj.deliveryReturnReason %></textarea>
+                            <div class="dockDown">您还可以输入
+                                <span class="limitNum reasonSize"><%= 500 - reasonStr.length %></span>个字
+                            </div>
+                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= reasonStr %></textarea>
                         </div>
                     </td>
                 </tr>
