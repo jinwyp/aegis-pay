@@ -29,7 +29,7 @@ exports.confirmDelivery = function (req, res, next) {
         if (data){
             var source  = JSON.parse(data.body);
             var statusObj = {
-                step     : 4,
+                step     : 3,
                 stepList : [
                     {
                         stepName : '提交订单',
