@@ -137,6 +137,9 @@ $dark:#000000;
 			}
 			p{
 				cursor:pointer;
+				&:hover{
+					color:#00b7ec;
+				}
 			}
 			.tool-tips{
 				position:absolute;
@@ -217,13 +220,19 @@ $dark:#000000;
 			.add-bank-btn{
 				padding-left:32px;
 				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left center;
-				color:$blue1;
+				color:#007193;
 				@include fontSize(18px);
 				@include fontWeight;
 				line-height:200px;
 				&.no-bg{
 					background:none;
 					padding-left:0;
+					&:hover{
+						color:#007193;
+					}
+				}
+				&:hover{
+					color:#00b7ec;
 				}
 			}
 		}
