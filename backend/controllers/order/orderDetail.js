@@ -26,6 +26,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
             var step = 0;
             switch (source.data.order.status) {
                 case 'TradeClosed':
+                case 'Canceled':
                     if(source.data.order.statusClose=='WaitPayment'){
                         step = 2;
                     }else{
