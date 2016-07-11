@@ -29,7 +29,11 @@ frontend 目录下：
 ```
 
 - css 中路径使用配置 例如 background: url("#{$assetPath}/images/gradualLine.png") repeat-x center bottom; [interpolation docs](http://stackoverflow.com/questions/8608498/have-a-variable-in-images-path-in-sass)
-- html 模版中路径使用配置  例如 <script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
+- html 模版中路径使用配置 例如
+
+```
+<script src="<%= staticPath %>/scripts/paypassword/forget.js"></script>
+```
 
 
 ## 启动

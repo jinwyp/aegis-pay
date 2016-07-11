@@ -263,7 +263,7 @@
                                 <%for (var i=0;i<qualityList.length;i++){%>
                                 <p class="file"><%= qualityList[i].name %>
                                     <span class="del"></span>
-                                    <input type="hidden" name="file_id" value="<%= qualityList[i].file_id %>">
+                                    <input type="hidden" name="file_id" value="<%= substrId(qualityList[i].path)%>">
                                     <input type="hidden" name="file_name" value="<%= qualityList[i].name %>">
                                 </p>
                                 <%}%>
@@ -291,7 +291,7 @@
                                 <%for (var i=0;i<quantityList.length;i++){%>
                                 <p class="file"><%= quantityList[i].name %>
                                     <span class="del"></span>
-                                    <input type="hidden" name="file_id" value="<%= quantityList[i].file_id %>">
+                                    <input type="hidden" name="file_id" value="<%= substrId(quantityList[i].path) %>">
                                     <input type="hidden" name="file_name" value="<%= quantityList[i].name %>">
                                 </p>
                                 <%}%>
