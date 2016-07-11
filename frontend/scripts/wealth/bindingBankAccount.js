@@ -4,15 +4,14 @@
 
 require.config({
     paths: {
-        sms_code: 'pay/blocks/sms_code',
-        pay: 'pay/blocks/pay'
+        sms_code: 'business_components/sms-code'
     }
 });
 
-requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code,pay){
+requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code){
 
-    sms_code.init();
-    pay.init();
+    sms_code.init("");
+    // pay.init();
     var finalResult
     var bindingBankAccount={
 
@@ -106,10 +105,13 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
         },
         "checkVCode": function(){
             var vertifyCode=$("#vertifyCode").val();
+            var payPhone= $('input[name="payPhone"]').val();
             return  $.ajax({
                 url: '/api/verifyCode',
                 type: 'POST',
-                data: {'sms_code': vertifyCode}
+                data: {'sms_code': vertifyCode,
+                        'payPhone':payPhone
+                }
             });
         },
         "provinceCode": function(){
