@@ -15,7 +15,7 @@
 <div id="financial-body">
 	<div class="financial-main add-account">
 		<div class="header">
-			<div class="float-right relative" id="info">
+			<div class="float-right relative info" id="info">
 				<p><span class="icn_doubt"></span>
 				绑定账户说明</p>
 				<div class="tool-tips display-none" id="toolTips">
@@ -43,7 +43,7 @@
 					<dt>银行开户名:</dt>
 					<dd><%= fundAccount.accountBankName %></dd>
 					<dt>账户号:</dt>
-					<dd><%= fundAccount.account %></dd>
+					<dd><%= blankFour(fundAccount.account) %></dd>
 					<dt>开通时间:</dt>
 					<dd><%= fundAccount.createTime %></dd>
 					<dt>绑定手机号码:</dt>
@@ -63,7 +63,7 @@
 							<dt>银行开户名:</dt>
 							<dd><%= cashAccount.accountBankName %></dd>
 							<dt>账户号:</dt>
-							<dd><%= cashAccount.account %></dd>
+							<dd><%= blankFour(cashAccount.account) %></dd>
 							<dt>开通时间:</dt>
 							<dd><%= cashAccount.createTime %></dd>
 							<dt>绑定手机号码:</dt>
