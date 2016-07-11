@@ -63,10 +63,12 @@ exports.financialHome = function (req, res, next) {
                 logger.debug('获取到的recordList是----------------------------' + JSON.stringify(source.data.recordList));
                 content.finance = source.data.finance;
                 content.recordList = source.data.recordList;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }else{
                 content.error = source.error;
                 content.finance.userFundAccount = source.error;
+                content.cashAccount = source.data.cashAccount;
                 return res.render('wealth/financialCenterHome', content);
             }
         }
