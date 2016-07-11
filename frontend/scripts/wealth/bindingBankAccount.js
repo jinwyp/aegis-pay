@@ -9,10 +9,9 @@ require.config({
     }
 });
 
-requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code,pay){
+requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code){
 
     sms_code.init();
-    pay.init();
     var finalResult
     var bindingBankAccount={
 
@@ -140,6 +139,8 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
             });
             $("#provinceCode").on('change', function() {
                 $("#cityCode").html('');
+                $("#childBankName").val("");
+                $("#childBankName").attr("data-selectdata","");
                 that.provinceCode().done(function(data){
                     data.cityList.forEach(function(value,i){
                         $("#cityCode").append('<option value='+data.cityList[i].cityCode+'>'+data.cityList[i].cityName+'</option>')
@@ -147,6 +148,10 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                     $("#cityCode").trigger("update.fs");
                 });
                 that.Verify();
+            });
+            $("#cityCode").on("change",function(){
+                $("#childBankName").val("");
+                $("#childBankName").attr("data-selectdata","");
             });
 
             // ie8以下数组indexof不兼容
@@ -252,6 +257,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
             $("#vertifyCode").on('blur', function() {
                 var vertifyCode=$("#vertifyCode").val();
                 that.checkVCode().done(function(data){
+                    console.log(data)
                     if (data.success) {
                         $(".successIcon").css({visibility: "visible"});
                         $(".vertifyCode .errorMsg").text('');
@@ -259,6 +265,7 @@ requirejs(['jquery','pay.smscode','pay','devbridge-autocomplete','bootstrap','jq
                     } else {
                         if (data.errType && (data.errType == 'sms_code')) {
                             finalResult = false;
+                            console.log(data.errType);
                             $(".vertifyCode .errorMsg").text('校验码错误');
                             $(".successIcon").css({visibility: "hidden"});
                             $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
