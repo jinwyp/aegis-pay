@@ -35,7 +35,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateTo) postBody.startDate = req.body.endDate;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
     if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
-    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText;
+    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText.trim();
 
 
     var url = api_config.financialDetails;
