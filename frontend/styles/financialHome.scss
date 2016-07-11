@@ -340,6 +340,8 @@
       }
       .financeDetailTable{
         width: 970px;
+        margin-bottom : 0px;
+
         th {
           color: $color_text_table_th_gray;
           background-color: $color_bg_table_th_gray;
