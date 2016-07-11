@@ -46,6 +46,7 @@
   .orderSummary .summaryL .summaryLTit{font-size: 16px;color:#333;margin-bottom: 15px;}
   .orderSummary .summaryL p{color:#333;font-size: 12px;text-align: left;margin-bottom: 10px;}
   .orderSummary .summaryL p label{color:#999;font-weight: normal;}
+  .orderSummary .summaryL p .redInfo{color:#ff0000;}
   .orderSummary .summaryL p.searchDetail{margin-top: 15px;}
   .orderSummary .summaryL p a {color:#037191;}
   .orderSummary .summaryL .summaryLAdditional {padding-top: 20px;border-top: 1px dotted #d8d8d8;margin-top: 30px;}
@@ -55,13 +56,14 @@
   .orderSummary .rightCon .conList{margin-bottom: 15px;position: relative}
   .orderSummary .rightCon .mb0{margin-bottom: 0px;}
   .orderSummary .rightCon .conList span{font-weight: normal}
+  .orderSummary .rightCon .conList span.rightSpan{display: inline-block;width:103px;}
   .orderSummary .rightCon .conList span em{font-weight: normal;color:#ff0000;}
   .orderSummary .rightCon .conList span em.hid{visibility: hidden;}
   .orderSummary .rightCon .conList label{margin-right: 15px;font-weight: normal;cursor: pointer;}
   .orderSummary .rightCon .conList textarea{width: 537px;height:90px;resize: none;border:1px solid #e8e8e8;padding: 8px;vertical-align: top;}
   .orderSummary .rightCon .conList .leftTxt{position:absolute;right: 35px;bottom: 5px;color:#666;}
   .orderSummary .rightCon .conList .leftTxt span{color:#ff6e27;}
-  .orderSummary .rightCon .conList .uploadInfo{display: inline-block;width: 537px;vertical-align: top;border-bottom: 1px dotted #e0e0e0;margin-left: 35px;padding-bottom: 12px;}
+  .orderSummary .rightCon .conList .uploadInfo{display: inline-block;width: 537px;vertical-align: top;border-bottom: 1px dotted #e0e0e0;margin-left: 35px;padding-bottom: 12px;color:#999;}
   .orderSummary .rightCon .conList .uploadInfo span{color:#ff6e27;}
   .orderSummary .rightCon .confirmSubmit{background: #01b7ec;text-align: center;color:#fff;border-radius: 2px;font-size: 16px;display: block;width: 140px;height: 40px;line-height: 40px;margin-top: 10px;margin-left: 106px;}
   .orderSummary .rightCon .confirmSubmit:hover{text-decoration: none;opacity: .8;}
@@ -72,6 +74,7 @@
   .orderSummary .rightCon .conList .addImg{width: 152px;height: 152px;background: #f5f5f5;text-align: center;font-size: 14px;color:#999;cursor: pointer;display: inline-block;}
   .orderSummary .fileStyle{display:none;}
   .orderSummary .rightCon .conList .addImg img{margin-top: 38px;margin-bottom: 10px;}
+  .orderSummary .rightCon .conList .addImg:hover{opacity: .8;}
   .orderSummary .rightCon .conList .disputeuploadWrap .fileList{display: inline-block;vertical-align: top;}
   .orderSummary .rightCon .conList .disputeuploadWrap .preview{width: 152px;height: 152px;display: inline-block;text-align: center;margin-right: 20px;margin-bottom: 10px;position: relative;vertical-align: top;}
   .orderSummary .rightCon .conList .disputeuploadWrap .preview img{width: 150px;height: 150px;}
