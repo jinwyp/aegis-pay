@@ -80,6 +80,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             avalon.config({debug: false});
             vm = avalon.define({
                 $id: "financialDetailsController",
+                orderCurrentPrintCode  : '',
                 orderSearchText  : '',
                 orderSearchTextPlaceHolder  : '',
                 orderShowLoading  : true,
@@ -106,7 +107,9 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                 },
 
                 printOrder : function (fundAccount, printCode) {
-                    app.getFinancialDetailPrintApi(fundAccount, printCode);
+                    $('#showPrintCode').modal('show');
+                    vm.orderCurrentPrintCode = printCode;
+                    //app.getFinancialDetailPrintApi(fundAccount, printCode);
                 }
 
 

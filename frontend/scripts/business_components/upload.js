@@ -115,6 +115,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 					
 					if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 5000000) {
 						$(".errorMes").text("请上传大小5M以内的图片");
+						return false;
 					}else{
 						$(".errorMes").text("");
 					}

@@ -158,10 +158,7 @@ exports.generate_compact = function (req, res, next) {
             if (data.success) {
                 convertData({data: data.data.contract}, ejspath, orderId).then(function (result) {
                     pageData = _.assign(pageData, {version: data.data.version}, result);
-
-                    // cache.set('compacts[' + orderId + ']', pageData, function () {
-                        return res.render('compact/blocks/compact', pageData);
-                    // });
+                    return res.render('compact/blocks/compact', pageData);
                 }).catch(next);
             } else {
                 return res.render('compact/blocks/compact', pageData);
