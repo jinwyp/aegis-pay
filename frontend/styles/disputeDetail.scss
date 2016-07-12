@@ -22,6 +22,7 @@
     .disputeDetailInfoWrap p{margin-bottom:10px;color:#999;}
     .disputeDetailInfoWrap p span{color:#333;}
     .disputeDetailInfoWrap a{color:#037191;}
+    .disputeDetailInfoWrap a.modify:hover{opacity: .8;text-decoration: none;}
     .disputeDetailInfoWrap a.cancel{background:url("#{$assetPath}/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
     .disputeDetailInfoWrap a.cancel:hover{text-decoration: none;opacity: .8;}
     .disputeDetailInfoWrap span.logoBlue{color:#00b7ec;vertical-align: middle;}
