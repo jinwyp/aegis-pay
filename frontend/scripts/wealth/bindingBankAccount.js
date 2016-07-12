@@ -136,11 +136,17 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             });
         },
         "changeSelect" : function(){
-            var that=this
+            var that=this;
+            function clearChildBank(){
+                $('#childBankName').val("");
+                $('#childBankName').attr("data-selectdata","");
+            }
             $("#bankCode").on('change', function() {
+                clearChildBank();
                 that.Verify();
             });
             $("#provinceCode").on('change', function() {
+                clearChildBank();
                 $("#cityCode").html('');
                 that.provinceCode().done(function(data){
                     data.cityList.forEach(function(value,i){
@@ -149,6 +155,9 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                     $("#cityCode").trigger("update.fs");
                 });
                 that.Verify();
+            });
+            $("#cityCode").on("change",function(){
+                clearChildBank();
             });
 
             // ie8以下数组indexof不兼容

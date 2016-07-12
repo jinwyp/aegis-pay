@@ -163,7 +163,6 @@
                             <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else if(recordList[i].status==='WaitSettleAccounts'){ %>
                             <a class="notice-sellerSettle" data-id="<%= recordList[i].id %>">提醒卖家开结算单</a>
-                            <a class="mt-10 btn-applyDispute" data-id="<%= recordList[i].id %>">申请纠纷处理</a>
                             <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else if(recordList[i].status==='WaitVerifySettle'){ %>
                             <input type="button" class="iBtn iBtn_xs iBtn_no btn-confirmSettle" value="确认结算" data-id="<%= recordList[i].id %>">

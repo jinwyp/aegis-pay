@@ -112,7 +112,6 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     //app.getFinancialDetailPrintApi(fundAccount, printCode);
                 }
 
-
             });
 
 

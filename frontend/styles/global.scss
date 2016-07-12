@@ -30,6 +30,19 @@ img.ccapImgcode{
 :-ms-input-placeholder { color:#d9d9d9; } /* ie */
 input:-moz-placeholder { color:#d9d9d9; }
 
+.layer-shade{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
 .icon-secure-tip{
    display:inline-block; *display:inline; zoom:1; vertical-align: middle;
    @include sprite($secure-tip);
