@@ -174,6 +174,8 @@ var api_config = {
 
     // open fund account
     openFundAccount: host + 'account/fund/create',
+    payPhoneExist:host + '/account/fund/Payphone',
+
     /**
      * 是否已经开通了资金账户
      * params: userId

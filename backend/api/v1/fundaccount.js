@@ -44,3 +44,12 @@ exports.fetchOpenStatus = function(req, res, next){
     }, 5000);
 
 }
+
+exports.payPhoneExist = function(req, res, next){
+    var payPhone = req.body.payPhone;
+    request.post({url: api_config.payPhoneExist, form: {payPhone:payPhone}}, function(err, data){
+        if(err) return next(err);
+        var result = JSON.parse(data.body);
+        return res.json(result);
+    })
+}
