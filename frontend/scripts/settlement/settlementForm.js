@@ -21,7 +21,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     // 页面模块控制
     var settlementForm = {
 
-        // 重要提示板块
+        // 重要提示 板块
         doubtPlateHandle: function() {
 
             var $embedBox = $('.embedBox'),                     // 提示框:嵌入
@@ -67,10 +67,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                             '确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。';
                         $countDownBox.html(dateHtml);
                     }
-                }, 60000);
+                }, 6000);
             }
-
-
         },
 
         // 编辑退回原因

@@ -74,7 +74,7 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
-			replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-20 11:11:11';// 截止时间
+			replyData.data.order.currentTime = replyData.data.order.currentTime || '2016-07-22 11:40:29';// 截止时间
 			cache.get('zip_jsd_scxy_'+req_id, function (err, data){
 				data = data || {};
 				replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
