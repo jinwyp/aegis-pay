@@ -75,6 +75,8 @@
                             <span class="status-green"><%= recordList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitImproveReceipt'){ %>
                             <span class="status-green"><%= recordList[i].statusName %></span>
+                            <% }else if(settlementList[i].status === 'WaitWriteReceipt'){ %>
+                            <span class="status-green"><%= recordList[i].statusName %></span>
                             <% }else{ %>
                             <span class="status-green"><%=settlementList[i].status%></span>
                             <%}%>

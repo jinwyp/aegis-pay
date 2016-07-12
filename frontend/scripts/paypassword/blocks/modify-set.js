@@ -78,13 +78,14 @@ define(['jquery', 'datachecker'],function($, datachecker){
           if(data.success){
             // 跳转到付款成功提示页面
             location.href = '/ucenter/paypassword/modify/success';
-            }else if(data.errorCode==1004){
+            }else if(data.error === 'old'){
                 self.els.$oldpass.focus();
                 self.els.$oldpassErr.text('原支付密码错误，请重新输入！').show();
             }else{
-              self.els.$submit.removeClass('disable');
-              self.els.$passFormatErr.text('重置失败，请重新填写支付密码').show();
-              self.els.$passDiffErr.text('重置失败，请重新填写支付密码').show();
+                var msg = (data.error === 'new') ? '新密码不能与原密码相同！' : '重置失败，请重新填写支付密码！';
+                self.els.$submit.removeClass('disable');
+                self.els.$passFormatErr.text(msg).show();
+                self.els.$passDiffErr.text(msg).show();
           }
         })
       }

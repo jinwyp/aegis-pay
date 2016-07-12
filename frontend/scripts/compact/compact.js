@@ -35,7 +35,7 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
       lightbox: function(){
         lightbox.option({
           'resizeDuration': 200,
-          'wrapAround': true,
+          // 'wrapAround': true,
           'albumLabel': '(%1/%2)'
         })
         $('#lightbox .lb-close').appendTo('.lb-outerContainer');
