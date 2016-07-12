@@ -3,7 +3,9 @@
 @import "./components/_datePicker.scss";
 @import './components/pagination_finalcial.scss';
 
-
+body{
+  background-color: $color_body_bg;
+}
 .transaction-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -27,6 +29,7 @@
       font-size: 12px;
       color: $color_font;
       padding: 20px 0;
+      div.fancy-select ul.options{max-height: 289px;}
       div.trigger{  height: 32px;color: $color_font;  }
       select{  display: none;color: $color_font;  }
       .mt-20{ margin-top:20px; }
@@ -50,7 +53,7 @@
       }
     }
     .transaction-div{
-      padding-bottom: 30px;
+      padding-bottom: 10px;
       .transaction-table{
         width: 960px;
         margin-left: auto;

@@ -80,6 +80,7 @@ define(['jquery', 'datachecker'],function($, datachecker){
             location.href = '/ucenter/paypassword/modify/success';
             }else if(data.error === 'old'){
                 self.els.$oldpass.focus();
+                self.els.$submit.removeClass('disable');
                 self.els.$oldpassErr.text('原支付密码错误，请重新输入！').show();
             }else{
                 var msg = (data.error === 'new') ? '新密码不能与原密码相同！' : '重置失败，请重新填写支付密码！';

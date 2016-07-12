@@ -59,7 +59,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             }
             //开户行支行
             if(childBankName==""){
-                $(".childBankName").find(".errorMsg").text("请填写开户行支行名称");
+                $(".childBankName").find(".errorMsg").text("请输入关键字选择开户行支行名称");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
             } else{
@@ -136,11 +136,20 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             });
         },
         "changeSelect" : function(){
-            var that=this
+            var that=this;
+            function clearChildBank(){
+                $('#childBankName').val("");
+                $('#childBankName').attr("data-selectdata","");
+            }
             $("#bankCode").on('change', function() {
-                that.Verify();
+                clearChildBank();
+                $(".bankName").find(".errorMsg").text("");
+                $('.submitTotal').find(".errorMsg").text("");
             });
             $("#provinceCode").on('change', function() {
+                clearChildBank();
+                $(".region").find(".errorMsg").text("");
+                $('.submitTotal').find(".errorMsg").text("");
                 $("#cityCode").html('');
                 that.provinceCode().done(function(data){
                     data.cityList.forEach(function(value,i){
@@ -148,9 +157,14 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                     });
                     $("#cityCode").trigger("update.fs");
                 });
-                that.Verify();
             });
-
+            $("#cityCode").on("change",function(){
+                clearChildBank();
+            });
+            $('.autocomplete-suggestions div').on("click",function(){
+                $(".childBankName").find(".errorMsg").text("");
+                $('.submitTotal').find(".errorMsg").text("");
+            });
             // ie8以下数组indexof不兼容
             if (!Array.prototype.indexOf){
                 // ie8 新增 indexOf 方法
@@ -178,7 +192,6 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             });
             $("#childBankName").on("blur",function(){
                 $(".childBankNameWrap").removeClass("open");
-                // childBankNameList=[];
             });
             $("#childBankName").change(function(){
                 $("#childBankName").attr("data-selectData","");
@@ -246,10 +259,25 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             });
 
             $("#account").on('blur', function() {
-                that.Verify();
-            });
-            $("#vertifyCode").on('blur', function() {
-                that.Verify();
+                var account=$.trim($("#account").val());
+                //企业对公账户
+                if(account==""){
+                    $(".account").find(".errorMsg").text("请填写企业对公账户");
+                    $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                    return false;
+                }else if(isNaN(account)){
+                    $(".account").find(".errorMsg").text("企业对公账户只能是数字");
+                    $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                    return false;
+                }else if(account.length>25)
+                {
+                    $(".account").find(".errorMsg").text("企业对公账户不能大于25位");
+                    $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                    return false;
+                }else{
+                    $(".account").find(".errorMsg").text("");
+                    $('.submitTotal').find(".errorMsg").text("");
+                }
             });
             $("#vertifyCode").on('blur', function() {
                 var vertifyCode=$("#vertifyCode").val();
@@ -261,10 +289,12 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                     } else {
                         if (data.errType && (data.errType == 'sms_code')) {
                             finalResult = false;
-                            $(".vertifyCode .errorMsg").text('校验码错误');
+                            $(".vertifyCode .errorMsg").text('校验码输入有误');
                             $(".successIcon").css({visibility: "hidden"});
                             $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                             return false;
+                        }else{
+                            $('.submitTotal').find(".errorMsg").text("");
                         }
                     }
                 });

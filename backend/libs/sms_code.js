@@ -69,13 +69,9 @@ var cacheGet = function(userInfo, validTime){
                 (s<day)&&(dayTime++);
             });
 
-            if(minTime>0){
-                // result = isUsed ? {"readyToSend":true, "sms":''} : {"sms":minSms[minSms.length-1].sms};
-                result = {"sms":minSms[minSms.length-1].sms, payPhone:minSms[minSms.length-1].payPhone};
-                if(validTime){
-                    return resolve(result);
-                }
-            } 
+            if(minTime>0 && validTime){
+                return resolve({"sms":minSms[minSms.length-1].sms, payPhone:minSms[minSms.length-1].payPhone});
+            }
             if(hourTime>=30){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }

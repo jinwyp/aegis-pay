@@ -3,7 +3,9 @@
 @import './components/_datePicker.scss';
 @import './components/pagination_finalcial.scss';
 
-
+body{
+  background-color: $color_body_bg;
+}
 #financial-body{
   background-color: $color_body_bg;
   padding: $main_margintop 0 $main_marginbottom 0;
@@ -38,7 +40,10 @@
         font-size: 12px;
         .username{  font-size: 18px; }
         .companyname{  margin-top: 10px; }
-        .occupation{  margin-top: 10px; }
+        .occupation{  
+          margin-top: 10px; 
+          label{ font-weight:normal;}
+        }
         ul{
           margin-top: 25px;
           display: none;
@@ -63,6 +68,9 @@
         .useraccount{
           border-bottom: 1px dotted #e4e4e4;
           padding: 5px 0 19px 0;
+          .label{
+            font-weight:normal;
+          }
         }
         .center-operate{
           margin-top: 34px;
@@ -101,7 +109,8 @@
         }
         .bank-add {
           text-align: center;
-          margin-top: 34px;
+          margin-top: 16px;
+          padding: 20px 0;
           .add-icon {
             background: url("#{$assetPath}/images/wealth/bank_add.png");
             display: inline-block;
@@ -112,6 +121,11 @@
           .label-add {
             font-size: 18px;
             vertical-align: middle;
+          }
+          &:hover{
+            .add-icon{
+              background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+            }
           }
         }
         div.bank-info {
