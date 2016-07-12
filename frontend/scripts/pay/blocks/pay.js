@@ -32,6 +32,7 @@ define(['jquery', 'datachecker'],function($, datachecker){
                 self.els.$passTipErr.hide();
             } 
             $(this).addClass('disable');
+            $('.layer-shade').show();
             self.submit();
         })
       },
@@ -39,11 +40,12 @@ define(['jquery', 'datachecker'],function($, datachecker){
         var self = this;
         var params = $('#pay').serialize();
         $.post('/api/pay/submit', params, function(data){
-          $('#payBtn').removeClass('disable');
           if(data.success){
             // 跳转到付款成功提示页面
             location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=' + $('input[name="type"]').val();
           }else{
+            $('#payBtn').removeClass('disable');
+            $('.layer-shade').hide();
             if(data.errType && (data.errType=='sms_code')){
               self.els.$codeTipErr.text('验证码错误！').show();
               self.els.$code.focus();
