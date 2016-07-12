@@ -24,7 +24,6 @@ var compression      = require('compression');
 var bodyParser       = require('body-parser');
 var busboy           = require('connect-busboy');
 var errorhandler     = require('./middlewares/errorhandler');
-var cors             = require('cors');
 var renderMiddleware = require('./middlewares/render');
 var logger           = require("./libs/logger");
 var ejs              = require('ejs');
@@ -135,7 +134,7 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api', cors(), routes.api);
+app.use('/api', routes.api);
 app.use('/', routes.webPage);
 routes.autoLoaderControllers(app);
 
