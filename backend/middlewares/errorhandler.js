@@ -66,7 +66,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
 
-    if (req.xhr || req.is('application/json') ||  req.get('Content-Type') === 'application/json' || type ==='json' || req.is('application/x-www-form-urlencoded')){
+    if (req.xhr || req.is('application/json') ||  req.get('Content-Type') === 'application/json' || type ==='json' || (req.is('application/x-www-form-urlencoded')&&req.xhr)){
         return res.json(resError);
 
     }else if (type === 'text'){
