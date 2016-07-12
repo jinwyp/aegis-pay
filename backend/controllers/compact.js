@@ -6,6 +6,7 @@ var checker = require('../libs/datachecker');
 var config = require('../config');
 var utils = require('../libs/utils');
 var archiver = require('archiver');
+var pdf = require('html-pdf');
 var fs = require('fs');
 var _ = require('lodash');
 
@@ -56,6 +57,43 @@ exports.compactDetail = function (req, res, next) {
 };
 
 exports.downloadContract = function (req, res, next) {
+    request.post({url:api_config.getCompact,form:{orderId:req.query.orderId,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug("----------downloadContract----------"+data.body);
+        if (data) {
+            var source = JSON.parse(data.body);
+            if(source.success) {
+            res.render("global/pdftemplate/compact",{data:source.data.contract},function(err,html){
+                if (err) return next(err);
+                //res.send(html);
+                var options = {
+                    'width':'1000px',
+                    'height':'1413px',
+                    // 'format':'A4',
+                    "header": {
+                        "height": "10mm"
+                        // "contents": '<div style="text-align: center;">Author: Marc Bachmann</div>'
+                    },
+                    "footer": {
+                        "height": "10mm",
+                        // "contents": '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>'
+                    }
+                };
+                pdf.create(html,options).toStream(function(err, stream){
+                    if (err) return next(err);
+                    res.attachment(source.data.contract.orderContractNO+'.pdf');
+                    stream.pipe(res);
+                });
+            });
+            }else{
+                res.send(source.data.error);
+            }
+        }
+    });
+};
+
+exports.downloadUploadFile = function (req, res, next) {
+    //下载客户上传的合同文件
     request.post({url:api_config.downloadContract,form:{orderId:req.query.orderId,userId:req.session.user.id}}, function (err, data) {
         if (err) return next(err);
         logger.debug("----------downloadContract----------"+data.body);
@@ -88,5 +126,4 @@ exports.downloadContract = function (req, res, next) {
             }
         }
     });
-    //res.send("正在处理合同逻辑中。。。");
 };
