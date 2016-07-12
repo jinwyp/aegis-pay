@@ -12,7 +12,6 @@
 <%- include ../global/header/header %>
 <%- include ../global/header/financialSecondHeader %>
 
-
 <div id="financial-body">
 	<div class="financial-main draw-cash">
 		<div class="figure-wrap" id="drawCashConfirm">
@@ -48,15 +47,16 @@
 						<div class="form-group">
 							<label class="col-sm-5 control-label">手机号码</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control readonly-txt" value="1234567" readonly>		
+								<input type="text" class="form-control readonly-txt" value="<%= payPhone %>" readonly id="payPhone">		
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label">验证码</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control more-height" placeholder="请输入验证码" value="" maxlength="10">	
-								<span class="countDown" id="send_code" data-target="#imgcodeModal" data-toggle="modal">获取验证码</span>
+								<input type="text" class="form-control more-height" placeholder="请输入验证码" value="" maxlength="10" name="sms_code" id="vertifyCode"><span class="countDown" id="send_code" data-target="#imgcodeModal" data-toggle="modal">获取验证码</span>
+								<p class="padding-top-8 password-info text-danger display-none" id="vertifyCodeError">校验码输入有误</p>
 							</div>
+
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label">易煤网支付密码</label>
