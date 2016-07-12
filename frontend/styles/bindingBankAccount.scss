@@ -57,7 +57,7 @@
 
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap{position: relative;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap i{display: inline-block;width:20px;height:20px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -331px -643px;vertical-align: middle;visibility:hidden;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;cursor:pointer;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:29px;top:5px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown{width:102px;height:30px;cursor:pointer;font-size: 14px;color:#fff;text-align:center;line-height: 30px;background: #969494;position: absolute;right:29px;top:5px;z-index:99}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .countDown:hover{text-decoration: none;opacity: .8;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .verifyWrap .disable{font-size: 12px;background: #c5c4c4}
     .accountInfoWrap .btnWrap{padding-left: 326px;padding-top: 50px;}
