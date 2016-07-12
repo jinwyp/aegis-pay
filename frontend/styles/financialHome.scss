@@ -38,7 +38,10 @@
         font-size: 12px;
         .username{  font-size: 18px; }
         .companyname{  margin-top: 10px; }
-        .occupation{  margin-top: 10px; }
+        .occupation{  
+          margin-top: 10px; 
+          label{ font-weight:normal;}
+        }
         ul{
           margin-top: 25px;
           display: none;
@@ -63,6 +66,9 @@
         .useraccount{
           border-bottom: 1px dotted #e4e4e4;
           padding: 5px 0 19px 0;
+          .label{
+            font-weight:normal;
+          }
         }
         .center-operate{
           margin-top: 34px;
@@ -112,6 +118,11 @@
           .label-add {
             font-size: 18px;
             vertical-align: middle;
+          }
+          &:hover{
+            .add-icon{
+              background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+            }
           }
         }
         div.bank-info {

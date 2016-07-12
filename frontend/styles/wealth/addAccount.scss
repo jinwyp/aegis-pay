@@ -219,7 +219,7 @@ $dark:#000000;
 			}
 			.add-bank-btn{
 				padding-left:32px;
-				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left center;
+				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left top;
 				color:#007193;
 				@include fontSize(18px);
 				@include fontWeight;
@@ -233,6 +233,7 @@ $dark:#000000;
 				}
 				&:hover{
 					color:#00b7ec;
+					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
 				}
 			}
 		}
