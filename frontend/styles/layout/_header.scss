@@ -62,7 +62,7 @@ $headerBgColor: #292929;
           padding: 0px 18px;
           position: relative;
           .Nav{
-            width: 485px;
+            width: 485px!important;
             height: 208px;
             background-color: white;
             position: absolute;
@@ -115,7 +115,7 @@ $headerBgColor: #292929;
 
           }
           .phoneHelper{
-            width: 385px;
+            width: 385px!important;
             height: 210px;
             background-color: white;
             position: absolute;
