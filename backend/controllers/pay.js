@@ -4,6 +4,7 @@ var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var cache = require('../libs/cache');
 var logger = require('../libs/logger');
+var BusinessError = require('../errors/BusinessError');
 
 var getOrderStatus = function(orderId){
     return new Promise(function(resolve, reject){
@@ -38,6 +39,15 @@ exports.page = function (req, res, next) {
                 if(result.errorCode === '1009'){
                     // 订单不处于支付状态
                     res.redirect('/getBuyOrderDetail?orderId=' + req.query.orderId);
+                }else if(result.errorCode === '1003'){
+                    //资金账户被禁用
+                    return next(new BusinessError(409, '资金账户被禁用'));
+                }else if(result.errorCode === '1004'){
+                    //资金账户被锁定
+                    return next(new BusinessError(409, '资金账户被锁定'));
+                }else if(result.errorCode === '1005'){
+                    //资金账户不能使用
+                    return next(new BusinessError(409, '资金账户不能使用'));
                 }else{
                     var pageData = _.assign({},{headerTit : '支付货款', pageTitle : '支付货款', type:req.query.type },
                                                 result.data);
