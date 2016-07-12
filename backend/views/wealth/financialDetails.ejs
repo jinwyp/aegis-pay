@@ -34,6 +34,7 @@
                             <input type="text" class="form-control input-text input-date orderDateFrom iIpt_date" name="orderDateFrom" placeholder="YYYY.MM.DD"/>
                             <!--<span class="input-date-icon" ></span>-->
                         </div>
+
                         <label class="col-sm-1 control-label label-timeto" for="orderDateTo">到:</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control input-text input-date orderDateTo iIpt_date" name="orderDateTo" placeholder="YYYY.MM.DD" />
@@ -92,7 +93,7 @@
                             <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
                             <td >{{order.money | number(2) }}</td>
                             <td >{{order.balanceMoney | number(2)}}</td>
-                            <td >{{order.type}} 订单号: {{order.orderId}}</td>
+                            <td >{{order.type}} <span ms-visible="order.type==='销售' || order.type==='采购'"> 订单号: {{order.orderId}} </span> </td>
                             <td >{{order.otherFundAccount}}</td>
                             <td >{{order.otherCompanyName}}</td>
                             <td ><span class="iBtn iBtn_xs iBtn_no" ms-click="@printOrder(order.fundAccount, order.printCode)">打印回执</span></td>

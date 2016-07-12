@@ -44,7 +44,7 @@
                 <td><%= order.transactionNO %></td>
                 <td><%= helper.formatMoney(order.money) %> </td>
                 <td><%= helper.formatMoney(order.balanceMoney) %></td>
-                <td><%= order.type %> 订单号:<%= order.orderId%></td>
+                <td><%= order.type %> <span <%- helper.ngShow(order.type === '销售' || order.type === '采购') %> >订单号:<%= order.orderId%> </span> </td>
                 <td><%= order.otherFundAccount %></td>
                 <td><%= order.otherCompanyName %></td>
             </tr>

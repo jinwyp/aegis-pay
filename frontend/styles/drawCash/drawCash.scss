@@ -318,4 +318,63 @@ $dark:#000000;
 			@include fontSize(12px);
 		}
 	}
+	.readonly-txt{
+		padding-left:0;
+		border:0;
+		background:#fff;
+		box-shadow:none;
+		outline:none;
+	}
+	.countDown{
+		position:absolute;
+		right:30px;
+		top:5px;
+		width:102px;
+		height:30px;
+		background:#969494;
+		color:#fff;
+		line-height:30px;
+		font-size:14px;
+		text-align:center;
+		cursor:pointer;
+	}
+	.more-height{
+		height:40px;
+	}
+}
+#generate_imgcode{
+	display: inline-block;
+	zoom: 1;
+	line-height: 13px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-size: 12px;
+	color: #999;
+	i{
+		color:#01b7ec;
+		display:block;
+	}
+}
+#imgcodeModal{
+	.glyphicon{
+		display:none;
+	}
+	.modal-body{
+		p{
+			margin:20px 0 0;
+			label{
+				margin-right:10px;
+			}
+			&.tip-error{
+				margin:0 0 0 94px;
+				font-size:12px;
+			}
+		}
+	}
+	.modal-footer{
+		text-align:left;
+		.btn_blue{
+			margin-left:94px;
+		}
+	}
 }

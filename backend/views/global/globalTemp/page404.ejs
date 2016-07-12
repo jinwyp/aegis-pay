@@ -10,16 +10,43 @@
 <%- include ../header/header %>
 
 
+<div class="text-center">
+    <div class="error-404">
+        <img src="<%= staticPath %>/images/error/error404.png"/>
+        <p>对不起，您访问的页面不见了...</p>
+        <a id="goBack" href="/" class="btn btn-primary btn-customer">返回</a>
+    </div>
+</div>
+
+<% if (config.debug) { %>
+
 <h1>404 Page Not Found <%- url %></h1>
 <%- status %> <br/>
 <%- message %> <br/>
 <%- error.stack %> <br/>
+
+<% } %>
+
+
+
 
 
 <%- include ../footer/footer %>
 
 <%- include ../includehead/bottomscript %>
 
+
+<script type="text/javascript">
+    var goBack = document.getElementById('goBack');
+    goBack.onclick = function(event){
+        var event = event || window.event;
+        if( document.referrer ){
+            window.location.href = document.referrer;
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    };
+</script>
 
 </body>
 </html>

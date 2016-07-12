@@ -74,12 +74,11 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
-			replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-20 11:11:11';// 截止时间
+			replyData.data.order.currentTime  = replyData.data.order.currentTime || '2016-07-06 11:11:11';	// 开始时间
+			replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-22 33:33:33';	// 截止时间
 			cache.get('zip_jsd_scxy_'+req_id, function (err, data){
 				data = data || {};
 				replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
-				console.log('-=-=-读取压缩文件-11=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
-				console.log(data.zipSavePath);
 				console.log('-=-=-查询结算信息-22=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
 				console.log(replyData);
 
