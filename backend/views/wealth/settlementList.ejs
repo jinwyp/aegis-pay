@@ -75,6 +75,8 @@
                             <span class="status-green">待卖家退款</span>
                             <% }else if(settlementList[i].status === 'WaitImproveReceipt'){ %>
                             <span class="status-green">待完善开票信息</span>
+                            <% }else if(settlementList[i].status === 'WaitWriteReceipt'){ %>
+                            <span class="status-green">待卖家开发票</span>
                             <% }else{ %>
                             <span class="status-green"><%=settlementList[i].status%></span>
                             <%}%>
