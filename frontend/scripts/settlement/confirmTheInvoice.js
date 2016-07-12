@@ -272,27 +272,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
     });
 
     //修改附件
-    //$fBox_1.delegate('#editFile', 'click', function(e) {
-    //    var $tag = $(e.target);
-    //
-    //    $tag.change(function() {
-    //        uploadWrapper ($(e.target), function(data) {
-    //            $tempEdit.html('修改<input class="iptEditFile" id="editFile" type="file" name="files">');  // 清楚file缓存记录
-    //
-    //            var fileObj = {};
-    //
-    //            if(data.success) {
-    //                $.each(data.attach, function(ind, file) {
-    //                    fileObj = file;
-    //                });
-    //                $fileViewImg.attr('src', fileObj.url);
-    //                $fileId.val(fileObj.id);
-    //            } else {
-    //                message({type: 'error', title: '错误：', detail: data.errorMessage});
-    //            }
-    //        });
-    //    });
-    //});
     $editFile.click(function() {
         uploadWrapper ($editFile, function(data) {
             var fileObj = {};
