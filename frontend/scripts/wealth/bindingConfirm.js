@@ -11,7 +11,9 @@ requirejs(['jquery'], function($,sms_code,pay){
             },
             success: function(data){
                 if(data.success && $("#userAccountStatus").val()==1) {
-                    location.href=location.href;
+                    var timer=setInterval(function(){
+                        location.href=location.href;
+                    },10000)
                 }
             }
         })
