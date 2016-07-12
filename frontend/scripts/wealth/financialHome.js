@@ -130,6 +130,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                     vm.orderShowLoading = false;
+                    $("#paymentFooter").removeClass('bottomAbsolute');
                 }
             })
         },

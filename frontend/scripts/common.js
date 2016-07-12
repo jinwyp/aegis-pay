@@ -37,6 +37,7 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 
 
 // 底部吸底
+    var isStick = false;
 	var bottomStyle={
 		init : function(){
 			this.judge();
@@ -45,10 +46,16 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 		judge : function(){
 			var hBody=$('body').height(),
 				hWindow=$(window).height();
-			if(hWindow>hBody){
-				$("#paymentFooter").addClass('bottomAbsolute');
-			}else{
-                $("#paymentFooter").removeClass('bottomAbsolute');
+            if (isStick){
+                if(hWindow - 150 < hBody){ //除去footer的高度在计算
+                    isStick = false;
+                    $("#paymentFooter").removeClass('bottomAbsolute');
+                }
+            }else{
+                if(hWindow>hBody){
+                    isStick = true;
+                    $("#paymentFooter").addClass('bottomAbsolute');
+                }
             }
 		}
 	};
