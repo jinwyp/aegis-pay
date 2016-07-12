@@ -3,6 +3,9 @@
 @import "./components/_datePicker.scss";
 @import './components/pagination_finalcial.scss';
 
+body{
+  background-color: $color_body_bg;
+}
 .contract-body{
   min-height: 425px;
   background-color: $color_body_bg;
@@ -77,7 +80,7 @@
             .mb-10{ margin-bottom: 10px; }
           }
           .company{
-            width: 256px;
+            //width: 256px;
             white-space:nowrap;
             overflow:hidden;
             text-overflow:ellipsis;

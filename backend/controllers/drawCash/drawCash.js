@@ -17,7 +17,7 @@ exports.drawCash = function(req,res,next){
 
 
     api_config.fetchPayPhone(req.session.user.id).then(function(payPhone){
-        res.locals.user.payPhone = payPhone;
+        
         req.session.user.payPhone = payPhone;
         request(api_config.drawcash, {
             qs:{
@@ -58,6 +58,7 @@ exports.drawCash = function(req,res,next){
                     cashToken: cashToken
                 };
                 res.render('drawCash/drawCash',content);
+                return;
             } else {
                 //todo 错误处理
                 logger.error(req.ip+" request drawCash error");
@@ -91,7 +92,7 @@ exports.drawCashCheck = function(req,res,next){
       return;
     }
     //token不相同
-    if(!cashToken && cashToken!=req.session.cashToken) {
+    if(!cashToken || cashToken!==req.session.cashToken) {
         logger.error(req.ip+" drawCash token error");
         next(new UnauthenticatedAccessError());
         return;
@@ -113,7 +114,8 @@ exports.drawCashCheck = function(req,res,next){
             firstTab : firstTab,
             secondTab : secondTab
          },
-         errMessage:''
+         errMessage:'',
+         payPhone:req.session.user.payPhone
     };
     res.render('drawCash/drawCashCheck',content);
 }
@@ -133,7 +135,7 @@ exports.drawCashStatus = function(req,res,next){
       return;
     }
     //confirmToken不相同
-    if(!confirmToken && confirmToken!=req.session.confirmToken) {
+    if(!confirmToken || confirmToken!=req.session.confirmToken) {
         logger.error(req.ip+" drawCash token error");
         next(new UnauthenticatedAccessError());
         return;
@@ -167,14 +169,6 @@ exports.cashSuccess = function(req,res,next){
     var firstTab  = req.query.firstTab || 2;
     var secondTab = req.query.secondTab || 1;
 
-    var confirmToken = req.body.confirmToken;
-
-    //confirmToken不相同
-    if(!confirmToken && confirmToken!=req.session.confirmToken) {
-        logger.error(req.ip+" drawCash status error");
-        next(new UnauthenticatedAccessError());
-        return;
-    }
 
     var content = {
         pageTitle : "财务管理中心 - 账户通 - 提现",

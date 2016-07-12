@@ -193,7 +193,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
             $("#childBankName").on("blur",function(){
                 $(".childBankNameWrap").removeClass("open");
             });
-            $("#childBankName").change(function(){
+            $("#childBankName").on("input",function(){
                 $("#childBankName").attr("data-selectData","");
             });
 
@@ -204,11 +204,11 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
 
                     var childBankNameList=[];
                     var childBankIndex = [];
-                    var timer = null;
+                    var valconfirm=$("#bankCode").val()!="" && $("#cityCode").val()!="";
+                    var selectData=$("#childBankName").attr("data-selectdata");
 
-                    if($("#childBankName").val()==""){
+                    if($("#childBankName").val()=="" && valconfirm || selectData!=""){
                         that.childAllBankName().done(function (data) {
-
                             data.childBankName.forEach(function (value, i) {
                                 if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
                                     childBankIndex.push(data.childBankName[i].childBankCode);
@@ -223,34 +223,28 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                             }
                             done(result);
                         });
-                    }else{
-                        if($("#bankCode").val()!="" && $("#cityCode").val()!="") {
-
-                            if (timer) {
-                                clearTimeout(timer);
-                            }
-                            timer = setTimeout(function () {
-
-                                that.childBankName().done(function (data) {
-                                    data.childBankName.forEach(function (value, i) {
-                                        if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
-                                            childBankIndex.push(data.childBankName[i].childBankCode);
-                                            childBankNameList.push({
-                                                value: data.childBankName[i].childBankName,
-                                                data: data.childBankName[i].childBankCode
-                                            })
-                                        }
-
-                                    });
-                                    var result = {
-                                        suggestions:childBankNameList
-                                    }
-                                    done(result);
-                                });
-
-                            }, 400);
-                        }
                     }
+                    if(valconfirm && $("#childBankName").val()!="" && selectData=="") {
+                        that.childBankName().done(function (data) {
+                            data.childBankName.forEach(function (value, i) {
+                                if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
+                                    childBankIndex.push(data.childBankName[i].childBankCode);
+                                    childBankNameList.push({
+                                        value: data.childBankName[i].childBankName,
+                                        data: data.childBankName[i].childBankCode
+                                    })
+                                }
+
+                            });
+                            var result = {
+                                suggestions:childBankNameList
+                            }
+                            done(result);
+                        });
+
+
+                        }
+
 
                 },
                 onSelect: function (suggestion) {

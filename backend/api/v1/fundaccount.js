@@ -3,6 +3,7 @@ var _ = require('lodash');
 var cache = require('../../libs/cache');
 
 var api_config = require('./api_config');
+var checker = require('../../libs/datachecker');
 
 exports.openFundAccount = function(req, res, next){
     var params = _.assign({}, {userId: req.session.user.id}, req.body);
@@ -43,4 +44,14 @@ exports.fetchOpenStatus = function(req, res, next){
         })
     }, 5000);
 
+}
+
+exports.payPhoneExist = function(req, res, next){
+    checker.payPhone(req.body.payPhone);
+    var payPhone = req.body.payPhone;
+    request.post({url: api_config.payPhoneExist, form: {payPhone:payPhone}}, function(err, data){
+        if(err) return next(err);
+        var result = JSON.parse(data.body);
+        return res.json(result);
+    })
 }

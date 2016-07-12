@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var logger     = require("./logger");
 
 
 
@@ -63,18 +64,23 @@ module.exports = function (app) {
     };
 
     app.locals.ellipse = function (str, len) {
-        var i = 0, length = str.length, count = 0;
-        for (i; i < length; i++) {
-            if (str.charCodeAt(i) > 128) {
-                count += 2;
-            } else {
-                count += 1;
+        if(str.length>len){
+            var i = 0, length = str.length, count = 0;
+            for (i; i < length; i++) {
+                if (str.charCodeAt(i) > 128) {
+                    count += 2;
+                } else {
+                    count += 1;
+                }
+                if (count > len) {
+                    logger.debug("--------for------------"+str.substr(0, i) + '...');
+                    return str.substr(0, i) + '...';
+                }
             }
-            if (count > len) {
-                return str.substr(0, i) + '...';
-            }
+        }else{
+            logger.debug("---------no-for-----------"+str);
+            return str;
         }
-        return str;
     };
 
 

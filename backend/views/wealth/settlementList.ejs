@@ -59,24 +59,24 @@
                         <td width="100"><%=dateformat(settlementList[i].createTime)%></td>
                         <td width="100"><%=settlementList[i].orderNO%></td>
                         <td width="100"><%=settlementList[i].transactionNO%></td>
-                        <td width="160"><%=settlementList[i].otherCompanyName%></td>
+                        <td width="160"><%=ellipse(settlementList[i].otherCompanyName,30)%></td>
                         <td width="160"><%=getStringVal(settlementList[i].settleAmount)%></td>
                         <td width="160"><%=getStringVal(settlementList[i].settleMoney)%></td>
                         <td width="140">
                             <%if(settlementList[i].status=="WaitSettleAccounts"){%>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitVerifySettle'){ %>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'ReturnedSettleAccounts'){ %>
-                            <span class="status-red"><%= recordList[i].statusName %></span>
+                            <span class="status-red"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitPayTailMoney'){ %>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitPayRefundMoney'){ %>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitImproveReceipt'){ %>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else if(settlementList[i].status === 'WaitWriteReceipt'){ %>
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= settlementList[i].statusName %></span>
                             <% }else{ %>
                             <span class="status-green"><%=settlementList[i].status%></span>
                             <%}%>
