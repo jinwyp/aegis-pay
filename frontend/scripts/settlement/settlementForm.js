@@ -54,19 +54,22 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 endTime = $countDownBox.attr('data-end'),
                 dateHtml = '';
 
-            countDownHandle(startTime, endTime, function(result) {
-                if(result.isEnd) {
-                    location.href = '/account/order/buy';         // 结束计时
-                } else {
-                    dateHtml = '您还有' +
-                        '<span class="bright Day">'+ result.day +'</span>天' +
-                        '<span class="bright Hour">'+ result.hou +'</span>小时' +
-                        '<span class="bright Minute">'+ result.min +'</span>分' +
-                        '<span class="bright Second">'+ result.sec +'</span>秒来' +
-                        '确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。';
-                    $countDownBox.html(dateHtml);
-                }
-            }, 60000);
+            if($('[name= orderStatus]').val() == 'WaitVerifySettle') {
+                countDownHandle(startTime, endTime, function(result) {
+                    if(result.isEnd) {
+                        location.href = '/account/order/buy';         // 结束计时
+                    } else {
+                        dateHtml = '您还有' +
+                            '<span class="bright Day">'+ result.day +'</span>天' +
+                            '<span class="bright Hour">'+ result.hou +'</span>小时' +
+                            '<span class="bright Minute">'+ result.min +'</span>分' +
+                            '<span class="bright Second">'+ result.sec +'</span>秒来' +
+                            '确认结算单，<span class="bright">超时系统将默认</span>贵公司已确认结算单。';
+                        $countDownBox.html(dateHtml);
+                    }
+                }, 60000);
+            }
+
 
         },
 
