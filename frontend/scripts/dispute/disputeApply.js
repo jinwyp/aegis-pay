@@ -82,24 +82,32 @@ require(['jquery','pay.upload'],function($,upload){
                 upload.ajaxFileUpload($tag, '', function(data) {
                     var htmlStr = '', modifyStr = '';
                     if(data.success) {
-                        $.each(data.attach, function(ind, file) {
-                            htmlStr +='<div class="preview" data-id="'+ file.id +'" data-name="'+ file.filename +'"><img src="'+ file.url +'"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="'+ file.id +'" data-name="'+ file.filename +'">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
-                            modifyStr ='<div class="preview" data-id="'+ file.id +'" data-name="'+ file.filename +'"><img src="'+ file.url +'"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="'+ file.id +'" data-name="'+ file.filename +'">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
+                        $.each(data.attach, function (ind, file) {
+                            htmlStr += '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
+                            modifyStr = '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
                         });
-                        if(!modifyImg){
-                            $fileList.prepend(htmlStr);
-                        }else{
-                            if(modifyIndex!= 0){
+                        if (!modifyImg) {
+                            if ($(".preview").length > 0) {
+                                $(".preview").last().after(htmlStr)
+                            } else {
+                                $(".addImg").before(htmlStr)
+                            }
+
+                        } else {
+                            if (modifyIndex != 0) {
                                 $(".preview").eq(modifyIndex).remove();
-                                $(".preview").eq(modifyIndex-1).after(modifyStr);
-                            }else{
+                                $(".preview").eq(modifyIndex - 1).after(modifyStr);
+                            } else {
                                 $(".preview").eq(modifyIndex).remove();
-                                $fileList.prepend(modifyStr);
+                                if ($(".preview").length > 0) {
+                                    $(".preview").last().after(htmlStr)
+                                } else {
+                                    $(".addImg").before(htmlStr)
+                                }
                             }
                         }
-
                     }
-                });
+                })
             });
 
             //删除操作

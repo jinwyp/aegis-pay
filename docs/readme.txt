@@ -155,7 +155,7 @@ web_router.js               Web路由配置
     和用户关联的文件目录: config.file_path.root + config.file_path.zips + '/' + <userId>
     和用户关联的文件名定义规范: <业务模块名称_业务名称_userId>
     和订单关联的文件目录: config.file_path.root + config.file_path.zips + '/' + <userId> + '/' + <orderId>
-    和订单关联的文件名定义规范: <业务模块名称_业务名称_userId_orderId>
+    和订单关联的文件名定义规范: <业务模块名称:业务名称_userId_orderId>
     
 
 

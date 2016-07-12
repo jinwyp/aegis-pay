@@ -111,7 +111,7 @@
                     <tr class="line">
                         <td width="60"><div><%= dateformat(recordList[i].createTime) %></div></td>
                         <td width="150"><div><%= recordList[i].typeName %></div></td>
-                        <td width="100"><div><% if(recordList[i].typeName==="采购"){ %>-<% }else{ %>+<% } %><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
+                        <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
                         <td width="100">
                             <% if(recordList[i].status === 'WaitSignContract'){ %>
                             <span class="status-green WaitSignContract">待签订合同</span>
