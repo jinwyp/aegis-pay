@@ -1,8 +1,15 @@
 /*
 	Edit By Edward(zhangguo) 2016-06-17
 */
-requirejs(['jquery','bootstrap'],function($,bootstrap){
+
+require.config({
+    paths: {
+        sms_code: 'business_components/sms-code'
+    }
+});
+requirejs(['jquery','bootstrap','sms_code'],function($,bootstrap,sms_code){
 	// 添加账户
+	sms_code.init("");
 	$(function(){
 		// 未绑定银行账户
 		(function($){
@@ -100,26 +107,45 @@ requirejs(['jquery','bootstrap'],function($,bootstrap){
 				if( !flag ){
 					return false;
 				}else{
+					var vertifyCode = $('#vertifyCode').val();
+					var payPhone = $('#payPhone').val();
+					var vertifyCodeError = $('#vertifyCodeError');
+					vertifyCodeError.hide();
 					$.ajax({
-						url:'/drawCashStatus',
-						method:'POST',
-						data:{
-							confirmToken:$('#confirmToken').val(),
-							cash:$('#cash').val(),
-							password:$('#confirmTxt').val()
-						},
-						success:function(response){
-							if(!response.success){
-								if(response.data && response.data.type && response.data.type == 1){
-									errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+		                url:'/api/verifyCode',
+		                type:'POST',
+		                data:{
+		                	'sms_code':vertifyCode,
+		                    'payPhone':payPhone
+		                }
+		            }).done(function(response){
+		            	if( !response.success ){
+		            		vertifyCodeError.show();
+		            		return false;
+		            	}else{
+		            		vertifyCodeError.hide();
+		            	}
+		            	$.ajax({
+							url:'/drawCashStatus',
+							method:'POST',
+							data:{
+								confirmToken:$('#confirmToken').val(),
+								cash:$('#cash').val(),
+								password:$('#confirmTxt').val()
+							},
+							success:function(response){
+								if(!response.success){
+									if(response.data && response.data.type && response.data.type == 1){
+										errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+									}else{
+										errorMsg.html(response.error).show();
+									}
 								}else{
-									errorMsg.html(response.error).show();
+									$('#successForm').submit();
 								}
-							}else{
-								$('#successForm').submit();
 							}
-						}
-					})
+						})
+					});
 				}
 			});
 			function checkHandler(val){

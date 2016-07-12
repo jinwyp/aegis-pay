@@ -17,7 +17,7 @@ exports.drawCash = function(req,res,next){
 
 
     api_config.fetchPayPhone(req.session.user.id).then(function(payPhone){
-        res.locals.user.payPhone = payPhone;
+        
         req.session.user.payPhone = payPhone;
         request(api_config.drawcash, {
             qs:{
@@ -113,7 +113,8 @@ exports.drawCashCheck = function(req,res,next){
             firstTab : firstTab,
             secondTab : secondTab
          },
-         errMessage:''
+         errMessage:'',
+         payPhone:req.session.user.payPhone
     };
     res.render('drawCash/drawCashCheck',content);
 }

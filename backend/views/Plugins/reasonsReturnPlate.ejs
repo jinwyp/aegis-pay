@@ -3,6 +3,7 @@
 <% orderObj.deliveryReturnReason = orderObj.deliveryReturnReason || ''%>
 <% var reasonStr = orderObj.returnReason || orderObj.deliveryReturnReason;  %>
 
+
 <% if(orderObj.status == 'WaitVerifySettle' || orderObj.status == 'ReturnedSettleAccounts' || orderObj.status == 'ReturnedDeliveryGoods') {%>
 
 <!-- 退回原因提示框 板块 -->
@@ -23,8 +24,9 @@
     </div>
     <% } %>
 
-    <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts' || orderObj.status=='ReturnedDeliveryGoods'){ %>
+    <% if(userType == 'buy' && orderObj.status == 'ReturnedSettleAccounts'){ %>
     <div class="reasonsReturn mt20">
+        <%=orderObj.status%>
         <!-- 审核退回.查看原因-->
         <div class="reasonsReturn_view show">
             <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
@@ -84,6 +86,68 @@
         </div>
     </div>
     <% } %>
+
+    <% if(userType == 'buy' &&  orderObj.status=='ReturnedDeliveryGoods'){ %>
+    <div class="reasonsReturn mt20">
+        <!-- 审核退回.查看原因-->
+        <div class="reasonsReturn_view show">
+            <h2 class="returnTitle">您的退货已被卖家退回,请重新确认提货</h2>
+            <table class="returnTab">
+                <tbody>
+                <tr>
+                    <td width="66">退回原因：</td>
+                    <td>
+                        <span class="bright labReturnReason"><%= reasonStr %></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="labReturnTime"><%= orderObj.lastEditReasonTime || orderObj.editDeliveryReasonTime  %></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="iBtn iBtn_xs iBtn_no ml-10 btn-deliveryGoods" onclick="location.href='/confirmDelivery?orderId=<%= orderId%>'">重新确认提货</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 审核退回.修改原因-->
+        <div class="reasonsReturn_edit .show">
+            <h2 class="returnTitle">您已退回结算单，等待卖家修改!</h2>
+            <table class="returnTab">
+                <tbody>
+                <tr>
+                    <td class="va_top" width="66">退回原因：</td>
+                    <td>
+                        <div class="txtAreaBox">
+                            <div class="dockDown">您还可以输入
+                                <span class="limitNum reasonSize"><%= 500 - reasonStr.length %></span>个字
+                            </div>
+                            <textarea class="txtArea" id="inpReasonEdit" rows="7" maxlength="500" placeholder="您可输入汉字、英文、数字、符号。"><%= reasonStr %></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><%= orderObj.lastEditReasonTime %></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="txt_c">
+                        <input type="button" id="btnCancelTrigger" class="iBtn iBtn_def" value="取消">
+                        <input type="button" id="subEditReason" class="iBtn iBtn_yes ml20" value="确认"><br/><br/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%}%>
 
     <% if(userType == 'sell' && orderObj.status == 'ReturnedSettleAccounts'){ %>
     <!-- 审核退回.卖家修改-->
