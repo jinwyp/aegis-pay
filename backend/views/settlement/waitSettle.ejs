@@ -33,10 +33,10 @@
                         <% for(i=0;i<receiptOrder.list.length;i++){ %>
                             <% var obj = receiptOrder.list[i] %>
                             <tr>
-                                <td><%= obj.orderId %></td>
+                                <td><%= obj.orderNO %></td>
                                 <td><%= formatMoney(obj.totalMoney ,2)%></td>
                                 <td><%= obj.settleAccountTime %></td>
-                                <td><%= obj.otherCompanyName %></td>
+                                <td class="width150"><%= obj.otherCompanyName %></td>
                                 <td>待开票</td>
                                 <td>
                                     <% if(obj.type == 1){ %>
