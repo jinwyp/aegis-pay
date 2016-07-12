@@ -318,4 +318,27 @@ $dark:#000000;
 			@include fontSize(12px);
 		}
 	}
+	.readonly-txt{
+		padding-left:0;
+		border:0;
+		background:#fff;
+		box-shadow:none;
+		outline:none;
+	}
+	.countDown{
+		position:absolute;
+		right:30px;
+		top:5px;
+		width:102px;
+		height:30px;
+		background:#969494;
+		color:#fff;
+		line-height:30px;
+		font-size:14px;
+		text-align:center;
+		cursor:pointer;
+	}
+	.more-height{
+		height:40px;
+	}
 }

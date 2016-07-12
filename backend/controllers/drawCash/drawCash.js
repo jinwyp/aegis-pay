@@ -110,7 +110,8 @@ exports.drawCashCheck = function(req,res,next){
             firstTab : firstTab,
             secondTab : secondTab
          },
-         errMessage:''
+         errMessage:'',
+         payPhone:req.session.user.payPhone
     };
     res.render('drawCash/drawCashCheck',content);
 }

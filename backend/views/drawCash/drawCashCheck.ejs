@@ -46,6 +46,19 @@
 				<div class="zhifu">
 					<form action="/drawCashStatus" method="post" class="form-horizontal">
 						<div class="form-group">
+							<label class="col-sm-5 control-label">手机号码</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control readonly-txt" value="1234567" readonly>		
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-5 control-label">验证码</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control more-height" placeholder="请输入验证码" value="" maxlength="10">	
+								<span class="countDown" id="send_code" data-target="#imgcodeModal" data-toggle="modal">获取验证码</span>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-sm-5 control-label">易煤网支付密码</label>
 							<div class="col-sm-4">
 								<input type="password" class="form-control" id="confirmTxt" name="password">
@@ -74,8 +87,10 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="payPhone" value="<%= payPhone %>" id="userId"/>
 </div>
-
+<!--验证码弹窗-->
+<%- include ../../custom_components/ccapimg-modal/ccapimg-modal %>
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>
