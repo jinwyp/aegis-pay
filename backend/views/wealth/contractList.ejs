@@ -54,7 +54,7 @@
                         <td width="100"><%=dateformat(contractList[i].signContractTime)%></td>
                         <td width="120"><%=contractList[i].orderNO%></td>
                         <td width="120"><%=contractList[i].contractNO%></td>
-                        <td width="160"><div class="company"><%=contractList[i].sellerCompanyName%></div></td>
+                        <td width="160"><div class="company"><%=ellipse(contractList[i].sellerCompanyName,30)%></div></td>
                         <td width="120">
                             <input type="button" class="iBtn iBtn_xs iBtn_no btn-download mr-16" value="下载" data-id="<%=contractList[i].orderId%>"/>
                             <a target="_blank" href="/compactDetail?orderId=<%=contractList[i].orderId%>">查看详情</a></td>
