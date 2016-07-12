@@ -74,14 +74,7 @@
 
 
                 <div class="search-content">
-                    <div class="loading_big" ms-visible="@orderShowLoading">
-                        <div class="loading_pic">
-                            <img src="<%= staticPath %>/images/loading3.gif">
-                        </div>
-                    </div>
-
-
-                    <table class="table financeDetailTable" ms-visible="!@orderShowLoading">
+                    <table class="table financeDetailTable">
                         <tr>
                             <th >交易日期</th>
                             <th >交易流水号</th>
@@ -94,7 +87,7 @@
                         </tr>
 
 
-                        <tr ms-for='(key, order) in @orderList'>
+                        <tr ms-for='(key, order) in @orderList' ms-visible="!@orderShowLoading">
                             <td >{{order.createDate }} </td>
                             <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
                             <td >{{order.money | number(2) }}</td>
@@ -108,7 +101,17 @@
                             <td colspan="8" class="no-data">暂无符合条件的数据</td>
                         </tr>
 
+                        <tr ms-visible="@orderShowLoading">
+                            <td colspan="8" class="no-data"><img src="<%= staticPath %>/images/loading3.gif"></td>
+                        </tr>
                     </table>
+<!--
+                    <div class="loading_big" ms-visible="@orderShowLoading">
+                        <div class="loading_pic">
+                            <img src="<%= staticPath %>/images/loading3.gif">
+                        </div>
+                    </div>
+-->
 
 
                     <xmp ms-widget="[{is:'ms-pagination'}, @configPagination]"></xmp>
