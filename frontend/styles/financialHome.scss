@@ -113,6 +113,11 @@
             font-size: 18px;
             vertical-align: middle;
           }
+          &:hover{
+            .add-icon{
+              background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+            }
+          }
         }
         div.bank-info {
           text-align: center;
