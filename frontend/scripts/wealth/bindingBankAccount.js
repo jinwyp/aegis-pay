@@ -206,7 +206,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                     var childBankIndex = [];
                     var timer = null;
 
-                    if($("#childBankName").val()==""){
+                    if($("#childBankName").val()=="" && $("#bankCode").val()!="" && $("#cityCode").val()!=""){
                         that.childAllBankName().done(function (data) {
 
                             data.childBankName.forEach(function (value, i) {
