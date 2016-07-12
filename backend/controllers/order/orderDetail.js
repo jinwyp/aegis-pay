@@ -93,8 +93,9 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 //type       : source.data.order.type,
                 type       : 0,
                 statusObj  : statusObj,
-                "sellInfo" : source.data.sellInfo,
-                "order"    : source.data.order
+                sellInfo   : source.data.sellInfo,
+                order      : source.data.order,
+                statusClose: source.data.order.statusClose
             };
             res.render('order/buyOrderDetail', content);
         } else {
