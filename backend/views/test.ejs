@@ -40,10 +40,34 @@
 </head>
 <body ms-controller="test">
 
-<button ms-click="@clickPage1">不显示</button>
-<button ms-click="@clickPage2">显示</button>
+<button ms-click="@clickPage1">第一页</button>
+<button ms-click="@clickPage2">第二页</button>
 
-<xmp ms-widget="[{is:'ms-pagination', $id:'xxx_'}, @configPagination]"></xmp>
+<table class="table financeDetailTable">
+    <tr>
+        <th >交易日期</th>
+        <th >交易流水号</th>
+        <th >金额</th>
+        <th >账户余额</th>
+        <th >摘要</th>
+        <th >对方账号</th>
+        <th >对方账号名称</th>
+        <th >操作</th>
+    </tr>
+
+
+    <tr ms-for='(key, order) in @orderList '>
+        <td >{{order.createDate }} </td>
+        <td >{{order.transactionNO }} <span ms-visible="!order.transactionNO"> - </span></td>
+        <td >{{order.money | number(2) }}</td>
+        <td >{{order.balanceMoney | number(2)}}</td>
+        <td >{{order.type}} 订单号: {{order.orderId}}</td>
+        <td >{{order.otherFundAccount}}</td>
+        <td >{{order.otherCompanyName}}</td>
+    </tr>
+
+</table>
+
 
 
 <script>
@@ -64,56 +88,310 @@
              */
 
         });
-
-        avalon.component('ms-pagination', {
-            template: paginationTemplate,
-            defaults: {
-                totalPages       : 1,
-                _isShow          : true,
-                isShowPagination : true,
-
-                onInit : function () {
-                    console.log('init', this.totalPages);
-                    var vm = this;
-                    vm._showPaginations();
-                    this.$watch('totalPages', function () {
-                        setTimeout(function () {
-                            vm._showPaginations()
-                        }, 2)
-                    })
-                },
-
-                _showPaginations : function(){
-                    var vm = this;
-                    console.log('-----------');
-                    console.log(vm.totalPages, vm.isShowPagination);
-                    vm._isShow = false;
-                    if (vm.totalPages > 0 && vm.isShowPagination) {
-                        console.log('----------- 显示');
-                        vm._isShow = true;
-                    }
-                }
+        var page1 = [
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '160208',
+                createDate       : '20160711',
+                transactionNO    : null,
+                money            : 0.45,
+                balanceMoney     : 16.49,
+                remarks          : '120160709040544440',
+                otherFundAccount : '3110710001261039300',
+                otherCompanyName : '上海瑞易供应链管理有限公司',
+                otherBankName    : null,
+                printCode        : '20160711092127822323',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '115302',
+                createDate       : '20160709',
+                transactionNO    : null,
+                money            : 0.18,
+                balanceMoney     : 16.94,
+                remarks          : '120160709115603440',
+                otherFundAccount : '3110710001261039300',
+                otherCompanyName : '上海瑞易供应链管理有限公司',
+                otherBankName    : null,
+                printCode        : '20160709115331565765',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '184503',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.31,
+                balanceMoney     : 18.17,
+                remarks          : '120160707064823200',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160708091327350797',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '184003',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.24,
+                balanceMoney     : 18.48,
+                remarks          : '120160707064302680',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160708091327224690',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '154609',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.19,
+                balanceMoney     : 17.12,
+                remarks          : '120160708034940530',
+                otherFundAccount : '3110710001261039300',
+                otherCompanyName : '上海瑞易供应链管理有限公司',
+                otherBankName    : null,
+                printCode        : '20160708154811128673',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '142309',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.13,
+                balanceMoney     : 17.31,
+                remarks          : '120160708022651640',
+                otherFundAccount : '3110710001261039300',
+                otherCompanyName : '上海瑞易供应链管理有限公司',
+                otherBankName    : null,
+                printCode        : '20160708150429015646',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '141807',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.15,
+                balanceMoney     : 17.44,
+                remarks          : '120160708022146200',
+                otherFundAccount : '3110710001261039300',
+                otherCompanyName : '上海瑞易供应链管理有限公司',
+                otherBankName    : null,
+                printCode        : '20160708150429200784',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '101509',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.13,
+                balanceMoney     : 17.59,
+                remarks          : '120160708101840020',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160708102741789979',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '101409',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.22,
+                balanceMoney     : 17.72,
+                remarks          : '120160708101740480',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160708102741027379',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '101110',
+                createDate       : '20160708',
+                transactionNO    : null,
+                money            : 0.23,
+                balanceMoney     : 17.94,
+                remarks          : '120160708101432260',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160708102741041516',
+                orderId          : null,
+                type             : 5
             }
-        })
+        ];
+
+        var page2 = [
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '180537',
+                createDate       : '20160707',
+                transactionNO    : null,
+                money            : 0.21,
+                balanceMoney     : 18.72,
+                remarks          : '120160707060854770',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160707201001487822',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '172238',
+                createDate       : '20160707',
+                transactionNO    : null,
+                money            : 0.4,
+                balanceMoney     : 18.93,
+                remarks          : '120160707052549150',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160707173246990207',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '152434',
+                createDate       : '20160707',
+                transactionNO    : null,
+                money            : 0.04,
+                balanceMoney     : 19.33,
+                remarks          : '120160707032818260',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160707152440874134',
+                orderId          : null,
+                type             : 5
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '163335',
+                createDate       : '20160705',
+                transactionNO    : '120160705043706460',
+                money            : 0.13,
+                balanceMoney     : 19.37,
+                remarks          : '120160705043706460',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160705163715059850',
+                orderId          : '2021',
+                type             : 4
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '162247',
+                createDate       : '20160704',
+                transactionNO    : '120160702042551850',
+                money            : 0.22,
+                balanceMoney     : 19.78,
+                remarks          : '120160702042551850',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160704111225257634',
+                orderId          : '2022',
+                type             : 4
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '151641',
+                createDate       : '20160704',
+                transactionNO    : '120160704031940670',
+                money            : 0.14,
+                balanceMoney     : 19.5,
+                remarks          : '120160704031940670',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160705145125346196',
+                orderId          : '2026',
+                type             : 4
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '142839',
+                createDate       : '20160704',
+                transactionNO    : '120160704023134720',
+                money            : 0.13,
+                balanceMoney     : 19.64,
+                remarks          : '120160704023134720',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160705145125604712',
+                orderId          : '2025',
+                type             : 4
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '103435',
+                createDate       : '20160704',
+                transactionNO    : '120160704103755660',
+                money            : 0.01,
+                balanceMoney     : 19.77,
+                remarks          : '120160704103755660',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160704111225666772',
+                orderId          : '2021',
+                type             : 4
+            },
+            {
+                fundAccount      : '3110710001261038346',
+                createTime       : '115243',
+                createDate       : '20160702',
+                transactionNO    : null,
+                money            : 20,
+                balanceMoney     : 20,
+                remarks          : '20',
+                otherFundAccount : '3110710001261037609',
+                otherCompanyName : '刘新杰',
+                otherBankName    : null,
+                printCode        : '20160702115407719159',
+                orderId          : null,
+                type             : 1
+            }
+        ];
 
         var vm = avalon.define({
             $id: 'test',
             orderList: [],
-            configPagination : {
-                totalPages : 0
-            },
             clickPage1:function(){
                 console.log(1111)
-                vm.configPagination.totalPages = 0;
-
+                vm.orderList = page1;
             },
             clickPage2:function(){
                 console.log(22222)
-                vm.configPagination.totalPages = 1;
+                vm.orderList = page2;
             }
 
         });
-
 
 
 

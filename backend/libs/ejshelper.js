@@ -211,13 +211,12 @@ module.exports = function (app) {
         }else{
             return account.replace(/(\d{4})(?=\d)/g,"$1 ");    
         }
-        
-    }
+    };
 
 
     app.locals.ngShow = function (flag){
         if (!flag){
-            return ' style=display:none; '
+            return ' style="display:none;" '
         }
     };
 

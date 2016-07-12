@@ -12,37 +12,46 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		params.maxFileSize = params.maxFileSize || 1048576 * 5;		// 最大5Mb
 		params.fileType = params.fileType || [];
 
-		var file = $file[0];
-		if( filterFormat(file, params.fileType) ) {
-			errorMessage = '上传附件格式错误!';
-			verify = false;
-		}
-		if( file.files.length > 0 && (file.files[0].size > params.maxFileSize) ) {
-			errorMessage = '上传附件超出大小上限!';
-			verify = false;
-		}
+		$file.fileupload({
+			url: params.API || '/api/upload-file',
+			dataType: 'json',										//maxFileSize: params.maxSize || 5120,
+			add: function(e, fileTag) {
+				verify = true;										//重置
+				var e = e || window.event;							//var target = e.srcElement || e.target;
 
-		if(verify) {
-			$file.fileupload({
-				url: params.API || '/api/upload-file',
-				dataType: 'json',
-				//maxFileSize: params.maxSize || 5120,
-				done: function (e, data) {
-					if (data && data.result && data.result) {
-						callback && typeof callback === "function" && callback(data.result);
-					}
-				},
-				progressall: function (e, data) {
-					// var progress = parseInt(data.loaded / data.total * 100, 10);
+				if(fileTag.files.length < 1) {
+					errorMessage = '上传附件为空!';
+					verify = false;
 				}
-			});
-		} else {
-			var data = {
-				success: false,
-				errorMessage: errorMessage
-			};
-			callback && typeof callback === "function" && callback(data);
-		}
+				if(fileTag.files.length > 0 && filterFormat(fileTag.files, params.fileType) ) {
+					errorMessage = '上传附件格式错误!';
+					verify = false;
+				}
+				if( fileTag.files.length > 0 && (fileTag.files[0].size > params.maxFileSize) ) {
+					errorMessage = '上传附件超出大小上限!';
+					verify = false;
+				}
+
+				if(verify) {
+					fileTag.submit();
+				} else {
+					var data = {
+						success: false,
+						errorMessage: errorMessage
+					};
+					callback && typeof callback === "function" && callback(data);
+					return verify;
+				}
+			},
+			done: function (e, data) {
+				if (data && data.result && data.result) {
+					callback && typeof callback === "function" && callback(data.result);
+				}
+			},
+			progressall: function (e, data) {
+				// var progress = parseInt(data.loaded / data.total * 100, 10);
+			}
+		});
 	}
 
 	/**
@@ -72,9 +81,9 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	}
 
 	// 图片格式
-	function filterFormat($tag, typeList) {
+	function filterFormat(filesArr, typeList) {
 		var results = false,
-			tagType = $tag.value.substr($tag.value.lastIndexOf('.') + 1);
+			tagType = filesArr[0].name.substr(filesArr[0].name.lastIndexOf('.') + 1);
 
 		if(typeList && typeList.length > 0 && $.inArray(tagType.toLowerCase(), typeList) < 0) {
 			results = true;
@@ -83,6 +92,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 	}
 
 	return {
+		initUpload: function() {		},
 		ajaxFileUpload: ajaxFileUpload,				//上传附件
 		ajaxFileRemove: ajaxFileRemove,				//移除附件
 		filterFormat: filterFormat,					//格式验证
