@@ -36,7 +36,7 @@
                     <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
                         <span class="status">提货已确认，等待卖家审核</span>
                     <% }else if(order.status=='WaitSettleAccounts'){ %>
-                        <span class="status">已确认提货，待开具结算单</span>
+                        <span class="status">已确认提货，待卖家结算</span>
                     <% }else if(order.status=='WaitVerifySettle'){ %>
                         <span class="status">已开具结算单，等待买家确认</span>
                     <% }else if(order.status=='ReturnedSettleAccounts'){ %>
@@ -93,7 +93,6 @@
                     <!--<div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-deliveryDetail">查看提货详情</a></span></div>-->
                 <% }else if(order.status=='WaitSettleAccounts'){ %>
                 <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerSettle">提醒卖家结算</span></div>
-                <div class="state-item mt-10 hint"><span>2. 如果您在交易过程中发生纠纷，您可以&nbsp;<a class="btn-applyDispute">申请纠纷处理</a></span></div>
                 <% }else if(order.status=='WaitVerifySettle'){ %>
                 <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-confirmSettle">确认结算</span></div>
                 <% }else if(order.status=='ReturnedSettleAccounts'){ %>

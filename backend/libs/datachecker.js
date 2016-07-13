@@ -101,7 +101,11 @@ exports.payPassword = function(password, next){
     }
 };
 
-
+exports.payPhone = function(phone, fieldname, next){
+    if ( !validator.isMobilePhone(phone,'zh-CN') ) {
+        return throw400(code.pay.payPhone.code, code.pay.payPhone.message, fieldname || code.pay.payPhone.field, next);
+    }
+};
 
 exports.deliveryAmount = function(deliveryAmount, next){
     if (!deliveryAmount || !validator.isInt(deliveryAmount, { min: 1, max: 999999999}) ) {
@@ -144,3 +148,4 @@ exports.pageNumber = function(currentPage, fieldname, next){
         return throw400(code.page.pageNumberWrong.code, code.page.pageNumberWrong.message, fieldname || code.page.pageNumberWrong.field, next);
     }
 };
+

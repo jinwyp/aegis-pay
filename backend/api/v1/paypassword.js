@@ -27,7 +27,6 @@ exports.forgetValid = function (req, res, next) {
 exports.forgetSubmit= function (req, res, next) {
     var body = req.body;
     var params = _.assign({}, { userId: req.session.user.id, }, body);
-
     request.post({url:api_config.paypasswordForgetSubmit, form:params}, function (err, data) {
         if (err) return next(err);
         var result = JSON.parse(data.body);

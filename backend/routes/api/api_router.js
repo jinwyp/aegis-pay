@@ -102,6 +102,8 @@ router.post('/bank/childAllBankName',bindingBankAccount.childAllBankName);   //�
 router.post('/account/fund/bankCard/add/submit',bindingBankAccount.bindingBankAccountSubmit);   //绑定银行卡提交
 
 
+router.post('/pay/payphone',fundAccountApi.payPhoneExist);
+
 // generate settle
 router.get('/fetch-settle-html', settleDetailsApi.generate_settle);
 
