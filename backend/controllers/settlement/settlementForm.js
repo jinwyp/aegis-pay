@@ -36,7 +36,7 @@ var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/se
 var pdfHtmlTemplatePath = path.join(config.viewspdf, '/settlement/pdfTemplate.ejs');
 const zipsPath = config.file_path.root + config.file_path.zips + '/';		// 压缩.存放路径
 const uploadPath = config.view_file + '/';									// 压缩.原材料路径
-var zipUrlPart = '';														// 压缩.路径片段
+var zipPathInfo = '';		// 压缩路径片段
 
 // 页面路由   		          var typeArr = ['none', 'buy', 'sell'];		// 本地测.用户类型
 exports.orderSettlement = function (req, res, next) {
@@ -45,7 +45,6 @@ exports.orderSettlement = function (req, res, next) {
 		req_id = req.query.id,
 		req_type = req.query.type;
 
-	//checker.orderId(req_id);
 	req.userId = req.session.user.id;
 
 	if(!req_id) {
@@ -62,10 +61,12 @@ exports.orderSettlement = function (req, res, next) {
 			replyData.subTitle = '结算单详情';
 			replyData.userType = 'buy';
 			apiUrl = apiHost.buyersView+ '?orderId='+ req_id +'&userId='+   req.userId;
+			zipPathInfo = '';
 		} else if(req_type == 2) {
 			replyData.subTitle = '开具结算单';
 			replyData.userType = 'sell';
 			apiUrl = apiHost.sellerView+ '?orderId='+ req_id +'&sellerId='+ req.userId;
+			zipPathInfo = '';
 		}
 
 		// TODO: 本地 Nock
@@ -86,12 +87,12 @@ exports.orderSettlement = function (req, res, next) {
 			//});
 
 			if(replyData.data && replyData.data.files.length > 0) {
-				replyData.zipSavePath = '/api/settlement/downloadAgreement?fileKey=settlement_bcxy_&id='+ data.order.id;
+				replyData.zipSavePath = '/api/settlement/downloadAgreement?fileKey=settlement_bcxy_&id='+ replyData.data.order.id;
 			}
+			console.log('-=-=-查询结算信息-77=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
 			console.log(replyData);
 			return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
 		});
-
 	}
 };
 
@@ -152,7 +153,7 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 			if(replyData.success){
-				zipFileMerge(req, res, next, 'settlement_jsxy_');		// 压缩合并处理
+				zipFileMerge(req, res, next, 'settlement_bcxy_');		// 压缩合并处理
 			}
 
 			return res.send(replyData);
@@ -219,26 +220,22 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 		var file = req.body.files[i];
 		file.path = config.view_file + file.path;
 	}
-	console.log('--结算审核通过-111-------------------------------------');
-	console.log(req.body);
-	zipFileMerge(req, res, next, 'settlement_bcxy_');		// 压缩合并处理
 
-	//request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
-	//	console.log('--结算审核通过-222-------------------------------------');
-	//	console.log(err);
-	//	console.log(data);
-    //
-	//	if (err) return next(err);
-	//	if (data && data.body){
-	//		var replyData = JSON.parse(data.body);
-	//		if(replyData.success){
-	//			zipFileMerge(req, res, next, 'settlement_bcxy_');		// 压缩合并处理
-	//		}
-	//		return res.send(replyData);
-	//	}else{
-	//		return next(new Error('Nock error!'))
-	//	}
-	//});
+	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
+		console.log('--结算审核通过-222-------------------------------------');
+		console.log(data);
+
+		if (err) return next(err);
+		if (data && data.body){
+			var replyData = JSON.parse(data.body);
+			if(replyData.success){
+				zipFileMerge(req, res, next, 'settlement_gzwj_');		// 压缩合并处理
+			}
+			return res.send(replyData);
+		}else{
+			return next(new Error('Nock error!'))
+		}
+	});
 };
 
 
