@@ -107,10 +107,7 @@ define(['avalon'], function(avalon){
                     vm.totalPages = Number(totalPages);
                 }
 
-                vm._isShow = false;
-                if (vm.totalPages > 0 && vm.isShowPagination) {
-                    vm._isShow = true;
-                }
+                vm._isShow = vm.totalPages > 0 && vm.isShowPagination;
                 console.log('Pagination updated, isShow:', vm._isShow, '. Total Page:', this.totalPages, '. Current Page:', this.currentPage);
 
                 if (vm.currentPage < 1){

@@ -94,7 +94,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                 $('.submitTotal').find(".errorMsg").text("");
             }
             if(!finalResult){
-                $(".vertifyCode").find(".errorMsg").text("校验码错误");
+                $(".vertifyCode").find(".errorMsg").text("校验码输入有误");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
             }else{
