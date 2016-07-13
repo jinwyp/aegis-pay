@@ -139,16 +139,16 @@ app.use('/', routes.webPage);
 routes.autoLoaderControllers(app);
 
 // 支付下载文件目录
-app.use('/download/:path?/:name', function(req, res, next){
-    var downloadPath = config.file_path.root + config.file_path.download + '/';
-    var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
-    var fileName = req.params.name;
-    var filePath = path + fileName;
+// app.use('/download/:path?/:name', function(req, res, next){
+//     var downloadPath = config.file_path.root + config.file_path.download + '/';
+//     var path = req.params.path? (downloadPath + req.params.path + '/') : downloadPath;
+//     var fileName = req.params.name;
+//     var filePath = path + fileName;
 
-    res.download(filePath, fileName, function(err){
-        if(err) return next(err);
-    });
-});
+//     res.download(filePath, fileName, function(err){
+//         if(err) return next(err);
+//     });
+// });
 
 app.use(errorhandler.PageNotFoundMiddleware);
 

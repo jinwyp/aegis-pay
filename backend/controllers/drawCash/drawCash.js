@@ -94,7 +94,7 @@ exports.drawCashCheck = function(req,res,next){
     //token不相同
     if(!cashToken || cashToken!==req.session.cashToken) {
         logger.error(req.ip+" drawCash token error");
-        next(new UnauthenticatedAccessError());
+        next(new UnauthenticatedAccessError(401,"Token验证失败"));
         return;
     }
 

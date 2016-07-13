@@ -12,9 +12,9 @@
 
 <div class="text-center">
     <div class="error-404">
-        <img src="<%= staticPath %>/images/error/error500.png"/>
-        <p>系统出错了，系统已自动通知我们的团队</p>
-        <p <%- ngShow(message === "您还没有开通易煤网资金账户.") %> ><a href="/">还没有开通,立即开通资金账号</a></p>
+        <img <%- ngShow(message !== "您还没有开通易煤网资金账户.") %> src="<%= staticPath %>/images/error/error500.png"/>
+        <p><%- message %></p>
+        <p <%- ngShow(message === "您还没有开通易煤网资金账户.") %> ><a href="/">立即开通资金账号</a></p>
 
         <a id="goBack" href="/" class="btn btn-primary btn-customer">返回</a>
     </div>
@@ -22,17 +22,7 @@
 
 
 
-<% if (config.debug) { %>
 
-<h1><%- status %> System Error</h1>
-<%- status %> <br/>
-<%- message %> <br/>
-
-<h1>inspect:</h1>
-<%- inspect %> <br/>
-<a <%- ngShow(message === "您还没有开通易煤网资金账户.") %> href="/">开通资金账号</a>
-
-<% } %>
 
 
 <%- include ../footer/footer %>
