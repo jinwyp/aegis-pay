@@ -34,11 +34,11 @@ var _       = require('lodash');
 var convert = require('../../libs/convert');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
 var pdfHtmlTemplatePath = path.join(config.viewspdf, '/settlement/pdfTemplate.ejs');
-const uploadPath = config.file_path.root + '/upload/';			// 压缩.原材料路径
+const zipsPath = config.file_path.root + config.file_path.zips + '/';		// 压缩.存放路径
+const uploadPath = config.view_file + '/';									// 压缩.原材料路径
+var zipUrlPart = '';														// 压缩.路径片段
 
-
-
-// 页面路由   		var typeArr = ['none', 'buy', 'sell'];		// 本地测.用户类型
+// 页面路由   		          var typeArr = ['none', 'buy', 'sell'];		// 本地测.用户类型
 exports.orderSettlement = function (req, res, next) {
 
 	var apiUrl = '',
@@ -74,16 +74,22 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
-			replyData.data.order.currentTime  = replyData.data.order.currentTime || '2016-07-06 11:11:11';	// 开始时间
-			replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-22 33:33:33';	// 截止时间
-			cache.get('zip_jsd_scxy_'+req_id, function (err, data){
-				data = data || {};
-				replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
-				console.log('-=-=-查询结算信息-22=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
-				console.log(replyData);
+			//replyData.data.order.currentTime  = replyData.data.order.currentTime || '2016-07-06 11:11:11';	// 开始时间
+			//replyData.data.order.deadlineTime = replyData.data.order.deadlineTime || '2016-07-22 33:33:33';	// 截止时间
 
-				return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
-			});
+			//cache.get('zip_jsd_scxy_'+req_id, function (err, data){
+			//	data = data || {};
+			//	replyData.zipSavePath = data.zipSavePath || '';						// 读取 压缩文件
+			//	console.log('-=-=-查询结算信息-22=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=');
+			//	console.log(replyData);
+			//	return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
+			//});
+
+			if(replyData.data && replyData.data.files.length > 0) {
+				replyData.zipSavePath = '/api/settlement/downloadAgreement?fileKey=settlement_bcxy_&id='+ data.order.id;
+			}
+			console.log(replyData);
+			return res.render('settlement/settlementForm', replyData);			// 渲染页面(指定模板, 数据)
 		});
 
 	}
@@ -127,10 +133,7 @@ exports.settlementInfoDownload = function (req, res, next) {
 };
 
 
-
-
-// +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
-
+// +_+_API部分_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
 // API路由: 卖家.提交结算单.fs --------- http://localhost:3001/api/settlement/sellerSubmit
 var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	// var req_id = req.query.id;
@@ -149,7 +152,7 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 			if(replyData.success){
-				zipFileMerge(req, res, next, 'zip_jsd_scxy_'+req.body.orderId);		// 压缩合并处理
+				zipFileMerge(req, res, next, 'settlement_jsxy_');		// 压缩合并处理
 			}
 
 			return res.send(replyData);
@@ -218,26 +221,25 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 	}
 	console.log('--结算审核通过-111-------------------------------------');
 	console.log(req.body);
+	zipFileMerge(req, res, next, 'settlement_bcxy_');		// 压缩合并处理
 
-	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
-		console.log('--结算审核通过-222-------------------------------------');
-		console.log(err);
-		console.log(data);
-
-		if (err) return next(err);
-		if (data && data.body){
-			var replyData = JSON.parse(data.body);
-			if(replyData.success){
-				zipFileMerge(req, res, next, 'zip_jsd_scgz_'+req.body.orderId);		// 压缩合并处理
-			}
-			return res.send(replyData);
-		}else{
-			return next(new Error('Nock error!'))
-		}
-	});
+	//request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
+	//	console.log('--结算审核通过-222-------------------------------------');
+	//	console.log(err);
+	//	console.log(data);
+    //
+	//	if (err) return next(err);
+	//	if (data && data.body){
+	//		var replyData = JSON.parse(data.body);
+	//		if(replyData.success){
+	//			zipFileMerge(req, res, next, 'settlement_bcxy_');		// 压缩合并处理
+	//		}
+	//		return res.send(replyData);
+	//	}else{
+	//		return next(new Error('Nock error!'))
+	//	}
+	//});
 };
-
-
 
 
 // API路由: *卖家.查看结算单.待结算 --------- http://localhost:3001/api/settlement/sellerView?id=110000
@@ -311,8 +313,8 @@ var downPrintSettle = exports.downPrintSettle = function (req, res, next) {
 		if (data && data.body){
 			var replyData = JSON.parse(data.body);
 
-			replyData.headerTit = '打印下载结算单.9999';
-			replyData.subTitle = '打印下载结算单.s';
+			replyData.headerTit = '打印下载结算单';
+			replyData.subTitle = '打印下载结算单';
 			replyData.userType = 'sell';
 			return res.send(replyData);
 		}else{
@@ -321,27 +323,37 @@ var downPrintSettle = exports.downPrintSettle = function (req, res, next) {
 	});
 };
 
+// API路由: *下载 结算协议			/api/settlement/downloadAgreement?id=2074&fileKey=settlement_bcxy_
+var downloadAgreement = exports.downloadAgreement = function (req, res, next) {
+	var fileKey = req.query.fileKey;
+	var output = zipsPath + req.session.user.id + '/' + req.query.id + '/';
+	var zipFilePath = output+ fileKey + req.session.user.id + '_' + req.query.id + '.zip';
+	console.log('--下载 结算协议	fileKey---------' + fileKey);
+	console.log('--下载 结算协议	zipFilePath---------' + zipFilePath);
 
-// 压缩合并附件:
-var zipFileMerge = function (req, res, next, saveKey) {
+	if(utils.isFileExistsSync(zipFilePath)) {
+		res.download(zipFilePath, 'agreement.zip', function(err, data){
+			if(err) {return next(err);}
+		});
+	}
+};
+
+// 压缩合并附件:  (zipFileKey 文件名称)
+var zipFileMerge = function (req, res, next, zipFileKey) {
 	var zipMerge = new Promise(function(resolve, reject){
 		var params   = req.body;
-		var arrPath  = [];				// 采集原料路径集
+		var materialPaths  = [];				// 采集原料路径集
+		var output = zipsPath + req.session.user.id + '/' + req.body.orderId + '/';
+		fileName = zipFileKey + req.session.user.id + '_' + req.body.orderId + '.zip';
 
 		_.each(params.files, function (value, index) {
-			arrPath.push(uploadPath + path.basename(value.path)); 		// 原材料路径
+			materialPaths.push( value.path ); 			// 原材料路径
 		});
+		console.log('output=  '+ output + ' , fileName= ' + fileName);
 
-		var zips = convert.zipFile({path : arrPath});					// 压缩处理
-		zips.then(function(result){										// 压缩结果
-			var obj = {'zipSavePath': result.substr(result.indexOf('/downloa'))};
-
-			cache.set(saveKey, obj);									// 设置 压缩后的文件路径, 设置Key
-			cache.get(saveKey, function (err, data){
-				console.log('---读取-压缩文件------------------------');
-				console.log(data.zipSavePath);							// 读取 压缩文件
-			});
-
+		var zips = convert.zipFile({path : materialPaths, output: output, zipname: fileName});		// 压缩处理
+		zips.then(function(result){																	// 压缩结果
+			console.log('---压缩回调-读取--------' +result);
 		}).catch(next);
 	});
 	return zipMerge;

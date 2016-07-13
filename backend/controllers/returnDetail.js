@@ -17,8 +17,9 @@ var zipsPath = config.file_path.root + config.file_path.zips + '/';
 
 var fetchZips = function(req){
     var zipurlPath = zipsPath + req.session.user.id + '/' + req.query.orderId + '/';
-    var qualityZipName = 'confirmDelivery:quality_'+ req.session.user.id + '_' + req.query.orderId + '.zip';
-    var quantityZipName = 'confirmDelivery:quantity_'+ req.session.user.id + '_' + req.query.orderId + '.zip';
+    var qualityZipName = 'confirmDelivery_quality_'+ req.session.user.id + '_' + req.query.orderId + '.zip';
+    var quantityZipName = 'confirmDelivery_' +
+        'quantity_'+ req.session.user.id + '_' + req.query.orderId + '.zip';
     var zipurl = {
         qualityPath:  zipurlPath + qualityZipName,
         quantityPath: zipurlPath + quantityZipName
