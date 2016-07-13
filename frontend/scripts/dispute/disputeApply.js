@@ -139,7 +139,7 @@ require(['jquery','pay.upload'],function($,upload){
                     initErrors(true,"");
                 };
                 if(disputeRemarks==""){
-                    initErrors(false,"请输入退款原因及说明");
+                    initErrors(false,"请输入说明");
                     return false;
                 }else{
                     initErrors(true,"");
