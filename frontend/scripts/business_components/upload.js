@@ -118,13 +118,13 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
                 //     uploadErrors.push('Not an accepted file type');
                 // }
                 if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 30000000) {
-                    uploadErrors.push('Filesize is too big');
+                    uploadErrors.push('上传文件不能超过30M');
                 }
 				// 确认提货页面上传限制
 				if($("#confirmDelivery").length){
 					
 					if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 5000000) {
-						$(".errorMes").text("请上传大小5M以内的图片");
+						$(".errorMes").text("请上传大小5M以内的文件");
 						return false;
 					}else{
 						$(".errorMes").text("");
