@@ -134,7 +134,6 @@ exports.sendCode = function (req, res, next) {
     var userInfo = _.assign({}, req.session.user, {payPhone: payPhone});
     var smsType  = smsType || 'mix';
 
-
     cacheGet(userInfo).then(function(data){
 
         var result = {
