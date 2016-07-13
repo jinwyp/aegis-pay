@@ -122,13 +122,12 @@ var convertData = function (compactdata, compactejs, orderId) {
     })
     .then(function(resultPDF){
         compactData.pdf = resultPDF.pdfpath;
-        data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath);
     })
     .then(function(resultImgs){
         compactData.imgs = resultImgs.imgs;
         resultImgs.imgs.forEach(function (img) {
-            data.imgs.push('/files/images/' + path.basename(img));
+            data.imgs.push(path.basename(img));
         });
         return data;
     });
