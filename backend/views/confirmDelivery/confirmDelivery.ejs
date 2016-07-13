@@ -17,9 +17,9 @@
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
                 <div class="rightBan">
                     <%if(typeof deliveryAmount !="undefined"){%>
-                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" />
+                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
                     <%}else{%>
-                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6"  />
+                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
                     <%}%>
                     <span class="unit">吨</span>
                 </div>
@@ -70,19 +70,22 @@
                                 <%}%>
                                 <!--不足6位开始补全-->
                                 <% for(var i=0;i<7-count;i++) {%>
-                                <td></td>
+                                    <td></td>
                                 <% } %>
                                 <%}%>
                                 <td>
                                     <%if(k<totalP-1){%>
-                                    <a href="javascript:void(0)" class="del" style="">删除</a>
-                                    <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
                                     <%}else if(totalP==15){%>
-                                    <a href="javascript:void(0)" class="del" style="">删除</a>
-                                    <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
+                                    <%}else if(totalP==1){%>
+                                        <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="">增加</a>
                                     <%}else{%>
-                                    <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
-                                    <a href="javascript:void(0)" class="add" style="">增加</a>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="">增加</a>
                                     <%}%>
                                 </td>
                             </tr>
@@ -119,8 +122,11 @@
                                     <%}else if(totalP==15){%>
                                         <a href="javascript:void(0)" class="del" style="">删除</a>
                                         <a href="javascript:void(0)" class="add" style="display: none;">增加</a>
-                                    <%}else{%>
+                                    <%}else if(totalP==1){%>
                                         <a href="javascript:void(0)" class="del" style="display: none;">删除</a>
+                                        <a href="javascript:void(0)" class="add" style="">增加</a>
+                                    <%}else{%>
+                                        <a href="javascript:void(0)" class="del" style="">删除</a>
                                         <a href="javascript:void(0)" class="add" style="">增加</a>
                                     <%}%>
                                 </td>

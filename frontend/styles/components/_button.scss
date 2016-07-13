@@ -96,6 +96,8 @@
 
   &:hover {
     border: 1px solid #cccccc;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
   }
 }
 
@@ -118,7 +120,8 @@
   background: #1fb8ea;
 
   &:hover {
-    background: #4cc6ee;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
   }
 }
 

@@ -410,7 +410,6 @@ body{
 
 .button_xls {
   @include sprite($icon-download-xls);
-
 }
 .button_pdf, .button_xls {
   background-color: #fff;
@@ -422,6 +421,10 @@ body{
 
   span{
     margin-left: -12px;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
