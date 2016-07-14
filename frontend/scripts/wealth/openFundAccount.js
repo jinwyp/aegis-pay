@@ -1,6 +1,7 @@
 require(['jquery', 'pay.smscode'], function ($, smscode) {
     var openFundAccount = {
         init: function () {
+            var self = this;
             if ($('.mainWrapper').hasClass('wait')) {
                 $.post('/api/wealth/open-fund-account/fetchOpenStatus', function (result) {
                     if (result.success) {
@@ -65,15 +66,21 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
             $('#send_code').on('click', function (e) {
                 if ($(this).hasClass("disable")) {
                     return;
-                }
-                ;
+                };
                 var payPhone = $('input[name="payPhone"]').val();
                 if (!/^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/.test(payPhone)) {
                     self.els.$payPhoneErr.text('请输入有效的手机号！').show();
                     self.els.$payPhone.focus();
                 } else {
                     self.els.$payPhoneErr.hide();
-                    $('#imgcodeModal').modal();
+                    $.post('/api/pay/payphone', {payPhone: $('input[name="payPhone"]').val()}, function(result){
+                        if(!result.success){
+                            self.els.$payPhoneErr.text('该支付手机已经存在易煤网资金账户').show();
+                        }else{
+                            self.els.$payPhoneErr.text('').hide();
+                            $('#imgcodeModal').modal();
+                        }
+                    })
                 }
             })
         },
@@ -150,7 +157,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                             self.els.$smscodeErr.text('验证码错误！').show();
                         } else {
                             self.els.$pass1.focus();
-                            self.els.$passFormatErr.text('请输入密码').show();
+                            self.els.$passFormatErr.text('支付密码不能和登陆密码相同！').show();
                         }
                         self.els.$submit.removeClass('disable');
                     }

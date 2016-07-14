@@ -14,9 +14,10 @@
     background: #fff;
 
     .bindingSuccessInfoWrap{background:#f3fcff;padding-left:160px;padding-top:48px;padding-bottom: 48px;}
-    .bindingSuccessInfoWrap .bindingMainCon{font-size:18px;color:#333;margin-bottom: 20px;position: relative}
+    .bindingSuccessInfoWrap .bindingMainCon{font-size:24px;color:#333;margin-bottom: 20px;position: relative}
     .bindingSuccessInfoWrap .successIcon{display: inline-block;width: 60px;height: 60px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -383px -291px;position: absolute;left:-88px;top:12px;}
     .bindingSuccessInfoWrap .bindingMainCon span.bindingSuc{color:#1aaa6b;font-size: 24px;}
+    .bindingSuccessInfoWrap .bindingsubCon span.bindingSuc{color:#1aaa6b;font-size: 24px;}
     .bindingSuccessInfoWrap span.colorOrange{color:#ff6e27;}
     .bindingSuccessInfoWrap .bindingsubCon{margin-bottom: 10px;}
     .bindingSuccessInfoWrap p.bindingsubCon{color:#999;font-size: 12px;}
@@ -25,6 +26,9 @@
     .bindingSuccessInfoWrap a.cancel{background:url("#{$assetPath}/images/gradualLine.png") repeat-x 0px bottom;margin-left:8px;color:#333;width:90px;height:24px;line-height:23px;text-align:center;border:1px solid #e5e6e7;border-radius:2px;display:inline-block;}
     .bindingSuccessInfoWrap a.cancel:hover{text-decoration: none;opacity: .8;}
     .bindingSuccessInfoWrap span.logoBlue{color:#00b7ec;vertical-align: middle;}
+    .bindingSuccessInfoWrap .confirmBank{width:180px;height:40px;line-height:40px;border-radius:2px;background: #02b7ec;color:#fff;font-size: 14px;display: inline-block;text-align: center;margin-left:350px;margin-top: 20px;}
+    .bindingSuccessInfoWrap .confirmBank:hover{opacity: .8;text-decoration: none;}
+    .bindingSuccessInfoWrap p{padding-left: 148px;}
 
     //绑定确认样式
     .bindingConfirmTit{font-size: 24px;}

@@ -81,12 +81,10 @@ exports.forgetReset = function(req, res, next){
         pageTitle : '安全设置 —— 设置支付密码',
         headerTit : '安全设置',
         subHeaderTit: '设置支付密码',
-        user: {
-            userFundAccount: ''
-        }
+        userFundAccount: ''
     };
     _getUserFundAccount(req.session.user.id).then(function(data){
-        pageData.user.userFundAccount = data;
+        pageData.userFundAccount = data;
         res.render('paypassword/forget-set', pageData);
     }).catch(next);
 }

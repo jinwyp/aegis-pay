@@ -37,15 +37,38 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 
 
 // 底部吸底
+    function throttle(fn, threshhold, scope) {
+        threshhold || (threshhold = 300);
+        var last,
+            deferTimer;
+        return function () {
+            var context = scope || this;
+
+            var now = +new Date,
+                args = arguments;
+            if (last && now < last + threshhold) {
+                // hold on to it
+                clearTimeout(deferTimer);
+                deferTimer = setTimeout(function () {
+                    last = now;
+                    fn.apply(context, args);
+                }, threshhold + last - now);
+            } else {
+                last = now;
+                fn.apply(context, args);
+            }
+        };
+    }
+
     var isStick = false;
-	var bottomStyle={
+	var bottomStyle = {
 		init : function(){
 			this.judge();
-			$(window).scroll(this.judge).resize(this.judge);
+			$(window).scroll(throttle(this.judge)).resize(throttle(this.judge));
 		},
 		judge : function(){
-			var hBody=$('body').height(),
-				hWindow=$(window).height();
+			var hBody=$('body').height();
+            var hWindow=$(window).height();
             if (isStick){
                 if(hWindow - 150 < hBody){ //除去footer的高度在计算
                     isStick = false;

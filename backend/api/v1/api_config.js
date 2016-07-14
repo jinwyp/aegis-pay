@@ -156,7 +156,6 @@ var api_config = {
     billDelete : host + 'finance/receipt/delete',
     billView : host + 'finance/receipt/view',
     receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
-    paypasswordForgetSubmit: host + 'account/fund/payPwd/forget/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
@@ -174,6 +173,8 @@ var api_config = {
 
     // open fund account
     openFundAccount: host + 'account/fund/create',
+    payPhoneExist:host + '/account/fund/Payphone',
+
     /**
      * 是否已经开通了资金账户
      * params: userId

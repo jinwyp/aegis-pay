@@ -23,7 +23,7 @@ exports.uploadFile = function (req, res, next) {
     utils.makeDir(uploadTmp);
     //api代理，去请求java接口
     var form = new formidable.IncomingForm();
-
+    form.maxFieldsSize = 5 * 1024 * 1024;
     form.uploadDir = uploadTmp;
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
@@ -122,13 +122,12 @@ var convertData = function (compactdata, compactejs, orderId) {
     })
     .then(function(resultPDF){
         compactData.pdf = resultPDF.pdfpath;
-        data.pdfpath = '/download/' + path.basename(resultPDF.pdfpath);
         return convert.pdf2image(resultPDF.pdfpath);
     })
     .then(function(resultImgs){
         compactData.imgs = resultImgs.imgs;
         resultImgs.imgs.forEach(function (img) {
-            data.imgs.push('/files/images/' + path.basename(img));
+            data.imgs.push(path.basename(img));
         });
         return data;
     });

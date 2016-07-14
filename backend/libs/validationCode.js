@@ -30,7 +30,9 @@ var validationCode = {
         tokenLengthWrong : {code:1008, message:'Field validation error, orderId length should be 6 - 100', field : "orderId"}
 
     },
-
+    pay:{
+        payPhone:{code:5500,message:'Field validation error, phone format wrong', field : "payPhone"}
+    },
     order : {
         orderIdWrong : {code:5001, message:'Field validation error, orderId length should be 1 - 100', field : "orderId"},
         deliveryAmountWrong : {code:5101, message:'Field validation error, deliveryAmount should be 1 - 999999999', field : "deliveryAmount"},

@@ -37,7 +37,9 @@ module.exports = exports = function(request, log) {
                         headers : JSON.parse(JSON.stringify(this.headers))
                     }
                     if (this.body) {
-                        data.body =  decodeURIComponent(this.body.toString('utf8'))
+                        data.body=  decodeURIComponent(this.body.toString('utf8'))
+                        data.body = data.body.replace(/([Pp][Aa][Ss][Ss][Ww][Oo][Rr][Dd]=.*&)|([Pp][Aa][Ss][Ss][Ww][Oo][Rr][Dd]=.*$)/g,"password=xxxxx&")
+
                     }
                     log('request', data, this)
 
