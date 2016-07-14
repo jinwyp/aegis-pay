@@ -10,6 +10,7 @@ financialCenterHomePersist
             success:true,
             error:"wrong",
             data:{
+                fundAccountStatus:1,
                 "finance": {
                     "userId": 1,
                     "companyName": "易煤网",
