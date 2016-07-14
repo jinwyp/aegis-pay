@@ -89,7 +89,7 @@
                 <% if(typeof recordList && recordList.length>0){%>
                     <%for(var i=0;i<recordList.length;i++){%>
                     <tr class="line">
-                        <td width="60"><div><%= dateformat(recordList[i].createTime) %></div></td>
+                        <td width="60"><div><%= recordList[i].createTime %></div></td>
                         <td width="150"><div><%= recordList[i].typeName %></div></td>
                         <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
                         <td width="100">
