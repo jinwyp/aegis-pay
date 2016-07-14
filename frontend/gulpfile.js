@@ -6,11 +6,13 @@ var spritesmith = require( 'gulp.spritesmith');
 var browserSync = require( 'browser-sync');
 var gulpLoadPlugins = require( 'gulp-load-plugins');
 var nodemon = require(  'nodemon');
+var requirejsOptimize= require('gulp-requirejs-optimize');
 
 var bs  = browserSync.create();
 var reload  = bs.reload;
 var plugins = gulpLoadPlugins();
 
+var rconfig = require('./rconfig');
 
 
 var sourcePaths = {
@@ -102,9 +104,29 @@ gulp.task('watch', function() {
     gulp.watch(sourcePaths.images, ['images']);
 });
 
+// release tasks
+gulp.task('release-js', ['jslint', 'components'], function(){
+    return gulp.src(['scripts/*.js', 'scripts/*/*.js', '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/*.js'])
+    .pipe(requirejsOptimize(function(file){
+        if(file.relative !== 'common.js'){
+            rconfig.exclude = ['common'];
+        }else{
+            rconfig.exclude = [];
+        }
+        return rconfig;
+    }))
+    .pipe(gulp.dest(distPaths.javascript));
+})
 
-
-
+gulp.task('release-sass', ['sprite'], function() {
+    return gulp.src(sourcePaths.scss)
+        .pipe(plugins.sass({
+            precision       : 10,
+            outputStyle     : 'compressed',
+            errLogToConsole : true
+        }).on('error', plugins.sass.logError))
+        .pipe(gulp.dest(distPaths.css));
+});
 
 gulp.task('nodemon', function (cb) {
     var called = false;
@@ -161,6 +183,6 @@ gulp.task('clean', function() {
 gulp.task('frontend', ['clean', 'sass', 'javascript', 'images', 'watch']);
 gulp.task('server', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon']);
 gulp.task('sync', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon', 'browser-sync']);
-gulp.task('build', ['clean', 'sass', 'javascript', 'images']);
+gulp.task('build', ['clean', 'release-sass', 'release-js', 'images']);
 
 gulp.task('default', ['sync']);

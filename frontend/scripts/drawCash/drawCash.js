@@ -2,12 +2,7 @@
 	Edit By Edward(zhangguo) 2016-06-17
 */
 
-require.config({
-    paths: {
-        sms_code: 'business_components/sms-code'
-    }
-});
-requirejs(['jquery','bootstrap','sms_code'],function($,bootstrap,sms_code){
+requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 	// 添加账户
 	sms_code.init("");
 	$(function(){

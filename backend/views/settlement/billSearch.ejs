@@ -5,8 +5,8 @@
     <span class="to">&nbsp;&nbsp;至&nbsp;&nbsp;</span>
     <div class="time"><input type="text" name="endDate" class="iIpt iIpt_sm endDate" placeholder="yyyy-mm-dd" value="<%=receiptOrder.endDate%>"/></div>
 
-    <span class="bill">订单号&nbsp;:&nbsp;&nbsp;</span>
-    <input type="text" name="content" class="iIpt iIpt_sm record-number billNumber" id="billNumber" placeholder="请输入订单编号" value="<%=receiptOrder.content%>"/>
+    <span class="bill">订单编号&nbsp;:&nbsp;&nbsp;</span>
+    <input type="text" name="content" class="iIpt iIpt_sm record-number billNumber" id="billNumber" placeholder="请输入订单编号" value="<%=receiptOrder.content%>" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
     <input type="hidden" name="type" id="type" value="<%=receiptOrder.type%>"/>
     <input type="hidden" value="<%= count %>" id="count">
     <input type="hidden" value="<%= page %>" id="page" name="page">

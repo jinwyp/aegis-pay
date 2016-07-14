@@ -7,28 +7,28 @@ requirejs.config({
     }
 });
 
-require(['jquery'], function($){
+require(['jquery', 'pay.smscode', 'forgetValid', 'modifyValid', 'forgetSet', 'modifySet'], function($, smscode, forgetValid, modifyValid, forgetSet, modifySet){
     if($('.mainWrapper').hasClass('forgetValid')){
-        require(['pay.smscode', 'forgetValid'], function(smscode, forgetValid){
+        // require(['pay.smscode', 'forgetValid'], function(smscode, forgetValid){
             smscode.init('payPhone');
             forgetValid.init();
-        })
+        // })
     }
     if($('.mainWrapper').hasClass('forgetSet')){
-        require(['forgetSet'], function(forgetSet){
+        // require(['forgetSet'], function(forgetSet){
             forgetSet.init();
-        })
+        // })
     }
     if($('.mainWrapper').hasClass('modifyValid')){
-        require(['pay.smscode', 'modifyValid'], function(smscode, modifyValid){
+        // require(['pay.smscode', 'modifyValid'], function(smscode, modifyValid){
             smscode.init();
             modifyValid.init();
-        })
+        // })
     }
     if($('.mainWrapper').hasClass('modifySet')){
-        require(['modifySet'], function(modifySet){
+        // require(['modifySet'], function(modifySet){
             modifySet.init();
-        })
+        // })
     }
     if($('.mainWrapper').hasClass('successPage')){
         var $countDown = $('.countDown'),
