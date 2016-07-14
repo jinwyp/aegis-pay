@@ -85,7 +85,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
 
     //查看提货详情
     $(".btn-deliveryDetail").click(function(){
-        location.href="/getBuyOrderDetail?orderId="+$("#orderId").val();
+        location.href="/deliveryDetail?orderId="+$("#orderId").val();
     });
 
     //查看退货详情

@@ -107,53 +107,36 @@ body{
           .account-color{  color: $color_a_hover;  }
           .manage-color{  float: right;  margin-right: 20px;  }
         }
-        .a-add{
+        .add-bank{
           display: block;
           text-align: center;
-          line-height: 94px;
+          line-height: 92px;
+          font-size: 18px;
+        }
+        .a-add{
           &:hover{
-            .bank-add{
+            .span-icon{
               background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left -28px;
             }
           }
         }
-        .bank-add{
+        .span-text{
           display: inline;
-          padding-left: 28px;
           text-align: center;
-          font-size: 18px;
+        }
+        .span-icon{
+          padding-left: 28px;
           background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left 3px;
         }
-        //.bank-add {
-        //  text-align: center;
-        //  margin-top: 16px;
-        //  padding: 20px 0;
-        //  .add-icon {
-        //    background: url("#{$assetPath}/images/wealth/bank_add.png");
-        //    display: inline-block;
-        //    width: 21px;
-        //    height: 21px;
-        //    vertical-align: middle;
-        //  }
-        //  .label-add {
-        //    font-size: 18px;
-        //    vertical-align: middle;
-        //  }
-        //  &:hover{
-        //    .add-icon{
-        //      background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
-        //    }
-        //  }
-        //}
-        //div.bank-info {
-        //  text-align: center;
-        //  margin-top: 24px;
-        //  .label-content {
-        //    font-size: 18px;
-        //    color: $color_manage_text;
-        //    vertical-align: middle;
-        //  }
-        //}
+        div.bank-info {
+          text-align: center;
+          margin-top: 24px;
+          .label-content {
+            font-size: 18px;
+            color: $color_manage_text;
+            vertical-align: middle;
+          }
+        }
       }
     }
     .list-title{
