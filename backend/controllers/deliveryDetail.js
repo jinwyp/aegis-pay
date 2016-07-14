@@ -44,7 +44,7 @@ exports.deliveryDetail = function (req, res, next) {
 
         var source = JSON.parse(data.body);
         var statusObj = {
-            step     : 4,
+            step     : 3,
             stepList : [
                 {
                     stepName : '提交订单',
@@ -60,7 +60,7 @@ exports.deliveryDetail = function (req, res, next) {
                 },
                 {
                     stepName : '确认提货',
-                    stepDate : source.data.order.confirmDeliveryTime
+                    stepDate : ""
                 },
                 {
                     stepName : '结算',
