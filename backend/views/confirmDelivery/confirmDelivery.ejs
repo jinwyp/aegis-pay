@@ -13,17 +13,7 @@
         <p class="statusInfo">我已提货，同意并确认提货数量及产品质量</p>
         <div class="qualityInfo">
             <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
-            <div class="banCon">
-                <div class="leftBan w90"><span>* </span>提货总量：</div>
-                <div class="rightBan">
-                    <%if(typeof deliveryAmount !="undefined"){%>
-                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
-                    <%}else{%>
-                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
-                    <%}%>
-                    <span class="unit">吨</span>
-                </div>
-            </div>
+
             <% if (sellInfo.pricingMethodId==1) {%>
             <p class="tableTit"><span>* </span>请填写检测结果</p>
 
@@ -309,6 +299,17 @@
                 </div>
             </div>
             <%}%>
+            <div class="banCon">
+                <div class="leftBan w90">提货总量：</div>
+                <div class="rightBan">
+                    <%if(typeof deliveryAmount !="undefined"){%>
+                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
+                    <%}else{%>
+                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
+                    <%}%>
+                    <span class="unit">吨</span>
+                </div>
+            </div>
             <p class="errorMes"></p>
             <div class="banCon">
                 <div class="leftBan"></div>
