@@ -209,7 +209,8 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1.$2.$3");
 
                     if (!order.orderId){order.orderId = '-'}
-
+                    if (order.loanFlag === 'D') { order.money = -order.money;}
+                    
                     if (order.type === 1){order.type = '充值'; }
                     if (order.type === 2){order.type = '提现'; order.money = -order.money;}
                     if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}

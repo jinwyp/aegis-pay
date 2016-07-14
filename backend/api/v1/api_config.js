@@ -96,6 +96,7 @@ var api_config = {
     sureReceiveReceipt : host + 'mall/order/complete/submit',
 
     confirmDelivery : host + 'mall/order/deliveryConfirm',
+    deliveryDetail : host + 'mall/order/delivery/detail',
     confirmDeliverySubmit : host + 'mall/order/deliveryConfirm/submit',
     confirmDeliverySellerDelivery : host + 'mall/order/seller/verifyDelivery',
     confirmDeliveryConfirmComplete : host + 'mall/order/seller/verifyDelivery/return',

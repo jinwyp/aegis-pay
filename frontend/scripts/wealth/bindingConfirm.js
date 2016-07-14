@@ -2,22 +2,22 @@
 requirejs(['jquery'], function($,sms_code,pay){
 
     // 账户发送确认金额确认
-    // $(document).ready(function(){
-    //     $.ajax({
-    //         url:'/api/account/fund/bankCard/submit/success',
-    //         type:'POST',
-    //         data:{
-    //             userId:$("#userId").val(),
-    //         },
-    //         success: function(data){
-    //             if(data.success && $("#userAccountStatus").val()==1) {
-    //                 var timer=setInterval(function(){
-    //                     location.href=location.href;
-    //                 },10000)
-    //             }
-    //         }
-    //     })
-    // });
+    $(document).ready(function(){
+        $.ajax({
+            url:'/api/account/fund/bankCard/submit/success',
+            type:'POST',
+            data:{
+                userId:$("#userId").val(),
+            },
+            success: function(data){
+                if(data.success && $("#userAccountStatus").val()==1) {
+                    var timer=setInterval(function(){
+                        location.href=location.href;
+                    },10000)
+                }
+            }
+        })
+    });
 
     $("#bindingConfirmSubmit").on("click",function(){
         var remittance=$("#remittance").val();

@@ -56,7 +56,7 @@
                 <%if(typeof settlementList && settlementList.length>0){%>
                     <%for(var i in settlementList){%>
                     <tr class="line">
-                        <td width="100"><%=dateformat(settlementList[i].createTime)%></td>
+                        <td width="100"><%=settlementList[i].createTime%></td>
                         <td width="100"><%=settlementList[i].orderNO%></td>
                         <td width="100"><%=settlementList[i].transactionNO%></td>
                         <td width="160"><%=ellipse(getStringVal(settlementList[i].otherCompanyName),30)%></td>

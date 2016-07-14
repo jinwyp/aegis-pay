@@ -17,7 +17,9 @@
     "gulp-if": "^2.0.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-nodemon": "^2.1.0",
+    "gulp-requirejs-optimize": "^1.2.0",
     "gulp-sass": "^2.3.2",
-    "gulp.spritesmith": "^6.2.1"
+    "gulp.spritesmith": "^6.2.1",
+    "run-sequence": "^1.2.2"
   }
 }

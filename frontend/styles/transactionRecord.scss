@@ -30,6 +30,7 @@ body{
       color: $color_font;
       padding: 20px 0;
       div.fancy-select ul.options{max-height: 288px;border-bottom: 1px solid #e4e4e4;}
+      .row-two .fancy-select{ margin-left: 60px; }
       div.trigger{  height: 32px;color: $color_font;  }
       select{  display: none;color: $color_font;  }
       .mt-20{ margin-top:20px; }
