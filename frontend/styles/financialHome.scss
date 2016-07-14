@@ -107,36 +107,53 @@ body{
           .account-color{  color: $color_a_hover;  }
           .manage-color{  float: right;  margin-right: 20px;  }
         }
-        .bank-add {
+        .a-add{
+          display: block;
           text-align: center;
-          margin-top: 16px;
-          padding: 20px 0;
-          .add-icon {
-            background: url("#{$assetPath}/images/wealth/bank_add.png");
-            display: inline-block;
-            width: 21px;
-            height: 21px;
-            vertical-align: middle;
-          }
-          .label-add {
-            font-size: 18px;
-            vertical-align: middle;
-          }
+          line-height: 94px;
           &:hover{
-            .add-icon{
-              background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+            .bank-add{
+              background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left -28px;
             }
           }
         }
-        div.bank-info {
+        .bank-add{
+          display: inline;
+          padding-left: 28px;
           text-align: center;
-          margin-top: 24px;
-          .label-content {
-            font-size: 18px;
-            color: $color_manage_text;
-            vertical-align: middle;
-          }
+          font-size: 18px;
+          background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left 3px;
         }
+        //.bank-add {
+        //  text-align: center;
+        //  margin-top: 16px;
+        //  padding: 20px 0;
+        //  .add-icon {
+        //    background: url("#{$assetPath}/images/wealth/bank_add.png");
+        //    display: inline-block;
+        //    width: 21px;
+        //    height: 21px;
+        //    vertical-align: middle;
+        //  }
+        //  .label-add {
+        //    font-size: 18px;
+        //    vertical-align: middle;
+        //  }
+        //  &:hover{
+        //    .add-icon{
+        //      background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+        //    }
+        //  }
+        //}
+        //div.bank-info {
+        //  text-align: center;
+        //  margin-top: 24px;
+        //  .label-content {
+        //    font-size: 18px;
+        //    color: $color_manage_text;
+        //    vertical-align: middle;
+        //  }
+        //}
       }
     }
     .list-title{

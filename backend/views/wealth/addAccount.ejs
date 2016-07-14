@@ -79,9 +79,9 @@
 							<% if(cashAccount && cashAccount.status*1 == 1){ %>
 								<span class="add-bank-btn no-bg">等待银行汇款</span>
 							<% }else if(cashAccount && cashAccount.status*1 == 2){ %>
-								<a class="add-bank-btn" href="/wealth/bindingSuccess">确认银行汇款</a>
+								<a class="add-bank-btn" href="/wealth/bindingSuccess"><span>确认银行汇款</span></a>
 							<% }else{ %>
-								<a class="add-bank-btn" href="/wealth/bindingBankAccount">添加银行账户</a>
+								<a class="display-block" href="/wealth/bindingBankAccount"><span class="add-bank-btn">添加银行账户</span></a>
 							<% } %>
 						</div>
 					</div>

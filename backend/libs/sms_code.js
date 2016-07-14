@@ -152,7 +152,7 @@ exports.sendCode = function (req, res, next) {
         var sms    = generate_code(smsType);
         var params = {
             "phone" : payPhone,
-            "message" : '您的易煤网资金账户正在发生' + amount + '元的交易，校验码：' + sms + '，请确保信息安全，切勿泄露！唯一热线：4009601180.【易煤网】'
+            "message" : '您的易煤网资金账户正在发生' + amount + '元的交易，校验码：' + sms + '，请确保信息安全，切勿泄露！唯一热线：4009601180.'
         };
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
             if (err) return next(err);
