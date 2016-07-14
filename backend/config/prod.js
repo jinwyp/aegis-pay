@@ -14,10 +14,15 @@ var config = {
     },
     logdir:'../logs/',
     redis      : {
-        host : process.env.REDIS_HOST,   // 这个应该不是这个地址
-        port : process.env.REDIS_PORT,
+        host : process.env.redis_host,   // 这个应该不是这个地址
+        port : process.env.redis_port,
         db   : 0
-    }
+    },
+    redis_notification: {
+        host: process.env.notification_redis_host,
+        port: process.env.notification_redis_port,
+        db: 0
+    },
 };
 
 module.exports = config;

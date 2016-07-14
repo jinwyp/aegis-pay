@@ -17,7 +17,12 @@ var config = {
         port : '6379',
         db   : 0
     },
-    site_page: 'https://www-staging.yimei180.com'
+    site_page: 'https://www-staging.yimei180.com',
+    redis_notification: {
+        host: '10.100.10.1',
+        port: 6379,
+        db: 0
+    }
 };
 
 module.exports = config;

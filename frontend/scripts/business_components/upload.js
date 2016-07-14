@@ -80,7 +80,34 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		});
 	}
 
-	// 图片格式
+	/**
+	 * 批量移除附件
+	 * @param idList string 附件id
+	 * @param callback
+	 */
+	function fileBatchRemove(idList, callback) {
+		var fileArr = [];
+
+		idList = idList.split(',');
+		for(var i = 0, s = idList.length; i < s; i++) {
+			if(idList[i]) {
+				fileArr.push(idList[i]);
+			}
+		}
+
+		if(fileArr.length > 0) {
+			$.ajax({
+				url: '/api/del-file',
+				data: {id: fileArr},
+				type: 'POST',
+				success: function(data){
+					callback && typeof callback === "function" && callback(data);
+				}
+			});
+		}
+	}
+
+	// 附件格式校验
 	function filterFormat(filesArr, typeList) {
 		var results = false,
 			tagType = filesArr[0].name.substr(filesArr[0].name.lastIndexOf('.') + 1);
@@ -95,6 +122,7 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		initUpload: function() {		},
 		ajaxFileUpload: ajaxFileUpload,				//上传附件
 		ajaxFileRemove: ajaxFileRemove,				//移除附件
+		fileBatchRemove: fileBatchRemove,			//移除附件.批量
 		filterFormat: filterFormat,					//格式验证
 
 		init: function(){
