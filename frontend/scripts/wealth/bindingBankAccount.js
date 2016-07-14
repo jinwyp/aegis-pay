@@ -323,7 +323,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                             },
                             success : function(data){
                                 if(data.success){
-                                    location.href='/wealth/bindingSuccess?userId='+$("#userId").val();
+                                    location.href='/wealth/bindingSuccess';
                                 }else{
                                     $('.submitTotal').find(".errorMsg").text(data.error);
                                 }
