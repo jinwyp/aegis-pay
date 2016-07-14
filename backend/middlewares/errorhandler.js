@@ -17,6 +17,8 @@ var BusinessError = require('../errors/BusinessError');
 var MethodArgumentNotValidError = require('../errors/MethodArgumentNotValidError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
 var UnauthorizedAccessError = require('../errors/UnauthorizedAccessError');
+var cache = require('../libs/cache');
+var config = require('../config');
 
 var inspect = require('util').inspect;
 exports.PageNotFoundMiddleware = function(req, res, next) {
@@ -93,7 +95,10 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
 };
 
 
-
+var errorMessage = function (req,newErr) {
+    return "requestHeader:\t"+JSON.stringify(req.headers)+"\nrequestUrl:\t"+req.originalUrl+"\nformData:\t"+
+        JSON.stringify(req.query)+"\nrequestBody:\t"+JSON.stringify(req.body)+"\n"+newErr.message+newErr.stack;
+};
 
 
 exports.ProductionHandlerMiddleware = function(err, req, res, next) {
@@ -104,6 +109,18 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
         newErr.stack = err.stack;
     }else{
         newErr = err;
+        //当是nodejs报错,并且是500错误
+        if(newErr.status==500) {
+            var smsMessage = {
+                to:config.to,
+                cc:"",
+                subject:"pay system alert",
+                body:errorMessage(req,newErr),
+                from:config.from
+            };
+            logger.error(smsMessage);
+            cache.pub(config.notification_queue,JSON.stringify(smsMessage));
+        }
     }
 
     res.status(newErr.status);
