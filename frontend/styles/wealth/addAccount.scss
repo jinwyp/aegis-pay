@@ -67,6 +67,9 @@ $dark:#000000;
 .display-none{
 	display:none;
 }
+.display-block{
+	display:block;
+}
 .relative{
 	position:relative;
 }
@@ -216,6 +219,15 @@ $dark:#000000;
 				@include width(58%);
 				color:$gray4;
 				text-indent:34px;
+			}
+			.display-block{
+				display:block;
+				&:hover{
+					.add-bank-btn{			
+						color:#00b7ec;
+						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;		
+					}
+				}	
 			}
 			.add-bank-btn{
 				padding-left:32px;

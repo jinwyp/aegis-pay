@@ -8,6 +8,12 @@ var client = new Redis({
     db   : config.redis.db
 });
 
+var pub = new Redis({
+    port: config.redis_notification.port,
+    host: config.redis_notification.host,
+    db: config.redis_notification.db,
+});
+
 client.on('error', function (err) {
     if (err) {
         logger.error('Connect to redis error, check your redis config', err);
@@ -15,4 +21,12 @@ client.on('error', function (err) {
     }
 });
 
-module.exports = client;
+pub.on('error', function (err) {
+    if (err) {
+        logger.error('connect to pub redis error, check your redis config', err);
+        process.exit(1);
+    }
+});
+
+exports.client = client;
+exports.pub = pub;

@@ -48,7 +48,7 @@ body{
       }
       span{ margin: 0 10px 0 20px; vertical-align: middle;}
       select{  display: none;color: $color_font;  }
-      div.fancy-select{width: 120px;}
+      div.fancy-select{width: 120px;  margin-left: 20px;}
       span.to{margin: 0 10px 0 7px;}
       div.trigger{  width: 120px;min-width:120px;height: 32px;color: $color_font;  }
       .record-number{width: 200px;}
