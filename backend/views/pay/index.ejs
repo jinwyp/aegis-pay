@@ -27,6 +27,8 @@
           <p>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
         </li>
         <li>支付<span><%= formatMoney(order.totalMoney) %></span>元</li>
+        <!--请不要删除以下隐藏标签,用户短信验证码提示信息中金额字段取值-->
+        <input type='hidden' name='amount' value='<%= order.totalMoney %>'>
       </ul>
       <ul class='valid'>
         <%- include ../../custom_components/ccapimg-modal/form-part %>
