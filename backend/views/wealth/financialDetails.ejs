@@ -19,7 +19,7 @@
             <form class="form-inline">
                 <div class="form-row" >
                     <div class="form-group form-search indexHigh">
-                        <label class="col-sm-4 control-label" for="orderCategory">类型:</label>
+                        <label class="col-sm-5 control-label" for="orderCategory">类型:</label>
                         <select name="orderCategory" id="orderCategory" >
                             <% formSelectOrderCategory.forEach(function(order){ %>
                             <option value="<%= order.value %>" <% if (order.selected) { %> selected <% } %> ><%= order.text %></option>
@@ -41,11 +41,9 @@
                             <!--<span class="input-date-icon" ></span>-->
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row ">
-                    <div class="form-group form-search">
-                        <label class="col-sm-4 control-label" for="orderSearchType"></label>
+                    <div class="form-group form-search form-search-small">
+                        <label class="sr-only" for="orderSearchType">查询类型</label>
                         <select name="orderSearchType" id="orderSearchType" class="">
 
                             <% formSelectOrderSearchType.forEach(function(order){ %>
@@ -53,12 +51,20 @@
                             <% }) %>
                         </select>
                     </div>
-                    <div class="form-group form-search">
-                        <label class="sr-only" for="orderSearchText">交易状态</label>
-                        <input type="text" class="form-control input-text input-box" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
+
+                    <div class="form-group form-search form-search-big">
+                        <label class="sr-only" for="orderSearchText">查询类型</label>
+                        <input type="text" class="form-control input-text" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
+                        <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
                     </div>
 
-                    <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
+
+
+
+                </div>
+
+                <div class="form-row ">
+
                 </div>
 
             </form>
