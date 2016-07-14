@@ -222,22 +222,20 @@ $dark:#000000;
 			}
 			.display-block{
 				display:block;
-				line-height:200px;
 				&:hover{
 					.add-bank-btn{
 						color:#00b7ec;
-						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -29px;
+						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 					}
 				}
 			}
 			.add-bank-btn{
-				display:inline-block;
 				padding-left:32px;
-				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left 2px;
+				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left 3px;
 				color:#007193;
 				@include fontSize(18px);
 				@include fontWeight;
-				line-height:24px;
+				line-height:200px;
 				&.no-bg{
 					background:none;
 					padding-left:0;
@@ -248,7 +246,7 @@ $dark:#000000;
 				}
 				&:hover{
 					color:#00b7ec;
-					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -29px;
+					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 				}
 			}
 		}
