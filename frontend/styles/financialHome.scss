@@ -276,7 +276,7 @@ body{
         margin: 10px 1px;
       }
       .form-search {
-        width: 255px;
+        width: 160px;
         label {
           font-size: $size_font_normal;
           color: $color_text_gray;
@@ -289,20 +289,21 @@ body{
         }
         .label-timeto{
           width:30px;
-          margin-left: -26px;
+          margin-left: 5px;
         }
 
         .input-text {
           font-size: $size_font_normal;
           //color: $color_text_select_gray;
-          width: 170px;
-          height:28px;
-          border-radius:0px;
+          width: 180px;
+          height:30px;
+          border-radius:2px;
           //border: 0px;
           //outline: 1px solid $color_border_input_gray;
           //outline-offset:0px;
           box-shadow: none;
           //-webkit-appearance: none;
+          margin-right: 10px;
         }
 
         .input-date{
@@ -310,7 +311,7 @@ body{
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) -64px);
+          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) -63px);
         }
 
         .input-date-icon{
@@ -321,12 +322,19 @@ body{
           line-height: 15px;
           @include sprite($icon-calendar-gray);
         }
-        .input-box {
-          width: 240px;
+
+        .fancy-select{
+          .trigger{
+            min-width: 100px;
+          }
+          width: 100px;
         }
       }
       .form-search-big{
-        width: 470px;
+        width: 360px;
+      }
+      .form-search-small{
+        width: 102px;
       }
       .table-box{
         padding: 5px 30px;

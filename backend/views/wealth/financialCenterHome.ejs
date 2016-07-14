@@ -43,7 +43,7 @@
                     <a class="a-link manage-color" href="/wealth/addAccount">管理</a>
                 </div>
                 <!--<a class="add-bank a-add" href="/wealth/bindingBankAccount">-->
-                    <!--<span class="span-icon span-text">添加银账户</span>-->
+                    <!--<span class="span-icon span-text">添加银行账户</span>-->
                 <!--</a>-->
                 <!--<div class="add-bank">-->
                     <!--<span class="span-text">资金账户正在开通</span>-->
@@ -89,7 +89,7 @@
                 <% if(typeof recordList && recordList.length>0){%>
                     <%for(var i=0;i<recordList.length;i++){%>
                     <tr class="line">
-                        <td width="60"><div><%= dateformat(recordList[i].createTime) %></div></td>
+                        <td width="60"><div><%= recordList[i].createTime %></div></td>
                         <td width="150"><div><%= recordList[i].typeName %></div></td>
                         <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
                         <td width="100">

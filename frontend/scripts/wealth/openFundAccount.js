@@ -157,7 +157,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                             self.els.$smscodeErr.text('验证码错误！').show();
                         } else {
                             self.els.$pass1.focus();
-                            self.els.$passFormatErr.text('支付密码不能和登陆密码相同！').show();
+                            self.els.$passFormatErr.text('支付密码不能和登录密码相同！').show();
                         }
                         self.els.$submit.removeClass('disable');
                     }

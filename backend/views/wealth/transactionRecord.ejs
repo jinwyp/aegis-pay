@@ -36,7 +36,7 @@
             </div>
 
             <div class="search-row row-two mt-20">
-                <span>编号:</span>
+                <!--<span>编号:</span>-->
                 <select name="searchType" id="searchType">
                     <option value="0">全部</option>
                     <option value="1" <%if(searchType===1){ %>selected<% } %>>订单编号</option>
@@ -70,7 +70,7 @@
                 <%if(typeof recordList && recordList.length>0){%>
                     <%for(var i in recordList){%>
                     <tr class="line">
-                        <td width="80"><%=dateformat(recordList[i].createTime)%></td>
+                        <td width="80"><%=recordList[i].createTime%></td>
                         <td width="60"><%=recordList[i].typeName%></td>
                         <td width="160" class="coal-target">
                             <div class="title" title="<%=sellInfoTitleAppend(recordList[i].deliveryProvince,recordList[i].deliveryPlace,
