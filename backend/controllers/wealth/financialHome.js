@@ -131,7 +131,9 @@ exports.financialDetails = function (req, res, next) {
             {id:'1', value:'1', text:'充值', selected:false},
             {id:'2', value:'2', text:'提现', selected:false},
             {id:'3', value:'3', text:'销售', selected:false},
-            {id:'4', value:'4', text:'采购', selected:false}
+            {id:'4', value:'4', text:'采购', selected:false},
+            {id:'5', value:'5', text:'验卡打款', selected:false},
+            {id:'6', value:'6', text:'退款', selected:false}
         ],
         formSelectOrderSearchType:[
             {id:'0', value:'0', text:'全部'},
@@ -206,13 +208,15 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     //order.createDate = order.createDate.substr(0,4) + '.' + order.createDate.substr(4,2) + '.' + order.createDate.substr(6,2)
                     order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1.$2.$3");
 
-                    if (order.type === 1){order.type = '充值'}
-                    if (order.type === 2){order.type = '提现'; order.money = -order.money;}
-                    if (order.type === 3){order.type = '销售'}
-                    if (order.type === 4){order.type = '采购'; order.money = -order.money;}
-                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
-
                     if (!order.orderId){order.orderId = '-'}
+
+                    if (order.type === 1){order.type = '充值'; }
+                    if (order.type === 2){order.type = '提现'; order.money = -order.money;}
+                    if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 4){order.type = '采购'; order.money = -order.money; order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
+                    if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
+
                 });
 
                 if (req.query.filetype === 'excel'){
@@ -225,7 +229,6 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             '金额',
                             '账户余额',
                             '摘要',
-                            '订单号',
                             '对方账号',
                             '对方账号名称'
                         ],
@@ -235,7 +238,6 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                             'money',
                             'balanceMoney',
                             'type',
-                            'orderId',
                             'otherFundAccount',
                             'otherCompanyName'
                         ],
