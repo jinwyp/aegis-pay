@@ -64,7 +64,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 ||source.data.order.status==='WaitPayRefundMoney'
                 ||source.data.order.status==='WaitPayTailMoney')&&source.data.order.confirmDeliveryTime===null){
                 stepName='纠纷处理';
-                stepDate=source.data.order.disputeCreateTime ||"";
+                stepDate=source.data.order.disputeCompleteTime ||"";
             }else{
                 stepName='确认提货';
                 if(step==3){

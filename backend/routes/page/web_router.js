@@ -15,8 +15,9 @@ var compactController         = require('../../controllers/compact');
 var headerController          = require('../../controllers/header');
 var footerController          = require('../../controllers/footer');
 var orderController           = require('../../controllers/order/orderDetail');
-var noticeController           = require('../../controllers/order/notice');
+var noticeController          = require('../../controllers/order/notice');
 var confirmDeliveryController = require('../../controllers/confirmDelivery');
+var deliveryDetail            = require('../../controllers/deliveryDetail');                    //确认提货详情页
 var subHeaderController       = require('../../controllers/subHeader');
 var orderCloseControl         = require('../../controllers/order/orderClose');                  //关闭订单 模块(控制文件路径)
 var settlementFormControl     = require('../../controllers/settlement/settlementForm');         //结算单开具页面 模块(控制文件路径)
@@ -75,6 +76,7 @@ router.get('/pay/success', payCtl.success);
 
 //提货
 router.get('/confirmDelivery', confirmDeliveryController.confirmDelivery);                      //确认提货
+router.get('/deliveryDetail', deliveryDetail.deliveryDetail);                                   //确认提货详情页
 router.get('/confirmDelivery/confirmComplete', confirmComplete.confirmComplete);                //确认完成页面
 router.get('/confirmDelivery/sellerDelivery', sellerDeliveryController.sellerDelivery);         //提货确认审核
 router.get('/returnSeller', returnDetailController.returnSeller);                               //确认提货被退回
