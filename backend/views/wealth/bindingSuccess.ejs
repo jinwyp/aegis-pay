@@ -14,7 +14,7 @@
     <div id="bindingSuccess">
         <div class="bindingSuccessWrap">
 
-            <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4被删除,5错误3次以上)-->
+            <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4错误3次以上,5被删除)-->
             <% if(userAccount.status==1){%>
             <% var statusObj = statusObj[0]%>
             <% include ../global/order/statusBar %>
@@ -72,7 +72,7 @@
                     <div>
                         <p>出金账户已<span>添加成功</span></p>
                         <p>您可以进行<span>提现操作</span></p>
-                        <a href="javascript:void(0)" class="withdraw">立即提现</a>
+                        <a href="/drawCash" class="withdraw">立即提现</a>
                     </div>
                 </div>
                 <!--确认金额成功页面结束-->
