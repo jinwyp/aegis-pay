@@ -7,14 +7,14 @@
 .linkBtn {
   font-size: 12px;
   font-family: $ffYh;
-  color: #3f87a2;
+  color: #007193;
   text-decoration: none;}
 .linkBtn:link {
-  color: #00b7ec;
+  color: #007193;
   text-decoration: none;}
 .linkBtn:hover {
   color: #00b7ec;
-  text-decoration: underline;}
+  text-decoration: none;}
 
 .formTab {
   width: 100%;
@@ -30,6 +30,11 @@
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
+  }
+  
+  .txt_r {
+    padding-top: 12px;
+    font-size: 14px;
   }
 }
 
@@ -112,7 +117,7 @@
     width: 260px;
     padding: 30px 15px 30px 30px;
     background: #f5f5f5;
-    height: 368px;
+    height: 374px;
   }
   .mainWrap {
     width: 678px;

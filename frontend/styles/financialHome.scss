@@ -107,26 +107,26 @@ body{
           .account-color{  color: $color_a_hover;  }
           .manage-color{  float: right;  margin-right: 20px;  }
         }
-        .bank-add {
+        .add-bank{
+          display: block;
           text-align: center;
-          margin-top: 16px;
-          padding: 20px 0;
-          .add-icon {
-            background: url("#{$assetPath}/images/wealth/bank_add.png");
-            display: inline-block;
-            width: 21px;
-            height: 21px;
-            vertical-align: middle;
-          }
-          .label-add {
-            font-size: 18px;
-            vertical-align: middle;
-          }
+          line-height: 92px;
+          font-size: 18px;
+        }
+        .a-add{
           &:hover{
-            .add-icon{
-              background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+            .span-icon{
+              background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left -28px;
             }
           }
+        }
+        .span-text{
+          display: inline;
+          text-align: center;
+        }
+        .span-icon{
+          padding-left: 28px;
+          background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left 3px;
         }
         div.bank-info {
           text-align: center;

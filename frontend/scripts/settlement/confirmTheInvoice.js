@@ -183,6 +183,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
             //     return $("#totalError").val("请按提示信息修改错误");
             // }
 
+            upload.fileBatchRemove( $('#delFileId').val());           //批量删除 无效附件
+
             var param = $("#invoiceForm").serialize();
             $.post("/settlement/submitInvoice", param, function(data) {
                 if (data.success == false) {
@@ -289,12 +291,19 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     //移除附件
     $tempDel.click(function() {
-        upload.ajaxFileRemove($(this), '', function() {
-            $fBox_1.hide();
-            $fBox_2.show();
-            $fileViewImg.attr('src', '');
-            $fileId.val('');
-        });
+        //upload.ajaxFileRemove($(this), '', function() { ... });
+
+        var delId = this.getAttribute('data-id'),
+            $fileIds = $('#delFileId');
+        if(delId) {
+            $fileIds.val($fileIds.val() +','+ delId);       //记录删除的附件
+        }
+
+        $fBox_1.hide();
+        $fBox_2.show();
+        $fileViewImg.attr('src', '');
+        $fileId.val('');
     });
+
 
 });

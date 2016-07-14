@@ -3,17 +3,31 @@
 * */
 
 
-requirejs(['jquery', 'pay.upload', 'bootstrap', 'message'], function($, upload, bootstrap, message){
+requirejs(['jquery', 'jQuery.fn.datePicker', 'pay.upload', 'bootstrap', 'message'], function($, datePicker, upload, bootstrap, message){
 
     var apiHost = 'http://server.180.com/';			// 模拟域名
 
 
+    // 绑定日期框
+    var $startIpt = $('[name=startIpt]'),
+        $endIpt = $('[name=endIpt]');
 
-    var $tab = $('#listBox');
-
-    $tab.on('click', 'th', function() {
-        console.log( $(this).html() );
+    $startIpt.pickadate({
+        format: 'yyyy-mm-dd',
+        startDate: new Date(),
+        clear: '清空',
+        changeDate: function(e) {
+            $endIpt.pickadate({
+                format: 'yyyy-mm-dd'
+            });
+        }
     });
+    $endIpt.pickadate({
+        format: 'yyyy-mm-dd'
+    });
+
+
+
 
 
 
@@ -51,7 +65,6 @@ requirejs(['jquery', 'pay.upload', 'bootstrap', 'message'], function($, upload, 
         $msg_alt = $('#msg_alt'),           //警告框
         $msg_info = $('#msg_info'),         //信息框
         $msg_done = $('#msg_done');         //完成框
-
 
     $msg_err.click(function () {
         message({

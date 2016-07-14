@@ -32,6 +32,9 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
           $("input[name='checkAmount']").on("blur",function(){
               totalAmout();
           });
+          $(document).on("click",".del",function(){
+              totalAmout();
+          });
 
           $("#qualityList .fileupload").on("click",function(){
               var qualityListLen=$(document).find(".files").eq(0).children(".file").length;

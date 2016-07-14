@@ -52,15 +52,16 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
             $formSelectOrderCategory.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderCategory = this.value;
+                searchQuery.currentPage = 1;
             });
             $formSelectOrderSearchType.fancySelect().on('change.fs', function() {
                 $(this).trigger('change.$');        //demand.fancySelect.trigger("update");
                 searchQuery.orderSearchType = this.value;
+                searchQuery.currentPage = 1;
                 if (searchQuery.orderSearchType === '0') {vm.orderSearchTextPlaceHolder = ''; vm.orderSearchText = '';}
                 if (searchQuery.orderSearchType === '1') {vm.orderSearchTextPlaceHolder = '请输入交易流水号'}
                 if (searchQuery.orderSearchType === '2') {vm.orderSearchTextPlaceHolder = '请输入对方账号名称'}
                 if (searchQuery.orderSearchType === '3') {vm.orderSearchTextPlaceHolder = '请输入订单号'}
-
             });
 
             $('#downloadExcel').on('show.bs.modal', function (e) {
@@ -155,8 +156,11 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     };
 
     $( document ).ready( function() {
-        app.init();
-        app.getFinancialDetailsApi(searchQuery);
+        var url = window.location.href;
+        if (url.indexOf('financialDetails') > -1){
+            app.init();
+            app.getFinancialDetailsApi(searchQuery);
+        }
     });
 
     //提醒签订合同
@@ -260,7 +264,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
 
     //查看提货详情
     $(".btn-deliveryDetail").click(function(){
-        location.href="/getBuyOrderDetail?orderId="+$(this).data("id");
+        location.href="/deliveryDetail?orderId="+$(this).data("id");
     });
 
     //查看退货详情
