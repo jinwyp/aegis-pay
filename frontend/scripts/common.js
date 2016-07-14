@@ -37,7 +37,6 @@ require.config({
         'pay.smscode'                       : 'business_components/sms-code',
         'datachecker'                       : 'business_components/datachecker',
         'avalon.pagination'                 : 'avalon_components/pagination'
-
     },
     packages : [],
     shim     : {
@@ -106,7 +105,6 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 		$('#modal-server-error').modal(true);
 	};
 
-
 // 底部吸底
     function throttle(fn, threshhold, scope) {
         threshhold || (threshhold = 300);
@@ -118,7 +116,7 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
             var now = +new Date,
                 args = arguments;
             if (last && now < last + threshhold) {
-                // hold on to it
+                // hold on to it    
                 clearTimeout(deferTimer);
                 deferTimer = setTimeout(function () {
                     last = now;
