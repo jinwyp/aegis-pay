@@ -35,7 +35,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
     var newErr = null;
 
     if (typeof err.type === 'undefined'){
-        newErr = new SystemError(500, err.message, err);
+        newErr = new SystemError(500, err.message||'系统出错了，系统已自动通知我们的团', err);
         newErr.stack = err.stack;
     }else{
         newErr = newErr || err;
@@ -105,7 +105,7 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     var newErr = null;
 
     if (typeof err.type === 'undefined'){
-        newErr = new SystemError(500, err.message, err);
+        newErr = new SystemError(500, err.message||'系统出错了，系统已自动通知我们的团', err);
         newErr.stack = err.stack;
     }else{
         newErr = err;
