@@ -1,14 +1,7 @@
 /*
 * 页面脚本
 * */
-
-require.config({
-    paths: {
-        sms_code: 'business_components/sms-code'
-    }
-});
-
-requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code){
+requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.fancySelect'], function($,sms_code){
 
     sms_code.init("");
     // pay.init();

@@ -1,11 +1,10 @@
-require.config({
+requirejs.config({
   paths: {
-    // sms_code: 'pay/blocks/sms_code',
-    pay: 'pay/blocks/pay'
+    'pay-block': 'pay/blocks/pay'
   }
 });
 
-require(['pay.smscode', 'pay'], function(sms_code, pay){
+require(['pay.smscode', 'pay-block'], function(sms_code, pay){
   sms_code.init();
   pay.init();
 })
