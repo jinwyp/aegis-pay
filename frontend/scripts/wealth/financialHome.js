@@ -155,8 +155,11 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     };
 
     $( document ).ready( function() {
-        app.init();
-        app.getFinancialDetailsApi(searchQuery);
+        var url = window.location.href;
+        if (url.indexOf('financialDetails') > -1){
+            app.init();
+            app.getFinancialDetailsApi(searchQuery);
+        }
     });
 
     //提醒签订合同

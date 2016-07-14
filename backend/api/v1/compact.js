@@ -23,7 +23,7 @@ exports.uploadFile = function (req, res, next) {
     utils.makeDir(uploadTmp);
     //api代理，去请求java接口
     var form = new formidable.IncomingForm();
-
+    form.maxFieldsSize = 5 * 1024 * 1024;
     form.uploadDir = uploadTmp;
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);

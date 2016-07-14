@@ -289,6 +289,7 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                             return false;
                         }else{
                             $('.submitTotal').find(".errorMsg").text("");
+                            finalResult = true;
                         }
                     }
                 });
@@ -306,6 +307,9 @@ requirejs(['jquery','sms_code','devbridge-autocomplete','bootstrap','jquery.fanc
                         $(".childBankName").find(".errorMsg").text("请输入关键字，在下拉结果中选择开户银行支行名称");
                         $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                         return false;
+                    }else{
+                        $(".childBankName").find(".errorMsg").text("");
+                        $('.submitTotal').find(".errorMsg").text("");
                     }
                     if(finalResult!="undefined" && finalResult){
 

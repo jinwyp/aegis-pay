@@ -17,9 +17,9 @@
                 <div class="leftBan w90"><span>* </span>提货数量：</div>
                 <div class="rightBan">
                     <%if(typeof deliveryAmount !="undefined"){%>
-                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" />
+                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
                     <%}else{%>
-                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6"  />
+                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
                     <%}%>
                     <span class="unit">吨</span>
                 </div>
