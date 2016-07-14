@@ -36,11 +36,15 @@
                     <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
                         <span class="status">提货已确认，等待卖家审核</span>
                     <% }else if(order.status=='WaitSettleAccounts'){ %>
+                        <%if(order.disputeCreateTime===null){%>
                         <span class="status">已确认提货，待卖家结算</span>
+                        <%}else{%>
+                        <span class="status">纠纷协商完成，待卖家结算</span>
+                        <%}%>
                     <% }else if(order.status=='WaitVerifySettle'){ %>
                         <span class="status">已开具结算单，等待买家确认</span>
                     <% }else if(order.status=='ReturnedSettleAccounts'){ %>
-                        <span class="status">结算单被退回，等待卖家修改</span>
+                        <span class="status">已退回结算单，等待卖家修改</span>
                     <% }else if(order.status=='WaitPayRefundMoney'){ %>
                         <span class="status">结算已完成，等待卖家退款</span>
                     <% }else if(order.status=='WaitPayTailMoney'){ %>

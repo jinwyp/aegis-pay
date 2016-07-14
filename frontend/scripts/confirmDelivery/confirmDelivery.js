@@ -13,6 +13,28 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
 
       },
       "modifyData" : function(){
+            // 页面加载计算总和
+              function totalAmout(){
+                  var $deliveryAmount=$("#deliveryAmount"),
+                      totalAmount=0,
+                      checkAmountLen=$("input[name='checkAmount']").length;       // 提货吨数数量
+
+                  for(var i=0;i<checkAmountLen;i++){
+                      totalAmount=totalAmount+Number($("input[name='checkAmount']").eq(i).val());
+                  }
+                  $deliveryAmount.val(totalAmount);
+              }
+
+              if($("input[name='checkAmount']").eq(1).val()!=""){     //判断是否第一次进入
+                  totalAmout();
+              }
+
+          $("input[name='checkAmount']").on("blur",function(){
+              totalAmout();
+          });
+          $(document).on("click",".del",function(){
+              totalAmout();
+          });
 
           $("#qualityList .fileupload").on("click",function(){
               var qualityListLen=$(document).find(".files").eq(0).children(".file").length;

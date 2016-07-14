@@ -41,19 +41,33 @@ exports.getBuyOrderDetail = function (req, res, next) {
                     break;
                 case 'WaitConfirmDelivery':
                 case 'ReturnedDeliveryGoods':
+                case 'WaitVerifyDeliveryGoods':
                     step = 3;
                     break;
                 case 'WaitSettleAccounts':
                 case 'WaitVerifySettle':
                 case 'ReturnedSettleAccounts':
-                case 'WaitVerifyDeliveryGoods':
+                case 'WaitPayRefundMoney':
+                case 'WaitPayTailMoney':
                     step = 4;
                     break;
-                    case 'WaitReceiveReceipt':
+                case 'WaitReceiveReceipt':
                     step = 5;
                     break;
                 default :
                     step=5;
+            }
+            var stepName='',stepDate='';
+            if((source.data.order.status==='WaitSettleAccounts'
+                ||source.data.order.status==='WaitVerifySettle'
+                ||source.data.order.status==='ReturnedSettleAccounts'
+                ||source.data.order.status==='WaitPayRefundMoney'
+                ||source.data.order.status==='WaitPayTailMoney')&&source.data.order.confirmDeliveryTime===null){
+                stepName='纠纷处理';
+                stepDate=source.data.order.disputeCreateTime ||"";
+            }else{
+                stepName='确认提货';
+                stepDate=source.data.order.confirmDeliveryTime ||"";
             }
             var statusObj = {
                 step     : step,        // 第几步
@@ -71,8 +85,9 @@ exports.getBuyOrderDetail = function (req, res, next) {
                         stepDate : source.data.order.paymentTime || ""
                     },
                     {
-                        stepName : '确认提货',
-                        stepDate : source.data.order.confirmDeliveryTime ||""
+                        //stepName : '确认提货',
+                        stepName : stepName,
+                        stepDate : stepDate
                     },
                     {
                         stepName : '结算',

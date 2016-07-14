@@ -87,8 +87,8 @@ exports.returnBuyer = function (req, res, next) {
 
         var source = JSON.parse(data.body);
         var content = {
-            headerTit: "确认退回页面",
-            pageTitle: "确认退回页面",
+            headerTit: "提货退回页面",
+            pageTitle: "提货退回页面",
             orderId: req.query.orderId,
             sellerId: userId,
             type: "buy",
