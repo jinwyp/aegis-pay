@@ -14,11 +14,6 @@ var plugins = gulpLoadPlugins();
 
 var rconfig = require('./rconfig');
 
-var rev = require('gulp-rev');
-var revCollector = require('gulp-rev-collector');
-var runSequence = require('run-sequence');
-
-
 
 var sourcePaths = {
     "html"               : "../backend/views/**/*",
@@ -120,10 +115,7 @@ gulp.task('release-js', ['jslint', 'components'], function(){
         }
         return rconfig;
     }))
-    .pipe(rev())
-    .pipe(gulp.dest(distPaths.javascript))
-    .pipe( rev.manifest() )
-    .pipe( gulp.dest('rev/js') );
+    .pipe(gulp.dest(distPaths.javascript));
 })
 
 gulp.task('release-sass', ['sprite'], function() {
@@ -133,27 +125,7 @@ gulp.task('release-sass', ['sprite'], function() {
             outputStyle     : 'compressed',
             errLogToConsole : true
         }).on('error', plugins.sass.logError))
-        .pipe(rev())
-        .pipe(gulp.dest(distPaths.css))
-        .pipe( rev.manifest() )
-        .pipe( gulp.dest('rev/css') );
-});
-
-gulp.task('release-images', function() {
-    return gulp.src(sourcePaths.images)
-        .pipe(rev())
-        .pipe(gulp.dest(distPaths.images))
-        .pipe( rev.manifest() )
-        .pipe( gulp.dest('rev/img') );
-});
-
-gulp.task('rev-collector', function () {
-    gulp.src(['rev/**/*.json', 'dist/styles/**/*.css'])
-        .pipe( revCollector() )
-        .pipe( gulp.dest(distPaths.css) );
-    gulp.src(['rev/**/*.json', '../backend/views/**/*.ejs'])
-        .pipe( revCollector() )
-        .pipe( gulp.dest('../backend/views') );
+        .pipe(gulp.dest(distPaths.css));
 });
 
 gulp.task('nodemon', function (cb) {
@@ -211,9 +183,6 @@ gulp.task('clean', function() {
 gulp.task('frontend', ['clean', 'sass', 'javascript', 'images', 'watch']);
 gulp.task('server', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon']);
 gulp.task('sync', ['clean',  'sass', 'javascript', 'images', 'watch', 'nodemon', 'browser-sync']);
-gulp.task('build', ['clean', 'sass', 'javascript', 'images']);
-gulp.task('release', function(){
-    runSequence('clean', ['release-images', 'release-sass', 'release-js'], 'rev-collector')
-});
+gulp.task('build', ['clean', 'release-sass', 'release-js', 'images']);
 
 gulp.task('default', ['sync']);
