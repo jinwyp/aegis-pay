@@ -71,8 +71,8 @@ var zipFile = exports.zipFile = function (req, res, next) {
         var qualityPathArray = [];
         var quantityPathArray = [];
         var output = zipsPath + req.session.user.id + '/' + req.body.orderId + '/';
-        var qualityZipName = 'confirmDelivery:quality_'+ req.session.user.id + '_' + req.body.orderId + '.zip';
-        var quantityZipName = 'confirmDelivery:quantity_'+ req.session.user.id + '_' + req.body.orderId + '.zip';
+        var qualityZipName = 'confirmDelivery_quality_'+ req.session.user.id + '_' + req.body.orderId + '.zip';
+        var quantityZipName = 'confirmDelivery_quantity_'+ req.session.user.id + '_' + req.body.orderId + '.zip';
     
         _.each(params.qualityList, function (value, index) {
             qualityPathArray.push(appUploadPath + path.basename(value.path)); // 需要压缩文件的绝对路径数组
@@ -86,6 +86,7 @@ var zipFile = exports.zipFile = function (req, res, next) {
            convert.zipFile({path : quantityPathArray, output:output, zipname: quantityZipName})
        ];
 
+       
 
 
        Promise.all(zips).then(function(result){

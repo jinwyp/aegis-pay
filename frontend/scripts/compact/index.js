@@ -1,11 +1,11 @@
-require.config({
+requirejs.config({
   paths: {
-    compact: 'compact/compact',
-    upload: 'compact/upload'
+    'compact-block': 'compact/blocks/compact',
+    'compact-upload': 'compact/blocks/upload'
   }
 });
 
-require(['compact', 'upload'], function(compact, upload){
+require(['compact-block', 'compact-upload'], function(compact, upload){
   compact.init();
   upload.init();
 });

@@ -87,7 +87,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                 $('.submitTotal').find(".errorMsg").text("");
             }
             if(!finalResult){
-                $(".vertifyCode").find(".errorMsg").text("校验码错误");
+                $(".vertifyCode").find(".errorMsg").text("校验码输入有误");
                 $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                 return false;
             }else{
@@ -282,6 +282,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                             return false;
                         }else{
                             $('.submitTotal').find(".errorMsg").text("");
+                            finalResult = true;
                         }
                     }
                 });
@@ -299,6 +300,9 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                         $(".childBankName").find(".errorMsg").text("请输入关键字，在下拉结果中选择开户银行支行名称");
                         $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
                         return false;
+                    }else{
+                        $(".childBankName").find(".errorMsg").text("");
+                        $('.submitTotal').find(".errorMsg").text("");
                     }
                     if(finalResult!="undefined" && finalResult){
 
