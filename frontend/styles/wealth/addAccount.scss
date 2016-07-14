@@ -223,11 +223,11 @@ $dark:#000000;
 			.display-block{
 				display:block;
 				&:hover{
-					.add-bank-btn{			
+					.add-bank-btn{
 						color:#00b7ec;
 						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 					}
-				}	
+				}
 			}
 			.add-bank-btn{
 				padding-left:32px;
