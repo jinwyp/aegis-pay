@@ -132,7 +132,6 @@ var generate_code = exports.generate_code = function (type, options) {
 exports.sendCode = function (req, res, next) {
     var payPhone = req.body.payPhone;
     var amount = req.body.amount;
-    var type = req.body.type;
 
     var userInfo = _.assign({}, req.session.user, {payPhone: payPhone});
     var smsType  = smsType || 'mix';
