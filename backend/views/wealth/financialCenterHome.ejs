@@ -42,44 +42,9 @@
                     <span class="fs-24 ml-10 account-color">银行账户</span>
                     <a class="a-link manage-color" href="/wealth/addAccount">管理</a>
                 </div>
-                <% if(fundAccountStatus === 1) { %>
-                    <div class="bank-add">
-                        <div class="bank-add">
-                            <a>资金账户正在开通</a>
-                        </div>
-                    </div>
-                <%} else if(fundAccountStatus === 2) {%>
-                    <% if(finance.cashBankAccount===null){ %>
-                        <% if(cashAccount && cashAccount.status*1 == 1){ %>
-                            <div class="bank-add">
-                                <a>等待银行汇款</a>
-                            </div>
-                        <% }else if(cashAccount && cashAccount.status*1 == 2){ %>
-                            <div class="bank-add">
-                                <a href="/wealth/bindingSuccess">确认银行汇款</a>
-                            </div>
-                        <% }else{ %>
-                            <div class="bank-add">
-                                <a class="add-icon"></a>
-                                <a class="a-link label-add">添加银行账户</a>
-                            </div>
-                        <% } %>
-                    <% }else{ %>
-                        <div class="bank-info">
-                            <div class="label-content"><%= finance.cashBankName %></div>
-                            <div class="label-content"><%= blankFour(finance.cashBankAccount) %></div>
-                        </div>
-                    <%}%>
-                <% } else if(fundAccountStatus === 3) { %>
-                    <div class="bank-add">
-                        <a>资金账户已被禁用</a>
-                    </div>
-                <% } else {%>
-                    <div class="bank-add">
-                        <a>资金账户已被锁定</a>
-                    </div>
-                <%}%>
-
+                <a class="a-add">
+                    <span class="bank-add">添加银账户</span>
+                </a>
             </div>
         </div>
         <!-- 充值提示框-->

@@ -16,6 +16,7 @@ exports.addAccount = function(req,res,next){
             userId:user.id
         }},function (err, resp) {
         if(err){ next(err); }
+
         var replyData = JSON.parse(resp.body);
         //后台返回正确,展现页面
         if(replyData.success) {

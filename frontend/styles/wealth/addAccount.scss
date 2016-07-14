@@ -225,13 +225,13 @@ $dark:#000000;
 				&:hover{
 					.add-bank-btn{			
 						color:#00b7ec;
-						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;		
+						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 					}
 				}	
 			}
 			.add-bank-btn{
 				padding-left:32px;
-				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left top;
+				background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left 3px;
 				color:#007193;
 				@include fontSize(18px);
 				@include fontWeight;
@@ -246,7 +246,7 @@ $dark:#000000;
 				}
 				&:hover{
 					color:#00b7ec;
-					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -21px;
+					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 				}
 			}
 		}
