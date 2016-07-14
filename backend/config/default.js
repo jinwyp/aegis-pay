@@ -54,7 +54,16 @@ var config = {
 
     member_address: 'http://10.100.20.3:3000',
     site_page: 'https://www.yimei180.com',
-    rest_address: 'http://10.100.30.1:8080/'
+    rest_address: 'http://10.100.30.1:8080/',
+    // redis配置
+    redis_notification: {
+        host: '127.0.0.1',
+        port: 6379,
+        db: 0
+    },
+    notification_queue:'mail-queue',
+    to:'server@yimei180.com',
+    from:'auto_server@yimei180.com'
 };
 
 

@@ -1,7 +1,8 @@
 var request = require('./request');
 var _       = require('lodash');
-var redis   = require('./redis');
+var redis   = require('./redis').client;
 var logger  = require('./logger');
+var redis_pub = require('./redis').pub;
 
 
 var get = function (key, callback){
@@ -65,3 +66,14 @@ var del = function () {
 };
 
 exports.del = del;
+
+
+var pub = function (channel,message) {
+    var t = new Date();
+    redis_pub.publish(channel,message);
+    //data = JSON.parse(channel);
+    var duration = (new Date() - t);
+    logger.debug('Cache', 'pub', channel,message, (duration + 'ms').green);
+};
+
+exports.pub = pub;
