@@ -135,6 +135,17 @@
   }
 }
 
+//链接按钮
+.linkBtn {
+  color: #007193;
+  text-decoration: none;
+
+  &:hover {
+    color: #00b7ec;
+    text-decoration: none;
+  }
+}
+
 //上传&下载
 .iBtn_up, .iBtn_down {
   min-width: 96px;

@@ -150,10 +150,17 @@ exports.sendCode = function (req, res, next) {
 
         // var sms    = data.sms || generate_code(smsType);
         var sms    = generate_code(smsType);
+        var message = '';
+        if(typeof(amount) == "undefined"){
+                message = '校验码：' + sms + '，请按照页面提示提交验证码，确保信息安全，切勿将校验码泄露与他人，唯一热线:4009601180!';
+        }else{
+            message = '您的易煤网资金账户正在发生' + amount + '元的交易，校验码：' + sms + '，请确保信息安全，切勿泄露！唯一热线：4009601180.';
+        }
         var params = {
             "phone" : payPhone,
-            "message" : '您的易煤网资金账户正在发生' + amount + '元的交易，校验码：' + sms + '，请确保信息安全，切勿泄露！唯一热线：4009601180.'
+            "message" : message
         };
+
         request.post({url: api_config.sendSMSCode, form: params}, function (err, data) {
             if (err) return next(err);
             var dataSMS = JSON.parse(data.body);

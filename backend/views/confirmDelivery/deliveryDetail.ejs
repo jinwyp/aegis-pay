@@ -1,0 +1,141 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/returnDetail.css">
+</head>
+
+<body>
+
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+<div id="returnDetail">
+
+    <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
+    <% var tableIndex=indexList.length %>
+    <div class="sellerDeliveryWrap">
+        <% include ../global/order/statusBar %>
+        <p class="containerTit"><span>买家提货数据</span></p>
+        <div class="infoContainer">
+            <div class="deliveryAmount">
+                提货数量：<b><%= order.deliveryAmount%></b> 吨
+            </div>
+            <%if(order.pricingMethodId==1){%>
+                <div class="tableContainer">
+                <div class="tableTit">请审核检测结果</div>
+                <%for(var j=0;j<tableIndex;j++){%>
+                    <%if(totalCount<=10){%>
+                        <div class="tableWrap">
+                            <table class="checkList">
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                        <%if(tdCount==1){%>
+                                            <td width="55"><%= i %></td>
+                                        <%}else if(tdCount==2){%>
+                                            <td width="105"><i class="calIcon"></i><%= i %></td>
+                                        <%}else{%>
+                                            <td width="105"><%= i %></td>
+                                        <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<9-tdCount;i++){%>
+                                        <td width="105"></td>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <%for(var i in indexList[j]){%>
+                                        <td><%= indexList[j][i]%></td>
+                                    <%}%>
+                                    <%for(var i=0;i<9-tdCount;i++){%>
+                                        <td width="105"></td>
+                                    <%}%>
+                                </tr>
+                            </table>
+                        </div>
+                    <%}else{%>
+                        <div class="tableWrap">
+                            <table class="checkList">
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                        <%if(tdCount<=10){%>
+                                            <%if(tdCount==1){%>
+                                                <td width="55"><%= i %></td>
+                                            <%}else if(tdCount==2){%>
+                                                <td width="105"><i class="calIcon"></i><%= i %></td>
+                                            <%}else{%>
+                                                <td width="105"><%= i %></td>
+                                            <%}%>
+                                        <%}%>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                        <%if(tdCount<=10){%>
+                                            <%if(tdCount==1){%>
+                                                <td rowspan="3"><%=j+1%></td>
+                                            <%}else{%>
+                                                <td><%= indexList[j][i]%></td>
+                                            <%}%>
+                                        <%}%>
+                                    <%}%>
+                                </tr>
+                                <tr class="thead">
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount>10){%>
+                                    <td><%= i %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<19-tdCount;i++){%>
+                                    <td></td>
+                                    <%}%>
+                                </tr>
+                                <tr>
+                                    <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
+                                    <%if(tdCount>10){%>
+                                    <td><%= indexList[j][i] %></td>
+                                    <%}%>
+                                    <%}%>
+                                    <%for(var i=0;i<19-tdCount;i++){%>
+                                    <td></td>
+                                    <%}%>
+                                </tr>
+                            </table>
+                        </div>
+                    <%}%>
+                <%}%>
+            </div>
+            <%}%>
+            <div class="downWrap">
+                <div class="leftBan">质量确认单</div>
+                <div class="rightBan">
+                    <a href="<%= qualityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
+                    <p>共<span><%= qualityList.length%></span>个文件，请下载查看。</p>
+                </div>
+            </div>
+            <% if(order.pricingMethodId==1){%>
+                <div class="downWrap">
+                    <div class="leftBan">数量确认单</div>
+                    <div class="rightBan">
+                        <a href="<%= quantityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
+                        <p>共<span><%= quantityList.length%></span>个文件，请下载查看。</p>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+
+    </div>
+
+</div>
+<input type="hidden" value="<%= order.id%>" id="orderId" />
+<input type="hidden" value="<%= sellerId%>" id="userId" />
+
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/return/returnDetail.js"></script>
+
+</body>
+</html>
+
+
+

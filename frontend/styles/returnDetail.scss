@@ -14,7 +14,7 @@
 
 	.containerTit{font-size: 18px;color:#333;margin-bottom: 10px;margin-top:30px;}
 	.containerTit span{display: inline-block;border-left:2px solid #01b7ec;padding-left: 10px;}
-	.infoContainer{border: 2px solid #ccc;width: 100%;padding-bottom: 30px;}
+	.infoContainer{border: 2px solid #ccc;width: 100%;padding-bottom: 30px;min-height: 350px;}
 	.infoContainer .deliveryAmount{padding:18px 0;font-size: 14px;color:#333;border-bottom: 1px dashed #ddd;padding-left: 20px;}
 	.infoContainer .tableContainer{padding-left: 20px;padding-right: 20px;font-size: 12px;color:#333;}
 	.infoContainer .tableTit{font-size: 14px;color:#333;margin-top: 18px;margin-bottom: 10px;}
@@ -108,4 +108,6 @@
 	.dlDetail .printer{display: inline-block;width:18px;height:18px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -551px -378px;vertical-align: middle;top: -2px;position:relative;margin-right: 5px;}
 	.dlDetail:hover{text-decoration: none;opacity: .8;}
   }
+
 }
+.fade{display: none;}

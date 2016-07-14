@@ -52,14 +52,8 @@ exports.addInvoiceInfo = function (req, res, next) {
 		
 		Object.assign(replyData, resBody);
 		console.log('/* ---replyData-99988888--------------------------------------- */');
-		//replyData.data.receiptTypeList = [
-		//	{ type: 'type_001', sequence: 1, name: '增值税专用发票' },
-		//	{ type: 'type_002', sequence: 2, name: '增值税专用发票_2' },
-		//	{ type: 'type_003', sequence: 3, name: '增值税专用发票_3' },
-		//	{ type: 'type_004', sequence: 4, name: '增值税专用发票_4' }];
-		console.dir(replyData.data.receiptTypeList);
 		console.dir(replyData);
-		//console.log(replyData.receipt.companyName);
+
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 	});
 };

@@ -35,7 +35,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateFrom) postBody.startDate = req.body.orderDateFrom;
     if (req.body.orderDateTo) postBody.endDate = req.body.orderDateTo;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
-    if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
+    if (req.body.orderSearchType && req.body.orderSearchText.trim()) postBody.searchType = req.body.orderSearchType;
     if (req.body.orderSearchText.trim()) postBody.content = req.body.orderSearchText.trim();
 
 

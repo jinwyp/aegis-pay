@@ -2,7 +2,6 @@
     <label>手机号码：</label><i class='phone'><%= phoneFormat(user.payPhone || user.securephone) %></i><span id='send_code' class='send_code btn_blue_small' data-toggle='modal' role='button' data-target='#imgcodeModal'>发送校验码</span>
     <p class='tip-error'></p>
     <input type='hidden' name='payPhone' value='<%= user.payPhone || user.securephone %>'>
-    <input type='hidden' name='amount' value='<%= order.totalMoney %>'>
 </li>
 <li>
   <label>校&nbsp;验&nbsp;码&nbsp;：</label><input type="text" placeholder='请勿泄露' name="sms_code" value="">
