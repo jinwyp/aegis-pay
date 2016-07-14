@@ -36,7 +36,7 @@ exports.financialDetailsApi = function (req, res, next) {
     if (req.body.orderDateTo) postBody.endDate = req.body.orderDateTo;
     if (req.body.orderCategory) postBody.type = req.body.orderCategory;
     if (req.body.orderSearchType) postBody.searchType = req.body.orderSearchType;
-    if (req.body.orderSearchText) postBody.content = req.body.orderSearchText.trim();
+    if (req.body.orderSearchText.trim()) postBody.content = req.body.orderSearchText.trim();
 
 
     var url = api_config.financialDetails;
@@ -50,13 +50,14 @@ exports.financialDetailsApi = function (req, res, next) {
                 //order.createDate = order.createDate.substr(0,4) + '.' + order.createDate.substr(4,2) + '.' + order.createDate.substr(6,2)
                 order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1.$2.$3");
 
+                if (!order.orderId){order.orderId = '-'}
+
                 if (order.type === 1){order.type = '充值'; }
                 if (order.type === 2){order.type = '提现'; order.money = -order.money;}
-                if (order.type === 3){order.type = '销售'}
-                if (order.type === 4){order.type = '采购'; order.money = -order.money;}
+                if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}
+                if (order.type === 4){order.type = '采购'; order.money = -order.money; order.type = order.type + ' 订单号:' + order.orderId;}
                 if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
-
-                if (!order.orderId){order.orderId = '-'}
+                if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
             });
 
