@@ -48,11 +48,11 @@ exports.financialDetailsApi = function (req, res, next) {
 
             body.data.payments.list.forEach(function(order){
                 //order.createDate = order.createDate.substr(0,4) + '.' + order.createDate.substr(4,2) + '.' + order.createDate.substr(6,2)
-                order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1.$2.$3");
+                order.createDate = order.createDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
 
                 if (!order.orderId){order.orderId = '-'}
                 if (order.loanFlag === 'D') { order.money = -order.money;}
-                
+
                 if (order.type === 1){order.type = '充值'; }
                 if (order.type === 2){order.type = '提现'; }
                 if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}
