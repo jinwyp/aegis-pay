@@ -280,7 +280,7 @@ body{
         margin: 10px 1px;
       }
       .form-search {
-        width: 160px;
+        width: 170px;
         label {
           font-size: $size_font_normal;
           color: $color_text_gray;
@@ -293,13 +293,13 @@ body{
         }
         .label-timeto{
           width:30px;
-          margin-left: 5px;
+          margin-left: 10px;
         }
 
         .input-text {
           font-size: $size_font_normal;
           //color: $color_text_select_gray;
-          width: 180px;
+          width: 170px;
           height:30px;
           border-radius:2px;
           //border: 0px;
@@ -315,7 +315,7 @@ body{
           //background: #fff url("#{$assetPath}/images/sprite_ico.png") no-repeat right -706px;
           background: #fff;
           @include sprite-image($icon-calendar-gray);
-          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) -63px);
+          @include sprite-position( #fff $icon-calendar-gray ($icon-calendar-gray-offset-x + 96px) ($icon-calendar-gray-offset-y + 6px));
         }
 
         .input-date-icon{
@@ -329,17 +329,60 @@ body{
 
         .fancy-select{
           .trigger{
-            min-width: 100px;
+            min-width: 120px;
           }
-          width: 100px;
+          width: 120px;
         }
+
       }
       .form-search-big{
-        width: 360px;
+        width: 350px;
+      }
+      .form-search-big2{
+        width: 320px;
       }
       .form-search-small{
-        width: 102px;
+        width: 125px;
       }
+      .notify-info{
+        border:1px solid #fccfaa;
+        border-radius: 4px;
+        background-color: #fff3d8;
+        @include sprite-image($icon-light);
+        @include sprite-position( #fff3d8 $icon-light ($icon-light-offset-x - 3px) ($icon-light-offset-y - 4px));
+        color:#ff9665;
+        font-size: $size_font_normal;
+        width: 311px;
+        height: 30px;
+        padding: 7px 0px 1px 26px;
+        position: absolute;
+        top : -20px;
+        right:77px;
+
+        &:after, &:before {
+          content :' ';
+          width: 0;
+          height: 0;
+          border: solid transparent;
+          position: absolute;
+        }
+
+        &:before{
+          top : 28px;
+          right:22px;
+          border-width: 8px;
+          border-top-color: #fccfaa;
+        }
+
+        &:after{
+          top : 28px;
+          right:23px;
+          border-width: 7px;
+          border-top-color: #fff3d8;
+        }
+
+      }
+
       .table-box{
         padding: 5px 30px;
       }
@@ -429,7 +472,7 @@ body{
   padding-top: 100px;
   margin: 10px 20px 0px 20px;
   width: 100px;
-  height:85px;
+  height:130px;
 
   span{
     margin-left: -12px;
