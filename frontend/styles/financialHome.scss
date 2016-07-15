@@ -117,6 +117,7 @@ body{
         .a-add{
           &:hover{
             .span-icon{
+              color: $color_a_hover;;
               background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left -28px;
             }
           }
