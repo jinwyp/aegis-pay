@@ -61,7 +61,7 @@ exports.financialDetailsApi = function (req, res, next) {
                 if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
             });
-
+            
             return res.json(body.data.payments);
         }else {
             return res.json([]);
