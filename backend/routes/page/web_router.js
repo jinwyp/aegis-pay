@@ -137,7 +137,7 @@ router.get('/wealth/addAccount', wealthAccount.addAccount);                     
 router.post('/accountDel', wealthAccount.accountDel);                                           //账户管理－账户通－账户删除
 router.get('/drawCash', drawCash.drawCash);                                                     //账户管理－账户通－提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //账户管理－账户通－提现确认信息
-router.post('/drawCashStatus',sms.verifyMiddleware() ,drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
+router.post('/drawCashStatus',sms.verifyMiddleware({fromSession:true}) ,drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
 router.get('/account/accountSetting', accountSetting.accountSetting);
 router.get('/account/securitySetting', securitySetting.securitySetting);
