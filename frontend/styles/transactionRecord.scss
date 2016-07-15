@@ -8,7 +8,7 @@ body{
 }
 .transaction-body{
   background-color: $color_body_bg;
-  padding: $main_margintop 0 $main_marginbottom 0;
+  padding: $main_margintop 0 30px 0;
   a{
     color: $color_manage_text;
     text-decoration: none;
@@ -54,6 +54,7 @@ body{
       }
     }
     .transaction-div{
+      min-height: 533px;
       padding-bottom: 10px;
       .transaction-table{
         width: 960px;
