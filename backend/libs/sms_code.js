@@ -187,13 +187,16 @@ exports.sendCode = function (req, res, next) {
  * 验证校验码
  * params: {sms}
  */
+
+
 exports.verifyMiddleware = function (option) {
+    option = option || {};
     return function (req, res, next) {
 
         var sms  = req.body.sms_code;
         var userInfo = req.session.user;
 
-        if (option && option.fromSession){
+        if (option.fromSession){
             var payPhone = req.session.user.payPhone;
         }else{
             var payPhone = req.body.payPhone;
