@@ -201,7 +201,7 @@
                             <% }else if(recordList[i].status==='TradeFinished'){ %>
                             <a target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else if(recordList[i].status==='TradeClosed'){ %>
-                            <a class="btn-delete" data-id="<%= recordList[i].id %>">删除</a>
+                            <a class="btn-buyerDelete" data-id="<%= recordList[i].id %>" data-version="<%= recordList[i].version %>">删除</a>
                             <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else{ %>
                             <a><%=recordList[i].status%></a>
