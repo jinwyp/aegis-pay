@@ -62,7 +62,7 @@ a.btn_blue{
                   margin:1px 5px 0 0;
               }
               .smsWrapper{
-                  position:relative; 
+                  position:relative; vertical-align: middle; overflow:hidden;
                   display: inline-block; *display: inline; zoom:1; margin-left:5px;
                   width:298px; border:1px solid $color_border_gray;
                   input[type='text']{

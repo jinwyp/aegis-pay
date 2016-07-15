@@ -52,7 +52,7 @@
                             <span class="span-text">等待银行汇款</span>
                         </div>
                     <% }else if(cashAccount && cashAccount.status*1 == 2){ %>
-                        <a class="add-bank" href="/wealth/bindingSuccess">
+                        <a class="add-bank text-add" href="/wealth/bindingSuccess">
                             <span class="span-text">确认银行汇款</span>
                         </a>
                     <% }else if(cashAccount && cashAccount.status*1 == 3){ %>
@@ -61,7 +61,7 @@
                             <div class="label-content"><%= blankFour(finance.cashBankAccount) %></div>
                         </div>
                     <% }else{ %>
-                        <a class="add-bank a-add" href="/wealth/bindingBankAccount">
+                        <a class="add-bank icon-add" href="/wealth/bindingBankAccount">
                             <span class="span-icon span-text">添加银行账户</span>
                         </a>
                     <% } %>

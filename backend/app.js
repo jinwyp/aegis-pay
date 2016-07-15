@@ -90,6 +90,11 @@ app.use(session({
     resave            : true,
     saveUninitialized : true
 }));
+
+app.get('/check', function(req, res){
+    res.send('ok');
+});
+
 app.use(flash());
 // custom middleware
 app.use(auth.passport);
@@ -134,6 +139,8 @@ app.use(busboy({
 }));
 
 // routes
+// 探针服务
+
 app.use('/api', routes.api);
 app.use('/', routes.webPage);
 routes.autoLoaderControllers(app);

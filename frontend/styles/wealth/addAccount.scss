@@ -226,9 +226,10 @@ $dark:#000000;
 					.add-bank-btn{
 						color:#00b7ec;
 						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
-					}
-					.add-bank-btn.no-bg{
-						background:none;
+						&.nonebg{
+							background:none;
+							color:#00b7ec;
+						}
 					}
 				}
 			}
@@ -243,7 +244,7 @@ $dark:#000000;
 					color:#00b7ec;
 					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 				}
-				&.no-bg{
+				&.no-bg, &.nonebg{
 					background:none;
 					padding-left:0;
 					&:hover{
