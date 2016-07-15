@@ -31,7 +31,7 @@ exports.addInvoiceInfo = function (req, res, next) {
         url += "&orderId=" + orderId;
     }
 	// var url = apiHost.host + '/finance/receipt?orderId=' + req_id +'&userId=213';
-	console.log('-=-控制层-=-=-=-=-=-=-=-=-=- URL : '+ url );
+	// console.log('-=-控制层-=-=-=-=-=-=-=-=-=- URL : '+ url );
 
 	request.get(url, function (err, httpResponse, body) {
 		if (err) return next(err);
@@ -51,8 +51,7 @@ exports.addInvoiceInfo = function (req, res, next) {
 		};
 		
 		Object.assign(replyData, resBody);
-		console.log('/* ---replyData-99988888--------------------------------------- */');
-		console.dir(replyData);
+		// console.dir(replyData);
 
 		return res.render('settlement/confirmTheInvoice', replyData);			// 渲染页面(指定模板, 数据)
 	});
@@ -84,21 +83,20 @@ exports.submitInvoiceInfo = function (req, res, next) {
 		userId: userId
 	};
 
-	console.log(param);
+	// console.log(param);
 	request.post(url, {form: param}, function(err,httpResponse,body) {
 		if (err) return next(err);
-		console.log("-------------- succ ---------------");
+		// console.log("-------------- succ ---------------");
 
 		var resBody = JSON.parse(body);
 
 		if (resBody.success == false) {
-			//ToDo: throw error: service error.
 			logger.error("submitInvoiceInfo: 提交开票信息 service 错误");
 			return next(new SystemError(500, resBody.error));
 		}
 
-		console.log("-------------- resp ---------------");
-		console.log(req.body);
+		// console.log("-------------- resp ---------------");
+		// console.log(req.body);
 
         return res.json({success: true});
 	});
@@ -124,8 +122,8 @@ exports.invoiceNotes = function (req, res, next) {
 			editable : true
 		};
 		Object.assign(replyData, resBody);
-		console.log("-------------- replyData -246--------------");
-		console.dir(replyData);
+		// console.log("-------------- replyData -246--------------");
+		// console.dir(replyData);
 
 		return res.render('settlement/addInvoiceNotes', replyData);			// 渲染页面(指定模板, 数据)
 	});
@@ -140,7 +138,6 @@ exports.submitInvoiceNotes = function (req, res, next) {
 		specialRequirement = _.trim(req.body.specialRequirement),
 		userId = req.session.user.id;
 
-	console.log("-------------- waht the fuck??? ---------------");
 	checker.orderId(orderId);
 
 	var url = apiHost.host + "mall/order/receiptRemarks/addUpdate";
@@ -154,7 +151,7 @@ exports.submitInvoiceNotes = function (req, res, next) {
 
 	request.post(url, {form: param}, function(err,httpResponse,body) {
 		if (err) return next(err);
-		console.log("-------------- succ ---------------");
+		// console.log("-------------- succ ---------------");
 
 		var resBody = JSON.parse(body);
 
@@ -174,7 +171,7 @@ exports.downInvoiceTemplate = function (req, res, next) {
 	var fileUrl = config.viewspdf + '/downInvoiceTemplate.docx';
 
 	res.download(fileUrl, function(err, data){
-		console.log('-----下载模板-成功---------views/global/pdftemplate/invoiceTemplate.jpg  ');
+		// console.log('-----下载模板-成功---------views/global/pdftemplate/invoiceTemplate.jpg  ');
 	});
 };
 
@@ -184,8 +181,8 @@ exports.imgViewApi = function (req, res, next) {
 	var key = req.query.key || '';
 	var imgSrc = config.view_file + key;
 
-	console.log('---imgViewApi-----------------------------------');
-	console.log("uplaod pic key:", key, " path:", imgSrc);
+	// console.log('---imgViewApi-----------------------------------');
+	// console.log("uplaod pic key:", key, " path:", imgSrc);
 
 	checker.uploadPicturePath(imgSrc);
 
