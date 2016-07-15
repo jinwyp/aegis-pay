@@ -16,6 +16,7 @@
     .bindingSuccessInfoWrap{background:#f3fcff;padding-left:120px;padding-top:48px;padding-bottom: 48px;}
     .bindingSuccessInfoWrap .bindingMainCon{font-size:24px;color:#333;margin-bottom: 20px;position: relative}
     .bindingSuccessInfoWrap .successIcon{display: inline-block;width: 60px;height: 60px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -383px -291px;position: absolute;left:-88px;top:12px;}
+    .bindingSuccessInfoWrap .bindSuccessIcon {left:62px;}
     .bindingSuccessInfoWrap .bindingMainCon span.bindingSuc{color:#1aaa6b;font-size: 24px;}
     .bindingSuccessInfoWrap .bindingsubCon span.bindingSuc{color:#1aaa6b;font-size: 24px;}
     .bindingSuccessInfoWrap span.colorOrange{color:#ff6e27;}

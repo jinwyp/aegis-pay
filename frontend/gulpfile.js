@@ -14,11 +14,11 @@ var plugins = gulpLoadPlugins();
 
 var rconfig = require('./rconfig');
 
-
 var sourcePaths = {
     "html"               : "../backend/views/**/*",
     "javascript"               : "scripts/**/*.js",
     "components"               : "components/**/*",
+    "plugins"                  : 'scripts/jquery_plugins/*.js',
     "images"                   : "images/**/*",
     "imagesSprites"            : "images/sprite/icon/**/*",
     "scss"                     : 'styles/**/*.scss'
@@ -27,6 +27,7 @@ var sourcePaths = {
 var distPaths = {
     "javascript"        : "dist/scripts",
     "components"        : "dist/components",
+    "plugins"                  : 'dist/scripts/jquery_plugins',
     "images"            : "dist/images",
     "imagesSprites"     : "images/sprite/auto-sprite.png",
     "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
@@ -86,7 +87,9 @@ gulp.task('sass', ['sprite'], function() {
 
 gulp.task('components', function() {
     gulp.src(sourcePaths.components)
-        .pipe(gulp.dest(distPaths.components))
+        .pipe(gulp.dest(distPaths.components));
+    gulp.src(sourcePaths.plugins)
+        .pipe(gulp.dest(distPaths.plugins))
 });
 
 
@@ -106,12 +109,16 @@ gulp.task('watch', function() {
 
 // release tasks
 gulp.task('release-js', ['jslint', 'components'], function(){
-    return gulp.src(['scripts/*.js', 'scripts/*/*.js', '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/*.js'])
+    return gulp.src(['scripts/*.js', 'scripts/*/*.js', '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/**/*.js'])
     .pipe(requirejsOptimize(function(file){
-        if(file.relative !== 'common.js'){
-            rconfig.exclude = ['common'];
+        if(file.relative !== 'common.js' && file.relative !== 'avalon-c.js'){
+            rconfig.exclude = ['common', 'avalon-c'];
         }else{
             rconfig.exclude = [];
+        }
+        if(file.relative === 'avalon-c.js'){
+            rconfig.exclude = ['common'];
+            rconfig.optimize = 'none';
         }
         return rconfig;
     }))

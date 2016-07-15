@@ -3,11 +3,12 @@
  */
 
 var validator = require('validator');
-var code = require('./validationCode');
+var code      = require('./validationCode');
+var utils     = require('./utils');
 
-var ValidationError = require('../errors/ValidationError');
+var ValidationError            = require('../errors/ValidationError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
-var UnauthorizedAccessError = require('../errors/UnauthorizedAccessError');
+var UnauthorizedAccessError    = require('../errors/UnauthorizedAccessError');
 
 
 function isFunction(fn) {
@@ -46,6 +47,12 @@ function throw403 (code, message, field, isNext){
 }
 
 
+
+exports.uploadPicturePath = function(path, fieldname, next){
+    if (!utils.isFileExistsSync(path) ) {
+        return throw400(code.uploadFile.picExist.code, code.uploadFile.picExist.message, fieldname || code.uploadFile.picExist.field, next);
+    }
+};
 
 
 exports.menuTab = function(tab, fieldname, next){

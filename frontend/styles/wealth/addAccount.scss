@@ -227,6 +227,9 @@ $dark:#000000;
 						color:#00b7ec;
 						background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 					}
+					.add-bank-btn.no-bg{
+						background:none;
+					}
 				}
 			}
 			.add-bank-btn{
@@ -236,6 +239,10 @@ $dark:#000000;
 				@include fontSize(18px);
 				@include fontWeight;
 				line-height:200px;
+				&:hover{
+					color:#00b7ec;
+					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
+				}
 				&.no-bg{
 					background:none;
 					padding-left:0;
@@ -243,10 +250,6 @@ $dark:#000000;
 						background:none;
 						color:#007193;
 					}
-				}
-				&:hover{
-					color:#00b7ec;
-					background:url('#{$assetPath}/images/wealth/bank_add.png') no-repeat left -28px;
 				}
 			}
 		}

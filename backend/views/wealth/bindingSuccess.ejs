@@ -20,10 +20,10 @@
             <% include ../global/order/statusBar %>
                 <!--绑定成功页面-->
                 <div class="bindingSuccessInfoWrap">
-                    <p class="bindingMainCon">易煤网已向账户*****<%= subFour(userAccount.userFundAccount)%>汇入一笔<span class="colorOrange">1元以下</span>的确认金额。</p>
+                    <p class="bindingMainCon">易煤网正向账户*****<%= subFour(userAccount.userFundAccount)%>汇入一笔<span class="colorOrange">1元以下</span>的确认金额。</p>
                     <p class="bindingsubCon">请您通过<span class="colorOrange">网银</span>或<span class="colorOrange">银行柜台</span>查看该银行卡的收支明细，正确确认这笔金额后才能绑定成功。</p>
                     <p class="bindingsubCon">如果您没有收到该笔汇款，请及时联系我们的客服人员：<span class="colorOrange">400-960-1180</span></p>
-                    <a href="" class="confirmBank">立即确认银行汇款</a>
+                    <!--<a href="" class="confirmBank">立即确认银行汇款</a>-->
                 </div>
                 <!--绑定成功页面结束-->
             <%}%>
@@ -81,7 +81,7 @@
             <% var statusObj = statusObj[2]%>
             <% include ../global/order/statusBar %>
                 <div class="bindingSuccessInfoWrap">
-                    <p class="bindingMainCon"><i class="successIcon"></i><span class="bindingSuc">您已绑定银行账户，不能重复绑定</span></p>
+                    <p class="bindingMainCon"><i class="successIcon bindSuccessIcon"></i><span class="bindingSuc">您已绑定银行账户，不能重复绑定</span></p>
                     <p class="bindingsubCon">已经绑定的账号不可以重复绑定</p>
                 </div>
             <%}%>
