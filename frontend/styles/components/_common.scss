@@ -30,6 +30,9 @@
   @include border-radius(2px); border:none;
   &.disable{
       background-color: $color_btn_gray; cursor:not-allowed;
+      &:hover{
+        background-color: $color_btn_gray;
+      }
   }
 }
 .btn_respond{

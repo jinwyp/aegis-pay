@@ -193,7 +193,7 @@ exports.verifyMiddleware = function (option) {
         var sms  = req.body.sms_code;
         var userInfo = req.session.user;
 
-        if (option.fromSession){
+        if (option && option.fromSession){
             var payPhone = req.session.user.payPhone;
         }else{
             var payPhone = req.body.payPhone;
