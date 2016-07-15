@@ -144,7 +144,7 @@ exports.paymentCategoryType = function(type, fieldname, next){
 };
 exports.paymentSearchText = function(text, fieldname, next){
     if (text){
-        if ( !validator.isLength(text, { min: 2, max: 100}) ) {
+        if ( !validator.isLength(text, { min: 1, max: 100}) ) {
             return throw400(code.order.searchText.code, code.order.searchText.message, fieldname || code.order.searchText.field, next);
         }
     }
