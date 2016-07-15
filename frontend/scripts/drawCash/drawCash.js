@@ -107,47 +107,37 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 					var payPhone = $('#payPhone').val();
 					var vertifyCodeError = $('#vertifyCodeError');
 					vertifyCodeError.hide();
-					$.ajax({
-		                url:'/api/verifyCode',
-		                type:'POST',
-		                data:{
-		                	'sms_code':vertifyCode,
-		                    'payPhone':payPhone
-		                }
-		            }).done(function(response){
-		            	if( !response.success ){
-		            		vertifyCodeError.show();
-                            confirmBtn.prop("disabled",false);
-		            		return false;
-		            	}
-
-                        vertifyCodeError.hide();
-		            	$.ajax({
-							url:'/drawCashStatus',
-							method:'POST',
-							data:{
-								confirmToken:$('#confirmToken').val(),
-								cash:$('#cash').val(),
-								password:$('#confirmTxt').val()
-							},
-							success:function(response){
-								if(!response.success){
-                                    confirmBtn.prop("disabled",false);
-									if(response.data && response.data.type && response.data.type == 1){
-										errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
-									}else{
-										errorMsg.html(response.error).show();
-									}
-								}else{
-									$('#successForm').submit();
-								}
-							}
-						}).fail(function(){
-                            confirmBtn.prop("disabled",false);
-                        })
-					}).fail(function(){
+                    $.ajax({
+                        url:'/drawCashStatus',
+                        method:'POST',
+                        data:{
+                            confirmToken:$('#confirmToken').val(),
+                            cash:$('#cash').val(),
+                            password:$('#confirmTxt').val(),
+                            sms_code:vertifyCode,
+                            payPhone:payPhone
+                        },
+                        success:function(response){
+                            if(!response.success){
+                                confirmBtn.prop("disabled",false);
+                                if(response.errType=="sms_code") {
+                                    vertifyCodeError.show();
+                                    return false;
+                                }else{
+                                    vertifyCodeError.hide();
+                                    if(response.data && response.data.type && response.data.type == 1){
+                                        errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+                                    }else{
+                                        errorMsg.html(response.error).show();
+                                    }
+                                }
+                            }else{
+                                $('#successForm').submit();
+                            }
+                        }
+                    }).fail(function(){
                         confirmBtn.prop("disabled",false);
-                    });
+                    })
 				}
 			});
 			function checkHandler(val){
