@@ -142,7 +142,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                     vm.orderShowLoading = false;
-                    if (data.list.length > 7){ $("#paymentFooter").removeClass('bottomAbsolute'); }
+                    //if (data.list.length > 5){ $("#paymentFooter").removeClass('bottomAbsolute'); }
                 }
             })
         },
