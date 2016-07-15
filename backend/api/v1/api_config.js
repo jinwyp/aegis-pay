@@ -123,6 +123,8 @@ var api_config = {
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',
+    buyerDelete : host + 'mall/order/delete',
+    sellerDelete : host + '/mall/order/seller/delete',
 
 
     /**

@@ -106,6 +106,32 @@ exports.checkDrawCash = function (req, res, next) {
     });
 };
 
+// 买家删除
+exports.buyerDelete = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.buyerDelete,form:{orderId:req.query.id,version:req.query.version,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
+// 卖家删除
+exports.sellerDelete = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.sellerDelete,form:{orderId:req.query.id,version:req.query.version,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
 
 
 
@@ -212,10 +238,10 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.loanFlag === 'D') { order.money = -order.money;}
 
                     if (order.type === 1){order.type = '充值'; }
-                    if (order.type === 2){order.type = '提现'; order.money = -order.money;}
+                    if (order.type === 2){order.type = '提现'; }
                     if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}
-                    if (order.type === 4){order.type = '采购'; order.money = -order.money; order.type = order.type + ' 订单号:' + order.orderId;}
-                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
+                    if (order.type === 4){order.type = '采购';  order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 5){order.type = '验卡打款'; }
                     if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
                 });
