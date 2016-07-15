@@ -111,7 +111,7 @@ exports.orderSettlement = function (req, res, next) {
 			//		returnReason: null
 			//	}
 			//};
-			//replyData.userType = 'sell';
+			//replyData.userType = 'buy';
 
 			zipUser = replyData.data.order.sellerId;
 
@@ -250,6 +250,8 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 		file.path = config.view_file + file.path;
 	}
 
+	console.log('--结算审核通过-111-------------------------------------');
+	console.log(req.body);
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
 		console.log('--结算审核通过-222-------------------------------------');
 		console.log(data);
