@@ -63,6 +63,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 						return true;
 					}else{
 						toggleError(false);
+						$("#drawCashErr").text("提现金额不能大于账户余额");
 						return false;
 					}
 				}
@@ -70,6 +71,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 			function toggleError(flag){
 				if( flag ){
 					drawCashErr.hide();
+					drawCashErr.text("金额输入有误，请重新输入");
 				}else{
 					drawCashErr.show();
 				}

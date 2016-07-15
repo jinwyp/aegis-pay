@@ -267,25 +267,33 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                 }
             });
             $("#vertifyCode").on('blur', function() {
-                var vertifyCode=$("#vertifyCode").val();
-                that.checkVCode().done(function(data){
-                    if (data.success) {
-                        $(".successIcon").css({visibility: "visible"});
-                        $(".vertifyCode .errorMsg").text('');
-                        finalResult = true;
-                    } else {
-                        if (data.errType && (data.errType == 'sms_code')) {
-                            finalResult = false;
-                            $(".vertifyCode .errorMsg").text('校验码输入有误');
-                            $(".successIcon").css({visibility: "hidden"});
-                            $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                            return false;
-                        }else{
+                if($(this).val()==""){
+                    $(".vertifyCode").find(".errorMsg").text("请输入验证码");
+                    $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                    return false;
+                }else{
+                    var vertifyCode=$(this).val();
+                    that.checkVCode().done(function(data){
+                        if (data.success) {
+                            $(".successIcon").css({visibility: "visible"});
+                            $(".vertifyCode .errorMsg").text('');
                             $('.submitTotal').find(".errorMsg").text("");
                             finalResult = true;
+                        } else {
+                            if (data.errType && (data.errType == 'sms_code')) {
+                                finalResult = false;
+                                $(".vertifyCode .errorMsg").text('校验码输入有误');
+                                $(".successIcon").css({visibility: "hidden"});
+                                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                                return false;
+                            }else{
+                                $(".vertifyCode .errorMsg").text('');
+                                $('.submitTotal').find(".errorMsg").text("");
+                                finalResult = true;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
 
         },

@@ -17,6 +17,7 @@ define(['jquery','bootstrap'],function($){
             ($('input[type="text"][name="sms_code"]').size()>0) && $('input[type="text"][name="sms_code"]').val('');
             $code_img.attr('src','/api/imgcode?time='+new Date().getTime());
             self.els.$imgcodeTipErr.hide();
+            self.els.$codeTipErr.hide();
             $('input[name="imgcode"]').val('');
         });
 

@@ -30,31 +30,63 @@
                     <% if(receiptOrder.list.length>0){ %>
                         <% for(i=0;i<receiptOrder.list.length;i++){ %>
                         <% var obj = receiptOrder.list[i] %>
-                        <tr>
-                            <td><%= obj.orderNO %></td>
-                            <td><%= formatMoney(obj.totalMoney ,2)%></td>
-                            <td><%= obj.settleAccountTime %></td>
-                            <td class="width150"><%= obj.otherCompanyName %></td>
-                            <% if(obj.status != "WaitWriteReceipt"){ %>
-                                <td>已开票</td>
-                                <td>
-                                    <div class="btn"></div>
-                                    <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
-                                </td>
-                            <%}else{%>
-                                <td>待开票</td>
-                                <td>
-                                    <% if(obj.type == 1 ){ %>
-                                        <div class="btn settle"><input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle" name="<%= obj.orderId  %>"></div>
-                                    <%}else{%>
-                                        <div class="btn"></div>
-                                    <%}%>
-                                    <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
-                                </td>
-                            <%}%>
+                            <tr>
+                                <td><%= obj.orderNO %></td>
+                                <td><%= formatMoney(obj.totalMoney ,2)%></td>
+                                <td><%= obj.settleAccountTime %></td>
+                                <td class="width150"><%= obj.otherCompanyName %></td>
+                                <td><%=obj.statusName %></td>
 
-                        </tr>
-                        <%}%>
+                                <!--type==0 买家-->
+                                <% if(obj.type == 0){%>
+                                    <% if (obj.status == "WaitWriteReceipt"){%>
+                                        <td>
+                                            <div class="btn"></div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}else if(obj.status == "WaitReceiveReceipt"){%>
+                                        <td>
+                                            <div class="btn">
+                                                <input type="button" value="确认已收票" class="iBtn iBtn_xs iBtn_no getSettle"
+                                                       data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
+                                            </div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}else if(obj.status == "Completed"){%>
+                                        <td>
+                                            <div class="btn"></div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}%>
+
+                                <!--type==1 卖家-->
+                                <%}else if(obj.type == 1){%>
+                                    <% if (obj.status == "WaitWriteReceipt"){%>
+                                        <td>
+                                            <div class="btn">
+                                                <input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle"
+                                                       data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
+                                            </div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}else if(obj.status == "WaitReceiveReceipt"){%>
+                                        <td>
+                                            <div class="btn"></div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}else if(obj.status == "Completed"){%>
+                                        <td>
+                                            <div class="btn"></div>
+                                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                        </td>
+                                    <%}%>
+                                <%}%>
+
+
+
+                         <%}%>
+
+
                     <%}else{%>
                         <tr>
                             <td colspan="6" class="noInfo">
@@ -64,6 +96,9 @@
                             </td>
                         </tr>
                     <%}%>
+
+
+
 
                     </tbody>
                 </table>
@@ -83,7 +118,6 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="<%= staticPath %>/scripts/avalon-c.js"></script>
 <script src="<%= staticPath %>/scripts/settlement/billCenter.js"></script>
 </body>
 </html>

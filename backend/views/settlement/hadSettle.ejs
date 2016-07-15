@@ -28,29 +28,42 @@
                     </thead>
                     <tbody>
                     <% if(receiptOrder.type==2){ %>
-                    <% if(receiptOrder.list.length>0){ %>
-                    <% for(i=0;i<receiptOrder.list.length;i++){ %>
-                    <% var obj = receiptOrder.list[i] %>
-                    <tr>
-                        <td><%= obj.orderNO %></td>
-                        <td><%= formatMoney(obj.totalMoney ,2)%></td>
-                        <td><%= obj.settleAccountTime %></td>
-                        <td class="width150"><%= obj.otherCompanyName %></td>
-                        <td>已开票</td>
-                        <td>
-                            <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
-                        </td>
-                    </tr>
-                    <%}%>
-                    <%}else{%>
-                    <tr>
-                        <td colspan="6" class="noInfo">
-                            <div>
-                                您目前没有已开发票
-                            </div>
-                        </td>
-                    </tr>
-                    <%}%>
+                        <% if(receiptOrder.list.length>0){ %>
+                            <% for(i=0;i<receiptOrder.list.length;i++){ %>
+                                <% var obj = receiptOrder.list[i] %>
+                                <tr>
+                                    <td><%= obj.orderNO %></td>
+                                    <td><%= formatMoney(obj.totalMoney ,2)%></td>
+                                    <td><%= obj.settleAccountTime %></td>
+                                    <td class="width150"><%= obj.otherCompanyName %></td>
+                                    <td><%=obj.statusName %></td>
+                                    <td>
+                                        <% if(obj.type == 0){ %>
+                                            <% if(obj.status != 'Completed'){ %>
+                                                <div class="btn">
+                                                    <input type="button" value="确认已收票" class="iBtn iBtn_xs iBtn_no getSettle"
+                                                           data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
+                                                </div>
+                                            <%}else{%>
+                                                <div class="btn"></div>
+                                            <%}%>
+                                        <%}else if(obj.type == 1 ){%>
+                                            <div class="btn"></div>
+                                        <%}%>
+                                        <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
+                                    </td>
+
+                                </tr>
+                            <%}%>
+                        <%}else{%>
+                            <tr>
+                                <td colspan="6" class="noInfo">
+                                    <div>
+                                        您目前没有已开发票
+                                    </div>
+                                </td>
+                            </tr>
+                        <%}%>
                     <%}%>
 
                     </tbody>
@@ -70,7 +83,6 @@
 <%- include ../global/footer/footer %>
 
 <%- include ../global/includehead/bottomscript %>
-<script src="<%= staticPath %>/scripts/avalon-c.js"></script>
 
 <script src="<%= staticPath %>/scripts/settlement/billCenter.js"></script>
 </body>
