@@ -72,7 +72,7 @@ var cacheGet = function(userInfo, validTime){
             if(minTime>0 && validTime){
                 return resolve({"sms":minSms[minSms.length-1].sms, payPhone:minSms[minSms.length-1].payPhone});
             }
-            if(hourTime>=30){
+            if(hourTime>=10){
                 result = {"readyToSend":false, "errType":"hourTimes"};
             }
             if(dayTime>=30){
