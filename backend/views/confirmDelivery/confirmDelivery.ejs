@@ -244,6 +244,29 @@
             </div>
             <%}%>
             <%}%>
+            <% if (sellInfo.pricingMethodId==1) {%>
+            <div class="banCon">
+                <div class="leftBan vt">提货总量(吨)：</div>
+                <div class="rightBan">
+                    <%if(typeof deliveryAmount !="undefined"){%>
+                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
+                    <%}else{%>
+                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="banCon">
+                <div class="leftBan vt">提货总量(吨)：</div>
+                <div class="rightBan">
+                    <%if(typeof deliveryAmount !="undefined"){%>
+                    <input type="text" class="amount method2" id="deliveryAmount" value=""  maxlength="6" />
+                    <%}else{%>
+                    <input type="text" class="amount method2" id="deliveryAmount"  maxlength="6"/>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
             <div class="banCon pb0" id="qualityList">
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>
                 <div class="rightBan">
@@ -299,16 +322,7 @@
                 </div>
             </div>
             <%}%>
-            <div class="banCon">
-                <div class="leftBan w90">提货总量(吨)：</div>
-                <div class="rightBan">
-                    <%if(typeof deliveryAmount !="undefined"){%>
-                    <input type="text" class="amount" id="deliveryAmount" value="<%=deliveryAmount%>"  maxlength="6" readOnly />
-                    <%}else{%>
-                    <input type="text" class="amount" id="deliveryAmount"  maxlength="6" value="0" readOnly />
-                    <%}%>
-                </div>
-            </div>
+
             <p class="errorMes"></p>
             <div class="banCon">
                 <div class="leftBan"></div>

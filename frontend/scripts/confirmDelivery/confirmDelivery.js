@@ -22,7 +22,12 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                   for(var i=0;i<checkAmountLen;i++){
                       totalAmount=totalAmount+Number($("input[name='checkAmount']").eq(i).val());
                   }
-                  $deliveryAmount.val(totalAmount);
+                  var floatTwo=/^\d*(\.\d{0,2})?$/;
+                  if(!floatTwo.test(totalAmount) && totalAmount.toString().split(".")[1].length>1){
+                      $deliveryAmount.val(totalAmount.toFixed(2));
+                  }else{
+                      $deliveryAmount.val(totalAmount);
+                  }
               }
 
               if($("input[name='checkAmount']").eq(1).val()!=""){     //判断是否第一次进入
@@ -338,7 +343,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
 
             //提货数量
             var deliveryAmount=$("#deliveryAmount");
-            if(deliveryAmount.val()==""){
+            if(deliveryAmount.val()=="" || deliveryAmount.val()=="0"){
                $(".errorMes").text("提货数量不得为空");
                return false;
             }else{

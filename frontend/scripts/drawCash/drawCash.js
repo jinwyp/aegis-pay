@@ -63,6 +63,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 						return true;
 					}else{
 						toggleError(false);
+						$("#drawCashErr").text("提现金额不能大于账户余额");
 						return false;
 					}
 				}
@@ -70,6 +71,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 			function toggleError(flag){
 				if( flag ){
 					drawCashErr.hide();
+					drawCashErr.text("金额输入有误，请重新输入");
 				}else{
 					drawCashErr.show();
 				}
@@ -102,45 +104,42 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				if( !flag ){
 					return false;
 				}else{
+                    confirmBtn.prop("disabled",true);
 					var vertifyCode = $('#vertifyCode').val();
 					var payPhone = $('#payPhone').val();
 					var vertifyCodeError = $('#vertifyCodeError');
 					vertifyCodeError.hide();
-					$.ajax({
-		                url:'/api/verifyCode',
-		                type:'POST',
-		                data:{
-		                	'sms_code':vertifyCode,
-		                    'payPhone':payPhone
-		                }
-		            }).done(function(response){
-		            	if( !response.success ){
-		            		vertifyCodeError.show();
-		            		return false;
-		            	}else{
-		            		vertifyCodeError.hide();
-		            	}
-		            	$.ajax({
-							url:'/drawCashStatus',
-							method:'POST',
-							data:{
-								confirmToken:$('#confirmToken').val(),
-								cash:$('#cash').val(),
-								password:$('#confirmTxt').val()
-							},
-							success:function(response){
-								if(!response.success){
-									if(response.data && response.data.type && response.data.type == 1){
-										errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
-									}else{
-										errorMsg.html(response.error).show();
-									}
-								}else{
-									$('#successForm').submit();
-								}
-							}
-						})
-					});
+                    $.ajax({
+                        url:'/drawCashStatus',
+                        method:'POST',
+                        data:{
+                            confirmToken:$('#confirmToken').val(),
+                            cash:$('#cash').val(),
+                            password:$('#confirmTxt').val(),
+                            sms_code:vertifyCode,
+                            payPhone:payPhone
+                        },
+                        success:function(response){
+                            if(!response.success){
+                                confirmBtn.prop("disabled",false);
+                                if(response.errType=="sms_code") {
+                                    vertifyCodeError.show();
+                                    return false;
+                                }else{
+                                    vertifyCodeError.hide();
+                                    if(response.data && response.data.type && response.data.type == 1){
+                                        errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
+                                    }else{
+                                        errorMsg.html(response.error).show();
+                                    }
+                                }
+                            }else{
+                                $('#successForm').submit();
+                            }
+                        }
+                    }).fail(function(){
+                        confirmBtn.prop("disabled",false);
+                    })
 				}
 			});
 			function checkHandler(val){

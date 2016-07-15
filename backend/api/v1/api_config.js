@@ -123,6 +123,8 @@ var api_config = {
     financialTransaction : host + 'finance/transaction/list',
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',
+    buyerDelete : host + 'mall/order/delete',
+    sellerDelete : host + '/mall/order/seller/delete',
 
 
     /**
@@ -156,7 +158,8 @@ var api_config = {
     billSetting : host + 'finance/receipt',
     billDelete : host + 'finance/receipt/delete',
     billView : host + 'finance/receipt/view',
-    receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
+    // receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
+    getReceipt : host + 'mall/order/complete/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
