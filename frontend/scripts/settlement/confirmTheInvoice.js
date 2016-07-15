@@ -187,14 +187,12 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 }
                 $("#totalError").val("");
 
-                //    redirect
                 location.href = redirectUrl;
 
             }).fail(function(jqXHR, textStatus, errorThrown){
                 if (jqXHR.status == 409) {
                     // ToDo: error handling
                     var errorCode = JSON.parse(jqXHR.responseText).errorCode;
-                    console.log('this is 409 ....');
                     $("#totalError").val(errorCode);
                 }
             });
@@ -202,7 +200,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         // 结算单.添加开票备注form提交
         submitInvoiceNotesForm : function (that) {
-            // that.
+
             var requirement = $.trim($("#requirement").val()),
                 specialRequirement = $.trim($("#specialRequirement").val()),
                 version = $.trim($("#version").val()),
@@ -235,7 +233,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         $editFile = $('#editFile'),         //file input
         $tempEdit = $('#tempEdit'),
         $tempDel = $('#tempDel'),
-        // $fileId = $('#fileId'),
         $fileId = $('#templateUrl'),        //file id
         $fileViewImg = $('.fileViewImg'),
         $fBox_1 = $('.fBox_1'),
@@ -244,7 +241,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
     //ToDo: 图片大小校验 上传文件格式：jpg、png.文件大小：小于400k
     function uploadWrapper ($ele, cb) {
-        upload.ajaxFileUpload($ele, {maxFileSize: 1048576 * 5, fileType: ["JPG", "jpg", "jpeg", "PNG", "png"]}, cb);
+        upload.ajaxFileUpload($ele, {maxFileSize: 1048576 * 5, fileType: ["jpg", "jpeg", "png"]}, cb);
     }
 
     //添加附件
