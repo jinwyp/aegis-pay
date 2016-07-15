@@ -106,6 +106,32 @@ exports.checkDrawCash = function (req, res, next) {
     });
 };
 
+// 买家删除
+exports.buyerDelete = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.buyerDelete,form:{orderId:req.query.id,version:req.query.version,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
+// 卖家删除
+exports.sellerDelete = function (req, res, next) {
+    logger.debug('userId----------------------------' + req.session.user.id);
+    request.post({url:api_config.sellerDelete,form:{orderId:req.query.id,version:req.query.version,userId:req.session.user.id}}, function (err, data) {
+        if (err) return next(err);
+        logger.debug('获取到的结果是----------------------------' + data.body);
+        if (data) {
+            var source=JSON.parse(data.body);
+            res.send(source);
+        }
+    });
+};
+
 
 
 
