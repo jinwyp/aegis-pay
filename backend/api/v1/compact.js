@@ -47,10 +47,15 @@ exports.uploadFile = function (req, res, next) {
 exports.thumbnail = function(req, res, next){
     var fid = req.flash('file_id_'+req.session.user.id)[0];
     var path = uploadPath + fid;
+
+    checker.uploadPicturePath(path);
+    
     res.download(path, fid, function(err, data){
         if(err) {return next(err); }
     })
-}
+};
+
+
 // del file
 exports.delFile = function (req, res, next) {
     fs.unlink(uploadPath + req.body.id, function (err) {

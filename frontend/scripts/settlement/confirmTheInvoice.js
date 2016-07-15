@@ -32,7 +32,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
         validateCompanyAddress: function() {
             var $companyAddress = $("#companyAddress"),
                 companyAddress = $.trim($companyAddress.val());
-            console.log(companyAddress.length);
             if (companyAddress.length == 0 || companyAddress.length > 100) {
                 return this.showErrMsg($companyAddress, "请输入合法的公司地址,最多为100个字");
             } else {
@@ -153,6 +152,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
         submitForm: function(that){
 
+            // validation
             if (!this.validateForm()) {
                 $(".totalError").val("请按提示修复上面的错误");
                 return false;
@@ -178,11 +178,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                 redirectUrl = "/settlement/billSetting";     //开票设置列表
             }
 
-            // validation
-            // if( !that.validateForm()) {
-            //     return $("#totalError").val("请按提示信息修改错误");
-            // }
-
             upload.fileBatchRemove( $('#delFileId').val());           //批量删除 无效附件
 
             var param = $("#invoiceForm").serialize();
@@ -191,7 +186,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     return $("#totalError").val(data.message);
                 }
                 $("#totalError").val("");
-                console.log('------------- submit success -------------');
 
                 //    redirect
                 location.href = redirectUrl;
@@ -227,7 +221,6 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
                     }
                     $("#totalError").val("");
                     location.href = "/getBuyOrderDetail?orderId=" + orderId;
-                    console.log('------------- submit success -------------');
                 }
             );
         }

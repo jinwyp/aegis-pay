@@ -7,6 +7,23 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     var $content = $("#content");
     var $searchType = $("#searchType");
 
+    var $transactionBox = $('.transaction-main'),winHeight = 0;
+    var $contractBox = $('.transaction-main'),winHeight = 0;
+    if (window.innerHeight) {
+        winHeight = window.innerHeight;
+    } else if ((document.body) && (document.body.clientHeight)) {
+        winHeight = document.body.clientHeight;
+    }
+
+    if($transactionBox.height() < winHeight - 310) {
+        $transactionBox.height(winHeight - 310);
+    }
+
+    if($contractBox.height() < winHeight - 310) {
+        $contractBox.height(winHeight - 310);
+    }
+
+
     var transactionRecord={
         "datepicker" : function(){
             var pickerStart, pickerEnd,
@@ -395,17 +412,17 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
         location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
         return false;
     });
-    //删除
-    $(".btn-delete").click(function(){
+    //买货删除
+    $(".btn-buyerDelete").click(function(){
         $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您确认删除该订单吗");
+        $("#modalInfo_1").text("您确认删除该订单吗？");
         $('#md_ok_1').val("确定");
         $(".modal_1").modal('show');
         var id=$(this).data("id"),
             version=$(this).data("version");
         $("#md_ok_1").off("click").on("click",function(){
             $.ajax({
-                url:"/account/deleteOrder",
+                url:"/wealth/buyerDelete",
                 data:{id:id,version:version},
                 success:function(data){
                     if(data){
@@ -419,7 +436,31 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
                 }
             });
         });
-        return false;
+    });
+    //卖货删除
+    $(".btn-sellerDelete").click(function(){
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您确认删除该订单吗？");
+        $('#md_ok_1').val("确定");
+        $(".modal_1").modal('show');
+        var id=$(this).data("id"),
+            version=$(this).data("version");
+        $("#md_ok_1").off("click").on("click",function(){
+            $.ajax({
+                url:"/wealth/sellerDelete",
+                data:{id:id,version:version},
+                success:function(data){
+                    if(data){
+                        $(".modal_1").modal('hide');
+                        location.reload();
+                    }else{
+                        $("#modal_title_3").text("温馨提示");
+                        $("#modalInfo_3").text(data.error);
+                        $(".modal_3").modal('show');
+                    }
+                }
+            });
+        });
     });
     //关闭交易
     $(".btn-closeTrade").click(function(){

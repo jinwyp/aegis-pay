@@ -12,6 +12,17 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         $(".bubble").addClass("bubble-hidden");
     });
 
+    var $mainBox = $('.financial-main'),winHeight = 0;
+    if (window.innerHeight) {
+        winHeight = window.innerHeight;
+    } else if ((document.body) && (document.body.clientHeight)) {
+        winHeight = document.body.clientHeight;
+    }
+
+    if($mainBox.height() < winHeight - 310) {
+        $mainBox.height(winHeight - 310);
+    }
+
 
     var vm = {};
     var searchQuery = {
@@ -131,7 +142,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                     vm.orderShowLoading = false;
-                    $("#paymentFooter").removeClass('bottomAbsolute');
+                    if (data.list.length > 7){ $("#paymentFooter").removeClass('bottomAbsolute'); }
                 }
             })
         },
@@ -424,17 +435,42 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
     $(".btn-lookDispute").click(function(){
         location.href="/dispute/disputeComplete?orderId="+$(this).data("id");
     });
-    //删除
-    $(".btn-delete").click(function(){
+    //买货删除
+    $(".btn-buyerDelete").click(function(){
         $("#modal_title_1").text("温馨提示");
-        $("#modalInfo_1").text("您确认删除该订单吗");
+        $("#modalInfo_1").text("您确认删除该订单吗？");
         $('#md_ok_1').val("确定");
         $(".modal_1").modal('show');
         var id=$(this).data("id"),
             version=$(this).data("version");
         $("#md_ok_1").off("click").on("click",function(){
             $.ajax({
-                url:"/account/deleteOrder",
+                url:"/wealth/buyerDelete",
+                data:{id:id,version:version},
+                success:function(data){
+                    if(data){
+                        $(".modal_1").modal('hide');
+                        location.reload();
+                    }else{
+                        $("#modal_title_3").text("温馨提示");
+                        $("#modalInfo_3").text(data.error);
+                        $(".modal_3").modal('show');
+                    }
+                }
+            });
+        });
+    });
+    //卖货删除
+    $(".btn-sellerDelete").click(function(){
+        $("#modal_title_1").text("温馨提示");
+        $("#modalInfo_1").text("您确认删除该订单吗？");
+        $('#md_ok_1').val("确定");
+        $(".modal_1").modal('show');
+        var id=$(this).data("id"),
+            version=$(this).data("version");
+        $("#md_ok_1").off("click").on("click",function(){
+            $.ajax({
+                url:"/wealth/sellerDelete",
                 data:{id:id,version:version},
                 success:function(data){
                     if(data){

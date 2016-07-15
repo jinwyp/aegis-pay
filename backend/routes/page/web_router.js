@@ -8,6 +8,7 @@
 var express                   = require('express');
 var router                    = express.Router();
 
+var sms                       = require('../../libs/sms_code');
 var authMiddleware            = require('../../middlewares/auth');
 var demoController            = require('../../controllers/demo');                              //引入 控制模块
 
@@ -127,13 +128,15 @@ router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSucc
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
 router.get('/wealth/checkCashBank', financialHome.checkCashBank);                               //财务管理中心－首页
 router.get('/wealth/checkDrawCash', financialHome.checkDrawCash);                               //财务管理中心－首页
+router.get('/wealth/buyerDelete', financialHome.buyerDelete);                               //财务管理中心－首页
+router.get('/wealth/sellerDelete', financialHome.sellerDelete);                               //财务管理中心－首页
 
 //账户管理
 router.get('/wealth/addAccount', wealthAccount.addAccount);                                     //账户管理－账户通－初始化
 router.post('/accountDel', wealthAccount.accountDel);                                           //账户管理－账户通－账户删除
 router.get('/drawCash', drawCash.drawCash);                                                     //账户管理－账户通－提现已绑定
 router.post('/drawCashCheck', drawCash.drawCashCheck);                                          //账户管理－账户通－提现确认信息
-router.post('/drawCashStatus', drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
+router.post('/drawCashStatus',sms.verifyMiddleware({fromSession:true}) ,drawCash.drawCashStatus);                                        //账户管理－账户通－提现确认信息
 router.post('/cashSuccess', drawCash.cashSuccess);                                              //账户管理－账户通－提现成功
 router.get('/account/accountSetting', accountSetting.accountSetting);
 router.get('/account/securitySetting', securitySetting.securitySetting);
