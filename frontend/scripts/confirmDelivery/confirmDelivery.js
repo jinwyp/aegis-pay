@@ -338,7 +338,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
 
             //提货数量
             var deliveryAmount=$("#deliveryAmount");
-            if(deliveryAmount.val()==""){
+            if(deliveryAmount.val()=="" || deliveryAmount.val()=="0"){
                $(".errorMes").text("提货数量不得为空");
                return false;
             }else{

@@ -238,10 +238,10 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.loanFlag === 'D') { order.money = -order.money;}
 
                     if (order.type === 1){order.type = '充值'; }
-                    if (order.type === 2){order.type = '提现'; order.money = -order.money;}
+                    if (order.type === 2){order.type = '提现'; }
                     if (order.type === 3){order.type = '销售'; order.type = order.type + ' 订单号:' + order.orderId;}
-                    if (order.type === 4){order.type = '采购'; order.money = -order.money; order.type = order.type + ' 订单号:' + order.orderId;}
-                    if (order.type === 5){order.type = '验卡打款'; order.money = -order.money;}
+                    if (order.type === 4){order.type = '采购';  order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 5){order.type = '验卡打款'; }
                     if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
                 });
