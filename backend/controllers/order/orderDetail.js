@@ -47,11 +47,11 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 case 'WaitSettleAccounts':
                 case 'WaitVerifySettle':
                 case 'ReturnedSettleAccounts':
-                case 'WaitPayRefundMoney':
-                case 'WaitPayTailMoney':
                     step = 4;
                     break;
                 case 'WaitReceiveReceipt':
+                case 'WaitPayRefundMoney':
+                case 'WaitPayTailMoney':
                     step = 5;
                     break;
                 default :
@@ -60,9 +60,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
             var stepName='',stepDate='';
             if((source.data.order.status==='WaitSettleAccounts'
                 ||source.data.order.status==='WaitVerifySettle'
-                ||source.data.order.status==='ReturnedSettleAccounts'
-                ||source.data.order.status==='WaitPayRefundMoney'
-                ||source.data.order.status==='WaitPayTailMoney')&&source.data.order.confirmDeliveryTime===null){
+                ||source.data.order.status==='ReturnedSettleAccounts')&&source.data.order.confirmDeliveryTime===null){
                 stepName='纠纷处理';
                 stepDate=source.data.order.disputeCompleteTime ||"";
             }else{
