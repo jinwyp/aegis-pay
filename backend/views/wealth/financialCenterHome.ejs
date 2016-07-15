@@ -100,7 +100,7 @@
         <div class="financial-center">
             <div class="record-div">
             <table class="record-table">
-                <% if(typeof recordList && recordList.length>0){%>
+                <% if(typeof recordList && recordList.length<0){%>
                     <%for(var i=0;i<recordList.length;i++){%>
                     <tr class="line">
                         <td width="60"><div><%= recordList[i].createTime %></div></td>

@@ -123,6 +123,7 @@ body{
         .span-text{
           display: inline;
           text-align: center;
+          color: $color_manage_text;
         }
         .span-icon{
           padding-left: 28px;
@@ -189,7 +190,7 @@ body{
           }
           .no-data{
             text-align: center;
-            padding: 105px 0;
+            padding: 105px 0 300px 0;
             font-size: 18px;
             color: #666;
           }
