@@ -12,7 +12,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         $(".bubble").addClass("bubble-hidden");
     });
 
-    var $mainBox = $('.financial-main'),winHeight = 0;
+    var $mainBox = $('.main-box'),winHeight = 0;
     if (window.innerHeight) {
         winHeight = window.innerHeight;
     } else if ((document.body) && (document.body.clientHeight)) {
@@ -142,7 +142,7 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
                     vm.orderList = data.list;
                     vm.configPagination.totalPages = Math.ceil(data.count / data.pagesize);
                     vm.orderShowLoading = false;
-                    if (data.list.length > 7){ $("#paymentFooter").removeClass('bottomAbsolute'); }
+                    //if (data.list.length > 5){ $("#paymentFooter").removeClass('bottomAbsolute'); }
                 }
             })
         },

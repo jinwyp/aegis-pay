@@ -18,6 +18,7 @@ var sourcePaths = {
     "html"               : "../backend/views/**/*",
     "javascript"               : "scripts/**/*.js",
     "components"               : "components/**/*",
+    "avalon_components"        : 'scripts/avalon_components/*.js',
     "plugins"                  : 'scripts/jquery_plugins/*.js',
     "images"                   : "images/**/*",
     "imagesSprites"            : "images/sprite/icon/**/*",
@@ -25,15 +26,16 @@ var sourcePaths = {
 };
 
 var distPaths = {
-    "javascript"        : "dist/scripts",
-    "components"        : "dist/components",
-    "plugins"                  : 'dist/scripts/jquery_plugins',
-    "images"            : "dist/images",
-    "imagesSprites"     : "images/sprite/auto-sprite.png",
-    "imagesSpritesScss" : "styles/helpers/_auto_sprite.scss",
+    "javascript"                     : "dist/scripts",
+    "components"                     : "dist/components",
+    "avalon_components"              : 'dist/scripts/avalon_components',
+    "plugins"                        : 'dist/scripts/jquery_plugins',
+    "images"                         : "dist/images",
+    "imagesSprites"                  : "images/sprite/auto-sprite.png",
+    "imagesSpritesScss"              : "styles/helpers/_auto_sprite.scss",
     "imagesSpritesScssReferringPath" : "/static/images/sprite/auto-sprite.png",
-    "css"               : "dist/styles",
-    "browserSyncWatchFiles" : [sourcePaths.html, "dist/scripts/**/*.js", "dist/styles/**/*.css"]
+    "css"                            : "dist/styles",
+    "browserSyncWatchFiles"          : [sourcePaths.html, "dist/scripts/**/*.js", "dist/styles/**/*.css"]
 };
 
 
@@ -89,7 +91,9 @@ gulp.task('components', function() {
     gulp.src(sourcePaths.components)
         .pipe(gulp.dest(distPaths.components));
     gulp.src(sourcePaths.plugins)
-        .pipe(gulp.dest(distPaths.plugins))
+        .pipe(gulp.dest(distPaths.plugins));
+    gulp.src(sourcePaths.avalon_components)
+        .pipe(gulp.dest(distPaths.avalon_components));
 });
 
 
@@ -111,14 +115,10 @@ gulp.task('watch', function() {
 gulp.task('release-js', ['jslint', 'components'], function(){
     return gulp.src(['scripts/*.js', 'scripts/*/*.js', '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/**/*.js'])
     .pipe(requirejsOptimize(function(file){
-        if(file.relative !== 'common.js' && file.relative !== 'avalon-c.js'){
-            rconfig.exclude = ['common', 'avalon-c'];
+        if(file.relative !== 'common.js'){
+            rconfig.exclude = ['common'];
         }else{
             rconfig.exclude = [];
-        }
-        if(file.relative === 'avalon-c.js'){
-            rconfig.exclude = ['common'];
-            rconfig.optimize = 'none';
         }
         return rconfig;
     }))

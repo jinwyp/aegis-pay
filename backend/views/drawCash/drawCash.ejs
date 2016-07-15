@@ -18,7 +18,7 @@
 		<div class="figure-wrap" id="drawCash">
 			<div class="figure-caption">
 				<span>账户余额：<strong><i id="balancePrice"><%= formatMoney(balanceMoney) %></i>元</strong></span>
-				<a href="/wealth/financialHome">提现记录</a>
+				<a href="/wealth/financialDetails?category=2">提现记录</a>
 			</div>
 			<div class="figure-content">
 				<form action="/drawCashCheck" method="post" class="form-horizontal">
@@ -36,7 +36,7 @@
 						<label class="col-sm-5 control-label">提现金额：</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control"  placeholder="请输入金额" id="drawCashTxt" name="cash">
-							<p class="padding-top-8 password-info" id="errorTxt">每笔限额<span class="text-primary">5千万</span>元，提现<span class="text-primary">3</span>次</p>
+							<p class="padding-top-8 password-info" id="errorTxt">每笔限额<span class="text-primary">5千万</span>元，每日最多提现<span class="text-primary">3</span>次</p>
 							<p class="padding-top-8 password-info text-danger display-none" id="drawCashErr">金额输入有误，请重新输入</p>
 						</div>
 						<div class="float-left padding-top-8">元</div>

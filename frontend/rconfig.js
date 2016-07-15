@@ -1,7 +1,8 @@
 var rconfig = {
     baseUrl  : 'scripts',
     paths    : {
-        'avalon'                            : '../components/avalon/dist/avalon',
+        'avalon'                            : 'empty:',
+        'avalon.pagination'                 : 'empty:',
         'bootstrap'                         : '../components/bootstrap/dist/js/bootstrap',
         "devbridge-autocomplete"            : '../components/devbridge-autocomplete/dist/jquery.autocomplete',
         'eonasdan-bootstrap-datetimepicker' : '../components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
@@ -34,7 +35,6 @@ var rconfig = {
         'pay.upload'                        : 'business_components/upload',
         'pay.smscode'                       : 'business_components/sms-code',
         'datachecker'                       : 'business_components/datachecker',
-        'avalon.pagination'                 : 'avalon_components/pagination',
         'compact-block'                     : 'compact/blocks/compact',
         'compact-upload'                    : 'compact/blocks/upload',
         'pay-block'                         : 'pay/blocks/pay',

@@ -100,6 +100,7 @@ module.exports = function (app) {
 
     //截取后四位银行卡号
     app.locals.subFour = function (num) {
+        num = num || '';
         return num.substr((num.length-4));
     };
 

@@ -267,25 +267,33 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                 }
             });
             $("#vertifyCode").on('blur', function() {
-                var vertifyCode=$("#vertifyCode").val();
-                that.checkVCode().done(function(data){
-                    if (data.success) {
-                        $(".successIcon").css({visibility: "visible"});
-                        $(".vertifyCode .errorMsg").text('');
-                        finalResult = true;
-                    } else {
-                        if (data.errType && (data.errType == 'sms_code')) {
-                            finalResult = false;
-                            $(".vertifyCode .errorMsg").text('校验码输入有误');
-                            $(".successIcon").css({visibility: "hidden"});
-                            $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
-                            return false;
-                        }else{
+                if($(this).val()==""){
+                    $(".vertifyCode").find(".errorMsg").text("请输入验证码");
+                    $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                    return false;
+                }else{
+                    var vertifyCode=$(this).val();
+                    that.checkVCode().done(function(data){
+                        if (data.success) {
+                            $(".successIcon").css({visibility: "visible"});
+                            $(".vertifyCode .errorMsg").text('');
                             $('.submitTotal').find(".errorMsg").text("");
                             finalResult = true;
+                        } else {
+                            if (data.errType && (data.errType == 'sms_code')) {
+                                finalResult = false;
+                                $(".vertifyCode .errorMsg").text('校验码输入有误');
+                                $(".successIcon").css({visibility: "hidden"});
+                                $('.submitTotal').find(".errorMsg").text("请按红色错误提示修改您填写的内容");
+                                return false;
+                            }else{
+                                $(".vertifyCode .errorMsg").text('');
+                                $('.submitTotal').find(".errorMsg").text("");
+                                finalResult = true;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
 
         },
@@ -294,6 +302,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
             var that=this;
             $("#submitInfo").on("click",function(){
                 var flag = that.Verify();
+                var btnDisabled=$(this).hasClass("disablBtn");
                 if(flag){
                 // 开户行支行名称code
                     if($("#childBankName").attr("data-selectdata")==""){
@@ -304,8 +313,8 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                         $(".childBankName").find(".errorMsg").text("");
                         $('.submitTotal').find(".errorMsg").text("");
                     }
-                    if(finalResult!="undefined" && finalResult){
-
+                    if(finalResult!="undefined" && finalResult && !btnDisabled){
+                        $(this).addClass("disablBtn");
                         $.ajax({
                             url:'/api/account/fund/bankCard/add/submit',
                             type:'POST',
@@ -319,9 +328,11 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                                     location.href='/wealth/bindingSuccess';
                                 }else{
                                     $('.submitTotal').find(".errorMsg").text(data.error);
+                                    $("#submitInfo").removeClass("disablBtn");
                                 }
+
                             }
-                        })
+                        });
                     }
                 }
 

@@ -163,6 +163,7 @@ router.post('/settlement/billDelete', billSetting.billDelete);                  
 router.get('/settlement/billView', billSetting.billView);                                       //结算管理－开票设置删除按钮
 router.get('/settlement/billCenterView', billCenter.billCenterView);                            //结算管理－开票设置删除按钮
 router.post('/settlement/receiveReceipt', billCenter.receiveReceipt);                           //结算页面－通知短信发送
+router.post('/settlement/getReceipt', billCenter.getReceipt);                           //结算页面－确认已收到发票
 router.get('/settlement/waitSettle', billCenter.billCenter);                                    //结算管理－开票设置(代开票)
 router.get('/settlement/hadSettle', billCenter.billCenter);                                     //结算管理－开票设置(已开票)
 router.get('/settlement/settleDetails', settleDetails.settleDetails);                           //结算管理－发票查看详情
