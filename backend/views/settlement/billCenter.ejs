@@ -31,7 +31,7 @@
                         <% for(i=0;i<receiptOrder.list.length;i++){ %>
                         <% var obj = receiptOrder.list[i] %>
                             <tr>
-                                <td><%= obj.orderId %>   <%= obj.version %></td>
+                                <td><%= obj.orderNO %></td>
                                 <td><%= formatMoney(obj.totalMoney ,2)%></td>
                                 <td><%= obj.settleAccountTime %></td>
                                 <td class="width150"><%= obj.otherCompanyName %></td>
