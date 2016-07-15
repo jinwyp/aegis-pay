@@ -116,7 +116,7 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
             var now = +new Date,
                 args = arguments;
             if (last && now < last + threshhold) {
-                // hold on to it    
+                // hold on to it
                 clearTimeout(deferTimer);
                 deferTimer = setTimeout(function () {
                     last = now;
@@ -138,7 +138,6 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 		judge : function(){
 			var hBody=$('body').height();
             var hWindow=$(window).height();
-            //console.log(hWindow, hBody, hWindow-hBody, isStick);
             if (isStick){
                 if(hWindow - 150 < hBody){ //除去footer的高度在计算
                     isStick = false;

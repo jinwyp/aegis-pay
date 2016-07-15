@@ -302,6 +302,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
             var that=this;
             $("#submitInfo").on("click",function(){
                 var flag = that.Verify();
+                var btnDisabled=$(this).hasClass("disablBtn");
                 if(flag){
                 // 开户行支行名称code
                     if($("#childBankName").attr("data-selectdata")==""){
@@ -312,8 +313,8 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                         $(".childBankName").find(".errorMsg").text("");
                         $('.submitTotal').find(".errorMsg").text("");
                     }
-                    if(finalResult!="undefined" && finalResult){
-
+                    if(finalResult!="undefined" && finalResult && !btnDisabled){
+                        $(this).addClass("disablBtn");
                         $.ajax({
                             url:'/api/account/fund/bankCard/add/submit',
                             type:'POST',
@@ -327,9 +328,11 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                                     location.href='/wealth/bindingSuccess';
                                 }else{
                                     $('.submitTotal').find(".errorMsg").text(data.error);
+                                    $("#submitInfo").removeClass("disablBtn");
                                 }
+
                             }
-                        })
+                        });
                     }
                 }
 

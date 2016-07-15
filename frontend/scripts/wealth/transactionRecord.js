@@ -7,21 +7,21 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
     var $content = $("#content");
     var $searchType = $("#searchType");
 
-    var $transactionBox = $('.transaction-main'),winHeight = 0;
-    var $contractBox = $('.transaction-main'),winHeight = 0;
-    if (window.innerHeight) {
-        winHeight = window.innerHeight;
-    } else if ((document.body) && (document.body.clientHeight)) {
-        winHeight = document.body.clientHeight;
-    }
+    //var $transactionBox = $('.transaction-main'),winHeight = 0;
+    //var $contractBox = $('.transaction-main'),winHeight = 0;
+    //if (window.innerHeight) {
+    //    winHeight = window.innerHeight;
+    //} else if ((document.body) && (document.body.clientHeight)) {
+    //    winHeight = document.body.clientHeight;
+    //}
 
-    if($transactionBox.height() < winHeight - 310) {
-        $transactionBox.height(winHeight - 310);
-    }
-
-    if($contractBox.height() < winHeight - 310) {
-        $contractBox.height(winHeight - 310);
-    }
+    //if($transactionBox.height() < winHeight - 310) {
+    //    $transactionBox.height(winHeight - 310);
+    //}
+    //
+    //if($contractBox.height() < winHeight - 310) {
+    //    $contractBox.height(winHeight - 310);
+    //}
 
 
     var transactionRecord={

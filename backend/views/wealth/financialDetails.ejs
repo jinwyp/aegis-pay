@@ -19,7 +19,7 @@
             <form class="form-inline">
                 <div class="form-row" >
                     <div class="form-group form-search indexHigh">
-                        <label class="col-sm-5 control-label" for="orderCategory">类型:</label>
+                        <label class="col-sm-4 control-label" for="orderCategory">类型:</label>
                         <select name="orderCategory" id="orderCategory" >
                             <% formSelectOrderCategory.forEach(function(order){ %>
                             <option value="<%= order.value %>" <% if (order.selected) { %> selected <% } %> ><%= order.text %></option>
@@ -52,20 +52,20 @@
                         </select>
                     </div>
 
-                    <div class="form-group form-search form-search-big">
+                    <div class="form-group form-search form-search-big2">
                         <label class="sr-only" for="orderSearchText">查询类型</label>
                         <input type="text" class="form-control input-text" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
                         <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
                     </div>
 
-
+                    <div class="notify-info">
+                        当天发生的资金交割请以第二个工作日明细记录为准
+                    </div>
 
 
                 </div>
 
-                <div class="form-row ">
 
-                </div>
 
             </form>
 
