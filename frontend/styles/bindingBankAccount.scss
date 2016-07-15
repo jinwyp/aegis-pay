@@ -68,6 +68,8 @@
     .accountInfoWrap .btnWrap a.submitInfo{width:180px;height:40px;margin-top:10px;color:#fff;font-size: 16px;line-height: 40px;text-align:center;border-radius:2px;background: #00b6ef;display: block;}
     .accountInfoWrap .btnWrap a.submitInfo:hover{text-decoration: none;opacity: .8;}
 
+    .accountInfoWrap .btnWrap a.disablBtn{background:#969494;cursor:wait;}
+
     //增加样式
     .options li:hover{border:1px solid #00b6ef!important;}
   }
