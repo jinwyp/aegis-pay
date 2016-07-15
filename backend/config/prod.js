@@ -23,6 +23,8 @@ var config = {
         port: process.env.notification_redis_port,
         db: 0
     },
+    // 生产为负载均衡地址
+    rest_address: process.env.SERVICE_ADDRESS
 };
 
 module.exports = config;
