@@ -47,10 +47,13 @@ requirejs(['jquery'], function($,sms_code,pay){
                     $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
                     $(".accountSuccess").show();
                 }else{
-                    if(data.errorCode=="1007"){
-                        $(".errorMsg").text("汇款金额有误,请重新输入");
+                    if(data.data.times=="1"){
+                        $(".errorMsg").text("确认金额有误,你还有2次确认机会,请重新输入");
                     }
-                    if(data.errorCode=="1008"){
+                    if(data.data.times=="2"){
+                        $(".errorMsg").text("确认金额有误,你还有1次确认机会,请重新输入");
+                    }
+                    if(data.data.times=="3"){
                         // 汇款金额核对次数超过3次
                         $(".bindingSuccessInfoWrap,.bankConfirmWrap").hide();
                         $(".accountError").show();

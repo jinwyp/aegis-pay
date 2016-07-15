@@ -17,7 +17,7 @@
         <p class="containerTit"><span>买家提货数据</span></p>
         <div class="infoContainer">
             <div class="deliveryAmount">
-                提货数量：<b><%= order.deliveryAmount%></b> 吨
+                提货总量：<b><%= order.deliveryAmount%></b> 吨
             </div>
             <%if(order.pricingMethodId==1){%>
                 <div class="tableContainer">
@@ -42,7 +42,13 @@
                                 </tr>
                                 <tr>
                                     <%for(var i in indexList[j]){%>
-                                        <td><%= indexList[j][i]%></td>
+                                        <td>
+                                            <% if(indexList[j][i]=="" || indexList[j][i]==undefined){%>
+                                            --
+                                            <%}else{%>
+                                            <%= indexList[j][i]%>
+                                            <%}%>
+                                        </td>
                                     <%}%>
                                     <%for(var i=0;i<9-tdCount;i++){%>
                                         <td width="105"></td>
@@ -72,7 +78,13 @@
                                             <%if(tdCount==1){%>
                                                 <td rowspan="3"><%=j+1%></td>
                                             <%}else{%>
-                                                <td><%= indexList[j][i]%></td>
+                                                <td>
+                                                    <% if(indexList[j][i]=="" || indexList[j][i]==undefined){%>
+                                                    --
+                                                    <%}else{%>
+                                                    <%= indexList[j][i]%>
+                                                    <%}%>
+                                                </td>
                                             <%}%>
                                         <%}%>
                                     <%}%>
@@ -90,7 +102,13 @@
                                 <tr>
                                     <% var tdCount=0;for(var i in indexList[j]){ tdCount++;%>
                                     <%if(tdCount>10){%>
-                                    <td><%= indexList[j][i] %></td>
+                                    <td>
+                                        <% if(indexList[j][i]=="" || indexList[j][i]==undefined){%>
+                                        --
+                                        <%}else{%>
+                                        <%= indexList[j][i]%>
+                                        <%}%>
+                                    </td>
                                     <%}%>
                                     <%}%>
                                     <%for(var i=0;i<19-tdCount;i++){%>

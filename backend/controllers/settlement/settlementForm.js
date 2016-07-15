@@ -74,6 +74,45 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
+			//replyData.data = { files: [],
+			//	order:
+			//	{ id: 2087,
+			//		version: 9,
+			//		userId: 2718,
+			//		sellerId: 2723,
+			//		orderNO: 'ZY201607140004',
+			//		contractNO: 'HT201607140004',
+			//		status: 'ReturnedSettleAccounts',
+			//		statusName: '结算被退回',
+			//		deliveryPlace: '南宁港',
+			//		otherHarbour: null,
+			//		harbour: '南宁港',
+			//		coalType: '焦煤',
+			//		amount: 50,
+			//		price: 0.01,
+			//		totalMoney: 0.5,
+			//		buyerCompanyName: '测试pay项目',
+			//		sellerCompanyName: '上海瑞易供应链管理有限公司',
+			//		confirmDeliveryTime: '2016-07-14 16:07:32',
+			//		sellerSettleTime: '2016-07-14 16:08:03',
+			//		settleAccountTime: null,
+			//		paymentTime: '2016-07-14 16:06:15',
+			//		deadlineTime: '2016-07-29 00:00:00',
+			//		settleReturnTime: null,
+			//		lastEditReasonTime: null,
+			//		currentTime: '2016-07-14 19:26:17',
+			//		deliveryAmount: 50,
+			//		settleAmount: 0,
+			//		harbourDues: 0,
+			//		settleMoney: 0.4,
+			//		tailMoney: 0,
+			//		refundMoney: 0.1,
+			//		remarks: '',
+			//		returnReason: null
+			//	}
+			//};
+			//replyData.userType = 'sell';
+
 			zipUser = replyData.data.order.sellerId;
 
 			if(replyData.data && replyData.data.files.length > 0) {

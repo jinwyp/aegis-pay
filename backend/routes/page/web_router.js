@@ -128,6 +128,8 @@ router.get('/wealth/open-fund-account/success', wealthCenter.openFundAccountSucc
 router.get('/wealth/financialHome', financialHome.financialHome);                               //财务管理中心－首页
 router.get('/wealth/checkCashBank', financialHome.checkCashBank);                               //财务管理中心－首页
 router.get('/wealth/checkDrawCash', financialHome.checkDrawCash);                               //财务管理中心－首页
+router.get('/wealth/buyerDelete', financialHome.buyerDelete);                               //财务管理中心－首页
+router.get('/wealth/sellerDelete', financialHome.sellerDelete);                               //财务管理中心－首页
 
 //账户管理
 router.get('/wealth/addAccount', wealthAccount.addAccount);                                     //账户管理－账户通－初始化

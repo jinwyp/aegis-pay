@@ -1,5 +1,6 @@
 
         <%
+            //格式化 数值
             function formatDecimalNew(num, deg) {
                 if(isNaN(num)) {
                     num = 0;
@@ -7,6 +8,7 @@
                 num = new Number(num);
                 return (num.toFixed(deg || 2) + '');
             }
+            //格式化 金额
             function formatMoneyNew(num, deg) {
                 if(isNaN(num)) {
                     num = 0;
@@ -125,11 +127,17 @@
 
                     <% if(isEdit_sj) {%>
                         <tr>
-                            <td class=".billBox">
-                                <%= settleAmount %>
-                                <input type="hidden" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= settleAmount %>" readonly />
-                                <span class="errInfo"></span>
-                            </td>
+                            <% if(settleAmount != '0.00' && settleAmount != ''){ %>
+                                <td>
+                                    <%= settleAmount %>
+                                    <input type="hidden" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= settleAmount %>" readonly />
+                                </td>
+                            <% }else{ %>
+                                <td class="billBox">
+                                    <input type="text" class="billIpt" name="ins_ettleAmount" maxlength="9" placeholder="请输入大于0的数值" value="<%= settleAmount %>" />
+                                    <span class="errInfo"></span>
+                                </td>
+                            <% } %>
                             <td class="billBox">
                                 <input type="text" class="billIpt" name="ins_harbourDues" maxlength="11" placeholder="请输入大于0的数值" value="<%= harbourDues %>"/>
                                 <span class="errInfo"></span>

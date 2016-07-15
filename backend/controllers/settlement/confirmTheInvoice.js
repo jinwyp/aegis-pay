@@ -185,8 +185,9 @@ exports.imgViewApi = function (req, res, next) {
 	var imgSrc = config.view_file + key;
 
 	console.log('---imgViewApi-----------------------------------');
-	console.log(key);
-	console.log(imgSrc);
+	console.log("uplaod pic key:", key, " path:", imgSrc);
+
+	checker.uploadPicturePath(imgSrc);
 
 	if(key) {
 		res.download(imgSrc, path.basename(imgSrc), function(err,data){

@@ -102,6 +102,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				if( !flag ){
 					return false;
 				}else{
+                    confirmBtn.prop("disabled",true);
 					var vertifyCode = $('#vertifyCode').val();
 					var payPhone = $('#payPhone').val();
 					var vertifyCodeError = $('#vertifyCodeError');
@@ -116,10 +117,11 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 		            }).done(function(response){
 		            	if( !response.success ){
 		            		vertifyCodeError.show();
+                            confirmBtn.prop("disabled",false);
 		            		return false;
-		            	}else{
-		            		vertifyCodeError.hide();
 		            	}
+
+                        vertifyCodeError.hide();
 		            	$.ajax({
 							url:'/drawCashStatus',
 							method:'POST',
@@ -130,6 +132,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 							},
 							success:function(response){
 								if(!response.success){
+                                    confirmBtn.prop("disabled",false);
 									if(response.data && response.data.type && response.data.type == 1){
 										errorMsg.html('密码错误,还有'+response.data.message.times+'次输入机会').show();
 									}else{
@@ -139,8 +142,12 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 									$('#successForm').submit();
 								}
 							}
-						})
-					});
+						}).fail(function(){
+                            confirmBtn.prop("disabled",false);
+                        })
+					}).fail(function(){
+                        confirmBtn.prop("disabled",false);
+                    });
 				}
 			});
 			function checkHandler(val){
