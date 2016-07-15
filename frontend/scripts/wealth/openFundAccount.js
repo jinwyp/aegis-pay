@@ -60,6 +60,9 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                     [['$sms_code', /\w{6,6}/], '$smscodeErr', '验证码输入有误！']
                 ]
                 var noValid = self.submitValid(requiredValid);
+                if((self.els.$smscodeErr[0].style.display == 'block') || (self.els.$payPhoneErr[0].style.display == 'block')){
+                    $('.icon-sendsms').hide();
+                }
                 !noValid && self.submit();
             })
 
@@ -71,11 +74,13 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                 if (!/^0?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/.test(payPhone)) {
                     self.els.$payPhoneErr.text('请输入有效的手机号！').show();
                     self.els.$payPhone.focus();
+                     $('.icon-sendsms').hide();
                 } else {
                     self.els.$payPhoneErr.hide();
                     $.post('/api/pay/payphone', {payPhone: $('input[name="payPhone"]').val()}, function(result){
                         if(!result.success){
                             self.els.$payPhoneErr.text('该支付手机已经存在易煤网资金账户').show();
+                             $('.icon-sendsms').hide();
                         }else{
                             self.els.$payPhoneErr.text('').hide();
                             $('#imgcodeModal').modal();
