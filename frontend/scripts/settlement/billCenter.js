@@ -46,7 +46,7 @@ require(['jquery', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'],functi
                 $(".sideBar .dd_2").addClass("current");
             }
         }
-    }
+    };
 
     transactionRecord.datepicker();
     transactionRecord.sideBar();
@@ -66,19 +66,48 @@ require(['jquery', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'],functi
     });
 
     
-    //未认证弹出框
+    //确认开票
     $(".sureSettle").click(function(){
+        var $tag = $(this);
         //alert("1234")
         $(this).prop("disabled",true);
         $.ajax({
             url:"/settlement/receiveReceipt",
             type: 'post',
-            data:{orderId:$(".sureSettle").attr("name")},
+            data:{orderId:$tag.attr("data-id"), version: $tag.attr("data-ver"),type:$tag.attr("data-type")},
             success:function(data){
                 if(data.success){
                     $(".modal_2").modal();
                     $("#modalImg_2").addClass("yes").removeClass("attention");
                     $("#modalInfo_2").html("发票开具完成，已短信通知买家！");
+                    $("#modalInfo_2").css({fontSize:"16px"});
+                    $("#md_ok_2").click(function(){
+                        $(".modal_2").modal("hide");
+                        location.reload();
+                    })
+                }
+                else{
+                    $(this).prop("disabled",false);
+                }
+            }
+        });
+    });
+
+    //确认收票
+    $(".getSettle").click(function(){
+        var $tag = $(this);
+
+        //alert("1234")
+        $(this).prop("disabled",true);
+        $.ajax({
+            url:"/settlement/getReceipt",
+            type: 'post',
+            data:{orderId:$tag.attr("data-id"), version: $tag.attr("data-ver"),type:$tag.attr("data-type")},
+            success:function(data){
+                if(data.success){
+                    $(".modal_2").modal();
+                    $("#modalImg_2").addClass("yes").removeClass("attention");
+                    $("#modalInfo_2").html("确认已收到开票!");
                     $("#modalInfo_2").css({fontSize:"16px"});
                     $("#md_ok_2").click(function(){
                         $(".modal_2").modal("hide");

@@ -156,7 +156,8 @@ var api_config = {
     billSetting : host + 'finance/receipt',
     billDelete : host + 'finance/receipt/delete',
     billView : host + 'finance/receipt/view',
-    receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
+    // receiveReceipt : host + 'mall/order/seller/notice/receiveReceipt',
+    getReceipt : host + 'mall/order/complete/submit',
     // 记得密码 - 修改密码 - 提交
     paypasswordModifySubmit: host + 'account/fund/payPwd/rem/submit',
 
