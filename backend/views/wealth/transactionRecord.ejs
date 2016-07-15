@@ -180,7 +180,7 @@
                             <a class="notice-sellerWriteReceipt" data-id="<%= recordList[i].id %>">提醒卖家开发票</a>
                             <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else if(recordList[i].status==='WaitReceiveReceipt'){ %>
-                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-receiveReceipt" value="确认收到发票" data-id="<%= recordList[i].id %>">
+                            <input type="button" class="iBtn iBtn_xs iBtn_no btn-receiveReceipt" value="确认收到发票" data-id="<%= recordList[i].id %>" data-version="<%= recordList[i].version %>">
                             <a class="mt-10" target="_blank" href="/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else if(recordList[i].status==='WaitImproveReceipt'){ %>
                             <input type="button" class="iBtn iBtn_xs iBtn_no btn-improveReceipt" value="完善开票信息" data-id="<%= recordList[i].id %>">
