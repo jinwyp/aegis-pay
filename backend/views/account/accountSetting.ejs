@@ -36,10 +36,10 @@
                     <tr>
                         <th>资金账户：</th>
                         <% if(fundStatus == 2){%>
-                            <td>已开通</td>
+                            <td class="w400">已开通</td>
                             <td><a href="/wealth/addAccount" class="iBtn iBtn_xs iBtn_no">查看</a></td>
                         <% }else if(fundStatus == 4){%>
-                            <td>已锁定</td>
+                            <td  class="w400">已锁定</td>
                             <td><a href="/ucenter/paypassword/fg/vl" class="iBtn iBtn_xs iBtn_no">去解锁</a></td>
                         <%}%>
 
@@ -47,15 +47,15 @@
                     <tr class="noBorder">
                         <th>银行账户：</th>
                         <% if(cashAccount && cashAccount.status*1 == 1){ %>
-                            <td>等待银行汇款</td>
+                            <td  class="w400">等待银行汇款</td>
                         <% }else if(cashAccount && cashAccount.status*1 == 2){ %>
-                            <td>银行账户等待确认汇款金额</td>
+                            <td class="w400">银行账户等待确认汇款金额</td>
                             <td><a href="/wealth/bindingSuccess?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">认证</a></td>
                         <% }else if(cashAccount && cashAccount.status*1 == 3){ %>
-                            <td>已绑定1张出金账户</td>
+                            <td class="w400">已绑定1张出金账户</td>
                             <td><a href="/wealth/addAccount?userId=<%= user.id %>" class="iBtn iBtn_xs iBtn_no">查看</a></td>
                         <% }else { %>
-                            <td>绑卡</td>
+                            <td class="w400">绑卡</td>
                             <td><a class="iBtn iBtn_xs iBtn_no" href="/wealth/bindingBankAccount">添加银行账户</a></td>
                         <% } %>
                     </tr>
