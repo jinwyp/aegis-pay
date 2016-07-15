@@ -60,6 +60,10 @@ var validationCode = {
     page : {
         menuTabNumberWrong : {code:9001, message:'Field validation error, menu Tab number should be 1 - 20', field : "firstTab"},
         pageNumberWrong : {code:9005, message:'Field validation error, page number should be 1 - 100', field : "currentPage"}
+    },
+    
+    uploadFile : {
+        picExist : {code:9501, message:'Field validation error, upload picture not found', field : "file_id_ + req.session.user.id"},
     }
 };
 

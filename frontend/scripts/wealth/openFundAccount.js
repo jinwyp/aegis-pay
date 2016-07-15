@@ -154,6 +154,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                         location.href = '/wealth/open-fund-account/waiting';
                     } else {
                         if (data.errType == 'sms_code') {
+                            $('.icon-sendsms').hide();
                             self.els.$smscodeErr.text('验证码错误！').show();
                         } else {
                             self.els.$pass1.focus();
