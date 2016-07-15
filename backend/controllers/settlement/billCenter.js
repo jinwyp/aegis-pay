@@ -109,12 +109,24 @@ exports.billCenter = function (req, res, next) {
     })
 
 };
-
+//确认已开票
 exports.receiveReceipt = function (req, res, next) {
-    var user = req.session.user;
+    var user = req.session.user.id;
     var orderId = req.body.orderId;
+    var version = req.body.version;
+    var type = req.body.type;
+    var url = '';
 
-    request({url : api_config.receiveReceipt+'?sellerId=' + user.id +'&orderId=' + orderId}, function (err, data) {
+    if( type == 1 ) {
+        url = api_config.noticeToReceiveReceipt+'?sellerId=' + user +'&orderId=' + orderId + '&version=' + version
+    }else {
+        console.log(type+"--------------------"+orderId);
+
+        res.send("hehehehehe");
+        return;
+    }
+
+    request({url : url}, function (err, data) {
 
         if (err || data.statusCode != 200) {
             next(new SystemError());
@@ -127,6 +139,37 @@ exports.receiveReceipt = function (req, res, next) {
         }else{
             res.json({success:false});
         }
+
+
+    })
+}
+//确认已收票
+exports.getReceipt = function (req, res, next) {
+    var user = req.session.user.id;
+    var orderId = req.body.orderId;
+    var version = req.body.version;
+    var type = req.body.type;
+    var url = '';
+
+    if( type == 0 ) {
+        url = api_config.getReceipt+'?userId=' + user +'&orderId=' + orderId + '&version=' + version
+    }
+    request({url: url}, function (err, data) {
+
+        if (err || data.statusCode != 200) {
+            next(new SystemError());
+            return;
+        }
+        var replayDate = JSON.parse(data.body);
+        if(replayDate.success) {
+            res.json({success:true});
+
+        }else{
+            res.json({success:false});
+        }
+
+        console.log("----------------------------------");
+        console.log(version);
     })
 }
 
