@@ -138,7 +138,6 @@ require(['jquery', 'bootstrap'],function($, bootstrap){
 		judge : function(){
 			var hBody=$('body').height();
             var hWindow=$(window).height();
-            console.log(hWindow, hBody, hWindow-hBody, isStick);
             if (isStick){
                 if(hWindow - 150 < hBody){ //除去footer的高度在计算
                     isStick = false;

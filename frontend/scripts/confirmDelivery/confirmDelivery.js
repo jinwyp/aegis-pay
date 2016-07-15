@@ -37,7 +37,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
           $("input[name='checkAmount']").on("blur",function(){
               totalAmout();
           });
-          $(document).on("click",".del",function(){
+          $(document).on("click","a.del",function(){
               totalAmout();
           });
 

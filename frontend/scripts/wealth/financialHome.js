@@ -12,16 +12,16 @@ requirejs([ 'jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'a
         $(".bubble").addClass("bubble-hidden");
     });
 
-    var $mainBox = $('.main-box'),winHeight = 0;
-    if (window.innerHeight) {
-        winHeight = window.innerHeight;
-    } else if ((document.body) && (document.body.clientHeight)) {
-        winHeight = document.body.clientHeight;
-    }
-
-    if($mainBox.height() < winHeight - 310) {
-        $mainBox.height(winHeight - 310);
-    }
+    //var $mainBox = $('.main-box'),winHeight = 0;
+    //if (window.innerHeight) {
+    //    winHeight = window.innerHeight;
+    //} else if ((document.body) && (document.body.clientHeight)) {
+    //    winHeight = document.body.clientHeight;
+    //}
+    //
+    //if($mainBox.height() < winHeight - 310) {
+    //    $mainBox.height(winHeight - 310);
+    //}
 
 
     var vm = {};
