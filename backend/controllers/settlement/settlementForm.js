@@ -174,7 +174,8 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 
 	for(var i = 0, s = req.body.files.length; i < s; i++) {
 		var file = req.body.files[i];
-		file.path = config.view_file + file.path;
+		//file.path = config.view_file + file.path;
+		file.path = config.file_path.adminroot + config.file_path.compact + file.path;
 	}
 
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
@@ -247,7 +248,7 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 
 	for(var i = 0, s = req.body.files.length; i < s; i++) {
 		var file = req.body.files[i];
-		file.path = config.view_file + file.path;
+		file.path = config.file_path.adminroot + config.file_path.compact + file.path;
 	}
 
 	console.log('--结算审核通过-111-------------------------------------');
@@ -376,7 +377,7 @@ var zipFileMerge = function (req, res, next, zipFileKey) {
 		fileName = zipFileKey + req.session.user.id + '_' + req.body.orderId + '.zip';
 
 		_.each(params.files, function (value, index) {
-			materialPaths.push( value.path ); 			// 原材料路径
+			materialPaths.push( '/app/' + value.path ); 			// 原材料路径
 		});
 		console.log('output=  '+ output + ' , fileName= ' + fileName);
 
