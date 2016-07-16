@@ -16,7 +16,7 @@
     <div class="financial-main main-box">
         <div class="financial-header">
             <div class="header-left border-right">
-                <div class="username"><%if(user.nickname===null){%><%= phoneFormat(user.securephone) %><%}else{%><%= user.nickname %><%}%></div>
+                <div class="username"><%=(user.nickname||phoneFormat(user.securephone))%></div>
                 <div class="companyname"><%= finance.companyName %></div>
                 <div class="occupation"><span class="label">职务：</span>员工</div>
                 <ul>

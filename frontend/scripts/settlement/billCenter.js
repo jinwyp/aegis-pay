@@ -107,7 +107,7 @@ require(['jquery', 'jQuery.fn.datePicker', 'avalon', 'avalon.pagination'],functi
                 if(data.success){
                     $(".modal_2").modal();
                     $("#modalImg_2").addClass("yes").removeClass("attention");
-                    $("#modalInfo_2").html("确认已收到开票!");
+                    $("#modalInfo_2").html("确认已收到发票!");
                     $("#modalInfo_2").css({fontSize:"16px"});
                     $("#md_ok_2").click(function(){
                         $(".modal_2").modal("hide");

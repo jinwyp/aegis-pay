@@ -233,6 +233,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
         $('#md_ok_3').val("确定");
 
         $("#modal_title_2").text("温馨提示");
+        $("#modalImg_2").addClass("yes").removeClass("attention");
         $('#md_ok_2').val("确定");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
@@ -244,7 +245,7 @@ require(['jquery','jQuery.fn.datePicker'],function($){
             url:"/settlement/sureReceiveReceipt?orderId="+orderId+"&version="+version,
             success:function(data){
                 if(data&&data.success){
-                    $("#modalInfo_2").text("您的请求已通过短信的方式通知对方,请您耐心等待");
+                    $("#modalInfo_2").text("确认已收到发票!");
                     $(".modal_2").modal('show');
                 }else{
                     $("#modalInfo_3").text(data.error);
