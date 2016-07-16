@@ -349,6 +349,12 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
             }else{
                $(".errorMes").text("");
             }
+            if(deliveryAmount.val()!="" && deliveryAmount.val()>1000000){
+                $(".errorMes").text("提货数量不得超过1000000");
+                return false;
+            }else{
+                $(".errorMes").text("");
+            }
 
             //table校验
 
