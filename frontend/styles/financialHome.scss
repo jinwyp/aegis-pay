@@ -114,10 +114,18 @@ body{
           line-height: 92px;
           font-size: 18px;
         }
-        .a-add{
+        .icon-add{
           &:hover{
             .span-icon{
+              color: $color_a_hover;;
               background: url("#{$assetPath}/images/wealth/bank_add.png") no-repeat left -28px;
+            }
+          }
+        }
+        .text-add{
+          &:hover{
+            .span-text{
+              color: $color_a_hover;
             }
           }
         }
