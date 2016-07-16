@@ -41,7 +41,6 @@
                                 <% if(obj.type == 0){%>
                                     <% if (obj.status == "WaitWriteReceipt"){%>
                                         <td>
-                                            <div class="btn"></div>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}else if(obj.status == "WaitReceiveReceipt"){%>
@@ -49,12 +48,11 @@
                                             <div class="btn">
                                                 <input type="button" value="确认已收票" class="iBtn iBtn_xs iBtn_no getSettle"
                                                        data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
-                                            </div>
+                                            </div><br/>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}else if(obj.status == "Completed"){%>
                                         <td>
-                                            <div class="btn"></div>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}%>
@@ -66,17 +64,15 @@
                                             <div class="btn">
                                                 <input type="button" value="确认已开票" class="iBtn iBtn_xs iBtn_no sureSettle"
                                                        data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
-                                            </div>
+                                            </div><br/>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}else if(obj.status == "WaitReceiveReceipt"){%>
                                         <td>
-                                            <div class="btn"></div>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}else if(obj.status == "Completed"){%>
                                         <td>
-                                            <div class="btn"></div>
                                             <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                         </td>
                                     <%}%>

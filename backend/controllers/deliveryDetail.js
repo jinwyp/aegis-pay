@@ -90,19 +90,3 @@ exports.deliveryDetail = function (req, res, next) {
     });
 
 };
-
-var zipurl = {};
-exports.fetchQualityZips = function(req, res, next){
-    (!zipurl.qualityPath) && (zipurl = fetchZips(req));
-    console.log('--------zipurl----------------')
-    console.log(zipurl)
-    res.download(zipurl.qualityPath, 'quality.zip', function(err, data){
-        if(err) {return next(err);}
-    })
-}
-exports.fetchQuantityZips = function(req, res, next){
-    (!zipurl.quantityPath) && (zipurl = fetchZips(req));
-    res.download(zipurl.quantityPath, 'quantity.zip', function(err, data){
-        if(err) {return next(err);}
-    })
-} 

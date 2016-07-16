@@ -43,12 +43,12 @@
                                                 <div class="btn">
                                                     <input type="button" value="确认已收票" class="iBtn iBtn_xs iBtn_no getSettle"
                                                            data-id="<%= obj.orderId  %>" data-ver="<%= obj.version  %>" data-type="<%= obj.type  %>">
-                                                </div>
+                                                </div><br/>
                                             <%}else{%>
-                                                <div class="btn"></div>
+                                                <!--<div class="btn"></div>-->
                                             <%}%>
                                         <%}else if(obj.type == 1 ){%>
-                                            <div class="btn"></div>
+                                            <!--<div class="btn"></div>-->
                                         <%}%>
                                         <a href="settleDetails?orderId=<%=obj.orderId %>&userId=<%=user.id%>">查看详情</a>
                                     </td>
