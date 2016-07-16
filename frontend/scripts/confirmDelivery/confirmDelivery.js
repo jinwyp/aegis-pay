@@ -368,13 +368,14 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
              if(tableChenkComplete){
 
             //上传校验
-            if($("#qualityList").find("p.file").length==0){
-               $(".errorMes").text("请上传质量确认单");
-               return false;
-            }else{
-               $(".errorMes").text("");
-            }
-
+             if($("#qualityList").length){
+                 if($("#qualityList").find("p.file").length==0){
+                     $(".errorMes").text("请上传质量确认单");
+                     return false;
+                 }else{
+                     $(".errorMes").text("");
+                 }
+             }
             if($("#quantityList").length){
                if($("#quantityList").find("p.file").length==0){
                   $(".errorMes").text("请上传数量确认单");
