@@ -18,7 +18,7 @@
         <p class="containerTit"><span>买家提货数据</span></p>
         <div class="infoContainer">
             <div class="deliveryAmount">
-                提货总量：<b><%= deliveryAmount%></b> 吨
+                <span>提货总量:</span><b><%= deliveryAmount%></b> 吨
             </div>
             <%if(sellInfo.pricingMethodId==1){%>
                 <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
@@ -126,7 +126,7 @@
                 <%}%>
             <%if(sellInfo.pricingMethodId==1){%>
                 <div class="downWrap">
-                <div class="leftBan"><span>*</span>质量确认单</div>
+                <div class="leftBan"><span>*</span>质量确认单:</div>
                 <div class="rightBan">
                     <a href="<%= qualityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
                     <p>共<span><%= qualityList.length%></span>个文件，请下载查看。</p>
@@ -135,7 +135,7 @@
             <%}%>
 
             <div class="downWrap">
-                <div class="leftBan"><span>*</span>数量确认单</div>
+                <div class="leftBan"><span>*</span>数量确认单:</div>
                 <div class="rightBan">
                     <a href="<%= quantityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
                     <p>共<span><%= quantityList.length%></span>个文件，请下载查看。</p>
