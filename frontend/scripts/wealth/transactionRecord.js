@@ -379,7 +379,7 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
         $("#modalImg_2").addClass("yes").removeClass("attention");
         $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
-            location.reload();
+            location.href="/wealth/financialTransaction";
         });
         var orderId=$(this).data("id");
         var version=$(this).data("version");
