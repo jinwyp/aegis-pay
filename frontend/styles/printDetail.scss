@@ -12,7 +12,7 @@
   .order-tag{
     text-align: right;
     line-height: 30px;
-    border-bottom: 1px solid $color_title_text;
+    border-bottom: 1px solid $color_border;
     div{  display: inline-block;  }
     .order-id{  margin-top: 30px;margin-right: 138px;  }
   }
@@ -28,13 +28,13 @@
     }
     .user-buy-table,.user-sell-table{
       width: 100%;
-      border: 1px solid $color_title_text;
+      border: 1px solid $color_border;
       font-size: 14px;
       color: $color_font;
       tr{
-        border-bottom: 1px solid $color_title_text;
+        border-bottom: 1px solid $color_border;
         td{
-          border-right: 1px solid $color_title_text;
+          border-right: 1px solid $color_border;
           .label{
             line-height: 40px;
             color: $color_tip_font;
@@ -45,9 +45,9 @@
       }
     }
     #print-table{
-      border-left: 1px solid $color_title_text;
-      border-right: 1px solid $color_title_text;
-      border-bottom: 1px solid $color_title_text;
+      border-left: 1px solid $color_border;
+      border-right: 1px solid $color_border;
+      border-bottom: 1px solid $color_border;
       .center-content{
         text-align: center;
         vertical-align: middle;
@@ -58,7 +58,7 @@
             line-height: 40px;
             background-color: $color_body_bg;
             text-align: center;
-            color: $color_title_text;
+            color: $color_border;
           }
         }
         td{
@@ -67,7 +67,7 @@
             tr{
               td{
                 padding: 30px 0;
-                border-left: 1px solid $color_title_text;
+                border-left: 1px solid $color_border;
                 .info-title{
                   margin-left: 30px;
                   .supply-ico {
@@ -112,9 +112,9 @@
     }
     .order-info{
       overflow: hidden;
-      border-left: 1px solid $color_title_text;
-      border-top: 1px solid $color_title_text;
-      border-right: 1px solid $color_title_text;
+      border-left: 1px solid $color_border;
+      border-top: 1px solid $color_border;
+      border-right: 1px solid $color_border;
       padding-bottom: 20px;
       ul{
         width: 100%;
