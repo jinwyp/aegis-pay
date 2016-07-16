@@ -356,9 +356,11 @@ var downloadAgreement = exports.downloadAgreement = function (req, res, next) {
 	var fileKey = req.query.fileKey;
 	var output = zipsPath + zipUser + '/' + req.query.id + '/';
 	var zipFilePath = output+ fileKey + zipUser + '_' + req.query.id + '.zip';
-	console.log('--下载 结算协议	zipFilePath---------' + zipFilePath);
+	console.log('--下载 结算协议	apiPath---------' + zipFilePath);
+	console.log('--下载 结算协议	apiPath---------' + req.url);
 
 	if(utils.isFileExistsSync(zipFilePath)) {
+		console.log('--下载 结算协议	文件存在');
 		res.download(zipFilePath, 'agreement.zip', function(err, data){
 			if(err) {return next(err);}
 		});
