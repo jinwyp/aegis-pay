@@ -109,6 +109,8 @@
 	.dlDetail .printer{display: inline-block;width:18px;height:18px;background: url("#{$assetPath}/images/sprite_ico.png") no-repeat -551px -378px;vertical-align: middle;top: -2px;position:relative;margin-right: 5px;}
 	.dlDetail:hover{text-decoration: none;opacity: .8;}
   }
-
+	.labReturnReason {
+		word-break: break-all;
+	}
 }
 .fade{display: none;}
