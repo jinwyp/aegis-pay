@@ -10,8 +10,7 @@
 <%- include ../global/header/subHeader %>
 <div id="returnDetail">
 
-    <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
-    <% var tableIndex=indexList.length %>
+
     <div class="sellerDeliveryWrap">
         <% include ../global/order/statusBar %>
         <p class="containerTit"><span>买家提货数据</span></p>
@@ -20,6 +19,8 @@
                 提货总量：<b><%= order.deliveryAmount%></b> 吨
             </div>
             <%if(order.pricingMethodId==1){%>
+            <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
+            <% var tableIndex=indexList.length %>
                 <div class="tableContainer">
                 <div class="tableTit">请审核检测结果</div>
                 <%for(var j=0;j<tableIndex;j++){%>
@@ -121,22 +122,22 @@
                 <%}%>
             </div>
             <%}%>
-            <div class="downWrap">
-                <div class="leftBan">质量确认单</div>
-                <div class="rightBan">
-                    <a href="<%= qualityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
-                    <p>共<span><%= qualityList.length%></span>个文件，请下载查看。</p>
-                </div>
-            </div>
             <% if(order.pricingMethodId==1){%>
                 <div class="downWrap">
-                    <div class="leftBan">数量确认单</div>
+                    <div class="leftBan">质量确认单</div>
                     <div class="rightBan">
-                        <a href="<%= quantityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
-                        <p>共<span><%= quantityList.length%></span>个文件，请下载查看。</p>
+                        <a href="<%= qualityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
+                        <p>共<span><%= qualityList.length%></span>个文件，请下载查看。</p>
                     </div>
                 </div>
             <%}%>
+            <div class="downWrap">
+                <div class="leftBan">数量确认单</div>
+                <div class="rightBan">
+                    <a href="<%= quantityZip %>" class="uploadFile"><i class="uploadIcon"></i>下载附件</a>
+                    <p>共<span><%= quantityList.length%></span>个文件，请下载查看。</p>
+                </div>
+            </div>
         </div>
 
     </div>
