@@ -10,7 +10,7 @@ var cache      = require('../../libs/cache');
 var logger     = require('../../libs/logger');
 var path       = require('path');
 var utils = require('../../libs/utils');
-
+var fs =  require('fs');
 var co = require('co');
 
 const conPath=(config.file_path.root + config.file_path.compact).substr(4);
@@ -47,6 +47,9 @@ exports.confirmDeliverySubmit = function (req, res, next) {
     _.map(req.body.quantityList, function(val, index){
         val.name = val.file_name;
         val.path = uploadPath + val.file_id;
+        console.log("smmmmmmmm2~~~~~~~~~~~~~~~~~")
+        console.log(val.path)
+        console.log(val.file_id)
         _.unset(val, 'file_id');
         _.unset(val, 'file_name');
     })
