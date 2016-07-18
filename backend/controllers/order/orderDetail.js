@@ -60,7 +60,13 @@ exports.getBuyOrderDetail = function (req, res, next) {
             var stepName='',stepDate='';
             if((source.data.order.status==='WaitSettleAccounts'
                 ||source.data.order.status==='WaitVerifySettle'
-                ||source.data.order.status==='ReturnedSettleAccounts')&&source.data.order.confirmDeliveryTime===null){
+                ||source.data.order.status==='ReturnedSettleAccounts'
+                ||source.data.order.status==='WaitPayTailMoney'
+                ||source.data.order.status==='WaitPayRefundMoney'
+                ||source.data.order.status==='WaitImproveReceipt'
+                ||source.data.order.status==='WaitWriteReceipt'
+                ||source.data.order.status==='WaitReceiveReceipt'
+                ||source.data.order.status==='Completed')&&source.data.order.confirmDeliveryTime===null){
                 stepName='纠纷处理';
                 stepDate=source.data.order.disputeCompleteTime ||"";
             }else{
