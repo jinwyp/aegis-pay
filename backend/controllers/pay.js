@@ -73,11 +73,9 @@ exports.success = function (req, res, next) {
             // statusObj: {step: 3, stepList:[{"stepName": name , "stepDate": data[name]}]
             var statusName = '', timeName = '';
             if(req.query.type==='1'||data.order.confirmDeliveryTime){
-                logger.debug("aaaa");
                 statusName = ['提交订单', '签订合同', '付款', '确认提货', '结算'];
                 timeName   = ['createTime', 'signContractTime', 'paymentTime', 'confirmDeliveryTime', 'settleAccountTime'];
             }else{
-                logger.debug("bbbb");
                 statusName = ['提交订单', '签订合同', '付款', '纠纷处理', '结算'];
                 timeName   = ['createTime', 'signContractTime', 'paymentTime', 'disputeCompleteTime', 'settleAccountTime'];
             }
