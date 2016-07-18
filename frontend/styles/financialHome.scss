@@ -34,6 +34,7 @@ body{
       .label{  color: $color_tip_font;padding: 0;  }
       .fs-14{  font-size: 14px;  }
       .border-right{  border-right: 1px solid #e4e4e4;  }
+      .border-left{  border-left: 1px solid #e4e4e4;  }
       .header-left{
         width: 274px;
         height: inherit;
@@ -61,7 +62,7 @@ body{
       .ml-10{  margin-left: 10px;  }
       .ml-20{  margin-left: 20px;  }
       .header-center{
-        width: 440px;
+        width: 44%;
         height: inherit;
         vertical-align: top;
         padding: 20px 20px;
@@ -94,6 +95,7 @@ body{
       .header-right{
         width: 284px;
         height: inherit;
+        float: right;
         vertical-align: top;
         .fs-24{  font-size: 24px; }
         .bank-card{
