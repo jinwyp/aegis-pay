@@ -21,10 +21,16 @@ require(['jquery','pay.upload'],function($,upload){
             $(document).ready(function(){
                 var initialLen=200-($("#disputeRemarks").val().length);
                 $("#leftTxt").text(initialLen);})
-            $("#disputeRemarks").on("input",function(){
+            $("#disputeRemarks").on("keyup",function(){
                 var Len=$(this).val().length;
                 var restNum=200-Len;
+                if(restNum<1){
+                    $("#leftTxt").text("0");
+                    $(this).val($(this).val().substr(0,200));
+                    return false;
+                }
                 $("#leftTxt").text(restNum);
+
             });
         },
         "upload" : function(){
