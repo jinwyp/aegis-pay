@@ -27,7 +27,7 @@
                     <li><span class="label">业务：</span>0</li>
                 </ul>
             </div>
-            <div class="header-center border-right">
+            <div class="header-center">
                 <div class="useraccount"><span class="label fs-14">易煤网资金账户号：</span><%= blankFour(finance.userFundAccount) %></div>
                 <div class="center-operate">
                     <span class="balance">余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></span>
@@ -36,7 +36,7 @@
                     <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option recharge">充值</span>
                 </div>
             </div>
-            <div class="header-right">
+            <div class="header-right border-left">
                 <div class="bank-card">
                     <span class="bank-icon ml-20"></span>
                     <span class="fs-24 ml-10 account-color">银行账户</span>
