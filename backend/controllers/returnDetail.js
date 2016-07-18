@@ -10,6 +10,8 @@ var logger     = require("../libs/logger");
 var checker    = require('../libs/datachecker');
 var api_config = require('../api/v1/api_config');
 var config     = require('../config');
+var utils = require('../libs/utils');
+var BusinessError = require('../errors/BusinessError');
 
 
 var __download = config.file_path.root + config.file_path.download;
@@ -126,15 +128,25 @@ exports.returnDetailSubmit = function (req, res, next) {
 
 var zipurl = {};
 exports.fetchQualityZips = function(req, res, next){
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
+    res.setHeader('Pragma', 'no-cache');
     (!zipurl.qualityPath) && (zipurl = fetchZips(req));
-    console.log('--------zipurl----------------')
-    console.log(zipurl)
+    if(!utils.isFileExistsSync(zipurl.qualityPath)){
+        return next(new BusinessError(409, '文件正在生成中...'));
+    }
     res.download(zipurl.qualityPath, 'quality.zip', function(err, data){
         if(err) {return next(err);}
     })
 }
 exports.fetchQuantityZips = function(req, res, next){
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
+    res.setHeader('Pragma', 'no-cache');
     (!zipurl.quantityPath) && (zipurl = fetchZips(req));
+    if(!utils.isFileExistsSync(zipurl.quantityPath)){
+        return next(new BusinessError(409, '文件正在生成中...'));
+    }
     res.download(zipurl.quantityPath, 'quantity.zip', function(err, data){
         if(err) {return next(err);}
     })

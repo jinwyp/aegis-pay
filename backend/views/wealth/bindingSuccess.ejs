@@ -32,7 +32,7 @@
             <% include ../global/order/statusBar %>
                 <!--绑定账户确认页面-->
                 <div class="bindingSuccessInfoWrap">
-                    <p class="bindingMainCon bindingConfirmTit">当前状态：<span class="bindingSuc">易煤网已向*****银行卡（尾号<%= subFour(userAccount.cashBankAccount)%>）汇入一笔1元以下的确认金额。</span></p>
+                    <p class="bindingMainCon bindingConfirmTit">当前状态：<span class="bindingSuc">易煤网已向账户*****<%= subFour(userAccount.cashBankAccount)%>汇入一笔1元以下的确认金额。</span></p>
                     <p class="bindingsubCon">请查询银行收支明细，输入银行卡内来自易煤网汇入的1元以下的金额完成认证，</p>
                     <p class="bindingsubCon">金额确认<span class="colorOrange">有效期为1个月</span>，未在有效期内确认金额，<span class="colorOrange">需重新绑定银行卡</span>。</p>
                 </div>
