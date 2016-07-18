@@ -19,20 +19,20 @@
     border:1px solid $color_btn_blue; border-top-width:2px; margin-top:15px; background-color:$color_lightblue;
     li{
       display: inline-block; *display:inline; zoom:1; vertical-align: middle; padding:20px 0; line-height: 24px;
-      &:nth-child(1){
+      &:nth-child(1), &.first{
         width:60px; text-align:center; vertical-align: top; line-height: 26px;
       }
-      &:nth-child(2){
+      &:nth-child(2), &.secondli{
         p{
           span{
             width:98px;
           }
-          &:nth-child(2){
+          &:nth-child(2), &.second{
             padding-left:98px;
           }
         }
       }
-      &:nth-child(3){
+      &:nth-child(3), &.last{
         float:right; padding-right:20px; margin-top:15px;
         span{ color:$color_orange; font-size:$size_font_pageTitle; margin:0 5px;}
       }
