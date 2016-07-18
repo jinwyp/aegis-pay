@@ -122,7 +122,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
         },
         submitValid: function (requiredValid) {
             var self = this;
-            return $.each(requiredValid, function (index,arrObj) {
+            return requiredValid.some(function (arrObj, index) {
                 var condition, el;
 
                 if ($.isArray(arrObj[0])) {
