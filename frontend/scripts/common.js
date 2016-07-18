@@ -69,8 +69,7 @@ require.config({
 });
 
 
-require(['jquery', 'bootstrap'],function($, bootstrap){
-	// data validator
+require(['jquery', 'bootstrap'], function($){
 	/**
 	 * Common ajax error handler
 	 * This handler is not called for cross-domain script and cross-domain JSONP requests.
