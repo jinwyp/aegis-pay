@@ -145,7 +145,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                 $('.submitTotal').find(".errorMsg").text("");
                 $("#cityCode").html('');
                 that.provinceCode().done(function(data){
-                    data.cityList.forEach(function(value,i){
+                    $.each(data.cityList,function(i,value){
                         $("#cityCode").append('<option value='+data.cityList[i].cityCode+'>'+data.cityList[i].cityName+'</option>')
                     });
                     $("#cityCode").trigger("update.fs");

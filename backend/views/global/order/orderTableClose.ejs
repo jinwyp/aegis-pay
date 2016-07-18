@@ -15,7 +15,7 @@
             <span class="number"><%= order.amount %></span>
         </td>
         <td class="info-col center-content">
-            <span class="number"><%= order.deliveryAmount %></span>
+            <span class="number"><%= getStringVal(order.deliveryAmount) %></span>
         </td>
         <td class="info-col center-content">
             <span class="money"><%= formatMoney(order.price,2) %></span>

@@ -586,6 +586,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
                 if(!diffData.isEnd) {
                     diffData = dateParseDiff(dispaSec);
+                } else {
+                    callback(diffData);
                 }
 
                 callback && typeof callback === "function" && callback(diffData);

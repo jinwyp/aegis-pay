@@ -179,5 +179,35 @@ exports.cashSuccess = function(req,res,next){
         },
         status:2
     };
+
+    var date = new Date();
+    var str = '';
+    var year = date.getFullYear();
+    var month = formatHandler(date.getMonth()+1);
+    var day = formatHandler(date.getDate());
+    var time = formatHandler(date.getHours());
+    var minutes = formatHandler(date.getMinutes());
+    var second = date.getSeconds();
+    var secondMinutes = '';
+    if(second<=58){
+        secondFront = formatHandler(second);
+        secondBank = formatHandler(second+2);
+        secondMinutes = minutes;
+    }else{
+        secondFront = second;
+        secondBank = formatHandler(secondFront+2-60);
+        secondMinutes  = minutes+1;   
+    }
+    function formatHandler(num){
+        if(num<10){
+            return '0'+num;
+        }else{
+            return num;
+        }
+    }
+
+    content.firstCashTime = year+'-'+month+'-'+day+' '+time+':'+minutes+':'+secondFront;
+    content.secondCashTime = year+'-'+month+'-'+day+' '+time+':'+secondMinutes+':'+secondBank;
+    
     res.render('drawCash/drawCashStatus',content);
  }
