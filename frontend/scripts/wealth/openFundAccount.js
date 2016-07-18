@@ -92,7 +92,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
         eventValidBind: function (eventValid) {
             var self = this;
             var condition, el, ev;
-            eventValid.forEach(function (arrObj, index) {
+            $.each(eventValid,function (index , arrObj) {
                 (function (arrObj, index) {
                     el = $.isArray(arrObj[0]) ? self.els[arrObj[0][0]] : self.els[arrObj[0]];
                     ev = arrObj[3] || 'blur';
@@ -122,7 +122,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
         },
         submitValid: function (requiredValid) {
             var self = this;
-            return requiredValid.some(function (arrObj, index) {
+            return $.each(requiredValid, function (index,arrObj) {
                 var condition, el;
 
                 if ($.isArray(arrObj[0])) {
