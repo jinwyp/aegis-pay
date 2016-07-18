@@ -33,6 +33,7 @@
     "pickadate": "^3.5.6",
     "devbridge-autocomplete": "^1.2.24",
     "validator-js": "5.4.0",
-    "avalon": "^2.1.5"
+    "avalon": "^2.1.5",
+    "respond": "^1.4.2"
   }
 }

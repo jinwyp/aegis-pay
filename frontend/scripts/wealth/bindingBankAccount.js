@@ -202,7 +202,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
 
                     if($("#childBankName").val()=="" && valconfirm || selectData!=""){
                         that.childAllBankName().done(function (data) {
-                            data.childBankName.forEach(function (value, i) {
+                            $.each(data.childBankName,function(i,value){
                                 if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
                                     childBankIndex.push(data.childBankName[i].childBankCode);
                                     childBankNameList.push({
@@ -219,7 +219,7 @@ requirejs(['jquery','pay.smscode','devbridge-autocomplete','bootstrap','jquery.f
                     }
                     if(valconfirm && $("#childBankName").val()!="" && selectData=="") {
                         that.childBankName().done(function (data) {
-                            data.childBankName.forEach(function (value, i) {
+                            $.each(data.childBankName,function(i,value){
                                 if (childBankIndex.indexOf(data.childBankName[i].childBankCode) < 0) {
                                     childBankIndex.push(data.childBankName[i].childBankCode);
                                     childBankNameList.push({
