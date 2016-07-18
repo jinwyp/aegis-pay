@@ -87,7 +87,7 @@ define(['jquery','bootstrap'],function($){
                         $tiperror.text('验证码发送失败，请重新再试').show();
                         break;
                     case 'dayTimes':  //超出一天次数限制
-                        $tiperror.text('已经超出最大次数限制').show();
+                        $tiperror.text('此账号今天短信发送已达到最大条数,请明天再尝试!').show();
                         break;
                     case 'hourTimes': //超出一小时次数限制
                         $tiperror.text('已经超出每小时最大次数限制，请过一会儿再试').show();

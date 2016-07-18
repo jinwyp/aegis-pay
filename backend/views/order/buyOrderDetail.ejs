@@ -132,7 +132,7 @@
                 <% }else if(order.status=='TradeClosed'){ %>
                     <div class="state-item mt-20 hint">
                         <span>原因：<%= clearEmpty(order.closeReason) %>，订单关闭</span><br>
-                        <span>备注：<%= clearEmpty(order.closeRemark) %></span>
+                        <span class="closeRemark">备注：<%= clearEmpty(order.closeRemark) %></span>
                     </div>
                 <% }else{ %>
                     <%=order.status%>

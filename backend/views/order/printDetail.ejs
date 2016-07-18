@@ -1,4 +1,22 @@
 <link rel="stylesheet" href="<%= staticPath %>/styles/printDetail.css">
+<style type="text/css">
+    @charset "UTF-8";
+    @media print {
+        .order-tag{  border-bottom: 1px solid #666666; }
+        .user-buy-table,.user-sell-table{  border: 1px solid #666666;  }
+        .user-buy-table,.user-sell-table tr{  border-bottom: 1px solid #666666;  }
+        .user-buy-table,.user-sell-table tr td{  border-right: 1px solid #666666;  }
+        #print-table{
+            border-left: 1px solid #666666;
+            border-right: 1px solid #666666;
+            border-bottom: 1px solid #666666;  }
+        .detail-info-table tr td{  border-left: 1px solid #666666;  }
+        .order-info{
+            border-left: 1px solid #666666;
+            border-top: 1px solid #666666;
+            border-right: 1px solid #666666;  }
+    }
+</style>
 <div id="print-detail-body">
     <div class="title">订单详情</div>
     <div class="order-tag">
@@ -145,5 +163,5 @@
     </div>
 </div>
 
-<script src="<%= staticPath %>/scripts/order/buyOrderDetail.js"></script>
+<!--<script src="<%= staticPath %>/scripts/order/buyOrderDetail.js"></script>-->
 

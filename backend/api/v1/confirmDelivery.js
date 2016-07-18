@@ -9,6 +9,7 @@ var convert    = require('../../libs/convert');
 var cache      = require('../../libs/cache');
 var logger     = require('../../libs/logger');
 var path       = require('path');
+var utils = require('../../libs/utils');
 
 var co = require('co');
 
@@ -87,7 +88,12 @@ var zipFile = exports.zipFile = function (req, res, next) {
        ];
 
        
-
+       if(utils.isFileExistsSync(output+qualityZipName)){
+           fs.unlink(output+qualityZipName);
+       }
+       if(utils.isFileExistsSync(output+quantityZipName)){
+           fs.unlink(output+quantityZipName);
+       }
 
        Promise.all(zips).then(function(result){
            logger.info('-------------zipFile success---------------------')

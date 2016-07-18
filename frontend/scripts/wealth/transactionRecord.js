@@ -374,11 +374,12 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
         $("#modal_title_3").text("温馨提示");
         $('#md_ok_3').val("确定");
 
-        $("#modal_title_1").text("温馨提示");
-        $('#md_ok_1').val("确定");
-        $("#md_ok_1").off("click").on("click",function(){
+        $("#modal_title_2").text("温馨提示");
+        $('#md_ok_2').val("确定");
+        $("#modalImg_2").addClass("yes").removeClass("attention");
+        $("#md_ok_2").off("click").on("click",function(){
             $(".modal_2").modal('hide');
-            location.reload();
+            location.href="/wealth/financialTransaction";
         });
         var orderId=$(this).data("id");
         var version=$(this).data("version");
@@ -386,8 +387,8 @@ requirejs(['jquery', 'jquery.fancySelect', 'jQuery.fn.datePicker', 'avalon', 'av
             url:"/settlement/sureReceiveReceipt?orderId="+orderId+"&version="+version,
             success:function(data){
                 if(data&&data.success){
-                    $("#modalInfo_1").text("您的请求已通过短信的方式通知对方,请您耐心等待");
-                    $(".modal_1").modal('show');
+                    $("#modalInfo_2").text("确认已收到发票!");
+                    $(".modal_2").modal('show');
                 }else{
                     $("#modalInfo_3").text(data.error);
                     $(".modal_3").modal('show');

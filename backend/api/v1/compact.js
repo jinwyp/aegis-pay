@@ -58,8 +58,18 @@ exports.thumbnail = function(req, res, next){
 
 // del file
 exports.delFile = function (req, res, next) {
-    fs.unlink(uploadPath + req.body.id, function (err) {
-        res.send({"success" : true});
+    var ids = req.body.id;
+    if(!_.isArray(ids)){
+        ids = [req.body.id];
+    }
+    var count = 0;
+    _.map(ids, function(val, index){
+        fs.unlink(uploadPath + val, function (err) {
+            count++;
+            if(count>=ids.length){
+                res.send({"success" : true});
+            }
+        })
     })
 };
 
