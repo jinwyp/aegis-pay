@@ -4,7 +4,7 @@
     <input type='hidden' name='payPhone' value='<%= user.payPhone || user.securephone %>'>
 </li>
 <li>
-  <label>校&nbsp;验&nbsp;码&nbsp;：</label><input type="text" placeholder='请勿泄露' name="sms_code" value="">
+  <label>校&nbsp;验&nbsp;码&nbsp;：</label><input type='text' style='display:none;' /><input type="text" placeholder='请勿泄露' name="sms_code" value="" autocomplete="off">
   <p class='tip-msg'></p>
   <p class='tip-error'></p>
 </li>

@@ -32,7 +32,7 @@
       .disputeBlock{border-bottom:1px dotted #ddd;padding-top:28px;padding-bottom:15px;}
       .disputeBlock p{color:#333;font-size: 14px;margin-bottom: 15px;}
       .disputeBlock p span{color:#999;display: inline-block;min-width: 120px;vertical-align:top;}
-      .disputeBlock p label{color:#333;font-weight:normal;width:730px;display: inline-block;}
+      .disputeBlock p label{color:#333;font-weight:normal;width:730px;display: inline-block;word-break: break-all;}
       .disputeBlock p span.disputeStatusTxt{color:#ff0000}
       .disputeBlock .disputeTit{font-size:18px;color:#333;margin-bottom: 25px;width:100%; }
       .sellInfo{border-bottom: none;}

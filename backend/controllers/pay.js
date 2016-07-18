@@ -71,8 +71,14 @@ exports.success = function (req, res, next) {
             var data = body.data;
             // 构造符合业务逻辑的statusObj数据结构
             // statusObj: {step: 3, stepList:[{"stepName": name , "stepDate": data[name]}]
-            var statusName = ['提交订单', '签订合同', '付款', '确认提货', '结算'];
-            var timeName   = ['createTime', 'signContractTime', 'paymentTime', 'confirmDeliveryTime', 'settleAccountTime'];
+            var statusName = '', timeName = '';
+            if(req.query.type==='1'||data.order.confirmDeliveryTime){
+                statusName = ['提交订单', '签订合同', '付款', '确认提货', '结算'];
+                timeName   = ['createTime', 'signContractTime', 'paymentTime', 'confirmDeliveryTime', 'settleAccountTime'];
+            }else{
+                statusName = ['提交订单', '签订合同', '付款', '纠纷处理', '结算'];
+                timeName   = ['createTime', 'signContractTime', 'paymentTime', 'disputeCompleteTime', 'settleAccountTime'];
+            }
             var statusObj  = {step : 0, stepList : []};
             _.map(timeName, function (name, index) {
                 var time = '';

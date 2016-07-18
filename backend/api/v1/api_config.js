@@ -124,7 +124,7 @@ var api_config = {
     contractList : host + 'finance/contract/list',
     settlementList : host + 'finance/order/settle',
     buyerDelete : host + 'mall/order/delete',
-    sellerDelete : host + '/mall/order/seller/delete',
+    sellerDelete : host + 'mall/order/seller/delete',
 
 
     /**
@@ -177,7 +177,7 @@ var api_config = {
 
     // open fund account
     openFundAccount: host + 'account/fund/create',
-    payPhoneExist:host + '/account/fund/Payphone',
+    payPhoneExist:host + 'account/fund/Payphone',
 
     /**
      * 是否已经开通了资金账户

@@ -103,12 +103,6 @@ exports.getBuyOrderDetail = function (req, res, next) {
                     }
                 ]
             };
-            logger.debug("typeof:"+ typeof source.data.order.createTime);
-            logger.debug('status-----------------'+source.data.order.createTime);
-            logger.debug('status-----------------'+source.data.order.signContractTime);
-            logger.debug('status-----------------'+source.data.order.paymentTime);
-            logger.debug('status-----------------'+source.data.order.confirmDeliveryTime);
-            logger.debug('status-----------------'+source.data.order.settleAccountTime);
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var content = {
                 headerTit  : "订单详情",

@@ -33,7 +33,7 @@
                     <%}else{%>否
                     <%}%>
                 </p>
-                <p><span>退款原因:</span><label for=""><%= order.disputeRemarks%></label></p>
+                <p><span>说明:</span><label for=""><%= order.disputeRemarks%></label></p>
             </div>
             <div class="disputeBlock sellInfo">
                 <p class="disputeTit">卖家信息</p>
@@ -61,23 +61,57 @@
                                 sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></p>
                     <ul class="goodsDetail">
                         <li><label>煤种：</label><%= sellInfo.pname%></li>
-                        <li><label>品名：</label><%= sellInfo.brandname %></li>
+
+                        <% if(sellInfo.brandname!=null){ %>
+                            <li><label>品名：</label><%= sellInfo.brandname %></li>
+                        <% } %>
+
                         <li><label>产地：</label><%= sellInfo.originplace %></li>
-                        <li><label>热值：</label><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></li>
+                        <% if(sellInfo.NCV!=0&&sellInfo.NCV02!=0){ %>
+                            <li><label>热值：</label><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></li>
+                        <% } %>
+                        <% if(sellInfo.RS!=0&&sellInfo.RS02!=0){ %>
                         <li><label>收到基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></li>
-                        <li><label>收到基挥发分：</label><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.RV!=0&&sellInfo.RV02!=0){ %>
+                            <li><label>收到基挥发分：</label><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.TM!=0&&sellInfo.TM02!=0){ %>
                         <li><label>全水分：</label><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></li>
-                        <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.ASH!=0&&sellInfo.ASH02!=0){ %>
+                            <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.ADS!=0&&sellInfo.ADS02!=0){ %>
                         <li><label>空干基硫分：</label><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.ADV!=0&&sellInfo.ADV02!=0){ %>
                         <li><label>空干基挥发分：</label><%= multiArgAppend(formatDecimal(sellInfo.ADV, 2),formatDecimal(sellInfo.ADV02, 2),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.FC!=0&&sellInfo.FC02!=0){ %>
                         <li><label>固定碳：</label><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.IM!=0&&sellInfo.IM02!=0){ %>
                         <li><label>内水分：</label><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.GV!=0&&sellInfo.GV02!=0){ %>
                         <li><label>G值：</label><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></li>
+                        <% } %>
+                        <% if(sellInfo.YV!=0&&sellInfo.YV02!=0){ %>
                         <li><label>Y值：</label><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></li>
+                        <% } %>
+                        <% if(sellInfo.AFT!=0){ %>
                         <li><label>灰熔点&ge;：</label><%= singleArgAppend(sellInfo.AFT,'℃') %></li>
+                        <% } %>
+                        <% if(sellInfo.ASH!=0&&sellInfo.ASH02!=0){ %>
                         <li><label>灰分：</label><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></li>
+                        <% } %>
+                        <% if(sellInfo.HGI!=0){ %>
                         <li><label>哈氏可磨&ge;：</label><%= singleArgAppend(sellInfo.HGI,'') %></li>
+                        <% } %>
+                        <% if(sellInfo.CRC!=0&&sellInfo.CRC02!=0){ %>
                         <li><label>焦渣特征：</label><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></li>
+                        <% } %>
                     </ul>
                 </div>
                 <div class="price"><%= formatDecimal(order.price,2) %></div>
@@ -99,6 +133,6 @@
 
 <%- include ../global/footer/footer %>
 <%- include ../global/includehead/bottomscript %>
-<script type="application/javascript" src="<%= staticPath %>/scripts/dispute/disputeDetail.js"></script>
+<script type="text/javascript" src="<%= staticPath %>/scripts/dispute/disputeDetail.js"></script>
 </body>
 </html>
