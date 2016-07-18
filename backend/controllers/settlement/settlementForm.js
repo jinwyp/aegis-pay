@@ -35,6 +35,7 @@ var convert = require('../../libs/convert');
 var pdfSavePath = path.join(config.file_path.root, config.file_path.upload, '/settlement');
 var pdfHtmlTemplatePath = path.join(config.viewspdf, '/settlement/pdfTemplate.ejs');
 const zipsPath = config.file_path.root + config.file_path.zips + '/';		// 压缩.存放路径
+const imgPath = config.file_path.adminroot + config.file_path.compact + '/';
 var zipUser = '';		// 压缩路径片段
 
 
@@ -74,44 +75,6 @@ exports.orderSettlement = function (req, res, next) {
 			if (err) return next(err);
 
 			replyData.data = JSON.parse(data.body).data;
-			//replyData.data = { files: [],
-			//	order:
-			//	{ id: 2087,
-			//		version: 9,
-			//		userId: 2718,
-			//		sellerId: 2723,
-			//		orderNO: 'ZY201607140004',
-			//		contractNO: 'HT201607140004',
-			//		status: 'ReturnedSettleAccounts',
-			//		statusName: '结算被退回',
-			//		deliveryPlace: '南宁港',
-			//		otherHarbour: null,
-			//		harbour: '南宁港',
-			//		coalType: '焦煤',
-			//		amount: 50,
-			//		price: 0.01,
-			//		totalMoney: 0.5,
-			//		buyerCompanyName: '测试pay项目',
-			//		sellerCompanyName: '上海瑞易供应链管理有限公司',
-			//		confirmDeliveryTime: '2016-07-14 16:07:32',
-			//		sellerSettleTime: '2016-07-14 16:08:03',
-			//		settleAccountTime: null,
-			//		paymentTime: '2016-07-14 16:06:15',
-			//		deadlineTime: '2016-07-29 00:00:00',
-			//		settleReturnTime: null,
-			//		lastEditReasonTime: null,
-			//		currentTime: '2016-07-14 19:26:17',
-			//		deliveryAmount: 50,
-			//		settleAmount: 0,
-			//		harbourDues: 0,
-			//		settleMoney: 0.4,
-			//		tailMoney: 0,
-			//		refundMoney: 0.1,
-			//		remarks: '',
-			//		returnReason: null
-			//	}
-			//};
-			//replyData.userType = 'buy';
 
 			zipUser = replyData.data.order.sellerId;
 
@@ -175,7 +138,7 @@ var sellerSubmit = exports.sellerSubmit = function (req, res, next) {
 	for(var i = 0, s = req.body.files.length; i < s; i++) {
 		var file = req.body.files[i];
 		//file.path = config.view_file + file.path;
-		file.path = config.file_path.adminroot + config.file_path.compact + file.path;
+		file.path = imgPath + file.path;
 	}
 
 	request.post({url:url, form: req.body, qsStringifyOptions:{allowDots:true} }, function (err, data) {
@@ -248,7 +211,7 @@ var buyersAuditing = exports.buyersAuditing = function (req, res, next) {
 
 	for(var i = 0, s = req.body.files.length; i < s; i++) {
 		var file = req.body.files[i];
-		file.path = config.file_path.adminroot + config.file_path.compact + file.path;
+		file.path = imgPath + file.path;
 	}
 
 	console.log('--结算审核通过-111-------------------------------------');
