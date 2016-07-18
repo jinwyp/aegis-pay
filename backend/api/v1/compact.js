@@ -160,7 +160,6 @@ exports.generate_compact = function (req, res, next) {
 
         if (result) {
             var data = JSON.parse(result.body);
-
             var pageData = _.assign({}, {
                 'pageTitle' : '签订电子合同',
                 'orderId'   : orderId,
