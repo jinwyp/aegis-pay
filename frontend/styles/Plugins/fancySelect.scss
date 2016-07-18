@@ -34,7 +34,7 @@ div.fancy-select div.trigger {
   -ms-transition: all 240ms ease-out;
   -o-transition: all 240ms ease-out;
 }
-div.fancy-select div.trigger::after {
+div.fancy-select div.trigger::after, div.fancy-select div.trigger:after {
   content: "";
   display: block;
   position: absolute;
