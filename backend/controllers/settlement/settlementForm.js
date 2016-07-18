@@ -377,7 +377,7 @@ var zipFileMerge = function (req, res, next, zipFileKey) {
 		fileName = zipFileKey + req.session.user.id + '_' + req.body.orderId + '.zip';
 
 		_.each(params.files, function (value, index) {
-			materialPaths.push( '/app/' + value.path ); 			// 原材料路径
+			materialPaths.push( '/app' + value.path ); 			// 原材料路径
 		});
 		console.log('output=  '+ output + ' , fileName= ' + fileName);
 
