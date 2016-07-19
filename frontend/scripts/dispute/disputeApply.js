@@ -66,7 +66,6 @@ require(['jquery','pay.upload'],function($,upload){
             var $fileList = $('.fileList');       //附件列表
             //上传操作
             $('.addImg').click(function(){
-                alert("Asd")
                 if($(".preview").length>=20){
                     $(this).val("");
                     initErrors(false,"最多上传20张照片");
