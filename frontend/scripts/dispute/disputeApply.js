@@ -1,6 +1,5 @@
 require(['jquery','pay.upload'],function($,upload){
 
-
     // 错误信息
     function initErrors(flag,errorInfo){
         if(false === flag){
@@ -13,8 +12,7 @@ require(['jquery','pay.upload'],function($,upload){
     var disputeApply={
         "init" : function(){
 
-            // this.upload();
-            this.uploadImg();
+            this.upload();
             this.countDown();
             this.submit();
         },
@@ -34,9 +32,6 @@ require(['jquery','pay.upload'],function($,upload){
 
             });
         },
-        "uploadImg": function(){
-            upload.init();
-        },
         "upload" : function(){
             // 文件限制
             var iMaxFilesize = 1048576 * 5; //最大5M
@@ -51,21 +46,21 @@ require(['jquery','pay.upload'],function($,upload){
                 }
             };
             
-                $("#fileUpload").change(function () {
-                    var oFile = document.getElementById('fileUpload').files[0];
-                    if(!filterFormat(oFile)){
-                        $(this).val("");
-                        initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
-                        return;
-                    }else if(oFile.size>iMaxFilesize){
-                        $(this).val("");
-                        initErrors(false,"请上传大小5M以内的图片");
-                        return;
-                    } else{
-                        initErrors(true,"");
-                        return true;
-                    }
-                });
+            $("#fileUpload").change(function () {
+                var oFile = document.getElementById('fileUpload').files[0];
+                if(!filterFormat(oFile)){
+                    $(this).val("");
+                    initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
+                    return;
+                }else if(oFile.size>iMaxFilesize){
+                    $(this).val("");
+                    initErrors(false,"请上传大小5M以内的图片");
+                    return;
+                } else{
+                    initErrors(true,"");
+                    return true;
+                }
+            });
 
 
             var $fileList = $('.fileList');       //附件列表
@@ -89,7 +84,7 @@ require(['jquery','pay.upload'],function($,upload){
             $("#fileUpload").click(function(e) {
                 e.stopPropagation();
                 var $tag = $(this);
-                payUpload.ajaxFileUpload($tag, '', function(data) {
+                upload.ajaxFileUpload($tag, '', function(data) {
                     var htmlStr = '', modifyStr = '';
                     if(data.success) {
                         $.each(data.attach, function (ind, file) {
