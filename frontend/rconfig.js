@@ -17,6 +17,7 @@ var rconfig = {
         'picker.time'                       : '../components/pickadate/lib/picker.time',
         'validator'                         : '../components/validator-js/validator',
         'jquery.fileupload'                 : '../components/blueimp-file-upload/js/jquery.fileupload',
+        'jquery.iframe-transport'           : '../components/blueimp-file-upload/js/jquery.iframe-transport',
         'jquery.fileupload.ui'              : '../components/blueimp-file-upload/js/jquery.fileupload-ui',
         'jquery.ui.widget'                  : '../components/blueimp-file-upload/js/vendor/jquery.ui.widget',
         'jquery.fileupload-image'           : '../components/blueimp-file-upload/js//jquery.fileupload-image',

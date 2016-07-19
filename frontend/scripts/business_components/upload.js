@@ -1,4 +1,4 @@
-define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
+define(['jquery', 'jquery.fileupload', 'jquery.iframe-transport','bootstrap'],function($){
 
 	/**
 	 * 异步上传附件.自定义
@@ -11,7 +11,6 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 		params = params || {};
 		params.maxFileSize = params.maxFileSize || 1048576 * 5;		// 最大5Mb
 		params.fileType = params.fileType || [];
-
 		$file.fileupload({
 			url: params.API || '/api/upload-file',
 			dataType: 'json',										//maxFileSize: params.maxSize || 5120,
@@ -31,7 +30,6 @@ define(['jquery', 'jquery.fileupload', 'bootstrap'],function($){
 					errorMessage = '上传附件超出大小上限!';
 					verify = false;
 				}
-
 				if(verify) {
 					fileTag.submit();
 				} else {
