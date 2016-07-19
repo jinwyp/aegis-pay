@@ -9,11 +9,14 @@
     background: url("#{$assetPath}/images/wealth/wealthBanner.png") no-repeat center;
     text-align:center;
     .wealthLogo{
-      width:130px;
-      height:60px;
-      background: url("#{$assetPath}/images/wealth/wealth-logo.png") no-repeat center;
       display:inline-block;
       margin-top:110px;
+      a{
+        width:130px;
+        height:60px;
+        background: url("#{$assetPath}/images/wealth/wealth-logo.png") no-repeat center;
+        display: inline-block;
+      }
     }
     .wealthIntroduce{
       font-size:36px;
