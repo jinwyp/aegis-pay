@@ -44,10 +44,10 @@
       <input id='payBtn' class='btn_blue payBtn' type="button" value="确认付款" />
       <% }else{ %>
         <ul class="buyer noneBalance">
-            <li><input type="radio" disabled /></li>
-            <li>
+            <li class='first'><input type="radio" disabled /></li>
+            <li class='secondli'>
                 <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
-                <p>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
+                <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
             </li>
         </ul>
         <dl class="tip-msg noneBalance">

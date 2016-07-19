@@ -59,11 +59,11 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                     [['$sms_code', /\w+/], '$smscodeErr', '请输入验证码！'],
                     [['$sms_code', /\w{6,6}/], '$smscodeErr', '验证码输入有误！']
                 ]
-                var noValid = self.submitValid(requiredValid);
+                var isValid = self.submitValid(requiredValid);
                 if((self.els.$smscodeErr[0].style.display == 'block') || (self.els.$payPhoneErr[0].style.display == 'block')){
                     $('.icon-sendsms').hide();
                 }
-                !noValid && self.submit();
+                isValid && self.submit();
             })
 
             $('#send_code').on('click', function (e) {
@@ -122,7 +122,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
         },
         submitValid: function (requiredValid) {
             var self = this;
-            return requiredValid.some(function (arrObj, index) {
+            return $(requiredValid).each(function (index, arrObj) {
                 var condition, el;
 
                 if ($.isArray(arrObj[0])) {
@@ -140,10 +140,11 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                 if (condition) {
                     el.focus();
                     self.els[arrObj[1]].text(arrObj[2]).show();
-                    return true;
+                    return false;
                 } else {
                     self.els[arrObj[1]].hide();
                 }
+                return true;
             })
         },
         submit: function () {

@@ -88,11 +88,9 @@ var zipFile = exports.zipFile = function (req, res, next) {
 
         if(utils.isFileExistsSync(output+qualityZipName)){
            fs.unlinkSync(output+qualityZipName);
-           console.log('-----del file1-------')
         }
         if(utils.isFileExistsSync(output+quantityZipName)){
            fs.unlinkSync(output+quantityZipName);
-            console.log('-----del file2-------')
         }
 
        var zips = [
