@@ -31,6 +31,8 @@
       width:500px;
       margin:90px auto 0;
       .centerWork{
+        height: 100px;
+        position: relative;
         li{
           width:100px;
           height:100px;
@@ -38,9 +40,11 @@
           float:left;
           border-radius:2px;
           transition:all 1s;
+          position: relative;
           &:hover{
             background:rgba(255,255,255,.3);
-            margin-top:-10px;
+            top:-10px\9;
+            transform: translateY(-10px);
           }
           a{
             display:inline-block;
@@ -71,7 +75,7 @@
             }
           }
         }
-        li:nth-child(2), li:nth-child(3){
+        .marginLeft100{
           margin-left:100px;
 
         }
@@ -93,15 +97,17 @@
     .fivePower{
       width:825px;
       margin:0 auto;
-
       ul{
         padding-top:75px;
         li{
           width:110px;
           float:left;
           transition:all 1s;
+          position: relative;
           &:hover{
-            margin-top:-10px;
+            top:-10px\9;
+            transform: translateY(-10px);
+
             p{
               background-color:rgba(255,255,255,.3);
             }
@@ -152,7 +158,7 @@
             }
           }
         }
-        li:nth-child(2),li:nth-child(3),li:nth-child(4),li:nth-child(5){
+        li.marginLeft68{
           margin-left:68px;
 
         }
@@ -216,6 +222,8 @@
     }
     .closeAccount{
       background:rgba(0,0,0,.1);
+      background: #000000\9;
+      filter:alpha(opacity=10)\9;
       border:none;
       button{
         color:#000;
