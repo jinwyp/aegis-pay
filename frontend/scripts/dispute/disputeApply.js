@@ -13,9 +13,10 @@ require(['jquery','pay.upload'],function($,upload){
     var disputeApply={
         "init" : function(){
 
-          this.upload();
-          this.countDown();
-          this.submit();
+            // this.upload();
+            this.uploadImg();
+            this.countDown();
+            this.submit();
         },
         "countDown" : function(){
             $(document).ready(function(){
@@ -32,6 +33,9 @@ require(['jquery','pay.upload'],function($,upload){
                 $("#leftTxt").text(restNum);
 
             });
+        },
+        "uploadImg": function(){
+            upload.init();
         },
         "upload" : function(){
             // 文件限制
@@ -85,7 +89,7 @@ require(['jquery','pay.upload'],function($,upload){
             $("#fileUpload").click(function(e) {
                 e.stopPropagation();
                 var $tag = $(this);
-                upload.ajaxFileUpload($tag, '', function(data) {
+                payUpload.ajaxFileUpload($tag, '', function(data) {
                     var htmlStr = '', modifyStr = '';
                     if(data.success) {
                         $.each(data.attach, function (ind, file) {
@@ -115,7 +119,7 @@ require(['jquery','pay.upload'],function($,upload){
                     }
                 })
             });
-
+           
             //删除操作
             $(document).on('click', '.preview .delete', function(e) {
                 upload.ajaxFileRemove($(this));

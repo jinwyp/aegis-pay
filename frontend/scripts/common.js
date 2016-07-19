@@ -18,6 +18,7 @@ require.config({
         'picker.time'                       : libraryUrl + '/pickadate/lib/picker.time',
         'validator'                         : libraryUrl + '/validator-js/validator',
         'jquery.fileupload'                 : libraryUrl + '/blueimp-file-upload/js/jquery.fileupload',
+        'jquery.iframe-transport'           : libraryUrl + '/blueimp-file-upload/js/jquery.iframe-transport',
         'jquery.fileupload.ui'              : libraryUrl + '/blueimp-file-upload/js/jquery.fileupload-ui',
         'jquery.ui.widget'                  : libraryUrl + '/blueimp-file-upload/js/vendor/jquery.ui.widget',
         'jquery.fileupload-image'           : libraryUrl + '/blueimp-file-upload/js//jquery.fileupload-image',
