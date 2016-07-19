@@ -37,7 +37,9 @@ exports.uploadFile = function (req, res, next) {
         utils.makeDir(uploadPath);
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
+            console.log(newFile)
             req.flash('file_id_'+req.session.user.id, newFile);
+            res.setHeader('content-type', 'text/plain');
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/api/thumbnail?t=' + new Date().getTime()}]})
         })
 
@@ -47,7 +49,6 @@ exports.uploadFile = function (req, res, next) {
 exports.thumbnail = function(req, res, next){
     var fid = req.flash('file_id_'+req.session.user.id)[0];
     var path = uploadPath + fid;
-
     checker.uploadPicturePath(path);
     
     res.download(path, fid, function(err, data){
