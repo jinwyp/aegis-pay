@@ -18,6 +18,7 @@ require.config({
         'picker.time'                       : libraryUrl + '/pickadate/lib/picker.time',
         'validator'                         : libraryUrl + '/validator-js/validator',
         'jquery.fileupload'                 : libraryUrl + '/blueimp-file-upload/js/jquery.fileupload',
+        'jquery.iframe-transport'           : libraryUrl + '/blueimp-file-upload/js/jquery.iframe-transport',
         'jquery.fileupload.ui'              : libraryUrl + '/blueimp-file-upload/js/jquery.fileupload-ui',
         'jquery.ui.widget'                  : libraryUrl + '/blueimp-file-upload/js/vendor/jquery.ui.widget',
         'jquery.fileupload-image'           : libraryUrl + '/blueimp-file-upload/js//jquery.fileupload-image',
@@ -154,6 +155,29 @@ require(['jquery', 'bootstrap'], function($){
 
 });
 
+if (!Array.prototype.some){
+  Array.prototype.some = function(fun /*, thisArg */)
+  {
+    'use strict';
+
+    if (this === void 0 || this === null)
+      throw new TypeError();
+
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof fun !== 'function')
+      throw new TypeError();
+
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+    for (var i = 0; i < len; i++)
+    {
+      if (i in t && fun.call(thisArg, t[i], i, t))
+        return true;
+    }
+
+    return false;
+  };
+}
 
 //数字转大写
 function switchTxt(n) {
@@ -195,3 +219,4 @@ function getUrlParam (param, hrefStr) {
 	};
 	return request.QueryString(param);
 }
+

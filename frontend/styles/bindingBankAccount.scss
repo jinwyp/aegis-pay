@@ -26,9 +26,9 @@
     .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap{position: relative}
     .accountInfoWrap .accountInfoUl .childBankName .accountInfoInput:hover{border:1px solid #00b6ef;}
 
-    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap::after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;  border-color: #9a9da4 transparent transparent;  -webkit-transition: all .4s ease 0s;  -moz-transition: all .4s ease 0s;  -o-transition: all .4s ease 0s;  transition: all .4s ease 0s;}
-    .accountInfoWrap .accountInfoUl .childBankName .open::after{-webkit-transform: rotate(180deg);  -moz-transform: rotate(180deg);  -ms-transform: rotate(180deg);  transform: rotate(180deg);  animation-fill-mode: forwards;}
-    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap:hover::after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;border-color: #00b6ef transparent transparent;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap:after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;  border-color: #9a9da4 transparent transparent;  -webkit-transition: all .4s ease 0s;  -moz-transition: all .4s ease 0s;  -o-transition: all .4s ease 0s;  transition: all .4s ease 0s;}
+    .accountInfoWrap .accountInfoUl .childBankName .open:after{-webkit-transform: rotate(180deg);  -moz-transform: rotate(180deg);  -ms-transform: rotate(180deg);  transform: rotate(180deg);  animation-fill-mode: forwards;}
+    .accountInfoWrap .accountInfoUl .childBankName .childBankNameWrap:hover:after{content: "";  display: block;  position: absolute;  width: 0;  height: 0;  top: 17px;  right: 13px;  overflow: hidden;  border-style: solid;  border-width: 6px 6px 0;border-color: #00b6ef transparent transparent;}
 
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{border-bottom:1px solid #e4e4e4;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .errorMsg{color:#ff0000;padding-left: 3px;font-size: 12px;height:20px;padding-top: 0;}
@@ -38,15 +38,15 @@
     .accountInfoWrap .accountInfoUl .accountInfoLi label span{color:#ff6e0f;}
     .accountInfoWrap .accountInfoUl .accountInfoLi select{display:none;}
     .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger{line-height: 39px;width:300px;height: 40px;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger::after{top:17px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi div.trigger:after{top:17px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options{top:40px;width:300px;z-index: 99;height:170px;overflow-y:scroll;}
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options li{background: #fff;position: relative;}
     .accountInfoWrap .accountInfoUl .accountInfoLi ul.options li:last-child{border:none;}
     .accountInfoWrap .accountInfoUl .accountInfoLi >div{display: inline-block}
 
-    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise div.trigger::after{top:13px;right:10px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise div.trigger:after{top:13px;right:10px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger{min-width: 112px;width:112px;height:32px;line-height: 31px;}
-    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger::before{content:'';width:32px;height:32px;background: #f5f5f5;border-left:1px solid #ccc;position: absolute;right:0px;top:0px;}
+    .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise .trigger:before{content:'';width:32px;height:32px;background: #f5f5f5;border-left:1px solid #ccc;position: absolute;right:0px;top:0px;}
     .accountInfoWrap .accountInfoUl .accountInfoLi .accountInfoChoise ul.options{top:32px;width:112px;min-width:112px;z-index: 99;}
     .accountInfoWrap .accountInfoUl .accountInfoLi span.unit{display: inline-block;width:34px;text-align: center;}
     .accountInfoWrap .accountInfoUl .accountInfoLi p{font-size: 12px;color:#666;padding-top: 6px;margin-left: 110px;margin-left: 154px;}

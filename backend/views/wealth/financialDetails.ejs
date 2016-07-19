@@ -55,7 +55,7 @@
                     <div class="form-group form-search form-search-big2">
                         <label class="sr-only" for="orderSearchText">查询类型</label>
                         <input type="text" class="form-control input-text" id="orderSearchText" ms-attr="{placeholder: @orderSearchTextPlaceHolder, disabled:!@orderSearchTextPlaceHolder}" ms-duplex="@orderSearchText">
-                        <button class="iBtn iBtn_sm iBtn_yes button_ie8" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
+                        <button class="iBtn iBtn_sm iBtn_yes" ms-attr="{disabled:@orderShowLoading}" ms-click="@searchOrder">查询</button>
                     </div>
 
                     <div class="notify-info">
@@ -164,11 +164,11 @@
                             <div class="form-row" >
                                 <div class="form-group form-search form-search-big">
                                     <label class="col-sm-2 control-label label-timefrom" for="orderDownloadDateFrom">交易日期:</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 label-timedropdown">
                                         <input type="text" class="form-control input-text input-date  iIpt_date" name="orderDownloadDateFrom" placeholder="yyyy-mm-dd"/>
                                     </div>
                                     <label class="col-sm-1 control-label label-timeto" for="orderDownloadDateTo">到:</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 label-timedropdown">
                                         <input type="text" class="form-control input-text input-date iIpt_date" name="orderDownloadDateTo" placeholder="yyyy-mm-dd" />
                                     </div>
                                 </div>

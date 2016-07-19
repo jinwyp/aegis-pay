@@ -20,7 +20,7 @@ body{
       margin: 0 30px 0 30px;
       padding-top: 20px;
       padding-bottom: 20px;
-      a{  color: $color_a; cursor: pointer;&:hover{color : $color_a_hover;}  }
+      a{  text-decoration:none;color: $color_a; cursor: pointer;&:hover{color : $color_a_hover;}  }
       .hint{  color: $color_tip_font; font-size: 12px;  }
       .fs-18{  font-size: 18px;  }
       .status-content{
@@ -37,7 +37,12 @@ body{
           .status{  color: $color_green;  }
           .status-close{  color: $color_font;  }
           .status-return{  color: $color_red;  }
-          .closeRemark{ word-break: break-all;}
+          .closeRemark{
+            word-break: break-all;
+            display: block;
+            text-indent: -38px;
+            margin-left: 38px;
+          }
           span.status-hint{  font-size: 14px;  }
           span.orange{  color:$color_orange;  }
           .btn-option{
@@ -56,20 +61,16 @@ body{
         height: 80px;
         line-height: 80px;
         text-align: center;
-        .btn-print {
-          cursor: pointer;
-          font-size: 12px;
-          padding: 9px 12px;
+        .btn-print{
+          color: #333;
           border: 1px solid #e4e4e4;
           border-radius: 3px;
-          .btn-ico {
-            display: inline-block;
-            width: 17px;
-            height: 17px;
-            margin-right: 6px;
-            vertical-align: middle;
-            background-image: url("#{$assetPath}/images/compact/print_icon.png");
-            background-repeat: no-repeat;
+          padding: 10px 20px;
+          background: url("#{$assetPath}/images/compact/print_icon.png") no-repeat 12px 12px;
+          padding-left: 36px;
+          text-decoration: none;
+          &:hover{
+            color: #333;
           }
         }
       }

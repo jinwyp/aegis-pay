@@ -1,6 +1,5 @@
 require(['jquery','pay.upload'],function($,upload){
 
-
     // 错误信息
     function initErrors(flag,errorInfo){
         if(false === flag){
@@ -13,9 +12,9 @@ require(['jquery','pay.upload'],function($,upload){
     var disputeApply={
         "init" : function(){
 
-          this.upload();
-          this.countDown();
-          this.submit();
+            this.upload();
+            this.countDown();
+            this.submit();
         },
         "countDown" : function(){
             $(document).ready(function(){
@@ -47,21 +46,21 @@ require(['jquery','pay.upload'],function($,upload){
                 }
             };
             
-                $("#fileUpload").change(function () {
-                    var oFile = document.getElementById('fileUpload').files[0];
-                    if(!filterFormat(oFile)){
-                        $(this).val("");
-                        initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
-                        return;
-                    }else if(oFile.size>iMaxFilesize){
-                        $(this).val("");
-                        initErrors(false,"请上传大小5M以内的图片");
-                        return;
-                    } else{
-                        initErrors(true,"");
-                        return true;
-                    }
-                });
+            $("#fileUpload").change(function () {
+                var oFile = document.getElementById('fileUpload').files[0];
+                if(!filterFormat(oFile)){
+                    $(this).val("");
+                    initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
+                    return;
+                }else if(oFile.size>iMaxFilesize){
+                    $(this).val("");
+                    initErrors(false,"请上传大小5M以内的图片");
+                    return;
+                } else{
+                    initErrors(true,"");
+                    return true;
+                }
+            });
 
 
             var $fileList = $('.fileList');       //附件列表
@@ -115,7 +114,7 @@ require(['jquery','pay.upload'],function($,upload){
                     }
                 })
             });
-
+           
             //删除操作
             $(document).on('click', '.preview .delete', function(e) {
                 upload.ajaxFileRemove($(this));

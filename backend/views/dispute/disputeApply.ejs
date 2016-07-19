@@ -174,9 +174,9 @@
                                             </div>
                                         </div>
                                     <%}%>
-                                    <div class="addImg"><span class="addImgPic"></span><p>上传证件</p><input id="fileUpload" class="fileStyle" type="file" name="files"></div>
+                                    <div class="addImg"><span class="addImgPic"></span><p>上传证件</p><input id="fileUpload" class="fileUpload fileStyle" type="file" name="files"></div>
                                 <%}else{%>
-                                   <div class="addImg"><span class="addImgPic"></span><p>上传证件</p><input id="fileUpload" class="fileStyle" type="file" name="files"></div>
+                                   <div class="addImg"><span class="addImgPic"></span><p>上传证件</p><input id="fileUpload" class="fileUpload fileStyle" type="file" name="files"></div>
                                 <%}%>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
 
 <%- include ../global/includehead/bottomscript %>
 
-<script src="<%= staticPath %>/scripts/dispute/disputeApply.js"></script>
+<script type="text/javascript" src="<%= staticPath %>/scripts/dispute/disputeApply.js"></script>
 
 </body>
 </html>

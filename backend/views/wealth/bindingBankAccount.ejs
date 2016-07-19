@@ -11,7 +11,12 @@
 <%- include ../global/header/header %>
 <%- include ../global/modal/modal  %>
 
+
+
 <div id="bindingBankAccount">
+    <div class="test">
+
+    </div>
     <div class="bindingBankAccountWrap">
         <% include ../global/order/statusBar %>
         <div class="accountInfoTit"><span>填写账户信息</span></div>
@@ -32,7 +37,7 @@
                     <label><span>*</span>开户行所在城市 :</label>
                     <div class="accountInfoChoise">
                         <select name="provinceCode" id="provinceCode" >
-                            <option value="">请输入省份</option>
+                            <option value="">请选择省份</option>
                             <% for(var i in provinceList){%>
                                 <option value=<%= provinceList[i].provinceCode%>><%= provinceList[i].provinceName%></option>
                             <%}%>

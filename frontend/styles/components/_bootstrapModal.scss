@@ -1,9 +1,14 @@
 // Bootstrap 全局样式重写
 // >>>>>>>>>>>>>>>>>>>>
-.modal-content {
-  border-radius: 2px;
-  border-top: 2px solid #00b6ec;
+.modal-dialog {
+  margin:0 auto;
+
+  .modal-content {
+    border-radius: 2px;
+    border-top: 2px solid #00b6ec;
+  }
 }
+
 
 .modal-header {
   height: 50px;

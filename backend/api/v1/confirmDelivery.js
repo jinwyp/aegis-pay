@@ -85,19 +85,19 @@ var zipFile = exports.zipFile = function (req, res, next) {
         _.each(params.quantityList, function (value, index) {
             quantityPathArray.push(appUploadPath  + path.basename(value.path)); // 需要压缩文件的绝对路径数组
         });
+
+        if(utils.isFileExistsSync(output+qualityZipName)){
+           fs.unlinkSync(output+qualityZipName);
+        }
+        if(utils.isFileExistsSync(output+quantityZipName)){
+           fs.unlinkSync(output+quantityZipName);
+        }
+
        var zips = [
            convert.zipFile({path : qualityPathArray, output:output, zipname: qualityZipName}),
            convert.zipFile({path : quantityPathArray, output:output, zipname: quantityZipName})
        ];
        
-    //    if(utils.isFileExistsSync(output+qualityZipName)){
-    //        fs.unlinkSync(output+qualityZipName);
-    //        console.log('-----del file1-------')
-    //    }
-    //    if(utils.isFileExistsSync(output+quantityZipName)){
-    //        fs.unlinkSync(output+quantityZipName);
-    //         console.log('-----del file2-------')
-    //    }
        Promise.all(zips).then(function(result){
            logger.info('-------------zipFile success---------------------')
        }).catch(next);
