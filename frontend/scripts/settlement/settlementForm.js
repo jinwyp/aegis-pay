@@ -95,8 +95,14 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message', 'pay.upload']
 
             // 输入数量计算
             $reason.keyup(function () {
-                var num = 500;
-                num = num - parseInt(this.value.length);
+                var num = 500,
+                    $tag = $(this);
+                num = num - parseInt($tag.val().length);
+
+                if(num < 1) {
+                    $tag.val($tag.val().substr(0, 500));
+                    num = 0;
+                }
                 $('.reasonSize').html(num);
             });
 
