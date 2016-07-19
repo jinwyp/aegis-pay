@@ -1,58 +1,64 @@
-<link rel="stylesheet" href="<%= staticPath %>/styles/printDetail.css">
-<style type="text/css">
-    @charset "UTF-8";
-    @media print {
-        .order-tag{  border-bottom: 1px solid #666666; }
-        .user-buy-table,.user-sell-table{  border: 1px solid #666666;  }
-        .user-buy-table,.user-sell-table tr{  border-bottom: 1px solid #666666;  }
-        .user-buy-table,.user-sell-table tr td{  border-right: 1px solid #666666;  }
-        #print-table{
-            border-left: 1px solid #666666;
-            border-right: 1px solid #666666;
-            border-bottom: 1px solid #666666;  }
-        .detail-info-table tr td{  border-left: 1px solid #666666;  }
-        .order-info{
-            border-left: 1px solid #666666;
-            border-top: 1px solid #666666;
-            border-right: 1px solid #666666;  }
-    }
-</style>
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/printDetail.css">
+    <style type="text/css">
+        @charset "UTF-8";
+        @media print {
+            .order-tag{  border-bottom: 1px solid #666666; }
+            .user-buy-table,.user-sell-table{  border: 1px solid #666666;  }
+            .user-buy-table,.user-sell-table tr{  border-bottom: 1px solid #666666;  }
+            .user-buy-table,.user-sell-table tr td{  border-right: 1px solid #666666;  }
+            #print-table{
+                border-left: 1px solid #666666;
+                border-right: 1px solid #666666;
+                border-bottom: 1px solid #666666;  }
+            .detail-info-table tr td{  border-left: 1px solid #666666;  }
+            .order-info{
+                border-left: 1px solid #666666;
+                border-top: 1px solid #666666;
+                border-right: 1px solid #666666;  }
+        }
+    </style>
+</head>
+<body>
 <div id="print-detail-body">
     <div class="title">订单详情</div>
     <div class="order-tag">
         <div class="order-id">订单编号：<%= order.orderNO %></div>
         <!--<div class="order-time">导出时间：99999999999</div>-->
     </div>
+    <div class="line"></div>
     <div class="main-content">
         <div class="user-info-title">买家信息</div>
         <table class="user-buy-table">
             <tr>
-                <td width="100"><div class="label">买家</div></td>
+                <td class="table_label" width="100"><div>买家</div></td>
                 <td width="200"><div><%= order.buyerCompanyName %></div></td>
-                <td width="100"><div class="label">手机号码</div></td>
+                <td class="table_label" width="100"><div>手机号码</div></td>
                 <td width="200"><div><%= order.buyerLoginPhone %></div></td>
             </tr>
             <tr>
-                <td width="100"><div class="label">付款交易号</div></td>
+                <td class="table_label" width="100"><div>付款交易号</div></td>
                 <td width="200"><div><%= getStringVal(order.transactionNO) %></div></td>
-                <td width="100"><div class="label">付款账号</div></td>
+                <td class="table_label" width="100"><div>付款账号</div></td>
                 <td width="200"><div><%= getStringVal(order.buyerFundAccount) %></div></td>
             </tr>
             <tr>
-                <td width="100"><div class="label">提货地址</div></td>
+                <td class="table_label" width="100"><div>提货地址</div></td>
                 <td width="300" colspan="3"><div><%= deliveryplaceAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour) %></div></td>
             </tr>
         </table>
         <div class="user-info-title">卖家信息</div>
         <table class="user-sell-table">
             <tr>
-                <td width="100"><div class="label">卖家</div></td>
+                <td class="table_label" width="100"><div>卖家</div></td>
                 <td width="200"><div><%= order.sellerCompanyName %></div></td>
-                <td width="100"><div class="label">手机号码</div></td>
+                <td class="table_label" width="100"><div>手机号码</div></td>
                 <td width="200"><div><%= sellInfo.dealerphone %></div></td>
             </tr>
             <tr>
-                <td width="100"><div class="label">收款账号</div></td>
+                <td class="table_label" width="100"><div>收款账号</div></td>
                 <td width="300" colspan="3"><div><%= getStringVal(order.sellerFundAccount) %></div></td>
             </tr>
         </table>
@@ -64,7 +70,7 @@
                 <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createTime) %></div></li>
                 <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getStringVal(order.signContractTime) %></div></li>
                 <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getStringVal(order.paymentTime) %></div></li>
-                <li class="order-item"><div class="div-label">确认提货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
                 <li class="order-item"><div class="div-label">确认结算时间：</div><div class="div-value"><%= getStringVal(order.settleAccountTime) %></div></li>
             </ul>
         </div>
@@ -157,11 +163,11 @@
         </table>
 
         <div class="total-money">
-            <div class="money-number">总金额：<span><%= formatMoney(order.totalMoney,2) %></span></div>
+            <div class="money-number">总金额：<span><%= formatMoney(order.totalMoney,2) %>元</span></div>
             <div class="money-zh">(人民币：<%= switchTxt(order.totalMoney) %>)</div>
         </div>
     </div>
 </div>
-
-<!--<script src="<%= staticPath %>/scripts/order/buyOrderDetail.js"></script>-->
+</body>
+</html>
 
