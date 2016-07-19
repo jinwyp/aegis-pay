@@ -37,7 +37,12 @@ body{
           .status{  color: $color_green;  }
           .status-close{  color: $color_font;  }
           .status-return{  color: $color_red;  }
-          .closeRemark{ word-break: break-all;}
+          .closeRemark{
+            word-break: break-all;
+            display: block;
+            text-indent: -38px;
+            margin-left: 38px;
+          }
           span.status-hint{  font-size: 14px;  }
           span.orange{  color:$color_orange;  }
           .btn-option{

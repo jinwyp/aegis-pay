@@ -13,6 +13,47 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
 
       },
       "modifyData" : function(){
+          // 删除操作
+            $(".tableWrap a").on("click",function(){
+
+              var tableList=$(this).parents(".checkList").clone("true");
+              var wrap=$(this).parents(".tableWrap");
+              var wrapLen=wrap.children("table").length;
+              var dateNode="<input type='text' class='checkTime' name='checkTime' placeholder='yyyy-mm-dd' />";
+
+
+              if($(this).hasClass("add")){
+                  wrap.append(tableList);
+
+                  //替换clone date标签
+                  $(".dateWrap input").last().remove();
+                  $(".dateWrap").last().append(dateNode);
+                  $(".checkList").last().find("input").val("");
+                  $(".batch").last().text(wrapLen+1);
+                  $(this).hide();
+
+                  if(wrapLen<14){
+                      $(".del").show();
+                  }else{
+                      $(".add").last().hide();
+                  }
+              }
+              if($(this).hasClass("del")){
+                  $(this).parents("table").remove();
+
+                  $(".batch").each(function(i,item){
+                      $(item).text(i+1)
+                  });
+
+                  if(wrapLen==2){
+                      $(".del").hide();
+                  }else{
+                      $(".del").show();
+                  }
+                  $(".add").last().show();
+              }
+          });
+
             // 页面加载计算总和
               function totalAmout(){
                   var $deliveryAmount=$("#deliveryAmount"),
@@ -34,13 +75,15 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
                   totalAmout();
               }
 
-          $("input[name='checkAmount']").on("blur",function(){
-              totalAmout();
-          });
-          $(document).on("click","a.del",function(){
-              totalAmout();
-          });
-
+              $("input[name='checkAmount']").on("blur",function(){
+                  totalAmout();
+              });
+              $(".checkList a").click(function(){
+                      if($(this).hasClass("del")){
+                          totalAmout();
+                      }
+              });
+          
           $("#qualityList .fileupload").on("click",function(){
               var qualityListLen=$(document).find(".files").eq(0).children(".file").length;
               if(qualityListLen>14){
@@ -61,45 +104,7 @@ require(['jquery', 'pay.upload','jQuery.fn.datePicker'],function($, upload){
               }
           });
 
-         $(".tableWrap a").on("click",function(){
 
-            var tableList=$(this).parents(".checkList").clone("true");
-            var wrap=$(this).parents(".tableWrap");
-            var wrapLen=wrap.children("table").length;
-            var dateNode="<input type='text' class='checkTime' name='checkTime' placeholder='yyyy-mm-dd' />";
-
-
-            if($(this).hasClass("add")){
-               wrap.append(tableList);
-
-               //替换clone date标签
-               $(".dateWrap input").last().remove();
-               $(".dateWrap").last().append(dateNode);
-               $(".checkList").last().find("input").val("");
-               $(".batch").last().text(wrapLen+1);
-               $(this).hide();
-
-               if(wrapLen<14){
-                  $(".del").show();
-               }else{
-                  $(".add").last().hide();
-               }
-            }
-            if($(this).hasClass("del")){
-               $(this).parents("table").remove();
-
-               $(".batch").each(function(i,item){
-                  $(item).text(i+1)
-               });
-
-               if(wrapLen==2){
-                  $(".del").hide();
-               }else{
-                  $(".del").show();
-               }
-               $(".add").last().show();
-            }
-         });
          //只能输入数字限制
          var tVal="";
          $(".qualityInfo input").on("keyup",function(){

@@ -22,8 +22,14 @@ requirejs(['jquery', 'jquery.fancySelect', 'bootstrap', 'message'], function($, 
 
     // 计算剩余字数
     $remarks.keyup(function () {
-        var num = 500;
-        num = num - parseInt(this.value.length);
+        var num = 500,
+            $tag = $(this);
+        num = num - parseInt($tag.val().length);
+
+        if(num < 1) {
+            $tag.val($tag.val().substr(0, 500));
+            num = 0;
+        }
         $limitNum.html(num);
     });
 
