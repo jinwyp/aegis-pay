@@ -34,7 +34,7 @@ div.fancy-select div.trigger {
   -ms-transition: all 240ms ease-out;
   -o-transition: all 240ms ease-out;
 }
-div.fancy-select div.trigger::after, div.fancy-select div.trigger:after {
+div.fancy-select div.trigger:after, div.fancy-select div.trigger:after {
   content: "";
   display: block;
   position: absolute;
@@ -54,7 +54,7 @@ div.fancy-select div.trigger::after, div.fancy-select div.trigger:after {
 div.fancy-select div.trigger:hover{
   border: #00b7ec 1px solid;
 }
-div.fancy-select div.trigger:hover::after {
+div.fancy-select div.trigger:hover:after {
   border-color: #00b7ec transparent transparent;
 }
 div.fancy-select div.selected {
