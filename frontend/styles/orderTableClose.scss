@@ -37,13 +37,9 @@
         .item{
           position: relative;
           text-align: left;
+          //.mt-10{margin-top:10px;}
           .item-line{
             margin-left: 15px;
-            .money-zh{
-              margin-right: 10px;
-              color: #666666;
-              font-size: 12px;
-            }
             .number{
               display: inline-block;
               width: 120px;
@@ -54,20 +50,11 @@
             .time{  font-size: 12px;  color: $color_title_text;  }
             .status-color{  color:$color_green;  }
           }
-          .dot-icon {
-            position: absolute;
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            left: -4px;
-            border-radius: 5px;
-          }
-          .start{  top: 20px;background-color: $color_dot;  }
-          .end{  top: 30px;  }
-          .dot-gray{  background-color: $color_dot;  }
-          .dot-green{  background-color: $color_green;  }
+          .start{  position: absolute;top: 20px;left: -5px;  }
+          .end{  position: absolute;top: 30px;left: -5px;  }
         }
-        .line-start{  padding-bottom: 10px;min-height: 55px;  }
+        .line-start{
+          min-height: 55px;  }
         .line-end{  padding-top: 10px;min-height: 55px;  }
         .line-start:before {
           content: "";
