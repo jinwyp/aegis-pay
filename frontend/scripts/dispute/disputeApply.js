@@ -1,4 +1,4 @@
-require(['jquery','pay.upload'],function($,upload){
+require(['jquery','pay.upload'],function($, upload){
 
     // 错误信息
     function initErrors(flag,errorInfo){
@@ -19,7 +19,8 @@ require(['jquery','pay.upload'],function($,upload){
         "countDown" : function(){
             $(document).ready(function(){
                 var initialLen=200-($("#disputeRemarks").val().length);
-                $("#leftTxt").text(initialLen);})
+                $("#leftTxt").text(initialLen)
+            });
             $("#disputeRemarks").on("keyup",function(){
                 var Len=$(this).val().length;
                 var restNum=200-Len;
@@ -45,23 +46,6 @@ require(['jquery','pay.upload'],function($,upload){
                     return true;
                 }
             };
-            
-            $("#fileUpload").change(function () {
-                var oFile = document.getElementById('fileUpload').files[0];
-                if(!filterFormat(oFile)){
-                    $(this).val("");
-                    initErrors(false,"请选择jpg,png,jpeg,bmp格式的照片上传");
-                    return;
-                }else if(oFile.size>iMaxFilesize){
-                    $(this).val("");
-                    initErrors(false,"请上传大小5M以内的图片");
-                    return;
-                } else{
-                    initErrors(true,"");
-                    return true;
-                }
-            });
-
 
             var $fileList = $('.fileList');       //附件列表
             //上传操作
@@ -69,48 +53,47 @@ require(['jquery','pay.upload'],function($,upload){
                 if($(".preview").length>=20){
                     $(this).val("");
                     initErrors(false,"最多上传20张照片");
-                    return;
+                    return false;
                 }
-                modifyImg=false;
-                $("#fileUpload").click();
             });
             //修改图片
-            $(document).on("click",".modify",function(){
-                modifyImg=true,
-                modifyIndex=$(this).parents(".preview").index();
-                $("#fileUpload").click();
+            $(document).on("click",".modifyUpload",function(){
+                var modifyIndex=$(this).parents(".preview").index();
+                upload.ajaxFileUpload($(this), {maxFileSize: 1048576 * 5, fileType: ["jpg", "jpeg", "png"]}, function (data) {
+                    modifyStr = '';
+                    if(data.success) {
+                        $.each(data.attach, function (ind, file) {
+                            modifyStr = '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><input class="fileUpload fileStyle modifyUpload" type="file" name="files"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div></div>';
+                        });
 
+                        // 先进行删除操作再插入节点
+                        if (modifyIndex != 0) {
+                            $(".preview").eq(modifyIndex).remove();
+                            $(".preview").eq(modifyIndex - 1).after(modifyStr);
+                        } else {
+                            $(".preview").eq(modifyIndex).remove();
+                            $(".preview").eq(0).before(modifyStr);
+                        }
+
+                    }
+                })
             });
+            // 上传操作
             $("#fileUpload").click(function(e) {
-                e.stopPropagation();
-                var $tag = $(this);
-                upload.ajaxFileUpload($tag, '', function(data) {
+
+                upload.ajaxFileUpload($("#fileUpload"), {maxFileSize: 1048576 * 5, fileType: ["jpg", "jpeg", "png"]}, function (data) {
                     var htmlStr = '', modifyStr = '';
                     if(data.success) {
                         $.each(data.attach, function (ind, file) {
-                            htmlStr += '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
-                            modifyStr = '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div> </div>';
+                            htmlStr += '<div class="preview" data-id="' + file.id + '" data-name="' + file.filename + '"><img src="' + file.url + '"><div class="modifyFile"><input class="fileUpload fileStyle modifyUpload" type="file" name="files"><a href="javascript:void(0)" class="modify" data-id="' + file.id + '" data-name="' + file.filename + '">修改</a><a href="javascript:void(0)" class="delete">删除</a></div></div>';
                         });
-                        if (!modifyImg) {
-                            if ($(".preview").length > 0) {
-                                $(".preview").last().after(htmlStr)
-                            } else {
-                                $(".addImg").before(htmlStr)
-                            }
 
+                        if ($(".preview").length > 0) {
+                            $(".preview").last().after(htmlStr)
                         } else {
-                            if (modifyIndex != 0) {
-                                $(".preview").eq(modifyIndex).remove();
-                                $(".preview").eq(modifyIndex - 1).after(modifyStr);
-                            } else {
-                                $(".preview").eq(modifyIndex).remove();
-                                if ($(".preview").length > 0) {
-                                    $(".preview").last().after(htmlStr)
-                                } else {
-                                    $(".addImg").before(htmlStr)
-                                }
-                            }
+                            $(".addImg").before(htmlStr)
                         }
+
                     }
                 })
             });
