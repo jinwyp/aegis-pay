@@ -37,7 +37,6 @@ var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
 var viewHtmlPath = path.join(__dirname, 'views');
-config.NODE_ENV = 'prod';
 if (config.NODE_ENV === 'prod' || config.NODE_ENV === 'staging') { viewHtmlPath = path.join(__dirname, 'viewsdist')}
 
 var app = express();
