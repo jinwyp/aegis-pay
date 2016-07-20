@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="node_modules/mermaid/dist/mermaid.css">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="mermaid">
+    graph LR
+    pm[产品需求 Axure]-->ui[设计UI PSD]
+    ui-->html[HTML CSS 切图]
+    html-->nodejs[Node.js Server 网站Web服务器]
+    nodejs-->weburl[页面路由URL]
+    nodejs-->apiurl[JSON 数据路由URL]
+    apiurl-->mock[MOCK 假数据路由URL]
+    apiurl-->java[Java Service 数据服务]
+    java-->mysql[数据库 Mysql]
+
+    click html callback "第一次切图用时较多"
+    click java callback "第一次和再次修改,用时较多"
+</div>
+
+<!--<div class="mermaid">-->
+    <!--sequenceDiagram-->
+    <!--participant Alice-->
+    <!--participant Bob-->
+    <!--Alice->John: Hello John, how are you?-->
+    <!--loop Healthcheck-->
+    <!--John->John: Fight against hypochondria-->
+    <!--end-->
+    <!--Note right of John: Rational thoughts <br/>prevail...-->
+    <!--John&ndash;&gt;Alice: Great!-->
+    <!--John->Bob: How about you?-->
+    <!--Bob&ndash;&gt;John: Jolly good!-->
+<!--</div>-->
+
+
+
+<script src="node_modules/mermaid/dist/mermaid.min.js"></script>
+<script>
+    mermaid.initialize({startOnLoad:true});
+
+    var callback = function(){
+        alert('A callback was triggered');
+    }
+</script>
+
+</body>
+</html>
