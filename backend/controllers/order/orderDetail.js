@@ -74,7 +74,8 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 if(step==3){
                     stepDate="";
                 }else{
-                    stepDate=source.data.order.confirmDeliveryTime ||"";
+                    stepDate=source.data.order.verifyDeliveryTime ||"";
+                    //stepDate=source.data.order.confirmDeliveryTime ||"";
                 }
             }
             var statusObj = {
