@@ -36,6 +36,8 @@ var request          = require("request");
 var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
+var viewHtmlPath = path.join(__dirname, 'views');
+if (config.NODE_ENV === 'prod' || config.NODE_ENV === 'staging') { viewHtmlPath = path.join(__dirname, 'viewsdist')}
 
 var app = express();
 
@@ -43,7 +45,7 @@ var app = express();
 app.engine('ejs', ejs.__express);
 app.engine('html', ejs.__express);
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', viewHtmlPath);
 app.set('view engine', 'ejs');
 app.enable('trust proxy');
 

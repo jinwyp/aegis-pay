@@ -1,13 +1,19 @@
-app/node_modules
-app/components
+
 backend/node_modules
 backend/log
-frontend/static/
-frontend/dist/
+backend/viewsdist
+backend/views/download/*
+
+app/static
+app/dist
+app/node_modules
+app/components
+
+frontend/static
+frontend/dist
 frontend/node_modules
 frontend/components
-app/static/
-app/dist/
+
 .tmp/
 *.log
 files
@@ -15,7 +21,7 @@ frontend/images/sprite/auto-sprite.png
 frontend/styles/helpers/_auto_sprite.scss
 .vscode
 
-backend/views/download/*
+
 
 
 
