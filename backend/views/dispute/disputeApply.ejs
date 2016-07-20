@@ -170,6 +170,7 @@
                                         <div class="preview" data-id=<%= substrId(files[i].path) %> data-name= <%=files[i].name%>>
                                             <img src="/settlement/imgViewApi?key=<%= substrId(files[i].path) %>">
                                             <div class="modifyFile">
+                                                <input class="fileUpload fileStyle modifyUpload" type="file" name="files">
                                                 <a href="javascript:void(0)" class="modify" data-id=<%= files[i].path %> data-name=<%=files[i].name%>>修改</a><a href="javascript:void(0)" class="delete">删除</a>
                                             </div>
                                         </div>

@@ -29,12 +29,12 @@
             <%}else{%>
                 <div class="explain">
                     <div class="item line-start line-gray">
-                        <span class="dot-icon start dot-gray"></span>
+                        <span class="icn_roundGray start"></span>
                         <div class="item-line">已付货款：<div class="number"><%= formatMoney(order.totalMoney,2) %></div>&nbsp;元</div>
                         <div class="item-line"><span class="time"><%= clearEmpty(order.paymentTime) %></span></div>
                     </div>
                     <div class="item line-end <%if(order.tailMoneyTime==null||order.refundMoneyTime==null){%>line-gray<%}else{%>line-green<%}%>">
-                        <span class="dot-icon end <%if(order.tailMoneyTime==null||order.refundMoneyTime==null){%>dot-gray<%}else{%>dot-green<%}%>"></span>
+                        <span class="<%if(order.tailMoneyTime==null||order.refundMoneyTime==null){%>icn_roundGray<%}else{%>icn_roundLight<%}%> end"></span>
                         <%if(order.refundMoney==0){%>
                             <div class="item-line"><%if(order.tailMoneyTime==null){%>待补货款：<%}else{%>已补货款：<%}%><div class="number orange"><%= formatMoney(order.tailMoney,2) %></div>&nbsp;元</div>
                             <div class="item-line"><span class="time"><%= clearEmpty(order.tailMoneyTime) %></span></div>

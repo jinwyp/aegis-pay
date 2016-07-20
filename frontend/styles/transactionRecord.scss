@@ -79,7 +79,7 @@ body{
           td.coal-target > div{
             text-align: left;
             padding: 4px 0 4px 20px;
-            .label{  color: $color_tip_font;  padding: 0;  }
+            .label{  color: $color_tip_font;  padding: 0;font-size: 14px\0;  }
           }
           .mt-10{margin-top:10px;}
           .title{
@@ -92,7 +92,7 @@ body{
           td.order-number > div{
             text-align: left;
             padding: 4px 0 4px 20px;
-            .label{  color: $color_tip_font;  padding: 0;  }
+            .label{  color: $color_tip_font;  padding: 0;font-size: 14px\0;  }
           }
           td.operation > a { display: block;}
           .status-green{  color: #1aaa6b;  }
