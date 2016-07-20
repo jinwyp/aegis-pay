@@ -316,7 +316,6 @@ exports.financialTransaction = function (req, res, next) {
     var firstTab  = req.query.firstTab || 3;
     var secondTab = req.query.secondTab || 1;
 
-    console.log(req.query);
     var getQuery = {
         userId : req.session.user.id,
         //userId :  2719,
