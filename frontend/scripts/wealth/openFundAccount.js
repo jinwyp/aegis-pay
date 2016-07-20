@@ -63,7 +63,7 @@ require(['jquery', 'pay.smscode'], function ($, smscode) {
                 if((self.els.$smscodeErr[0].style.display == 'block') || (self.els.$payPhoneErr[0].style.display == 'block')){
                     $('.icon-sendsms').hide();
                 }
-                isValid && self.submit();
+                !isValid && self.submit();
             })
 
             $('#send_code').on('click', function (e) {
