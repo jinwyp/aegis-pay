@@ -136,6 +136,8 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
         field: newErr.field
     };
 
+    var type = req.accepts('html', 'json', 'text');
+
     if (resError.errorCode === 404) {
         logger.warn(newErr);
     }else if (resError.errorCode >= 500){
@@ -147,18 +149,22 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
     }
 
 
-    if (req.is('application/json') && req.xhr || req.get('Content-Type') === 'application/json'|| type ==='json' || req.is('application/x-www-form-urlencoded')){
+    if (req.xhr || req.is('application/json') ||  req.get('Content-Type') === 'application/json' || type ==='json' || (req.is('application/x-www-form-urlencoded')&&req.xhr)){
+        res.setHeader('Content-Type', 'text/plain');
         return res.json(resError);
     }else{
         if (resError.errorCode > 1000) {
+            resError.url = req.url;
+            resError.pageTitle = 'Field validation Error, 提交的数据不符合规格!';
             return res.render('global/globalTemp/validationErrorPage', resError);
         }
 
         if (resError.errorCode === 404) {
             resError.url = req.url;
+            resError.pageTitle = '404 Page Not Found, 抱歉,页面没有找到!';
             return res.render('global/globalTemp/page404', resError);
         }
-
+        resError.pageTitle = '500 系统错误, 请稍后重试!';
         return res.render('global/globalTemp/error', resError);
     }
 };

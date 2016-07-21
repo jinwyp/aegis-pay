@@ -102,7 +102,7 @@ app.use(flash());
 // custom middleware
 app.use(auth.passport);
 
-if (!config.debug) {
+/*if (true) {
     app.use(function (req, res, next) {
         if (req.path.indexOf('/api') === -1) {
             csurf()(req, res, next);
@@ -111,7 +111,7 @@ if (!config.debug) {
         next();
     });
     app.set('view cache', true);
-}
+}*/
 
 
 _.extend(app.locals, {
