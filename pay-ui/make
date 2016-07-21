@@ -1,9 +1,9 @@
 #!/bin/bash
 
 source ../../aegis-docker/bin/aegis-config
-export container_name="pay-ui-data"
+export container_name="pay-ui"
 export project_name=docker-pay-ui
-export image_name=pay-ui
+export image_name=aegis-pay-ui
 
 rm -rf dist
 cp -rf ../frontend/dist  .
@@ -13,7 +13,7 @@ mbt_rewrite;
 create()      { echo "ERROR: target not supported" | color red bold; }
 stop()        { echo "ERROR: target not supported" | color red bold; }
 start()       { 
-    docker run -d --name pay-ui-data pay-ui echo "pay-ui-data created";
+    docker run -d --name pay-ui aegis-pay-ui echo "pay-ui-data created";
 }
 publish()     { echo "ERROR: target not supported" | color red bold; }
 devPublish()  { echo "ERROR: target not supported" | color red bold; }
