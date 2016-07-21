@@ -1,6 +1,6 @@
 ﻿目录结构(aegis-pay)：
 
-app/                        客户端静态文件目录
+frontend/                        客户端静态文件目录
     ├── commponents         公用组件
         └── test4.js
     ├── images              图片
@@ -142,13 +142,13 @@ web_router.js               Web路由配置
 .nock/index.js       // *公用
 
 // 页面模板
-.app/views/dome/demo.ejs
+.frontend/views/dome/demo.ejs
 
 // 页面样式
-.app/styles/dome.scss
+.frontend/styles/dome.scss
 
 // 页面脚步
-.app/scripts/dome.js
+.frontend/scripts/dome.js
 
 +-+-+-+-+-+- aegis-pay项目 运营过程中生成文件目录及文件命名规范 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 1、压缩文件，在zips目录下，按照用户id来分子目录；
