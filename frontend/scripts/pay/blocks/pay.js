@@ -38,10 +38,10 @@ define(['jquery', 'datachecker'],function($, datachecker){
       },
       submit: function(){
           //禁用其他 '编辑操作'
-          $('#payBtn').prop('disabled', true);
-          $('#send_code').prop('disabled', true);
-          $('[name=sms_code]').prop('disabled', true);
-          $('[name=payPassword]').prop('disabled', true);
+          $('#payBtn').prop('readonly', true);
+          $('#send_code').prop('readonly', true);
+          $('[name=sms_code]').prop('readonly', true);
+          $('[name=payPassword]').prop('readonly', true);
 
         var self = this;
         var params = $('#pay').serialize();
@@ -51,10 +51,10 @@ define(['jquery', 'datachecker'],function($, datachecker){
             location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=' + $('input[name="type"]').val();
           }else{
               //解禁 编辑
-              $('#payBtn').prop('disabled', false);
-              $('#send_code').prop('disabled', false);
-              $('[name=sms_code]').prop('disabled', false);
-              $('[name=payPassword]').prop('disabled', false);
+              $('#payBtn').prop('readonly', false);
+              $('#send_code').prop('readonly', false);
+              $('[name=sms_code]').prop('readonly', false);
+              $('[name=payPassword]').prop('readonly', false);
 
             $('#payBtn').removeClass('disable');
             $('.layer-shade').hide();
