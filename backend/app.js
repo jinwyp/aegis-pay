@@ -51,15 +51,16 @@ app.set('view engine', 'ejs');
 app.enable('trust proxy');
 
 
-//日志
-app.use(morgan('dev'));
+
 
 
 if (config.debug) {
     logger.info('----- NodeJS Environment Config Variable: ');
     logger.info(config);
-    // 记录渲染时间
-    app.use(renderMiddleware.render);
+
+    app.use(morgan('dev')); //每个请求的显示日志
+
+    app.use(renderMiddleware.render); // 记录渲染时间
 }
 require("./libs/request-debug")(request) ;
 

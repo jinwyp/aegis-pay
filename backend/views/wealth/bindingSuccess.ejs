@@ -14,7 +14,7 @@
     <div id="bindingSuccess">
         <div class="bindingSuccessWrap">
 
-            <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4错误3次以上,5被删除)-->
+            <!--判断是否打钱(1没打钱,2打钱,3已经绑定成功,4错误3次以上,5被删除,6打款失败)-->
             <% if(userAccount.status==1){%>
             <% var statusObj = statusObj[0]%>
             <% include ../global/order/statusBar %>
@@ -99,6 +99,12 @@
                     <p><span>您的银行卡绑定失败或您没有绑定账户</span>，请绑定银行账户</p>
                     <a href="/wealth/bindingBankAccount" class="rebinding">绑定账户</a>
                 </div>
+            <%}%>
+            <% if(userAccount.status==6){%>
+            <div class="accountError" style="display: block">
+                <p><span><%=userAccount.message %></span>，请重新绑定银行账户</p>
+                <a href="/wealth/bindingBankAccount" class="rebinding">绑定账户</a>
+            </div>
             <%}%>
 
         </div>
