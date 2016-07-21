@@ -129,10 +129,7 @@ exports.returnDetailSubmit = function (req, res, next) {
 
 var zipurl = {};
 exports.fetchQualityZips = function(req, res, next){
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader("Pragma", "private");
+
     (!zipurl.qualityPath) && (zipurl = fetchZips(req));
     if(!utils.isFileExistsSync(zipurl.qualityPath)){
         return next(new BusinessError(409, '文件正在生成中...'));
@@ -142,10 +139,7 @@ exports.fetchQualityZips = function(req, res, next){
     })
 }
 exports.fetchQuantityZips = function(req, res, next){
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader("Pragma", "private");
+    //res.setHeader('Expires', "Thu, 01 Jan 1970 00:00:01 GMT");
     (!zipurl.quantityPath) && (zipurl = fetchZips(req));
     if(!utils.isFileExistsSync(zipurl.quantityPath)){
         return next(new BusinessError(409, '文件正在生成中...'));
