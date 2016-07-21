@@ -24,13 +24,16 @@
     ul{
       width: 100%;
       border: none;
-      float: left;
+      //float: left;
       list-style-type: none;
       margin: 0;
       padding: 0;
+      
       li{
-        width: 50%;
+        width: 49%;
+        height: 20px;
         float: left;
+        border: 1px solid transparent;
         div {  display: inline-block;  }
         .div-label {
           width: 120px;
