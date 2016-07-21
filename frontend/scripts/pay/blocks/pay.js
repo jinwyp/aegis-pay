@@ -37,6 +37,12 @@ define(['jquery', 'datachecker'],function($, datachecker){
         })
       },
       submit: function(){
+          //禁用其他 '编辑操作'
+          $('#payBtn').prop('disabled', true);
+          $('#send_code').prop('disabled', true);
+          $('[name=sms_code]').prop('disabled', true);
+          $('[name=payPassword]').prop('disabled', true);
+
         var self = this;
         var params = $('#pay').serialize();
         $.post('/api/pay/submit', params, function(data){
@@ -44,6 +50,12 @@ define(['jquery', 'datachecker'],function($, datachecker){
             // 跳转到付款成功提示页面
             location.href = '/pay/success?orderId=' + $('input[name="orderId"]').val() + '&type=' + $('input[name="type"]').val();
           }else{
+              //解禁 编辑
+              $('#payBtn').prop('disabled', false);
+              $('#send_code').prop('disabled', false);
+              $('[name=sms_code]').prop('disabled', false);
+              $('[name=payPassword]').prop('disabled', false);
+
             $('#payBtn').removeClass('disable');
             $('.layer-shade').hide();
             if(data.errType && (data.errType=='sms_code')){
@@ -59,7 +71,7 @@ define(['jquery', 'datachecker'],function($, datachecker){
               }
             }
           }
-        })
+        });
       }
   }
-})
+});
