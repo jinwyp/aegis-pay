@@ -37,8 +37,8 @@ define(['jquery', 'flexslider', 'lightbox'],function($, flexslider, lightbox){
           'resizeDuration': 200,
           // 'wrapAround': true,
           'albumLabel': '(%1/%2)'
-        })
+        });
         $('#lightbox .lb-close').appendTo('.lb-outerContainer');
       }
   }
-})
+});
