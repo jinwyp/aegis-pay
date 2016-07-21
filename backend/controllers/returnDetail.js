@@ -134,9 +134,9 @@ exports.fetchQualityZips = function(req, res, next){
     res.setHeader('Pragma', 'no-cache');
     res.setHeader("Pragma", "private");
     (!zipurl.qualityPath) && (zipurl = fetchZips(req));
-    if(!utils.isFileExistsSync(zipurl.qualityPath)){
-        return next(new BusinessError(409, '文件正在生成中...'));
-    }
+    //if(!utils.isFileExistsSync(zipurl.qualityPath)){
+    //    return next(new BusinessError(409, '文件正在生成中...'));
+    //}
     res.download(zipurl.qualityPath, 'quality.zip', function(err, data){
         if(err) {return next(err);}
     })
