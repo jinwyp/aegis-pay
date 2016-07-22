@@ -48,8 +48,6 @@
 
 
 
-
-
 ## 前端 Javascript  
 
 ### 做的好的方面
@@ -59,8 +57,14 @@
 
 ### 需要改进的方面
 
-- 有一些模块没有采用AMD定义, 以后逐步改用ES6模块
-
+- 有一些模块没有采用AMD定义, 例如common.js里面的代码
+- jQuery 插件的js,css 引用, 注意是否支持AMD [参考文章](http://www.css88.com/archives/4826) [参考文章2](https://www.zhihu.com/question/33448231)
+- 以后逐步改用ES6模块, 使用webpack,或 jspm 或rollup 等ES6打包器
+- 统一调用后端API接口, 使用 [fetch](https://github.com/github/fetch) 或 [axios](https://github.com/mzabriskie/axios) [ajax/http库对比](https://www.sitepoint.com/comparison-javascript-http-libraries/)
+- 时间统一使用[momentjs](http://momentjs.com/) 
+- 工具库使用 [lodash](https://lodash.com/) 
+- 数字处理[numeral](https://github.com/adamwdraper/Numeral-js)
+- 文本格式处理 [Cleave.js](http://nosir.github.io/cleave.js/)
 
 ## 后端 Node.JS 
 
