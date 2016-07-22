@@ -27,7 +27,7 @@ exports.uploadFile = function (req, res, next) {
     form.uploadDir = uploadTmp;
     form.parse(req, function (err, fields, files) {
         if (err) return next(err);
-        var extName = /\.[^\.]+/.exec(files.files.name);
+        var extName = /\.[^\.]+$/.exec(files.files.name);
         var ext     = Array.isArray(extName)
             ? extName[0]
             : '';
@@ -37,7 +37,7 @@ exports.uploadFile = function (req, res, next) {
         utils.makeDir(uploadPath);
         fs.rename(files.files.path, newPath, function (err) {
             if (err) return next(err);
-            console.log(newFile)
+            console.log(newFile);
             req.flash('file_id_'+req.session.user.id, newFile);
             res.setHeader('content-type', 'text/plain');
             res.send({'success' : true, 'attach' : [{'filename' : files.files.name, 'id' : newFile, url:'/api/thumbnail?t=' + new Date().getTime()}]})
