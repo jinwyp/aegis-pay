@@ -84,6 +84,9 @@
 - 验证码, 手机短信码做成 express middleware 方便调用, 而且前端要直接调用一个api接口同时验证验证码和业务逻辑, 而不是分开调用2个api,先验证验证码,在验证业务逻辑,这样就可以直接调用业务逻辑接口绕过验证码。
 - 前端提交的数据要进行表单格式验证 datachecker.js, 所有的错误统一使用validationCode.js 返回json数据, 不在使用form页面提交而使用ajax提交到api 路由
 - api 路由使用 RESTful 风格, 用swagger写文档
+- 注意区分 nodejs的一些库的使用接口, callback, promise, 或stream
+- http header [缓存](http://web.jobbole.com/86970/) [参考文章](https://segmentfault.com/a/1190000004486640)
+
 
 
 
