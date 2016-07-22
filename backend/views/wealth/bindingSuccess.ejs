@@ -102,7 +102,13 @@
             <%}%>
             <% if(userAccount.status==6){%>
             <div class="accountError" style="display: block">
-                <p><span><%=userAccount.message %></span>，请重新绑定银行账户</p>
+                <p><span>您的提现账户名称和公司名不匹配</span>，请重新绑定银行账户</p>
+                <a href="/wealth/bindingBankAccount" class="rebinding">绑定账户</a>
+            </div>
+            <%}%>
+            <% if(userAccount.status==7){%>
+            <div class="accountError" style="display: block">
+                <p><span>交易时间为工作日9:00-16:50.</span>，请在交易时间绑定</p>
                 <a href="/wealth/bindingBankAccount" class="rebinding">绑定账户</a>
             </div>
             <%}%>
