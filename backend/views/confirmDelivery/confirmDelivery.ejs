@@ -14,7 +14,7 @@
         <div class="qualityInfo">
             <div class="notice">* 请您在合同项下全部货物提货完成后点击“确认收货”，系统不支持分批次确认提货。</div>
 
-            <% if (sellInfo.pricingMethodId==1) {%>
+            <% if (order.pricingMethodId==1) {%>
             <p class="tableTit"><span>* </span>请填写检测结果</p>
 
             <% if(typeof indexDataList != "undefined" && indexDataList.length > 0){%>
@@ -244,7 +244,7 @@
             </div>
             <%}%>
             <%}%>
-            <% if (sellInfo.pricingMethodId==1) {%>
+            <% if (order.pricingMethodId==1) {%>
             <div class="banCon">
                 <div class="leftBan vt">提货总量(吨)：</div>
                 <div class="rightBan">
@@ -267,7 +267,7 @@
                 </div>
             </div>
             <%}%>
-            <% if (sellInfo.pricingMethodId==1) {%>
+            <% if (order.pricingMethodId==1) {%>
                 <div class="banCon pb0" id="qualityList">
                 <div class="leftBan vt"><span>* </span>上传质量确认单：</div>
                 <div class="rightBan">

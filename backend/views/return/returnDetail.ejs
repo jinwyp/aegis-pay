@@ -20,7 +20,7 @@
             <div class="deliveryAmount">
                 <span>提货总量:</span><b><%= deliveryAmount%></b> 吨
             </div>
-            <%if(sellInfo.pricingMethodId==1){%>
+            <%if(order.pricingMethodId==1){%>
                 <% var totalCount=0;for(var i in indexList[0]){ totalCount++;%><%}%>
                 <% var tableIndex=indexList.length %>
                     <div class="tableContainer">
@@ -124,7 +124,7 @@
                     <%}%>
                     </div>
                 <%}%>
-            <%if(sellInfo.pricingMethodId==1){%>
+            <%if(order.pricingMethodId==1){%>
                 <div class="downWrap">
                 <div class="leftBan"><span>*</span>质量确认单:</div>
                 <div class="rightBan">
