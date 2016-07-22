@@ -54,6 +54,7 @@
 
 - 使用了[requirejs](http://requirejs.org/) 作为AMD的模块加载
 - js文件采用了模块化开发
+- js lint 使用
 
 ### 需要改进的方面
 
@@ -66,7 +67,7 @@
 - 数字处理[numeral](https://github.com/adamwdraper/Numeral-js)
 - 文本格式处理 [Cleave.js](http://nosir.github.io/cleave.js/)
 - 逐步引入avalon2 mvvm框架 兼容IE8 [官网](https://www.npmjs.com/package/avalon2)
-
+- javascript 类型注意
 
 ## 后端 Node.JS 
 
@@ -86,6 +87,7 @@
 - api 路由使用 RESTful 风格, 用swagger写文档
 - 注意区分 nodejs的一些库的使用接口, callback, promise, 或stream
 - http header [缓存](http://web.jobbole.com/86970/) [参考文章](https://segmentfault.com/a/1190000004486640)
+- 使用mocha 测试
 
 
 
