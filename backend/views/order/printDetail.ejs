@@ -64,13 +64,13 @@
         </table>
         <div class="user-info-title">订单信息</div>
         <div class="order-info">
-            <ul>
+            <ul class="clearfix">
                 <li class="order-item"><div class="div-label">交易订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
                 <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= getStringVal(order.contractNO) %></div></li>
                 <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createTime) %></div></li>
                 <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getStringVal(order.signContractTime) %></div></li>
                 <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getStringVal(order.paymentTime) %></div></li>
-                <li class="order-item"><div class="div-label">确认货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认提货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
                 <li class="order-item"><div class="div-label">确认结算时间：</div><div class="div-value"><%= getStringVal(order.settleAccountTime) %></div></li>
             </ul>
         </div>

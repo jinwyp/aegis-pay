@@ -66,7 +66,7 @@ exports.getBuyOrderDetail = function (req, res, next) {
                 ||source.data.order.status==='WaitImproveReceipt'
                 ||source.data.order.status==='WaitWriteReceipt'
                 ||source.data.order.status==='WaitReceiveReceipt'
-                ||source.data.order.status==='Completed')&&source.data.order.confirmDeliveryTime===null){
+                ||source.data.order.status==='Completed')&&source.data.order.verifyDeliveryTime===null){
                 stepName='纠纷处理';
                 stepDate=source.data.order.disputeCompleteTime ||"";
             }else{
@@ -177,7 +177,7 @@ exports.getSellOrderDetail = function (req, res, next) {
                         },
                         {
                             stepName : '确认提货',
-                            stepDate : source.data.order.confirmDeliveryTime == null ? "" : source.data.order.confirmDeliveryTime
+                            stepDate : source.data.order.verifyDeliveryTime == null ? "" : source.data.order.verifyDeliveryTime
                         },
                         {
                             stepName : '结算',

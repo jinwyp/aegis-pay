@@ -27,4 +27,4 @@ define(['jquery', 'pay.upload'],function($, upload){
 			})
 		}
 	}
-})
+});

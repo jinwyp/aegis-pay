@@ -91,10 +91,10 @@ module.exports = function (app) {
 
     //数字千分符
     app.locals.formatMoney = function (num, deg) {
-        if(/^(0|[1-9][0-9]*)(.[0-9]{2})+$/.test(num)){
+        if(/^(0|[1-9][0-9]*)\.[0-9]{2}$/.test(num)){
             return (num + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
         }else{
-            return (num.toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+            return (parseFloat(num).toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
         }
     };
 

@@ -37,6 +37,7 @@ var document  = path.join(__dirname, '../docs/swagger/ui/output');
 var staticDir  = path.join(__dirname, '../frontend/dist');
 var fileStatic = config.file_path.root;
 var viewHtmlPath = path.join(__dirname, 'views');
+
 if (config.NODE_ENV === 'prod' || config.NODE_ENV === 'staging') { viewHtmlPath = path.join(__dirname, 'viewsdist')}
 
 var app = express();
@@ -50,15 +51,16 @@ app.set('view engine', 'ejs');
 app.enable('trust proxy');
 
 
-//日志
-app.use(morgan('dev'));
+
 
 
 if (config.debug) {
     logger.info('----- NodeJS Environment Config Variable: ');
     logger.info(config);
-    // 记录渲染时间
-    app.use(renderMiddleware.render);
+
+    app.use(morgan('dev')); //每个请求的显示日志
+
+    app.use(renderMiddleware.render); // 记录渲染时间
 }
 require("./libs/request-debug")(request) ;
 
@@ -101,7 +103,7 @@ app.use(flash());
 // custom middleware
 app.use(auth.passport);
 
-if (!config.debug) {
+/*if (true) {
     app.use(function (req, res, next) {
         if (req.path.indexOf('/api') === -1) {
             csurf()(req, res, next);
@@ -110,7 +112,7 @@ if (!config.debug) {
         next();
     });
     app.set('view cache', true);
-}
+}*/
 
 
 _.extend(app.locals, {
