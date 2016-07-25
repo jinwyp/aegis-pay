@@ -104,11 +104,12 @@
 
 - 路由使用 RESTful 风格, 用swagger写文档, 使用paw 工具作为调试工具
 - 使用http 状态码作为http 返回状态 参见httpcode.md
-- 需要提供一个接口 给Nodejs 端返回JSON数据  表示所有的业务错误code和提示, 类似validationCode.js, 让nodejs和java service 错误统一。
+- 统一错误状态码, 建议提供一个接口 给Nodejs 端返回JSON数据  表示所有的业务错误code和提示, 类似validationCode.js, 让nodejs和java service 错误统一。
 - 路由需要安装根据业务划分(简单可以理解为按照数据库表划分), 而不是按照前台页面数据返回的格式划分, nodejs可以根据页面数据格式组合调用多个java service api 路由, 保证调整页面不需要改动java service端代码
 
 
 ## 其他问题
 
 ### 需要改进的方面
-- git 分支名称需要统一, 建议开发分支为 development 生产分支production, 废弃master 分支
+- git 分支名称需要统一, 建议开发分支为 development 生产分支production, 废弃master 分支, 可以针对新业务开feature 分支。 自己的本地的分支不要push 到github服务器上
+
