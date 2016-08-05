@@ -11,7 +11,7 @@ var config = {
         member: 'https://member-staging.yimei180.com',
         cookieName: 'passport'
     },
-
+    ymIndexUrl: 'http://info-staging.yimei180.com',
     redis      : {
         host : '10.100.10.2',
         port : '6379',

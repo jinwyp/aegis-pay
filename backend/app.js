@@ -121,7 +121,8 @@ _.extend(app.locals, {
     homepage : config.homepage,
     memberUrl : config.passport.member,
     payUrl : config.passport.pay,
-    sitepage : config.site_page
+    sitepage : config.site_page,
+    ymIndexUrl: config.ymIndexUrl
 });
 
 app.use(function (req, res, next) {

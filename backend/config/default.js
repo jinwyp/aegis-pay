@@ -31,6 +31,8 @@ var config = {
       cookieName: 'passport'
     },
 
+    ymIndexUrl: 'http://info-local.yimei180.com',
+
     app_root: path.join(__dirname,'../'),
     logdir : '../logs/',
 
