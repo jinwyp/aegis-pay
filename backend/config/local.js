@@ -30,6 +30,7 @@ var config = {
         member     : 'http://member-local.yimei180.com:3000',
         cookieName : 'passport'
     },
+    ymIndexUrl: 'http://info-local.yimei180.com',
     member_address: 'http://127.0.0.1:3000',
     rest_address: 'http://127.0.0.1:9091/',
     site_page: 'http://www-local.yimei180.com:8080'

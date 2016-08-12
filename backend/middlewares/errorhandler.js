@@ -32,17 +32,18 @@ exports.PageNotFoundMiddleware = function(req, res, next) {
     // 
 
 exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
-    var newErr = null;
+    var newErr = err;
 
     if (typeof err.type === 'undefined'){
         newErr = new SystemError(500, err.message||'系统出错了，正在解决中', err);
-        newErr.stack = err.stack;
-    }else{
-        newErr = newErr || err;
+        if (err && typeof err.stack !== 'undefined'){newErr.stack = err.stack;}
     }
 
 
     res.status(newErr.status);
+
+    // Security Header for content sniffing
+    res.setHeader('X-Content-Type-Options', 'nosniff');
 
     logger.debug(PrettyError.render(newErr));
     // debug(JSON.stringify(newError, null, 4));
@@ -63,9 +64,6 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
 
     var type = req.accepts('html', 'json', 'text');
     //console.log(type, resError.code, req.get('Content-Type'), req.is('application/x-www-form-urlencoded'), req.is('application/json'));
-
-    // Security Header for content sniffing
-    res.setHeader('X-Content-Type-Options', 'nosniff');
 
 
     if (req.xhr || req.is('application/json') ||  req.get('Content-Type') === 'application/json' || type ==='json' || (req.is('application/x-www-form-urlencoded')&&req.xhr)){

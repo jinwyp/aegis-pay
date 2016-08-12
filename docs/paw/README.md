@@ -1,6 +1,6 @@
-# PAW Mac下发请求的软件
+# Paw Mac下调试 Http 请求的软件
 
-## PAW 类似 Postman 的专门用来发http 请求的软件
+## Paw 类似 Chrome 下工具 Postman 的专门用来发http 请求的软件
 
 #### [官方网站](https://luckymarmot.com/paw)
 #### [官方网站中文](https://luckymarmot.com/zh-hans/paw)

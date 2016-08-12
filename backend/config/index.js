@@ -9,4 +9,3 @@ var currentConfig = require('./' + mode);
 
 module.exports = Object.assign({NODE_ENV:mode}, defaultConfig, currentConfig);
 
-
