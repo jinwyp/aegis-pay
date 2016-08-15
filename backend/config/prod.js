@@ -12,7 +12,7 @@ var config = {
         member: 'https://member.yimei180.com',
         cookieName: 'passport'
     },
-    ymIndexUrl: 'http://info.yimei180.com',
+    ymIndexUrl: 'https://info.yimei180.com',
     logdir:'../logs/',
     redis      : {
         host : process.env.redis_host,   // 这个应该不是这个地址
