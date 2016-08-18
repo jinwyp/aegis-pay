@@ -1,10 +1,10 @@
 /*
 	Edit By Edward(zhangguo) 2016-06-17
 */
-
-requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
+// requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
+requirejs(['jquery','bootstrap'],function($,bootstrap,sms_code){
 	// 添加账户
-	sms_code.init("");
+	//sms_code.init("");
 	$(function(){
 		// 未绑定银行账户
 		(function($){
