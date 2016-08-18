@@ -1,10 +1,9 @@
 /*
 	Edit By Edward(zhangguo) 2016-06-17
 */
-// requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
-requirejs(['jquery','bootstrap'],function($,bootstrap,sms_code){
+requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 	// 添加账户
-	//sms_code.init("");
+	sms_code.init("");
 	$(function(){
 		// 未绑定银行账户
 		(function($){
@@ -50,21 +49,9 @@ requirejs(['jquery','bootstrap'],function($,bootstrap,sms_code){
 					toggleError(false);
 					return false;
 				}else{
+					val = priceToNum(val);
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
-						var curVal = numToPrice(val);
-						var checkVal = null;
-						if( flag ){
-							checkVal = priceToNum(val);
-						}else{
-							checkVal = val;
-						}
-						if( (!isNaN(checkVal)) || !checkVal || (!(checkVal*1)) ){
-							drawCashTxt.val('0.00');
-							toggleError(false);
-							return false;
-						}else{
-							drawCashTxt.val( numToPrice(val) );
-						}
+						drawCashTxt.val( numToPrice(val) );
 						toggleError(true);
 						return true;
 					}else{
@@ -83,6 +70,7 @@ requirejs(['jquery','bootstrap'],function($,bootstrap,sms_code){
 				}
 			}
 			function priceToNum(str){
+				str+='';
 				return (str.replace(/,/g,''))*1;
 			}
 			function numToPrice(num){
