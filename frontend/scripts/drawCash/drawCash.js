@@ -52,7 +52,8 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				}else{
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
 						var curVal = numToPrice(val);
-						if( !(curVal*1) ){
+						var newVal = val;
+						if( !(newVal*1) ){
 							drawCashTxt.val('0.00');
 							toggleError(false);
 							return false;
