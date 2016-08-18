@@ -37,12 +37,12 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 			drawCashBtn.on('click',function(){
 				errorMsg.hide();
 				var val = drawCashTxt.val();
-				var flag = checkHandler(val);
+				var flag = checkHandler(val,true);
 				if( !flag ){
 					return false;
 				}
 			});
-			function checkHandler(val){
+			function checkHandler(val,flag){
 				if( !val ){
 					toggleError(false);
 					return false;
@@ -52,8 +52,13 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				}else{
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
 						var curVal = numToPrice(val);
-						var newVal = val;
-						if( !(newVal*1) ){
+						var checkVal = null;
+						if( flag ){
+							checkVal = priceToNum(val);
+						}else{
+							checkVal = val;
+						}
+						if( (!isNaN(checkVal)) || !checkVal || (!(checkVal*1)) ){
 							drawCashTxt.val('0.00');
 							toggleError(false);
 							return false;
