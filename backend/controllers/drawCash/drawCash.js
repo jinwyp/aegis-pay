@@ -84,13 +84,13 @@ exports.drawCashCheck = function(req,res,next){
     var bankAccount = req.body.bankAccount;
     var bankName = req.body.bankName;
 
-    if( !(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(cash)) ){
-      next(new ValidationError());
-      return;
-    }else if( /^\s*$/.test(companyName) ){
-      next(new ValidationError());
-      return;
-    }
+    // if( !(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(cash)) ){
+    //   next(new ValidationError());
+    //   return;
+    // }else if( /^\s*$/.test(companyName) ){
+    //   next(new ValidationError());
+    //   return;
+    // }
     //token不相同
     if(!cashToken || cashToken!==req.session.cashToken) {
         logger.error(req.ip+" drawCash token error");
