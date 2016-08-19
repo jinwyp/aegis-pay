@@ -1,0 +1,173 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/printDetail.css">
+    <style type="text/css">
+        @charset "UTF-8";
+        @media print {
+            .order-tag{  border-bottom: 1px solid #666666; }
+            .user-buy-table,.user-sell-table{  border: 1px solid #666666;  }
+            .user-buy-table,.user-sell-table tr{  border-bottom: 1px solid #666666;  }
+            .user-buy-table,.user-sell-table tr td{  border-right: 1px solid #666666;  }
+            #print-table{
+                border-left: 1px solid #666666;
+                border-right: 1px solid #666666;
+                border-bottom: 1px solid #666666;  }
+            .detail-info-table tr td{  border-left: 1px solid #666666;  }
+            .order-info{
+                border-left: 1px solid #666666;
+                border-top: 1px solid #666666;
+                border-right: 1px solid #666666;  }
+        }
+    </style>
+</head>
+<body>
+<div id="print-detail-body">
+    <div class="title">订单详情</div>
+    <div class="order-tag">
+        <div class="order-id">订单编号：<%= order.orderNO %></div>
+        <!--<div class="order-time">导出时间：99999999999</div>-->
+    </div>
+    <div class="line"></div>
+    <div class="main-content">
+        <div class="user-info-title">买家信息</div>
+        <table class="user-buy-table">
+            <tr>
+                <td class="table_label" width="100"><div>买家</div></td>
+                <td width="200"><div><%= order.buyerCompanyName %></div></td>
+                <td class="table_label" width="100"><div>手机号码</div></td>
+                <td width="200"><div><%= order.buyerLoginPhone %></div></td>
+            </tr>
+            <tr>
+                <td class="table_label" width="100"><div>付款交易号</div></td>
+                <td width="200"><div><%= getStringVal(order.transactionNO) %></div></td>
+                <td class="table_label" width="100"><div>付款账号</div></td>
+                <td width="200"><div><%= getStringVal(order.buyerFundAccount) %></div></td>
+            </tr>
+            <tr>
+                <td class="table_label" width="100"><div>提货地址</div></td>
+                <td width="300" colspan="3"><div><%= deliveryplaceAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour) %></div></td>
+            </tr>
+        </table>
+        <div class="user-info-title">卖家信息</div>
+        <table class="user-sell-table">
+            <tr>
+                <td class="table_label" width="100"><div>卖家</div></td>
+                <td width="200"><div><%= order.sellerCompanyName %></div></td>
+                <td class="table_label" width="100"><div>手机号码</div></td>
+                <td width="200"><div><%= sellInfo.dealerphone %></div></td>
+            </tr>
+            <tr>
+                <td class="table_label" width="100"><div>收款账号</div></td>
+                <td width="300" colspan="3"><div><%= getStringVal(order.sellerFundAccount) %></div></td>
+            </tr>
+        </table>
+        <div class="user-info-title">订单信息</div>
+        <div class="order-info">
+            <ul class="clearfix">
+                <li class="order-item"><div class="div-label">交易订单号：</div><div class="div-value"><%= order.orderNO %></div></li>
+                <li class="order-item"><div class="div-label">合同编号：</div><div class="div-value"><%= getStringVal(order.contractNO) %></div></li>
+                <li class="order-item"><div class="div-label">下单时间：</div><div class="div-value"><%= getStringVal(order.createTime) %></div></li>
+                <li class="order-item"><div class="div-label">签订合同时间：</div><div class="div-value"><%= getStringVal(order.signContractTime) %></div></li>
+                <li class="order-item"><div class="div-label">付款时间：</div><div class="div-value"><%= getStringVal(order.paymentTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认提货时间：</div><div class="div-value"><%= getStringVal(order.confirmDeliveryTime) %></div></li>
+                <li class="order-item"><div class="div-label">确认结算时间：</div><div class="div-value"><%= getStringVal(order.settleAccountTime) %></div></li>
+            </ul>
+        </div>
+        <table id="print-table">
+            <tr>
+                <th width="416"><div class="title-col">货品</div></th>
+                <th width="170"><div class="title-col">单价(元)</div></th>
+                <th width="180"><div class="title-col">数量(吨)</div></th>
+                <th width="233"><div class="title-col">总金额(元)</div></th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table class="detail-info-table">
+                        <tr>
+                            <td width="416" class="no-border">
+                                <div class="info-title">
+                                    <span class="supply-ico">商</span>
+                            <span class="supply-title"><%= ellipse(sellInfoTitleAppend(sellInfo.deliveryprovince,sellInfo.deliveryplace,sellInfo.otherharbour,
+                                        sellInfo.originplace,sellInfo.pname,sellInfo.NCV02),36) %></span>
+                                </div>
+                                <ul>
+                                    <li><span class="hint">煤种：</span><span><%= sellInfo.pname %></span></li>
+                                    <% if(sellInfo.brandname!=null){ %>
+                                    <li><span class="hint">品名：</span><span><%= sellInfo.brandname %></span></li>
+                                    <% } %>
+
+                                    <li><span class="hint">产地：</span><span><%= sellInfo.originplace %></span></li>
+                                    <% if(sellInfo.NCV!=0&&sellInfo.NCV02!=0){ %>
+                                    <li><span class="hint">热值：</span><span><%= multiArgAppend(sellInfo.NCV,sellInfo.NCV02,'kcal/kg') %></span></li>
+                                    <% } %>
+
+                                    <li><span class="hint">收到基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RS, 2),formatDecimal(sellInfo.RS02, 2),'%') %></span></li>
+                                    <% if(sellInfo.RV!=0&&sellInfo.RV02!=0){ %>
+                                    <li><span class="hint">收到基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.RV, 2),formatDecimal(sellInfo.RV02, 2),'%') %></span></li>
+                                    <% } %>
+
+                                    <li><span class="hint">全水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.TM,2),formatDecimal(sellInfo.TM02, 2),'%') %></span></li>
+                                    <% if(sellInfo.ASH!=0&&sellInfo.ASH02!=0){ %>
+                                        <li><span class="hint">灰分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ASH, 1),formatDecimal(sellInfo.ASH02, 1),'%') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.ADS!=0&&sellInfo.ADS02!=0){ %>
+                                        <li><span class="hint">空干基硫分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADS, 2),formatDecimal(sellInfo.ADS02, 2),'%') %></span></li>
+                                    <% } %>
+
+                                    <li><span class="hint">空干基挥发分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.ADV, 2),formatDecimal(sellInfo.ADV02, 2),'%') %></span></li>
+
+                                    <% if(sellInfo.FC!=0&&sellInfo.FC02!=0){ %>
+                                    <li><span class="hint">固定碳：</span><span><%= multiArgAppend(sellInfo.FC,sellInfo.FC02,'%') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.IM!=0&&sellInfo.IM02!=0){ %>
+                                    <li><span class="hint">内水分：</span><span><%= multiArgAppend(formatDecimal(sellInfo.IM, 2),formatDecimal(sellInfo.IM02, 2),'%') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.GV!=0&&sellInfo.GV02!=0){ %>
+                                    <li><span class="hint">G值：</span><span><%= multiArgAppend(sellInfo.GV,sellInfo.GV02,'') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.YV!=0&&sellInfo.YV02!=0){ %>
+                                    <li><span class="hint">Y值：</span><span><%= multiArgAppend(sellInfo.YV,sellInfo.YV02,'mm') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.AFT!=0){ %>
+                                    <li><span class="hint">灰熔点≥：</span><span><%= singleArgAppend(sellInfo.AFT,'℃') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.HGI!=0){ %>
+                                    <li><span class="hint">哈氏可磨≥：</span><span><%= singleArgAppend(sellInfo.HGI,'') %></span></li>
+                                    <% } %>
+
+                                    <% if(sellInfo.CRC!=0&&sellInfo.CRC02!=0){ %>
+                                    <li><span class="hint">焦渣特征：</span><span><%= multiArgAppend(sellInfo.CRC,sellInfo.CRC02,'%') %></span></li>
+                                    <% } %>
+                                </ul>
+                            </td>
+                            <td width="170">
+                                <div class="number"><%= formatDecimal(order.price,2) %></div>
+                            </td>
+                            <td width="180">
+                                <div class="number"><%= order.amount %></div>
+                            </td>
+                            <td width="233">
+                                <div class="number"><%= formatMoney(order.totalMoney,2) %></div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <div class="total-money">
+            <div class="money-number">总金额：<span><%= formatMoney(order.totalMoney,2) %>元</span></div>
+            <div class="money-zh">(人民币：<%= switchTxt(order.totalMoney) %>)</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

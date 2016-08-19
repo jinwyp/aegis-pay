@@ -1,0 +1,172 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/orderDetail.css">
+</head>
+
+<body>
+
+<%- include ../global/modal/modal %>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+<div id="order-detail-body">
+    <div class="main-content">
+        <div class="center-content">
+            <!-- 状态进度条 -->
+            <% include ../global/order/statusBar %>
+
+            <div class="status-content">
+                <input type="hidden" id="orderId" value="<%=order.id%>" />
+                <input type="hidden" id="version" value="<%=order.version%>" />
+                <input type="hidden" id="status" value="<%=order.status%>" />
+                <div class="state-item fs-24">
+                    <span>当前订单状态：</span>
+                    <% if(order.status=='WaitSignContract'){ %>
+                        <span class="status">货物已下单，请及时签订电子合同</span>
+                    <% }else if(order.status=='WaitPayment'){ %>
+                        <span class="status">已签订电子合同，请及时支付货款</span>
+                    <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                        <span class="status">已付款，待买家确认提货</span>
+                        <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                    <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                        <span class="status-return">提货被卖家退回，待确认提货</span>
+                    <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                        <span class="status">提货已确认，等待卖家审核</span>
+                    <% }else if(order.status=='WaitSettleAccounts'){ %>
+                        <%if(order.disputeCreateTime===null){%>
+                        <span class="status">已确认提货，待卖家结算</span>
+                        <%}else{%>
+                        <span class="status">纠纷协商完成，待卖家结算</span>
+                        <%}%>
+                    <% }else if(order.status=='WaitVerifySettle'){ %>
+                        <span class="status">已开具结算单，等待买家确认</span>
+                    <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                        <span class="status">已退回结算单，等待卖家修改</span>
+                    <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                        <span class="status">结算已完成，等待卖家退款</span>
+                    <% }else if(order.status=='WaitPayTailMoney'){ %>
+                        <span class="status">结算单已确认，等待买家补款</span>
+                    <% }else if(order.status=='WaitWriteReceipt'){ %>
+                        <span class="status">结算完成，等待卖家开具增值税发票</span>
+                    <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                        <span class="status">卖家已开增值税发票，等待收发票</span>
+                    <% }else if(order.status=='WaitImproveReceipt'){ %>
+                        <span class="status">结算单已确认，等待完善开票信息</span>
+                    <% }else if(order.status=='TradeDisputing'){ %>
+                        <span class="status">纠纷待处理</span>
+                    <% }else if(order.status=='TradeDisputeFinished'){ %>
+                        <span class="status">纠纷协商完成</span>
+                    <% }else if(order.status=='MakeMatch'){ %>
+                        <span class="status">撮合中</span>
+                    <% }else if(order.status=='Canceled'){ %>
+                        <span class="status">已取消</span>
+                    <% }else if(order.status=='Completed'){ %>
+                        <span class="status">交易完成</span>
+                    <% }else if(order.status=='TradeFinished'){ %>
+                        <span class="status-close">交易结束</span>
+                    <% }else if(order.status=='Deleted'){ %>
+                        <span class="status-close">已删除</span>
+                    <% }else if(order.status=='TradeClosed'){ %>
+                        <span class="status-close">交易关闭</span>
+                    <% }else{ %>
+                        <%=order.status%>
+                    <% } %>
+                </div>
+
+                <% if(order.status=='WaitSignContract'){ %>
+                    <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-signContract">签订合同</span></div>
+                    <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，您可以&nbsp;<a class="btn-closeTrade">关闭交易</a></span></div>
+                    <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+                <% }else if(order.status=='WaitPayment'){ %>
+                    <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">付款</span></div>
+                    <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，您可以&nbsp;<a class="btn-closeTrade">关闭交易</a></span></div>
+                    <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+                <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                    <div class="state-item mt-20 hint"><span>1. 如果您已付款，请及时确认提货</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-deliveryGoods">确认提货</span></div>
+                    <div class="state-item mt-10 hint"><span>2. 如果您在交易过程中发生纠纷，点击这里&nbsp;<a class="btn-applyDispute">申请纠纷处理</a></span></div>
+                    <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+                <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                    <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-returnDetail">查看退回详情</a></span></div>
+                    <div class="state-item mt-10 hint"><span>2. 点击这里&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-deliveryGoods">重新确认提货</span></div>
+                    <div class="state-item mt-10 hint"><span>3. 如果您在交易过程中发生纠纷，您可以&nbsp;<a class="btn-applyDispute">申请纠纷处理</a></span></div>
+                <!--<div class="state-item mt-10 hint"><span>1. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>-->
+                <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                    <!--<div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-deliveryDetail">查看提货详情</a></span></div>-->
+                <% }else if(order.status=='WaitSettleAccounts'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerSettle">提醒卖家结算</span></div>
+                <% }else if(order.status=='WaitVerifySettle'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-confirmSettle">确认结算</span></div>
+                <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerSettle">提醒卖家结算</span></div>
+                <div class="state-item mt-10 hint"><span>2. 您可以&nbsp;<a class="btn-buyerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                    <%if(order.refundMoneyTime==null){%>
+                    <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerRetrunMoney">提醒卖家退款</span></div>
+                    <%}else if(order.refundMoney>0){%>
+                    <div class="state-item mt-20 hint"><span>1. </span><span class="orange">已成功将退款<%=formatMoney(order.refundMoney,2)%>元(<%=switchTxt(order.totalMoney)%>)转账到买家账户</span><span>，请及时联系卖家开具发票！</span></div>
+                    <div class="state-item mt-10 hint"><span>2. 如果您需要支付电子回单，进入银行电子回单系统进行打印&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-printReceipt">打印回单</span></div>
+                    <%}%>
+                <% }else if(order.status=='WaitPayTailMoney'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-tailMoney">支付尾款</span></div>
+                <% }else if(order.status=='WaitWriteReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-sellerWriteReceipt">提醒卖家开具发票</span></div>
+                <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-receiveReceipt">确认收到发票</span></div>
+                <% }else if(order.status=='WaitImproveReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-improveReceipt">完善开票信息</span></div>
+                <% }else if(order.status=='TradeDisputing'){ %>
+                <% }else if(order.status=='TradeDisputeFinished'){ %>
+                <% }else if(order.status=='MakeMatch'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-signContract">取消订单</span></div>
+                <% }else if(order.status=='Deleted'){ %>
+
+                <% }else if(order.status=='Canceled'){ %>
+
+                <% }else if(order.status=='Completed'){ %>
+
+                <% }else if(order.status=='TradeFinished'){ %>
+
+                <% }else if(order.status=='TradeClosed'){ %>
+                    <div class="state-item mt-20 hint">
+                        <span>原因：<%= clearEmpty(order.closeReason) %>，订单关闭</span><br>
+                        <span class="closeRemark">备注：<%= clearEmpty(order.closeRemark) %></span>
+                    </div>
+                <% }else{ %>
+                    <%=order.status%>
+                <% } %>
+            </div>
+
+            <!-- 卖家、卖家信息 -->
+            <% include ../global/order/orderUserInfo %>
+            <!-- 订单表格 -->
+            <% if(order.status=="WaitSignContract"
+                    ||order.status=="WaitPayment"
+                    ||order.status=="WaitConfirmDelivery"
+                    ||order.status=="ReturnedDeliveryGoods"
+                    ||order.status=="WaitVerifyDeliveryGoods"
+                    ||order.status=="TradeClosed"){ %>
+                <% include ../global/order/orderTable %>
+            <% }else{%>
+                <% include ../global/order/orderTableClose.ejs %>
+            <% } %>
+
+            <div class="btn-bottom">
+                <a target="_blank" href="/printDetail?orderId=<%=order.id%>"><span class="btn-print">打印订单详情</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/order/orderDetail.js"></script>
+
+</body>
+</html>
+
+
+

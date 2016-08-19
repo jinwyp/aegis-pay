@@ -38,6 +38,10 @@ payPersist
 // UserFundAccount_Error("1005", "您的资金账户不能使用"),
 // PayPasswordError("1006", "支付密码填写错误")
 .post('/mall/order/payment/submit').reply(200, {'success':false, "errorCode":1004})
+.get(function(uri){
+    var isMatch = /account\/fund\/payPwd\/forget\/first\?userId=\d/.test(uri);
+    return isMatch;
+}).reply({"success":true, "data":{"payPhone":18610073652}})
 .get('/mall/order/payment/success').reply(200, {'success':true, 'data': {
         "order": {
             "paymentMoney": 2000000000,

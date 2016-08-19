@@ -1,0 +1,138 @@
+<%- include ../global/includehead/doctype %>
+<head>
+    <%- include ../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/buyOrderDetail.css">
+</head>
+
+<body>
+<%- include ../global/modal/modal %>
+<%- include ../global/header/header %>
+<%- include ../global/header/subHeader %>
+
+
+<div id="order-detail-body">
+    <div class="main-content">
+        <div class="center-content">
+            <!-- 状态进度条 -->
+            <% include ../global/order/statusBar %>
+
+            <div class="status-content">
+                <input type="hidden" id="orderId" value="<%=order.id%>" />
+                <input type="hidden" id="status" value="<%=order.status%>" />
+                <div class="state-item fs-24">
+                    <span>当前订单状态：</span>
+                    <% if(order.status=='WaitSignContract'){ %>
+                        <span class="status">货物已下单，请及时签订电子合同</span>
+                    <% }else if(order.status=='WaitPayment'){ %>
+                        <span class="status">已签订电子合同，请及时支付货款</span>
+                    <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                        <span class="status">已付款,待卖家确认提货</span>
+                        <span class="status-hint">(您可以及时联系卖家<span class="orange">沟通提货时间</span>)</span>
+                    <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                        <span class="status-return">提货被卖家退回，待确认提货</span>
+                    <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                        <span class="status">提货已确认，等待卖家审核</span>
+                    <% }else if(order.status=='WaitSettleAccounts'){ %>
+                        <span class="status">已确认提货，待开具结算单</span>
+                    <% }else if(order.status=='WaitVerifySettle'){ %>
+                        <span class="status">已开具结算单，等待买家确认</span>
+                    <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                        <span class="status">结算单被退回，等待卖家修改</span>
+                    <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                        <span class="status">结算已完成，等待卖家退款</span>
+                    <% }else if(order.status=='WaitPayTailMoney'){ %>
+                        <span class="status">结算单已确认，等待买家补款</span>
+                    <% }else if(order.status=='WaitWriteReceipt'){ %>
+                        <span class="status">结算完成，等待卖家开具增值税发票</span>
+                    <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                        <span class="status">卖家已开增值税发票，等待收发票</span>
+                    <% }else if(order.status=='WaitImproveReceipt'){ %>
+                        <span class="status">结算单已确认，等待完善开票信息</span>
+                    <% }else if(order.status=='TradeDisputing'){ %>
+                    <% }else if(order.status=='TradeDisputeFinished'){ %>
+                    <% }else if(order.status=='MakeMatch'){ %>
+                        <span class="status">匹配中</span>
+                    <% }else if(order.status=='Canceled'){ %>
+                        <span class="status">已取消</span>
+                    <% }else if(order.status=='Completed'){ %>
+                        <span class="status">交易完成</span>
+                    <% }else if(order.status=='TradeFinished'){ %>
+                        <span class="status-close">交易结束</span>
+                    <% }else if(order.status=='TradeClosed'){ %>
+                        <span class="status-close">交易关闭</span>
+                    <% }else{ %>
+                        <%=order.status%>
+                    <% } %>
+                </div>
+
+                <% if(order.status=='WaitSignContract'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-signContract">提醒买家签订合同</span></div>
+                <% }else if(order.status=='WaitPayment'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-payMoney">提醒买家支付货款</span></div>
+                <% }else if(order.status=='WaitConfirmDelivery'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 notice-confirmDelivery">提醒买家确认提货</span></div>
+                <% }else if(order.status=='ReturnedDeliveryGoods'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-returnDetail">查看退回详情</a></span></div>
+                <% }else if(order.status=='WaitVerifyDeliveryGoods'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-auditDelivery">审核提货</span></div>
+                <% }else if(order.status=='WaitSettleAccounts'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-settleAccounts">开具结算单</span></div>
+                <% }else if(order.status=='WaitVerifySettle'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-sellerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='ReturnedSettleAccounts'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-sellerUpdateSettle">修改结算单</a></span></div>
+                <% }else if(order.status=='WaitPayRefundMoney'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-retrunMoney">退款</span></div>
+                <div class="state-item mt-20 hint"><span>2. 您可以&nbsp;<a class="btn-sellerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='WaitPayTailMoney'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-sellerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='WaitWriteReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 点击这里&nbsp;</span><span class="iBtn iBtn_xs iBtn_no ml-10 btn-writeReceipt">确认已开发票</span></div>
+                <% }else if(order.status=='WaitReceiveReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-sellerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='WaitImproveReceipt'){ %>
+                <div class="state-item mt-20 hint"><span>1. 您可以&nbsp;<a class="btn-sellerLookSettle">查看结算单</a></span></div>
+                <% }else if(order.status=='TradeDisputing'){ %>
+                <% }else if(order.status=='TradeDisputeFinished'){ %>
+                <% }else if(order.status=='MakeMatch'){ %>
+                <% }else if(order.status=='Canceled'){ %>
+                <% }else if(order.status=='Completed'){ %>
+                <% }else if(order.status=='TradeFinished'){ %>
+                <% }else if(order.status=='TradeClosed'){ %>
+                    <div class="state-item mt-20 hint"><span>关闭原因：<%= clearEmpty(order.closeReason) %>，订单关闭</span></div>
+                <% }else{ %>
+                    <%=order.status%>
+                <% } %>
+            </div>
+
+            <!-- 卖家、卖家信息 -->
+            <% include ../global/order/orderUserInfo %>
+            <!-- 订单表格 -->
+            <% if(order.status=="WaitSignContract"
+                    ||order.status=="WaitPayment"
+                    ||order.status=="WaitConfirmDelivery"
+                    ||order.status=="ReturnedDeliveryGoods"
+                    ||order.status=="WaitVerifyDeliveryGoods"){ %>
+                <% include ../global/order/orderTable %>
+            <% }else{%>
+                <% include ../global/order/orderTableClose.ejs %>
+            <% } %>
+
+            <div class="btn-bottom">
+                <span class="btn-print"><i class="btn-ico"></i>打印订单详情</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ../global/footer/footer %>
+
+<%- include ../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/order/buyOrderDetail.js"></script>
+
+</body>
+</html>
+
+
+
