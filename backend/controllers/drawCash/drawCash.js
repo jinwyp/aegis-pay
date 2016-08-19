@@ -84,11 +84,11 @@ exports.drawCashCheck = function(req,res,next){
     var bankAccount = req.body.bankAccount;
     var bankName = req.body.bankName;
 
-    if( !(/^\d+(\.?\d{1,2})$/.test(cash)) ){
-      next(new UnauthenticatedAccessError());
+    if( !(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(cash)) ){
+      next(new ValidationError());
       return;
     }else if( /^\s*$/.test(companyName) ){
-      next(new UnauthenticatedAccessError());
+      next(new ValidationError());
       return;
     }
     //token不相同
