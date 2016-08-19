@@ -31,7 +31,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				errorMsg = $('#errorMsg');
 			drawCashTxt.on('blur',function(){
 				var val = $(this).val();
-				//checkHandler(val);
+				checkHandler(val);
 			});
 			drawCashBtn.on('click',function(){
 				errorMsg.hide();
@@ -52,7 +52,7 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				}else{
 					val = priceToNum(val);
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
-						drawCashTxt.val( olderVal );
+						drawCashTxt.val( numToPrice(olderVal) );
 						toggleError(true);
 						return true;
 					}else{
