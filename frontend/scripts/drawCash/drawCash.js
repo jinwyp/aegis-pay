@@ -2,6 +2,7 @@
 	Edit By Edward(zhangguo) 2016-06-17
 */
 requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
+// requirejs(['jquery','bootstrap'],function($,bootstrap,sms_code){
 	// 添加账户
 	sms_code.init("");
 	$(function(){
@@ -52,7 +53,11 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 				}else{
 					val = priceToNum(val);
 					if( priceToNum(balancePrice) >= (priceToNum(val))*1 ){
-						drawCashTxt.val( numToPrice(olderVal) );
+						if( /,/.test(olderVal) ){
+							drawCashTxt.val( olderVal );	
+						}else{
+							drawCashTxt.val( numToPrice(olderVal) );	
+						}
 						toggleError(true);
 						return true;
 					}else{
