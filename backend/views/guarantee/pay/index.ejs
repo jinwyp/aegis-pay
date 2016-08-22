@@ -5,12 +5,14 @@
 </head>
 
 <body>
+<% var tipText = [["冻结货款", "在线冻结", "冻结", "确认冻结"], ["解冻支付", "解冻支付", "支付", "确认付款"], ["支付尾款", "在线支付", "支付", "确认付款"]] %>
+<% var headerTit = tipText[type][0] %>
 
 <%- include ../../global/header/header %>
 <%- include ../../global/header/subHeader %>
 
 <div class="mainWrapper">
-    <h3 class='pageTitle'><span></span>易煤网 — 在线冻结</h3>
+    <h3 class='pageTitle'><span></span>易煤网 — <%= tipText[type][1] %></h3>
     <form method="post" id='pay'>
       <input type="hidden" name="orderId" value="<%= order.id %>" />
       <input type="hidden" name="version" value="<%= order.version %>">
@@ -20,16 +22,24 @@
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.totalMoney) %>)</span></li>
       </ul>
       <% if(order.buyerBalanceMoney>=order.totalMoney) {%>
-      <ul class="buyer">
-        <li class='first'><input type="radio" checked /></li>
-        <li class='secondli'>
-          <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
-          <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
-        </li>
-        <li class='last'>冻结<span><%= formatMoney(order.totalMoney) %></span>元</li>
-        <!--请不要删除以下隐藏标签,用户短信验证码提示信息中金额字段取值-->
-        <input type='hidden' name='amount' value='<%= order.totalMoney %>'>
-      </ul>
+        <% if(type == 1) {%> 
+        <ul class="unfrozenBuyer">
+          <li>结算金额：<span><%= formatMoney(order.settleMoney) %></span>元</li>
+          <li>解冻金额：<span><%= formatMoney(order.unfrozenMoney) %></span>元</li>
+          <li>支付金额：<span><%= formatMoney(order.payMoney) %></span>元</li>
+        </ul>
+        <% }else{ %>
+        <ul class="buyer">
+          <li class='first'><input type="radio" checked /></li>
+          <li class='secondli'>
+            <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
+            <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
+          </li>
+          <li class='last'><%= tipText[type][2] %><span><%= formatMoney(order.totalMoney) %></span>元</li>
+          <!--请不要删除以下隐藏标签,用户短信验证码提示信息中金额字段取值-->
+          <input type='hidden' name='amount' value='<%= order.totalMoney %>'>
+        </ul>
+        <% } %>
       <ul class='valid'>
         <%- include ../../../custom_components/ccapimg-modal/form-part %>
         <li>
@@ -41,7 +51,7 @@
           <p class='tip-error'></p>
         </li>
       </ul>
-      <input id='payBtn' class='btn_blue payBtn' type="button" value="确认冻结" />
+      <input id='payBtn' class='btn_blue payBtn' type="button" value="<%= tipText[type][3] %>" />
       <% }else{ %>
         <ul class="buyer noneBalance">
             <li class='first'><input type="radio" disabled /></li>

@@ -9,9 +9,8 @@ var BusinessError = require('../../errors/BusinessError');
 exports.page = function (req, res, next) {
         checker.orderId(req.query.orderId);
         var userInfo = req.session.user;
-        // api_config.fetchPayPhone(userInfo.id).then(function(payPhone){
-        //     res.locals.user.payPhone = payPhone;
-            res.locals.user.payPhone = 18610073652;
+        api_config.fetchPayPhone(userInfo.id).then(function(payPhone){
+            res.locals.user.payPhone = payPhone;
             var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
             request(api_config.payPage + query, function (err, data) {
                 if (err) return next(err);
@@ -37,7 +36,7 @@ exports.page = function (req, res, next) {
                 }
 
             })
-        // }).catch(next);
+        }).catch(next);
 };
 
 

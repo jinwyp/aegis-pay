@@ -41,7 +41,7 @@ payPersist
 .get(function(uri){
     var isMatch = /account\/fund\/payPwd\/forget\/first\?userId=\d/.test(uri);
     return isMatch;
-}).reply({"success":true, "data":{"payPhone":18610073652}})
+}).reply(200, {"success":true, "data":{"payPhone":18610073652}})
 .get('/mall/order/payment/success').reply(200, {'success':true, 'data': {
         "order": {
             "paymentMoney": 2000000000,

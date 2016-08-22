@@ -2,12 +2,12 @@ var nock = require('nock');
 var API = require('../../api/guarantee/api_config');
 var _ = require('lodash');
 
-var pay = nock(API.host);
-var payPersist = nock(API.host).persist();
+var guarantee_pay = nock(API.host);
+var guarantee_payPersist = nock(API.host).persist();
 
-payPersist
+guarantee_payPersist
 .get(function(uri){
-  var ismatch = /guarantee\/order\/payment\?orderId=\d+&userId=\d+&type=1/.test(uri);
+  var ismatch = /guarantee\/order\/payment\?orderId=\d+&userId=\d+&type=\d/.test(uri);
   return ismatch;
 }).reply(200, function(uri){
     var orderId = _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1];
@@ -20,10 +20,10 @@ payPersist
                       "sellerCompanyName":"易煤网",
                       "sellerFundAccount": "8098098099897387",
                       "totalMoney": 2000000000,
-                      "buyerBalanceMoney": 19889000900
-                        // "settleMoney": 1212, //type = 3
-                        // "unfrozenMoney": 1313,//type=3
-                        // "payMoney": 1414    //type = 3
+                      "buyerBalanceMoney": 19889000900,
+                        "settleMoney": 23000000, //type = 1
+                        "unfrozenMoney": 20000000,//type=1
+                        "payMoney": 3000000    //type = 1
                    }
                 }
             };
@@ -43,7 +43,7 @@ payPersist
 .get(function(uri){
     var isMatch = /account\/fund\/payPwd\/forget\/first\?userId=\d/.test(uri);
     return isMatch;
-}).reply({"success":true, "data":{"payPhone":18610073652}})
+}).reply(200, {"success":true, "data":{"payPhone":18610073652}})
 .get(function(uri){
     var isMatch = /guarantee\/order\/payment\/success\?orderId=\d+&userId=\d+&type=\d/.test(uri);
     return isMatch;
@@ -62,4 +62,4 @@ payPersist
     }
 });
 
-module.exports = pay;
+module.exports = guarantee_payPersist;

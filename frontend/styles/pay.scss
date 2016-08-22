@@ -23,6 +23,7 @@ input[type="text"], input[type="password"]{
   }
   // 付款页面
   @import './pay/pay.scss';
+  @import './pay/guarantee.scss';
   // 付款成功页
   @import './pay/success.scss';
   &.openAccount{
