@@ -20,7 +20,7 @@ guarantee_payPersist
                       "sellerCompanyName":"易煤网",
                       "sellerFundAccount": "8098098099897387",
                       "totalMoney": 2000000000,
-                      "buyerBalanceMoney": 19889000900,
+                      "buyerBalanceMoney": 1889000900,
                         "settleMoney": 23000000, //type = 1
                         "unfrozenMoney": 20000000,//type=1
                         "payMoney": 3000000    //type = 1
@@ -55,9 +55,8 @@ guarantee_payPersist
             "otherHarbour":"",
             "dealerName":"卖家姓名",
             "dealerPhone":18698989899,
-            "signContractTime": "1465356905881",
-            "paymentTime": "1465356905881",
-            "createTime": "1465356905881"
+            "frozenMoney": 1000000000,
+            "unfrozenMoney": 1000000000
         }
     }
 });

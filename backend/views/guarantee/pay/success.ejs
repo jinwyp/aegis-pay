@@ -13,8 +13,18 @@
 
 <div class="mainWrapper">
     <div class="progressDetail">
-        <% var tipText = ['冻结', '解冻', '解冻'] %>
-        <h3><span class='icon_ok'></span>您已成功<%= tipText[type] %><i><%= formatMoney(order.paymentMoney) %></i>元</h3>
+        <h3 <%if(type==2){%>class='guarantee'<%}%>>
+            <% if(type==1){ %>
+            <span class='icon_ok'></span>您已成功冻结货款<i><%= formatMoney(order.frozenMoney) %></i>元
+            <% } %>
+            <% if(type==2){ %>
+            <span class='icon_ok'></span>您已成功解冻<i><%= formatMoney(order.unfrozenMoney) %></i>元, 支付<i><%=  formatMoney(order.paymentMoney)  %></i>元
+            <% } %>
+            <% if(type==3){ %>
+            <span class='icon_ok'></span>您已成功支付尾款<i><%= formatMoney(order.paymentMoney) %></i>元
+            <% } %>
+            
+        </h3>
         <ul>
             <li><span>提货地址：</span><%= deliveryplaceAppend(order.deliveryProvince,order.deliveryPlace,order.otherHarbour) %></li>
             <li><span>卖家姓名：</span><%= order.dealerName %></li>
