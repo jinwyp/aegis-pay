@@ -109,12 +109,14 @@ requirejs(['jquery','bootstrap','pay.smscode'],function($,bootstrap,sms_code){
 					var payPhone = $('#payPhone').val();
 					var vertifyCodeError = $('#vertifyCodeError');
 					vertifyCodeError.hide();
+					var cashStr = $('#cash').val();
+					cashStr = cashStr.replace(/,/g,'');	
                     $.ajax({
                         url:'/drawCashStatus',
                         method:'POST',
                         data:{
                             confirmToken:$('#confirmToken').val(),
-                            cash:$('#cash').val(),
+                            cash:cashStr,
                             password:$('#confirmTxt').val(),
                             sms_code:vertifyCode,
                             payPhone:payPhone
