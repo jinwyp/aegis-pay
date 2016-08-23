@@ -1,0 +1,77 @@
+<% if(type==0){ %>
+    <% if(statusInt==0){ %>
+    <div class="state-item mt-20 hint"><span>1. 点击这里</span><a href='/guarantee/pay?orderId=<%= order.id %>&type=1' class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">去冻结</a></div>
+    <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，您可以&nbsp;<span id='btn-cancelTrade' class="iBtn iBtn_xs iBtn_no ml-10"  data-toggle='modal' role='button' data-target='#cancelOrderModal'>取消订单</span></span></div>
+    <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+    <% } %>
+    <% if(statusInt==1){ %>
+        <% if(!order.settleMoney){ %>
+        <div class="state-item mt-10 hint"><span>1. 卖家提供的结算金额——待定</span></div>
+        <div class="state-item mt-10 hint"><span>2. 需支付货款——待定</span></div>
+        <% }else{ %>
+        <div class="state-item mt-20 hint"><span>1. 卖家提供的结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
+        <div class="state-item mt-10 hint">
+            <span>2. 需支付货款</span><i><%= formatMoney(order.paymentMoney) %></i>元
+            <% if(!order.isPay){ %>
+                <a href='/guarantee/pay?orderId=<%= order.id %>&type=2' class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">去支付</a>
+            <% }else{ %>
+                <i>已支付</i>
+            <% } %>
+
+            <% if(order.tailMoney){ %>
+            ，尾款<i><%= formatMoney(order.tailMoney) %></i>元
+                <% if(!order.isPayTail){ %>
+                    <a href='/guarantee/pay?orderId=<%= order.id %>&type=3' class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">去支付</a>
+                <% }else{ %>
+                    <i>已支付</i>
+                <% } %>
+            <% } %>
+        </div>
+        <% } %>
+        <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+    <% } %>
+<% }else if(type==1){ %>
+    <% if(statusInt==0){ %>
+    <div class="state-item mt-10 hint"><span>1. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+    <% } %>
+    <% if(statusInt==1){ %>
+        <% if(order.isPay || order.isPayTail){ %>
+        <div class="state-item mt-20 hint"><span>1. 结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
+        <div class="state-item mt-10 hint">
+            <span>2. 需支付货款</span><i><%= formatMoney(order.paymentMoney) %></i>元
+            <% if(!order.isPay){ %>
+                <i>未支付</i>
+            <% }else{ %>
+                <i>已支付</i>
+            <% } %>
+
+            <% if(order.tailMoney){ %>
+            ，尾款<i><%= formatMoney(order.tailMoney) %></i>元
+                <% if(!order.isPayTail){ %>
+                    <i>未支付</i>
+                <% }else{ %>
+                    <i>已支付</i>
+                <% } %>
+            <% } %>
+        </div>
+        <% }else{ %>
+        <% var hasData = {
+            settle: order.settleMoney||'',
+            payment: order.paymentMoney||'',
+            tail: order.tailMoney||''
+        } %>
+        <div class="state-item mt-20 hint"><span>1. 结算金额为</span><input type='text' name='settleMoney' value='<%= hasData.settle %>'>元 <span class='iBtn iBtn_xs iBtn_no ml-10' id='submitSettle'>提交</span></div>
+        <div class="state-item mt-10 hint">
+            <span>2. 需支付货款</span>
+                <% if(hasData.payment){ %> <i><%= formatMoney(order.paymentMoney) %></i>元 <i>未支付</i>
+                <% }else{ %>——待定<% } %>
+            <% if(order.tailMoney){ %>
+            ，尾款
+                <% if(hasData.tail){ %> <i><%= formatMoney(order.tailMoney) %></i>元 <i>未支付</i>
+                <% }else{ %>——待定<% } %>
+            <% } %>
+        </div>
+        <% } %>
+        <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
+    <% } %>
+<% } %>

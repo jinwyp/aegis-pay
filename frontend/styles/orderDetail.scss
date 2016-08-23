@@ -77,3 +77,24 @@ body{
     }
   }
 }
+
+//guarantee 
+#order-detail-body.guarantee{
+  .main-content .center-content .status-content div.hint{
+    i{
+      font-size:16px; color:$color_orange;
+    }
+    a{
+      color:#fff;
+      &:hover{
+        color:#fff;
+      }
+    }
+  } 
+  #order-table tr td .detail-info-table tr td .info-title .supply-ico{
+    display:none;
+  }
+  #order-table tr td .detail-info-table tr td .info-title .supply-title{
+    margin-left:0;
+  }
+} 

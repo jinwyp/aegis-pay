@@ -12,7 +12,7 @@ exports.page = function (req, res, next) {
         api_config.fetchPayPhone(userInfo.id).then(function(payPhone){
             res.locals.user.payPhone = payPhone;
             var query = '?orderId=' + req.query.orderId + '&userId=' + userInfo.id + '&type=' + req.query.type;
-            request(api_config.payPage + query, function (err, data) {
+            request(api_config.guaranteePayPage + query, function (err, data) {
                 if (err) return next(err);
                 var result = JSON.parse(data.body);
                 if(result.errorCode === '1009'){
@@ -42,7 +42,7 @@ exports.page = function (req, res, next) {
 
 exports.success = function (req, res, next) {
     var params = '?orderId=' + req.query.orderId + '&userId=' + req.session.user.id + '&type=' + req.query.type;
-    request(api_config.paySuccess + params, function (err, data) {
+    request(api_config.guaranteePaySuccess + params, function (err, data) {
         if(err){ return next(err); }
         if (!err && data) {
             var body = JSON.parse(data.body);

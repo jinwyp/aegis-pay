@@ -5,201 +5,38 @@
 var request = require('../../libs/request');
 
 var checker    = require('../../libs/datachecker');
-var api_config = require('../../api/v1/api_config');
-var logger     = require("../../libs/logger");
+var api_config = require('../../api/guarantee/api_config');
 
 // 处理业务逻辑
-exports.getBuyOrderDetail = function (req, res, next) {
-    request.post(
-        {
-            url : api_config.buyOrderDetail,
+exports.getGuaranteeOrderDetail = function (req, res, next) {
+    var type = (req.path.split('/').pop() == 'getBuyOrderDetail') ? 0 : 1;
+    var params = { 
+            url : api_config.guaranteeBuyOrderDetail, 
             form: {orderId:req.query.orderId, userId:req.session.user.id}
-        },
-        function (err, data) {
+        };
+    var view = 'guarantee/order/orderDetail';
+    
+    (type==1) ? (params.url = api_config.guaranteeSellOrderDetail) : "";
+    
+    request.post(params, function (err, data) {
         if (err) return next(err);
         if (data) {
             var source = JSON.parse(data.body);
-            logger.debug('userId-----------------'+req.session.user.id);
-            logger.debug('status-----------------'+source.data.type);
-            logger.debug('order-----------------'+JSON.stringify(source.data.order));
-            logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-            var step = 0;
-            switch (source.data.order.status) {
-                case 'TradeClosed':
-                case 'Canceled':
-                    if(source.data.order.statusClose=='WaitPayment'){
-                        step = 2;
-                    }else{
-                        step = 1;
-                    }
-                    break;
-                case 'WaitSignContract':
-                    step = 1;
-                    break;
-                case 'WaitPayment':
-                    step = 2;
-                    break;
-                case 'WaitConfirmDelivery':
-                case 'ReturnedDeliveryGoods':
-                case 'WaitVerifyDeliveryGoods':
-                    step = 3;
-                    break;
-                case 'WaitSettleAccounts':
-                case 'WaitVerifySettle':
-                case 'ReturnedSettleAccounts':
-                    step = 4;
-                    break;
-                case 'WaitReceiveReceipt':
-                case 'WaitPayRefundMoney':
-                case 'WaitPayTailMoney':
-                    step = 5;
-                    break;
-                default :
-                    step=5;
-            }
-            var stepName='',stepDate='';
-            if((source.data.order.status==='WaitSettleAccounts'
-                ||source.data.order.status==='WaitVerifySettle'
-                ||source.data.order.status==='ReturnedSettleAccounts'
-                ||source.data.order.status==='WaitPayTailMoney'
-                ||source.data.order.status==='WaitPayRefundMoney'
-                ||source.data.order.status==='WaitImproveReceipt'
-                ||source.data.order.status==='WaitWriteReceipt'
-                ||source.data.order.status==='WaitReceiveReceipt'
-                ||source.data.order.status==='Completed')&&source.data.order.verifyDeliveryTime===null){
-                stepName='纠纷处理';
-                stepDate=source.data.order.disputeCompleteTime ||"";
-            }else{
-                stepName='确认提货';
-                if(step==3){
-                    stepDate="";
-                }else{
-                    stepDate=source.data.order.verifyDeliveryTime ||"";
-                    //stepDate=source.data.order.confirmDeliveryTime ||"";
-                }
-            }
-            var statusObj = {
-                step     : step,        // 第几步
-                stepList : [
-                    {
-                        stepName : '提交订单',
-                        stepDate : source.data.order.createTime||""
-                    },
-                    {
-                        stepName : '签订合同',
-                        stepDate : source.data.order.signContractTime ||""
-                    },
-                    {
-                        stepName : '付款',
-                        stepDate : source.data.order.paymentTime || ""
-                    },
-                    {
-                        //stepName : '确认提货',
-                        stepName : stepName,
-                        stepDate : stepDate
-                    },
-                    {
-                        stepName : '结算',
-                        stepDate : source.data.order.settleAccountTime ||""
-                    }
-                ]
-            };
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
+            var statusObj = {"waitFrozen":0, "waitSettle":1, "orderCompleted":2, "orderCancel":3};
             var content = {
                 headerTit  : "订单详情",
                 pageTitle  : "订单详情",
-                //type       : source.data.order.type,
-                type       : 0,
-                statusObj  : statusObj,
+                type       : type,
                 sellInfo   : source.data.sellInfo,
                 order      : source.data.order,
-                statusClose: source.data.order.statusClose
+                statusObj  : statusObj
             };
-            res.render('order/buyOrderDetail', content);
+            res.render(view, content);
         } else {
             res.send(data.body);
         }
     });
-};
-
-exports.getSellOrderDetail = function (req, res, next) {
-    request.post(
-        {
-            url : api_config.sellOrderDetail,
-            //form: {orderId:req.query.orderId, sellerId:req.query.sellerId}
-            form: {orderId:req.query.orderId, userId:req.session.user.id}
-        },
-        function (err, data) {
-            if (err) return next(err);
-            if (data) {
-                var source = JSON.parse(data.body);
-                logger.debug('userId-----------------'+req.session.user.id);
-                logger.debug('order-----------------'+JSON.stringify(source.data.order));
-                logger.debug('sellInfo-----------'+JSON.stringify(source.data.sellInfo));
-                var step = 0;
-                switch (source.data.order.status) {
-                    case 'WaitSignContract':
-                        step = 1;
-                        break;
-                    case 'WaitPayment':
-                        step = 2;
-                        break;
-                    case 'WaitConfirmDelivery':
-                    case 'ReturnedDeliveryGoods':
-                    case 'WaitVerifyDeliveryGoods':
-                        step = 3;
-                        break;
-                    case 'WaitSettleAccounts':
-                    case 'WaitVerifySettle':
-                    case 'ReturnedSettleAccounts':
-                        step = 4;
-                        break;
-                    case 'WaitReceiveReceipt':
-                        step = 5;
-                        break;
-                    default :
-                        step=5;
-                }
-                var statusObj = {
-                    step     : step,        // 第几步
-                    stepList : [
-                        {
-                            stepName : '提交订单',
-                            stepDate : source.data.order.createTime == null ? "" : source.data.order.createTime
-                        },
-                        {
-                            stepName : '签订合同',
-                            stepDate : source.data.order.signContractTime == null ? "" : source.data.order.signContractTime
-                        },
-                        {
-                            stepName : '付款',
-                            stepDate : source.data.order.paymentTime == null ? "" : source.data.order.paymentTime
-                        },
-                        {
-                            stepName : '确认提货',
-                            stepDate : source.data.order.verifyDeliveryTime == null ? "" : source.data.order.verifyDeliveryTime
-                        },
-                        {
-                            stepName : '结算',
-                            stepDate : source.data.order.settleAccountTime == null ? "" : source.data.order.settleAccountTime
-                        }
-                    ]
-                };
-                //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
-                var content = {
-                    headerTit  : "订单详情",
-                    pageTitle  : "订单详情",
-                    //type       : source.data.order.type,
-                    type       : 1,
-                    statusObj  : statusObj,
-                    "sellInfo" : source.data.sellInfo,
-                    "order"    : source.data.order
-                };
-                res.render('order/sellOrderDetail', content);
-            } else {
-                res.send(data.body);
-            }
-        });
 };
 
 exports.printDetail = function (req, res, next) {

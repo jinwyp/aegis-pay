@@ -31,14 +31,14 @@ var guarantee_api_config = _.assign(api_config, {
                 }
             }
      */
-    payPage       : host + 'guarantee/order/payment',
+    guaranteePayPage       : host + 'guarantee/order/payment',
 
     /**
      * 支付－确认付款
      * method: post
      * params: {version:'', userId:'',orderId:'',payPassword:'',type:1}
      */
-    paySubmit     : host + 'guarantee/order/payment/submit',
+    guaranteePaySubmit     : host + 'guarantee/order/payment/submit',
 
 
     /**
@@ -46,19 +46,19 @@ var guarantee_api_config = _.assign(api_config, {
      * method: get
      * params: {orderId:'', userId:, type}
      */
-    paySuccess : host + 'guarantee/order/payment/success',
+    guaranteePaySuccess : host + 'guarantee/order/payment/success',
 
-    buyOrderDetail : host + 'guarantee/order',
-    sellOrderDetail : host + 'guarantee/seller/order',
-    printOrderDetail : host + 'guarantee/order/print',
+    guaranteeBuyOrderDetail : host + 'guarantee/order',
+    guaranteeSellOrderDetail : host + 'guarantee/seller/order',
+    guaranteePrintOrderDetail : host + 'guarantee/order/print',
 
     /**
      * 关闭订单 Api
      * orderCloseView   查看订单信息
      * orderCloseSubmit 提交关闭原因
      */
-    orderCloseView:     host + 'guarantee/order/close',
-    orderCloseSubmit:   host + 'guarantee/order/close/submit'
+    guaranteeOrderCloseView:     host + 'guarantee/order/close',
+    guaranteeOrderCloseSubmit:   host + 'guarantee/order/close/submit'
 
 
 });
