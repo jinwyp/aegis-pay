@@ -131,10 +131,10 @@ exports.drawCashStatus = function(req,res,next){
     var cash = req.body.cash;
     var userId = req.session.user.id;
 
-    if( !(/^\d+(\.?\d{1,2})$/.test(cash)) ){
-      next(new UnauthenticatedAccessError());
-      return;
-    }
+    // if( !(/^\d+(\.?\d{1,2})$/.test(cash)) ){
+    //   next(new UnauthenticatedAccessError());
+    //   return;
+    // }
     //confirmToken不相同
     if(!confirmToken || confirmToken!=req.session.confirmToken) {
         logger.error(req.ip+" drawCash token error");
