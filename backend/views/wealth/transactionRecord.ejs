@@ -93,6 +93,19 @@
                             <%}%>
                         </td>
                         <td width="160"><%=formatMoney(recordList[i].totalMoney)%></td>
+                        <% if(recordList[i].payMode==5){ %>
+                        <% var statusObj = {'waitFrozen':'待冻结货款', 'waitSettle':'待结算', 'orderCompleted':'交易完成', 'orderCancel':'订单取消'};  %>
+                        <td width="80">
+                            <span class="status-green"><%= statusObj[recordList[i].status] %></span>
+                        </td>
+                        <td class="operation" width="80">
+                            <% if(recordList[i].type===0){ %>
+                            <a href="/guarantee/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <% }else{ %>
+                            <a href="/guarantee/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <% } %>
+                        </td>
+                        <% }else{ %>
                         <td width="80">
                             <% if(recordList[i].status === 'WaitSignContract'){ %>
                             <span class="status-green WaitSignContract"><%=recordList[i].statusName%></span>
@@ -258,6 +271,7 @@
                             <% } %>
                             <% } %>
                         </td>
+                        <% } %>
                     </tr>
                     <%}%>
                 <%}else{%>

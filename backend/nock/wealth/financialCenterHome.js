@@ -18,11 +18,56 @@ financialCenterHomePersist
                     "balanceMoney": 222000.00,
                     //"cashBankName": "建设银行",
                     "cashBankName": null,
+                    "frozenMoney": 20000,   //担保交易，冻结金额
                     //"cashBankAccount": "6214830211655658",
                     "cashBankAccount": null,
                     "cashBankCode": "3555555"
                 },
                 "recordList": [
+                    {
+                        "id": "1",
+                        "version": "1",
+                        "createTime": "2016-06-18",
+                        "type":0,
+                        "typeName": "采购",
+                        "totalMoney": "1000000.00",
+                        "status": "waitFrozen",
+                        "payMode": 5,   //担保交易
+                        // "statusName": "等待付款"
+                    },
+                    {
+                        "id": "2",
+                        "version": "1",
+                        "createTime": "2016-06-18",
+                        "type":1,
+                        "typeName": "销售",
+                        "totalMoney": "2000000.00",
+                        "status": "waitSettle",
+                        "payMode": 5
+                        // "statusName": "交易失败"
+                    },
+                    {
+                        "id": "3",
+                        "version": "1",
+                        "createTime": "2016-06-18",
+                        "type":0,
+                        "typeName": "采购",
+                        "totalMoney": "3000.00",
+                        "status": "orderCompleted",
+                        "payMode": 5,   //担保交易
+                        // "statusName": "交易成功"
+                    },
+                    {
+                        "id": "4000",
+                        "version": "1",
+                        "createTime": "2016-06-18",
+                        "type":1,
+                        "typeName": "销售",
+                        "totalMoney": "4000000.00",
+                        "status": "orderCancel",
+                        "payMode": 5
+                        // "statusName": "交易失败"
+                    },
                     {
                         "id": "1",
                         "version": "1",
@@ -88,7 +133,7 @@ financialCenterHomePersist
                         type: 0,
                         typeName: '采购',
                         orderNO: 'ZY201607210001',
-                        contractNO: 'HT201607210001',
+                        contractNO: null,
                         paymentTransaction: null,
                         tailMoneyTransaction: null,
                         refundMoneyTransaction: null,
@@ -97,7 +142,8 @@ financialCenterHomePersist
                         sellerCompanyName: '上海瑞易供应链管理有限公司',
                         otherCompanyName: '上海瑞易供应链管理有限公司',
                         totalMoney: 0.67,
-                        status: 'WaitPayment',
+                        status: 'waitFrozen',
+                        payMode: 5,
                         statusName: '待付款',
                         deliveryProvince: '安徽',
                         deliveryPlace: '安庆港',
@@ -111,7 +157,7 @@ financialCenterHomePersist
                     {
                         id: 107,
                         version: 8,
-                        type: 0,
+                        type: 1,
                         typeName: '采购',
                         orderNO: 'ZY201607180017',
                         contractNO: 'HT201607180017',
@@ -123,7 +169,8 @@ financialCenterHomePersist
                         sellerCompanyName: '上海瑞易供应链管理有限公司',
                         otherCompanyName: '上海瑞易供应链管理有限公司',
                         totalMoney: 0.5,
-                        status: 'WaitPayRefundMoney',
+                        status: 'waitSettle',
+                        payMode: 5,
                         statusName: '待卖家退款',
                         deliveryProvince: '安徽',
                         deliveryPlace: '安庆港',
@@ -149,7 +196,8 @@ financialCenterHomePersist
                         sellerCompanyName: '上海瑞易供应链管理有限公司',
                         otherCompanyName: '上海瑞易供应链管理有限公司',
                         totalMoney: 0.5,
-                        status: 'WaitVerifyDeliveryGoods',
+                        status: 'orderCompleted',
+                        payMode: 5,
                         statusName: '待卖家审核提货',
                         deliveryProvince: '天津',
                         deliveryPlace: '天津港',
@@ -163,7 +211,7 @@ financialCenterHomePersist
                     {
                         id: 128,
                         version: 6,
-                        type: 0,
+                        type: 1,
                         typeName: '采购',
                         orderNO: 'ZY201607180037',
                         contractNO: 'HT201607180037',
@@ -175,7 +223,8 @@ financialCenterHomePersist
                         sellerCompanyName: '上海瑞易供应链管理有限公司',
                         otherCompanyName: '上海瑞易供应链管理有限公司',
                         totalMoney: 0.5,
-                        status: 'WaitVerifyDeliveryGoods',
+                        status: 'orderCancel',
+                        payMode: 5,
                         statusName: '待卖家审核提货',
                         deliveryProvince: '天津',
                         deliveryPlace: '天津港',

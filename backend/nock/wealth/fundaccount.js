@@ -22,5 +22,6 @@ fundAccountPersist
     }
     return result;
 })
+.post('/account/fund/checkFundAccount').reply(200, {success:true, data:{success:true}})
 
 module.exports = fundAccountPersist;
