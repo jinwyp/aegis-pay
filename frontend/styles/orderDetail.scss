@@ -81,6 +81,16 @@ body{
 //guarantee 
 #order-detail-body.guarantee{
   .main-content .center-content .status-content div.hint{
+    input[name="settleMoney"]{
+      margin:0 5px;
+      border:1px solid $color_border_gray;
+      &:focus{
+        border-color:$color_blue;
+      }
+    }
+    .tipError{
+      color:$color_red; margin-left:10px;
+    }
     i{
       font-size:16px; color:$color_orange;
     }

@@ -15,5 +15,5 @@ router.get('/guarantee/pay/success', guaranteePayCtl.success);
 
 //详情页面
 router.get(/^\/guarantee\/(getBuyOrderDetail|getSellOrderDetail)/, guaranteeOrderCtl.getGuaranteeOrderDetail); //买货or卖货订单详情页面路由
-
+router.get('/guarantee/printDetail', guaranteeOrderCtl.guaranteePrintDetail);
 module.exports = router;

@@ -193,12 +193,12 @@ var data = {
             //"sellerFundAccount":null,
             "sellerLoginName": "卖家登陆名",
             "buyerLoginPhone": "18600000001",
-            "status": "waitSettle",   //{"waitFrozen":0, "waitSettle":1, "orderCompleted":2, "orderCancel":3}
-            // "settleMoney": 2000000, //结算金额
-            // "paymentMoney": 1800000,   //支付金额
-            // "tailMoney": 200000,     //尾款金额
-            "isPay": false,     //是否支付货款
-            "isTailPay": false,   //是否支付尾款
+            "status": "orderCancel",   //{"waitFrozen":0, "waitSettle":1, "orderCompleted":2, "orderCancel":3}
+            "settleMoney": 2000000, //结算金额
+            "paymentMoney": 1800000,   //支付金额
+            "tailMoney": 200000,     //尾款金额
+            "isPay": true,     //是否支付货款
+            "isPayTail": true,   //是否支付尾款
             "price": 5500.00,
             "amount": 1000,
             "totalMoney": 50000.00,
@@ -216,9 +216,12 @@ var data = {
 };
 
 guaranteeOrderDetailPersist.post(function(uri){
-    var isMatch = /((guarantee\/seller\/order)|(guarantee\/order))/.test(uri);
+    var isMatch = /^\/guarantee\/(seller\/)?order$/.test(uri);
     return isMatch;
 }).reply(200, data)
+.post('/guarantee/order/cancel').reply(200, {"success":false})
+.post('/guarantee/order/print').reply(200, {"success": true, "data": data.data})
+.post('/guarantee/order/submitSettleMoney').reply(200, {"success":true, data:{"paymentMoney":1800000, "tailMoney":200000}})
 
 
 module.exports = guaranteeOrderDetailPersist;

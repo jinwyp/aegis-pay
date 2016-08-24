@@ -39,13 +39,12 @@ exports.getGuaranteeOrderDetail = function (req, res, next) {
     });
 };
 
-exports.printDetail = function (req, res, next) {
-    request.post(
-        {
-            url : api_config.printOrderDetail,
+exports.guaranteePrintDetail = function (req, res, next) {
+    var params = {
+            url : api_config.guaranteePrintOrderDetail,
             form:{orderId:req.query.orderId, userId:req.session.user.id}
-        },
-        function (err, data) {
+        }
+    request.post(params, function (err, data) {
         if (err) return next(err);
         if (data) {
             var source  = JSON.parse(data.body);
@@ -57,9 +56,8 @@ exports.printDetail = function (req, res, next) {
                     "sellInfo" : source.data.sellInfo,
                     "order"    : source.data.order
                 };
-                logger.debug('printDetail获取到的结果是----------------------------' + content);
                 //渲染页面,指定模板&数据
-                res.render('order/printDetail', content);
+                res.render('guarantee/order/printDetail', content);
             }else{
                 res.send(source.error);
             }
@@ -67,53 +65,4 @@ exports.printDetail = function (req, res, next) {
             res.send(data.body);
         }
     });
-};
-
-exports.sureReceiveReceipt = function (req, res, next) {
-    logger.debug("---------data---------"+req.query.orderId+"-------"+req.query.version);
-    request.post(
-        {
-            url : api_config.sureReceiveReceipt,
-            form:{orderId:req.query.orderId, userId:req.session.user.id, version:req.query.version}
-        },
-        function (err, data) {
-            if (err) return next(err);
-            logger.debug("------------------"+data.body);
-            if (data) {
-                var source  = JSON.parse(data.body);
-                if(source.success){
-                    res.send(source);
-                }else{
-                    res.send(source.error);
-                }
-            } else {
-                res.send(data.body);
-            }
-        });
-};
-
-exports.buyDeleteOrder = function (req, res, next) {
-    request.post(
-        {
-            url : api_config.sureReceiveReceipt,
-            form:{orderId:req.query.orderId, userId:req.session.user.id, version:req.query.version}
-        },
-        function (err, data) {
-            if (err) return next(err);
-            if (data) {
-                var source  = JSON.parse(data.body);
-                if(source.success){
-                    res.send(source);
-                }else{
-                    res.send(source.error);
-                }
-            } else {
-                res.send(data.body);
-            }
-        });
-};
-
-exports.orderTest = function (req, res, next) {
-    logger.debug('服务器被请求了' + req.query.id);
-    res.send('fdsfsdfsdf');
 };

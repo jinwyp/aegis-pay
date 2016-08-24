@@ -53,12 +53,11 @@ var guarantee_api_config = _.assign(api_config, {
     guaranteePrintOrderDetail : host + 'guarantee/order/print',
 
     /**
-     * 关闭订单 Api
-     * orderCloseView   查看订单信息
-     * orderCloseSubmit 提交关闭原因
+     * 取消订单 Api
      */
-    guaranteeOrderCloseView:     host + 'guarantee/order/close',
-    guaranteeOrderCloseSubmit:   host + 'guarantee/order/close/submit'
+    guaranteeOrderCancel:     host + 'guarantee/order/cancel',
+    // 卖家提交结算金额
+    guaranteeSubmitSettle:   host + 'guarantee/order/submitSettleMoney'
 
 
 });
