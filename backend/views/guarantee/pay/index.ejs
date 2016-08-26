@@ -18,14 +18,14 @@
       <input type="hidden" name="version" value="<%= order.version %>">
         <input type="hidden" name="type" value="<%= type %>">
       <ul class='seller'>
-        <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.freezeMoney) %></i>元</span></li>
-        <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.freezeMoney) %>)</span></li>
+        <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.payMoney) %></i>元</span></li>
+        <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.payMoney) %>)</span></li>
       </ul>
       <% if(order.buyerBalanceMoney>=order.freezeMoney) {%>
         <% if(type == 2) {%> 
         <ul class="unfrozenBuyer">
           <li>结算金额：<span><%= formatMoney(order.settleMoney) %></span>元</li>
-          <li>解冻金额：<span><%= formatMoney(order.unfrozenMoney) %></span>元</li>
+          <li>解冻金额：<span><%= formatMoney(order.unfreezeMoney) %></span>元</li>
           <li>支付金额：<span><%= formatMoney(order.payMoney) %></span>元</li>
         </ul>
         <% }else{ %>
@@ -35,7 +35,7 @@
             <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
             <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
           </li>
-          <li class='last'><%= tipText[type-1][2] %><span><%= formatMoney(order.freezeMoney) %></span>元</li>
+          <li class='last'><%= tipText[type-1][2] %><span><%= formatMoney(order.payMoney) %></span>元</li>
           <!--请不要删除以下隐藏标签,用户短信验证码提示信息中金额字段取值-->
           <input type='hidden' name='amount' value='<%= order.totalMoney %>'>
         </ul>
