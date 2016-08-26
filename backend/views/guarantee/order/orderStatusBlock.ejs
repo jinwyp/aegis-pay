@@ -12,7 +12,7 @@
         <div class="state-item mt-20 hint"><span>1. 卖家提供的结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
         <div class="state-item mt-10 hint">
             <span>2. 需支付货款</span><i><%= formatMoney(order.paymentMoney) %></i>元
-            <% if(!order.isPay){ %>
+            <% if(!order.paid){ %>
                 <a href='/guarantee/pay?orderId=<%= order.id %>&type=2' class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">去支付</a>
             <% }else{ %>
                 <i>已支付</i>
@@ -20,7 +20,7 @@
 
             <% if(order.tailMoney){ %>
             ，尾款<i><%= formatMoney(order.tailMoney) %></i>元
-                <% if(!order.isPayTail){ %>
+                <% if(!order.paidTail){ %>
                     <a href='/guarantee/pay?orderId=<%= order.id %>&type=3' class="iBtn iBtn_xs iBtn_no ml-10 btn-payMoney">去支付</a>
                 <% }else{ %>
                     <i>已支付</i>
@@ -35,11 +35,11 @@
     <div class="state-item mt-10 hint"><span>1. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
     <% } %>
     <% if(statusInt==1){ %>
-        <% if(order.isPay || order.isPayTail){ %>
+        <% if(order.paid || order.paidTail){ %>
         <div class="state-item mt-20 hint"><span>1. 结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
         <div class="state-item mt-10 hint">
             <span>2. 需支付货款</span><i><%= formatMoney(order.paymentMoney) %></i>元
-            <% if(!order.isPay){ %>
+            <% if(!order.paid){ %>
                 <i>未支付</i>
             <% }else{ %>
                 <i>已支付</i>
@@ -47,7 +47,7 @@
 
             <% if(order.tailMoney){ %>
             ，尾款<i><%= formatMoney(order.tailMoney) %></i>元
-                <% if(!order.isPayTail){ %>
+                <% if(!order.paidTail){ %>
                     <i>未支付</i>
                 <% }else{ %>
                     <i>已支付</i>

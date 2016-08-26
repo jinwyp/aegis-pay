@@ -18,10 +18,10 @@
             <span class='icon_ok'></span>您已成功冻结货款<i><%= formatMoney(order.freezeMoney) %></i>元
             <% } %>
             <% if(type==2){ %>
-            <span class='icon_ok'></span>您已成功解冻<i><%= formatMoney(order.unfrozenMoney) %></i>元, 支付<i><%=  formatMoney(order.paymentMoney)  %></i>元
+            <span class='icon_ok'></span>您已成功解冻<i><%= formatMoney(order.unfreezeMoney) %></i>元, 支付<i><%=  formatMoney(order.paymentMoney)  %></i>元
             <% } %>
             <% if(type==3){ %>
-            <span class='icon_ok'></span>您已成功支付尾款<i><%= formatMoney(order.paymentMoney) %></i>元
+            <span class='icon_ok'></span>您已成功支付尾款<i><%= formatMoney(order.tailMoney) %></i>元
             <% } %>
             
         </h3>

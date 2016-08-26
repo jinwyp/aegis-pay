@@ -22,6 +22,7 @@ exports.getGuaranteeOrderDetail = function (req, res, next) {
         if (err) return next(err);
         if (data) {
             var source = JSON.parse(data.body);
+
             //headerTit:订单详情页面标题，pageTitle:浏览器标签名，type:显示卖家信息或者买家信息
             var statusObj = {"WaitFreeze4GTO":0, "WaitSellerSettle4GTO":1,"WaitBuyerSettle4GTO":1, "Complete4GTO":2, "Canceled4GTO":3};
             var content = {
