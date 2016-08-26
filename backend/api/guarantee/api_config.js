@@ -48,7 +48,7 @@ var guarantee_api_config = _.assign(api_config, {
      */
     guaranteePaySuccess : host + 'guarantee/order/payment/success',
 
-    guaranteeBuyOrderDetail : host + 'guarantee/order',
+    guaranteeBuyOrderDetail : host + 'guarantee/buyer/order',
     guaranteeSellOrderDetail : host + 'guarantee/seller/order',
     guaranteePrintOrderDetail : host + 'guarantee/order/print',
 
