@@ -112,9 +112,8 @@
                         <td width="150"><div><%= recordList[i].typeName %></div></td>
                         <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
                         <% if(recordList[i].payMode==5){ %>
-                        <% var statusObj = {'waitFrozen':'待冻结货款', 'waitSettle':'待结算', 'orderCompleted':'交易完成', 'orderCancel':'订单取消'};  %>
                         <td width="100">
-                            <span class="status-green"><%= statusObj[recordList[i].status] %></span>
+                            <span class="status-green"><%= recordList[i].statusName %></span>
                         </td>
                         <td width="80">
                             <% if(recordList[i].type===0){ %>
