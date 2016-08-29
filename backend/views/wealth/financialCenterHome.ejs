@@ -30,15 +30,14 @@
             <div class="header-center">
                 <div class="useraccount"><span class="label fs-14">易煤网资金账户号：</span><%= blankFour(finance.userFundAccount) %></div>
                 <div class="center-operate">
-                    <% if(!!finance.frozenMoney){ %>
+                    <% finance.frozenMoney = finance.frozenMoney || 0 %>
                     <p class='frozenMoney'>冻结金额：<span class="orange"><%= formatMoney(finance.frozenMoney, 2) %>元</span></p>
-                    <span class="balance">可用余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></span>
-                    <% }else{ %>
-                    <span class="balance">余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></span>
-                    <% } %>
-                    <a class="a-link look" href="/wealth/financialDetails">查看</a>
-                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option btn-drawCash">提现</span>
-                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option recharge">充值</span>
+                    <p class="balance">可用余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></p>
+                    <p class='opWrapper'>
+                        <a class="a-link look" href="/wealth/financialDetails">查看</a>
+                        <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option btn-drawCash">提现</span>
+                        <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option recharge">充值</span>
+                    </p>
                 </div>
             </div>
             <div class="header-right border-left">
