@@ -21,6 +21,8 @@ require(['jquery', 'bootstrap'],function($){
             $('#submitSettle').siblings('.tipError').remove();
             $.post('/api/guarantee/order/submitSettleMoney', {settleMoney: val, orderId: $('input[name="orderId"]').val()}, function(data){
                 if(data.success){
+                    $('.guarantee.alert-success').addClass('in');
+                    $('.guarantee.alert-danger').removeClass('in');
                      var $nextWrapper = $('#submitSettle').parent().next('.state-item');
                      var nextHtml = '<span>2. 需支付货款</span><i>' + formatMoney(data.data.paymentMoney) + '</i>元 <i>未支付</i>';
                      if(data.data.tailMoney){
@@ -28,11 +30,16 @@ require(['jquery', 'bootstrap'],function($){
                      }
                      $nextWrapper.html(nextHtml);
                 }else{
-                    $('#submitSettle').after('<span class="tipError">提交失败，请稍后重试</span>');
+                    $('.guarantee.alert-success').removeClass('in');
+                    $('.guarantee.alert-danger').addClass('in');
                 }
             })
         }else{
-            $('#submitSettle').after('<span class="tipError">结算金额必须为数字</span>');
+            if($('#submitSettle').siblings('.tipError').size()==0){
+                $('#submitSettle').after('<span class="tipError">结算金额必须为数字</span>');
+            }else{
+                $('#submitSettle').siblings('.tipError').text('结算金额必须为数字').show();
+            }
         }
     })
 });
