@@ -18,7 +18,7 @@
                 <input type="hidden" name="orderId" value="<%=order.id%>" />
                 <input type="hidden" name="version" value="<%=order.version%>" />
                 <input type="hidden" name="status" value="<%=order.status%>" />
-                <% var tipText = ['待冻结货款', '待结算', '交易完成', '订单取消'];
+                <% var tipText = ['待冻结货款', '已提交，等待银行冻结货款', '待结算', '交易完成', '订单取消'];
                    var statusInt = statusObj[order.status];
                  %>
                 <div class="state-item fs-24">

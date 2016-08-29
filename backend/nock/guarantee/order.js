@@ -193,7 +193,7 @@ var data = {
             //"sellerFundAccount":null,
             "sellerLoginName": "卖家登陆名",
             "buyerLoginPhone": "18600000001",
-            "status": "WaitSellerSettle4GTO",   //{"WaitFreeze4GTO":0, "WaitSellerSettle4GTO":1,"WaitBuyerSettle4GTO":1, "Complete4GTO":2, "Canceled4GTO":3}
+            "status": "Canceled4GTO",   //{"WaitFreeze4GTO":0, "OnHold4GTO":1, "WaitSellerSettle4GTO":2,"WaitBuyerSettle4GTO":2, "Complete4GTO":3, "Canceled4GTO":4}
             "settleMoney": null, //结算金额
             "paymentMoney": null,   //支付金额
             "tailMoney": null,     //尾款金额
@@ -216,7 +216,7 @@ var data = {
 };
 
 guaranteeOrderDetailPersist.post(function(uri){
-    var isMatch = /^\/guarantee\/(seller\/)?order$/.test(uri);
+    var isMatch = /^\/guarantee\/(buyer|seller)\/order$/.test(uri);
     return isMatch;
 }).reply(200, data)
 .post('/guarantee/order/cancel').reply(200, {"success":false})

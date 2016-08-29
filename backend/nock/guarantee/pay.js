@@ -55,7 +55,7 @@ guarantee_payPersist
             "otherHarbour":"",
             "dealerName":"卖家姓名",
             "dealerPhone":18698989899,
-            "frozenMoney": 1000000000,
+            "freezeMoney": 1000000000,
             "unfrozenMoney": 1000000000
         }
     }

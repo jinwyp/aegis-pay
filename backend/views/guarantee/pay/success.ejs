@@ -15,7 +15,8 @@
     <div class="progressDetail">
         <h3 <%if(type==2){%>class='guarantee'<%}%>>
             <% if(type==1){ %>
-            <span class='icon_ok'></span>您已成功冻结货款<i><%= formatMoney(order.freezeMoney) %></i>元
+            <span class='icon_ok'></span>已成功提交请求到银行，
+            <p>即将冻结货款<i><%= formatMoney(order.freezeMoney) %></i>元</p>
             <% } %>
             <% if(type==2){ %>
             <span class='icon_ok'></span>您已成功解冻<i><%= formatMoney(order.unfreezeMoney) %></i>元, 支付<i><%=  formatMoney(order.paymentMoney)  %></i>元

@@ -4,7 +4,7 @@
     <div class="state-item mt-10 hint"><span>2. 如果您不想购买该煤炭，或者下单错误，您可以&nbsp;<span id='btn-cancelTrade' class="iBtn iBtn_xs iBtn_no ml-10"  data-toggle='modal' role='button' data-target='#cancelOrderModal'>取消订单</span></span></div>
     <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
     <% } %>
-    <% if(statusInt==1){ %>
+    <% if(statusInt==2){ %>
         <% if(!order.settleMoney){ %>
         <div class="state-item mt-10 hint"><span>1. 卖家提供的结算金额——待定</span></div>
         <div class="state-item mt-10 hint"><span>2. 需支付货款——待定</span></div>
@@ -34,7 +34,7 @@
     <% if(statusInt==0){ %>
     <div class="state-item mt-10 hint"><span>1. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
     <% } %>
-    <% if(statusInt==1){ %>
+    <% if(statusInt==2){ %>
         <% if(order.paid || order.paidTail){ %>
         <div class="state-item mt-20 hint"><span>1. 结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
         <div class="state-item mt-10 hint">
