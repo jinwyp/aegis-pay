@@ -82,9 +82,12 @@
                             <div><span class="label">热值:</span><%= multiArgAppend(recordList[i].ncv,recordList[i].ncv02,"kcal/kg") %></div>
                         </td>
                         <td width="180" class="order-number">
-
+                            <% if(recordList[i].payMode==5){ %>
+                            <div><span class="label">订单编号:</span><a target='_blank' href="<%if(recordList[i].type===0){%>/guarantee/getBuyOrderDetail<%}else{%>/guarantee/getSellOrderDetail<%}%>?orderId=<%=recordList[i].id%>"><%=recordList[i].orderNO%></a></div>
+                            <% }else{ %> 
                             <div><span class="label">订单编号:</span><a class="<%if(recordList[i].type===0){%>btn-buyOrderDetail<%}else{%>btn-sellOrderDetail<%}%>" data-id="<%=recordList[i].id%>" data-status="<%=recordList[i].status%>"><%=recordList[i].orderNO%></a></div>
                             <div><span class="label">合同编号:</span><a target="_blank" href="/compactDetail?orderId=<%=recordList[i].id%>"><%=getStringVal(recordList[i].contractNO)%></a></div>
+                            <% } %>
                             <div><span class="label">付款流水号:</span><%=getStringVal(recordList[i].paymentTransaction)%></div>
                             <%if(recordList[i].tailMoneyTransaction!=null){%>
                             <div><span class="label">补款流水号:</span><%=getStringVal(recordList[i].tailMoneyTransaction)%></div>
@@ -99,9 +102,9 @@
                         </td>
                         <td class="operation" width="80">
                             <% if(recordList[i].type===0){ %>
-                            <a href="/guarantee/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <a target='_blank' href="/guarantee/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% }else{ %>
-                            <a href="/guarantee/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <a target='_blank' href="/guarantee/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
                             <% } %>
                         </td>
                         <% }else{ %>
