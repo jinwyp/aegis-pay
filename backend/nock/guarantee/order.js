@@ -193,7 +193,7 @@ var data = {
             //"sellerFundAccount":null,
             "sellerLoginName": "卖家登陆名",
             "buyerLoginPhone": "18600000001",
-            "status": "OnHold4GTO",   //{"WaitFreeze4GTO":0, "OnHold4GTO":1, "WaitSellerSettle4GTO":2,"WaitBuyerSettle4GTO":2, "Complete4GTO":3, "Canceled4GTO":4}
+            "status": "WaitSellerSettle4GTO",   //{"WaitFreeze4GTO":0, "OnHold4GTO":1, "WaitSellerSettle4GTO":2,"WaitBuyerSettle4GTO":2, "Complete4GTO":3, "Canceled4GTO":4}
             "settleMoney": null, //结算金额
             "paymentMoney": null,   //支付金额
             "tailMoney": null,     //尾款金额
