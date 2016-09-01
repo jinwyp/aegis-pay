@@ -5,10 +5,8 @@
     <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
     <% } %>
     <% if(statusInt==2){ %>
-        <% if(!order.settleMoney){ %>
-        <div class="state-item mt-10 hint"><span>1. 卖家提供的结算金额——待定</span></div>
-        <div class="state-item mt-10 hint"><span>2. 需支付货款——待定</span></div>
-        <% }else{ %>
+
+
         <div class="state-item mt-20 hint"><span>1. 卖家提供的结算金额为</span><i><%= formatMoney(order.settleMoney) %></i>元</div>
         <div class="state-item mt-10 hint">
             <span>2. 需支付货款</span><i><%= formatMoney(order.paymentMoney) %></i>元
@@ -27,7 +25,7 @@
                 <% } %>
             <% } %>
         </div>
-        <% } %>
+     
         <div class="state-item mt-10 hint"><span>3. 如果您需要其他的帮助，请及时联系卖家或者易煤网客服：400-960-1180</span></div>
     <% } %>
 <% }else if(type==1){ %>
