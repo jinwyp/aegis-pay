@@ -20,8 +20,9 @@ guarantee_payPersist
                       "sellerCompanyName":"易煤网",
                       "sellerFundAccount": "8098098099897387",
                       "totalMoney": 2000000000,
-                      "buyerBalanceMoney": 1889000900,
+                      "buyerBalanceMoney": 5008889000900,
                         "settleMoney": 23000000, //type = 1
+                        "freezeMoney":20000000,
                         "unfrozenMoney": 20000000,//type=1
                         "payMoney": 3000000    //type = 1
                    }
