@@ -21,7 +21,7 @@
         <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.payMoney) %></i>元</span></li>
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.payMoney) %>)</span></li>
       </ul>
-      <% if(order.buyerBalanceMoney>=order.freezeMoney) {%>
+      <% if(order.buyerBalanceMoney>=order.payMoney) {%>
         <% if(type == 2) {%> 
         <ul class="unfrozenBuyer">
           <li>结算金额：<span><%= formatMoney(order.settleMoney) %></span>元</li>
