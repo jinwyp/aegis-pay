@@ -84,16 +84,24 @@
                         <td width="180" class="order-number">
                             <% if(recordList[i].payMode==5){ %>
                             <div><span class="label">订单编号:</span><a target='_blank' href="<%if(recordList[i].type===0){%>/guarantee/getBuyOrderDetail<%}else{%>/guarantee/getSellOrderDetail<%}%>?orderId=<%=recordList[i].id%>"><%=recordList[i].orderNO%></a></div>
-                            <% }else{ %> 
+                            <div><span class="label">冻结流水号:</span><%=getStringVal(recordList[i].freezeTransaction)%></div>
+                            <%if(recordList[i].unfreezeAndPayTransaction!=null){%>
+                            <div><span class="label">解冻支付流水号:</span><%=getStringVal(recordList[i].unfreezeAndPayTransaction)%></div>
+                            <%}else if(recordList[i].freezeTransaction!=null){%>
+                            <div><span class="label">解冻流水号:</span><%=getStringVal(recordList[i].unfreezeTransaction)%></div>
+                            <%}else if(recordList[i].payTailMoneyTransaction!=null){%>
+                            <div><span class="label">支付尾款流水号:</span><%=getStringVal(recordList[i].payTailMoneyTransaction)%></div>
+                            <%}%>
+                            <% }else{ %>
                             <div><span class="label">订单编号:</span><a class="<%if(recordList[i].type===0){%>btn-buyOrderDetail<%}else{%>btn-sellOrderDetail<%}%>" data-id="<%=recordList[i].id%>" data-status="<%=recordList[i].status%>"><%=recordList[i].orderNO%></a></div>
                             <div><span class="label">合同编号:</span><a target="_blank" href="/compactDetail?orderId=<%=recordList[i].id%>"><%=getStringVal(recordList[i].contractNO)%></a></div>
-                            <% } %>
                             <div><span class="label">付款流水号:</span><%=getStringVal(recordList[i].paymentTransaction)%></div>
                             <%if(recordList[i].tailMoneyTransaction!=null){%>
                             <div><span class="label">补款流水号:</span><%=getStringVal(recordList[i].tailMoneyTransaction)%></div>
                             <%}else{%>
                             <div><span class="label">退款流水号:</span><%=getStringVal(recordList[i].refundMoneyTransaction)%></div>
                             <%}%>
+                            <% } %>
                         </td>
                         <td width="160"><%=formatMoney(recordList[i].totalMoney)%></td>
                         <% if(recordList[i].payMode==5){ %>
