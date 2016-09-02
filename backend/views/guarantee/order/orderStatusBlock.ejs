@@ -65,11 +65,11 @@
         <div class="state-item mt-20 hint"><span>1. 结算金额为</span><input type='text' name='settleMoney' value='<%= hasData.settle %>'>元 <span class='iBtn iBtn_xs iBtn_no ml-10' id='submitSettle'>提交</span></div>
         <div class="state-item mt-10 hint">
             <span>2. 需支付货款</span>
-                <% if(hasData.payment){ %> <i><%= formatMoney(order.paymentMoney) %></i>元 <i>未支付</i>
+                <% if(hasData.payment && !(typeof hasData.payment == 'number')){ %> <i><%= formatMoney(order.paymentMoney) %></i>元 <i>未支付</i>
                 <% }else{ %>——待定<% } %>
             <% if(order.tailMoney){ %>
             ，尾款
-                <% if(hasData.tail){ %> <i><%= formatMoney(order.tailMoney) %></i>元 <i>未支付</i>
+                <% if(hasData.tail && !(typeof hasData.tail == 'number')){ %> <i><%= formatMoney(order.tailMoney) %></i>元 <i>未支付</i>
                 <% }else{ %>——待定<% } %>
             <% } %>
         </div>
