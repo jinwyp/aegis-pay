@@ -160,10 +160,7 @@ exports.financialDetails = function (req, res, next) {
             {id:'4', value:'4', text:'采购', selected:false},
             {id:'5', value:'5', text:'验卡打款', selected:false},
             {id:'6', value:'6', text:'退款', selected:false},
-
-
-
-
+            
             {id:'8', value:'8', text:'冻结', selected:false},
             {id:'9', value:'9', text:'解冻并支付', selected:false},
             {id:'10', value:'10', text:'解冻', selected:false},

@@ -137,7 +137,7 @@ exports.paymentEndDate = function(date, fieldname, next){
 };
 exports.paymentCategoryType = function(type, fieldname, next){
     if (type){
-        if ( !validator.isInt(type, { min: 0, max: 9}) ) {
+        if ( !validator.isInt(type, { min: 0, max: 12}) ) {
             return throw400(code.order.categoryType.code, code.order.categoryType.message, fieldname || code.order.categoryType.field, next);
         }
     }
