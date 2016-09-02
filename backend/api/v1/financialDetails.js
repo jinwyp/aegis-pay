@@ -59,6 +59,10 @@ exports.financialDetailsApi = function (req, res, next) {
                 if (order.type === 4){order.type = '采购';  order.type = order.type + ' 订单号:' + order.orderId;}
                 if (order.type === 5){order.type = '验卡打款'; }
                 if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
+                if (order.type === 8){order.type = '冻结货款'; order.type = order.type + ' 订单号:' + order.orderId;}
+                if (order.type === 9){order.type = '解冻并支付'; order.type = order.type + ' 订单号:' + order.orderId;}
+                if (order.type === 10){order.type = '解冻'; order.type = order.type + ' 订单号:' + order.orderId;}
+                if (order.type === 11){order.type = '支付尾款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
             });
             
