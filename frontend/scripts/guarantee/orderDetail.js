@@ -18,11 +18,20 @@ require(['jquery', 'bootstrap'],function($){
     $('#submitSettle').click(function(){
         var val = $('input[name="settleMoney"]').val().replace(/\s+/g, "");
         if($.isNumeric(val)){
+            
             if(val.toString().split('.')[0].length >= 18){
                 if($('#submitSettle').siblings('.tipError').size()==0){
                     $('#submitSettle').after('<span class="tipError">结算金额已超出限制，最大18位数</span>');
                 }else{
                     $('#submitSettle').siblings('.tipError').text('结算金额已超出限制，最大18位数').show();
+                }
+                return ;
+            }
+            if(val.toString().split('.')[1].length > 2){
+                if($('#submitSettle').siblings('.tipError').size()==0){
+                    $('#submitSettle').after('<span class="tipError">输入格式错误，最多两位小数</span>');
+                }else{
+                    $('#submitSettle').siblings('.tipError').text('输入格式错误，最多两位小数').show();
                 }
                 return ;
             }
