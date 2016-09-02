@@ -111,3 +111,8 @@ body{
 .alert-dismissible{
   position:absolute; width:700px; left:50%; margin-left:-350px; top:135px;
 }
+.confirmModal.guarantee{
+  .modal-dialog{
+    position: absolute; left: 50%; top: 50%; margin-left: -240px; margin-top: -102px;
+  }
+}

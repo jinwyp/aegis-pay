@@ -23,7 +23,7 @@ guarantee_payPersist
                       "buyerBalanceMoney": 5008889000900,
                         "settleMoney": 23000000, //type = 1
                         "freezeMoney":20000000,
-                        "unfrozenMoney": 20000000,//type=1
+                        "unfreezeMoney": 20000000,//type=1
                         "payMoney": 3000000    //type = 1
                    }
                 }
