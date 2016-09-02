@@ -24,7 +24,7 @@
       <% if(order.buyerBalanceMoney>=order.payMoney) {%>
         <% if(type == 2) {%> 
         <ul class="unfrozenBuyer">
-          <li>结算金额：<span><%= formatMoney(order.settleMoney) %></span>元</li>
+          <li>本次交易将解冻货款<span><%= formatMoney(order.unfreezeMoney) %></span>元，并将其中的<span><%= formatMoney(order.payMoney) %></span>元支付给本单卖家</li>
           <li>解冻金额：<span><%= formatMoney(order.unfreezeMoney) %></span>元</li>
           <li>支付金额：<span><%= formatMoney(order.payMoney) %></span>元</li>
         </ul>
