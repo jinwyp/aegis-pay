@@ -84,12 +84,12 @@
                         <td width="180" class="order-number">
                             <% if(recordList[i].payMode==5){ %>
                             <div><span class="label">订单编号:</span><a target='_blank' href="<%if(recordList[i].type===0){%>/guarantee/getBuyOrderDetail<%}else{%>/guarantee/getSellOrderDetail<%}%>?orderId=<%=recordList[i].id%>"><%=recordList[i].orderNO%></a></div>
-                            <div><span class="label">冻结流水号:</span><%=getStringVal(recordList[i].freezeTransaction)%></div>
+                            <!--<div><span class="label">冻结流水号:</span><%=getStringVal(recordList[i].freezeTransaction)%></div>-->
                             <%if(recordList[i].unfreezeAndPayTransaction!=null){%>
                             <div><span class="label">解冻支付流水号:</span><%=getStringVal(recordList[i].unfreezeAndPayTransaction)%></div>
-                            <%}else if(recordList[i].freezeTransaction!=null){%>
+                            <%} if(recordList[i].freezeTransaction!=null){%>
                             <div><span class="label">解冻流水号:</span><%=getStringVal(recordList[i].unfreezeTransaction)%></div>
-                            <%}else if(recordList[i].payTailMoneyTransaction!=null){%>
+                            <%} if(recordList[i].payTailMoneyTransaction!=null){%>
                             <div><span class="label">支付尾款流水号:</span><%=getStringVal(recordList[i].payTailMoneyTransaction)%></div>
                             <%}%>
                             <% }else{ %>
