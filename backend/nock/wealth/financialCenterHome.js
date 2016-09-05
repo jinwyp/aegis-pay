@@ -144,7 +144,7 @@ financialCenterHomePersist
                         totalMoney: 0.67,
                         status: 'waitFrozen',
                         payMode: 5,
-                        statusName: '待付款',
+                        statusName: '等待卖家结算_担保交易',
                         deliveryProvince: '安徽',
                         deliveryPlace: '安庆港',
                         otherHarbour: null,
