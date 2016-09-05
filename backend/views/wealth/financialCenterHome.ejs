@@ -112,7 +112,7 @@
                         <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
                         <% if(recordList[i].payMode==5){ %>
                         <td width="100">
-                            <span class="status-green"><%= recordList[i].statusName %></span>
+                            <span class="status-green"><%= recordList[i].statusName.replace('_担保交易', '') %></span>
                         </td>
                         <td width="80">
                             <% if(recordList[i].type===0){ %>

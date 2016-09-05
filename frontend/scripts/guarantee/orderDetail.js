@@ -27,7 +27,7 @@ require(['jquery', 'bootstrap'],function($){
                 }
                 return ;
             }
-            if(val.toString().split('.')[1].length > 2){
+            if((val.toString().indexOf('.')>0) && (val.toString().split('.')[1].length > 2)){
                 if($('#submitSettle').siblings('.tipError').size()==0){
                     $('#submitSettle').after('<span class="tipError">输入格式错误，最多两位小数</span>');
                 }else{
