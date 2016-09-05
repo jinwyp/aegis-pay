@@ -127,7 +127,7 @@ gulp.task('watch', function() {
 
 // release tasks
 gulp.task('release-js', ['htmlTemplate', 'jslint', 'components'], function(){
-    return gulp.src(['scripts/*.js', 'scripts/*/*.js', '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/**/*.js'])
+    return gulp.src(['scripts/*.js', 'scripts/*/*.js', 'scripts/*/*/*.js',, '!scripts/avalon_components/*.js', '!scripts/business_components/*.js', '!scripts/jquery_plugins/**/*.js'])
     .pipe(requirejsOptimize(function(file){
         if(file.relative !== 'common.js'){
             rconfig.exclude = ['common'];

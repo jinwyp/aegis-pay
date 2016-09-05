@@ -30,10 +30,14 @@
             <div class="header-center">
                 <div class="useraccount"><span class="label fs-14">易煤网资金账户号：</span><%= blankFour(finance.userFundAccount) %></div>
                 <div class="center-operate">
-                    <span class="balance">余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></span>
-                    <a class="a-link look" href="/wealth/financialDetails">查看</a>
-                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option btn-drawCash">提现</span>
-                    <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option recharge">充值</span>
+                    <% finance.frozenMoney = finance.frozenMoney || 0 %>
+                    <p class='frozenMoney'>冻结金额：<span class="orange"><%= formatMoney(finance.frozenMoney, 2) %>元</span></p>
+                    <p class="balance">可用余额：<span class="orange"><%= formatMoney(((finance.balanceMoney===null||typeof finance.balanceMoney)===true? 0 : finance.balanceMoney),2)%>元</span></p>
+                    <p class='opWrapper'>
+                        <a class="a-link look" href="/wealth/financialDetails">查看</a>
+                        <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option btn-drawCash">提现</span>
+                        <span class="iBtn iBtn_xs iBtn_no mr-10 btn-option recharge">充值</span>
+                    </p>
                 </div>
             </div>
             <div class="header-right border-left">
@@ -106,6 +110,18 @@
                         <td width="60"><div><%= recordList[i].createTime %></div></td>
                         <td width="150"><div><%= recordList[i].typeName %></div></td>
                         <td width="100"><div><%= formatMoney(recordList[i].totalMoney,2) %></div></td>
+                        <% if(recordList[i].payMode==5){ %>
+                        <td width="100">
+                            <span class="status-green"><%= recordList[i].statusName.replace('_担保交易', '') %></span>
+                        </td>
+                        <td width="80">
+                            <% if(recordList[i].type===0){ %>
+                            <a href="/guarantee/getBuyOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <% }else{ %>
+                            <a href="/guarantee/getSellOrderDetail?orderId=<%= recordList[i].id %>">查看详情</a>
+                            <% } %>
+                        </td>
+                        <% }else{ %>
                         <td width="100">
                             <% if(recordList[i].status === 'WaitSignContract'){ %>
                             <span class="status-green WaitSignContract"><%= recordList[i].statusName %></span>
@@ -272,6 +288,7 @@
                             <% } %>
                             <% } %>
                         </td>
+                        <% } %>
                     </tr>
                     <% } %>
                 <% }else{ %>

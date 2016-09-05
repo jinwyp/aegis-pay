@@ -1,0 +1,83 @@
+<%- include ../../global/includehead/doctype %>
+<head>
+    <%- include ../../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/pay.css">
+</head>
+
+<body>
+<% var tipText = [["冻结货款", "在线冻结", "冻结", "确认冻结"], ["解冻支付", "解冻支付", "支付", "确认付款"], ["支付尾款", "在线支付", "支付", "确认付款"]] %>
+<% var headerTit = tipText[type-1][0] %>
+
+<%- include ../../global/header/header %>
+<%- include ../../global/header/subHeader %>
+
+<div class="mainWrapper">
+    <h3 class='pageTitle'><span></span>易煤网 — <%= tipText[type-1][1] %></h3>
+    <form method="post" id='pay'>
+      <input type="hidden" name="orderId" value="<%= order.id %>" />
+      <input type="hidden" name="version" value="<%= order.version %>">
+        <input type="hidden" name="type" value="<%= type %>">
+      <ul class='seller'>
+        <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.payMoney) %></i>元</span></li>
+        <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.payMoney) %>)</span></li>
+      </ul>
+      <% if(order.buyerBalanceMoney>=order.payMoney) {%>
+        <% if(type == 2) {%> 
+        <ul class="unfrozenBuyer">
+          <li>本次交易将解冻货款<span><%= formatMoney(order.unfreezeMoney) %></span>元，并将其中的<span><%= formatMoney(order.payMoney) %></span>元支付给本单卖家</li>
+          <li>解冻金额：<span><%= formatMoney(order.unfreezeMoney) %></span>元</li>
+          <li>支付金额：<span><%= formatMoney(order.payMoney) %></span>元</li>
+        </ul>
+        <% }else{ %>
+        <ul class="buyer">
+          <li class='first'><input type="radio" checked /></li>
+          <li class='secondli'>
+            <p><span><i class='icon_cash'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
+            <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
+          </li>
+          <li class='last'><%= tipText[type-1][2] %><span><%= formatMoney(order.payMoney) %></span>元</li>
+          <!--请不要删除以下隐藏标签,用户短信验证码提示信息中金额字段取值-->
+          <input type='hidden' name='amount' value='<%= order.payMoney %>'>
+        </ul>
+        <% } %>
+      <ul class='valid'>
+        <%- include ../../../custom_components/ccapimg-modal/form-part %>
+        <li>
+          <label>支付密码：</label>
+            <input type='password' style='display:none;' />
+            <input type="password" name="payPassword" value="" autocomplete="off">
+            <a class="forget" target='_blank' href='/ucenter/paypassword/fg/vl'>忘记密码</a>
+          <p class='tip-msg'>请输入支付密码(6-16位字符，区分大小写)</p>
+          <p class='tip-error'></p>
+        </li>
+      </ul>
+      <input id='payBtn' class='btn_blue payBtn' type="button" value="<%= tipText[type-1][3] %>" />
+      <% }else{ %>
+        <ul class="buyer noneBalance">
+            <li class='first'><input type="radio" disabled /></li>
+            <li class='secondli'>
+                <p><span><i class='icon_cash_disable'></i>账户余额：</span><%= formatMoney(order.buyerBalanceMoney) %>元</p>
+                <p class='second'>(大写：<%= switchTxt(order.buyerBalanceMoney) %>)</p>
+            </li>
+        </ul>
+        <dl class="tip-msg noneBalance">
+            <dt>您的<span>余额不足</span>，无法进行支付，请先对易煤网资金账户进行充值，然后再进行支付！</dt>
+            <dd>提示：为您的资金安全，我们建议您使用贵公司的同名账户进行充值。</dd>
+        </dl>
+        <% } %>
+    </form>
+</div>
+
+<%- include ../../../custom_components/ccapimg-modal/ccapimg-modal %>
+<%- include blocks/passerr.ejs %>
+
+<%- include ../../global/footer/footer %>
+
+<div class='layer-shade'></div>
+
+<%- include ../../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/guarantee/pay/index.js"></script>
+
+</body>
+</html>

@@ -25,3 +25,6 @@ require('./wealth/fundaccount');
 
 require('./wealth/bindingBankAccount');
 require('./wealth/bindingSuccess');
+// 担保交易
+require('./guarantee/pay'); //支付
+require('./guarantee/order'); //订单详情

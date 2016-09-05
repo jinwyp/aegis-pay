@@ -1,0 +1,53 @@
+<%- include ../../global/includehead/doctype %>
+<head>
+    <%- include ../../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/pay.css">
+</head>
+
+<body>
+
+<%- include ../../global/header/header %>
+<%- include ../../global/header/subHeader %>
+
+
+
+<div class="mainWrapper">
+    <div class="progressDetail">
+        <h3 <%if(type==2){%>class='guarantee'<%}%>>
+            <% if(type==1){ %>
+            <span class='icon_ok'></span>已成功提交请求到银行，
+            <p>即将冻结货款<i><%= formatMoney(order.freezeMoney) %></i>元</p>
+            <% } %>
+            <% if(type==2){ %>
+            <span class='icon_ok'></span>您已成功解冻<i><%= formatMoney(order.unfreezeMoney) %></i>元, 支付<i><%=  formatMoney(order.paymentMoney)  %></i>元
+            <% } %>
+            <% if(type==3){ %>
+            <span class='icon_ok'></span>您已成功支付尾款<i><%= formatMoney(order.tailMoney) %></i>元
+            <% } %>
+            
+        </h3>
+        <ul>
+            <li><span>提货地址：</span><%= deliveryplaceAppend(order.deliveryProvince,order.deliveryPlace,order.otherHarbour) %></li>
+            <li><span>卖家姓名：</span><%= order.dealerName %></li>
+            <li><span>联系方式：</span><%= order.dealerPhone %></li>
+        </ul>
+        <a href="/guarantee/getBuyOrderDetail?orderId=<%= order.orderId %>" class='btn_blue'>查看订单详情</a>
+    </div>
+    <div class="security">
+        <dl class="tip-msg">
+            <dt><i class='icon_warn'></i>安全提醒：</dt>
+            <dd>下单后，<span>用QQ、邮件给您发送连接办理退款的都是骗子！</span></dd>
+            <dd>如果易煤网因业务需要进行系统升级，我们会以邮件形式告知您，请关注您的邮箱，谨防假冒我平台客服人员、broker人员电话诈骗！</dd>
+        </dl>
+    </div>
+</div>
+
+
+<%- include ../../global/footer/footer %>
+
+<%- include ../../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/guarantee/pay/index.js"></script>
+
+</body>
+</html>

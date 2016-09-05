@@ -159,7 +159,12 @@ exports.financialDetails = function (req, res, next) {
             {id:'3', value:'3', text:'销售', selected:false},
             {id:'4', value:'4', text:'采购', selected:false},
             {id:'5', value:'5', text:'验卡打款', selected:false},
-            {id:'6', value:'6', text:'退款', selected:false}
+            {id:'6', value:'6', text:'退款', selected:false},
+
+            {id:'8', value:'8', text:'冻结', selected:false},
+            {id:'9', value:'9', text:'解冻并支付', selected:false},
+            {id:'10', value:'10', text:'解冻', selected:false},
+            {id:'11', value:'11', text:'支付尾款', selected:false},
         ],
         formSelectOrderSearchType:[
             {id:'0', value:'0', text:'全部'},
@@ -244,6 +249,10 @@ exports.financialDetailsToExcelAndPDF = function (req, res, next) {
                     if (order.type === 5){order.type = '验卡打款'; }
                     if (order.type === 6){order.type = '退款'; order.type = order.type + ' 订单号:' + order.orderId;}
 
+                    if (order.type === 8){order.type = '冻结'; order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 9){order.type = '解冻并支付'; order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 10){order.type = '解冻'; order.type = order.type + ' 订单号:' + order.orderId;}
+                    if (order.type === 11){order.type = '支付尾款'; order.type = order.type + ' 订单号:' + order.orderId;}
                 });
 
                 if (req.query.filetype === 'excel'){

@@ -1,0 +1,22 @@
+@import '../helpers/_variables.scss';
+
+#pay{
+    .unfrozenBuyer{
+        border:1px solid $color_btn_blue; border-top-width:2px; margin-top:15px; background-color:$color_lightblue;
+        line-height: 36px; padding:10px 30px;
+        span{
+            color: $color_orange; font-size:$size_font_pageTitle; margin:0 4px;
+        }
+    }
+}
+.progressDetail h3{
+    p{
+        padding-left:80px; margin-bottom:15px;
+    }
+    &.guarantee{
+        padding-left:80px; margin-bottom:15px;
+        .icon_ok{
+            margin-left:-80px;
+        }
+    }
+}

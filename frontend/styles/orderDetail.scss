@@ -77,3 +77,42 @@ body{
     }
   }
 }
+
+//guarantee 
+#order-detail-body.guarantee{
+  .main-content .center-content .status-content div.hint{
+    input[name="settleMoney"]{
+      margin:0 5px;
+      border:1px solid $color_border_gray;
+      &:focus{
+        border-color:$color_blue;
+      }
+    }
+    .tipError{
+      color:$color_red; margin-left:10px;
+    }
+    i{
+      font-size:16px; color:$color_orange;
+    }
+    a{
+      color:#fff;
+      &:hover{
+        color:#fff;
+      }
+    }
+  } 
+  #order-table tr td .detail-info-table tr td .info-title .supply-ico{
+    display:none;
+  }
+  #order-table tr td .detail-info-table tr td .info-title .supply-title{
+    margin-left:0;
+  }
+} 
+.alert-dismissible{
+  position:absolute; width:700px; left:50%; margin-left:-350px; top:135px;
+}
+.confirmModal.guarantee{
+  .modal-dialog{
+    position: absolute; left: 50%; top: 50%; margin-left: -240px; margin-top: -102px;
+  }
+}

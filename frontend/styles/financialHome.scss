@@ -28,7 +28,7 @@ body{
     }
     .financial-header{
       border: 1px solid #e4e4e4;
-      height: 160px;
+      height: 170px;
       background-color: $color_main_bg;
       color: $color_font;
       .label{  color: $color_tip_font;padding: 0;  }
@@ -76,10 +76,13 @@ body{
         }
         .center-operate{
           margin-top: 34px;
+          .frozenMoney{
+            font-size:18px; margin-top:-18px;
+            .orange{ color: $money_orange; }
+          }
           .balance{
-            font-size: 20px;
+            font-size: 18px;
             vertical-align: middle;
-            float: left;
             .orange{ color: $money_orange; }
           }
           .btn-option{
@@ -113,7 +116,7 @@ body{
         .add-bank{
           display: block;
           text-align: center;
-          line-height: 92px;
+          line-height: 102px;
           font-size: 18px;
         }
         .icon-add{

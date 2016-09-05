@@ -1,0 +1,60 @@
+<%- include ../../global/includehead/doctype %>
+<head>
+    <%- include ../../global/includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/orderDetail.css">
+</head>
+
+<body>
+
+<%- include ../../global/modal/modal %>
+<%- include ../../global/header/header %>
+<%- include ../../global/header/subHeader %>
+
+
+<div id="order-detail-body" class="guarantee">
+    <div class="main-content">
+        <div class="center-content">
+            <div class="status-content">
+                <input type="hidden" name="orderId" value="<%=order.id%>" />
+                <input type="hidden" name="version" value="<%=order.version%>" />
+                <input type="hidden" name="status" value="<%=order.status%>" />
+                <% var tipText = ['待冻结货款', '已提交，等待银行冻结货款', '待结算', '交易完成', '订单取消'];
+                   var statusInt = statusObj[order.status];
+                 %>
+                <div class="state-item fs-24">
+                    <span>当前订单状态：</span>
+                    <span class="status"><%= tipText[statusInt] %></span>
+                </div>
+                <% include ./orderStatusBlock %>
+            </div>
+            <!-- 卖家、卖家信息 -->
+            <% include ../../global/order/orderUserInfo %>
+            <!-- 订单表格 -->
+            <% include ../../global/order/orderTable %>
+
+            <!--<div class="btn-bottom">
+                <a target="_blank" href="/guarantee/printDetail?orderId=<%=order.id%>"><span class="btn-print">打印订单详情</span></a>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<% if(type==0){ %>
+<% include ./orderCancelModal %>
+<% } %>
+
+<% if(type==1){ %>
+<% include ./alertModal %>
+<% } %>
+
+<%- include ../../global/footer/footer %>
+
+<%- include ../../global/includehead/bottomscript %>
+
+<script src="<%= staticPath %>/scripts/guarantee/orderDetail.js"></script>
+
+</body>
+</html>
+
+
+

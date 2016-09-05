@@ -220,3 +220,11 @@ function getUrlParam (param, hrefStr) {
 	return request.QueryString(param);
 }
 
+//数字千分符
+function formatMoney(num, deg) {
+    if(/^(0|[1-9][0-9]*)\.[0-9]{2}$/.test(num)){
+        return (num + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+    }else{
+        return (parseFloat(num).toFixed(deg || 2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+    }
+};
