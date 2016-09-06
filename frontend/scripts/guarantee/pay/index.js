@@ -1,10 +1,10 @@
 requirejs.config({
   paths: {
-    'pay-block': 'guarantee/pay/blocks/pay'
+    'guarantee-pay-block': 'guarantee/pay/blocks/pay'
   }
 });
 
-require(['pay.smscode', 'pay-block'], function(sms_code, pay){
+require(['pay.smscode', 'guarantee-pay-block'], function(sms_code, pay){
   sms_code.init();
   pay.init();
 })
