@@ -14,7 +14,7 @@
     <div class="error-404">
         <img <%- ngShow(message !== "您还没有开通易煤网资金账户.") %> src="<%= staticPath %>/images/error/error500.png"/>
         <p><%- message %></p>
-        <p <%- ngShow(message === "您还没有开通易煤网资金账户.") %> ><a href="/">立即开通资金账号</a></p>
+        <p <%- ngShow(message === "您还没有开通易煤网资金账户.") %> ><a href="/wealth/open-fund-account">立即开通资金账号</a></p>
 
         <a id="goBack" href="<%= sitepage %>" class="btn btn-primary btn-customer">返回</a>
     </div>

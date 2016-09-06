@@ -22,7 +22,7 @@ fundAccountPersist
     }
     return result;
 })
-.post('/account/fund/checkFundAccount').reply(200, {success:true, data:{success:true}})
+.post('/account/fund/checkFundAccount').reply(200, {success:true, data:{success:false}})
 .get(/\/account\/fund\/info\?userId=\d/).reply(200, {"success":true, "data":{
     "fundAccount": {"accountType": 1,
             "accountBankName": 332323232323232,
