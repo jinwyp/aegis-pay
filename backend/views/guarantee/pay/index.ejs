@@ -21,7 +21,7 @@
         <li><span>卖家公司：</span><%= order.sellerCompanyName %><span class='fund'><i><%= formatMoney(order.payMoney) %></i>元</span></li>
         <li><span>收款账号：</span><%= order.sellerFundAccount %><span class='fund'>(大写：<%= switchTxt(order.payMoney) %>)</span></li>
       </ul>
-      <% if(order.buyerBalanceMoney>order.payMoney) {%>
+      <% if(order.buyerBalanceMoney>=order.payMoney) {%>
         <% if(type == 2) {%> 
         <ul class="unfrozenBuyer">
           <li>本次交易将解冻货款<span><%= formatMoney(order.unfreezeMoney) %></span>元，并将其中的<span><%= formatMoney(order.payMoney) %></span>元支付给本单卖家</li>
