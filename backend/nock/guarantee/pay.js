@@ -13,7 +13,7 @@ guarantee_payPersist
     var orderId = _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1];
     var result = {
       "success": true,
-      "errorCode": '',
+      "errorCode": '1001',
       "data": {"order": {
                       "id": _.split(_.split(_.split(uri,'?')[1],'&')[0], '=')[1],
                       "version": 2,
