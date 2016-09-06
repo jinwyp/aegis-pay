@@ -39,6 +39,7 @@ var rconfig = {
         'compact-block'                     : 'compact/blocks/compact',
         'compact-upload'                    : 'compact/blocks/upload',
         'pay-block'                         : 'pay/blocks/pay',
+        'guarantee-pay-block'               : 'guarantee/pay/blocks/pay',
         'forgetValid'                       : 'paypassword/blocks/forget-valid',
         'forgetSet'                         : 'paypassword/blocks/forget-set',
         'modifyValid'                       : 'paypassword/blocks/modify-valid',
