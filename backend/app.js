@@ -122,6 +122,7 @@ _.extend(app.locals, {
     memberUrl : config.passport.member,
     payUrl : config.passport.pay,
     sitepage : config.site_page,
+    financepage : config.finance_page,
     ymIndexUrl: config.ymIndexUrl
 });
 

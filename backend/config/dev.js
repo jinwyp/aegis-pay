@@ -20,6 +20,7 @@ var config = {
     },
     ymIndexUrl: 'http://info-dev.yimei180.com',
     site_page: 'https://www-dev.yimei180.com',
+    finance_page: 'https://finance-dev.yimei180.com',
     redis_notification: {
         host: '10.100.10.2',
         port: 6379,
