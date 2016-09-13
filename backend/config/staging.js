@@ -6,6 +6,7 @@ var config = {
     https    : true,
     domain   : 'pay-staging.yimei180.com',   // 域名
     homepage : 'https://pay-staging.yimei180.com',
+    finance_page: 'https://finance-staging.yimei180.com',
 
     passport: {
         member: 'https://member-staging.yimei180.com',
