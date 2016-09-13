@@ -8,6 +8,7 @@ var config = {
     https    : true,
     domain   : 'pay.yimei180.com', // 域名
     homepage : 'https://pay.yimei180.com',
+    finance_page: 'https://finance.yimei180.com',
     passport: {
         member: 'https://member.yimei180.com',
         cookieName: 'passport'
