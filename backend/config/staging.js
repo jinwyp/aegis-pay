@@ -23,7 +23,8 @@ var config = {
         host: '10.100.10.1',
         port: 6379,
         db: 0
-    }
+    },
+    bidUrl: 'https://bid-staging.yimei180.com'
 };
 
 module.exports = config;

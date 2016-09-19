@@ -35,7 +35,8 @@ var config = {
     member_address: 'http://member-local.yimei180.com:3000',
     rest_address: 'http://127.0.0.1:9091/',
     site_page: 'http://www-local.yimei180.com:8080',
-    finance_page: 'http://finance-local.yimei180.com:8002'
+    finance_page: 'http://finance-local.yimei180.com:8002',
+    bidUrl: 'http://bid-local.yimei180.com'
 };
 
 module.exports = config;

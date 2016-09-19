@@ -26,7 +26,8 @@ var config = {
         db: 0
     },
     // 生产为负载均衡地址
-    rest_address: process.env.SERVICE_ADDRESS
+    rest_address: process.env.SERVICE_ADDRESS,
+    bidUrl: 'https://bid.yimei180.com'
 };
 
 module.exports = config;
