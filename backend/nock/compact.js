@@ -43,7 +43,9 @@ compactPersist
                 productRS02: 2,
                 productRS: '2.00',
                 productInspectOrg: '中国检验认证(集团)有限公司(CCIC)',
-                productOtherInspectOrg: null
+                productOtherInspectOrg: null,
+                qualityAcceptanceMethod: '',
+                quantityAcceptanceMethod: ''
             }
         }
     }
