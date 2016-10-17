@@ -67,15 +67,21 @@ exports.checkUserCompany = function (req, res, next) {
 };
 
 exports.isFundAccountExist = function(req, res, next){
-    request.post({url: api_config.checkFundAccount, form: {userId: req.session.user.id}}, function(err, data){
-        var result = JSON.parse(data.body);
-        if(result.data.success){
-            return next(new BusinessError(409, '您已经存在易煤网资金账户！'));
-        }else{
-            //渲染页面
-            return next();
-        }
-    }) 
+    if(req.session.user.master) {
+        request.post({url: api_config.checkFundAccount, form: {userId: req.session.user.id}}, function(err, data){
+            var result = JSON.parse(data.body);
+            if(result.data.success){
+                return next(new BusinessError(409, '您已经存在易煤网资金账户！'));
+            }else{
+                //渲染页面
+                return next();
+            }
+        })
+    } else {
+        return next(new BusinessError(409,"请使用公司管理员用户操作支付系统"))
+    }
+
+
 }
 
 // 开通资金账户 - 设置密码&绑定手机号
