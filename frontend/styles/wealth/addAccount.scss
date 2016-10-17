@@ -185,6 +185,7 @@ $dark:#000000;
 		margin-right:60px;
 		border:1px solid $gray1;
 		border-top:2px solid $blue1;
+		vertical-align:top;
 		.figure-caption{
 			@include height(60px);
 			background:$blue2 url('#{$assetPath}/images/wealth/bank_card_icon.png') no-repeat 24px 20px;
