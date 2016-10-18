@@ -60,7 +60,38 @@ input[type="text"]:focus.error,input[type="password"]:focus.error{
     border-color:$color_red;
 }
 
-
-
+//无权限页面
+#noPower{
+    .w1000{
+        width: 1000px;
+        margin: 0 auto;
+        height: 600px;
+        background: #f6f6f6;
+        text-align: center;
+        .errInfo{
+            width: 260px;
+            height: 150px;
+            display: inline-block;
+            margin-top: 180px;
+            text-align: center;
+            .ico{
+                width: 60px;
+                height: 60px;
+                display: inline-block;
+                background: url("#{$assetPath}/images/modal/attention.png") no-repeat;
+            }
+            .info{
+                font-size: 24px;
+                line-height: 50px;
+                color: #666666;
+            }
+            .tips{
+                font-size: 14px;
+                line-height: 40px;
+                color: #666666;
+            }
+        }
+    }
+}
 
 

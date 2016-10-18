@@ -1,0 +1,48 @@
+<%- include ../includehead/doctype %>
+<head>
+    <%- include ../includehead/head %>
+    <link rel="stylesheet" href="<%= staticPath %>/styles/global.css">
+</head>
+
+<body>
+
+
+<%- include ../header/header %>
+
+
+<div id="noPower">
+    <div class="w1000">
+        <div class="errInfo">
+            <div class="ico"></div>
+            <p class="info">抱歉，您没有相关权限</p>
+            <p class="tips">如需权限，请联系管理员。</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<%- include ../footer/footer %>
+
+<%- include ../includehead/bottomscript %>
+
+
+<script type="text/javascript">
+//    var goBack = document.getElementById('goBack');
+//    goBack.onclick = function(event){
+//        var event = event || window.event;
+//        if( document.referrer ){
+//            window.location.href = document.referrer;
+//            event.preventDefault();
+//            event.stopPropagation();
+//        }
+//    };
+</script>
+
+</body>
+</html>
+
