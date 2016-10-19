@@ -86,6 +86,12 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
             return res.render('global/globalTemp/page404', resError);
         }
 
+        if (resError.errorCode === 403) {
+            resError.url = req.url;
+            resError.pageTitle = '404 Page Not Found, 抱歉,页面没有找到!';
+            return res.render('global/globalTemp/noPower', resError);
+        }
+
         resError.pageTitle = '500 系统错误, 请稍后重试!';
         return res.render('global/globalTemp/error', resError);
     }
@@ -162,6 +168,13 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
             resError.pageTitle = '404 Page Not Found, 抱歉,页面没有找到!';
             return res.render('global/globalTemp/page404', resError);
         }
+
+        if (resError.errorCode === 403) {
+            resError.url = req.url;
+            resError.pageTitle = '404 Page Not Found, 抱歉,页面没有找到!';
+            return res.render('global/globalTemp/noPower', resError);
+        }
+
         resError.pageTitle = '500 系统错误, 请稍后重试!';
         return res.render('global/globalTemp/error', resError);
     }

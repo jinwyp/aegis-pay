@@ -4,6 +4,7 @@ var api_config = require('../api/v1/api_config');
 var config                     = require('../config');
 var SystemError                = require('../errors/SystemError');
 var UnauthenticatedAccessError = require('../errors/UnauthenticatedAccessError');
+var UnauthorizedAccessError = require('../errors/UnauthorizedAccessError');
 
 
 function generateSession(user, res) {
@@ -71,6 +72,8 @@ exports.passport = function (req, res, next) {
                     return next(err);
                 }
                 var auth =  JSON.parse(auth.body);
+
+
                 if (auth.id) {
                     req.session.user = res.locals.user = auth;
                     return next();
@@ -83,6 +86,23 @@ exports.passport = function (req, res, next) {
     } else {
         res.locals.user = req.session.user;
         return next();
+    }
+};
+
+exports.master = function (req, res, next) {
+
+    if (req.path.indexOf('setSSOCookie') >= 0) {
+        return next();
+    }
+    if (req.path.indexOf('removeSSOCookie') >= 0) {
+        return next();
+    }
+
+    //不是主账户,不允许登陆
+    if(!req.session.user.master) {
+        return next(new UnauthorizedAccessError(403,"请使用公司管理员用户操作支付系统"));
+    } else {
+        next();
     }
 };
 

@@ -146,6 +146,7 @@ app.use(busboy({
 
 // routes
 // 探针服务
+app.use(auth.master);
 
 app.use('/api', routes.api);
 app.use('/', routes.webPage);
