@@ -57,6 +57,7 @@ exports.DevelopmentHandlerMiddleware = function(err, req, res, next) {
         status: newErr.status,
         errorCode: newErr.code,
         field: newErr.field,
+        errType: newErr.field,
         stack: newErr.stack,
         error: newErr,
         inspect:inspect(newErr)
@@ -137,7 +138,8 @@ exports.ProductionHandlerMiddleware = function(err, req, res, next) {
         message: newErr.message,
         status: newErr.status,
         errorCode: newErr.code,
-        field: newErr.field
+        field: newErr.field,
+        errType: newErr.field
     };
 
     var type = req.accepts('html', 'json', 'text');

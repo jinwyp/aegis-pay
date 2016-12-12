@@ -103,7 +103,7 @@ exports.smsText = function(smsText, next){
 
 
 exports.payPassword = function(password, next){
-    if (!password || typeof password !== 'string' || !validator.isLength(password, { min: 6, max: 16})) {
+    if (!password || typeof password !== 'string' || !validator.isLength(password, { min: 6, max: 20})) {
         return throw400(code.user.payPasswordWrong.code, code.user.payPasswordWrong.message, code.user.payPasswordWrong.field, next);
     }
 };

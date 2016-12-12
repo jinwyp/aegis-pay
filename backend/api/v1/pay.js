@@ -7,9 +7,7 @@ var api_config = require('./api_config');
 exports.submit = function (req, res, next) {
 
     checker.orderId(req.body.orderId);
-    checker.payPassword(req.body.payPassword, function(err){
-        return res.json({success: false, errType: 'payPassword'})
-    });
+    checker.payPassword(req.body.payPassword, next);
 
     var body = req.body;
 
